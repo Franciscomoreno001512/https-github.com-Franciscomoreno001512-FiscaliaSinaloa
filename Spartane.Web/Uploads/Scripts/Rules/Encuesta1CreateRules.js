@@ -38,15 +38,7 @@ if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex
 
 //BusinessRuleId:2879, Attribute:264366, Operation:Field, Event:None
 
-//BusinessRuleId:2880, Attribute:264366, Operation:Field, Event:None
-$("form#CreateEncuesta1").on('change', '#Numero_de_Preguntas', function () {
-	nameOfTable='';
-	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('3', '3') ) { $('#divPregunta1').css('display', 'block');$('#divPregunta2').css('display', 'block');$('#divPregunta3').css('display', 'block');$('#divRespuesta_1').css('display', 'block');$('#divRespuesta_2').css('display', 'block');$('#divRespuesta_3').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Respuesta_1' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Respuesta_2' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Respuesta_3' + rowIndex)); $('#divPregunta4').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));$('#divPregunta5').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));$('#divRespuesta_4').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_4' + rowIndex));$('#divRespuesta_5').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_5' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_4' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_5' + rowIndex));} else {}
-});
 
-
-//BusinessRuleId:2880, Attribute:264366, Operation:Field, Event:None
 
 //BusinessRuleId:2881, Attribute:264366, Operation:Field, Event:None
 $("form#CreateEncuesta1").on('change', '#Numero_de_Preguntas', function () {
@@ -77,6 +69,17 @@ if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex
 
 
 //BusinessRuleId:2878, Attribute:264366, Operation:Field, Event:None
+
+
+
+//BusinessRuleId:2880, Attribute:264366, Operation:Field, Event:None
+$("form#CreateEncuesta1").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('3', '3') ) { $('#divPregunta1').css('display', 'block');$('#divPregunta2').css('display', 'block');$('#divPregunta3').css('display', 'block');$('#divRespuesta_1').css('display', 'block');$('#divRespuesta_2').css('display', 'block');$('#divRespuesta_3').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Respuesta_1' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Respuesta_2' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Respuesta_3' + rowIndex)); $('#divPregunta4').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));$('#divPregunta5').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));$('#divRespuesta_4').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_4' + rowIndex));$('#divRespuesta_5').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_5' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_4' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_5' + rowIndex)); DisabledControl($("#" + nameOfTable + "Respuesta_1" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_2" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_3" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_3' + rowIndex));}} else {}
+});
+
+//BusinessRuleId:2880, Attribute:264366, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -207,125 +210,35 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:2540, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Pregunta1' + rowIndex),EvaluaQuery("SELECT Pregunta_1 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- AsignarValor($('#' + nameOfTable + 'Pregunta1' + rowIndex),EvaluaQuery("SELECT Pregunta_1 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- AsignarValor($('#' + nameOfTable + 'Pregunta1' + rowIndex),EvaluaQuery("SELECT Pregunta_1 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Pregunta2' + rowIndex),EvaluaQuery("SELECT Pregunta_2 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- AsignarValor($('#' + nameOfTable + 'Pregunta2' + rowIndex),EvaluaQuery("SELECT Pregunta_2 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- AsignarValor($('#' + nameOfTable + 'Pregunta2' + rowIndex),EvaluaQuery("SELECT Pregunta_2 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Pregunta3' + rowIndex),EvaluaQuery(" SELECT Pregunta_3 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- AsignarValor($('#' + nameOfTable + 'Pregunta3' + rowIndex),EvaluaQuery(" SELECT Pregunta_3 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- AsignarValor($('#' + nameOfTable + 'Pregunta3' + rowIndex),EvaluaQuery(" SELECT Pregunta_3 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Pregunta4' + rowIndex),EvaluaQuery(" SELECT Pregunta_4 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- AsignarValor($('#' + nameOfTable + 'Pregunta4' + rowIndex),EvaluaQuery(" SELECT Pregunta_4 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- AsignarValor($('#' + nameOfTable + 'Pregunta4' + rowIndex),EvaluaQuery(" SELECT Pregunta_4 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Pregunta5' + rowIndex),EvaluaQuery(" SELECT Pregunta_5 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- AsignarValor($('#' + nameOfTable + 'Pregunta5' + rowIndex),EvaluaQuery(" SELECT Pregunta_5 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
 
 
-}
-//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- AsignarValor($('#' + nameOfTable + 'Pregunta5' + rowIndex),EvaluaQuery(" SELECT Pregunta_5 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
-
-
-}
-//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:531, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -477,29 +390,6 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:537, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- SetRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex)); DisabledControl($("#" + nameOfTable + "Numero_de_Preguntas" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));}DisabledControl($("#" + nameOfTable + "NUAT" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_5' + rowIndex));}DisabledControl($("#" + nameOfTable + "Modulo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Estatus" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));}DisabledControl($("#" + nameOfTable + "Folio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));}
-
-
-}
-//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- SetRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex)); DisabledControl($("#" + nameOfTable + "Numero_de_Preguntas" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));}DisabledControl($("#" + nameOfTable + "NUAT" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_5' + rowIndex));}DisabledControl($("#" + nameOfTable + "Modulo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Estatus" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));}DisabledControl($("#" + nameOfTable + "Folio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));}
-
-
-}
-//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- SetRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex)); DisabledControl($("#" + nameOfTable + "Numero_de_Preguntas" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));}DisabledControl($("#" + nameOfTable + "NUAT" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_5' + rowIndex));}DisabledControl($("#" + nameOfTable + "Modulo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Estatus" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));}DisabledControl($("#" + nameOfTable + "Folio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));}
-
-
-}
-//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 
 
@@ -521,21 +411,14 @@ if(operation == 'Consult'){
 
 
 
-//BusinessRuleId:2884, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('106', '106') ) { $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divNumero_de_Preguntas').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));$('#divNUAT').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));$('#divModulo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));$('#divFecha_Enviado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));$('#divHora_Enviado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));$('#divFecha_Respuesta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));$('#divHora_Respuesta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));$('#divEstatus').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));} else {}
 
 
-}
-//BusinessRuleId:2884, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:2884, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('106', '106') ) { $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divNumero_de_Preguntas').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));$('#divNUAT').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));$('#divModulo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));$('#divFecha_Enviado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));$('#divHora_Enviado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));$('#divFecha_Respuesta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));$('#divHora_Respuesta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));$('#divEstatus').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));} else {}
 
 
-}
-//BusinessRuleId:2884, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
 
 
 
@@ -590,6 +473,77 @@ if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex
 
 }
 //BusinessRuleId:522, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2884, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('106', '106') ) { $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divNumero_de_Preguntas').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));$('#divNUAT').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));$('#divModulo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));$('#divFecha_Enviado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));$('#divHora_Enviado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));$('#divFecha_Respuesta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));$('#divHora_Respuesta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));$('#divEstatus').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));$('#divTipo_Encuesta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex));} else {}
+
+}
+//BusinessRuleId:2884, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2884, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('106', '106') ) { $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divNumero_de_Preguntas').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));$('#divNUAT').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));$('#divModulo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));$('#divFecha_Enviado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));$('#divHora_Enviado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));$('#divFecha_Respuesta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));$('#divHora_Respuesta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));$('#divEstatus').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));$('#divTipo_Encuesta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex));} else {}
+
+}
+//BusinessRuleId:2884, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex)); DisabledControl($("#" + nameOfTable + "Numero_de_Preguntas" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));}DisabledControl($("#" + nameOfTable + "NUAT" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));}DisabledControl($("#" + nameOfTable + "Modulo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Estatus" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));}DisabledControl($("#" + nameOfTable + "Folio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));} DisabledControl($("#" + nameOfTable + "Tipo_Encuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex));}
+
+}
+//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex)); DisabledControl($("#" + nameOfTable + "Numero_de_Preguntas" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));}DisabledControl($("#" + nameOfTable + "NUAT" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));}DisabledControl($("#" + nameOfTable + "Modulo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Estatus" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));}DisabledControl($("#" + nameOfTable + "Folio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));} DisabledControl($("#" + nameOfTable + "Tipo_Encuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex));}
+
+}
+//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex)); DisabledControl($("#" + nameOfTable + "Numero_de_Preguntas" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex));}DisabledControl($("#" + nameOfTable + "NUAT" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Pregunta5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta5' + rowIndex));}DisabledControl($("#" + nameOfTable + "Modulo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Enviado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Enviado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Respuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Respuesta' + rowIndex));}DisabledControl($("#" + nameOfTable + "Estatus" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));}DisabledControl($("#" + nameOfTable + "Folio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));} DisabledControl($("#" + nameOfTable + "Tipo_Encuesta" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex));}
+
+}
+//BusinessRuleId:2883, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3115, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { DisabledControl($("#" + nameOfTable + "Respuesta_1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_5' + rowIndex));}} else {}
+
+}
+//BusinessRuleId:3115, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3115, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { DisabledControl($("#" + nameOfTable + "Respuesta_1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_5' + rowIndex));}} else {}
+
+}
+//BusinessRuleId:3115, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3115, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { DisabledControl($("#" + nameOfTable + "Respuesta_1" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_1' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_2" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_2' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_3" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_3' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_4" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_4' + rowIndex));}DisabledControl($("#" + nameOfTable + "Respuesta_5" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Respuesta_5' + rowIndex));}} else {}
+
+}
+//BusinessRuleId:3115, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//INI COD-MAN PARA OCULTAR BOTON DE GUARDAR SI EL ESTATUS  = 2 CONTESTADA
+if(operation == 'Update' || operation == 'New' || operation == 'Consult'){
+	if( GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) 
+	{ 
+		$('#Encuesta1Guardar').css('display', 'none');
+	}
+}
+//END COD-MAN PARA OCULTAR BOTON DE GUARDAR SI EL ESTATUS  = 2 CONTESTADA
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

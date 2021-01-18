@@ -1,0 +1,602 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Quejas_de_MPGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Quejas_de_MPResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Nombres
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Apellido_Paterno
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Apellido_Materno
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Nombre_Completo
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Estatus
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Peso
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Estatura
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Padecimiento_de_Enfermedad
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Forma_Cara
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Tipo_de_Cejas
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Tamano_de_Cejas
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Largo_de_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Cantidad_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Implantacion_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Complexion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Color_Piel
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Frente
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Forma_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Color_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Calvicie
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Color_Ojos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Tamano_de_Ojos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Forma_Ojos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Anteojos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Forma_de_Nariz
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Tamano_Nariz
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Labios
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Boca
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Grosor_de_Labios
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Menton
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Forma_de_Menton
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Barba
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Forma_Orejas
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Tamano_Orejas
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Tipo_Lobulo
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Bigote
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Senas_Particulares
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Imagen_Tatuaje
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Situacion_Fisica
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Otras_Senas_Particulares
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Descripcion_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.CURP
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Genero
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Fecha_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Nacionalidad
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Entidad_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Nombres_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Apellido_Paterno_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Apellido_Materno_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Fecha_de_Nacimiento_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Edad_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Genero_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Celular_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Correo_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Numero_Identificacion_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Fotografia_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Nacionalidad_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.CURP_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Nombres_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Apellido_Paterno_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Apellido_Materno_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Fecha_Nacimiento_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Edad_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Genero_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Celular_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Correo_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Numero_Identificacion_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Nacionalidad_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Pais
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Calle
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Entre_Calle
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Y_Calle
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Referencias_de_domicilio
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Nombres
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno
+                    </td>
+                    <td>
+                        @item.Apellido_Materno
+                    </td>
+                    <td>
+                        @item.Nombre_Completo
+                    </td>
+                    <td>
+                        @item.EstatusDescripcion
+                    </td>
+                    <td>
+                        @item.Peso
+                    </td>
+                    <td>
+                        @item.Estatura
+                    </td>
+                    <td>
+                        @item.Padecimiento_de_Enfermedad
+                    </td>
+                    <td>
+                        @item.Forma_CaraDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_CejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_de_CejasDescripcion
+                    </td>
+                    <td>
+                        @item.Largo_de_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.Cantidad_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.Implantacion_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.ComplexionDescripcion
+                    </td>
+                    <td>
+                        @item.Color_PielDescrpicion
+                    </td>
+                    <td>
+                        @item.FrenteDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.Color_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.CalvicieDescripcion
+                    </td>
+                    <td>
+                        @item.Color_OjosDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_de_OjosDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_OjosDescripcion
+                    </td>
+                    <td>
+                        @item.AnteojosDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_de_NarizDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_NarizDescripcion
+                    </td>
+                    <td>
+                        @item.LabiosDescripcion
+                    </td>
+                    <td>
+                        @item.BocaDescripcion
+                    </td>
+                    <td>
+                        @item.Grosor_de_LabiosDescripcion
+                    </td>
+                    <td>
+                        @item.MentonDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_de_MentonDescripcion
+                    </td>
+                    <td>
+                        @item.BarbaDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_OrejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_OrejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_LobuloDescripcion
+                    </td>
+                    <td>
+                        @item.BigoteDescripcion
+                    </td>
+                    <td>
+                        @item.Senas_ParticularesDescripcion
+                    </td>
+                    <td>
+                        @item.Imagen_Tatuaje
+                    </td>
+                    <td>
+                        @item.Situacion_FisicaDescripcion
+                    </td>
+                    <td>
+                        @item.Otras_Senas_Particulares
+                    </td>
+                    <td>
+                        @item.Descripcion_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.CURP
+                    </td>
+                    <td>
+                        @item.GeneroDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.NacionalidadNacionalidadC
+                    </td>
+                    <td>
+                        @item.Entidad_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Nombres_Hechos
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_Hechos
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_Hechos
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento_Hechos
+                    </td>
+                    <td>
+                        @item.Edad_Hechos
+                    </td>
+                    <td>
+                        @item.Genero_HechosDescripcion
+                    </td>
+                    <td>
+                        @item.Celular_Hechos
+                    </td>
+                    <td>
+                        @item.Correo_Hechos
+                    </td>
+                    <td>
+                        @item.Tipo_de_Identificacion_HechosNombre
+                    </td>
+                    <td>
+                        @item.Numero_Identificacion_Hechos
+                    </td>
+                    <td>
+                        @item.Fotografia_Identificacion
+                    </td>
+                    <td>
+                        @item.Nacionalidad_HechosNacionalidadC
+                    </td>
+                    <td>
+                        @item.Entidad_de_Nacimiento_HechosNombre
+                    </td>
+                    <td>
+                        @item.CURP_Identificacion
+                    </td>
+                    <td>
+                        @item.Nombres_Identificacion
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_Identificacion
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_Identificacion
+                    </td>
+                    <td>
+                        @item.Fecha_Nacimiento_Identificacion
+                    </td>
+                    <td>
+                        @item.Edad_Identificacion
+                    </td>
+                    <td>
+                        @item.Genero_IdentificacionDescripcion
+                    </td>
+                    <td>
+                        @item.Celular_Identificacion
+                    </td>
+                    <td>
+                        @item.Correo_Identificacion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Identificacion_IdentificacionNombre
+                    </td>
+                    <td>
+                        @item.Numero_Identificacion_Identificacion
+                    </td>
+                    <td>
+                        @item.Nacionalidad_IdentificacionNacionalidadC
+                    </td>
+                    <td>
+                        @item.Entidad_de_Nacimiento_Identificacion
+                    </td>
+                    <td>
+                        @item.Pais
+                    </td>
+                    <td>
+                        @item.Estado
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.Municipio
+                    </td>
+                    <td>
+                        @item.Colonia
+                    </td>
+                    <td>
+                        @item.Calle
+                    </td>
+                    <td>
+                        @item.Entre_Calle
+                    </td>
+                    <td>
+                        @item.Y_Calle
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Referencias_de_domicilio
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

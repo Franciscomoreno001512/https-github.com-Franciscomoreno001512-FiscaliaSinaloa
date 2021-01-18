@@ -11,6 +11,15 @@ $('input[type="text"],textarea').blur(function() {
 //END CONVERTIR A MAYUSCULAS AL BLUR
 
 
+//BusinessRuleId:3456, Attribute:266646, Operation:Field, Event:None
+$("form#CreateDetalle_de_Documentos_MPO").on('change', '#Fecha', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Fecha' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && EvaluaQuery("	SELECT DATEDIFF(DAY,CONVERT(DATE,CONVERT(VARCHAR(10),GETDATE(),103),103), CONVERT(DATE,CONVERT(VARCHAR(10),'FLD[Fecha]',103),103))",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText(' No se puede ingresar una fecha mayor al dia de hoy.', rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha' + rowIndex),' ');} else {}
+});
+
+//BusinessRuleId:3456, Attribute:266646, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {

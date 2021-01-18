@@ -89,6 +89,15 @@ if( EvaluaQuery("select Solicitante from Documento where clave = FLD[Documento]"
 
 //BusinessRuleId:2564, Attribute:267313, Operation:Field, Event:None
 
+//BusinessRuleId:3015, Attribute:267313, Operation:Field, Event:None
+$("form#CreateDiligencias_MP").on('change', '#Documento', function () {
+	nameOfTable='';
+	rowIndex='';
+ AsignarValor($('#' + nameOfTable + 'Descripcion' + rowIndex),EvaluaQuery("select Descripcion from Documento where Clave = FLD[Documento]", rowIndex, nameOfTable));
+});
+
+//BusinessRuleId:3015, Attribute:267313, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {

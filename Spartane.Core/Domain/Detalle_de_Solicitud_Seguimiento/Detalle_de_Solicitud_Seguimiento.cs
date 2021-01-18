@@ -7,6 +7,8 @@ using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Detalle_de_Solicitud_Requerido;
 using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
 using Spartane.Core.Domain.Cumplimiento;
+using Spartane.Core.Domain.Forma_de_Cumplimiento;
+using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Spartane_File;
 
@@ -28,9 +30,12 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitud_Seguimiento
         public int? Requerido { get; set; }
         public int? Solicitante { get; set; }
         public DateTime? Fecha_Requerida { get; set; }
-        public DateTime? Fecha_de_Cumplimiento { get; set; }
         public int? Cumplimiento { get; set; }
+        public DateTime? Fecha_de_Cumplimiento { get; set; }
+        public int? Forma_de_Pago { get; set; }
         public decimal? Cantidad_del_Monto { get; set; }
+        public string Descripcion_de_Cumplimiento { get; set; }
+        public short? Concluir_Acuerdo { get; set; }
         public int? Especialista { get; set; }
         public string Comentarios { get; set; }
         public int? Archivo { get; set; }
@@ -44,6 +49,10 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitud_Seguimiento
         public virtual Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante.Detalle_de_Solicitud_Solicitante Solicitante_Detalle_de_Solicitud_Solicitante { get; set; }
         [ForeignKey("Cumplimiento")]
         public virtual Spartane.Core.Domain.Cumplimiento.Cumplimiento Cumplimiento_Cumplimiento { get; set; }
+        [ForeignKey("Forma_de_Pago")]
+        public virtual Spartane.Core.Domain.Forma_de_Cumplimiento.Forma_de_Cumplimiento Forma_de_Pago_Forma_de_Cumplimiento { get; set; }
+        [ForeignKey("Concluir_Acuerdo")]
+        public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Concluir_Acuerdo_A_Tiempo { get; set; }
         [ForeignKey("Especialista")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Especialista_Spartan_User { get; set; }
         [ForeignKey("Archivo")]
@@ -60,9 +69,12 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitud_Seguimiento
         public int? Requerido { get; set; }
         public int? Solicitante { get; set; }
         public DateTime? Fecha_Requerida { get; set; }
-        public DateTime? Fecha_de_Cumplimiento { get; set; }
         public int? Cumplimiento { get; set; }
+        public DateTime? Fecha_de_Cumplimiento { get; set; }
+        public int? Forma_de_Pago { get; set; }
         public decimal? Cantidad_del_Monto { get; set; }
+        public string Descripcion_de_Cumplimiento { get; set; }
+        public short? Concluir_Acuerdo { get; set; }
         public int? Especialista { get; set; }
         public string Comentarios { get; set; }
         public int? Archivo { get; set; }
@@ -76,6 +88,10 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitud_Seguimiento
         public virtual Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante.Detalle_de_Solicitud_Solicitante Solicitante_Detalle_de_Solicitud_Solicitante { get; set; }
         [ForeignKey("Cumplimiento")]
         public virtual Spartane.Core.Domain.Cumplimiento.Cumplimiento Cumplimiento_Cumplimiento { get; set; }
+        [ForeignKey("Forma_de_Pago")]
+        public virtual Spartane.Core.Domain.Forma_de_Cumplimiento.Forma_de_Cumplimiento Forma_de_Pago_Forma_de_Cumplimiento { get; set; }
+        [ForeignKey("Concluir_Acuerdo")]
+        public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Concluir_Acuerdo_A_Tiempo { get; set; }
         [ForeignKey("Especialista")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Especialista_Spartan_User { get; set; }
         [ForeignKey("Archivo")]

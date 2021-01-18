@@ -1,0 +1,925 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Registro_de_Huellas_DactilaresModel
+@{
+    Spartane_File attachedFileMano_Izquierda_4_Dedos = (Spartane_File)ViewBag.Mano_Izquierda_4_DedosSpartane_File;
+    Spartane_File attachedFileMano_Derecha_4_Dedos = (Spartane_File)ViewBag.Mano_Derecha_4_DedosSpartane_File;
+    Spartane_File attachedFilePulgares = (Spartane_File)ViewBag.PulgaresSpartane_File;
+
+/*
+
+*/
+ List<SelectListItem> varexpediente_ministerio_publico_Carpeta_de_Investigacion = null;
+    if (ViewBag.expediente_ministerio_publicos_Carpeta_de_Investigacion != null)
+    { varexpediente_ministerio_publico_Carpeta_de_Investigacion = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Carpeta_de_Investigacion; }
+ List<SelectListItem> varDetalle_de_Datos_Generales_Probable_Responsable = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable != null)
+    { varDetalle_de_Datos_Generales_Probable_Responsable = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable; }
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Registro_de_Huellas_DactilaresResources.Registro_de_Huellas_Dactilares
+                <button onclick="Registro_de_Huellas_DactilaresGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Registro_de_Huellas_DactilaresBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Registro_de_Huellas_DactilaresResources.Registro_de_Huellas_Dactilares</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Registro_de_Huellas_DactilaresDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Registro_de_Huellas_DactilaresPropertyBusinessModal" id="Registro_de_Huellas_DactilaresPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Registro_de_Huellas_DactilaresBusinessRule-form" onclick="Registro_de_Huellas_DactilaresGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Registro_de_Huellas_DactilaresBusinessRuleModal" id="Registro_de_Huellas_DactilaresBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Registro_de_Huellas_Dactilares", FormMethod.Post, new { id = "CreateRegistro_de_Huellas_Dactilares", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Registro_de_Huellas_DactilaresCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Registro_de_Huellas_DactilaresResources.TabDatos_Generales</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="269514" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+				<div class="form-group" id="divCarpeta_de_Investigacion">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Carpeta_de_Investigacion</label>
+                                <div class="col-sm-8" data-field-id="Carpeta_de_Investigacion" data-attribute="269515" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Carpeta_de_Investigacion">
+                                    <select class='fullWidth AutoComplete AutoCompleteRegistro_de_Huellas_Dactilares_Carpeta_de_Investigacion form-control select2-dropdown Datos_Generales' data-val="true" id="Carpeta_de_Investigacion" name="Carpeta_de_Investigacion">
+                                        <option value="@Model.Carpeta_de_Investigacion">@(Model.Carpeta_de_Investigacionnic??Model.Carpeta_de_Investigacionnic)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269515).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Carpeta_de_Investigacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divProbable_Responsable">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Probable_Responsable</label>
+                                <div class="col-sm-8" data-field-id="Probable_Responsable" data-attribute="269516" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Probable_Responsable">
+                                    <select class='fullWidth AutoComplete AutoCompleteRegistro_de_Huellas_Dactilares_Probable_Responsable form-control select2-dropdown Datos_Generales' data-val="true" id="Probable_Responsable" name="Probable_Responsable">
+                                        <option value="@Model.Probable_Responsable">@(Model.Probable_ResponsableNombre_Completo??Model.Probable_ResponsableNombre_Completo)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269516).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Datos_Generales', 'Probable_Responsable');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            @if (attachedFileMano_Izquierda_4_Dedos != null && attachedFileMano_Izquierda_4_Dedos.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentMano_Izquierda_4_Dedos">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_Generales" data-field-id="Mano_Izquierda_4_Dedos" data-attribute="269517" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Mano_Izquierda_4_Dedos">
+                                        <a href="@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/GetFile")?id=@attachedFileMano_Izquierda_4_Dedos.File_Id" target="_blank">@attachedFileMano_Izquierda_4_Dedos.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainMano_Izquierda_4_Dedos('@attachedFileMano_Izquierda_4_Dedos.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveMano_Izquierda_4_Dedos" name="RemoveMano_Izquierda_4_Dedos" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedMano_Izquierda_4_Dedos" type="hidden" name="Mano_Izquierda_4_Dedos" value="@Model.Mano_Izquierda_4_Dedos">
+                                </div>
+                            }
+                            <div class="form-group" id="divMano_Izquierda_4_Dedos">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Mano_Izquierda_4_Dedos</label>
+                                <div class="col-sm-8" data-field-id="Mano_Izquierda_4_Dedos" data-attribute="269517" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Mano_Izquierda_4_Dedos">
+                                    <input type="file" name="Mano_Izquierda_4_DedosFile" id="Mano_Izquierda_4_DedosFile" class="form-control" />
+                                </div>
+                            </div>
+                            @if (attachedFileMano_Derecha_4_Dedos != null && attachedFileMano_Derecha_4_Dedos.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentMano_Derecha_4_Dedos">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_Generales" data-field-id="Mano_Derecha_4_Dedos" data-attribute="269518" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Mano_Derecha_4_Dedos">
+                                        <a href="@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/GetFile")?id=@attachedFileMano_Derecha_4_Dedos.File_Id" target="_blank">@attachedFileMano_Derecha_4_Dedos.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainMano_Derecha_4_Dedos('@attachedFileMano_Derecha_4_Dedos.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveMano_Derecha_4_Dedos" name="RemoveMano_Derecha_4_Dedos" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedMano_Derecha_4_Dedos" type="hidden" name="Mano_Derecha_4_Dedos" value="@Model.Mano_Derecha_4_Dedos">
+                                </div>
+                            }
+                            <div class="form-group" id="divMano_Derecha_4_Dedos">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Mano_Derecha_4_Dedos</label>
+                                <div class="col-sm-8" data-field-id="Mano_Derecha_4_Dedos" data-attribute="269518" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Mano_Derecha_4_Dedos">
+                                    <input type="file" name="Mano_Derecha_4_DedosFile" id="Mano_Derecha_4_DedosFile" class="form-control" />
+                                </div>
+                            </div>
+                            @if (attachedFilePulgares != null && attachedFilePulgares.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentPulgares">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_Generales" data-field-id="Pulgares" data-attribute="269519" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Pulgares">
+                                        <a href="@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/GetFile")?id=@attachedFilePulgares.File_Id" target="_blank">@attachedFilePulgares.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainPulgares('@attachedFilePulgares.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemovePulgares" name="RemovePulgares" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedPulgares" type="hidden" name="Pulgares" value="@Model.Pulgares">
+                                </div>
+                            }
+                            <div class="form-group" id="divPulgares">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Pulgares</label>
+                                <div class="col-sm-8" data-field-id="Pulgares" data-attribute="269519" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Pulgares">
+                                    <input type="file" name="PulgaresFile" id="PulgaresFile" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divIzquierda_Menique">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Menique</label>
+                                <div class="col-sm-8" data-field-id="Izquierda_Menique" data-attribute="269520" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Menique">
+                                    <input class="form-control inputNumber Datos_Generales" id="Izquierda_Menique" name="Izquierda_Menique" type="text" value="@Model.Izquierda_Menique">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Izquierda_Menique" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divIzquierda_Anular">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Anular</label>
+                                <div class="col-sm-8" data-field-id="Izquierda_Anular" data-attribute="269521" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Anular">
+                                    <input class="form-control inputNumber Datos_Generales" id="Izquierda_Anular" name="Izquierda_Anular" type="text" value="@Model.Izquierda_Anular">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Izquierda_Anular" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divIzquierda_Medio">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Medio</label>
+                                <div class="col-sm-8" data-field-id="Izquierda_Medio" data-attribute="269522" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Medio">
+                                    <input class="form-control inputNumber Datos_Generales" id="Izquierda_Medio" name="Izquierda_Medio" type="text" value="@Model.Izquierda_Medio">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Izquierda_Medio" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divIzquierda_Indice">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Indice</label>
+                                <div class="col-sm-8" data-field-id="Izquierda_Indice" data-attribute="269523" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Indice">
+                                    <input class="form-control inputNumber Datos_Generales" id="Izquierda_Indice" name="Izquierda_Indice" type="text" value="@Model.Izquierda_Indice">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Izquierda_Indice" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divIzquierda_Pulgar">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Pulgar</label>
+                                <div class="col-sm-8" data-field-id="Izquierda_Pulgar" data-attribute="269524" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Pulgar">
+                                    <input class="form-control inputNumber Datos_Generales" id="Izquierda_Pulgar" name="Izquierda_Pulgar" type="text" value="@Model.Izquierda_Pulgar">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Izquierda_Pulgar" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDerecha_Menique">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Menique</label>
+                                <div class="col-sm-8" data-field-id="Derecha_Menique" data-attribute="269525" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Menique">
+                                    <input class="form-control inputNumber Datos_Generales" id="Derecha_Menique" name="Derecha_Menique" type="text" value="@Model.Derecha_Menique">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Derecha_Menique" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDerecha_Anular">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Anular</label>
+                                <div class="col-sm-8" data-field-id="Derecha_Anular" data-attribute="269526" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Anular">
+                                    <input class="form-control inputNumber Datos_Generales" id="Derecha_Anular" name="Derecha_Anular" type="text" value="@Model.Derecha_Anular">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Derecha_Anular" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDerecha_Medio">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Medio</label>
+                                <div class="col-sm-8" data-field-id="Derecha_Medio" data-attribute="269527" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Medio">
+                                    <input class="form-control inputNumber Datos_Generales" id="Derecha_Medio" name="Derecha_Medio" type="text" value="@Model.Derecha_Medio">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Derecha_Medio" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDerecha_Indice">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Indice</label>
+                                <div class="col-sm-8" data-field-id="Derecha_Indice" data-attribute="269528" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Indice">
+                                    <input class="form-control inputNumber Datos_Generales" id="Derecha_Indice" name="Derecha_Indice" type="text" value="@Model.Derecha_Indice">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Derecha_Indice" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDerecha_Pulgar">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Pulgar</label>
+                                <div class="col-sm-8" data-field-id="Derecha_Pulgar" data-attribute="269529" data-field-name="@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Pulgar">
+                                    <input class="form-control inputNumber Datos_Generales" id="Derecha_Pulgar" name="Derecha_Pulgar" type="text" value="@Model.Derecha_Pulgar">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Derecha_Pulgar" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Registro_de_Huellas_DactilaresGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Registro_de_Huellas_DactilaresCreateForm');"  />
+									<button onclick="Registro_de_Huellas_DactilaresGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Registro_de_Huellas_DactilaresBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Registro_de_Huellas_DactilaresGuardarYNuevo" onclick="return checkClientValidate('Registro_de_Huellas_DactilaresCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Registro_de_Huellas_DactilaresGuardarYCopia" onclick="return checkClientValidate('Registro_de_Huellas_DactilaresCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnRegistro_de_Huellas_DactilaresBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnRegistro_de_Huellas_DactilaresBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnRegistro_de_Huellas_DactilaresBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Registro_de_Huellas_DactilaresCancelar" name="Registro_de_Huellas_DactilaresCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Registro_de_Huellas_DactilaresGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Registro_de_Huellas_DactilaresBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Registro_de_Huellas_Dactilares.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Registro_de_Huellas_DactilaresGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Registro_de_Huellas_DactilaresCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+        function RemoveAttachmentMainMano_Izquierda_4_Dedos () {
+            $("#hdnRemoveMano_Izquierda_4_Dedos").val("1");
+            $("#divAttachmentMano_Izquierda_4_Dedos").hide();
+        }
+        function RemoveAttachmentMainMano_Derecha_4_Dedos () {
+            $("#hdnRemoveMano_Derecha_4_Dedos").val("1");
+            $("#divAttachmentMano_Derecha_4_Dedos").hide();
+        }
+        function RemoveAttachmentMainPulgares () {
+            $("#hdnRemovePulgares").val("1");
+            $("#divAttachmentPulgares").hide();
+        }
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45734');
+		    
+		   
+            
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Registro_de_Huellas_DactilaresGuardarYNuevo').hide();
+                $('#Registro_de_Huellas_DactilaresGuardarYCopia').hide();
+                $('#Registro_de_Huellas_DactilaresCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Registro_de_Huellas_DactilaresGuardar').val('Actualizar Seccion ' + '@Resources.Registro_de_Huellas_DactilaresResources.Registro_de_Huellas_Dactilares' )
+            }
+
+			
+			       var AutoCompleteCarpeta_de_InvestigacionData =[];
+       $(".AutoCompleteRegistro_de_Huellas_Dactilares_Carpeta_de_Investigacion").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/GetRegistro_de_Huellas_Dactilares_Carpeta_de_Investigacion_expediente_ministerio_publico")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteRegistro_de_Huellas_Dactilares_Carpeta_de_Investigacion_expediente_ministerio_publicoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteRegistro_de_Huellas_Dactilares_Carpeta_de_Investigacion");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteProbable_ResponsableData =[];
+       $(".AutoCompleteRegistro_de_Huellas_Dactilares_Probable_Responsable").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/GetRegistro_de_Huellas_Dactilares_Probable_Responsable_Detalle_de_Datos_Generales")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteRegistro_de_Huellas_Dactilares_Probable_Responsable_Detalle_de_Datos_GeneralesData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteRegistro_de_Huellas_Dactilares_Probable_Responsable");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendRegistro_de_Huellas_DactilaresData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateRegistro_de_Huellas_Dactilares").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateRegistro_de_Huellas_Dactilares")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Registro_de_Huellas_DactilaresCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Registro_de_Huellas_DactilaresBusinessRuleModal").html(data);
+			});
+		}
+                function Registro_de_Huellas_DactilaresGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45734');
+			$('#Screen').val('Registro_de_Huellas_Dactilares');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Registro_de_Huellas_DactilaresBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateRegistro_de_Huellas_Dactilares').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Registro_de_Huellas_DactilaresGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    var control = $('#Carpeta_de_Investigacion');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Carpeta_de_Investigacion).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Carpeta_de_Investigacion).trigger('change');
+                    }, 3000);
+                    var control = $('#Probable_Responsable');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Probable_Responsable).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Probable_Responsable).trigger('change');
+                    }, 3000);
+                    $('#Mano_Izquierda_4_Dedos').val(result.data.Mano_Izquierda_4_Dedos);
+                    $('#Mano_Derecha_4_Dedos').val(result.data.Mano_Derecha_4_Dedos);
+                    $('#Pulgares').val(result.data.Pulgares);
+                    $('#Izquierda_Menique').val(result.data.Izquierda_Menique);
+                    $('#Izquierda_Anular').val(result.data.Izquierda_Anular);
+                    $('#Izquierda_Medio').val(result.data.Izquierda_Medio);
+                    $('#Izquierda_Indice').val(result.data.Izquierda_Indice);
+                    $('#Izquierda_Pulgar').val(result.data.Izquierda_Pulgar);
+                    $('#Derecha_Menique').val(result.data.Derecha_Menique);
+                    $('#Derecha_Anular').val(result.data.Derecha_Anular);
+                    $('#Derecha_Medio').val(result.data.Derecha_Medio);
+                    $('#Derecha_Indice').val(result.data.Derecha_Indice);
+                    $('#Derecha_Pulgar').val(result.data.Derecha_Pulgar);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Carpeta_de_Investigacion', $('#Carpeta_de_Investigacion').val());
+                data.append('Probable_Responsable', $('#Probable_Responsable').val());
+                data.append('Mano_Izquierda_4_Dedos', $('#hdnAttachedMano_Izquierda_4_Dedos').val());
+                data.append('Mano_Izquierda_4_DedosFile', $('#Mano_Izquierda_4_DedosFile')[0].files[0]);
+                data.append('Mano_Izquierda_4_DedosRemoveAttachment', $('#hdnRemoveMano_Izquierda_4_Dedos').val());
+                data.append('Mano_Derecha_4_Dedos', $('#hdnAttachedMano_Derecha_4_Dedos').val());
+                data.append('Mano_Derecha_4_DedosFile', $('#Mano_Derecha_4_DedosFile')[0].files[0]);
+                data.append('Mano_Derecha_4_DedosRemoveAttachment', $('#hdnRemoveMano_Derecha_4_Dedos').val());
+                data.append('Pulgares', $('#hdnAttachedPulgares').val());
+                data.append('PulgaresFile', $('#PulgaresFile')[0].files[0]);
+                data.append('PulgaresRemoveAttachment', $('#hdnRemovePulgares').val());
+                data.append('Izquierda_Menique', $('#Izquierda_Menique').val());
+                data.append('Izquierda_Anular', $('#Izquierda_Anular').val());
+                data.append('Izquierda_Medio', $('#Izquierda_Medio').val());
+                data.append('Izquierda_Indice', $('#Izquierda_Indice').val());
+                data.append('Izquierda_Pulgar', $('#Izquierda_Pulgar').val());
+                data.append('Derecha_Menique', $('#Derecha_Menique').val());
+                data.append('Derecha_Anular', $('#Derecha_Anular').val());
+                data.append('Derecha_Medio', $('#Derecha_Medio').val());
+                data.append('Derecha_Indice', $('#Derecha_Indice').val());
+                data.append('Derecha_Pulgar', $('#Derecha_Pulgar').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Registro_de_Huellas_Dactilares_cmbLabelSelect" name="Registro_de_Huellas_Dactilares_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

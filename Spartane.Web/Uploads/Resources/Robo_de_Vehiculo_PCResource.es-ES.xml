@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Robo_de_Vehiculo_PC" value="Robo de Vehículo PC"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Solicitud" value="Solicitud"></resource>
+  <resource culture="es-es" name="Tipo_de_Solicitud" value="Tipo de Solicitud"></resource>
+  <resource culture="es-es" name="Robo_de_Vehiculo" value="Robo de Vehículo"></resource>
+  <resource culture="es-es" name="Marca" value="Marca"></resource>
+  <resource culture="es-es" name="Sub_Marca" value="Sub Marca"></resource>
+  <resource culture="es-es" name="Tipo_de_Vehiculo" value="Tipo de Vehículo"></resource>
+  <resource culture="es-es" name="Modelo" value="Modelo"></resource>
+  <resource culture="es-es" name="Color" value="Color"></resource>
+  <resource culture="es-es" name="Placas" value="Placas"></resource>
+  <resource culture="es-es" name="Senas_Particulares" value="Señas Particulares"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,16 +1,34 @@
 ﻿<?xml version="1.0" standalone="yes"?>
 <resources>
-  <resource culture="en-us" name="Detalle_de_Servicio_de_Apoyo" value="Servicios de Apoyo AT"></resource>
+  <resource culture="en-us" name="Detalle_de_Servicio_de_Apoyo" value="Servicios Periciales AT"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Origen" value="Origen"></resource>
   <resource culture="en-US" name="Modulo_de_Atencion_Inicial" value="Módulo de Atención Inicial"></resource>
+  <resource culture="en-US" name="Modulo_Mecanismos_Alternos" value="Modulo Mecanismos Alternos"></resource>
+  <resource culture="en-US" name="Modulo_Ministerio_Publico" value="Modulo Ministerio Público"></resource>
   <resource culture="en-US" name="Tipo_de_Servicio" value="Tipo de Servicio"></resource>
   <resource culture="en-US" name="Requiere_Traductor" value="¿Requiere Traductor?"></resource>
   <resource culture="en-US" name="Lengua_Originaria" value="Lengua Originaria"></resource>
   <resource culture="en-US" name="Idioma" value="Idioma"></resource>
-  <resource culture="en-US" name="Dictamen" value="Dictamen"></resource>
   <resource culture="en-US" name="Responsable" value="Responsable"></resource>
   <resource culture="en-US" name="Compareciente" value="Compareciente"></resource>
+  <resource culture="en-US" name="Diligencia" value="Diligencia"></resource>
+  <resource culture="en-US" name="Archivo" value="Archivo"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Fecha_de_Solicitud" value="Fecha de Solicitud"></resource>
+  <resource culture="en-US" name="Numero_Oficio" value="Número Oficio"></resource>
+  <resource culture="en-US" name="Imagen" value="Imagen"></resource>
+  <resource culture="en-US" name="Nombre_Solicitante" value="Nombre Solicitante"></resource>
+  <resource culture="en-US" name="Rango_Solicitante" value="Rango Solicitante"></resource>
+  <resource culture="en-US" name="Autoridades" value="Autoridades"></resource>
+  <resource culture="en-US" name="Agencia" value="Agencia"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Dictamen" value="Dictamen"></resource>
+  <resource culture="en-US" name="Contestacion_lista_para_enviarse" value="Contestación lista para enviarse"></resource>
+  <resource culture="en-US" name="Area_Pericial" value="Área Pericial"></resource>
+  <resource culture="en-US" name="Perito" value="Perito"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabCanalizar" value="Canalizar"></resource>
 
 </resources>

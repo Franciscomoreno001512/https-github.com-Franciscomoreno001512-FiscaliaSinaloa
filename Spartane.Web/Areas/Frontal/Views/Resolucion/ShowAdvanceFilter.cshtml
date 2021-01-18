@@ -107,6 +107,14 @@
                         });
                     }
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ResolucionResources.ClaveFiscalia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ClaveFiscaliaFilter, filters, new { @class = "form-control", @id = "ddlClaveFiscaliaFilter" })
+                    @Html.TextBoxFor(m => m.ClaveFiscalia, new { @class = "form-control", @type = "text", @id = "txtClaveFiscalia" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Resolucion/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -162,6 +170,15 @@
         if ($("#ddlAdvanceGenerar_Judicializacion").val() != "") {
             hasParameter = true;
             advanceSearch.ResolucionGenerar_Judicializacion = $("#ddlAdvanceGenerar_Judicializacion").val();
+        }
+        if ($("#txtAdvanceClaveFiscalia").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionClaveFiscalia = $("#txtAdvanceClaveFiscalia").val();
+            advanceSearch.ResolucionClaveFiscaliaSearchType = $("#ddlAdvanceClaveFiscaliaFilter").val();
+        }
+        if ($("#ddlAdvanceAplica_para_Adolescentes").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionAplica_para_Adolescentes = $("#ddlAdvanceAplica_para_Adolescentes").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

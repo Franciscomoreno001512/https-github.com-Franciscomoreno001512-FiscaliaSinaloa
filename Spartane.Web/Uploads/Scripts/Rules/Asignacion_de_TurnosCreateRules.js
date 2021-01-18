@@ -40,16 +40,68 @@ $('input[type="text"],textarea').blur(function() {
 $("form#CreateAsignacion_de_Turnos").on('keyup', '#Nombres', function () {
 	nameOfTable='';
 	rowIndex='';
- AsignarValor($('#' + nameOfTable + 'Nombre_Completo' + rowIndex),EvaluaQuery(" SELECT 'FLD[Nombres]' + ' ' + 'FLD[Apellido_Paterno]' + ' ' + 'FLD[Apellido_Materno]'", rowIndex, nameOfTable));
+	
+	AsignarValor($('#' + nameOfTable + 'Nombre_Completo' + rowIndex),EvaluaQuery(" SELECT 'FLD[Nombres]' + ' ' + 'FLD[Apellido_Paterno]' + ' ' + 'FLD[Apellido_Materno]'", rowIndex, nameOfTable));
+    
 });
 
 
 //BusinessRuleId:1862, Attribute:265550, Operation:Field, Event:None
 
+
+//regla para los permitir solo nombres y limite de 50
+$( "#Nombres" ).keyup(function() { 
+	var str = $('#' + nameOfTable + 'Nombres' + rowIndex).val(); 
+	if (str != ""){ 
+	   var regNUM = /^[ñÑa-zA-Z ]{1,50}$/ 
+	   var validacionnum=regNUM.test(str)
+		if (validacionnum==false ) { 
+			$('#' + nameOfTable + 'Nombres' + rowIndex).val($('#' + nameOfTable + 'Nombres' + rowIndex).val().slice(0, -1));
+		} 
+	} 
+});
+$( "#Apellido_Paterno" ).keyup(function() { 
+var str = $('#' + nameOfTable + 'Apellido_Paterno' + rowIndex).val(); 
+	if (str != ""){ 
+	   var regNUM = /^[ñÑa-zA-Z ]{1,50}$/ 
+	   var validacionnum=regNUM.test(str)
+		if (validacionnum==false ) { 
+			$('#' + nameOfTable + 'Apellido_Paterno' + rowIndex).val($('#' + nameOfTable + 'Apellido_Paterno' + rowIndex).val().slice(0, -1));
+		} 
+	} 
+});
+
+$("form#CreateAsignacion_de_Turnos").on('keyup', '#Numero_de_Identificacion', function () {
+	nameOfTable='';
+	rowIndex='';
+	var str = $('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).val(); 
+	if (str != ""){ 
+		var regNUM = /^.{1,30}$/ 
+		var validacionnum=regNUM.test(str)
+		if (validacionnum==false ) { 
+			$('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).val($('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).val().slice(0, -1));
+		} 
+	} 
+});
+
+$( "#Apellido_Materno" ).keyup(function() { 
+var str = $('#' + nameOfTable + 'Apellido_Materno' + rowIndex).val(); 
+if (str != ""){ 
+	var regNUM = /^[ñÑa-zA-Z ]{1,50}$/ 
+	var validacionnum=regNUM.test(str)
+	if (validacionnum==false ) { 
+		$('#' + nameOfTable + 'Apellido_Materno' + rowIndex).val($('#' + nameOfTable + 'Apellido_Materno' + rowIndex).val().slice(0, -1));
+	} 
+} 
+});
+//regla para los permitir solo nombres y limite de 50
+
+
 //BusinessRuleId:1863, Attribute:265551, Operation:Field, Event:None
 $("form#CreateAsignacion_de_Turnos").on('keyup', '#Apellido_Paterno', function () {
 	nameOfTable='';
 	rowIndex='';
+	
  AsignarValor($('#' + nameOfTable + 'Nombre_Completo' + rowIndex),EvaluaQuery(" SELECT 'FLD[Nombres]' + ' ' + 'FLD[Apellido_Paterno]' + ' ' + 'FLD[Apellido_Materno]'", rowIndex, nameOfTable));
 });
 
@@ -57,16 +109,17 @@ $("form#CreateAsignacion_de_Turnos").on('keyup', '#Apellido_Paterno', function (
 //BusinessRuleId:1863, Attribute:265551, Operation:Field, Event:None
 
 //BusinessRuleId:1864, Attribute:265552, Operation:Field, Event:None
-$("form#CreateAsignacion_de_Turnos").on('keyup', '#Apellido_Materno', function () {
-	nameOfTable='';
-	rowIndex='';
- AsignarValor($('#' + nameOfTable + 'Nombre_Completo' + rowIndex),EvaluaQuery(" SELECT 'FLD[Nombres]' + ' ' + 'FLD[Apellido_Paterno]' + ' ' + 'FLD[Apellido_Materno]'", rowIndex, nameOfTable));
-});
+
 
 
 //BusinessRuleId:1864, Attribute:265552, Operation:Field, Event:None
 
-
+$("form#CreateAsignacion_de_Turnos").on('keyup', '#Apellido_Materno', function () {
+	nameOfTable='';
+	rowIndex='';
+	
+ AsignarValor($('#' + nameOfTable + 'Nombre_Completo' + rowIndex),EvaluaQuery(" SELECT 'FLD[Nombres]' + ' ' + 'FLD[Apellido_Paterno]' + ' ' + 'FLD[Apellido_Materno]'", rowIndex, nameOfTable));
+});
 
 
 
@@ -92,8 +145,19 @@ $("form#CreateAsignacion_de_Turnos").on('change', '#Urgencia', function () {
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Urgencia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divTipo_de_Urgencia').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex));} else { $('#divTipo_de_Urgencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex),'0');}
 });
-
+
+
 //BusinessRuleId:1512, Attribute:265557, Operation:Field, Event:None
+
+//BusinessRuleId:3343, Attribute:265554, Operation:Field, Event:None
+$("form#CreateAsignacion_de_Turnos").on('keyup', '#Edad', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Edad' + rowIndex),nameOfTable,rowIndex)>TryParseInt('127', '127') ) { AsignarValor($('#' + nameOfTable + 'Edad' + rowIndex),'127');} else {}
+});
+
+
+//BusinessRuleId:3343, Attribute:265554, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -568,16 +632,20 @@ function EjecutarValidacionesAntesDeGuardar(){
 //BusinessRuleId:3009, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'New'){
 if( GetValueByControlType($('#' + nameOfTable + 'Urgencia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') && GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex),nameOfTable,rowIndex)<TryParseInt('1', '1') ) { alert(DecodifyText(' El campo Tipo de Urgencia es Requerido.', rowIndex, nameOfTable));
-result=false;} else {}
-
+
+result=false;} else {}
+
+
 }
 //BusinessRuleId:3009, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //BusinessRuleId:3009, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Urgencia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') && GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex),nameOfTable,rowIndex)<TryParseInt('1', '1') ) { alert(DecodifyText(' El campo Tipo de Urgencia es Requerido.', rowIndex, nameOfTable));
-result=false;} else {}
-
+
+result=false;} else {}
+
+
 }
 //BusinessRuleId:3009, Attribute:2, Operation:Object, Event:BEFORESAVING
 
@@ -596,6 +664,10 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2793, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

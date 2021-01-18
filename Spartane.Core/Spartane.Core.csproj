@@ -1490,6 +1490,98 @@
 <Compile Include="Domain\Tipo_de_Resolucion\Tipo_de_ResolucionPagingModel.cs" />
 <Compile Include="Domain\Detalle_de_Guardado_de_Movimiento\Detalle_de_Guardado_de_Movimiento.cs" />
 <Compile Include="Domain\Detalle_de_Guardado_de_Movimiento\Detalle_de_Guardado_de_MovimientoPagingModel.cs" />
+<Compile Include="Domain\Registro_de_Usuario\Registro_de_Usuario.cs" />
+<Compile Include="Domain\Registro_de_Usuario\Registro_de_UsuarioPagingModel.cs" />
+<Compile Include="Domain\Consulta_de_Mandamientos_Judiciales\Consulta_de_Mandamientos_Judiciales.cs" />
+<Compile Include="Domain\Consulta_de_Mandamientos_Judiciales\Consulta_de_Mandamientos_JudicialesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Amparo\Detalle_de_AmparoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Amparo\Detalle_de_Amparo.cs" />
+<Compile Include="Domain\Detalle_de_Delito_Mandamiento_Judicial\Detalle_de_Delito_Mandamiento_JudicialPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Delito_Mandamiento_Judicial\Detalle_de_Delito_Mandamiento_Judicial.cs" />
+<Compile Include="Domain\Detalle_de_Documentos_Mandamiento_Judicial\Detalle_de_Documentos_Mandamiento_JudicialPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Documentos_Mandamiento_Judicial\Detalle_de_Documentos_Mandamiento_Judicial.cs" />
+<Compile Include="Domain\Detalle_de_Domicilio\Detalle_de_DomicilioPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Domicilio\Detalle_de_Domicilio.cs" />
+<Compile Include="Domain\Detalle_de_Fotos\Detalle_de_FotosPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Fotos\Detalle_de_Fotos.cs" />
+<Compile Include="Domain\Detalle_de_Huellas_Digitales\Detalle_de_Huellas_DigitalesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Huellas_Digitales\Detalle_de_Huellas_Digitales.cs" />
+<Compile Include="Domain\Detalle_de_Otro_Nombre\Detalle_de_Otro_NombrePagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Otro_Nombre\Detalle_de_Otro_Nombre.cs" />
+<Compile Include="Domain\Detalle_de_Resultados\Detalle_de_ResultadosPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Resultados\Detalle_de_Resultados.cs" />
+<Compile Include="Domain\Detalle_de_telefono\Detalle_de_telefonoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_telefono\Detalle_de_telefono.cs" />
+<Compile Include="Domain\Fuerzo\Fuerzo.cs" />
+<Compile Include="Domain\Fuerzo\FuerzoPagingModel.cs" />
+<Compile Include="Domain\Institucion_Emisora\Institucion_Emisora.cs" />
+<Compile Include="Domain\Institucion_Emisora\Institucion_EmisoraPagingModel.cs" />
+<Compile Include="Domain\Motivo_de_Cancelacion_del_Proceso\Motivo_de_Cancelacion_del_Proceso.cs" />
+<Compile Include="Domain\Motivo_de_Cancelacion_del_Proceso\Motivo_de_Cancelacion_del_ProcesoPagingModel.cs" />
+<Compile Include="Domain\Registro_de_Mandamiento_Judicial\Registro_de_Mandamiento_Judicial.cs" />
+<Compile Include="Domain\Registro_de_Mandamiento_Judicial\Registro_de_Mandamiento_JudicialPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Amparo\Tipo_de_Amparo.cs" />
+<Compile Include="Domain\Tipo_de_Amparo\Tipo_de_AmparoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Domicilio\Tipo_de_Domicilio.cs" />
+<Compile Include="Domain\Tipo_de_Domicilio\Tipo_de_DomicilioPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Extradiccion\Tipo_de_Extradiccion.cs" />
+<Compile Include="Domain\Tipo_de_Extradiccion\Tipo_de_ExtradiccionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Mandamiento\Tipo_de_Mandamiento.cs" />
+<Compile Include="Domain\Tipo_de_Mandamiento\Tipo_de_MandamientoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Orden\Tipo_de_Orden.cs" />
+<Compile Include="Domain\Tipo_de_Orden\Tipo_de_OrdenPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Proceso\Tipo_de_Proceso.cs" />
+<Compile Include="Domain\Tipo_de_Proceso\Tipo_de_ProcesoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Telefono\Tipo_de_Telefono.cs" />
+<Compile Include="Domain\Tipo_de_Telefono\Tipo_de_TelefonoPagingModel.cs" />
+<Compile Include="Domain\Ambito\Ambito.cs" />
+<Compile Include="Domain\Ambito\AmbitoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Cuantia\Tipo_de_Cuantia.cs" />
+<Compile Include="Domain\Tipo_de_Cuantia\Tipo_de_CuantiaPagingModel.cs" />
+<Compile Include="Domain\Resolucion_MASC\Resolucion_MASC.cs" />
+<Compile Include="Domain\Resolucion_MASC\Resolucion_MASCPagingModel.cs" />
+<Compile Include="Domain\Canalizacion\Canalizacion.cs" />
+<Compile Include="Domain\Canalizacion\CanalizacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_Diligencias_Canalizacion\Detalle_Diligencias_CanalizacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_Diligencias_Canalizacion\Detalle_Diligencias_Canalizacion.cs" />
+<Compile Include="Domain\Detalle_Relaciones_MASC\Detalle_Relaciones_MASCPagingModel.cs" />
+<Compile Include="Domain\Detalle_Relaciones_MASC\Detalle_Relaciones_MASC.cs" />
+<Compile Include="Domain\Relaciones_MASC\Relaciones_MASC.cs" />
+<Compile Include="Domain\Relaciones_MASC\Relaciones_MASCPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Solicitud\Tipo_de_Solicitud.cs" />
+<Compile Include="Domain\Tipo_de_Solicitud\Tipo_de_SolicitudPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Solicitud\Estatus_de_Solicitud.cs" />
+<Compile Include="Domain\Estatus_de_Solicitud\Estatus_de_SolicitudPagingModel.cs" />
+<Compile Include="Domain\Solicitud_de_Denuncia_Ciudadana\Solicitud_de_Denuncia_Ciudadana.cs" />
+<Compile Include="Domain\Solicitud_de_Denuncia_Ciudadana\Solicitud_de_Denuncia_CiudadanaPagingModel.cs" />
+<Compile Include="Domain\Datos_de_los_Hechos_PC\Datos_de_los_Hechos_PC.cs" />
+<Compile Include="Domain\Datos_de_los_Hechos_PC\Datos_de_los_Hechos_PCPagingModel.cs" />
+<Compile Include="Domain\Robo_de_Vehiculo_PC\Robo_de_Vehiculo_PC.cs" />
+<Compile Include="Domain\Robo_de_Vehiculo_PC\Robo_de_Vehiculo_PCPagingModel.cs" />
+<Compile Include="Domain\Involucrados_PC\Involucrados_PC.cs" />
+<Compile Include="Domain\Involucrados_PC\Involucrados_PCPagingModel.cs" />
+<Compile Include="Domain\Probable_Responsable_PC\Probable_Responsable_PC.cs" />
+<Compile Include="Domain\Probable_Responsable_PC\Probable_Responsable_PCPagingModel.cs" />
+<Compile Include="Domain\Tipo_Encuesta\Tipo_Encuesta.cs" />
+<Compile Include="Domain\Tipo_Encuesta\Tipo_EncuestaPagingModel.cs" />
+<Compile Include="Domain\PC_CanalizarA\PC_CanalizarA.cs" />
+<Compile Include="Domain\PC_CanalizarA\PC_CanalizarAPagingModel.cs" />
+<Compile Include="Domain\Direccion_Exacta\Direccion_Exacta.cs" />
+<Compile Include="Domain\Direccion_Exacta\Direccion_ExactaPagingModel.cs" />
+<Compile Include="Domain\Agencia_Servicio_Pericial\Agencia_Servicio_Pericial.cs" />
+<Compile Include="Domain\Agencia_Servicio_Pericial\Agencia_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Area_Pericial\Area_Pericial.cs" />
+<Compile Include="Domain\Area_Pericial\Area_PericialPagingModel.cs" />
+<Compile Include="Domain\Autoridad_Servicio_Pericial\Autoridad_Servicio_Pericial.cs" />
+<Compile Include="Domain\Autoridad_Servicio_Pericial\Autoridad_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Dictamen_Servicio_Pericial\Dictamen_Servicio_Pericial.cs" />
+<Compile Include="Domain\Dictamen_Servicio_Pericial\Dictamen_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Modulo_Servicio_Pericial\Modulo_Servicio_Pericial.cs" />
+<Compile Include="Domain\Modulo_Servicio_Pericial\Modulo_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Estatus_Servicio_Pericial\Estatus_Servicio_Pericial.cs" />
+<Compile Include="Domain\Estatus_Servicio_Pericial\Estatus_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Historial_Estatus_Modulo_Servicio_Pericial\Historial_Estatus_Modulo_Servicio_Pericial.cs" />
+<Compile Include="Domain\Historial_Estatus_Modulo_Servicio_Pericial\Historial_Estatus_Modulo_Servicio_PericialPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1510,6 +1602,98 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

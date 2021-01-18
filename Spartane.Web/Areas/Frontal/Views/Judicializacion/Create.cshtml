@@ -1,4 +1,4 @@
-@using System
+﻿@using System
 @using System.Collections.Generic
 @using System.Globalization
 @using Spartane.Core.Domain.Permission
@@ -2452,7 +2452,7 @@ debugger;
         debugger;
         var r = confirm("¿Está seguro que desea eliminar  el registro?");
         if (r == true) {
-            EvaluaQuery("delete from Registro_de_movimiento where clave = " + clave);
+            EvaluaQuery("EXEC usp_DeleteRegistro_de_movimiento   " + clave);
             var fase = $('.tabs-container').find('.active').data('fase');
             var judicializacion = $("#ReferenceClave").val();
             var _Querwy = "exec usp_GetRegistro_de_movimiento " + judicializacion + ", " + fase;

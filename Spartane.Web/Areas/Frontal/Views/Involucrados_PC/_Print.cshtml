@@ -1,0 +1,296 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Involucrados_PCGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Involucrados_PCResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Solicitud
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Tipo_de_Solicitud
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Usuario_que_Registra
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Tipo_de_Compareciente
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Nombres
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Apellido_Paterno
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Apellido_Materno
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Nombre_Completo
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Fecha_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Edad
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Sexo
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Estado_Civil
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Tipo_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Numero_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Fotografia_de_la_identificacion
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.CURP
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Nacionalidad
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Originario_de
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Pais
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Poblacion
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Calle
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Entre_Calle
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Y_Calle
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Referencia_de_Domicilio
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Latitud
+            </td>
+            <td class="column1">
+                @Resources.Involucrados_PCResources.Longitud
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Solicitud
+                    </td>
+                    <td>
+                        @item.Tipo_de_SolicitudDescripcion
+                    </td>
+                    <td>
+                        @item.Usuario_que_RegistraName
+                    </td>
+                    <td>
+                        @item.Tipo_de_ComparecienteDescripcion
+                    </td>
+                    <td>
+                        @item.Nombres
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno
+                    </td>
+                    <td>
+                        @item.Apellido_Materno
+                    </td>
+                    <td>
+                        @item.Nombre_Completo
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Edad
+                    </td>
+                    <td>
+                        @item.SexoDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_CivilDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_IdentificacionNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion
+                    </td>
+                    <td>
+                        @item.Fotografia_de_la_identificacion
+                    </td>
+                    <td>
+                        @item.CURP
+                    </td>
+                    <td>
+                        @item.Nacionalidad
+                    </td>
+                    <td>
+                        @item.Originario_de
+                    </td>
+                    <td>
+                        @item.Pais
+                    </td>
+                    <td>
+                        @item.Estado
+                    </td>
+                    <td>
+                        @item.Municipio
+                    </td>
+                    <td>
+                        @item.Poblacion
+                    </td>
+                    <td>
+                        @item.Colonia
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.Calle
+                    </td>
+                    <td>
+                        @item.Entre_Calle
+                    </td>
+                    <td>
+                        @item.Y_Calle
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Referencia_de_Domicilio
+                    </td>
+                    <td>
+                        @item.Latitud
+                    </td>
+                    <td>
+                        @item.Longitud
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

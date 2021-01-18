@@ -1784,6 +1784,144 @@ using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Resolucion;
 using Spartane.Services.Detalle_de_Guardado_de_Movimiento;
 using Spartane.Core.Domain.Detalle_de_Guardado_de_Movimiento;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Guardado_de_Movimiento;
+using Spartane.Services.Registro_de_Usuario;
+using Spartane.Core.Domain.Registro_de_Usuario;
+using Spartane.Web.Areas.WebApiConsumer.Registro_de_Usuario;
+using Spartane.Services.Consulta_de_Mandamientos_Judiciales;
+using Spartane.Core.Domain.Consulta_de_Mandamientos_Judiciales;
+using Spartane.Web.Areas.WebApiConsumer.Consulta_de_Mandamientos_Judiciales;
+using Spartane.Services.Detalle_de_Amparo;
+using Spartane.Core.Domain.Detalle_de_Amparo;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Amparo;
+using Spartane.Services.Detalle_de_Delito_Mandamiento_Judicial;
+using Spartane.Core.Domain.Detalle_de_Delito_Mandamiento_Judicial;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Delito_Mandamiento_Judicial;
+using Spartane.Services.Detalle_de_Documentos_Mandamiento_Judicial;
+using Spartane.Core.Domain.Detalle_de_Documentos_Mandamiento_Judicial;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Documentos_Mandamiento_Judicial;
+using Spartane.Services.Detalle_de_Domicilio;
+using Spartane.Core.Domain.Detalle_de_Domicilio;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Domicilio;
+using Spartane.Services.Detalle_de_Fotos;
+using Spartane.Core.Domain.Detalle_de_Fotos;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Fotos;
+using Spartane.Services.Detalle_de_Huellas_Digitales;
+using Spartane.Core.Domain.Detalle_de_Huellas_Digitales;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Huellas_Digitales;
+using Spartane.Services.Detalle_de_Otro_Nombre;
+using Spartane.Core.Domain.Detalle_de_Otro_Nombre;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Otro_Nombre;
+using Spartane.Services.Detalle_de_Resultados;
+using Spartane.Core.Domain.Detalle_de_Resultados;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Resultados;
+using Spartane.Services.Detalle_de_telefono;
+using Spartane.Core.Domain.Detalle_de_telefono;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_telefono;
+using Spartane.Services.Fuerzo;
+using Spartane.Core.Domain.Fuerzo;
+using Spartane.Web.Areas.WebApiConsumer.Fuerzo;
+using Spartane.Services.Institucion_Emisora;
+using Spartane.Core.Domain.Institucion_Emisora;
+using Spartane.Web.Areas.WebApiConsumer.Institucion_Emisora;
+using Spartane.Services.Motivo_de_Cancelacion_del_Proceso;
+using Spartane.Core.Domain.Motivo_de_Cancelacion_del_Proceso;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Cancelacion_del_Proceso;
+using Spartane.Services.Registro_de_Mandamiento_Judicial;
+using Spartane.Core.Domain.Registro_de_Mandamiento_Judicial;
+using Spartane.Web.Areas.WebApiConsumer.Registro_de_Mandamiento_Judicial;
+using Spartane.Services.Tipo_de_Amparo;
+using Spartane.Core.Domain.Tipo_de_Amparo;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Amparo;
+using Spartane.Services.Tipo_de_Domicilio;
+using Spartane.Core.Domain.Tipo_de_Domicilio;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Domicilio;
+using Spartane.Services.Tipo_de_Extradiccion;
+using Spartane.Core.Domain.Tipo_de_Extradiccion;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Extradiccion;
+using Spartane.Services.Tipo_de_Mandamiento;
+using Spartane.Core.Domain.Tipo_de_Mandamiento;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Mandamiento;
+using Spartane.Services.Tipo_de_Orden;
+using Spartane.Core.Domain.Tipo_de_Orden;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Orden;
+using Spartane.Services.Tipo_de_Proceso;
+using Spartane.Core.Domain.Tipo_de_Proceso;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Proceso;
+using Spartane.Services.Tipo_de_Telefono;
+using Spartane.Core.Domain.Tipo_de_Telefono;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Telefono;
+using Spartane.Services.Ambito;
+using Spartane.Core.Domain.Ambito;
+using Spartane.Web.Areas.WebApiConsumer.Ambito;
+using Spartane.Services.Tipo_de_Cuantia;
+using Spartane.Core.Domain.Tipo_de_Cuantia;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Cuantia;
+using Spartane.Services.Resolucion_MASC;
+using Spartane.Core.Domain.Resolucion_MASC;
+using Spartane.Web.Areas.WebApiConsumer.Resolucion_MASC;
+using Spartane.Services.Canalizacion;
+using Spartane.Core.Domain.Canalizacion;
+using Spartane.Web.Areas.WebApiConsumer.Canalizacion;
+using Spartane.Services.Detalle_Diligencias_Canalizacion;
+using Spartane.Core.Domain.Detalle_Diligencias_Canalizacion;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Diligencias_Canalizacion;
+using Spartane.Services.Detalle_Relaciones_MASC;
+using Spartane.Core.Domain.Detalle_Relaciones_MASC;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Relaciones_MASC;
+using Spartane.Services.Relaciones_MASC;
+using Spartane.Core.Domain.Relaciones_MASC;
+using Spartane.Web.Areas.WebApiConsumer.Relaciones_MASC;
+using Spartane.Services.Tipo_de_Solicitud;
+using Spartane.Core.Domain.Tipo_de_Solicitud;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Solicitud;
+using Spartane.Services.Estatus_de_Solicitud;
+using Spartane.Core.Domain.Estatus_de_Solicitud;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_de_Solicitud;
+using Spartane.Services.Solicitud_de_Denuncia_Ciudadana;
+using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
+using Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Denuncia_Ciudadana;
+using Spartane.Services.Datos_de_los_Hechos_PC;
+using Spartane.Core.Domain.Datos_de_los_Hechos_PC;
+using Spartane.Web.Areas.WebApiConsumer.Datos_de_los_Hechos_PC;
+using Spartane.Services.Robo_de_Vehiculo_PC;
+using Spartane.Core.Domain.Robo_de_Vehiculo_PC;
+using Spartane.Web.Areas.WebApiConsumer.Robo_de_Vehiculo_PC;
+using Spartane.Services.Involucrados_PC;
+using Spartane.Core.Domain.Involucrados_PC;
+using Spartane.Web.Areas.WebApiConsumer.Involucrados_PC;
+using Spartane.Services.Probable_Responsable_PC;
+using Spartane.Core.Domain.Probable_Responsable_PC;
+using Spartane.Web.Areas.WebApiConsumer.Probable_Responsable_PC;
+using Spartane.Services.Tipo_Encuesta;
+using Spartane.Core.Domain.Tipo_Encuesta;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_Encuesta;
+using Spartane.Services.PC_CanalizarA;
+using Spartane.Core.Domain.PC_CanalizarA;
+using Spartane.Web.Areas.WebApiConsumer.PC_CanalizarA;
+using Spartane.Services.Direccion_Exacta;
+using Spartane.Core.Domain.Direccion_Exacta;
+using Spartane.Web.Areas.WebApiConsumer.Direccion_Exacta;
+using Spartane.Services.Agencia_Servicio_Pericial;
+using Spartane.Core.Domain.Agencia_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Agencia_Servicio_Pericial;
+using Spartane.Services.Area_Pericial;
+using Spartane.Core.Domain.Area_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Area_Pericial;
+using Spartane.Services.Autoridad_Servicio_Pericial;
+using Spartane.Core.Domain.Autoridad_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Autoridad_Servicio_Pericial;
+using Spartane.Services.Dictamen_Servicio_Pericial;
+using Spartane.Core.Domain.Dictamen_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Dictamen_Servicio_Pericial;
+using Spartane.Services.Modulo_Servicio_Pericial;
+using Spartane.Core.Domain.Modulo_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Modulo_Servicio_Pericial;
+using Spartane.Services.Estatus_Servicio_Pericial;
+using Spartane.Core.Domain.Estatus_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_Servicio_Pericial;
+using Spartane.Services.Historial_Estatus_Modulo_Servicio_Pericial;
+using Spartane.Core.Domain.Historial_Estatus_Modulo_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Historial_Estatus_Modulo_Servicio_Pericial;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3096,6 +3234,98 @@ builder.RegisterType<Tipo_de_ResolucionService>().As<ITipo_de_ResolucionService>
 builder.RegisterType<Tipo_de_ResolucionApiConsumer>().As<ITipo_de_ResolucionApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Detalle_de_Guardado_de_MovimientoService>().As<IDetalle_de_Guardado_de_MovimientoService>().InstancePerLifetimeScope();
 builder.RegisterType<Detalle_de_Guardado_de_MovimientoApiConsumer>().As<IDetalle_de_Guardado_de_MovimientoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Registro_de_UsuarioService>().As<IRegistro_de_UsuarioService>().InstancePerLifetimeScope();
+builder.RegisterType<Registro_de_UsuarioApiConsumer>().As<IRegistro_de_UsuarioApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Consulta_de_Mandamientos_JudicialesService>().As<IConsulta_de_Mandamientos_JudicialesService>().InstancePerLifetimeScope();
+builder.RegisterType<Consulta_de_Mandamientos_JudicialesApiConsumer>().As<IConsulta_de_Mandamientos_JudicialesApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_AmparoService>().As<IDetalle_de_AmparoService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_AmparoApiConsumer>().As<IDetalle_de_AmparoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Delito_Mandamiento_JudicialService>().As<IDetalle_de_Delito_Mandamiento_JudicialService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Delito_Mandamiento_JudicialApiConsumer>().As<IDetalle_de_Delito_Mandamiento_JudicialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Documentos_Mandamiento_JudicialService>().As<IDetalle_de_Documentos_Mandamiento_JudicialService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Documentos_Mandamiento_JudicialApiConsumer>().As<IDetalle_de_Documentos_Mandamiento_JudicialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_DomicilioService>().As<IDetalle_de_DomicilioService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_DomicilioApiConsumer>().As<IDetalle_de_DomicilioApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_FotosService>().As<IDetalle_de_FotosService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_FotosApiConsumer>().As<IDetalle_de_FotosApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Huellas_DigitalesService>().As<IDetalle_de_Huellas_DigitalesService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Huellas_DigitalesApiConsumer>().As<IDetalle_de_Huellas_DigitalesApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Otro_NombreService>().As<IDetalle_de_Otro_NombreService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Otro_NombreApiConsumer>().As<IDetalle_de_Otro_NombreApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_ResultadosService>().As<IDetalle_de_ResultadosService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_ResultadosApiConsumer>().As<IDetalle_de_ResultadosApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_telefonoService>().As<IDetalle_de_telefonoService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_telefonoApiConsumer>().As<IDetalle_de_telefonoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<FuerzoService>().As<IFuerzoService>().InstancePerLifetimeScope();
+builder.RegisterType<FuerzoApiConsumer>().As<IFuerzoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Institucion_EmisoraService>().As<IInstitucion_EmisoraService>().InstancePerLifetimeScope();
+builder.RegisterType<Institucion_EmisoraApiConsumer>().As<IInstitucion_EmisoraApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Motivo_de_Cancelacion_del_ProcesoService>().As<IMotivo_de_Cancelacion_del_ProcesoService>().InstancePerLifetimeScope();
+builder.RegisterType<Motivo_de_Cancelacion_del_ProcesoApiConsumer>().As<IMotivo_de_Cancelacion_del_ProcesoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Registro_de_Mandamiento_JudicialService>().As<IRegistro_de_Mandamiento_JudicialService>().InstancePerLifetimeScope();
+builder.RegisterType<Registro_de_Mandamiento_JudicialApiConsumer>().As<IRegistro_de_Mandamiento_JudicialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_AmparoService>().As<ITipo_de_AmparoService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_AmparoApiConsumer>().As<ITipo_de_AmparoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_DomicilioService>().As<ITipo_de_DomicilioService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_DomicilioApiConsumer>().As<ITipo_de_DomicilioApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_ExtradiccionService>().As<ITipo_de_ExtradiccionService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_ExtradiccionApiConsumer>().As<ITipo_de_ExtradiccionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_MandamientoService>().As<ITipo_de_MandamientoService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_MandamientoApiConsumer>().As<ITipo_de_MandamientoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_OrdenService>().As<ITipo_de_OrdenService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_OrdenApiConsumer>().As<ITipo_de_OrdenApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_ProcesoService>().As<ITipo_de_ProcesoService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_ProcesoApiConsumer>().As<ITipo_de_ProcesoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_TelefonoService>().As<ITipo_de_TelefonoService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_TelefonoApiConsumer>().As<ITipo_de_TelefonoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<AmbitoService>().As<IAmbitoService>().InstancePerLifetimeScope();
+builder.RegisterType<AmbitoApiConsumer>().As<IAmbitoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_CuantiaService>().As<ITipo_de_CuantiaService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_CuantiaApiConsumer>().As<ITipo_de_CuantiaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Resolucion_MASCService>().As<IResolucion_MASCService>().InstancePerLifetimeScope();
+builder.RegisterType<Resolucion_MASCApiConsumer>().As<IResolucion_MASCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<CanalizacionService>().As<ICanalizacionService>().InstancePerLifetimeScope();
+builder.RegisterType<CanalizacionApiConsumer>().As<ICanalizacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Diligencias_CanalizacionService>().As<IDetalle_Diligencias_CanalizacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Diligencias_CanalizacionApiConsumer>().As<IDetalle_Diligencias_CanalizacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Relaciones_MASCService>().As<IDetalle_Relaciones_MASCService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Relaciones_MASCApiConsumer>().As<IDetalle_Relaciones_MASCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Relaciones_MASCService>().As<IRelaciones_MASCService>().InstancePerLifetimeScope();
+builder.RegisterType<Relaciones_MASCApiConsumer>().As<IRelaciones_MASCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_SolicitudService>().As<ITipo_de_SolicitudService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_SolicitudApiConsumer>().As<ITipo_de_SolicitudApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_SolicitudService>().As<IEstatus_de_SolicitudService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_SolicitudApiConsumer>().As<IEstatus_de_SolicitudApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Solicitud_de_Denuncia_CiudadanaService>().As<ISolicitud_de_Denuncia_CiudadanaService>().InstancePerLifetimeScope();
+builder.RegisterType<Solicitud_de_Denuncia_CiudadanaApiConsumer>().As<ISolicitud_de_Denuncia_CiudadanaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Datos_de_los_Hechos_PCService>().As<IDatos_de_los_Hechos_PCService>().InstancePerLifetimeScope();
+builder.RegisterType<Datos_de_los_Hechos_PCApiConsumer>().As<IDatos_de_los_Hechos_PCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Robo_de_Vehiculo_PCService>().As<IRobo_de_Vehiculo_PCService>().InstancePerLifetimeScope();
+builder.RegisterType<Robo_de_Vehiculo_PCApiConsumer>().As<IRobo_de_Vehiculo_PCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Involucrados_PCService>().As<IInvolucrados_PCService>().InstancePerLifetimeScope();
+builder.RegisterType<Involucrados_PCApiConsumer>().As<IInvolucrados_PCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Probable_Responsable_PCService>().As<IProbable_Responsable_PCService>().InstancePerLifetimeScope();
+builder.RegisterType<Probable_Responsable_PCApiConsumer>().As<IProbable_Responsable_PCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_EncuestaService>().As<ITipo_EncuestaService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_EncuestaApiConsumer>().As<ITipo_EncuestaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<PC_CanalizarAService>().As<IPC_CanalizarAService>().InstancePerLifetimeScope();
+builder.RegisterType<PC_CanalizarAApiConsumer>().As<IPC_CanalizarAApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Direccion_ExactaService>().As<IDireccion_ExactaService>().InstancePerLifetimeScope();
+builder.RegisterType<Direccion_ExactaApiConsumer>().As<IDireccion_ExactaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Agencia_Servicio_PericialService>().As<IAgencia_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Agencia_Servicio_PericialApiConsumer>().As<IAgencia_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Area_PericialService>().As<IArea_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Area_PericialApiConsumer>().As<IArea_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Autoridad_Servicio_PericialService>().As<IAutoridad_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Autoridad_Servicio_PericialApiConsumer>().As<IAutoridad_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Dictamen_Servicio_PericialService>().As<IDictamen_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Dictamen_Servicio_PericialApiConsumer>().As<IDictamen_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Modulo_Servicio_PericialService>().As<IModulo_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Modulo_Servicio_PericialApiConsumer>().As<IModulo_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_Servicio_PericialService>().As<IEstatus_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_Servicio_PericialApiConsumer>().As<IEstatus_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Historial_Estatus_Modulo_Servicio_PericialService>().As<IHistorial_Estatus_Modulo_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Historial_Estatus_Modulo_Servicio_PericialApiConsumer>().As<IHistorial_Estatus_Modulo_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3276,6 +3506,276 @@ builder.RegisterType<Detalle_de_Guardado_de_MovimientoApiConsumer>().As<IDetalle
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

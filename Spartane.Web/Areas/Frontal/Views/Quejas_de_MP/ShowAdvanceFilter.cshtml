@@ -1,0 +1,2839 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Quejas_de_MPAdvanceSearchModel
+@{
+    List<SelectListItem> varEstatus_Quejas_MP_Estatus = null;
+    if (ViewBag.Estatus_Quejas_MPs_Estatus != null)
+    { varEstatus_Quejas_MP_Estatus = (List<SelectListItem>)ViewBag.Estatus_Quejas_MPs_Estatus; }
+    List<SelectListItem> varForma_Cara_Forma_Cara = null;
+    if (ViewBag.Forma_Caras_Forma_Cara != null)
+    { varForma_Cara_Forma_Cara = (List<SelectListItem>)ViewBag.Forma_Caras_Forma_Cara; }
+    List<SelectListItem> varCejas_Tipo_de_Cejas = null;
+    if (ViewBag.Cejass_Tipo_de_Cejas != null)
+    { varCejas_Tipo_de_Cejas = (List<SelectListItem>)ViewBag.Cejass_Tipo_de_Cejas; }
+    List<SelectListItem> varTamano_de_Cejas_Tamano_de_Cejas = null;
+    if (ViewBag.Tamano_de_Cejass_Tamano_de_Cejas != null)
+    { varTamano_de_Cejas_Tamano_de_Cejas = (List<SelectListItem>)ViewBag.Tamano_de_Cejass_Tamano_de_Cejas; }
+    List<SelectListItem> varLargo_de_Cabello_Largo_de_Cabello = null;
+    if (ViewBag.Largo_de_Cabellos_Largo_de_Cabello != null)
+    { varLargo_de_Cabello_Largo_de_Cabello = (List<SelectListItem>)ViewBag.Largo_de_Cabellos_Largo_de_Cabello; }
+    List<SelectListItem> varCantidad_Cabello_Cantidad_Cabello = null;
+    if (ViewBag.Cantidad_Cabellos_Cantidad_Cabello != null)
+    { varCantidad_Cabello_Cantidad_Cabello = (List<SelectListItem>)ViewBag.Cantidad_Cabellos_Cantidad_Cabello; }
+    List<SelectListItem> varImplantacion_Cabello_Implantacion_Cabello = null;
+    if (ViewBag.Implantacion_Cabellos_Implantacion_Cabello != null)
+    { varImplantacion_Cabello_Implantacion_Cabello = (List<SelectListItem>)ViewBag.Implantacion_Cabellos_Implantacion_Cabello; }
+    List<SelectListItem> varComplexion_Complexion = null;
+    if (ViewBag.Complexions_Complexion != null)
+    { varComplexion_Complexion = (List<SelectListItem>)ViewBag.Complexions_Complexion; }
+    List<SelectListItem> varColor_Piel_Color_Piel = null;
+    if (ViewBag.Color_Piels_Color_Piel != null)
+    { varColor_Piel_Color_Piel = (List<SelectListItem>)ViewBag.Color_Piels_Color_Piel; }
+    List<SelectListItem> varFrente_Frente = null;
+    if (ViewBag.Frentes_Frente != null)
+    { varFrente_Frente = (List<SelectListItem>)ViewBag.Frentes_Frente; }
+    List<SelectListItem> varForma_Cabello_Forma_Cabello = null;
+    if (ViewBag.Forma_Cabellos_Forma_Cabello != null)
+    { varForma_Cabello_Forma_Cabello = (List<SelectListItem>)ViewBag.Forma_Cabellos_Forma_Cabello; }
+    List<SelectListItem> varColor_de_Cabello_Color_Cabello = null;
+    if (ViewBag.Color_de_Cabellos_Color_Cabello != null)
+    { varColor_de_Cabello_Color_Cabello = (List<SelectListItem>)ViewBag.Color_de_Cabellos_Color_Cabello; }
+    List<SelectListItem> varCalvicie_Calvicie = null;
+    if (ViewBag.Calvicies_Calvicie != null)
+    { varCalvicie_Calvicie = (List<SelectListItem>)ViewBag.Calvicies_Calvicie; }
+    List<SelectListItem> varColor_Ojos_Color_Ojos = null;
+    if (ViewBag.Color_Ojoss_Color_Ojos != null)
+    { varColor_Ojos_Color_Ojos = (List<SelectListItem>)ViewBag.Color_Ojoss_Color_Ojos; }
+    List<SelectListItem> varOjos_Tamano_de_Ojos = null;
+    if (ViewBag.Ojoss_Tamano_de_Ojos != null)
+    { varOjos_Tamano_de_Ojos = (List<SelectListItem>)ViewBag.Ojoss_Tamano_de_Ojos; }
+    List<SelectListItem> varFroma_Ojos_Forma_Ojos = null;
+    if (ViewBag.Froma_Ojoss_Forma_Ojos != null)
+    { varFroma_Ojos_Forma_Ojos = (List<SelectListItem>)ViewBag.Froma_Ojoss_Forma_Ojos; }
+    List<SelectListItem> varAnteojos_Anteojos = null;
+    if (ViewBag.Anteojoss_Anteojos != null)
+    { varAnteojos_Anteojos = (List<SelectListItem>)ViewBag.Anteojoss_Anteojos; }
+    List<SelectListItem> varForma_de_Nariz_Forma_de_Nariz = null;
+    if (ViewBag.Forma_de_Narizs_Forma_de_Nariz != null)
+    { varForma_de_Nariz_Forma_de_Nariz = (List<SelectListItem>)ViewBag.Forma_de_Narizs_Forma_de_Nariz; }
+    List<SelectListItem> varNariz_Base_Tamano_Nariz = null;
+    if (ViewBag.Nariz_Bases_Tamano_Nariz != null)
+    { varNariz_Base_Tamano_Nariz = (List<SelectListItem>)ViewBag.Nariz_Bases_Tamano_Nariz; }
+    List<SelectListItem> varLabios_Labios = null;
+    if (ViewBag.Labioss_Labios != null)
+    { varLabios_Labios = (List<SelectListItem>)ViewBag.Labioss_Labios; }
+    List<SelectListItem> varBoca_Boca = null;
+    if (ViewBag.Bocas_Boca != null)
+    { varBoca_Boca = (List<SelectListItem>)ViewBag.Bocas_Boca; }
+    List<SelectListItem> varGrosor_de_Labios_Grosor_de_Labios = null;
+    if (ViewBag.Grosor_de_Labioss_Grosor_de_Labios != null)
+    { varGrosor_de_Labios_Grosor_de_Labios = (List<SelectListItem>)ViewBag.Grosor_de_Labioss_Grosor_de_Labios; }
+    List<SelectListItem> varMenton_Menton = null;
+    if (ViewBag.Mentons_Menton != null)
+    { varMenton_Menton = (List<SelectListItem>)ViewBag.Mentons_Menton; }
+    List<SelectListItem> varForma_de_Menton_Forma_de_Menton = null;
+    if (ViewBag.Forma_de_Mentons_Forma_de_Menton != null)
+    { varForma_de_Menton_Forma_de_Menton = (List<SelectListItem>)ViewBag.Forma_de_Mentons_Forma_de_Menton; }
+    List<SelectListItem> varBarba_Barba = null;
+    if (ViewBag.Barbas_Barba != null)
+    { varBarba_Barba = (List<SelectListItem>)ViewBag.Barbas_Barba; }
+    List<SelectListItem> varForma_Orejas_Forma_Orejas = null;
+    if (ViewBag.Forma_Orejass_Forma_Orejas != null)
+    { varForma_Orejas_Forma_Orejas = (List<SelectListItem>)ViewBag.Forma_Orejass_Forma_Orejas; }
+    List<SelectListItem> varTamano_Orejas_Tamano_Orejas = null;
+    if (ViewBag.Tamano_Orejass_Tamano_Orejas != null)
+    { varTamano_Orejas_Tamano_Orejas = (List<SelectListItem>)ViewBag.Tamano_Orejass_Tamano_Orejas; }
+    List<SelectListItem> varTipo_Lobulo_Tipo_Lobulo = null;
+    if (ViewBag.Tipo_Lobulos_Tipo_Lobulo != null)
+    { varTipo_Lobulo_Tipo_Lobulo = (List<SelectListItem>)ViewBag.Tipo_Lobulos_Tipo_Lobulo; }
+    List<SelectListItem> varBigote_Bigote = null;
+    if (ViewBag.Bigotes_Bigote != null)
+    { varBigote_Bigote = (List<SelectListItem>)ViewBag.Bigotes_Bigote; }
+    List<SelectListItem> varSenas_Particulares_Senas_Particulares = null;
+    if (ViewBag.Senas_Particularess_Senas_Particulares != null)
+    { varSenas_Particulares_Senas_Particulares = (List<SelectListItem>)ViewBag.Senas_Particularess_Senas_Particulares; }
+    List<SelectListItem> varSituacion_Fisica_Situacion_Fisica = null;
+    if (ViewBag.Situacion_Fisicas_Situacion_Fisica != null)
+    { varSituacion_Fisica_Situacion_Fisica = (List<SelectListItem>)ViewBag.Situacion_Fisicas_Situacion_Fisica; }
+    List<SelectListItem> varGenero_Genero = null;
+    if (ViewBag.Generos_Genero != null)
+    { varGenero_Genero = (List<SelectListItem>)ViewBag.Generos_Genero; }
+    List<SelectListItem> varNacionalidad_Nacionalidad = null;
+    if (ViewBag.Nacionalidads_Nacionalidad != null)
+    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
+ List<SelectListItem> varEstado_Entidad_de_Nacimiento = null;
+    if (ViewBag.Estados_Entidad_de_Nacimiento != null)
+    { varEstado_Entidad_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento; }
+    List<SelectListItem> varGenero_Genero_Hechos = null;
+    if (ViewBag.Generos_Genero_Hechos != null)
+    { varGenero_Genero_Hechos = (List<SelectListItem>)ViewBag.Generos_Genero_Hechos; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos; }
+    List<SelectListItem> varNacionalidad_Nacionalidad_Hechos = null;
+    if (ViewBag.Nacionalidads_Nacionalidad_Hechos != null)
+    { varNacionalidad_Nacionalidad_Hechos = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_Hechos; }
+    List<SelectListItem> varEstado_Entidad_de_Nacimiento_Hechos = null;
+    if (ViewBag.Estados_Entidad_de_Nacimiento_Hechos != null)
+    { varEstado_Entidad_de_Nacimiento_Hechos = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento_Hechos; }
+    List<SelectListItem> varGenero_Genero_Identificacion = null;
+    if (ViewBag.Generos_Genero_Identificacion != null)
+    { varGenero_Genero_Identificacion = (List<SelectListItem>)ViewBag.Generos_Genero_Identificacion; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_Identificacion = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion_Identificacion = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion; }
+    List<SelectListItem> varNacionalidad_Nacionalidad_Identificacion = null;
+    if (ViewBag.Nacionalidads_Nacionalidad_Identificacion != null)
+    { varNacionalidad_Nacionalidad_Identificacion = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_Identificacion; }
+ List<SelectListItem> varEstado_Entidad_de_Nacimiento_Identificacion = null;
+    if (ViewBag.Estados_Entidad_de_Nacimiento_Identificacion != null)
+    { varEstado_Entidad_de_Nacimiento_Identificacion = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento_Identificacion; }
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Quejas_de_MP", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Quejas_de_MPResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Nombres</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NombresFilter, filters, new { @class = "form-control", @id = "ddlNombresFilter" })
+                    @Html.TextBoxFor(m => m.Nombres, new { @class = "form-control", @type = "text", @id = "txtNombres" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Apellido_Paterno</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_PaternoFilter, filters, new { @class = "form-control", @id = "ddlApellido_PaternoFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Paterno, new { @class = "form-control", @type = "text", @id = "txtApellido_Paterno" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Apellido_Materno</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_MaternoFilter, filters, new { @class = "form-control", @id = "ddlApellido_MaternoFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Materno, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Nombre_Completo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombre_CompletoFilter, filters, new { @class = "form-control", @id = "ddlNombre_CompletoFilter" })
+                    @Html.TextBoxFor(m => m.Nombre_Completo, new { @class = "form-control", @type = "text", @id = "txtNombre_Completo" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Estatus</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EstatusFilter, filters, new { @class = "form-control", @id = "ddlEstatusFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstatus, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstatus" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstatus_Quejas_MP_Estatus!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstatusMultiple, varEstatus_Quejas_MP_Estatus,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstatus"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Peso</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.PesoFilter, filters, new { @class = "form-control", @id = "ddlPesoFilter" })
+                    @Html.TextBoxFor(m => m.Peso, new { @class = "form-control", @type = "text", @id = "txtPeso" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Estatura</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EstaturaFilter, filters, new { @class = "form-control", @id = "ddlEstaturaFilter" })
+                    @Html.TextBoxFor(m => m.Estatura, new { @class = "form-control", @type = "text", @id = "txtEstatura" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Padecimiento_de_Enfermedad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Padecimiento_de_EnfermedadFilter, filters, new { @class = "form-control", @id = "ddlPadecimiento_de_EnfermedadFilter" })
+                    @Html.TextBoxFor(m => m.Padecimiento_de_Enfermedad, new { @class = "form-control", @type = "text", @id = "txtPadecimiento_de_Enfermedad" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Forma_Cara</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Forma_CaraFilter, filters, new { @class = "form-control", @id = "ddlForma_CaraFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceForma_Cara, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_Cara" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varForma_Cara_Forma_Cara!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceForma_CaraMultiple, varForma_Cara_Forma_Cara,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceForma_Cara"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Tipo_de_Cejas</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_CejasFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_CejasFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Cejas, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Cejas" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varCejas_Tipo_de_Cejas!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_CejasMultiple, varCejas_Tipo_de_Cejas,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Cejas"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Tamano_de_Cejas</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tamano_de_CejasFilter, filters, new { @class = "form-control", @id = "ddlTamano_de_CejasFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTamano_de_Cejas, new { @class = "form-control", @type = "text", @id = "txtAdvanceTamano_de_Cejas" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTamano_de_Cejas_Tamano_de_Cejas!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTamano_de_CejasMultiple, varTamano_de_Cejas_Tamano_de_Cejas,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTamano_de_Cejas"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Largo_de_Cabello</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Largo_de_CabelloFilter, filters, new { @class = "form-control", @id = "ddlLargo_de_CabelloFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceLargo_de_Cabello, new { @class = "form-control", @type = "text", @id = "txtAdvanceLargo_de_Cabello" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varLargo_de_Cabello_Largo_de_Cabello!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceLargo_de_CabelloMultiple, varLargo_de_Cabello_Largo_de_Cabello,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceLargo_de_Cabello"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Cantidad_Cabello</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Cantidad_CabelloFilter, filters, new { @class = "form-control", @id = "ddlCantidad_CabelloFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceCantidad_Cabello, new { @class = "form-control", @type = "text", @id = "txtAdvanceCantidad_Cabello" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varCantidad_Cabello_Cantidad_Cabello!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceCantidad_CabelloMultiple, varCantidad_Cabello_Cantidad_Cabello,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceCantidad_Cabello"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Implantacion_Cabello</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Implantacion_CabelloFilter, filters, new { @class = "form-control", @id = "ddlImplantacion_CabelloFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceImplantacion_Cabello, new { @class = "form-control", @type = "text", @id = "txtAdvanceImplantacion_Cabello" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varImplantacion_Cabello_Implantacion_Cabello!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceImplantacion_CabelloMultiple, varImplantacion_Cabello_Implantacion_Cabello,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceImplantacion_Cabello"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Complexion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ComplexionFilter, filters, new { @class = "form-control", @id = "ddlComplexionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceComplexion, new { @class = "form-control", @type = "text", @id = "txtAdvanceComplexion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varComplexion_Complexion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceComplexionMultiple, varComplexion_Complexion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceComplexion"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Color_Piel</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Color_PielFilter, filters, new { @class = "form-control", @id = "ddlColor_PielFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceColor_Piel, new { @class = "form-control", @type = "text", @id = "txtAdvanceColor_Piel" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varColor_Piel_Color_Piel!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceColor_PielMultiple, varColor_Piel_Color_Piel,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceColor_Piel"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Frente</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.FrenteFilter, filters, new { @class = "form-control", @id = "ddlFrenteFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceFrente, new { @class = "form-control", @type = "text", @id = "txtAdvanceFrente" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varFrente_Frente!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceFrenteMultiple, varFrente_Frente,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceFrente"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Forma_Cabello</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Forma_CabelloFilter, filters, new { @class = "form-control", @id = "ddlForma_CabelloFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceForma_Cabello, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_Cabello" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varForma_Cabello_Forma_Cabello!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceForma_CabelloMultiple, varForma_Cabello_Forma_Cabello,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceForma_Cabello"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Color_Cabello</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Color_CabelloFilter, filters, new { @class = "form-control", @id = "ddlColor_CabelloFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceColor_Cabello, new { @class = "form-control", @type = "text", @id = "txtAdvanceColor_Cabello" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varColor_de_Cabello_Color_Cabello!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceColor_CabelloMultiple, varColor_de_Cabello_Color_Cabello,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceColor_Cabello"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Calvicie</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CalvicieFilter, filters, new { @class = "form-control", @id = "ddlCalvicieFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceCalvicie, new { @class = "form-control", @type = "text", @id = "txtAdvanceCalvicie" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varCalvicie_Calvicie!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceCalvicieMultiple, varCalvicie_Calvicie,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceCalvicie"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Color_Ojos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Color_OjosFilter, filters, new { @class = "form-control", @id = "ddlColor_OjosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceColor_Ojos, new { @class = "form-control", @type = "text", @id = "txtAdvanceColor_Ojos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varColor_Ojos_Color_Ojos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceColor_OjosMultiple, varColor_Ojos_Color_Ojos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceColor_Ojos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Tamano_de_Ojos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tamano_de_OjosFilter, filters, new { @class = "form-control", @id = "ddlTamano_de_OjosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTamano_de_Ojos, new { @class = "form-control", @type = "text", @id = "txtAdvanceTamano_de_Ojos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varOjos_Tamano_de_Ojos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTamano_de_OjosMultiple, varOjos_Tamano_de_Ojos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTamano_de_Ojos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Forma_Ojos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Forma_OjosFilter, filters, new { @class = "form-control", @id = "ddlForma_OjosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceForma_Ojos, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_Ojos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varFroma_Ojos_Forma_Ojos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceForma_OjosMultiple, varFroma_Ojos_Forma_Ojos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceForma_Ojos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Anteojos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AnteojosFilter, filters, new { @class = "form-control", @id = "ddlAnteojosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceAnteojos, new { @class = "form-control", @type = "text", @id = "txtAdvanceAnteojos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varAnteojos_Anteojos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceAnteojosMultiple, varAnteojos_Anteojos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceAnteojos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Forma_de_Nariz</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Forma_de_NarizFilter, filters, new { @class = "form-control", @id = "ddlForma_de_NarizFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceForma_de_Nariz, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_de_Nariz" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varForma_de_Nariz_Forma_de_Nariz!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceForma_de_NarizMultiple, varForma_de_Nariz_Forma_de_Nariz,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceForma_de_Nariz"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Tamano_Nariz</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tamano_NarizFilter, filters, new { @class = "form-control", @id = "ddlTamano_NarizFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTamano_Nariz, new { @class = "form-control", @type = "text", @id = "txtAdvanceTamano_Nariz" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varNariz_Base_Tamano_Nariz!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTamano_NarizMultiple, varNariz_Base_Tamano_Nariz,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTamano_Nariz"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Labios</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.LabiosFilter, filters, new { @class = "form-control", @id = "ddlLabiosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceLabios, new { @class = "form-control", @type = "text", @id = "txtAdvanceLabios" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varLabios_Labios!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceLabiosMultiple, varLabios_Labios,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceLabios"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Boca</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.BocaFilter, filters, new { @class = "form-control", @id = "ddlBocaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceBoca, new { @class = "form-control", @type = "text", @id = "txtAdvanceBoca" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varBoca_Boca!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceBocaMultiple, varBoca_Boca,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceBoca"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Grosor_de_Labios</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Grosor_de_LabiosFilter, filters, new { @class = "form-control", @id = "ddlGrosor_de_LabiosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceGrosor_de_Labios, new { @class = "form-control", @type = "text", @id = "txtAdvanceGrosor_de_Labios" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varGrosor_de_Labios_Grosor_de_Labios!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceGrosor_de_LabiosMultiple, varGrosor_de_Labios_Grosor_de_Labios,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceGrosor_de_Labios"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Menton</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.MentonFilter, filters, new { @class = "form-control", @id = "ddlMentonFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMenton, new { @class = "form-control", @type = "text", @id = "txtAdvanceMenton" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMenton_Menton!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMentonMultiple, varMenton_Menton,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMenton"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Forma_de_Menton</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Forma_de_MentonFilter, filters, new { @class = "form-control", @id = "ddlForma_de_MentonFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceForma_de_Menton, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_de_Menton" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varForma_de_Menton_Forma_de_Menton!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceForma_de_MentonMultiple, varForma_de_Menton_Forma_de_Menton,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceForma_de_Menton"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Barba</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.BarbaFilter, filters, new { @class = "form-control", @id = "ddlBarbaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceBarba, new { @class = "form-control", @type = "text", @id = "txtAdvanceBarba" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varBarba_Barba!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceBarbaMultiple, varBarba_Barba,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceBarba"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Forma_Orejas</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Forma_OrejasFilter, filters, new { @class = "form-control", @id = "ddlForma_OrejasFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceForma_Orejas, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_Orejas" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varForma_Orejas_Forma_Orejas!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceForma_OrejasMultiple, varForma_Orejas_Forma_Orejas,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceForma_Orejas"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Tamano_Orejas</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tamano_OrejasFilter, filters, new { @class = "form-control", @id = "ddlTamano_OrejasFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTamano_Orejas, new { @class = "form-control", @type = "text", @id = "txtAdvanceTamano_Orejas" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTamano_Orejas_Tamano_Orejas!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTamano_OrejasMultiple, varTamano_Orejas_Tamano_Orejas,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTamano_Orejas"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Tipo_Lobulo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_LobuloFilter, filters, new { @class = "form-control", @id = "ddlTipo_LobuloFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_Lobulo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_Lobulo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_Lobulo_Tipo_Lobulo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_LobuloMultiple, varTipo_Lobulo_Tipo_Lobulo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_Lobulo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Bigote</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.BigoteFilter, filters, new { @class = "form-control", @id = "ddlBigoteFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceBigote, new { @class = "form-control", @type = "text", @id = "txtAdvanceBigote" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varBigote_Bigote!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceBigoteMultiple, varBigote_Bigote,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceBigote"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Senas_Particulares</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Senas_ParticularesFilter, filters, new { @class = "form-control", @id = "ddlSenas_ParticularesFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceSenas_Particulares, new { @class = "form-control", @type = "text", @id = "txtAdvanceSenas_Particulares" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varSenas_Particulares_Senas_Particulares!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceSenas_ParticularesMultiple, varSenas_Particulares_Senas_Particulares,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceSenas_Particulares"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Situacion_Fisica</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Situacion_FisicaFilter, filters, new { @class = "form-control", @id = "ddlSituacion_FisicaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceSituacion_Fisica, new { @class = "form-control", @type = "text", @id = "txtAdvanceSituacion_Fisica" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varSituacion_Fisica_Situacion_Fisica!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceSituacion_FisicaMultiple, varSituacion_Fisica_Situacion_Fisica,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceSituacion_Fisica"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Otras_Senas_Particulares</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Otras_Senas_ParticularesFilter, filters, new { @class = "form-control", @id = "ddlOtras_Senas_ParticularesFilter" })
+                    @Html.TextBoxFor(m => m.Otras_Senas_Particulares, new { @class = "form-control", @type = "text", @id = "txtOtras_Senas_Particulares" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Descripcion_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Descripcion_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlDescripcion_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Descripcion_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtDescripcion_de_los_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.CURP</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CURPFilter, filters, new { @class = "form-control", @id = "ddlCURPFilter" })
+                    @Html.TextBoxFor(m => m.CURP, new { @class = "form-control", @type = "text", @id = "txtCURP" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Genero</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.GeneroFilter, filters, new { @class = "form-control", @id = "ddlGeneroFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceGenero, new { @class = "form-control", @type = "text", @id = "txtAdvanceGenero" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varGenero_Genero!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceGeneroMultiple, varGenero_Genero,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceGenero"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Quejas_de_MPResources.Fecha_de_Nacimiento</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Nacimiento" name="FromFecha_de_Nacimiento" type="text" value="@Model.FromFecha_de_Nacimiento" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Nacimiento" name="ToFecha_de_Nacimiento" type="text" value="@Model.ToFecha_de_Nacimiento" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Nacionalidad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NacionalidadFilter, filters, new { @class = "form-control", @id = "ddlNacionalidadFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceNacionalidad, new { @class = "form-control", @type = "text", @id = "txtAdvanceNacionalidad" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varNacionalidad_Nacionalidad!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceNacionalidadMultiple, varNacionalidad_Nacionalidad,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceNacionalidad"
+                        });
+                    }
+                </div>
+ List<SelectListItem> varEstado_Entidad_de_Nacimiento = null;
+    if (ViewBag.Estados_Entidad_de_Nacimiento != null)
+    { varEstado_Entidad_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Nombres_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombres_HechosFilter, filters, new { @class = "form-control", @id = "ddlNombres_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Nombres_Hechos, new { @class = "form-control", @type = "text", @id = "txtNombres_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Apellido_Paterno_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_Paterno_HechosFilter, filters, new { @class = "form-control", @id = "ddlApellido_Paterno_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Paterno_Hechos, new { @class = "form-control", @type = "text", @id = "txtApellido_Paterno_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Apellido_Materno_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_Materno_HechosFilter, filters, new { @class = "form-control", @id = "ddlApellido_Materno_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Materno_Hechos, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno_Hechos" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Quejas_de_MPResources.Fecha_de_Nacimiento_Hechos</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Nacimiento_Hechos" name="FromFecha_de_Nacimiento_Hechos" type="text" value="@Model.FromFecha_de_Nacimiento_Hechos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Nacimiento_Hechos" name="ToFecha_de_Nacimiento_Hechos" type="text" value="@Model.ToFecha_de_Nacimiento_Hechos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Quejas_de_MPResources.Edad_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromEdad_Hechos, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromEdad_Hechos" })
+                    @Html.ValidationMessageFor(m => m.FromEdad_Hechos)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToEdad_Hechos, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToEdad_Hechos", @data_min = "txtAdvanceFromEdad_Hechos" })
+                    @Html.ValidationMessageFor(m => m.ToEdad_Hechos)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Genero_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Genero_HechosFilter, filters, new { @class = "form-control", @id = "ddlGenero_HechosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceGenero_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceGenero_Hechos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varGenero_Genero_Hechos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceGenero_HechosMultiple, varGenero_Genero_Hechos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceGenero_Hechos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Celular_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Celular_HechosFilter, filters, new { @class = "form-control", @id = "ddlCelular_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Celular_Hechos, new { @class = "form-control", @type = "text", @id = "txtCelular_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Correo_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Correo_HechosFilter, filters, new { @class = "form-control", @id = "ddlCorreo_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Correo_Hechos, new { @class = "form-control", @type = "text", @id = "txtCorreo_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_Identificacion_HechosFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Identificacion_HechosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Identificacion_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Identificacion_Hechos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Identificacion_HechosMultiple, varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Identificacion_Hechos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Numero_Identificacion_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Identificacion_HechosFilter, filters, new { @class = "form-control", @id = "ddlNumero_Identificacion_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Identificacion_Hechos, new { @class = "form-control", @type = "text", @id = "txtNumero_Identificacion_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Nacionalidad_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nacionalidad_HechosFilter, filters, new { @class = "form-control", @id = "ddlNacionalidad_HechosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceNacionalidad_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceNacionalidad_Hechos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varNacionalidad_Nacionalidad_Hechos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceNacionalidad_HechosMultiple, varNacionalidad_Nacionalidad_Hechos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceNacionalidad_Hechos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Entidad_de_Nacimiento_HechosFilter, filters, new { @class = "form-control", @id = "ddlEntidad_de_Nacimiento_HechosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEntidad_de_Nacimiento_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceEntidad_de_Nacimiento_Hechos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstado_Entidad_de_Nacimiento_Hechos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEntidad_de_Nacimiento_HechosMultiple, varEstado_Entidad_de_Nacimiento_Hechos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEntidad_de_Nacimiento_Hechos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.CURP_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CURP_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlCURP_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.CURP_Identificacion, new { @class = "form-control", @type = "text", @id = "txtCURP_Identificacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Nombres_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombres_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlNombres_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.Nombres_Identificacion, new { @class = "form-control", @type = "text", @id = "txtNombres_Identificacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Apellido_Paterno_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_Paterno_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlApellido_Paterno_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Paterno_Identificacion, new { @class = "form-control", @type = "text", @id = "txtApellido_Paterno_Identificacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Apellido_Materno_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_Materno_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlApellido_Materno_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Materno_Identificacion, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno_Identificacion" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Quejas_de_MPResources.Fecha_Nacimiento_Identificacion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_Nacimiento_Identificacion" name="FromFecha_Nacimiento_Identificacion" type="text" value="@Model.FromFecha_Nacimiento_Identificacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_Nacimiento_Identificacion" name="ToFecha_Nacimiento_Identificacion" type="text" value="@Model.ToFecha_Nacimiento_Identificacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Quejas_de_MPResources.Edad_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromEdad_Identificacion, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromEdad_Identificacion" })
+                    @Html.ValidationMessageFor(m => m.FromEdad_Identificacion)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToEdad_Identificacion, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToEdad_Identificacion", @data_min = "txtAdvanceFromEdad_Identificacion" })
+                    @Html.ValidationMessageFor(m => m.ToEdad_Identificacion)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Genero_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Genero_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlGenero_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceGenero_Identificacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceGenero_Identificacion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varGenero_Genero_Identificacion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceGenero_IdentificacionMultiple, varGenero_Genero_Identificacion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceGenero_Identificacion"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Celular_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Celular_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlCelular_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.Celular_Identificacion, new { @class = "form-control", @type = "text", @id = "txtCelular_Identificacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Correo_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Correo_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlCorreo_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.Correo_Identificacion, new { @class = "form-control", @type = "text", @id = "txtCorreo_Identificacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_Identificacion_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Identificacion_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Identificacion_Identificacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Identificacion_Identificacion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Identificacion_Tipo_de_Identificacion_Identificacion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Identificacion_IdentificacionMultiple, varTipo_de_Identificacion_Tipo_de_Identificacion_Identificacion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Identificacion_Identificacion"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Numero_Identificacion_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Identificacion_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlNumero_Identificacion_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Identificacion_Identificacion, new { @class = "form-control", @type = "text", @id = "txtNumero_Identificacion_Identificacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Nacionalidad_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nacionalidad_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlNacionalidad_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceNacionalidad_Identificacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceNacionalidad_Identificacion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varNacionalidad_Nacionalidad_Identificacion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceNacionalidad_IdentificacionMultiple, varNacionalidad_Nacionalidad_Identificacion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceNacionalidad_Identificacion"
+                        });
+                    }
+                </div>
+ List<SelectListItem> varEstado_Entidad_de_Nacimiento_Identificacion = null;
+    if (ViewBag.Estados_Entidad_de_Nacimiento_Identificacion != null)
+    { varEstado_Entidad_de_Nacimiento_Identificacion = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento_Identificacion; }
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Codigo_Postal</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Codigo_PostalFilter, filters, new { @class = "form-control", @id = "ddlCodigo_PostalFilter" })
+                    @Html.TextBoxFor(m => m.Codigo_Postal, new { @class = "form-control", @type = "text", @id = "txtCodigo_Postal" })
+                </div>
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Calle</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CalleFilter, filters, new { @class = "form-control", @id = "ddlCalleFilter" })
+                    @Html.TextBoxFor(m => m.Calle, new { @class = "form-control", @type = "text", @id = "txtCalle" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Entre_Calle</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Entre_CalleFilter, filters, new { @class = "form-control", @id = "ddlEntre_CalleFilter" })
+                    @Html.TextBoxFor(m => m.Entre_Calle, new { @class = "form-control", @type = "text", @id = "txtEntre_Calle" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Y_Calle</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Y_CalleFilter, filters, new { @class = "form-control", @id = "ddlY_CalleFilter" })
+                    @Html.TextBoxFor(m => m.Y_Calle, new { @class = "form-control", @type = "text", @id = "txtY_Calle" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Numero_Exterior</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_ExteriorFilter, filters, new { @class = "form-control", @id = "ddlNumero_ExteriorFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Exterior, new { @class = "form-control", @type = "text", @id = "txtNumero_Exterior" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Numero_Interior</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_InteriorFilter, filters, new { @class = "form-control", @id = "ddlNumero_InteriorFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Interior, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Referencias_de_domicilio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Referencias_de_domicilioFilter, filters, new { @class = "form-control", @id = "ddlReferencias_de_domicilioFilter" })
+                    @Html.TextBoxFor(m => m.Referencias_de_domicilio, new { @class = "form-control", @type = "text", @id = "txtReferencias_de_domicilio" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Quejas_de_MP/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Quejas_de_MPClaveTo = $("#txtAdvanceToClave").val();
+        }
+        if ($("#txtAdvanceNombres").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPNombres = $("#txtAdvanceNombres").val();
+            advanceSearch.Quejas_de_MPNombresSearchType = $("#ddlAdvanceNombresFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Paterno").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPApellido_Paterno = $("#txtAdvanceApellido_Paterno").val();
+            advanceSearch.Quejas_de_MPApellido_PaternoSearchType = $("#ddlAdvanceApellido_PaternoFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Materno").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPApellido_Materno = $("#txtAdvanceApellido_Materno").val();
+            advanceSearch.Quejas_de_MPApellido_MaternoSearchType = $("#ddlAdvanceApellido_MaternoFilter").val();
+        }
+        if ($("#txtAdvanceNombre_Completo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPNombre_Completo = $("#txtAdvanceNombre_Completo").val();
+            advanceSearch.Quejas_de_MPNombre_CompletoSearchType = $("#ddlAdvanceNombre_CompletoFilter").val();
+        }
+        advanceSearch.EstatusSearchType = 0;
+        if ($('#ddlAdvanceEstatus').val().length > 0 || $("#txtAdvanceEstatus").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.EstatusName = $("#txtAdvanceEstatus").val();
+                advanceSearch.EstatusNameSearchType = $("#ddlAdvanceEstatus").val();
+                advanceSearch.EstatusSearchType = 1;
+            }
+            else {
+
+                advanceSearch.EstatusToSearch = $("#ddlAdvanceEstatus").val();
+                advanceSearch.EstatusSearchType = 2;
+            }
+        }
+        if ($("#txtAdvancePeso").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPPeso = $("#txtAdvancePeso").val();
+            advanceSearch.Quejas_de_MPPesoSearchType = $("#ddlAdvancePesoFilter").val();
+        }
+        if ($("#txtAdvanceEstatura").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPEstatura = $("#txtAdvanceEstatura").val();
+            advanceSearch.Quejas_de_MPEstaturaSearchType = $("#ddlAdvanceEstaturaFilter").val();
+        }
+        if ($("#txtAdvancePadecimiento_de_Enfermedad").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPPadecimiento_de_Enfermedad = $("#txtAdvancePadecimiento_de_Enfermedad").val();
+            advanceSearch.Quejas_de_MPPadecimiento_de_EnfermedadSearchType = $("#ddlAdvancePadecimiento_de_EnfermedadFilter").val();
+        }
+        advanceSearch.Forma_CaraSearchType = 0;
+        if ($('#ddlAdvanceForma_Cara').val().length > 0 || $("#txtAdvanceForma_Cara").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Forma_CaraName = $("#txtAdvanceForma_Cara").val();
+                advanceSearch.Forma_CaraNameSearchType = $("#ddlAdvanceForma_Cara").val();
+                advanceSearch.Forma_CaraSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Forma_CaraToSearch = $("#ddlAdvanceForma_Cara").val();
+                advanceSearch.Forma_CaraSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_CejasSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Cejas').val().length > 0 || $("#txtAdvanceTipo_de_Cejas").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Tipo_de_CejasName = $("#txtAdvanceTipo_de_Cejas").val();
+                advanceSearch.Tipo_de_CejasNameSearchType = $("#ddlAdvanceTipo_de_Cejas").val();
+                advanceSearch.Tipo_de_CejasSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_CejasToSearch = $("#ddlAdvanceTipo_de_Cejas").val();
+                advanceSearch.Tipo_de_CejasSearchType = 2;
+            }
+        }
+        advanceSearch.Tamano_de_CejasSearchType = 0;
+        if ($('#ddlAdvanceTamano_de_Cejas').val().length > 0 || $("#txtAdvanceTamano_de_Cejas").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Tamano_de_CejasName = $("#txtAdvanceTamano_de_Cejas").val();
+                advanceSearch.Tamano_de_CejasNameSearchType = $("#ddlAdvanceTamano_de_Cejas").val();
+                advanceSearch.Tamano_de_CejasSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tamano_de_CejasToSearch = $("#ddlAdvanceTamano_de_Cejas").val();
+                advanceSearch.Tamano_de_CejasSearchType = 2;
+            }
+        }
+        advanceSearch.Largo_de_CabelloSearchType = 0;
+        if ($('#ddlAdvanceLargo_de_Cabello').val().length > 0 || $("#txtAdvanceLargo_de_Cabello").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Largo_de_CabelloName = $("#txtAdvanceLargo_de_Cabello").val();
+                advanceSearch.Largo_de_CabelloNameSearchType = $("#ddlAdvanceLargo_de_Cabello").val();
+                advanceSearch.Largo_de_CabelloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Largo_de_CabelloToSearch = $("#ddlAdvanceLargo_de_Cabello").val();
+                advanceSearch.Largo_de_CabelloSearchType = 2;
+            }
+        }
+        advanceSearch.Cantidad_CabelloSearchType = 0;
+        if ($('#ddlAdvanceCantidad_Cabello').val().length > 0 || $("#txtAdvanceCantidad_Cabello").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Cantidad_CabelloName = $("#txtAdvanceCantidad_Cabello").val();
+                advanceSearch.Cantidad_CabelloNameSearchType = $("#ddlAdvanceCantidad_Cabello").val();
+                advanceSearch.Cantidad_CabelloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Cantidad_CabelloToSearch = $("#ddlAdvanceCantidad_Cabello").val();
+                advanceSearch.Cantidad_CabelloSearchType = 2;
+            }
+        }
+        advanceSearch.Implantacion_CabelloSearchType = 0;
+        if ($('#ddlAdvanceImplantacion_Cabello').val().length > 0 || $("#txtAdvanceImplantacion_Cabello").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Implantacion_CabelloName = $("#txtAdvanceImplantacion_Cabello").val();
+                advanceSearch.Implantacion_CabelloNameSearchType = $("#ddlAdvanceImplantacion_Cabello").val();
+                advanceSearch.Implantacion_CabelloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Implantacion_CabelloToSearch = $("#ddlAdvanceImplantacion_Cabello").val();
+                advanceSearch.Implantacion_CabelloSearchType = 2;
+            }
+        }
+        advanceSearch.ComplexionSearchType = 0;
+        if ($('#ddlAdvanceComplexion').val().length > 0 || $("#txtAdvanceComplexion").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.ComplexionName = $("#txtAdvanceComplexion").val();
+                advanceSearch.ComplexionNameSearchType = $("#ddlAdvanceComplexion").val();
+                advanceSearch.ComplexionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ComplexionToSearch = $("#ddlAdvanceComplexion").val();
+                advanceSearch.ComplexionSearchType = 2;
+            }
+        }
+        advanceSearch.Color_PielSearchType = 0;
+        if ($('#ddlAdvanceColor_Piel').val().length > 0 || $("#txtAdvanceColor_Piel").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Color_PielName = $("#txtAdvanceColor_Piel").val();
+                advanceSearch.Color_PielNameSearchType = $("#ddlAdvanceColor_Piel").val();
+                advanceSearch.Color_PielSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Color_PielToSearch = $("#ddlAdvanceColor_Piel").val();
+                advanceSearch.Color_PielSearchType = 2;
+            }
+        }
+        advanceSearch.FrenteSearchType = 0;
+        if ($('#ddlAdvanceFrente').val().length > 0 || $("#txtAdvanceFrente").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.FrenteName = $("#txtAdvanceFrente").val();
+                advanceSearch.FrenteNameSearchType = $("#ddlAdvanceFrente").val();
+                advanceSearch.FrenteSearchType = 1;
+            }
+            else {
+
+                advanceSearch.FrenteToSearch = $("#ddlAdvanceFrente").val();
+                advanceSearch.FrenteSearchType = 2;
+            }
+        }
+        advanceSearch.Forma_CabelloSearchType = 0;
+        if ($('#ddlAdvanceForma_Cabello').val().length > 0 || $("#txtAdvanceForma_Cabello").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Forma_CabelloName = $("#txtAdvanceForma_Cabello").val();
+                advanceSearch.Forma_CabelloNameSearchType = $("#ddlAdvanceForma_Cabello").val();
+                advanceSearch.Forma_CabelloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Forma_CabelloToSearch = $("#ddlAdvanceForma_Cabello").val();
+                advanceSearch.Forma_CabelloSearchType = 2;
+            }
+        }
+        advanceSearch.Color_CabelloSearchType = 0;
+        if ($('#ddlAdvanceColor_Cabello').val().length > 0 || $("#txtAdvanceColor_Cabello").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Color_CabelloName = $("#txtAdvanceColor_Cabello").val();
+                advanceSearch.Color_CabelloNameSearchType = $("#ddlAdvanceColor_Cabello").val();
+                advanceSearch.Color_CabelloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Color_CabelloToSearch = $("#ddlAdvanceColor_Cabello").val();
+                advanceSearch.Color_CabelloSearchType = 2;
+            }
+        }
+        advanceSearch.CalvicieSearchType = 0;
+        if ($('#ddlAdvanceCalvicie').val().length > 0 || $("#txtAdvanceCalvicie").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.CalvicieName = $("#txtAdvanceCalvicie").val();
+                advanceSearch.CalvicieNameSearchType = $("#ddlAdvanceCalvicie").val();
+                advanceSearch.CalvicieSearchType = 1;
+            }
+            else {
+
+                advanceSearch.CalvicieToSearch = $("#ddlAdvanceCalvicie").val();
+                advanceSearch.CalvicieSearchType = 2;
+            }
+        }
+        advanceSearch.Color_OjosSearchType = 0;
+        if ($('#ddlAdvanceColor_Ojos').val().length > 0 || $("#txtAdvanceColor_Ojos").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Color_OjosName = $("#txtAdvanceColor_Ojos").val();
+                advanceSearch.Color_OjosNameSearchType = $("#ddlAdvanceColor_Ojos").val();
+                advanceSearch.Color_OjosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Color_OjosToSearch = $("#ddlAdvanceColor_Ojos").val();
+                advanceSearch.Color_OjosSearchType = 2;
+            }
+        }
+        advanceSearch.Tamano_de_OjosSearchType = 0;
+        if ($('#ddlAdvanceTamano_de_Ojos').val().length > 0 || $("#txtAdvanceTamano_de_Ojos").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Tamano_de_OjosName = $("#txtAdvanceTamano_de_Ojos").val();
+                advanceSearch.Tamano_de_OjosNameSearchType = $("#ddlAdvanceTamano_de_Ojos").val();
+                advanceSearch.Tamano_de_OjosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tamano_de_OjosToSearch = $("#ddlAdvanceTamano_de_Ojos").val();
+                advanceSearch.Tamano_de_OjosSearchType = 2;
+            }
+        }
+        advanceSearch.Forma_OjosSearchType = 0;
+        if ($('#ddlAdvanceForma_Ojos').val().length > 0 || $("#txtAdvanceForma_Ojos").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Forma_OjosName = $("#txtAdvanceForma_Ojos").val();
+                advanceSearch.Forma_OjosNameSearchType = $("#ddlAdvanceForma_Ojos").val();
+                advanceSearch.Forma_OjosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Forma_OjosToSearch = $("#ddlAdvanceForma_Ojos").val();
+                advanceSearch.Forma_OjosSearchType = 2;
+            }
+        }
+        advanceSearch.AnteojosSearchType = 0;
+        if ($('#ddlAdvanceAnteojos').val().length > 0 || $("#txtAdvanceAnteojos").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.AnteojosName = $("#txtAdvanceAnteojos").val();
+                advanceSearch.AnteojosNameSearchType = $("#ddlAdvanceAnteojos").val();
+                advanceSearch.AnteojosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.AnteojosToSearch = $("#ddlAdvanceAnteojos").val();
+                advanceSearch.AnteojosSearchType = 2;
+            }
+        }
+        advanceSearch.Forma_de_NarizSearchType = 0;
+        if ($('#ddlAdvanceForma_de_Nariz').val().length > 0 || $("#txtAdvanceForma_de_Nariz").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Forma_de_NarizName = $("#txtAdvanceForma_de_Nariz").val();
+                advanceSearch.Forma_de_NarizNameSearchType = $("#ddlAdvanceForma_de_Nariz").val();
+                advanceSearch.Forma_de_NarizSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Forma_de_NarizToSearch = $("#ddlAdvanceForma_de_Nariz").val();
+                advanceSearch.Forma_de_NarizSearchType = 2;
+            }
+        }
+        advanceSearch.Tamano_NarizSearchType = 0;
+        if ($('#ddlAdvanceTamano_Nariz').val().length > 0 || $("#txtAdvanceTamano_Nariz").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Tamano_NarizName = $("#txtAdvanceTamano_Nariz").val();
+                advanceSearch.Tamano_NarizNameSearchType = $("#ddlAdvanceTamano_Nariz").val();
+                advanceSearch.Tamano_NarizSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tamano_NarizToSearch = $("#ddlAdvanceTamano_Nariz").val();
+                advanceSearch.Tamano_NarizSearchType = 2;
+            }
+        }
+        advanceSearch.LabiosSearchType = 0;
+        if ($('#ddlAdvanceLabios').val().length > 0 || $("#txtAdvanceLabios").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.LabiosName = $("#txtAdvanceLabios").val();
+                advanceSearch.LabiosNameSearchType = $("#ddlAdvanceLabios").val();
+                advanceSearch.LabiosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.LabiosToSearch = $("#ddlAdvanceLabios").val();
+                advanceSearch.LabiosSearchType = 2;
+            }
+        }
+        advanceSearch.BocaSearchType = 0;
+        if ($('#ddlAdvanceBoca').val().length > 0 || $("#txtAdvanceBoca").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.BocaName = $("#txtAdvanceBoca").val();
+                advanceSearch.BocaNameSearchType = $("#ddlAdvanceBoca").val();
+                advanceSearch.BocaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.BocaToSearch = $("#ddlAdvanceBoca").val();
+                advanceSearch.BocaSearchType = 2;
+            }
+        }
+        advanceSearch.Grosor_de_LabiosSearchType = 0;
+        if ($('#ddlAdvanceGrosor_de_Labios').val().length > 0 || $("#txtAdvanceGrosor_de_Labios").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Grosor_de_LabiosName = $("#txtAdvanceGrosor_de_Labios").val();
+                advanceSearch.Grosor_de_LabiosNameSearchType = $("#ddlAdvanceGrosor_de_Labios").val();
+                advanceSearch.Grosor_de_LabiosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Grosor_de_LabiosToSearch = $("#ddlAdvanceGrosor_de_Labios").val();
+                advanceSearch.Grosor_de_LabiosSearchType = 2;
+            }
+        }
+        advanceSearch.MentonSearchType = 0;
+        if ($('#ddlAdvanceMenton').val().length > 0 || $("#txtAdvanceMenton").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.MentonName = $("#txtAdvanceMenton").val();
+                advanceSearch.MentonNameSearchType = $("#ddlAdvanceMenton").val();
+                advanceSearch.MentonSearchType = 1;
+            }
+            else {
+
+                advanceSearch.MentonToSearch = $("#ddlAdvanceMenton").val();
+                advanceSearch.MentonSearchType = 2;
+            }
+        }
+        advanceSearch.Forma_de_MentonSearchType = 0;
+        if ($('#ddlAdvanceForma_de_Menton').val().length > 0 || $("#txtAdvanceForma_de_Menton").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Forma_de_MentonName = $("#txtAdvanceForma_de_Menton").val();
+                advanceSearch.Forma_de_MentonNameSearchType = $("#ddlAdvanceForma_de_Menton").val();
+                advanceSearch.Forma_de_MentonSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Forma_de_MentonToSearch = $("#ddlAdvanceForma_de_Menton").val();
+                advanceSearch.Forma_de_MentonSearchType = 2;
+            }
+        }
+        advanceSearch.BarbaSearchType = 0;
+        if ($('#ddlAdvanceBarba').val().length > 0 || $("#txtAdvanceBarba").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.BarbaName = $("#txtAdvanceBarba").val();
+                advanceSearch.BarbaNameSearchType = $("#ddlAdvanceBarba").val();
+                advanceSearch.BarbaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.BarbaToSearch = $("#ddlAdvanceBarba").val();
+                advanceSearch.BarbaSearchType = 2;
+            }
+        }
+        advanceSearch.Forma_OrejasSearchType = 0;
+        if ($('#ddlAdvanceForma_Orejas').val().length > 0 || $("#txtAdvanceForma_Orejas").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Forma_OrejasName = $("#txtAdvanceForma_Orejas").val();
+                advanceSearch.Forma_OrejasNameSearchType = $("#ddlAdvanceForma_Orejas").val();
+                advanceSearch.Forma_OrejasSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Forma_OrejasToSearch = $("#ddlAdvanceForma_Orejas").val();
+                advanceSearch.Forma_OrejasSearchType = 2;
+            }
+        }
+        advanceSearch.Tamano_OrejasSearchType = 0;
+        if ($('#ddlAdvanceTamano_Orejas').val().length > 0 || $("#txtAdvanceTamano_Orejas").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Tamano_OrejasName = $("#txtAdvanceTamano_Orejas").val();
+                advanceSearch.Tamano_OrejasNameSearchType = $("#ddlAdvanceTamano_Orejas").val();
+                advanceSearch.Tamano_OrejasSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tamano_OrejasToSearch = $("#ddlAdvanceTamano_Orejas").val();
+                advanceSearch.Tamano_OrejasSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_LobuloSearchType = 0;
+        if ($('#ddlAdvanceTipo_Lobulo').val().length > 0 || $("#txtAdvanceTipo_Lobulo").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Tipo_LobuloName = $("#txtAdvanceTipo_Lobulo").val();
+                advanceSearch.Tipo_LobuloNameSearchType = $("#ddlAdvanceTipo_Lobulo").val();
+                advanceSearch.Tipo_LobuloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_LobuloToSearch = $("#ddlAdvanceTipo_Lobulo").val();
+                advanceSearch.Tipo_LobuloSearchType = 2;
+            }
+        }
+        advanceSearch.BigoteSearchType = 0;
+        if ($('#ddlAdvanceBigote').val().length > 0 || $("#txtAdvanceBigote").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.BigoteName = $("#txtAdvanceBigote").val();
+                advanceSearch.BigoteNameSearchType = $("#ddlAdvanceBigote").val();
+                advanceSearch.BigoteSearchType = 1;
+            }
+            else {
+
+                advanceSearch.BigoteToSearch = $("#ddlAdvanceBigote").val();
+                advanceSearch.BigoteSearchType = 2;
+            }
+        }
+        advanceSearch.Senas_ParticularesSearchType = 0;
+        if ($('#ddlAdvanceSenas_Particulares').val().length > 0 || $("#txtAdvanceSenas_Particulares").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Senas_ParticularesName = $("#txtAdvanceSenas_Particulares").val();
+                advanceSearch.Senas_ParticularesNameSearchType = $("#ddlAdvanceSenas_Particulares").val();
+                advanceSearch.Senas_ParticularesSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Senas_ParticularesToSearch = $("#ddlAdvanceSenas_Particulares").val();
+                advanceSearch.Senas_ParticularesSearchType = 2;
+            }
+        }
+        advanceSearch.Imagen_TatuajeSearchType = 0;
+        if ($('#ddlAdvanceImagen_Tatuaje').val().length > 0 || $("#txtAdvanceImagen_Tatuaje").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Imagen_TatuajeName = $("#txtAdvanceImagen_Tatuaje").val();
+                advanceSearch.Imagen_TatuajeNameSearchType = $("#ddlAdvanceImagen_Tatuaje").val();
+                advanceSearch.Imagen_TatuajeSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Imagen_TatuajeToSearch = $("#ddlAdvanceImagen_Tatuaje").val();
+                advanceSearch.Imagen_TatuajeSearchType = 2;
+            }
+        }
+        advanceSearch.Situacion_FisicaSearchType = 0;
+        if ($('#ddlAdvanceSituacion_Fisica').val().length > 0 || $("#txtAdvanceSituacion_Fisica").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Situacion_FisicaName = $("#txtAdvanceSituacion_Fisica").val();
+                advanceSearch.Situacion_FisicaNameSearchType = $("#ddlAdvanceSituacion_Fisica").val();
+                advanceSearch.Situacion_FisicaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Situacion_FisicaToSearch = $("#ddlAdvanceSituacion_Fisica").val();
+                advanceSearch.Situacion_FisicaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceOtras_Senas_Particulares").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPOtras_Senas_Particulares = $("#txtAdvanceOtras_Senas_Particulares").val();
+            advanceSearch.Quejas_de_MPOtras_Senas_ParticularesSearchType = $("#ddlAdvanceOtras_Senas_ParticularesFilter").val();
+        }
+        if ($("#txtAdvanceDescripcion_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPDescripcion_de_los_Hechos = $("#txtAdvanceDescripcion_de_los_Hechos").val();
+            advanceSearch.Quejas_de_MPDescripcion_de_los_HechosSearchType = $("#ddlAdvanceDescripcion_de_los_HechosFilter").val();
+        }
+        if ($("#txtAdvanceCURP").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCURP = $("#txtAdvanceCURP").val();
+            advanceSearch.Quejas_de_MPCURPSearchType = $("#ddlAdvanceCURPFilter").val();
+        }
+        advanceSearch.GeneroSearchType = 0;
+        if ($('#ddlAdvanceGenero').val().length > 0 || $("#txtAdvanceGenero").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.GeneroName = $("#txtAdvanceGenero").val();
+                advanceSearch.GeneroNameSearchType = $("#ddlAdvanceGenero").val();
+                advanceSearch.GeneroSearchType = 1;
+            }
+            else {
+
+                advanceSearch.GeneroToSearch = $("#ddlAdvanceGenero").val();
+                advanceSearch.GeneroSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha_de_Nacimiento").val() != "" || $("#txtAdvanceToFecha_de_Nacimiento").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPFecha_de_NacimientoFrom = $("#txtAdvanceFromFecha_de_Nacimiento").val();
+            advanceSearch.Quejas_de_MPFecha_de_NacimientoTo = $("#txtAdvanceToFecha_de_Nacimiento").val();
+        }
+        advanceSearch.NacionalidadSearchType = 0;
+        if ($('#ddlAdvanceNacionalidad').val().length > 0 || $("#txtAdvanceNacionalidad").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.NacionalidadName = $("#txtAdvanceNacionalidad").val();
+                advanceSearch.NacionalidadNameSearchType = $("#ddlAdvanceNacionalidad").val();
+                advanceSearch.NacionalidadSearchType = 1;
+            }
+            else {
+
+                advanceSearch.NacionalidadToSearch = $("#ddlAdvanceNacionalidad").val();
+                advanceSearch.NacionalidadSearchType = 2;
+            }
+        }
+        advanceSearch.Entidad_de_NacimientoSearchType = 0;
+        if ($('#ddlAdvanceEntidad_de_Nacimiento').val().length > 0 || $("#txtAdvanceEntidad_de_Nacimiento").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Entidad_de_NacimientoName = $("#txtAdvanceEntidad_de_Nacimiento").val();
+                advanceSearch.Entidad_de_NacimientoNameSearchType = $("#ddlAdvanceEntidad_de_Nacimiento").val();
+                advanceSearch.Entidad_de_NacimientoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Entidad_de_NacimientoToSearch = $("#ddlAdvanceEntidad_de_Nacimiento").val();
+                advanceSearch.Entidad_de_NacimientoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNombres_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPNombres_Hechos = $("#txtAdvanceNombres_Hechos").val();
+            advanceSearch.Quejas_de_MPNombres_HechosSearchType = $("#ddlAdvanceNombres_HechosFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Paterno_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPApellido_Paterno_Hechos = $("#txtAdvanceApellido_Paterno_Hechos").val();
+            advanceSearch.Quejas_de_MPApellido_Paterno_HechosSearchType = $("#ddlAdvanceApellido_Paterno_HechosFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Materno_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPApellido_Materno_Hechos = $("#txtAdvanceApellido_Materno_Hechos").val();
+            advanceSearch.Quejas_de_MPApellido_Materno_HechosSearchType = $("#ddlAdvanceApellido_Materno_HechosFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Nacimiento_Hechos").val() != "" || $("#txtAdvanceToFecha_de_Nacimiento_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPFecha_de_Nacimiento_HechosFrom = $("#txtAdvanceFromFecha_de_Nacimiento_Hechos").val();
+            advanceSearch.Quejas_de_MPFecha_de_Nacimiento_HechosTo = $("#txtAdvanceToFecha_de_Nacimiento_Hechos").val();
+        }
+        if ($("#txtAdvanceFromEdad_Hechos").val() != "" || $("#txtAdvanceToEdad_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPEdad_HechosFrom = $("#txtAdvanceFromEdad_Hechos").val();
+            advanceSearch.Quejas_de_MPEdad_HechosTo = $("#txtAdvanceToEdad_Hechos").val();
+        }
+        advanceSearch.Genero_HechosSearchType = 0;
+        if ($('#ddlAdvanceGenero_Hechos').val().length > 0 || $("#txtAdvanceGenero_Hechos").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Genero_HechosName = $("#txtAdvanceGenero_Hechos").val();
+                advanceSearch.Genero_HechosNameSearchType = $("#ddlAdvanceGenero_Hechos").val();
+                advanceSearch.Genero_HechosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Genero_HechosToSearch = $("#ddlAdvanceGenero_Hechos").val();
+                advanceSearch.Genero_HechosSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceCelular_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCelular_Hechos = $("#txtAdvanceCelular_Hechos").val();
+            advanceSearch.Quejas_de_MPCelular_HechosSearchType = $("#ddlAdvanceCelular_HechosFilter").val();
+        }
+        if ($("#txtAdvanceCorreo_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCorreo_Hechos = $("#txtAdvanceCorreo_Hechos").val();
+            advanceSearch.Quejas_de_MPCorreo_HechosSearchType = $("#ddlAdvanceCorreo_HechosFilter").val();
+        }
+        advanceSearch.Tipo_de_Identificacion_HechosSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Identificacion_Hechos').val().length > 0 || $("#txtAdvanceTipo_de_Identificacion_Hechos").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Tipo_de_Identificacion_HechosName = $("#txtAdvanceTipo_de_Identificacion_Hechos").val();
+                advanceSearch.Tipo_de_Identificacion_HechosNameSearchType = $("#ddlAdvanceTipo_de_Identificacion_Hechos").val();
+                advanceSearch.Tipo_de_Identificacion_HechosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_Identificacion_HechosToSearch = $("#ddlAdvanceTipo_de_Identificacion_Hechos").val();
+                advanceSearch.Tipo_de_Identificacion_HechosSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNumero_Identificacion_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPNumero_Identificacion_Hechos = $("#txtAdvanceNumero_Identificacion_Hechos").val();
+            advanceSearch.Quejas_de_MPNumero_Identificacion_HechosSearchType = $("#ddlAdvanceNumero_Identificacion_HechosFilter").val();
+        }
+        advanceSearch.Fotografia_IdentificacionSearchType = 0;
+        if ($('#ddlAdvanceFotografia_Identificacion').val().length > 0 || $("#txtAdvanceFotografia_Identificacion").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Fotografia_IdentificacionName = $("#txtAdvanceFotografia_Identificacion").val();
+                advanceSearch.Fotografia_IdentificacionNameSearchType = $("#ddlAdvanceFotografia_Identificacion").val();
+                advanceSearch.Fotografia_IdentificacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Fotografia_IdentificacionToSearch = $("#ddlAdvanceFotografia_Identificacion").val();
+                advanceSearch.Fotografia_IdentificacionSearchType = 2;
+            }
+        }
+        advanceSearch.Nacionalidad_HechosSearchType = 0;
+        if ($('#ddlAdvanceNacionalidad_Hechos').val().length > 0 || $("#txtAdvanceNacionalidad_Hechos").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Nacionalidad_HechosName = $("#txtAdvanceNacionalidad_Hechos").val();
+                advanceSearch.Nacionalidad_HechosNameSearchType = $("#ddlAdvanceNacionalidad_Hechos").val();
+                advanceSearch.Nacionalidad_HechosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Nacionalidad_HechosToSearch = $("#ddlAdvanceNacionalidad_Hechos").val();
+                advanceSearch.Nacionalidad_HechosSearchType = 2;
+            }
+        }
+        advanceSearch.Entidad_de_Nacimiento_HechosSearchType = 0;
+        if ($('#ddlAdvanceEntidad_de_Nacimiento_Hechos').val().length > 0 || $("#txtAdvanceEntidad_de_Nacimiento_Hechos").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Entidad_de_Nacimiento_HechosName = $("#txtAdvanceEntidad_de_Nacimiento_Hechos").val();
+                advanceSearch.Entidad_de_Nacimiento_HechosNameSearchType = $("#ddlAdvanceEntidad_de_Nacimiento_Hechos").val();
+                advanceSearch.Entidad_de_Nacimiento_HechosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Entidad_de_Nacimiento_HechosToSearch = $("#ddlAdvanceEntidad_de_Nacimiento_Hechos").val();
+                advanceSearch.Entidad_de_Nacimiento_HechosSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceCURP_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCURP_Identificacion = $("#txtAdvanceCURP_Identificacion").val();
+            advanceSearch.Quejas_de_MPCURP_IdentificacionSearchType = $("#ddlAdvanceCURP_IdentificacionFilter").val();
+        }
+        if ($("#txtAdvanceNombres_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPNombres_Identificacion = $("#txtAdvanceNombres_Identificacion").val();
+            advanceSearch.Quejas_de_MPNombres_IdentificacionSearchType = $("#ddlAdvanceNombres_IdentificacionFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Paterno_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPApellido_Paterno_Identificacion = $("#txtAdvanceApellido_Paterno_Identificacion").val();
+            advanceSearch.Quejas_de_MPApellido_Paterno_IdentificacionSearchType = $("#ddlAdvanceApellido_Paterno_IdentificacionFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Materno_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPApellido_Materno_Identificacion = $("#txtAdvanceApellido_Materno_Identificacion").val();
+            advanceSearch.Quejas_de_MPApellido_Materno_IdentificacionSearchType = $("#ddlAdvanceApellido_Materno_IdentificacionFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_Nacimiento_Identificacion").val() != "" || $("#txtAdvanceToFecha_Nacimiento_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPFecha_Nacimiento_IdentificacionFrom = $("#txtAdvanceFromFecha_Nacimiento_Identificacion").val();
+            advanceSearch.Quejas_de_MPFecha_Nacimiento_IdentificacionTo = $("#txtAdvanceToFecha_Nacimiento_Identificacion").val();
+        }
+        if ($("#txtAdvanceFromEdad_Identificacion").val() != "" || $("#txtAdvanceToEdad_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPEdad_IdentificacionFrom = $("#txtAdvanceFromEdad_Identificacion").val();
+            advanceSearch.Quejas_de_MPEdad_IdentificacionTo = $("#txtAdvanceToEdad_Identificacion").val();
+        }
+        advanceSearch.Genero_IdentificacionSearchType = 0;
+        if ($('#ddlAdvanceGenero_Identificacion').val().length > 0 || $("#txtAdvanceGenero_Identificacion").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Genero_IdentificacionName = $("#txtAdvanceGenero_Identificacion").val();
+                advanceSearch.Genero_IdentificacionNameSearchType = $("#ddlAdvanceGenero_Identificacion").val();
+                advanceSearch.Genero_IdentificacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Genero_IdentificacionToSearch = $("#ddlAdvanceGenero_Identificacion").val();
+                advanceSearch.Genero_IdentificacionSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceCelular_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCelular_Identificacion = $("#txtAdvanceCelular_Identificacion").val();
+            advanceSearch.Quejas_de_MPCelular_IdentificacionSearchType = $("#ddlAdvanceCelular_IdentificacionFilter").val();
+        }
+        if ($("#txtAdvanceCorreo_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCorreo_Identificacion = $("#txtAdvanceCorreo_Identificacion").val();
+            advanceSearch.Quejas_de_MPCorreo_IdentificacionSearchType = $("#ddlAdvanceCorreo_IdentificacionFilter").val();
+        }
+        advanceSearch.Tipo_de_Identificacion_IdentificacionSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Identificacion_Identificacion').val().length > 0 || $("#txtAdvanceTipo_de_Identificacion_Identificacion").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Tipo_de_Identificacion_IdentificacionName = $("#txtAdvanceTipo_de_Identificacion_Identificacion").val();
+                advanceSearch.Tipo_de_Identificacion_IdentificacionNameSearchType = $("#ddlAdvanceTipo_de_Identificacion_Identificacion").val();
+                advanceSearch.Tipo_de_Identificacion_IdentificacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_Identificacion_IdentificacionToSearch = $("#ddlAdvanceTipo_de_Identificacion_Identificacion").val();
+                advanceSearch.Tipo_de_Identificacion_IdentificacionSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNumero_Identificacion_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPNumero_Identificacion_Identificacion = $("#txtAdvanceNumero_Identificacion_Identificacion").val();
+            advanceSearch.Quejas_de_MPNumero_Identificacion_IdentificacionSearchType = $("#ddlAdvanceNumero_Identificacion_IdentificacionFilter").val();
+        }
+        advanceSearch.Nacionalidad_IdentificacionSearchType = 0;
+        if ($('#ddlAdvanceNacionalidad_Identificacion').val().length > 0 || $("#txtAdvanceNacionalidad_Identificacion").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Nacionalidad_IdentificacionName = $("#txtAdvanceNacionalidad_Identificacion").val();
+                advanceSearch.Nacionalidad_IdentificacionNameSearchType = $("#ddlAdvanceNacionalidad_Identificacion").val();
+                advanceSearch.Nacionalidad_IdentificacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Nacionalidad_IdentificacionToSearch = $("#ddlAdvanceNacionalidad_Identificacion").val();
+                advanceSearch.Nacionalidad_IdentificacionSearchType = 2;
+            }
+        }
+        advanceSearch.Entidad_de_Nacimiento_IdentificacionSearchType = 0;
+        if ($('#ddlAdvanceEntidad_de_Nacimiento_Identificacion').val().length > 0 || $("#txtAdvanceEntidad_de_Nacimiento_Identificacion").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Entidad_de_Nacimiento_IdentificacionName = $("#txtAdvanceEntidad_de_Nacimiento_Identificacion").val();
+                advanceSearch.Entidad_de_Nacimiento_IdentificacionNameSearchType = $("#ddlAdvanceEntidad_de_Nacimiento_Identificacion").val();
+                advanceSearch.Entidad_de_Nacimiento_IdentificacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Entidad_de_Nacimiento_IdentificacionToSearch = $("#ddlAdvanceEntidad_de_Nacimiento_Identificacion").val();
+                advanceSearch.Entidad_de_Nacimiento_IdentificacionSearchType = 2;
+            }
+        }
+        advanceSearch.PaisSearchType = 0;
+        if ($('#ddlAdvancePais').val().length > 0 || $("#txtAdvancePais").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.PaisName = $("#txtAdvancePais").val();
+                advanceSearch.PaisNameSearchType = $("#ddlAdvancePais").val();
+                advanceSearch.PaisSearchType = 1;
+            }
+            else {
+
+                advanceSearch.PaisToSearch = $("#ddlAdvancePais").val();
+                advanceSearch.PaisSearchType = 2;
+            }
+        }
+        advanceSearch.EstadoSearchType = 0;
+        if ($('#ddlAdvanceEstado').val().length > 0 || $("#txtAdvanceEstado").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.EstadoName = $("#txtAdvanceEstado").val();
+                advanceSearch.EstadoNameSearchType = $("#ddlAdvanceEstado").val();
+                advanceSearch.EstadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.EstadoToSearch = $("#ddlAdvanceEstado").val();
+                advanceSearch.EstadoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceCodigo_Postal").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCodigo_Postal = $("#txtAdvanceCodigo_Postal").val();
+            advanceSearch.Quejas_de_MPCodigo_PostalSearchType = $("#ddlAdvanceCodigo_PostalFilter").val();
+        }
+        advanceSearch.MunicipioSearchType = 0;
+        if ($('#ddlAdvanceMunicipio').val().length > 0 || $("#txtAdvanceMunicipio").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.MunicipioName = $("#txtAdvanceMunicipio").val();
+                advanceSearch.MunicipioNameSearchType = $("#ddlAdvanceMunicipio").val();
+                advanceSearch.MunicipioSearchType = 1;
+            }
+            else {
+
+                advanceSearch.MunicipioToSearch = $("#ddlAdvanceMunicipio").val();
+                advanceSearch.MunicipioSearchType = 2;
+            }
+        }
+        advanceSearch.ColoniaSearchType = 0;
+        if ($('#ddlAdvanceColonia').val().length > 0 || $("#txtAdvanceColonia").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.ColoniaName = $("#txtAdvanceColonia").val();
+                advanceSearch.ColoniaNameSearchType = $("#ddlAdvanceColonia").val();
+                advanceSearch.ColoniaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ColoniaToSearch = $("#ddlAdvanceColonia").val();
+                advanceSearch.ColoniaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceCalle").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCalle = $("#txtAdvanceCalle").val();
+            advanceSearch.Quejas_de_MPCalleSearchType = $("#ddlAdvanceCalleFilter").val();
+        }
+        if ($("#txtAdvanceEntre_Calle").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPEntre_Calle = $("#txtAdvanceEntre_Calle").val();
+            advanceSearch.Quejas_de_MPEntre_CalleSearchType = $("#ddlAdvanceEntre_CalleFilter").val();
+        }
+        if ($("#txtAdvanceY_Calle").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPY_Calle = $("#txtAdvanceY_Calle").val();
+            advanceSearch.Quejas_de_MPY_CalleSearchType = $("#ddlAdvanceY_CalleFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Exterior").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPNumero_Exterior = $("#txtAdvanceNumero_Exterior").val();
+            advanceSearch.Quejas_de_MPNumero_ExteriorSearchType = $("#ddlAdvanceNumero_ExteriorFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Interior").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPNumero_Interior = $("#txtAdvanceNumero_Interior").val();
+            advanceSearch.Quejas_de_MPNumero_InteriorSearchType = $("#ddlAdvanceNumero_InteriorFilter").val();
+        }
+        if ($("#txtAdvanceReferencias_de_domicilio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPReferencias_de_domicilio = $("#txtAdvanceReferencias_de_domicilio").val();
+            advanceSearch.Quejas_de_MPReferencias_de_domicilioSearchType = $("#ddlAdvanceReferencias_de_domicilioFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblQuejas_de_MP').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isQuejas_de_MPTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceEstatus").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceEstatus").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstatus").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceEstatus").val('');
+        });
+        $("#txtAdvanceForma_Cara").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceForma_Cara").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceForma_Cara").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceForma_Cara").val('');
+        });
+        $("#txtAdvanceTipo_de_Cejas").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceTipo_de_Cejas").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Cejas").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceTipo_de_Cejas").val('');
+        });
+        $("#txtAdvanceTamano_de_Cejas").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceTamano_de_Cejas").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTamano_de_Cejas").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceTamano_de_Cejas").val('');
+        });
+        $("#txtAdvanceLargo_de_Cabello").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceLargo_de_Cabello").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceLargo_de_Cabello").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceLargo_de_Cabello").val('');
+        });
+        $("#txtAdvanceCantidad_Cabello").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceCantidad_Cabello").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceCantidad_Cabello").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceCantidad_Cabello").val('');
+        });
+        $("#txtAdvanceImplantacion_Cabello").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceImplantacion_Cabello").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceImplantacion_Cabello").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceImplantacion_Cabello").val('');
+        });
+        $("#txtAdvanceComplexion").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceComplexion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceComplexion").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceComplexion").val('');
+        });
+        $("#txtAdvanceColor_Piel").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceColor_Piel").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColor_Piel").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceColor_Piel").val('');
+        });
+        $("#txtAdvanceFrente").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceFrente").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceFrente").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceFrente").val('');
+        });
+        $("#txtAdvanceForma_Cabello").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceForma_Cabello").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceForma_Cabello").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceForma_Cabello").val('');
+        });
+        $("#txtAdvanceColor_Cabello").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceColor_Cabello").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColor_Cabello").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceColor_Cabello").val('');
+        });
+        $("#txtAdvanceCalvicie").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceCalvicie").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceCalvicie").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceCalvicie").val('');
+        });
+        $("#txtAdvanceColor_Ojos").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceColor_Ojos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColor_Ojos").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceColor_Ojos").val('');
+        });
+        $("#txtAdvanceTamano_de_Ojos").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceTamano_de_Ojos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTamano_de_Ojos").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceTamano_de_Ojos").val('');
+        });
+        $("#txtAdvanceForma_Ojos").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceForma_Ojos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceForma_Ojos").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceForma_Ojos").val('');
+        });
+        $("#txtAdvanceAnteojos").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceAnteojos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceAnteojos").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceAnteojos").val('');
+        });
+        $("#txtAdvanceForma_de_Nariz").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceForma_de_Nariz").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceForma_de_Nariz").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceForma_de_Nariz").val('');
+        });
+        $("#txtAdvanceTamano_Nariz").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceTamano_Nariz").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTamano_Nariz").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceTamano_Nariz").val('');
+        });
+        $("#txtAdvanceLabios").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceLabios").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceLabios").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceLabios").val('');
+        });
+        $("#txtAdvanceBoca").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceBoca").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceBoca").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceBoca").val('');
+        });
+        $("#txtAdvanceGrosor_de_Labios").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceGrosor_de_Labios").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceGrosor_de_Labios").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceGrosor_de_Labios").val('');
+        });
+        $("#txtAdvanceMenton").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceMenton").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMenton").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceMenton").val('');
+        });
+        $("#txtAdvanceForma_de_Menton").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceForma_de_Menton").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceForma_de_Menton").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceForma_de_Menton").val('');
+        });
+        $("#txtAdvanceBarba").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceBarba").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceBarba").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceBarba").val('');
+        });
+        $("#txtAdvanceForma_Orejas").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceForma_Orejas").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceForma_Orejas").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceForma_Orejas").val('');
+        });
+        $("#txtAdvanceTamano_Orejas").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceTamano_Orejas").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTamano_Orejas").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceTamano_Orejas").val('');
+        });
+        $("#txtAdvanceTipo_Lobulo").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceTipo_Lobulo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_Lobulo").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceTipo_Lobulo").val('');
+        });
+        $("#txtAdvanceBigote").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceBigote").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceBigote").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceBigote").val('');
+        });
+        $("#txtAdvanceSenas_Particulares").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceSenas_Particulares").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSenas_Particulares").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceSenas_Particulares").val('');
+        });
+        $("#txtAdvanceSituacion_Fisica").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceSituacion_Fisica").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSituacion_Fisica").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceSituacion_Fisica").val('');
+        });
+        $("#txtAdvanceGenero").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceGenero").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceGenero").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceGenero").val('');
+        });
+        $("#txtAdvanceNacionalidad").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceNacionalidad").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceNacionalidad").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceNacionalidad").val('');
+        });
+        $("#txtAdvanceEntidad_de_Nacimiento").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceEntidad_de_Nacimiento").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEntidad_de_Nacimiento").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceEntidad_de_Nacimiento").val('');
+        });
+        $("#txtAdvanceGenero_Hechos").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceGenero_Hechos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceGenero_Hechos").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceGenero_Hechos").val('');
+        });
+        $("#txtAdvanceTipo_de_Identificacion_Hechos").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceTipo_de_Identificacion_Hechos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Identificacion_Hechos").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceTipo_de_Identificacion_Hechos").val('');
+        });
+        $("#txtAdvanceNacionalidad_Hechos").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceNacionalidad_Hechos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceNacionalidad_Hechos").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceNacionalidad_Hechos").val('');
+        });
+        $("#txtAdvanceEntidad_de_Nacimiento_Hechos").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceEntidad_de_Nacimiento_Hechos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEntidad_de_Nacimiento_Hechos").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceEntidad_de_Nacimiento_Hechos").val('');
+        });
+        $("#txtAdvanceGenero_Identificacion").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceGenero_Identificacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceGenero_Identificacion").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceGenero_Identificacion").val('');
+        });
+        $("#txtAdvanceTipo_de_Identificacion_Identificacion").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceTipo_de_Identificacion_Identificacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Identificacion_Identificacion").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceTipo_de_Identificacion_Identificacion").val('');
+        });
+        $("#txtAdvanceNacionalidad_Identificacion").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceNacionalidad_Identificacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceNacionalidad_Identificacion").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceNacionalidad_Identificacion").val('');
+        });
+        $("#txtAdvanceEntidad_de_Nacimiento_Identificacion").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceEntidad_de_Nacimiento_Identificacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEntidad_de_Nacimiento_Identificacion").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceEntidad_de_Nacimiento_Identificacion").val('');
+        });
+        $("#txtAdvancePais").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvancePais").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePais").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvancePais").val('');
+        });
+        $("#txtAdvanceEstado").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceEstado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceEstado").val('');
+        });
+        $("#txtAdvanceMunicipio").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceMunicipio").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMunicipio").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceMunicipio").val('');
+        });
+        $("#txtAdvanceColonia").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceColonia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColonia").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceColonia").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

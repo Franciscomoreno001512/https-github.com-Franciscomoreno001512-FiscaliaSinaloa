@@ -432,8 +432,8 @@
 <Object Id="45031" culture="es-es" value="Detalle de Seguimiento" />
 <Object Id="45180" culture="en-us" value="Detalle de Sentencias Imputado MPI" />
 <Object Id="45180" culture="es-es" value="Detalle de Sentencias Imputado MPI" />
-<Object Id="45039" culture="en-us" value="Servicios de Apoyo AT" />
-<Object Id="45039" culture="es-es" value="Servicios de Apoyo AT" />
+<Object Id="45039" culture="en-us" value="Servicios Periciales AT" />
+<Object Id="45039" culture="es-es" value="Servicios Periciales AT" />
 <Object Id="45122" culture="en-us" value="Detalle de Servicio de Apoyo MPI" />
 <Object Id="45122" culture="es-es" value="Detalle de Servicio de Apoyo MPI" />
 <Object Id="45157" culture="en-us" value="Detalle de Servicios Periciales" />
@@ -1198,8 +1198,370 @@
 <Object Id="45639" culture="es-es" value="Tipo de Resolución" />
 <Object Id="45640" culture="en-us" value="Detalle de Guardado de Movimiento" />
 <Object Id="45640" culture="es-es" value="Detalle de Guardado de Movimiento" />
+<Object Id="45684" culture="en-us" value="Registro Usuarios" />
+<Object Id="45684" culture="es-es" value="Registro Usuarios" />
+<Object Id="45664" culture="en-us" value="Consulta de Mandamientos Judiciales" />
+<Object Id="45664" culture="es-es" value="Consulta de Mandamientos Judiciales" />
+<Object Id="45663" culture="en-us" value="Detalle de Amparo" />
+<Object Id="45663" culture="es-es" value="Detalle de Amparo" />
+<Object Id="45665" culture="en-us" value="Detalle de Delito Mandamiento Judicial" />
+<Object Id="45665" culture="es-es" value="Detalle de Delito Mandamiento Judicial" />
+<Object Id="45679" culture="en-us" value="Detalle de Documentos Mandamiento Judicial" />
+<Object Id="45679" culture="es-es" value="Detalle de Documentos Mandamiento Judicial" />
+<Object Id="45668" culture="en-us" value="Detalle de Domicilio" />
+<Object Id="45668" culture="es-es" value="Detalle de Domicilio" />
+<Object Id="45669" culture="en-us" value="Detalle de Fotos" />
+<Object Id="45669" culture="es-es" value="Detalle de Fotos" />
+<Object Id="45670" culture="en-us" value="Detalle de Huellas Digitales" />
+<Object Id="45670" culture="es-es" value="Detalle de Huellas Digitales" />
+<Object Id="45673" culture="en-us" value="Detalle de Otro Nombre" />
+<Object Id="45673" culture="es-es" value="Detalle de Otro Nombre" />
+<Object Id="45674" culture="en-us" value="Detalle de Resultados" />
+<Object Id="45674" culture="es-es" value="Detalle de Resultados" />
+<Object Id="45678" culture="en-us" value="Detalle de telefono" />
+<Object Id="45678" culture="es-es" value="Detalle de telefono" />
+<Object Id="45683" culture="en-us" value="Fuerzo" />
+<Object Id="45683" culture="es-es" value="Fuerzo" />
+<Object Id="45672" culture="en-us" value="Institución Emisora" />
+<Object Id="45672" culture="es-es" value="Institución Emisora" />
+<Object Id="45686" culture="en-us" value="Motivo de Cancelación del Proceso" />
+<Object Id="45686" culture="es-es" value="Motivo de Cancelación del Proceso" />
+<Object Id="45671" culture="en-us" value="Registro de Mandamiento Judicial" />
+<Object Id="45671" culture="es-es" value="Registro de Mandamiento Judicial" />
+<Object Id="45662" culture="en-us" value="Tipo de Amparo" />
+<Object Id="45662" culture="es-es" value="Tipo de Amparo" />
+<Object Id="45667" culture="en-us" value="Tipo de Domicilio" />
+<Object Id="45667" culture="es-es" value="Tipo de Domicilio" />
+<Object Id="45689" culture="en-us" value="Tipo de Extradiccion" />
+<Object Id="45689" culture="es-es" value="Tipo de Extradiccion" />
+<Object Id="45685" culture="en-us" value="Tipo de Mandamiento" />
+<Object Id="45685" culture="es-es" value="Tipo de Mandamiento" />
+<Object Id="45680" culture="en-us" value="Tipo de Orden" />
+<Object Id="45680" culture="es-es" value="Tipo de Orden" />
+<Object Id="45687" culture="en-us" value="Tipo de Proceso" />
+<Object Id="45687" culture="es-es" value="Tipo de Proceso" />
+<Object Id="45677" culture="en-us" value="Tipo de Teléfono" />
+<Object Id="45677" culture="es-es" value="Tipo de Teléfono" />
+<Object Id="45681" culture="en-us" value="Ambito" />
+<Object Id="45681" culture="es-es" value="Ambito" />
+<Object Id="45682" culture="en-us" value="Tipo de Cuantia" />
+<Object Id="45682" culture="es-es" value="Tipo de Cuantia" />
+<Object Id="45691" culture="en-us" value="Resolución MASC" />
+<Object Id="45691" culture="es-es" value="Resolución MASC" />
+<Object Id="45703" culture="en-us" value="Canalización" />
+<Object Id="45703" culture="es-es" value="Canalización" />
+<Object Id="45704" culture="en-us" value="Detalle Diligencias Canalización" />
+<Object Id="45704" culture="es-es" value="Detalle Diligencias Canalización" />
+<Object Id="45705" culture="en-us" value="Detalle Relaciones MASC" />
+<Object Id="45705" culture="es-es" value="Detalle Relaciones MASC" />
+<Object Id="45702" culture="en-us" value="Relaciones MASC" />
+<Object Id="45702" culture="es-es" value="Relaciones MASC" />
+<Object Id="45708" culture="en-us" value="Tipo de Solicitud" />
+<Object Id="45708" culture="es-es" value="Tipo de Solicitud" />
+<Object Id="45709" culture="en-us" value="Estatus de Solicitud" />
+<Object Id="45709" culture="es-es" value="Estatus de Solicitud" />
+<Object Id="45710" culture="en-us" value="Solicitud de Denuncia Ciudadana" />
+<Object Id="45710" culture="es-es" value="Solicitud de Denuncia Ciudadana" />
+<Object Id="45711" culture="en-us" value="Datos de los Hechos PC" />
+<Object Id="45711" culture="es-es" value="Datos de los Hechos PC" />
+<Object Id="45712" culture="en-us" value="Robo de Vehículo PC" />
+<Object Id="45712" culture="es-es" value="Robo de Vehículo PC" />
+<Object Id="45713" culture="en-us" value="Involucrados PC" />
+<Object Id="45713" culture="es-es" value="Involucrados PC" />
+<Object Id="45714" culture="en-us" value="Probable Responsable PC" />
+<Object Id="45714" culture="es-es" value="Probable Responsable PC" />
+<Object Id="45719" culture="en-us" value="Tipo Encuesta" />
+<Object Id="45719" culture="es-es" value="Tipo Encuesta" />
+<Object Id="45722" culture="en-us" value="PC CanalizarA" />
+<Object Id="45722" culture="es-es" value="PC CanalizarA" />
+<Object Id="45723" culture="en-us" value="Dirección Exacta" />
+<Object Id="45723" culture="es-es" value="Dirección Exacta" />
+<Object Id="45748" culture="en-us" value="Agencia Servicio Pericial" />
+<Object Id="45748" culture="es-es" value="Agencia Servicio Pericial" />
+<Object Id="45743" culture="en-us" value="Área Pericial" />
+<Object Id="45743" culture="es-es" value="Área Pericial" />
+<Object Id="45747" culture="en-us" value="Autoridad Servicio Pericial" />
+<Object Id="45747" culture="es-es" value="Autoridad Servicio Pericial" />
+<Object Id="45749" culture="en-us" value="Dictamen Servicio Pericial" />
+<Object Id="45749" culture="es-es" value="Dictamen Servicio Pericial" />
+<Object Id="45741" culture="en-us" value="Modulo Servicio Pericial" />
+<Object Id="45741" culture="es-es" value="Modulo Servicio Pericial" />
+<Object Id="45742" culture="en-us" value="Estatus Servicio Pericial" />
+<Object Id="45742" culture="es-es" value="Estatus Servicio Pericial" />
+<Object Id="45750" culture="en-us" value="Historial Estatus Modulo Servicio Pericial" />
+<Object Id="45750" culture="es-es" value="Historial Estatus Modulo Servicio Pericial" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

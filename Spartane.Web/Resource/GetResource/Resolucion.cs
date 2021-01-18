@@ -76,6 +76,26 @@ namespace Resources
             }
         }
 
+        /// <summary>ClaveFiscalia</summary>
+        public static string ClaveFiscalia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("ClaveFiscalia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Aplica_para_Adolescentes</summary>
+        public static string Aplica_para_Adolescentes
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Aplica_para_Adolescentes", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderResolucion.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

@@ -88,6 +88,15 @@ $("form#CreateDetalle_de_documentos").on('change', '#Tipo_de_Documento', functio
 
 //BusinessRuleId:2049, Attribute:266641, Operation:Field, Event:None
 
+//BusinessRuleId:3481, Attribute:263060, Operation:Field, Event:None
+$("form#CreateDetalle_de_documentos").on('change', '#Documento', function () {
+	nameOfTable='';
+	rowIndex='';
+if( EvaluaQuery("select Tipo_de_Documento from Documento where Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
+});
+
+//BusinessRuleId:3481, Attribute:263060, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -403,6 +412,27 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:2547, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3480, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("select Tipo_de_Documento from Documento where Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
+
+}
+//BusinessRuleId:3480, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3480, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("select Tipo_de_Documento from Documento where Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
+
+}
+//BusinessRuleId:3480, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3482, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));
+
+}
+//BusinessRuleId:3482, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

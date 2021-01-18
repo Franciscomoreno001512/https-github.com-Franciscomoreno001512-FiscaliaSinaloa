@@ -21,6 +21,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Hechos { get; set; }
         public bool Generado { get; set; }
         public bool Archivo_Descargado { get; set; }
+        public int? Usuario_que_registra { get; set; }
+        public string Usuario_que_registraName { get; set; }
+        public int? Documento { get; set; }
+        public string DocumentoDescripcion { get; set; }
+        [Range(0, 9999999999)]
+        public int? Archivo { get; set; }
         public string Fecha_de_registro { get; set; }
         public string Hora_de_registro { get; set; }
 
@@ -39,6 +45,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Hechos { get; set; }
         public bool? Generado { get; set; }
         public bool? Archivo_Descargado { get; set; }
+        public int? Usuario_que_registra { get; set; }
+        public string Usuario_que_registraName { get; set; }
+        public int? Documento { get; set; }
+        public string DocumentoDescripcion { get; set; }
+        [Range(0, 9999999999)]
+        public int? Archivo { get; set; }
         public string Fecha_de_registro { get; set; }
         public string Hora_de_registro { get; set; }
 

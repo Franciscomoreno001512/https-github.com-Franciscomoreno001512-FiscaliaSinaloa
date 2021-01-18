@@ -106,6 +106,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Tipo_Encuesta</summary>
+        public static string Tipo_Encuesta
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderEncuesta1.GetResource("Tipo_Encuesta", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Numero_de_Preguntas</summary>
         public static string Numero_de_Preguntas
         {

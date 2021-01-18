@@ -1,0 +1,54 @@
+Minuta Portal
+30/12/2020
+Menajes al centro
+Ok si anoto esa corrección si no puso celular, no debe requerirse el check de celular
+Una media del tamaño de un video que se debe subir
+Lo mismo deberia haber una analisis de la fotografía
+
+Probable_responsable
+Leyenda en probable responsable si tiene conocimiento del domicilio o ubicación del responsable
+Imputado requerido en probable responsable ocultar
+Cuando es persona moral ocultar fecha de nacimiento
+Estado civil también quitar
+Check conoce los datos del representante legal
+Si conoce esta información seria obligatorio el nombre alias sexo
+Media filiación siempre va
+Debe especificarse si fue robo con violencia
+Preguntas si fue golpeado o sufrio daño fisico, para acentuar si fue un robo con violencia o no
+
+siendo anonima en victima la fotografía no debe ser requerida la del ine
+Siendo anomina ningun dato de victimas y testigos es obligatorio
+si mostrar las dos pantallas pero sin requeridos
+
+Primera opcion escoger ubicación en mapa en todos los domicilios
+Al seleccionar la ubicacion aqui se llenaran los datos en la ventana correspondiente
+Descargar  o imprimir folio y contraseña
+
+
+Media filiación y apodo o policia es adentro
+departamento
+atencion
+ubicacion
+inmueble
+
+
+Claro quitar mensaje que nos pondremos en contacto en quejas anonimas
+y solo gracias por registras su queja o sugerencia
+
+en el flujo de quejas ahi que canalizar a el area correspondiente
+
+no mencionar módulo de atención temprana cambiar en el correo a : Su predenuncia a sido registrada en breve personal de atención temprana lo contactará
+
+Cuando la denuncia no cuenta con los datos completos es necesario enviar el mensaje indicando que es necesario que se acerque al módulo o los teléfonos de atención
+
+Cambiar fotos del login
+
+Aqui siempre se canaliza atención temprana
+
+Robo de veniculos a unidad distinta (se mandan predenuncias a otras unidades de investigación)
+
+
+Quejas vs funcionarios de la fiscalia al Órgano Interno de Control
+el que recibe esas quejas es un usuario del organo interno
+
+

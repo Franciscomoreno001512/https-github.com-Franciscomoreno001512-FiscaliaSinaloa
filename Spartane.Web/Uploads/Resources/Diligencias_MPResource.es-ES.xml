@@ -15,6 +15,7 @@
   <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
   <resource culture="es-es" name="Archivo" value="Archivo"></resource>
   <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+  <resource culture="es-es" name="Lista_para_periciales" value="Diligencia lista para enviar a periciales"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

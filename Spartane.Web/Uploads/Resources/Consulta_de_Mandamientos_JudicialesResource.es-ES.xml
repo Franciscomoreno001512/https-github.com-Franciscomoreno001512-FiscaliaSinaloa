@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Consulta_de_Mandamientos_Judiciales" value="Consulta de Mandamientos Judiciales"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Nombre" value="Nombre(s)"></resource>
+  <resource culture="es-es" name="Apellido_Paterno" value="Apellido Paterno"></resource>
+  <resource culture="es-es" name="Apellido_Materno" value="Apellido Materno"></resource>
+  <resource culture="es-es" name="Fecha_de_Nacimiento" value="Fecha de Nacimiento"></resource>
+  <resource culture="es-es" name="Sexo" value="Sexo"></resource>
+  <resource culture="es-es" name="Nacionalidad" value="Nacionalidad"></resource>
+  <resource culture="es-es" name="Resultados" value="Resultados"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

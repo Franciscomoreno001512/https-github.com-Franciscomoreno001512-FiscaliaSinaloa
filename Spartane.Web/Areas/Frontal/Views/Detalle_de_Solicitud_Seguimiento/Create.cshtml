@@ -32,6 +32,12 @@
     List<SelectListItem> varCumplimiento_Cumplimiento = null;
     if (ViewBag.Cumplimientos_Cumplimiento != null)
     { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
+    List<SelectListItem> varForma_de_Cumplimiento_Forma_de_Pago = null;
+    if (ViewBag.Forma_de_Cumplimientos_Forma_de_Pago != null)
+    { varForma_de_Cumplimiento_Forma_de_Pago = (List<SelectListItem>)ViewBag.Forma_de_Cumplimientos_Forma_de_Pago; }
+    List<SelectListItem> varA_Tiempo_Concluir_Acuerdo = null;
+    if (ViewBag.A_Tiempos_Concluir_Acuerdo != null)
+    { varA_Tiempo_Concluir_Acuerdo = (List<SelectListItem>)ViewBag.A_Tiempos_Concluir_Acuerdo; }
  List<SelectListItem> varSpartan_User_Especialista = null;
     if (ViewBag.Spartan_Users_Especialista != null)
     { varSpartan_User_Especialista = (List<SelectListItem>)ViewBag.Spartan_Users_Especialista; }
@@ -255,21 +261,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="divFecha_de_Cumplimiento">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento</label>
-                                <div class="col-sm-8" data-field-id="Fecha_de_Cumplimiento" data-attribute="263542" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Cumplimiento"  name="Fecha_de_Cumplimiento" type="text" value="@Model.Fecha_de_Cumplimiento">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-group" id="divCumplimiento">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento</label>
                                 <div class="col-sm-8" data-field-id="Cumplimiento" data-attribute="263544" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Cumplimiento must be a number." data-val-required="The Cumplimiento field is required." id="Cumplimiento" name="Cumplimiento">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field ¿Cumplió? must be a number." data-val-required="The ¿Cumplió? field is required." id="Cumplimiento" name="Cumplimiento">
                                         <option value=""></option>
                                         @if (varCumplimiento_Cumplimiento != null){ 
                                             foreach (var itemCumplimiento in varCumplimiento_Cumplimiento)
@@ -294,6 +289,45 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divFecha_de_Cumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Cumplimiento" data-attribute="263542" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Cumplimiento"  name="Fecha_de_Cumplimiento" type="text" value="@Model.Fecha_de_Cumplimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divForma_de_Pago">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Forma_de_Pago</label>
+                                <div class="col-sm-8" data-field-id="Forma_de_Pago" data-attribute="269092" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Forma_de_Pago">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Forma de Pago must be a number." data-val-required="The Forma de Pago field is required." id="Forma_de_Pago" name="Forma_de_Pago">
+                                        <option value=""></option>
+                                        @if (varForma_de_Cumplimiento_Forma_de_Pago != null){ 
+                                            foreach (var itemForma_de_Pago in varForma_de_Cumplimiento_Forma_de_Pago)
+                                            {
+                                                if (itemForma_de_Pago.Value == Convert.ToString(Model.Forma_de_Pago))
+                                                {
+                                                    <option value="@itemForma_de_Pago.Value" selected>@itemForma_de_Pago.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemForma_de_Pago.Value">@itemForma_de_Pago.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Forma_de_Pago" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269092).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Forma_de_Cumplimiento', 'Forma_de_Pago');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                               <div class="form-group" id="divCantidad_del_Monto">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Cantidad_del_Monto</label>
 								<div class="col-sm-8">
@@ -309,6 +343,41 @@
 						}  
 									</div>
 								</div>
+                            </div>
+                            <div class="form-group" id="divDescripcion_de_Cumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Descripcion_de_Cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="Descripcion_de_Cumplimiento" data-attribute="269093" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Descripcion_de_Cumplimiento">
+                                    <textarea id="Descripcion_de_Cumplimiento" name="Descripcion_de_Cumplimiento" class="form-control Datos_Generales" rows="4" cols="50">@Model.Descripcion_de_Cumplimiento</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Descripcion_de_Cumplimiento" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divConcluir_Acuerdo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Concluir_Acuerdo</label>
+                                <div class="col-sm-8" data-field-id="Concluir_Acuerdo" data-attribute="269094" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Concluir_Acuerdo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field ¿Se concluye Acuerdo? must be a number." data-val-required="The ¿Se concluye Acuerdo? field is required." id="Concluir_Acuerdo" name="Concluir_Acuerdo">
+                                        <option value=""></option>
+                                        @if (varA_Tiempo_Concluir_Acuerdo != null){ 
+                                            foreach (var itemConcluir_Acuerdo in varA_Tiempo_Concluir_Acuerdo)
+                                            {
+                                                if (itemConcluir_Acuerdo.Value == Convert.ToString(Model.Concluir_Acuerdo))
+                                                {
+                                                    <option value="@itemConcluir_Acuerdo.Value" selected>@itemConcluir_Acuerdo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemConcluir_Acuerdo.Value">@itemConcluir_Acuerdo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Concluir_Acuerdo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269094).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('A_Tiempo', 'Concluir_Acuerdo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
 				<div class="form-group" id="divEspecialista">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Especialista</label>
@@ -972,9 +1041,12 @@
 	                    control.val(result.data.Solicitante).trigger('change');
                     }, 3000);
                     $('#Fecha_Requerida').val(result.data.Fecha_Requerida);
-                    $('#Fecha_de_Cumplimiento').val(result.data.Fecha_de_Cumplimiento);
                     $('#Cumplimiento').val(result.data.Cumplimiento);
+                    $('#Fecha_de_Cumplimiento').val(result.data.Fecha_de_Cumplimiento);
+                    $('#Forma_de_Pago').val(result.data.Forma_de_Pago);
                     $('#Cantidad_del_Monto').val(result.data.Cantidad_del_Monto);
+                    $('#Descripcion_de_Cumplimiento').val(result.data.Descripcion_de_Cumplimiento);
+                    $('#Concluir_Acuerdo').val(result.data.Concluir_Acuerdo);
                     var control = $('#Especialista');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Especialista).trigger('keyup');
@@ -1003,10 +1075,13 @@
                 data.append('Requerido', $('#Requerido').val());
                 data.append('Solicitante', $('#Solicitante').val());
                 data.append('Fecha_Requerida', $('#Fecha_Requerida').val());
-                data.append('Fecha_de_Cumplimiento', $('#Fecha_de_Cumplimiento').val());
                 data.append('Cumplimiento', $('#Cumplimiento').val());
+                data.append('Fecha_de_Cumplimiento', $('#Fecha_de_Cumplimiento').val());
+                data.append('Forma_de_Pago', $('#Forma_de_Pago').val());
  
                data.append('Cantidad_del_Monto', Number($('#Cantidad_del_Monto').val().replace(/[^0-9.-]+/g, "")));
+                data.append('Descripcion_de_Cumplimiento', $('#Descripcion_de_Cumplimiento').val());
+                data.append('Concluir_Acuerdo', $('#Concluir_Acuerdo').val());
                 data.append('Especialista', $('#Especialista').val());
                 data.append('Comentarios', $('#Comentarios').val());
                 data.append('Archivo', $('#hdnAttachedArchivo').val());

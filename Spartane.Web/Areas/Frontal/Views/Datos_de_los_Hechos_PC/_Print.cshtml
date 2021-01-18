@@ -1,0 +1,248 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Datos_de_los_Hechos_PCGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Solicitud
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Tipo_de_Solicitud
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Titulo_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Narrativa_Breve_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Fecha_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Hora_Aproximada_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Tiene_alguna_Foto_o_Evidencia
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Fosa_clandestina
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Conoce_la_direccion
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Pais
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Poblacion
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Calle
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Entre_Calle
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Y_Calle
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Referencia
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Latitud
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Longitud
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_PCResources.Es_una_direccion_exacta_o_aproximada
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Solicitud
+                    </td>
+                    <td>
+                        @item.Tipo_de_SolicitudDescripcion
+                    </td>
+                    <td>
+                        @item.Titulo_del_Hecho
+                    </td>
+                    <td>
+                        @item.Narrativa_Breve_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Fecha_del_Hecho
+                    </td>
+                    <td>
+                        @item.Hora_Aproximada_del_Hecho
+                    </td>
+                    <td>
+                        @item.Tiene_alguna_Foto_o_Evidencia
+                    </td>
+                    <td>
+                        @item.Fosa_clandestinaDescripcion
+                    </td>
+                    <td>
+                        @item.Conoce_la_direccionDescripcion
+                    </td>
+                    <td>
+                        @item.Pais
+                    </td>
+                    <td>
+                        @item.Estado
+                    </td>
+                    <td>
+                        @item.Municipio
+                    </td>
+                    <td>
+                        @item.Poblacion
+                    </td>
+                    <td>
+                        @item.Colonia
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.Calle
+                    </td>
+                    <td>
+                        @item.Entre_Calle
+                    </td>
+                    <td>
+                        @item.Y_Calle
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Referencia
+                    </td>
+                    <td>
+                        @item.Latitud
+                    </td>
+                    <td>
+                        @item.Longitud
+                    </td>
+                    <td>
+                        @item.Es_una_direccion_exacta_o_aproximadaDescripcion
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

@@ -3,9 +3,12 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.EncuestaAdvanceSearchModel
 @{
-    List<SelectListItem> varEstatus_Modulo = null;
-    if (ViewBag.Estatuss_Modulo != null)
-    { varEstatus_Modulo = (List<SelectListItem>)ViewBag.Estatuss_Modulo; }
+    List<SelectListItem> varModulo_Encuesta_Modulo = null;
+    if (ViewBag.Modulo_Encuestas_Modulo != null)
+    { varModulo_Encuesta_Modulo = (List<SelectListItem>)ViewBag.Modulo_Encuestas_Modulo; }
+    List<SelectListItem> varTipo_Encuesta_Tipo_Encuesta = null;
+    if (ViewBag.Tipo_Encuestas_Tipo_Encuesta != null)
+    { varTipo_Encuesta_Tipo_Encuesta = (List<SelectListItem>)ViewBag.Tipo_Encuestas_Tipo_Encuesta; }
     List<SelectListItem> varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = null;
     if (ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null)
     { varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = (List<SelectListItem>)ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas; }
@@ -65,9 +68,9 @@
                     @Html.DropDownListFor(m => m.ModuloFilter, filters, new { @class = "form-control", @id = "ddlModuloFilter" })
                     @Html.TextBoxFor(m => m.AdvanceModulo, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varEstatus_Modulo!=null)
+                    @if (varModulo_Encuesta_Modulo!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceModuloMultiple, varEstatus_Modulo,
+                        @Html.ListBoxFor(m => m.AdvanceModuloMultiple, varModulo_Encuesta_Modulo,
                         new
                         {
                             @class = "form-control chosen-select",
@@ -75,6 +78,27 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceModulo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.EncuestaResources.Tipo_Encuesta</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_EncuestaFilter, filters, new { @class = "form-control", @id = "ddlTipo_EncuestaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_Encuesta, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_Encuesta" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_Encuesta_Tipo_Encuesta!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_EncuestaMultiple, varTipo_Encuesta_Tipo_Encuesta,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_Encuesta"
                         });
                     }
                 </div>
@@ -171,6 +195,21 @@
                 advanceSearch.ModuloSearchType = 2;
             }
         }
+        advanceSearch.Tipo_EncuestaSearchType = 0;
+        if ($('#ddlAdvanceTipo_Encuesta').val().length > 0 || $("#txtAdvanceTipo_Encuesta").val() == "") {
+
+
+            if (isEncuestaTextSearch) {
+                advanceSearch.Tipo_EncuestaName = $("#txtAdvanceTipo_Encuesta").val();
+                advanceSearch.Tipo_EncuestaNameSearchType = $("#ddlAdvanceTipo_Encuesta").val();
+                advanceSearch.Tipo_EncuestaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_EncuestaToSearch = $("#ddlAdvanceTipo_Encuesta").val();
+                advanceSearch.Tipo_EncuestaSearchType = 2;
+            }
+        }
         advanceSearch.Numero_de_PreguntasSearchType = 0;
         if ($('#ddlAdvanceNumero_de_Preguntas').val().length > 0 || $("#txtAdvanceNumero_de_Preguntas").val() == "") {
 
@@ -237,6 +276,15 @@
         $("#ddlAdvanceModulo").change(function () {
             isEncuestaTextSearch = false;
             $("#txtAdvanceModulo").val('');
+        });
+        $("#txtAdvanceTipo_Encuesta").keypress(function () {
+            isEncuestaTextSearch = true;
+            $("#ddlAdvanceTipo_Encuesta").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_Encuesta").change(function () {
+            isEncuestaTextSearch = false;
+            $("#txtAdvanceTipo_Encuesta").val('');
         });
         $("#txtAdvanceNumero_de_Preguntas").keypress(function () {
             isEncuestaTextSearch = true;

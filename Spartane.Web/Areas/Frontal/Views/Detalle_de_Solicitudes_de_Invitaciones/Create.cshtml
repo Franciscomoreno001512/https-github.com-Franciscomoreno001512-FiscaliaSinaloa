@@ -1853,6 +1853,16 @@
 			});
 		}
 
+    function RedireccionaX()
+    {
+        @*var isNew = $('#hdnIsNew').val();
+        if (isNew == "True") {
+            var urii = "@Url.Action("Create", "Detalle_de_documentos", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+           // var  = "@Url.Content("~/Frontal/Detalle_de_documentos/Create?Length=21?isPartial=true")";
+            window.open(htmlDecode(urii), '_blank', 'height=' + screen.height + ', width=' + screen.width);
+             
+            }*@
+    }
 
     </script>
 }

@@ -27,6 +27,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Grid_File Archivo_AdjuntoFileInfo { set; get; }
         public string Observaciones { get; set; }
         public int? Archivo { get; set; }
+        public bool? Lista_para_periciales { get; set; }
         
     }
 }

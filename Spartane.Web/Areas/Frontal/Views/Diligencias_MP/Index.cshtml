@@ -215,6 +215,7 @@
                                     <th>@Resources.Diligencias_MPResources.Observaciones</th>
                                     <th>@Resources.Diligencias_MPResources.Archivo</th>
                                     <th>@Resources.Diligencias_MPResources.Descripcion</th>
+                                    <th>@Resources.Diligencias_MPResources.Lista_para_periciales</th>
 
                                 </tr>
                             </thead>
@@ -234,6 +235,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
 
                                 </tr>
                             </tfoot>
@@ -362,6 +364,7 @@
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lista_para_periciales = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -377,6 +380,7 @@
         + "&Observaciones=" + Observaciones
         + "&Archivo=" + Archivo
         + "&Descripcion=" + Descripcion
+        + "&Lista_para_periciales=" + Lista_para_periciales
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Diligencias_MP/Export?format=")" + format
@@ -403,6 +407,7 @@
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lista_para_periciales = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -418,6 +423,7 @@
         + "&Observaciones=" + Observaciones
         + "&Archivo=" + Archivo
         + "&Descripcion=" + Descripcion
+        + "&Lista_para_periciales=" + Lista_para_periciales
 ;
 
     }
@@ -598,11 +604,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -678,6 +684,7 @@
                 ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Archivo","className": "dt-right", "orderable": true, "name": "Archivo" }
                 ,{ "data": "Descripcion", "orderable": true, "name": "Descripcion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Lista_para_periciales", "orderable": true, "name": "Lista_para_periciales","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
 
             ],
 			"colReorder": true,

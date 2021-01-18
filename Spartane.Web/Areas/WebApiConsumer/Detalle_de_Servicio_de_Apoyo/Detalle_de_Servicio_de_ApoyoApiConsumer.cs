@@ -221,6 +221,36 @@ public ApiResponse<int> Update_Datos_Generales(Detalle_de_Servicio_de_Apoyo_Dato
             }
         }
 
+public ApiResponse<int> Update_Canalizar(Detalle_de_Servicio_de_Apoyo_Canalizar entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Canalizar",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Detalle_de_Servicio_de_Apoyo_Canalizar> Get_Canalizar(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Detalle_de_Servicio_de_Apoyo.Detalle_de_Servicio_de_Apoyo_Canalizar>(baseApi, ApiControllerUrl + "/Get_Canalizar?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Detalle_de_Servicio_de_Apoyo.Detalle_de_Servicio_de_Apoyo_Canalizar>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Detalle_de_Servicio_de_Apoyo.Detalle_de_Servicio_de_Apoyo_Canalizar>(false, null);
+            }
+        }
+
 
     }
 }

@@ -1,0 +1,492 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_FotosModel
+@{
+    Spartane_File attachedFileFoto_Perfil_Izquierdo = (Spartane_File)ViewBag.Foto_Perfil_IzquierdoSpartane_File;
+    Spartane_File attachedFileFoto_Perfil_Derecho = (Spartane_File)ViewBag.Foto_Perfil_DerechoSpartane_File;
+    Spartane_File attachedFileFoto_de_Frente = (Spartane_File)ViewBag.Foto_de_FrenteSpartane_File;
+
+
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Fotos
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_FotosRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_FotosPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Fotos
+								<button onclick="Detalle_de_FotosGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_FotosBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_FotosResources.Detalle_de_Fotos</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_FotosDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_FotosPropertyBusinessModal" id="Detalle_de_FotosPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_FotosBusinessRule-form" onclick="Detalle_de_FotosGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_FotosPropertyModal" id="Detalle_de_FotosPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_FotosBusinessRuleModal" id="Detalle_de_FotosBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_FotosAddBusinessRuleModal" id="Detalle_de_FotosAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Fotos", FormMethod.Post, new { id = "CreateDetalle_de_Fotos", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_FotosCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_FotosResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="268877" data-field-name="@Resources.Detalle_de_FotosResources.Clave">
+                                    <label class="form-control" for="Detalle_de_FotosClave" id="Detalle_de_FotosClave">@Model.Clave</label>
+                                </div>
+                            </div>
+@if (attachedFileFoto_Perfil_Izquierdo != null && attachedFileFoto_Perfil_Izquierdo.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentFoto_Perfil_Izquierdo">
+                                    <label class="col-sm-2 control-label">Previously Attached File</label>
+                                    <div class="col-sm-8" data-field-id="Foto_Perfil_Izquierdo" data-attribute="268879" data-field-name="@Resources.Detalle_de_FotosResources.Foto_Perfil_Izquierdo">
+                                        <a href="@Url.Content("~/Frontal/Detalle_de_Fotos/GetFile")?id=@attachedFileFoto_Perfil_Izquierdo.File_Id" target="_blank">@attachedFileFoto_Perfil_Izquierdo.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainFoto_Perfil_Izquierdo('@attachedFileFoto_Perfil_Izquierdo.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveFoto_Perfil_Izquierdo" name="RemoveFoto_Perfil_Izquierdo" value="0" type="hidden" />
+                                    <input class="form-control col-md-12" id="hdnAttachedFoto_Perfil_Izquierdo" type="hidden" name="Foto_Perfil_Izquierdo" value="@Model.Foto_Perfil_Izquierdo">
+                                </div>
+                            }
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_FotosResources.Foto_Perfil_Izquierdo</label>
+                                <div class="col-sm-8" data-field-id="Foto_Perfil_Izquierdo" data-attribute="268879" data-field-name="@Resources.Detalle_de_FotosResources.Foto_Perfil_Izquierdo">
+                                    <input type="file" name="Detalle_de_FotosFoto_Perfil_IzquierdoFile" id="Detalle_de_FotosFoto_Perfil_IzquierdoFile" class="form-control" />
+                                </div>
+                            </div>
+@if (attachedFileFoto_Perfil_Derecho != null && attachedFileFoto_Perfil_Derecho.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentFoto_Perfil_Derecho">
+                                    <label class="col-sm-2 control-label">Previously Attached File</label>
+                                    <div class="col-sm-8" data-field-id="Foto_Perfil_Derecho" data-attribute="268880" data-field-name="@Resources.Detalle_de_FotosResources.Foto_Perfil_Derecho">
+                                        <a href="@Url.Content("~/Frontal/Detalle_de_Fotos/GetFile")?id=@attachedFileFoto_Perfil_Derecho.File_Id" target="_blank">@attachedFileFoto_Perfil_Derecho.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainFoto_Perfil_Derecho('@attachedFileFoto_Perfil_Derecho.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveFoto_Perfil_Derecho" name="RemoveFoto_Perfil_Derecho" value="0" type="hidden" />
+                                    <input class="form-control col-md-12" id="hdnAttachedFoto_Perfil_Derecho" type="hidden" name="Foto_Perfil_Derecho" value="@Model.Foto_Perfil_Derecho">
+                                </div>
+                            }
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_FotosResources.Foto_Perfil_Derecho</label>
+                                <div class="col-sm-8" data-field-id="Foto_Perfil_Derecho" data-attribute="268880" data-field-name="@Resources.Detalle_de_FotosResources.Foto_Perfil_Derecho">
+                                    <input type="file" name="Detalle_de_FotosFoto_Perfil_DerechoFile" id="Detalle_de_FotosFoto_Perfil_DerechoFile" class="form-control" />
+                                </div>
+                            </div>
+@if (attachedFileFoto_de_Frente != null && attachedFileFoto_de_Frente.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentFoto_de_Frente">
+                                    <label class="col-sm-2 control-label">Previously Attached File</label>
+                                    <div class="col-sm-8" data-field-id="Foto_de_Frente" data-attribute="268881" data-field-name="@Resources.Detalle_de_FotosResources.Foto_de_Frente">
+                                        <a href="@Url.Content("~/Frontal/Detalle_de_Fotos/GetFile")?id=@attachedFileFoto_de_Frente.File_Id" target="_blank">@attachedFileFoto_de_Frente.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainFoto_de_Frente('@attachedFileFoto_de_Frente.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveFoto_de_Frente" name="RemoveFoto_de_Frente" value="0" type="hidden" />
+                                    <input class="form-control col-md-12" id="hdnAttachedFoto_de_Frente" type="hidden" name="Foto_de_Frente" value="@Model.Foto_de_Frente">
+                                </div>
+                            }
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_FotosResources.Foto_de_Frente</label>
+                                <div class="col-sm-8" data-field-id="Foto_de_Frente" data-attribute="268881" data-field-name="@Resources.Detalle_de_FotosResources.Foto_de_Frente">
+                                    <input type="file" name="Detalle_de_FotosFoto_de_FrenteFile" id="Detalle_de_FotosFoto_de_FrenteFile" class="form-control" />
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_FotosConfigureSave" name="Detalle_de_FotosConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_FotosConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_FotosBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_FotosBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_FotosBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_FotosGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_FotosBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Fotos.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_FotosGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_FotosCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Registro_de_Mandamiento_JudicialCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+        function RemoveAttachmentMainFoto_Perfil_Izquierdo () {
+            $("#hdnRemoveFoto_Perfil_Izquierdo").val("1");
+            $("#divAttachmentFoto_Perfil_Izquierdo").hide();
+        }
+        function RemoveAttachmentMainFoto_Perfil_Derecho () {
+            $("#hdnRemoveFoto_Perfil_Derecho").val("1");
+            $("#divAttachmentFoto_Perfil_Derecho").hide();
+        }
+        function RemoveAttachmentMainFoto_de_Frente () {
+            $("#hdnRemoveFoto_de_Frente").val("1");
+            $("#divAttachmentFoto_de_Frente").hide();
+        }
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_FotosRowElement = "Detalle_de_FotosPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_FotosRowElement + "')){ Detalle_de_FotosInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_FotosData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Fotos").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Fotos")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_FotosCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Fotos/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_FotosPropertyBag", "Detalle_de_Fotos")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_FotosGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_FotosBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_FotosBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_FotosBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_FotosBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_FotosBusinessRuleFieldName').val(), ObjectId: '45669', Attribute: $('#hdnDetalle_de_FotosBusinessRuleAttribute').val(), Screen: 'Detalle_de_Fotos' }, function (data) {
+                $(".Detalle_de_FotosBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_FotosGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_FotosBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_FotosBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_FotosBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_FotosBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_FotosBusinessRuleFieldName').val(), ObjectId: '45669', Attribute: $('#hdnDetalle_de_FotosBusinessRuleAttribute').val(), Screen: 'Detalle_de_Fotos' }, function (data) {
+                $(".Detalle_de_FotosAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_FotosBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_FotosBusinessRuleFieldName').val(), ObjectId: '45669', Attribute: $('#hdnDetalle_de_FotosBusinessRuleAttribute').val(), Screen: 'Detalle_de_Fotos' }, function (data) {
+				$(".Detalle_de_FotosBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Fotos/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Fotos/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Fotos/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_FotosConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_FotosConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Fotos/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_FotosConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Fotos/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Fotos' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Fotos' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_FotosConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_FotosConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Fotos').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_FotosBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_FotosBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_FotosBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

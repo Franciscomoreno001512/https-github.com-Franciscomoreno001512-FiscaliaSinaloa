@@ -36,6 +36,7 @@ namespace Spartane.Core.Domain.Detalle_de_documentos
         public string Archivo_Adjunto_URL { get; set; }
         public string Observaciones { get; set; }
         public int? Archivo { get; set; }
+        public bool? Lista_para_periciales { get; set; }
         public string Descripcion { get; set; }
 
         [ForeignKey("Solicitud")]
@@ -71,6 +72,7 @@ namespace Spartane.Core.Domain.Detalle_de_documentos
         public string Archivo_Adjunto_URL { get; set; }
         public string Observaciones { get; set; }
         public int? Archivo { get; set; }
+        public bool? Lista_para_periciales { get; set; }
         public string Descripcion { get; set; }
 
 		        [ForeignKey("Solicitud")]

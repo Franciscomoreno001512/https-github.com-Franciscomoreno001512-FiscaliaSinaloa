@@ -26,6 +26,10 @@ namespace Spartane.Web.SqlModelMapper
                     return "Resolucion.Descripcion";
                 case "Generar_Judicializacion":
                     return "Resolucion.Generar_Judicializacion";
+                case "ClaveFiscalia":
+                    return "Resolucion.ClaveFiscalia";
+                case "Aplica_para_Adolescentes":
+                    return "Resolucion.Aplica_para_Adolescentes";
 
                 default:
                     return propertyName;
@@ -44,6 +48,10 @@ namespace Spartane.Web.SqlModelMapper
         public string GetOperatorString(object value, string columnName)
         {
             if (columnName == "Generar_Judicializacion")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Aplica_para_Adolescentes")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

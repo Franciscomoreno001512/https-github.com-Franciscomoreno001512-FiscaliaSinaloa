@@ -8,38 +8,38 @@
 @{
     Spartane_File attachedFileArchivo_Adjunto = (Spartane_File)ViewBag.Archivo_AdjuntoSpartane_File;
 
-    /*
-        string Fecha = "";
-        if (Model.Fecha == "")
-        { Model.Fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+/*
+    string Fecha = "";
+    if (Model.Fecha == "")
+    { Model.Fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
-    */
-    List<SelectListItem> varSolicitud_Solicitud = null;
+*/
+ List<SelectListItem> varSolicitud_Solicitud = null;
     if (ViewBag.Solicituds_Solicitud != null)
     { varSolicitud_Solicitud = (List<SelectListItem>)ViewBag.Solicituds_Solicitud; }
-    List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
     if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
     { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
     List<SelectListItem> varTipo_de_Documento_Tipo_de_Documento = null;
     if (ViewBag.Tipo_de_Documentos_Tipo_de_Documento != null)
     { varTipo_de_Documento_Tipo_de_Documento = (List<SelectListItem>)ViewBag.Tipo_de_Documentos_Tipo_de_Documento; }
-    List<SelectListItem> varDocumento_Documento = null;
+ List<SelectListItem> varDocumento_Documento = null;
     if (ViewBag.Documentos_Documento != null)
     { varDocumento_Documento = (List<SelectListItem>)ViewBag.Documentos_Documento; }
-    List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
+ List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
     if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
     { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
-    List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
+ List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
     if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
     { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
 
 
     Permission permission = ViewBag.Permission;
-
-    if (ViewBag.IsPartial || ViewBag.viewInEframe)
-    {
-        Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
-    }
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
 }
 <div class="loading style-2"><div class="loading-wheel"></div></div>
 <div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
@@ -81,16 +81,16 @@
                     <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
                 </li>
                 <li class="active">
-                    @if (Session["PhaseName"] != null)
-                    {
-                        <strong>@Session["PhaseName"].ToString()</strong>
-                    }
-                    else
-                    {
-                        <strong>@Resources.Detalle_de_documentosResources.Detalle_de_documentos</strong>
-                    }
-
-                </li>
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Detalle_de_documentosResources.Detalle_de_documentos</strong>
+                }
+                
+            </li>
                 <li class="active">
                     <strong>@Resources.Resources.Create</strong>
                 </li>
@@ -111,7 +111,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">
-                                        @Resources.Resources.titleBussinesRules
+                                          @Resources.Resources.titleBussinesRules
                                         <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
                                     </h4>
                                 </div>
@@ -130,10 +130,10 @@
                         </div>
                     </div>
 
-                    <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-                    </div>
-                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_documentosBusinessRuleModal" id="Detalle_de_documentosBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-                    </div>
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_documentosBusinessRuleModal" id="Detalle_de_documentosBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
 
 
                 }
@@ -142,252 +142,233 @@
         </div>
     </div>
 
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="ibox float-e-margins">
-            <div class="ibox-content">
-                @using (Html.BeginForm("Post", "Detalle_de_documentos", FormMethod.Post, new { id = "CreateDetalle_de_documentos", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
-                {
-                    <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
-                    <span id="popupNotification"></span>
-                    <div class="container-fluid Detalle_de_documentosCreateForm" id="viewmodeledit">
-                        <div class="alert alert-warning" id="controlsRequerid" style="display:none">
-                            <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
-                            <span id="textRequired"></span>
-                        </div>
-                        <div class="tabs-container">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Detalle_de_documentosResources.TabDatos_Generales</a></li>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Detalle_de_documentos", FormMethod.Post, new { id = "CreateDetalle_de_documentos", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Detalle_de_documentosCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Detalle_de_documentosResources.TabDatos_Generales</a></li>
 
-                            </ul>
-                            <div class="tab-content">
-                                <div id="tabDatos_Generales" class="tab-pane active">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divClave">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Clave</label>
-                                            <div class="col-sm-8" data-field-id="Clave" data-attribute="263059" data-field-name="@Resources.Detalle_de_documentosResources.Clave">
-                                                <label class="form-control" for="Clave" id="lblClave">
-                                                    @if (Model.Clave == 0)
-                                                    {
-                                                        <text>@Resources.Resources.ClaveDefault</text>
-                                                    }
-                                                    else
-                                                    {
-                                                        <text>@Model.Clave</text>
-                                                    }
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divSolicitud">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Solicitud</label>
-                                            <div class="col-sm-8" data-field-id="Solicitud" data-attribute="263062" data-field-name="@Resources.Detalle_de_documentosResources.Solicitud">
-                                                <select class='fullWidth AutoComplete AutoCompleteDetalle_de_documentos_Solicitud form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitud" name="Solicitud">
-                                                    <option value="@Model.Solicitud">@(Model.SolicitudNumero_de_Folio ?? Model.SolicitudNumero_de_Folio)</option>
-                                                </select>
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263062).New)
-                                            {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
-                                            }
-                                        </div>
-                                        <div class="form-group" id="divFecha">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Fecha</label>
-                                            <div class="col-sm-8" data-field-id="Fecha" data-attribute="263063" data-field-name="@Resources.Detalle_de_documentosResources.Fecha">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input class="form-control col-md-12 Datos_Generales" id="Fecha" name="Fecha" type="text" value="@Model.Fecha">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divHora_de_Registro">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Hora_de_Registro</label>
-                                            <div class="col-sm-8" data-field-id="Hora_de_Registro" data-attribute="266463" data-field-name="@Resources.Detalle_de_documentosResources.Hora_de_Registro">
-                                                <div class='input-group date' id='timePicker'>
-                                                    <input class="form-control col-md-12 Datos_Generales" id="Hora_de_Registro" name="Hora_de_Registro" type="text" data-autoclose="true" value="@Model.Hora_de_Registro">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-time"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divUsuario_que_Registra">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Usuario_que_Registra</label>
-                                            <div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="266464" data-field-name="@Resources.Detalle_de_documentosResources.Usuario_que_Registra">
-                                                <select class='fullWidth AutoComplete AutoCompleteDetalle_de_documentos_Usuario_que_Registra form-control select2-dropdown Datos_Generales' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
-                                                    <option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName ?? Model.Usuario_que_RegistraName)</option>
-                                                </select>
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266464).New)
-                                            {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
-                                            }
-                                        </div>
-                                        <div class="form-group" id="divTipo_de_Documento">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Tipo_de_Documento</label>
-                                            <div class="col-sm-8" data-field-id="Tipo_de_Documento" data-attribute="266641" data-field-name="@Resources.Detalle_de_documentosResources.Tipo_de_Documento">
-                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Documento must be a number." data-val-required="The Tipo de Documento field is required." id="Tipo_de_Documento" name="Tipo_de_Documento">
-                                                    <option value=""></option>
-                                                    @if (varTipo_de_Documento_Tipo_de_Documento != null)
-                                                    {
-                                                        foreach (var itemTipo_de_Documento in varTipo_de_Documento_Tipo_de_Documento)
-                                                        {
-                                                            if (itemTipo_de_Documento.Value == Convert.ToString(Model.Tipo_de_Documento))
-                                                            {
-                                                                <option value="@itemTipo_de_Documento.Value" selected>@itemTipo_de_Documento.Text</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@itemTipo_de_Documento.Value">@itemTipo_de_Documento.Text</option>
-                                                            }
-                                                        }
-                                                    }
-                                                </select>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Documento" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266641).New)
-                                            {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Documento', 'Tipo_de_Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
-                                            }
-                                        </div>
-                                        <div class="form-group" id="divDocumento">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Documento</label>
-                                            <div class="col-sm-8" data-field-id="Documento" data-attribute="263060" data-field-name="@Resources.Detalle_de_documentosResources.Documento">
-                                                <select class='fullWidth AutoComplete AutoCompleteDetalle_de_documentos_Documento form-control select2-dropdown Datos_Generales' data-val="true" id="Documento" name="Documento">
-                                                    <option value="@Model.Documento">@(Model.DocumentoDescripcion ?? Model.DocumentoDescripcion)</option>
-                                                </select>
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263060).New)
-                                            {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Documento', 'Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
-                                            }
-                                        </div>
-                                        <div class="form-group" id="divNumero_de_Oficio">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Numero_de_Oficio</label>
-                                            <div class="col-sm-8" data-field-id="Numero_de_Oficio" data-attribute="266698" data-field-name="@Resources.Detalle_de_documentosResources.Numero_de_Oficio">
-                                                <input class="form-control Datos_Generales" id="Numero_de_Oficio" name="Numero_de_Oficio" type="text" value="@Model.Numero_de_Oficio">
-                                                @*<span class="field-validation-valid" data-valmsg-for="Numero_de_Oficio" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divSolicitante">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Solicitante</label>
-                                            <div class="col-sm-8" data-field-id="Solicitante" data-attribute="266608" data-field-name="@Resources.Detalle_de_documentosResources.Solicitante">
-                                                <select class='fullWidth AutoComplete AutoCompleteDetalle_de_documentos_Solicitante form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitante" name="Solicitante">
-                                                    <option value="@Model.Solicitante">@(Model.SolicitanteNombre_Completo ?? Model.SolicitanteNombre_Completo)</option>
-                                                </select>
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266608).New)
-                                            {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Solicitante', 'Solicitante');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
-                                            }
-                                        </div>
-                                        <div class="form-group" id="divRequerido">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Requerido</label>
-                                            <div class="col-sm-8" data-field-id="Requerido" data-attribute="266609" data-field-name="@Resources.Detalle_de_documentosResources.Requerido">
-                                                <select class='fullWidth AutoComplete AutoCompleteDetalle_de_documentos_Requerido form-control select2-dropdown Datos_Generales' data-val="true" id="Requerido" name="Requerido">
-                                                    <option value="@Model.Requerido">@(Model.RequeridoNombre_Completo ?? Model.RequeridoNombre_Completo)</option>
-                                                </select>
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266609).New)
-                                            {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Requerido', 'Requerido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
-                                            }
-                                        </div>
-                                        @if (attachedFileArchivo_Adjunto != null && attachedFileArchivo_Adjunto.File_Id > 0)
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263059" data-field-name="@Resources.Detalle_de_documentosResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
                                         {
-                                            <div class="form-group" id="divAttachmentArchivo_Adjunto">
-                                                <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
-                                                <div class="col-sm-8 Datos_Generales" data-field-id="Archivo_Adjunto" data-attribute="266643" data-field-name="@Resources.Detalle_de_documentosResources.Archivo_Adjunto">
-                                                    <a href="@Url.Content("~/Frontal/Detalle_de_documentos/GetFile")?id=@attachedFileArchivo_Adjunto.File_Id" target="_blank">@attachedFileArchivo_Adjunto.Description</a>
-                                                    <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainArchivo_Adjunto('@attachedFileArchivo_Adjunto.File_Id')" />
-                                                </div>
-                                                <input id="hdnRemoveArchivo_Adjunto" name="RemoveArchivo_Adjunto" value="0" type="hidden" />
-                                                <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedArchivo_Adjunto" type="hidden" name="Archivo_Adjunto" value="@Model.Archivo_Adjunto">
-                                            </div>
+                                            <text>@Resources.Resources.ClaveDefault</text>
                                         }
-                                        <div class="form-group" id="divArchivo_Adjunto">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Archivo_Adjunto</label>
-                                            <div class="col-sm-8" data-field-id="Archivo_Adjunto" data-attribute="266643" data-field-name="@Resources.Detalle_de_documentosResources.Archivo_Adjunto">
-                                                <input type="file" name="Archivo_AdjuntoFile" id="Archivo_AdjuntoFile" class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divObservaciones">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Observaciones</label>
-                                            <div class="col-sm-8" data-field-id="Observaciones" data-attribute="266644" data-field-name="@Resources.Detalle_de_documentosResources.Observaciones">
-                                                <textarea id="Observaciones" name="Observaciones" class="form-control Datos_Generales" rows="4" cols="50">@Model.Observaciones</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divArchivo">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Archivo</label>
-                                            <div class="col-sm-8" data-field-id="Archivo" data-attribute="263061" data-field-name="@Resources.Detalle_de_documentosResources.Archivo">
-                                                <input class="form-control inputNumber Datos_Generales" id="Archivo" name="Archivo" type="text" value="@Model.Archivo">
-                                                @*<span class="field-validation-valid" data-valmsg-for="Archivo" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divDescripcion">
-                                            <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Descripcion</label>
-                                            <div class="col-sm-8" data-field-id="Descripcion" data-attribute="266697" data-field-name="@Resources.Detalle_de_documentosResources.Descripcion">
-                                                <textarea id="Descripcion" name="Descripcion" class="form-control Datos_Generales" rows="4" cols="50">@Model.Descripcion</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group" id="divArchivo">
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    <div class="col-md-3">
-
-                                                        <button id="Archivo_VerDocto" class="btn btn-w-m btn-primary btn_save hidden" onclick="VerDocto()"><img src="/MVCfiscaliasinaloa/Images/seguimiento.png" width="16" height="16" /> Ver Docto</button>
-
-                                                    </div>
-                                                    <div class="col-md-3">
-
-                                                        <button id="Archivo_EditarDocto" class="btn btn-w-m btn-primary btn_save" onclick="EditarDocto()"><img src="/MVCfiscaliasinaloa/Images/seguimiento.png" width="16" height="16" /> Editar Docto</button>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+				<div class="form-group" id="divSolicitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Solicitud" data-attribute="263062" data-field-name="@Resources.Detalle_de_documentosResources.Solicitud">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_documentos_Solicitud form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitud" name="Solicitud">
+                                        <option value="@Model.Solicitud">@(Model.SolicitudNumero_de_Folio??Model.SolicitudNumero_de_Folio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263062).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Fecha</label>
+                                <div class="col-sm-8" data-field-id="Fecha" data-attribute="263063" data-field-name="@Resources.Detalle_de_documentosResources.Fecha">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha"  name="Fecha" type="text" value="@Model.Fecha">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
                                     </div>
                                 </div>
-
                             </div>
-                            <br />
+                            <div class="form-group" id="divHora_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Hora_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Registro" data-attribute="266463" data-field-name="@Resources.Detalle_de_documentosResources.Hora_de_Registro">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_de_Registro"  name="Hora_de_Registro" type="text" data-autoclose="true" value="@Model.Hora_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Registra">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Usuario_que_Registra</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="266464" data-field-name="@Resources.Detalle_de_documentosResources.Usuario_que_Registra">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_documentos_Usuario_que_Registra form-control select2-dropdown Datos_Generales' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
+                                        <option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName??Model.Usuario_que_RegistraName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266464).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Documento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Tipo_de_Documento</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Documento" data-attribute="266641" data-field-name="@Resources.Detalle_de_documentosResources.Tipo_de_Documento">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Documento must be a number." data-val-required="The Tipo de Documento field is required." id="Tipo_de_Documento" name="Tipo_de_Documento">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Documento_Tipo_de_Documento != null){ 
+                                            foreach (var itemTipo_de_Documento in varTipo_de_Documento_Tipo_de_Documento)
+                                            {
+                                                if (itemTipo_de_Documento.Value == Convert.ToString(Model.Tipo_de_Documento))
+                                                {
+                                                    <option value="@itemTipo_de_Documento.Value" selected>@itemTipo_de_Documento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Documento.Value">@itemTipo_de_Documento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Documento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266641).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Documento', 'Tipo_de_Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divDocumento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Documento</label>
+                                <div class="col-sm-8" data-field-id="Documento" data-attribute="263060" data-field-name="@Resources.Detalle_de_documentosResources.Documento">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_documentos_Documento form-control select2-dropdown Datos_Generales' data-val="true" id="Documento" name="Documento">
+                                        <option value="@Model.Documento">@(Model.DocumentoDescripcion??Model.DocumentoDescripcion)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263060).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Documento', 'Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divNumero_de_Oficio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Numero_de_Oficio</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Oficio" data-attribute="266698" data-field-name="@Resources.Detalle_de_documentosResources.Numero_de_Oficio">
+                                    <input class="form-control Datos_Generales" id="Numero_de_Oficio" name="Numero_de_Oficio" type="text" value="@Model.Numero_de_Oficio">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_de_Oficio" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+				<div class="form-group" id="divSolicitante">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Solicitante</label>
+                                <div class="col-sm-8" data-field-id="Solicitante" data-attribute="266608" data-field-name="@Resources.Detalle_de_documentosResources.Solicitante">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_documentos_Solicitante form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitante" name="Solicitante">
+                                        <option value="@Model.Solicitante">@(Model.SolicitanteNombre_Completo??Model.SolicitanteNombre_Completo)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266608).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Solicitante', 'Solicitante');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divRequerido">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Requerido</label>
+                                <div class="col-sm-8" data-field-id="Requerido" data-attribute="266609" data-field-name="@Resources.Detalle_de_documentosResources.Requerido">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_documentos_Requerido form-control select2-dropdown Datos_Generales' data-val="true" id="Requerido" name="Requerido">
+                                        <option value="@Model.Requerido">@(Model.RequeridoNombre_Completo??Model.RequeridoNombre_Completo)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266609).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Requerido', 'Requerido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            @if (attachedFileArchivo_Adjunto != null && attachedFileArchivo_Adjunto.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentArchivo_Adjunto">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_Generales" data-field-id="Archivo_Adjunto" data-attribute="266643" data-field-name="@Resources.Detalle_de_documentosResources.Archivo_Adjunto">
+                                        <a href="@Url.Content("~/Frontal/Detalle_de_documentos/GetFile")?id=@attachedFileArchivo_Adjunto.File_Id" target="_blank">@attachedFileArchivo_Adjunto.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainArchivo_Adjunto('@attachedFileArchivo_Adjunto.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveArchivo_Adjunto" name="RemoveArchivo_Adjunto" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedArchivo_Adjunto" type="hidden" name="Archivo_Adjunto" value="@Model.Archivo_Adjunto">
+                                </div>
+                            }
+                            <div class="form-group" id="divArchivo_Adjunto">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Archivo_Adjunto</label>
+                                <div class="col-sm-8" data-field-id="Archivo_Adjunto" data-attribute="266643" data-field-name="@Resources.Detalle_de_documentosResources.Archivo_Adjunto">
+                                    <input type="file" name="Archivo_AdjuntoFile" id="Archivo_AdjuntoFile" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="266644" data-field-name="@Resources.Detalle_de_documentosResources.Observaciones">
+                                    <textarea id="Observaciones" name="Observaciones" class="form-control Datos_Generales" rows="4" cols="50">@Model.Observaciones</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divArchivo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Archivo</label>
+                                <div class="col-sm-8" data-field-id="Archivo" data-attribute="263061" data-field-name="@Resources.Detalle_de_documentosResources.Archivo">
+                                    <input class="form-control inputNumber Datos_Generales" id="Archivo" name="Archivo" type="text" value="@Model.Archivo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Archivo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divLista_para_periciales">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Lista_para_periciales</label>
+                                <div class="col-sm-8" data-field-id="Lista_para_periciales" data-attribute="269731" data-field-name="@Resources.Detalle_de_documentosResources.Lista_para_periciales">
+                                    @Html.CheckBoxFor(m => m.Lista_para_periciales, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDescripcion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_documentosResources.Descripcion</label>
+                                <div class="col-sm-8" data-field-id="Descripcion" data-attribute="266697" data-field-name="@Resources.Detalle_de_documentosResources.Descripcion">
+                                    <textarea id="Descripcion" name="Descripcion" class="form-control Datos_Generales" rows="4" cols="50">@Model.Descripcion</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
                             <div class="form-actions fluid">
                                 <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
                                 <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
                                 <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
                                 @if (!ViewBag.Consult)
                                 {
-                                    <input type="button" value="@Resources.Resources.Guardar" id="Detalle_de_documentosGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Detalle_de_documentosCreateForm');" />
-                                    <button onclick="Detalle_de_documentosGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_documentosBusinessRule-form">
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Detalle_de_documentosGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Detalle_de_documentosCreateForm');"  />
+									<button onclick="Detalle_de_documentosGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_documentosBusinessRule-form">
                                         <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
                                             <i class="fa fa-cogs fa-spin"></i>
                                         </a>
-                                    </button>
+                                    </button>                                    
 
-                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Detalle_de_documentosGuardarYNuevo" onclick="return checkClientValidate('Detalle_de_documentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew" />
-                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Detalle_de_documentosGuardarYCopia" onclick="return checkClientValidate('Detalle_de_documentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy" />
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Detalle_de_documentosGuardarYNuevo" onclick="return checkClientValidate('Detalle_de_documentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Detalle_de_documentosGuardarYCopia" onclick="return checkClientValidate('Detalle_de_documentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
                                     if (permission.Configure)
                                     {
                                         <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
@@ -395,7 +376,7 @@
                                 }
 
                                 <input type="hidden" id="hdnConfigureType" />
-                                <input type="hidden" id="hdnDetalle_de_documentosBusinessRuleFieldId" />
+								<input type="hidden" id="hdnDetalle_de_documentosBusinessRuleFieldId" />
                                 <input type="hidden" id="hdnDetalle_de_documentosBusinessRuleFieldName" />
                                 <input type="hidden" id="hdnDetalle_de_documentosBusinessRuleAttribute" />
 
@@ -407,90 +388,58 @@
                                     </a>
                                 </button>
                             </div>
-                        </div>
-                    </div>
+						</div>
+					</div>
                 }
-            </div>
         </div>
     </div>
-    <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
 
-    @section Styles {
-        <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
-        @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
-        @Styles.Render("~/plugins/dateRangeStyles")
-        @Styles.Render("~/plugins/dataPickerStyles")
-        @Styles.Render("~/plugins/clockpickerStyles")
-        @Styles.Render("~/plugins/awesomeCheckboxStyles")
-        @Styles.Render("~/plugins/select2Styles")
-        @Styles.Render("~/Content/plugins/chosen/chosenStyles")
-        <style>
-                    .dataTables_filter {
-                        display: none;
-                    }
-
-                    .select2-results {
-                        background-color: #fff;
-                    }
-
-                    .select2-container .select2-dropdown {
-                        height: auto !important;
-                    }
-
-                    div.dataTables_info {
-                        display: inline-block;
-                        float: right;
-                    }
-                    /*i {
-                font-size: 25px !important;
-                display: block;
-                color: #676a6c;
-                margin-left: 6px;
-                margin-right: 6px;
-            }*/
-
-                    .fullWidth {
-                        width: 100%;
-                    }
-        </style>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
     }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
 
-    <script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_documentos.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-    <script type="text/javascript" src="~/Scripts/Custom/Detalle_de_documentosGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-    <script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_documentosCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-    <script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
 
-    @section Scripts {
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_documentos.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_documentosGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_documentosCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
 
 
-        <script type="text/javascript">
-
-            var permitirCerrar = true
-            var validarPermitirCerrar = false;
-            localStorage.setItem('controlDocumentoDynamiSeach', "");
-
-            function getParameterByName(name) {
-                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                    results = regex.exec(location.search);
-                if (results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " ")) == '1') {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-
-            validarPermitirCerrar = getParameterByName ('preguntar');
-
-            window.addEventListener('beforeunload', (event) => {
-                debugger;
-                if (validarPermitirCerrar) {
-                    if (permitirCerrar == false) {
-                        event.returnValue = `Are you sure you want to leave?`;
-                    }
-                }
-       
-            });
+    <script type="text/javascript">
+        
         function RemoveAttachmentMainArchivo_Adjunto () {
             $("#hdnRemoveArchivo_Adjunto").val("1");
             $("#divAttachmentArchivo_Adjunto").hide();
@@ -500,19 +449,19 @@
 	function GetTraduction(text) {
          switch (text.toLowerCase()) {
             case 'edit':
-                return "@Resources.Resources.Edit";
+                return "@Resources.Resources.Edit";          
             case 'delete':
-                return "@Resources.Resources.Delete";
+                return "@Resources.Resources.Delete";               
             case 'required':
-                return "@Resources.Resources.Required";
+                return "@Resources.Resources.Required";              
             case 'notrequired':
-                return "@Resources.Resources.NotRequired";
+                return "@Resources.Resources.NotRequired";           
             case 'enabled':
-                return "@Resources.Resources.Enabled";
+                return "@Resources.Resources.Enabled";         
             case 'disabled':
-                return "@Resources.Resources.Disabled";
+                return "@Resources.Resources.Disabled";           
             case 'visible':
-                return "@Resources.Resources.Visible";
+                return "@Resources.Resources.Visible";            
             case 'botvisible':
                 return "@Resources.Resources.InVisible";
             case 'messagednoinvisible':
@@ -522,12 +471,12 @@
             case 'defaultvalue':
                 return "@Resources.Resources.DefaultValue";
             case 'helptext':
-                return "@Resources.Resources.HelpText";
+                return "@Resources.Resources.HelpText";                     
             default:
                 return "";
         }
     }
-
+	
 	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
 	    var isPartial = ('@ViewBag.IsPartial' == 'True');
         var isMR = ('@ViewBag.isMR' == 'True');
@@ -538,10 +487,8 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45018');
-			
-			localStorage.setItem('controlDocumentoDynamiSeach',"");
-
-
+		    
+		   
                         $('#Fecha').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -556,16 +503,16 @@
             initiateUIControls();
 			$('a').tooltip();
 			$('.loading').css('display', 'none');
-
-			 if (viewInEframe) {
+			
+			 if (viewInEframe) {             
                 $('#Detalle_de_documentosGuardarYNuevo').hide();
                 $('#Detalle_de_documentosGuardarYCopia').hide();
-                $('#Detalle_de_documentosCancelar').hide();
+                $('#Detalle_de_documentosCancelar').hide(); 
                 $('#ConfigureSave').hide();
                 $('#Detalle_de_documentosGuardar').val('Actualizar Seccion ' + '@Resources.Detalle_de_documentosResources.Detalle_de_documentos' )
             }
 
-
+			
 			       var AutoCompleteSolicitudData =[];
        $(".AutoCompleteDetalle_de_documentos_Solicitud").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -577,7 +524,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term,
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -586,12 +533,12 @@
                     return {
                         results: GetAutoCompleteDetalle_de_documentos_Solicitud_SolicitudData(data),
                         pagination: {
-                            more: false
+                            more: false 
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; },
+            escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_de_documentos_Solicitud");
@@ -610,7 +557,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term,
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -619,12 +566,12 @@
                     return {
                         results: GetAutoCompleteDetalle_de_documentos_Usuario_que_Registra_Spartan_UserData(data),
                         pagination: {
-                            more: false
+                            more: false 
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; },
+            escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_de_documentos_Usuario_que_Registra");
@@ -643,7 +590,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term,
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -652,12 +599,12 @@
                     return {
                         results: GetAutoCompleteDetalle_de_documentos_Documento_DocumentoData(data),
                         pagination: {
-                            more: false
+                            more: false 
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; },
+            escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_de_documentos_Documento");
@@ -676,7 +623,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term,
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -685,12 +632,12 @@
                     return {
                         results: GetAutoCompleteDetalle_de_documentos_Solicitante_Detalle_de_Solicitud_SolicitanteData(data),
                         pagination: {
-                            more: false
+                            more: false 
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; },
+            escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_de_documentos_Solicitante");
@@ -709,7 +656,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term,
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -718,12 +665,12 @@
                     return {
                         results: GetAutoCompleteDetalle_de_documentos_Requerido_Detalle_de_Solicitud_RequeridoData(data),
                         pagination: {
-                            more: false
+                            more: false 
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; },
+            escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_de_documentos_Requerido");
@@ -734,7 +681,7 @@
 
 
             @if(ViewBag.IsNew)
-            {
+            { 
                 <text>$('input:checkbox').prop('checked', false);</text>
             }
 			else
@@ -746,12 +693,8 @@
 
                 </text>
             }
-            EjecutarValidacionesAlComienzo();
-            var valorArchivo = $("#Archivo").val();
-
-            if (valorArchivo != "" && valorArchivo != "0") {
-                $("#Archivo_VerDocto").removeClass("hidden");
-            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 
@@ -773,9 +716,9 @@
 
         }
 
-        </script>
+    </script>
 
-        <script type="text/javascript">
+<script type="text/javascript">
 
 
    function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
@@ -797,7 +740,7 @@
 				return;
 			}
 		}
-
+			
 			var url = '@Url.Content("~/Frontal/Detalle_de_documentos/GetCatalogAll")';
 			url = url.replace(/Catalog/g, catalog);
 
@@ -810,45 +753,44 @@
 				},
 				error: function (result)
 				{
-					//showNotification("@Resources.Resources.ErrorContactingServer", "error");
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
 				}
 			});
-
+		
     }
 
 
         function SendDetalle_de_documentosData(callBack) {
-
-
-		 var arr = [];
-		 $("form#CreateDetalle_de_documentos").find(':input').each(function( index ) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_documentos").find(':input').each(function( index ) {		 
 			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
-			{
-				arr.push($(this).attr('id'));
-				$(this).prop('disabled', false);
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
 			}
 	    });
-
+		
              var formData = new FormData($("form#CreateDetalle_de_documentos")[0]);
 			$.each( arr, function( key, value ) {
 			  $('#' +value).prop('disabled', true);
 			});
 			var id = $("#ReferenceClave").val();
             var isNew = $('#hdnIsNew').val();
-
-            if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_documentosCreateForm', 'Datos_Generales')) {
-                localStorage.setItem('controlDocumentoDynamiSeach', "");
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_documentosCreateForm', 'Datos_Generales')) {
 				return false;
-			}
+			}						
 
 
-
+			
 			if (isNew == "True")
             {
                 id = CreateID();
             }
-
-
+			
+			
 			if (Tab_Datos_Generales)
 				Save_Datos_Generales(id);
 
@@ -880,7 +822,7 @@
 			});
 			return newId;
 		}
-
+		
 		function OpenRules()
 		{
 			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
@@ -909,7 +851,7 @@
         Configure: '@permission.Configure' == 'True',
     };
 
-
+    
     //MR-var statusItems;
     //MR-var stateItems;
     //MR-var cityItems = [];
@@ -930,7 +872,7 @@
         else
 			location.href = "@Url.Content("~/Frontal/Detalle_de_documentos/")";
     }
-
+	
 	function ReadScriptSettings(callback)
     {
         $.post("@Url.Content("~/Frontal/Detalle_de_documentos/ReadScriptSettings")", function (data) {
@@ -947,7 +889,7 @@
             //$('#hdnConfigureType').val("0");
         }, "json");
     }
-
+	
         function SaveElementAttributes() {
             if ($('#hdnConfigureType').val() == "1") {
                 $.post("@Url.Content("~/Frontal/Detalle_de_documentos/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
@@ -1001,13 +943,13 @@
 			$('#Attribute').val(attribute);
                         Detalle_de_documentosGetBusinessRule();
 		});
-		//Initialize HTML Editors
+		//Initialize HTML Editors            
   var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
   var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
   var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
   var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
-
-
+		
+		
 		function Fill_Datos_Generales()
         {
             $.ajax({
@@ -1069,6 +1011,7 @@
                     $('#Archivo_Adjunto').val(result.data.Archivo_Adjunto);
                     $('#Observaciones').val(result.data.Observaciones);
                     $('#Archivo').val(result.data.Archivo);
+                    $('#Lista_para_periciales').prop('checked', result.data.Lista_para_periciales);
                     $('#Descripcion').val(result.data.Descripcion);
 
                 },
@@ -1077,7 +1020,7 @@
                 }
             });
         }
-
+		
 		function Save_Datos_Generales(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -1095,6 +1038,7 @@
                 data.append('Archivo_AdjuntoRemoveAttachment', $('#hdnRemoveArchivo_Adjunto').val());
                 data.append('Observaciones', $('#Observaciones').val());
                 data.append('Archivo', $('#Archivo').val());
+                data.append('Lista_para_periciales', $('#Lista_para_periciales').prop('checked'));
                 data.append('Descripcion', $('#Descripcion').val());
 
 			$.ajax({
@@ -1110,7 +1054,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -1118,98 +1062,15 @@
 				},
 				cache: false
 			});
-            }
-
-            function GetIdFormatoFromDocumento()
-    {
-        debugger;
-        var formatoID = EvaluaQuery(" usp_getIdFormatoFromDocumento  " + $('#Documento').val() + "");
-        return formatoID;
-    }
-
-     function VerDocto() {
-        debugger;
-            var PathFile = "";
-            var BaseUrl = "";
-            var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + $("#Archivo").val(), "", "");// document.getElementById("Archivo").innerHTML;
+		}
 
 
-            $.ajax({
-                async: false,
-                url: '@Url.Content("~/Frontal/General/GetArchivoFisico")',
-                data: { "Archivo": id },
-                type: 'POST',
-                success: function (result) {
-
-                    BaseUrl = result;
-
-                    window.open(BaseUrl);
-                }
-        });
-        }
-
-         function EditarDocto() {
-
-            debugger;
-			
-            var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
-
-	        controlDocumentoDynamiSeach = false; 
-	        if (_controlDocumentoDynamiSeach == "true" ) {
-                controlDocumentoDynamiSeach = true; 
-        
-            }
-
-            if ( controlDocumentoDynamiSeach == true ) {
-                alert('Existe una ventana abierta');
-            }
-            else {
-                permitirCerrar = false;
-                controlDocumentoDynamiSeach = true; 
-				localStorage.setItem('controlDocumentoDynamiSeach',"true");
-            var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
-            var folioControlDocumentos = $("#Archivo").val();
-            $('.loading').css('display', 'none');
-            var formaid = GetIdFormatoFromDocumento();
-            if (isedit) {
-                OpenPrintFormats(folioControlDocumentos, @Spartane.Web.SessionHelper.Role, "", true, "45018", formaid);
-            }
-            else {
-                GuardarRegistro(formaid);
-            }
-
-            }
-        }
-
-
-    function GuardarRegistro(formaid) {
-            debugger;
-            $("#Archivo").val("0");
-            if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
-                debugger
-                if (!SendDetalle_de_documentosData(function (idvalor) {
-                 debugger
-                    EjecutarValidacionesDespuesDeGuardar();
-                    $('.loading').css('display', 'none');
-                    $('#hdnIsNew').val("False");
-                    //aqui
-                    $("#ReferenceClave").text(idvalor);
-                    $("#ReferenceClave").val(idvalor);
-                    OpenPrintFormats(idvalor, @Spartane.Web.SessionHelper.Role, "", false, "45018", formaid);
-
-                }, false)) {
-
-                }
-            }
-        }
-
-
-        </script>
-    }
+    </script>
+}
     <input type="hidden" id="FieldId" name="FieldId" value="" />
     <input type="hidden" id="FieldName" name="FieldName" value="" />
     <input type="hidden" id="ObjectId" name="ObjectId" value="" />
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
-    <input type="hidden" id="Detalle_de_documentos_cmbLabelSelect" name="Detalle_de_documentos_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+     <input type="hidden" id="Detalle_de_documentos_cmbLabelSelect" name="Detalle_de_documentos_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
 

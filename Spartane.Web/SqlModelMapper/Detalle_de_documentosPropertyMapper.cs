@@ -44,6 +44,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_documentos.Observaciones";
                 case "Archivo":
                     return "Detalle_de_documentos.Archivo";
+                case "Lista_para_periciales":
+                    return "Detalle_de_documentos.Lista_para_periciales";
                 case "Descripcion":
                     return "Detalle_de_documentos.Descripcion";
 
@@ -73,6 +75,10 @@ namespace Spartane.Web.SqlModelMapper
                 {
 
                 }
+            }
+            if (columnName == "Lista_para_periciales")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
 
 
