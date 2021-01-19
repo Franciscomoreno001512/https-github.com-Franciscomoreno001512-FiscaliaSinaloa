@@ -748,19 +748,17 @@
 
 
                         $.each(v.Values, function (i, v2) {
-                            debugger;
-                            if (ObjectSelected == "45018" ) {
+                            if (ObjectSelected == "45018") {
                                 //if (ObjectSelected == "45018" || ObjectSelected == "45474") {
 
-                                if (i == 0 || (i == 7 && idModule == '1') || (i == 10 && idModule == '1') || (i == 12 && idModule == '1') || (i == 11 && idModule == '1')  ) {
-
+                                if (i == 0 || (i == 7 && idModule == '1') || (i == 10 && idModule == '1') || (i == 11 && idModule == '1')) { //|| (i == 12 && idModule == '1')
                                     htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
                                 }
                             }
                             else {
-                                if (i == 0 || (idModule == "1" && i == 11) || (idModule == "3" && i == 13) ) {
+                                if (i == 0 || (idModule == "1" && i == 11) || (idModule == "3" && i == 13)) {
                                     htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
