@@ -320,7 +320,7 @@
 
         });
         $('#TabsBadget').on('click', 'button', function () {
-            debugger;
+
             esEdicionInvitaciones = false;
             $('#TabsBadget button').css('background-color', 'transparent');
             $(this).css('background-color', '#ddd');
@@ -399,7 +399,7 @@
         //Collapso de columnas
         var tamañoTablaBusqusteda = 0;
         $("#btn_rg_busqueda_ocultar").click(function () {
-            debugger;
+
             var altoRegionInfoBusqueda = 0;
 			$('.panelbusqueda').hide();
             $("#btn_rg_busqueda_visualizar").show();
@@ -554,7 +554,7 @@
 
 
     function GetDataToShow(folio, idTablero) {
-        debugger;
+
        IdSelected = folio;
         $.ajax({
             url: url_content + "Frontal/DynamicSearch/GetDataToShow?id=" + folio.toString() + "&idTablero=" + idTablero,
@@ -616,7 +616,7 @@
     var IdSelected = "-1";
 	var idModule = getParameterByName('id');
     function FillDetailsByTab(idTab, object, id, idTablero) {
-        debugger;
+       debugger;
         ObjectSelected = object;
         $.ajax({
             url: url_content + "Frontal/DynamicSearch/GetDetalleBySearchResult?idTab=" + idTab + "&id=" + id + "&idTablero=" + idTablero,
@@ -642,15 +642,14 @@
                     htmlColumns += '<th class="text-center">Acción</th>';
                     $.each(result[0].Details.Columns, function (i, c) {
 
-                        debugger;
                         if (ObjectSelected == "45018") {
-                            if (c == "Clave" || (c == "Documento" && idModule == '1') || (c == "Campo" && idModule == '1') || (c == "Archivo" && idModule == '1') || (c == "Descripcion" && idModule == '1') || (c == "Lista_para_periciales" )) {
+                            if (c == "Clave" || (c == "Documento" && idModule == '1') || (c == "Campo" && idModule == '1') || (c == "Archivo" && idModule == '1') || (c == "Descripcion" && idModule == '1') || (c == "Lista_para_periciales" ) || (c == "Documento_Pericial") || (c == "Archivo_Pericial") ) {
                                 htmlColumns += '<th class="text-center" hidden>' + c.replace(/_/g, " ") + '</th>';
                             } else {
                                 htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
                             }
                         } else {
-                            if (c == "Clave" || c == "Lista_para_periciales" ) {
+                            if (c == "Clave" || c == "Lista_para_periciales" || c == "Documento_Pericial" || c == "Archivo_Pericial" ) {
                                 htmlColumns += '<th class="text-center" hidden>' + c.replace(/_/g, " ") + '</th>';
                             } else {
                                 htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
@@ -671,7 +670,7 @@
 
 
 
-                        htmlValues += '<tr>';
+                           htmlValues += '<tr>';
 
 
                         @if(ViewBag.idTablero == 1 || ViewBag.idTablero == 3)
@@ -690,6 +689,9 @@
                             }
                             if ( idModule == "3") {
                                 if (v.Values[13] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
+                            }
+                            if ( idModule == "2") {
+                                if (v.Values[6] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
                             }
 
 
@@ -725,10 +727,21 @@
                         debugger;
                         var tagPericial = '';
 
-                        if (idModule == "2") {
-                            if (v.Values[11] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
-                        }
+                        //if (idModule == "2") {
+                           // if (v.Values[11] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
+                     //  }
 
+
+
+                            if (idModule == "1" ) {
+                                if (v.Values[11] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>';  }
+                            }
+                            if ( idModule == "3") {
+                                if (v.Values[13] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
+                            }
+                            if ( idModule == "2") {
+                                if (v.Values[6] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
+                            }
 
                         if (permisionDelete) {
                             htmlValues += '<td class="text-center" style="width:100px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="classDelete"><i class="fa fa-trash"  data-ObjectSelected="' + ObjectSelected + '"></i></a>' + tagPericial + '</td>';
@@ -747,18 +760,19 @@
 
 
 
+
                         $.each(v.Values, function (i, v2) {
-                            if (ObjectSelected == "45018") {
+                            if (ObjectSelected == "45018" ) {
                                 //if (ObjectSelected == "45018" || ObjectSelected == "45474") {
 
-                                if (i == 0 || (i == 7 && idModule == '1') || (i == 10 && idModule == '1') || (i == 11 && idModule == '1')) { //|| (i == 12 && idModule == '1')
+                                if (i == 0 || (i == 7 && idModule == '1') || (i == 10 && idModule == '1')  || (i == 11 && idModule == '1')) { //|| (i == 12 && idModule == '1')
                                     htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
                                 }
                             }
                             else {
-                                if (i == 0 || (idModule == "1" && i == 11) || (idModule == "3" && i == 13)) {
+                                if (i == 0 || (idModule == "1" && i == 11) || (idModule == "3" && i == 13) || (idModule == "2" && i == 6) || (idModule == "2" && i == 7) || (idModule == "2" && i == 8) ) {
                                     htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
@@ -1131,12 +1145,16 @@
          debugger;
 
         var _idModule = getParameterByName('id');
-        var _columna = '12';
-        if (_idModule == '1') { _columna = '11'; }
+        var _columna = '0';
 
-        var folioControlDoc = jQuery(this).closest('tr').find('td:eq(' + _columna + ')').text();
+        if (_idModule == '2') { _columna = '9'; }
 
-        var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + folioControlDoc, "", "");// document.getElementById("Archivo").innerHTML;
+        if (_columna != '0') {
+
+        //var folioControlDoc = jQuery(this).closest('tr').find('td:eq(' + _columna + ')').text();
+
+        //var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + folioControlDoc, "", "");// document.getElementById("Archivo").innerHTML;
+        var id = jQuery(this).closest('tr').find('td:eq(' + _columna + ')').text();
             $.ajax({
                 async: false,
                 url: '@Url.Content("~/Frontal/General/GetArchivoFisico")',
@@ -1150,7 +1168,7 @@
                 }
         });
 
-
+}
     });
 
     $("body").on("click", ".classDelete", function (e) {
