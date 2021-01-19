@@ -27,6 +27,15 @@
     List<SelectListItem> varCompareciente_Compareciente = null;
     if (ViewBag.Comparecientes_Compareciente != null)
     { varCompareciente_Compareciente = (List<SelectListItem>)ViewBag.Comparecientes_Compareciente; }
+    List<SelectListItem> varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = null;
+    if (ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial != null)
+    { varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = (List<SelectListItem>)ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial; }
+    List<SelectListItem> varDetalle_de_documentos_Documento_Mecanismos_Alternos = null;
+    if (ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos != null)
+    { varDetalle_de_documentos_Documento_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos; }
+    List<SelectListItem> varDiligencias_MP_Documento_Ministerio_Publico = null;
+    if (ViewBag.Diligencias_MPs_Documento_Ministerio_Publico != null)
+    { varDiligencias_MP_Documento_Ministerio_Publico = (List<SelectListItem>)ViewBag.Diligencias_MPs_Documento_Ministerio_Publico; }
  List<SelectListItem> varDocumento_Diligencia = null;
     if (ViewBag.Documentos_Diligencia != null)
     { varDocumento_Diligencia = (List<SelectListItem>)ViewBag.Documentos_Diligencia; }
@@ -248,6 +257,69 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceCompareciente"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Atencion_Inicial</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Documento_Atencion_InicialFilter, filters, new { @class = "form-control", @id = "ddlDocumento_Atencion_InicialFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceDocumento_Atencion_Inicial, new { @class = "form-control", @type = "text", @id = "txtAdvanceDocumento_Atencion_Inicial" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceDocumento_Atencion_InicialMultiple, varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceDocumento_Atencion_Inicial"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Mecanismos_Alternos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Documento_Mecanismos_AlternosFilter, filters, new { @class = "form-control", @id = "ddlDocumento_Mecanismos_AlternosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceDocumento_Mecanismos_Alternos, new { @class = "form-control", @type = "text", @id = "txtAdvanceDocumento_Mecanismos_Alternos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDetalle_de_documentos_Documento_Mecanismos_Alternos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceDocumento_Mecanismos_AlternosMultiple, varDetalle_de_documentos_Documento_Mecanismos_Alternos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceDocumento_Mecanismos_Alternos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Ministerio_Publico</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Documento_Ministerio_PublicoFilter, filters, new { @class = "form-control", @id = "ddlDocumento_Ministerio_PublicoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceDocumento_Ministerio_Publico, new { @class = "form-control", @type = "text", @id = "txtAdvanceDocumento_Ministerio_Publico" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDiligencias_MP_Documento_Ministerio_Publico!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceDocumento_Ministerio_PublicoMultiple, varDiligencias_MP_Documento_Ministerio_Publico,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceDocumento_Ministerio_Publico"
                         });
                     }
                 </div>
@@ -586,6 +658,51 @@
                 advanceSearch.ComparecienteSearchType = 2;
             }
         }
+        advanceSearch.Documento_Atencion_InicialSearchType = 0;
+        if ($('#ddlAdvanceDocumento_Atencion_Inicial').val().length > 0 || $("#txtAdvanceDocumento_Atencion_Inicial").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.Documento_Atencion_InicialName = $("#txtAdvanceDocumento_Atencion_Inicial").val();
+                advanceSearch.Documento_Atencion_InicialNameSearchType = $("#ddlAdvanceDocumento_Atencion_Inicial").val();
+                advanceSearch.Documento_Atencion_InicialSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Documento_Atencion_InicialToSearch = $("#ddlAdvanceDocumento_Atencion_Inicial").val();
+                advanceSearch.Documento_Atencion_InicialSearchType = 2;
+            }
+        }
+        advanceSearch.Documento_Mecanismos_AlternosSearchType = 0;
+        if ($('#ddlAdvanceDocumento_Mecanismos_Alternos').val().length > 0 || $("#txtAdvanceDocumento_Mecanismos_Alternos").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.Documento_Mecanismos_AlternosName = $("#txtAdvanceDocumento_Mecanismos_Alternos").val();
+                advanceSearch.Documento_Mecanismos_AlternosNameSearchType = $("#ddlAdvanceDocumento_Mecanismos_Alternos").val();
+                advanceSearch.Documento_Mecanismos_AlternosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Documento_Mecanismos_AlternosToSearch = $("#ddlAdvanceDocumento_Mecanismos_Alternos").val();
+                advanceSearch.Documento_Mecanismos_AlternosSearchType = 2;
+            }
+        }
+        advanceSearch.Documento_Ministerio_PublicoSearchType = 0;
+        if ($('#ddlAdvanceDocumento_Ministerio_Publico').val().length > 0 || $("#txtAdvanceDocumento_Ministerio_Publico").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.Documento_Ministerio_PublicoName = $("#txtAdvanceDocumento_Ministerio_Publico").val();
+                advanceSearch.Documento_Ministerio_PublicoNameSearchType = $("#ddlAdvanceDocumento_Ministerio_Publico").val();
+                advanceSearch.Documento_Ministerio_PublicoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Documento_Ministerio_PublicoToSearch = $("#ddlAdvanceDocumento_Ministerio_Publico").val();
+                advanceSearch.Documento_Ministerio_PublicoSearchType = 2;
+            }
+        }
         advanceSearch.DiligenciaSearchType = 0;
         if ($('#ddlAdvanceDiligencia').val().length > 0 || $("#txtAdvanceDiligencia").val() == "") {
 
@@ -819,6 +936,33 @@
         $("#ddlAdvanceCompareciente").change(function () {
             isDetalle_de_Servicio_de_ApoyoTextSearch = false;
             $("#txtAdvanceCompareciente").val('');
+        });
+        $("#txtAdvanceDocumento_Atencion_Inicial").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDocumento_Atencion_Inicial").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDocumento_Atencion_Inicial").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDocumento_Atencion_Inicial").val('');
+        });
+        $("#txtAdvanceDocumento_Mecanismos_Alternos").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDocumento_Mecanismos_Alternos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDocumento_Mecanismos_Alternos").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDocumento_Mecanismos_Alternos").val('');
+        });
+        $("#txtAdvanceDocumento_Ministerio_Publico").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDocumento_Ministerio_Publico").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDocumento_Ministerio_Publico").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDocumento_Ministerio_Publico").val('');
         });
         $("#txtAdvanceDiligencia").keypress(function () {
             isDetalle_de_Servicio_de_ApoyoTextSearch = true;
