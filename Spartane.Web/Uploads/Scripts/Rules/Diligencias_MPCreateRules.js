@@ -102,14 +102,16 @@ $("form#CreateDiligencias_MP").on('change', '#Documento', function () {
 
 
 
-//BusinessRuleId:3490, Attribute:267312, Operation:Field, Event:None
-$("form#CreateDiligencias_MP").on('change', '#Tipo_de_Documento', function () {
+
+
+//BusinessRuleId:3504, Attribute:267313, Operation:Field, Event:None
+$("form#CreateDiligencias_MP").on('change', '#Documento', function () {
 	nameOfTable='';
 	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex),nameOfTable,rowIndex)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Lista_para_periciales' + rowIndex),'false');}
+if( EvaluaQuery("select Tipo_de_Documento from documento where Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Lista_para_periciales' + rowIndex),'false');}
 });
 
-//BusinessRuleId:3490, Attribute:267312, Operation:Field, Event:None
+//BusinessRuleId:3504, Attribute:267313, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -332,16 +334,20 @@ if(operation == 'New'){
 
 
 
+
+
+
+
 //BusinessRuleId:3484, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex),nameOfTable,rowIndex)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
+if( EvaluaQuery("select Tipo_de_Documento from documento where Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
 
 }
 //BusinessRuleId:3484, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:3484, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex),nameOfTable,rowIndex)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
+if( EvaluaQuery("select Tipo_de_Documento from documento where Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
 
 }
 //BusinessRuleId:3484, Attribute:0, Operation:Object, Event:SCREENOPENING
