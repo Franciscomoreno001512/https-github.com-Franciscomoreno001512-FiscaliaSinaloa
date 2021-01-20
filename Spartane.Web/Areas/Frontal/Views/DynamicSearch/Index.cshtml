@@ -760,19 +760,19 @@
 
 
 
-
+                        debugger;
                         $.each(v.Values, function (i, v2) {
                             if (ObjectSelected == "45018" ) {
                                 //if (ObjectSelected == "45018" || ObjectSelected == "45474") {
 
-                                if (i == 0 || (i == 7 && idModule == '1') || (i == 10 && idModule == '1')  || (i == 11 && idModule == '1')) { //|| (i == 12 && idModule == '1')
+                                if (i == 0 || (i == 7 && idModule == '1') || (i == 10 && idModule == '1')  || (i == 11 && idModule == '1') || (i == 17 && idModule == '3') || (i == 18 && idModule == '3')) { //|| (i == 12 && idModule == '1')
                                     htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
                                 }
                             }
                             else {
-                                if (i == 0 || (idModule == "1" && i == 11) || (idModule == "3" && i == 13) || (idModule == "2" && i == 6) || (idModule == "2" && i == 7) || (idModule == "2" && i == 8) ) {
+                                if (i == 0 || (idModule == "1" && i == 11) || (idModule == "3" && i == 13) || (idModule == "2" && i == 6) || (idModule == "2" && i == 7) || (idModule == "2" && i == 8) || (i == 17 && idModule == '3') || (i == 18 && idModule == '3') ) {
                                     htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
@@ -1148,6 +1148,7 @@
         var _columna = '0';
 
         if (_idModule == '2') { _columna = '9'; }
+        if (_idModule == '3') { _columna = '19'; }
 
         if (_columna != '0') {
 
