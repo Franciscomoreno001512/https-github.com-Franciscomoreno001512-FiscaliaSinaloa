@@ -41,13 +41,13 @@
     List<SelectListItem> varCompareciente_Compareciente = null;
     if (ViewBag.Comparecientes_Compareciente != null)
     { varCompareciente_Compareciente = (List<SelectListItem>)ViewBag.Comparecientes_Compareciente; }
-    List<SelectListItem> varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = null;
+ List<SelectListItem> varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = null;
     if (ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial != null)
     { varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = (List<SelectListItem>)ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial; }
-    List<SelectListItem> varDetalle_de_documentos_Documento_Mecanismos_Alternos = null;
+ List<SelectListItem> varDetalle_de_documentos_Documento_Mecanismos_Alternos = null;
     if (ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos != null)
     { varDetalle_de_documentos_Documento_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos; }
-    List<SelectListItem> varDiligencias_MP_Documento_Ministerio_Publico = null;
+ List<SelectListItem> varDiligencias_MP_Documento_Ministerio_Publico = null;
     if (ViewBag.Diligencias_MPs_Documento_Ministerio_Publico != null)
     { varDiligencias_MP_Documento_Ministerio_Publico = (List<SelectListItem>)ViewBag.Diligencias_MPs_Documento_Ministerio_Publico; }
  List<SelectListItem> varDocumento_Diligencia = null;
@@ -437,84 +437,42 @@
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divDocumento_Atencion_Inicial">
+				<div class="form-group" id="divDocumento_Atencion_Inicial">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Atencion_Inicial</label>
                                 <div class="col-sm-8" data-field-id="Documento_Atencion_Inicial" data-attribute="270187" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Atencion_Inicial">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Documento Atención Inicial must be a number." data-val-required="The Documento Atención Inicial field is required." id="Documento_Atencion_Inicial" name="Documento_Atencion_Inicial">
-                                        <option value=""></option>
-                                        @if (varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial != null){ 
-                                            foreach (var itemDocumento_Atencion_Inicial in varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial)
-                                            {
-                                                if (itemDocumento_Atencion_Inicial.Value == Convert.ToString(Model.Documento_Atencion_Inicial))
-                                                {
-                                                    <option value="@itemDocumento_Atencion_Inicial.Value" selected>@itemDocumento_Atencion_Inicial.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemDocumento_Atencion_Inicial.Value">@itemDocumento_Atencion_Inicial.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Atencion_Inicial form-control select2-dropdown Datos_Generales' data-val="true" id="Documento_Atencion_Inicial" name="Documento_Atencion_Inicial">
+                                        <option value="@Model.Documento_Atencion_Inicial">@(Model.Documento_Atencion_InicialObservaciones??Model.Documento_Atencion_InicialObservaciones)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Documento_Atencion_Inicial" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 270187).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 270187).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Documentos_MPO', 'Documento_Atencion_Inicial');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divDocumento_Mecanismos_Alternos">
+				<div class="form-group" id="divDocumento_Mecanismos_Alternos">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Mecanismos_Alternos</label>
                                 <div class="col-sm-8" data-field-id="Documento_Mecanismos_Alternos" data-attribute="270188" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Mecanismos_Alternos">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Documento Mecanismos Alternos must be a number." data-val-required="The Documento Mecanismos Alternos field is required." id="Documento_Mecanismos_Alternos" name="Documento_Mecanismos_Alternos">
-                                        <option value=""></option>
-                                        @if (varDetalle_de_documentos_Documento_Mecanismos_Alternos != null){ 
-                                            foreach (var itemDocumento_Mecanismos_Alternos in varDetalle_de_documentos_Documento_Mecanismos_Alternos)
-                                            {
-                                                if (itemDocumento_Mecanismos_Alternos.Value == Convert.ToString(Model.Documento_Mecanismos_Alternos))
-                                                {
-                                                    <option value="@itemDocumento_Mecanismos_Alternos.Value" selected>@itemDocumento_Mecanismos_Alternos.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemDocumento_Mecanismos_Alternos.Value">@itemDocumento_Mecanismos_Alternos.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Mecanismos_Alternos form-control select2-dropdown Datos_Generales' data-val="true" id="Documento_Mecanismos_Alternos" name="Documento_Mecanismos_Alternos">
+                                        <option value="@Model.Documento_Mecanismos_Alternos">@(Model.Documento_Mecanismos_AlternosDescripcion??Model.Documento_Mecanismos_AlternosDescripcion)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Documento_Mecanismos_Alternos" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 270188).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 270188).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_documentos', 'Documento_Mecanismos_Alternos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divDocumento_Ministerio_Publico">
+				<div class="form-group" id="divDocumento_Ministerio_Publico">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Ministerio_Publico</label>
                                 <div class="col-sm-8" data-field-id="Documento_Ministerio_Publico" data-attribute="270189" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Ministerio_Publico">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Documento Ministerio Público must be a number." data-val-required="The Documento Ministerio Público field is required." id="Documento_Ministerio_Publico" name="Documento_Ministerio_Publico">
-                                        <option value=""></option>
-                                        @if (varDiligencias_MP_Documento_Ministerio_Publico != null){ 
-                                            foreach (var itemDocumento_Ministerio_Publico in varDiligencias_MP_Documento_Ministerio_Publico)
-                                            {
-                                                if (itemDocumento_Ministerio_Publico.Value == Convert.ToString(Model.Documento_Ministerio_Publico))
-                                                {
-                                                    <option value="@itemDocumento_Ministerio_Publico.Value" selected>@itemDocumento_Ministerio_Publico.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemDocumento_Ministerio_Publico.Value">@itemDocumento_Ministerio_Publico.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Ministerio_Publico form-control select2-dropdown Datos_Generales' data-val="true" id="Documento_Ministerio_Publico" name="Documento_Ministerio_Publico">
+                                        <option value="@Model.Documento_Ministerio_Publico">@(Model.Documento_Ministerio_PublicoDescripcion??Model.Documento_Ministerio_PublicoDescripcion)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Documento_Ministerio_Publico" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 270189).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 270189).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Diligencias_MP', 'Documento_Ministerio_Publico');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -990,6 +948,105 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
+       var AutoCompleteDocumento_Atencion_InicialData =[];
+       $(".AutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Atencion_Inicial").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/GetDetalle_de_Servicio_de_Apoyo_Documento_Atencion_Inicial_Detalle_de_Documentos_MPO")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Atencion_Inicial_Detalle_de_Documentos_MPOData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Atencion_Inicial");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteDocumento_Mecanismos_AlternosData =[];
+       $(".AutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Mecanismos_Alternos").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/GetDetalle_de_Servicio_de_Apoyo_Documento_Mecanismos_Alternos_Detalle_de_documentos")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Mecanismos_Alternos_Detalle_de_documentosData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Mecanismos_Alternos");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteDocumento_Ministerio_PublicoData =[];
+       $(".AutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Ministerio_Publico").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/GetDetalle_de_Servicio_de_Apoyo_Documento_Ministerio_Publico_Diligencias_MP")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Ministerio_Publico_Diligencias_MPData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Servicio_de_Apoyo_Documento_Ministerio_Publico");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
        var AutoCompleteDiligenciaData =[];
        $(".AutoCompleteDetalle_de_Servicio_de_Apoyo_Diligencia").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -1041,16 +1098,15 @@
 
                 </text>
             }
-			EjecutarValidacionesAlComienzo(); 
-			var valorArchivo = $("#Archivo").val();
+            EjecutarValidacionesAlComienzo(); 
+            var valorArchivo = $("#Archivo").val();
 
 
-			if (valorArchivo != "" && valorArchivo != "0") {
+            if (valorArchivo != "" && valorArchivo != "0") {
 
-				$("#Archivo_VerDocto").removeClass("hidden");
+                $("#Archivo_VerDocto").removeClass("hidden");
 
-			}
-
+            }
 			
         });
 
@@ -1341,9 +1397,33 @@
                     $('#Idioma').val(result.data.Idioma);
                     $('#Responsable').val(result.data.Responsable);
                     $('#Compareciente').val(result.data.Compareciente);
-                    $('#Documento_Atencion_Inicial').val(result.data.Documento_Atencion_Inicial);
-                    $('#Documento_Mecanismos_Alternos').val(result.data.Documento_Mecanismos_Alternos);
-                    $('#Documento_Ministerio_Publico').val(result.data.Documento_Ministerio_Publico);
+                    var control = $('#Documento_Atencion_Inicial');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Documento_Atencion_Inicial).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Documento_Atencion_Inicial).trigger('change');
+                    }, 3000);
+                    var control = $('#Documento_Mecanismos_Alternos');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Documento_Mecanismos_Alternos).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Documento_Mecanismos_Alternos).trigger('change');
+                    }, 3000);
+                    var control = $('#Documento_Ministerio_Publico');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Documento_Ministerio_Publico).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Documento_Ministerio_Publico).trigger('change');
+                    }, 3000);
                     var control = $('#Diligencia');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Diligencia).trigger('keyup');
@@ -1475,7 +1555,6 @@
 				cache: false
 			});
 		}
-
 	        	function GetIdFormatoFromDocumento()
     {
         debugger;
