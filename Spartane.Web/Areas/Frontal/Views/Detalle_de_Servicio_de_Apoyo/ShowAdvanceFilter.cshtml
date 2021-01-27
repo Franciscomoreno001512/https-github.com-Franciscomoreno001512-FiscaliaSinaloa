@@ -9,10 +9,10 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial; }
-    List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
+ List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
     if (ViewBag.Solicituds_Modulo_Mecanismos_Alternos != null)
     { varSolicitud_Modulo_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Modulo_Mecanismos_Alternos; }
-    List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
+ List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
     if (ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico != null)
     { varexpediente_ministerio_publico_Modulo_Ministerio_Publico = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico; }
     List<SelectListItem> varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio = null;
@@ -126,48 +126,12 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial; }
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Modulo_Mecanismos_Alternos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Modulo_Mecanismos_AlternosFilter, filters, new { @class = "form-control", @id = "ddlModulo_Mecanismos_AlternosFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceModulo_Mecanismos_Alternos, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo_Mecanismos_Alternos" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSolicitud_Modulo_Mecanismos_Alternos!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceModulo_Mecanismos_AlternosMultiple, varSolicitud_Modulo_Mecanismos_Alternos,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceModulo_Mecanismos_Alternos"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Modulo_Ministerio_Publico</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Modulo_Ministerio_PublicoFilter, filters, new { @class = "form-control", @id = "ddlModulo_Ministerio_PublicoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceModulo_Ministerio_Publico, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo_Ministerio_Publico" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varexpediente_ministerio_publico_Modulo_Ministerio_Publico!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceModulo_Ministerio_PublicoMultiple, varexpediente_ministerio_publico_Modulo_Ministerio_Publico,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceModulo_Ministerio_Publico"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
+    if (ViewBag.Solicituds_Modulo_Mecanismos_Alternos != null)
+    { varSolicitud_Modulo_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Modulo_Mecanismos_Alternos; }
+ List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
+    if (ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico != null)
+    { varexpediente_ministerio_publico_Modulo_Ministerio_Publico = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Tipo_de_Servicio</h3>
                 </div>

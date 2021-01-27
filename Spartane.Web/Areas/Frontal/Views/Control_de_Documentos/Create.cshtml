@@ -583,11 +583,11 @@
             }
 
             div#divCuerpo_del_Documento {
-                height: 62vh;
+                height: 70vh;
             }
 
             #Cuerpo_del_Documento {
-                height: 62vh;
+                height: 70vh;
             }
         </style>
     }
@@ -608,7 +608,7 @@
 
                 setTimeout(function () {
                     $('#cke_1_contents').css("height", "");
-                    $('#cke_1_contents').css("height", "55vh");
+                    $('#cke_1_contents').css("height", "70vh");
 
                     $('#divAttachmentArchivo').css("margin-top", "");
                     $('#divAttachmentArchivo').css("margin-top", "15vh");
@@ -728,6 +728,15 @@
                 </text>
             }
             EjecutarValidacionesAlComienzo();
+
+                            setTimeout(function () {
+                    $('#cke_1_contents').css("height", "");
+                    $('#cke_1_contents').css("height", "70vh");
+
+                    $('#divAttachmentArchivo').css("margin-top", "");
+                    $('#divAttachmentArchivo').css("margin-top", "15vh");
+
+                }, 300); 
 
         });
 

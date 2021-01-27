@@ -34,7 +34,7 @@ function GetAutoCompleteDetalle_Relaciones_MASC_Solicitante_Detalle_de_Datos_Gen
     for (var i = 0; i < data.length; i++) {
         AutoCompleteSolicitanteData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo2
+            text: data[i].Nombre_Completo
         });
     }
     return AutoCompleteSolicitanteData;
