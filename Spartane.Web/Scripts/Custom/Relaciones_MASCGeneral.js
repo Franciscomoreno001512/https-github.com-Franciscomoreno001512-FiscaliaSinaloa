@@ -44,7 +44,7 @@ function GetDetalle_Relaciones_MASC_DelitoDropDown() {
 function GetDetalle_Relaciones_MASC_Detalle_de_Datos_GeneralesName(Id) {
     for (var i = 0; i < Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesItems.length; i++) {
         if (Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesItems[i].Clave == Id) {
-            return Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesItems[i].Nombre_Completo2;
+            return Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesItems[i].Nombre_Completo;
         }
     }
     return "";
@@ -56,7 +56,7 @@ function GetDetalle_Relaciones_MASC_Detalle_de_Datos_GeneralesDropDown() {
     $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesDropdown);
 
     for (var i = 0; i < Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesItems.length; i++) {
-        $('<option />', { value: Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesItems[i].Clave, text: Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesItems[i].Nombre_Completo2 }).appendTo(Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesDropdown);
+        $('<option />', { value: Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesItems[i].Clave, text: Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesItems[i].Nombre_Completo }).appendTo(Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesDropdown);
     }
     return Detalle_Relaciones_MASC_Detalle_de_Datos_GeneralesDropdown;
 }
@@ -90,7 +90,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Relaciones_MASC("Detalle_Relacio
         , Requerido:  data.childNodes[counter++].childNodes[0].value 	
         , DelitoDescripcion:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Delito:  data.childNodes[counter++].childNodes[0].value 	
-        , SolicitanteNombre_Completo2:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
+        , SolicitanteNombre_Completo:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Solicitante:  data.childNodes[counter++].childNodes[0].value 	
 
     }
@@ -385,7 +385,7 @@ function GetAutoCompleteDetalle_Relaciones_MASC_Solicitante_Detalle_de_Datos_Gen
     for (var i = 0; i < data.length; i++) {
         AutoCompleteSolicitanteData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo2
+            text: data[i].Nombre_Completo
         });
     }
     return AutoCompleteSolicitanteData;

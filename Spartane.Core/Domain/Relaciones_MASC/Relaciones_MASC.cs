@@ -130,7 +130,17 @@ namespace Spartane.Core.Domain.Relaciones_MASC
 	public class Relaciones_MASC_Resolucion_de_Procedimiento
     {
                 public int Clave { get; set; }
-        public DateTime? Fecha_de_Resolucion_proc { get; set; }         public string hora_resolucion_proc { get; set; }         public int? usuario_resuelve_proc { get; set; }         public int? Resolucion_proc { get; set; }         public string Observaciones_proc { get; set; }         public DateTime? Fecha_de_Validacion_proc { get; set; }         public string Hora_de_Validacion_proc { get; set; }         public int? Usuario_que_Valida_proc { get; set; }         public short? Resultado_proc { get; set; }         public string Motivo_de_Rechazo_proc { get; set; } 
+        public DateTime? Fecha_de_Resolucion_proc { get; set; }
+        public string hora_resolucion_proc { get; set; }
+        public int? usuario_resuelve_proc { get; set; }
+        public int? Resolucion_proc { get; set; }
+        public string Observaciones_proc { get; set; }
+        public DateTime? Fecha_de_Validacion_proc { get; set; }
+        public string Hora_de_Validacion_proc { get; set; }
+        public int? Usuario_que_Valida_proc { get; set; }
+        public short? Resultado_proc { get; set; }
+        public string Motivo_de_Rechazo_proc { get; set; }
+
 		        [ForeignKey("usuario_resuelve_proc")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User usuario_resuelve_proc_Spartan_User { get; set; }
         [ForeignKey("Resolucion_proc")]

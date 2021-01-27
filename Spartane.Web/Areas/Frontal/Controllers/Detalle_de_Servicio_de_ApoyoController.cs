@@ -286,20 +286,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Origen_de_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Solicituds_Modulo_Mecanismos_Alternos = _ISolicitudApiConsumer.SelAll(true);
-            if (Solicituds_Modulo_Mecanismos_Alternos != null && Solicituds_Modulo_Mecanismos_Alternos.Resource != null)
-                ViewBag.Solicituds_Modulo_Mecanismos_Alternos = Solicituds_Modulo_Mecanismos_Alternos.Resource.Where(m => m.CDI != null).OrderBy(m => m.CDI).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "CDI") ?? m.CDI.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var expediente_ministerio_publicos_Modulo_Ministerio_Publico = _Iexpediente_ministerio_publicoApiConsumer.SelAll(true);
-            if (expediente_ministerio_publicos_Modulo_Ministerio_Publico != null && expediente_ministerio_publicos_Modulo_Ministerio_Publico.Resource != null)
-                ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico = expediente_ministerio_publicos_Modulo_Ministerio_Publico.Resource.Where(m => m.nic != null).OrderBy(m => m.nic).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic") ?? m.nic.ToString(), Value = Convert.ToString(m.clave)
-                }).ToList();
             _ITipo_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio = _ITipo_de_Servicio_de_ApoyoApiConsumer.SelAll(true);
             if (Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio != null && Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio.Resource != null)
@@ -487,20 +473,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Origen_de_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Solicituds_Modulo_Mecanismos_Alternos = _ISolicitudApiConsumer.SelAll(true);
-            if (Solicituds_Modulo_Mecanismos_Alternos != null && Solicituds_Modulo_Mecanismos_Alternos.Resource != null)
-                ViewBag.Solicituds_Modulo_Mecanismos_Alternos = Solicituds_Modulo_Mecanismos_Alternos.Resource.Where(m => m.CDI != null).OrderBy(m => m.CDI).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "CDI") ?? m.CDI.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var expediente_ministerio_publicos_Modulo_Ministerio_Publico = _Iexpediente_ministerio_publicoApiConsumer.SelAll(true);
-            if (expediente_ministerio_publicos_Modulo_Ministerio_Publico != null && expediente_ministerio_publicos_Modulo_Ministerio_Publico.Resource != null)
-                ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico = expediente_ministerio_publicos_Modulo_Ministerio_Publico.Resource.Where(m => m.nic != null).OrderBy(m => m.nic).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic") ?? m.nic.ToString(), Value = Convert.ToString(m.clave)
-                }).ToList();
             _ITipo_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio = _ITipo_de_Servicio_de_ApoyoApiConsumer.SelAll(true);
             if (Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio != null && Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio.Resource != null)
@@ -626,7 +598,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
+		[HttpGet]
         public ActionResult GetSolicitudAll()
         {
             try
@@ -635,7 +607,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISolicitudApiConsumer.SelAll(false).Resource;
-                
+				
                 return Json(result.OrderBy(m => m.CDI).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "CDI")?? m.CDI,
@@ -647,7 +619,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
+		[HttpGet]
         public ActionResult Getexpediente_ministerio_publicoAll()
         {
             try
@@ -656,7 +628,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _Iexpediente_ministerio_publicoApiConsumer.SelAll(false).Resource;
-                
+				
                 return Json(result.OrderBy(m => m.nic).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic")?? m.nic,
@@ -981,20 +953,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Origen_de_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Solicituds_Modulo_Mecanismos_Alternos = _ISolicitudApiConsumer.SelAll(true);
-            if (Solicituds_Modulo_Mecanismos_Alternos != null && Solicituds_Modulo_Mecanismos_Alternos.Resource != null)
-                ViewBag.Solicituds_Modulo_Mecanismos_Alternos = Solicituds_Modulo_Mecanismos_Alternos.Resource.Where(m => m.CDI != null).OrderBy(m => m.CDI).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "CDI") ?? m.CDI.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var expediente_ministerio_publicos_Modulo_Ministerio_Publico = _Iexpediente_ministerio_publicoApiConsumer.SelAll(true);
-            if (expediente_ministerio_publicos_Modulo_Ministerio_Publico != null && expediente_ministerio_publicos_Modulo_Ministerio_Publico.Resource != null)
-                ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico = expediente_ministerio_publicos_Modulo_Ministerio_Publico.Resource.Where(m => m.nic != null).OrderBy(m => m.nic).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic") ?? m.nic.ToString(), Value = Convert.ToString(m.clave)
-                }).ToList();
             _ITipo_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio = _ITipo_de_Servicio_de_ApoyoApiConsumer.SelAll(true);
             if (Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio != null && Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio.Resource != null)
@@ -1075,20 +1033,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Origen_de_Invitacions_Origen = Origen_de_Invitacions_Origen.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Origen_de_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Solicituds_Modulo_Mecanismos_Alternos = _ISolicitudApiConsumer.SelAll(true);
-            if (Solicituds_Modulo_Mecanismos_Alternos != null && Solicituds_Modulo_Mecanismos_Alternos.Resource != null)
-                ViewBag.Solicituds_Modulo_Mecanismos_Alternos = Solicituds_Modulo_Mecanismos_Alternos.Resource.Where(m => m.CDI != null).OrderBy(m => m.CDI).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "CDI") ?? m.CDI.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var expediente_ministerio_publicos_Modulo_Ministerio_Publico = _Iexpediente_ministerio_publicoApiConsumer.SelAll(true);
-            if (expediente_ministerio_publicos_Modulo_Ministerio_Publico != null && expediente_ministerio_publicos_Modulo_Ministerio_Publico.Resource != null)
-                ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico = expediente_ministerio_publicos_Modulo_Ministerio_Publico.Resource.Where(m => m.nic != null).OrderBy(m => m.nic).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic") ?? m.nic.ToString(), Value = Convert.ToString(m.clave)
                 }).ToList();
             _ITipo_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio = _ITipo_de_Servicio_de_ApoyoApiConsumer.SelAll(true);
@@ -1193,8 +1137,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Modulo_de_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_de_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_de_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,Modulo_Mecanismos_AlternosCDI = CultureHelper.GetTraduction(m.Modulo_Mecanismos_Alternos_Solicitud.Clave.ToString(), "CDI") ?? (string)m.Modulo_Mecanismos_Alternos_Solicitud.CDI
-                        ,Modulo_Ministerio_Publiconic = CultureHelper.GetTraduction(m.Modulo_Ministerio_Publico_expediente_ministerio_publico.clave.ToString(), "nic") ?? (string)m.Modulo_Ministerio_Publico_expediente_ministerio_publico.nic
+                        ,Modulo_Mecanismos_AlternosCDI = CultureHelper.GetTraduction(m.Modulo_Mecanismos_Alternos_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Modulo_Mecanismos_Alternos_Solicitud.CDI
+                        ,Modulo_Ministerio_Publiconic = CultureHelper.GetTraduction(m.Modulo_Ministerio_Publico_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Modulo_Ministerio_Publico_expediente_ministerio_publico.nic
                         ,Tipo_de_ServicioServicio = CultureHelper.GetTraduction(m.Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo.Clave.ToString(), "Servicio") ?? (string)m.Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo.Servicio
 			,Requiere_Traductor = m.Requiere_Traductor
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
@@ -1335,8 +1279,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Modulo_de_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_de_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_de_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,Modulo_Mecanismos_AlternosCDI = CultureHelper.GetTraduction(m.Modulo_Mecanismos_Alternos_Solicitud.Clave.ToString(), "CDI") ?? (string)m.Modulo_Mecanismos_Alternos_Solicitud.CDI
-                        ,Modulo_Ministerio_Publiconic = CultureHelper.GetTraduction(m.Modulo_Ministerio_Publico_expediente_ministerio_publico.clave.ToString(), "nic") ?? (string)m.Modulo_Ministerio_Publico_expediente_ministerio_publico.nic
+                        ,Modulo_Mecanismos_AlternosCDI = CultureHelper.GetTraduction(m.Modulo_Mecanismos_Alternos_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Modulo_Mecanismos_Alternos_Solicitud.CDI
+                        ,Modulo_Ministerio_Publiconic = CultureHelper.GetTraduction(m.Modulo_Ministerio_Publico_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Modulo_Ministerio_Publico_expediente_ministerio_publico.nic
                         ,Tipo_de_ServicioServicio = CultureHelper.GetTraduction(m.Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo.Clave.ToString(), "Servicio") ?? (string)m.Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo.Servicio
 			,Requiere_Traductor = m.Requiere_Traductor
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
@@ -1391,6 +1335,60 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.NUAT =trans ??item.NUAT;
                 }
                 return Json(result.Modulo_Atencion_Inicials.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Servicio_de_Apoyo_Modulo_Mecanismos_Alternos_Solicitud(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Solicitud.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud.CDI as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISolicitudApiConsumer.ListaSelAll(1, 20,elWhere , " Solicitud.CDI ASC ").Resource;
+               
+                foreach (var item in result.Solicituds)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud", "CDI");
+                    item.CDI =trans ??item.CDI;
+                }
+                return Json(result.Solicituds.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Servicio_de_Apoyo_Modulo_Ministerio_Publico_expediente_ministerio_publico(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(expediente_ministerio_publico.clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(expediente_ministerio_publico.nic as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _Iexpediente_ministerio_publicoApiConsumer.ListaSelAll(1, 20,elWhere , " expediente_ministerio_publico.nic ASC ").Resource;
+               
+                foreach (var item in result.expediente_ministerio_publicos)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.clave), "expediente_ministerio_publico", "nic");
+                    item.nic =trans ??item.nic;
+                }
+                return Json(result.expediente_ministerio_publicos.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -2640,8 +2638,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Modulo_de_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_de_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_de_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,Modulo_Mecanismos_AlternosCDI = CultureHelper.GetTraduction(m.Modulo_Mecanismos_Alternos_Solicitud.Clave.ToString(), "CDI") ?? (string)m.Modulo_Mecanismos_Alternos_Solicitud.CDI
-                        ,Modulo_Ministerio_Publiconic = CultureHelper.GetTraduction(m.Modulo_Ministerio_Publico_expediente_ministerio_publico.clave.ToString(), "nic") ?? (string)m.Modulo_Ministerio_Publico_expediente_ministerio_publico.nic
+                        ,Modulo_Mecanismos_AlternosCDI = CultureHelper.GetTraduction(m.Modulo_Mecanismos_Alternos_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Modulo_Mecanismos_Alternos_Solicitud.CDI
+                        ,Modulo_Ministerio_Publiconic = CultureHelper.GetTraduction(m.Modulo_Ministerio_Publico_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Modulo_Ministerio_Publico_expediente_ministerio_publico.nic
                         ,Tipo_de_ServicioServicio = CultureHelper.GetTraduction(m.Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo.Clave.ToString(), "Servicio") ?? (string)m.Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo.Servicio
 			,Requiere_Traductor = m.Requiere_Traductor
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
@@ -2741,8 +2739,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Modulo_de_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_de_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_de_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,Modulo_Mecanismos_AlternosCDI = CultureHelper.GetTraduction(m.Modulo_Mecanismos_Alternos_Solicitud.Clave.ToString(), "CDI") ?? (string)m.Modulo_Mecanismos_Alternos_Solicitud.CDI
-                        ,Modulo_Ministerio_Publiconic = CultureHelper.GetTraduction(m.Modulo_Ministerio_Publico_expediente_ministerio_publico.clave.ToString(), "nic") ?? (string)m.Modulo_Ministerio_Publico_expediente_ministerio_publico.nic
+                        ,Modulo_Mecanismos_AlternosCDI = CultureHelper.GetTraduction(m.Modulo_Mecanismos_Alternos_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Modulo_Mecanismos_Alternos_Solicitud.CDI
+                        ,Modulo_Ministerio_Publiconic = CultureHelper.GetTraduction(m.Modulo_Ministerio_Publico_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Modulo_Ministerio_Publico_expediente_ministerio_publico.nic
                         ,Tipo_de_ServicioServicio = CultureHelper.GetTraduction(m.Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo.Clave.ToString(), "Servicio") ?? (string)m.Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo.Servicio
 			,Requiere_Traductor = m.Requiere_Traductor
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
@@ -2882,9 +2880,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Modulo_de_Atencion_Inicial = m.Modulo_de_Atencion_Inicial
                         ,Modulo_de_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_de_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_de_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Modulo_Mecanismos_Alternos = m.Modulo_Mecanismos_Alternos
-                        ,Modulo_Mecanismos_AlternosCDI = CultureHelper.GetTraduction(m.Modulo_Mecanismos_Alternos_Solicitud.Clave.ToString(), "CDI") ?? (string)m.Modulo_Mecanismos_Alternos_Solicitud.CDI
+                        ,Modulo_Mecanismos_AlternosCDI = CultureHelper.GetTraduction(m.Modulo_Mecanismos_Alternos_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Modulo_Mecanismos_Alternos_Solicitud.CDI
                         ,Modulo_Ministerio_Publico = m.Modulo_Ministerio_Publico
-                        ,Modulo_Ministerio_Publiconic = CultureHelper.GetTraduction(m.Modulo_Ministerio_Publico_expediente_ministerio_publico.clave.ToString(), "nic") ?? (string)m.Modulo_Ministerio_Publico_expediente_ministerio_publico.nic
+                        ,Modulo_Ministerio_Publiconic = CultureHelper.GetTraduction(m.Modulo_Ministerio_Publico_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Modulo_Ministerio_Publico_expediente_ministerio_publico.nic
                         ,Tipo_de_Servicio = m.Tipo_de_Servicio
                         ,Tipo_de_ServicioServicio = CultureHelper.GetTraduction(m.Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo.Clave.ToString(), "Servicio") ?? (string)m.Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo.Servicio
 			,Requiere_Traductor = m.Requiere_Traductor

@@ -372,47 +372,17 @@ if( TryParseInt(ReplaceGLOBAL('GLOBAL[USERROLEID]'), ReplaceGLOBAL('GLOBAL[USERR
 
 
 
-//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divModulo_Mecanismos_Alternos').css('display', 'block'); $('#divModulo_Mecanismos_Alternos').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Mecanismos_Alternos' + rowIndex));$('#divModulo_Ministerio_Publico').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex));} else {}
-
-}
-//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divModulo_Mecanismos_Alternos').css('display', 'block'); $('#divModulo_Mecanismos_Alternos').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Mecanismos_Alternos' + rowIndex));$('#divModulo_Ministerio_Publico').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex));} else {}
-
-}
-//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divModulo_Mecanismos_Alternos').css('display', 'block'); $('#divModulo_Mecanismos_Alternos').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Mecanismos_Alternos' + rowIndex));$('#divModulo_Ministerio_Publico').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex));} else {}
-
-}
-//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('3', '3') ) { $('#divModulo_Ministerio_Publico').css('display', 'block'); $('#divModulo_de_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));$('#divModulo_Ministerio_Publico').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex));} else {}
-
-}
-//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('3', '3') ) { $('#divModulo_Ministerio_Publico').css('display', 'block'); $('#divModulo_de_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));$('#divModulo_Ministerio_Publico').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex));} else {}
-
-}
-//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('3', '3') ) { $('#divModulo_Ministerio_Publico').css('display', 'block'); $('#divModulo_de_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));$('#divModulo_Ministerio_Publico').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex));} else {}
-
-}
-//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
 
 
 
@@ -568,6 +538,48 @@ if(operation == 'Consult'){
 
 }
 //BusinessRuleId:3470, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('3', '3') ) { $('#divModulo_Ministerio_Publico').css('display', 'block'); $('#divModulo_de_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));$('#divModulo_Mecanismos_Alternos').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Mecanismos_Alternos' + rowIndex));} else {}
+
+}
+//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('3', '3') ) { $('#divModulo_Ministerio_Publico').css('display', 'block'); $('#divModulo_de_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));$('#divModulo_Mecanismos_Alternos').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Mecanismos_Alternos' + rowIndex));} else {}
+
+}
+//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('3', '3') ) { $('#divModulo_Ministerio_Publico').css('display', 'block'); $('#divModulo_de_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));$('#divModulo_Mecanismos_Alternos').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Mecanismos_Alternos' + rowIndex));} else {}
+
+}
+//BusinessRuleId:3499, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divModulo_Mecanismos_Alternos').css('display', 'block'); $('#divModulo_de_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));$('#divModulo_Ministerio_Publico').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex));} else {}
+
+}
+//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divModulo_Mecanismos_Alternos').css('display', 'block'); $('#divModulo_de_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));$('#divModulo_Ministerio_Publico').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex));} else {}
+
+}
+//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divModulo_Mecanismos_Alternos').css('display', 'block'); $('#divModulo_de_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));$('#divModulo_Ministerio_Publico').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex));} else {}
+
+}
+//BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

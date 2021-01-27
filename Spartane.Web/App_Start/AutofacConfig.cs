@@ -9192,3 +9192,11 @@ builder.RegisterType<Historial_Estatus_Modulo_Servicio_PericialApiConsumer>().As
 
 
 
+
+
+
+
+
+
+
+
