@@ -466,13 +466,13 @@
             $("#divAttachmentArchivo_Adjunto").hide();
         }
 
-
-function getParameterByName(name) {
+        function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
     results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
 
 	function GetTraduction(text) {
          switch (text.toLowerCase()) {
@@ -780,7 +780,7 @@ function getParameterByName(name) {
         if (getParameterByName("preguntar") == '1') {
             return;
         }
-			
+
 			var url = '@Url.Content("~/Frontal/Detalle_de_documentos/GetCatalogAll")';
 			url = url.replace(/Catalog/g, catalog);
 
