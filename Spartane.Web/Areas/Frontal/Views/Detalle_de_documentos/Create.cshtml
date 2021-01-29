@@ -466,6 +466,13 @@
             $("#divAttachmentArchivo_Adjunto").hide();
         }
 
+        function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 
 	function GetTraduction(text) {
          switch (text.toLowerCase()) {
@@ -769,7 +776,11 @@
 				return;
 			}
 		}
-			
+
+        if (getParameterByName("preguntar") == '1') {
+            return;
+        }
+
 			var url = '@Url.Content("~/Frontal/Detalle_de_documentos/GetCatalogAll")';
 			url = url.replace(/Catalog/g, catalog);
 
@@ -1137,7 +1148,8 @@
             if ( controlDocumentoDynamiSeach == true ) {
                 alert('Existe una ventana abierta');
             }
-            else {
+			else {
+				debugger;
                 permitirCerrar = false;
                 controlDocumentoDynamiSeach = true; 
                 localStorage.setItem('controlDocumentoDynamiSeach',"true");
@@ -1160,7 +1172,7 @@
     function GuardarRegistro(formaid) {
 
             debugger;
-            $("#Archivo").val("0");
+       
             if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
                 debugger
                 if (!SendDetalle_de_documentosData(function (idvalor) {

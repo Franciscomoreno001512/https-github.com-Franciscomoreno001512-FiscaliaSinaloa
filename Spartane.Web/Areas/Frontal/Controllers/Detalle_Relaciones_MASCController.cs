@@ -60,9 +60,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Relaciones_MASCController(IDetalle_Relaciones_MASCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Relaciones_MASCApiConsumer Detalle_Relaciones_MASCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDelitoApiConsumer DelitoApiConsumer
-, IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer
-)
+        public Detalle_Relaciones_MASCController(IDetalle_Relaciones_MASCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Relaciones_MASCApiConsumer Detalle_Relaciones_MASCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -95,8 +93,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         // GET: Frontal/Detalle_Relaciones_MASC/Create
         [ObjectAuth(ObjectId = (ModuleObjectId)45705, PermissionType = PermissionTypes.New,
             OptionalParameter = "Id", OptionalPermissionType = PermissionTypes.Edit)]
-        public ActionResult Create(int Id = 0,
- int consult = 0)
+        public ActionResult Create(int Id = 0,  int consult = 0)
         {
 			int ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45705);
@@ -129,7 +126,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Delito = Detalle_Relaciones_MASCData.Delito
                     ,DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_MASCData.Delito), "Delito") ??  (string)Detalle_Relaciones_MASCData.Delito_Delito.Descripcion
                     ,Solicitante = Detalle_Relaciones_MASCData.Solicitante
-                    ,SolicitanteNombre_Completo2 = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_MASCData.Solicitante), "Detalle_de_Datos_Generales") ??  (string)Detalle_Relaciones_MASCData.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo2
+                    ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_MASCData.Solicitante), "Detalle_de_Datos_Generales") ??  (string)Detalle_Relaciones_MASCData.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo
 
                 };
 
@@ -175,7 +172,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Delito = Detalle_Relaciones_MASCData.Delito
                     ,DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_MASCData.Delito), "Delito") ??  (string)Detalle_Relaciones_MASCData.Delito_Delito.Descripcion
                     ,Solicitante = Detalle_Relaciones_MASCData.Solicitante
-                    ,SolicitanteNombre_Completo2 = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_MASCData.Solicitante), "Detalle_de_Datos_Generales") ??  (string)Detalle_Relaciones_MASCData.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo2
+                    ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_MASCData.Solicitante), "Detalle_de_Datos_Generales") ??  (string)Detalle_Relaciones_MASCData.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo
 
 					};
 				}
@@ -256,9 +253,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(false).Resource;
 				
-                return Json(result.OrderBy(m => m.Nombre_Completo2).Select(m => new SelectListItem
+                return Json(result.OrderBy(m => m.Nombre_Completo).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo2")?? m.Nombre_Completo2,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo")?? m.Nombre_Completo,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -290,7 +287,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,RequeridoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Requerido_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
-                        ,SolicitanteNombre_Completo2 = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo2
+                        ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -363,14 +360,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Detalle_de_Datos_Generales.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Datos_Generales.Nombre_Completo2 as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Detalle_de_Datos_Generales.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Datos_Generales.Nombre_Completo as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDetalle_de_Datos_GeneralesApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Datos_Generales.Nombre_Completo2 ASC ").Resource;
+				var result = _IDetalle_de_Datos_GeneralesApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Datos_Generales.Nombre_Completo ASC ").Resource;
                
                 foreach (var item in result.Detalle_de_Datos_Generaless)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo2");
-                    item.Nombre_Completo2 =trans ??item.Nombre_Completo2;
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo");
+                    item.Nombre_Completo =trans ??item.Nombre_Completo;
                 }
                 return Json(result.Detalle_de_Datos_Generaless.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -668,7 +665,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
                 ,RequeridoNombre_Completo_del_Tutor = (string)m.Requerido_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                 ,DelitoDescripcion = (string)m.Delito_Delito.Descripcion
-                ,SolicitanteNombre_Completo2 = (string)m.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo2
+                ,SolicitanteNombre_Completo = (string)m.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo
 
             }).ToList();
 
@@ -717,7 +714,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
                 ,RequeridoNombre_Completo_del_Tutor = (string)m.Requerido_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                 ,DelitoDescripcion = (string)m.Delito_Delito.Descripcion
-                ,SolicitanteNombre_Completo2 = (string)m.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo2
+                ,SolicitanteNombre_Completo = (string)m.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo
 
             }).ToList();
 

@@ -2,7 +2,19 @@
 <resources>
   <resource culture="es-es" name="Relaciones_MASC" value="Relaciones MASC"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
-  <resource culture="es-es" name="Numero_de_Expediente" value="Número de Expediente"></resource>   <resource culture="es-es" name="Numero_de_Procedimiento" value="Número de Procedimiento"></resource>   <resource culture="es-es" name="Relacion" value="Relación"></resource>   <resource culture="es-es" name="idRelacionOrigen" value="idRelacionOrigen"></resource>   <resource culture="es-es" name="Requiere_cambiar_la_relacion" value="¿Requiere cambiar la relación?"></resource>   <resource culture="es-es" name="Motivo_de_Cambio" value="Motivo de Cambio"></resource>   <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>   <resource culture="es-es" name="Descripcion" value="Descripción"></resource>   <resource culture="es-es" name="Fecha_de_Resolucion_solicitud" value="Fecha de Resolución"></resource>   <resource culture="es-es" name="Hora_de_Resolucion_solicitud" value="Hora de Resolución"></resource>   <resource culture="es-es" name="Usuario_que_Resuelve_solicitud" value="Usuario que Resuelve"></resource>   <resource culture="es-es" name="Resolucion" value="Resolución"></resource>   <resource culture="es-es" name="Tipo_de_Mecanismo" value="Tipo de Mecanismo"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="es-es" name="Numero_de_Procedimiento" value="Número de Procedimiento"></resource>
+  <resource culture="es-es" name="Relacion" value="Relación"></resource>
+  <resource culture="es-es" name="idRelacionOrigen" value="idRelacionOrigen"></resource>
+  <resource culture="es-es" name="Requiere_cambiar_la_relacion" value="¿Requiere cambiar la relación?"></resource>
+  <resource culture="es-es" name="Motivo_de_Cambio" value="Motivo de Cambio"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+  <resource culture="es-es" name="Fecha_de_Resolucion_solicitud" value="Fecha de Resolución"></resource>
+  <resource culture="es-es" name="Hora_de_Resolucion_solicitud" value="Hora de Resolución"></resource>
+  <resource culture="es-es" name="Usuario_que_Resuelve_solicitud" value="Usuario que Resuelve"></resource>
+  <resource culture="es-es" name="Resolucion" value="Resolución"></resource>
+  <resource culture="es-es" name="Tipo_de_Mecanismo" value="Tipo de Mecanismo"></resource>
   <resource culture="es-es" name="Observaciones_solicitud" value="Observaciones"></resource>
   <resource culture="es-es" name="Fecha_de_Validacion_solicitud" value="Fecha de Validación"></resource>
   <resource culture="es-es" name="Hora_de_Validacion_solicitud" value="Hora de Validación"></resource>

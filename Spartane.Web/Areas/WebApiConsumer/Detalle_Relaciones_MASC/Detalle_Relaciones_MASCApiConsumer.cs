@@ -117,8 +117,7 @@ namespace Spartane.Web.Areas.WebApiConsumer.Detalle_Relaciones_MASC
             }
             catch (Exception ex)
             {
-                return new ApiResponse<int>(false, -1
-);
+                return new ApiResponse<int>(false, -1 );
             }
         }
 
@@ -133,8 +132,7 @@ namespace Spartane.Web.Areas.WebApiConsumer.Detalle_Relaciones_MASC
             }
             catch (Exception ex)
             {
-                return new ApiResponse<int>(false, -1
-);
+                return new ApiResponse<int>(false, -1 );
             }
         }
 
@@ -189,8 +187,7 @@ namespace Spartane.Web.Areas.WebApiConsumer.Detalle_Relaciones_MASC
             }
             catch (Exception ex)
             {
-                return new ApiResponse<int>(false, -1
-);
+                return new ApiResponse<int>(false, -1 );
             }
         }
 		
@@ -205,8 +202,7 @@ public ApiResponse<int> Update_Datos_Generales(Detalle_Relaciones_MASC_Datos_Gen
             }
             catch (Exception ex)
             {
-                return new ApiResponse<int>(false, -1
-);
+                return new ApiResponse<int>(false, -1 );
             }
         }
 

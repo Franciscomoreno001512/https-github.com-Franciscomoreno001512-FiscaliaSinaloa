@@ -9,10 +9,10 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial; }
-    List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
+ List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
     if (ViewBag.Solicituds_Modulo_Mecanismos_Alternos != null)
     { varSolicitud_Modulo_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Modulo_Mecanismos_Alternos; }
-    List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
+ List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
     if (ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico != null)
     { varexpediente_ministerio_publico_Modulo_Ministerio_Publico = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico; }
     List<SelectListItem> varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio = null;
@@ -27,13 +27,13 @@
     List<SelectListItem> varCompareciente_Compareciente = null;
     if (ViewBag.Comparecientes_Compareciente != null)
     { varCompareciente_Compareciente = (List<SelectListItem>)ViewBag.Comparecientes_Compareciente; }
-    List<SelectListItem> varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = null;
+ List<SelectListItem> varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = null;
     if (ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial != null)
     { varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = (List<SelectListItem>)ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial; }
-    List<SelectListItem> varDetalle_de_documentos_Documento_Mecanismos_Alternos = null;
+ List<SelectListItem> varDetalle_de_documentos_Documento_Mecanismos_Alternos = null;
     if (ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos != null)
     { varDetalle_de_documentos_Documento_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos; }
-    List<SelectListItem> varDiligencias_MP_Documento_Ministerio_Publico = null;
+ List<SelectListItem> varDiligencias_MP_Documento_Ministerio_Publico = null;
     if (ViewBag.Diligencias_MPs_Documento_Ministerio_Publico != null)
     { varDiligencias_MP_Documento_Ministerio_Publico = (List<SelectListItem>)ViewBag.Diligencias_MPs_Documento_Ministerio_Publico; }
  List<SelectListItem> varDocumento_Diligencia = null;
@@ -126,48 +126,12 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial; }
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Modulo_Mecanismos_Alternos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Modulo_Mecanismos_AlternosFilter, filters, new { @class = "form-control", @id = "ddlModulo_Mecanismos_AlternosFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceModulo_Mecanismos_Alternos, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo_Mecanismos_Alternos" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSolicitud_Modulo_Mecanismos_Alternos!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceModulo_Mecanismos_AlternosMultiple, varSolicitud_Modulo_Mecanismos_Alternos,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceModulo_Mecanismos_Alternos"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Modulo_Ministerio_Publico</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Modulo_Ministerio_PublicoFilter, filters, new { @class = "form-control", @id = "ddlModulo_Ministerio_PublicoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceModulo_Ministerio_Publico, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo_Ministerio_Publico" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varexpediente_ministerio_publico_Modulo_Ministerio_Publico!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceModulo_Ministerio_PublicoMultiple, varexpediente_ministerio_publico_Modulo_Ministerio_Publico,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceModulo_Ministerio_Publico"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
+    if (ViewBag.Solicituds_Modulo_Mecanismos_Alternos != null)
+    { varSolicitud_Modulo_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Modulo_Mecanismos_Alternos; }
+ List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
+    if (ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico != null)
+    { varexpediente_ministerio_publico_Modulo_Ministerio_Publico = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Tipo_de_Servicio</h3>
                 </div>
@@ -260,69 +224,15 @@
                         });
                     }
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Atencion_Inicial</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Documento_Atencion_InicialFilter, filters, new { @class = "form-control", @id = "ddlDocumento_Atencion_InicialFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceDocumento_Atencion_Inicial, new { @class = "form-control", @type = "text", @id = "txtAdvanceDocumento_Atencion_Inicial" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceDocumento_Atencion_InicialMultiple, varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceDocumento_Atencion_Inicial"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Mecanismos_Alternos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Documento_Mecanismos_AlternosFilter, filters, new { @class = "form-control", @id = "ddlDocumento_Mecanismos_AlternosFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceDocumento_Mecanismos_Alternos, new { @class = "form-control", @type = "text", @id = "txtAdvanceDocumento_Mecanismos_Alternos" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDetalle_de_documentos_Documento_Mecanismos_Alternos!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceDocumento_Mecanismos_AlternosMultiple, varDetalle_de_documentos_Documento_Mecanismos_Alternos,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceDocumento_Mecanismos_Alternos"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Ministerio_Publico</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Documento_Ministerio_PublicoFilter, filters, new { @class = "form-control", @id = "ddlDocumento_Ministerio_PublicoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceDocumento_Ministerio_Publico, new { @class = "form-control", @type = "text", @id = "txtAdvanceDocumento_Ministerio_Publico" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDiligencias_MP_Documento_Ministerio_Publico!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceDocumento_Ministerio_PublicoMultiple, varDiligencias_MP_Documento_Ministerio_Publico,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceDocumento_Ministerio_Publico"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = null;
+    if (ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial != null)
+    { varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = (List<SelectListItem>)ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial; }
+ List<SelectListItem> varDetalle_de_documentos_Documento_Mecanismos_Alternos = null;
+    if (ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos != null)
+    { varDetalle_de_documentos_Documento_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos; }
+ List<SelectListItem> varDiligencias_MP_Documento_Ministerio_Publico = null;
+    if (ViewBag.Diligencias_MPs_Documento_Ministerio_Publico != null)
+    { varDiligencias_MP_Documento_Ministerio_Publico = (List<SelectListItem>)ViewBag.Diligencias_MPs_Documento_Ministerio_Publico; }
  List<SelectListItem> varDocumento_Diligencia = null;
     if (ViewBag.Documentos_Diligencia != null)
     { varDocumento_Diligencia = (List<SelectListItem>)ViewBag.Documentos_Diligencia; }

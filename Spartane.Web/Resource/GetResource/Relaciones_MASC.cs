@@ -329,6 +329,7 @@ namespace Resources
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderRelaciones_MASC.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Resolución de Solicitud</summary>	public static string TabResolucion_de_Solicitud 	{		get		{			SetPath();  			return resourceProviderRelaciones_MASC.GetResource("TabResolucion_de_Solicitud", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Resolución de Procedimiento</summary>	public static string TabResolucion_de_Procedimiento 	{		get		{			SetPath();  			return resourceProviderRelaciones_MASC.GetResource("TabResolucion_de_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;             		}	} 
+	/// <summary>Resolución de Procedimiento</summary>	public static string TabResolucion_de_Procedimiento 	{		get		{			SetPath();  			return resourceProviderRelaciones_MASC.GetResource("TabResolucion_de_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+
     }
 }

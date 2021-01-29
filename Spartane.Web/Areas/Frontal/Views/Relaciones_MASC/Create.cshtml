@@ -1081,7 +1081,7 @@
 
             columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.RequeridoNombre_Completo_del_Tutor != undefined ? data.RequeridoNombre_Completo_del_Tutor : null, 'AutoComplete' + nameOfTable + 'Requerido', data.Requerido)))).addClass('Requerido').attr('id', nameOfTable + 'Requerido' + rowIndex).attr('data-field', 'Requerido').after($.parseHTML(addNew('Detalle_Relaciones_MASC', 'Detalle_de_Imputado','Requerido', 269182)));
             columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.DelitoDescripcion != undefined ? data.DelitoDescripcion : null, 'AutoComplete' + nameOfTable + 'Delito', data.Delito)))).addClass('Delito').attr('id', nameOfTable + 'Delito' + rowIndex).attr('data-field', 'Delito').after($.parseHTML(addNew('Detalle_Relaciones_MASC', 'Delito','Delito', 269183)));
-            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.SolicitanteNombre_Completo2 != undefined ? data.SolicitanteNombre_Completo2 : null, 'AutoComplete' + nameOfTable + 'Solicitante', data.Solicitante)))).addClass('Solicitante').attr('id', nameOfTable + 'Solicitante' + rowIndex).attr('data-field', 'Solicitante').after($.parseHTML(addNew('Detalle_Relaciones_MASC', 'Detalle_de_Datos_Generales','Solicitante', 269184)));
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.SolicitanteNombre_Completo != undefined ? data.SolicitanteNombre_Completo : null, 'AutoComplete' + nameOfTable + 'Solicitante', data.Solicitante)))).addClass('Solicitante').attr('id', nameOfTable + 'Solicitante' + rowIndex).attr('data-field', 'Solicitante').after($.parseHTML(addNew('Detalle_Relaciones_MASC', 'Detalle_de_Datos_Generales','Solicitante', 269184)));
 
             return columnData;
         }
@@ -1219,10 +1219,10 @@
 }
 
             if ($('.Solicitante' + 'Header').css('display') != 'none'){
-                if (data.SolicitanteNombre_Completo2 == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Solicitante'+rowIndex+'">').text(data.Solicitante).appendTo(row);}else{$('<td>').text(data.SolicitanteNombre_Completo2).appendTo(row);}
+                if (data.SolicitanteNombre_Completo == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Solicitante'+rowIndex+'">').text(data.Solicitante).appendTo(row);}else{$('<td>').text(data.SolicitanteNombre_Completo).appendTo(row);}
 }
              else {
-                if (data.SolicitanteNombre_Completo2 == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Solicitante'+rowIndex+'">').text(data.Solicitante).appendTo(row);}else{$('<td style:display:none;>').text(data.SolicitanteNombre_Completo2).appendTo(row);}
+                if (data.SolicitanteNombre_Completo == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Solicitante'+rowIndex+'">').text(data.Solicitante).appendTo(row);}else{$('<td style:display:none;>').text(data.SolicitanteNombre_Completo).appendTo(row);}
 }
 
 
@@ -1917,7 +1917,9 @@
                 async: false,
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
-                    $('#Fecha_de_Resolucion_proc').val(result.data.Fecha_de_Resolucion_proc);                     $('#hora_resolucion_proc').val(result.data.hora_resolucion_proc);                     var control = $('#usuario_resuelve_proc');
+                    $('#Fecha_de_Resolucion_proc').val(result.data.Fecha_de_Resolucion_proc);
+                    $('#hora_resolucion_proc').val(result.data.hora_resolucion_proc);
+                    var control = $('#usuario_resuelve_proc');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.usuario_resuelve_proc).trigger('keyup');
                     control.select2('close');
@@ -1925,7 +1927,12 @@
 	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
 	                    control.select2({ data: data });
 	                    control.val(result.data.usuario_resuelve_proc).trigger('change');
-                    }, 3000);                     $('#Resolucion_proc').val(result.data.Resolucion_proc);                     $('#Observaciones_proc').val(result.data.Observaciones_proc);                     $('#Fecha_de_Validacion_proc').val(result.data.Fecha_de_Validacion_proc);                     $('#Hora_de_Validacion_proc').val(result.data.Hora_de_Validacion_proc);                     var control = $('#Usuario_que_Valida_proc');
+                    }, 3000);
+                    $('#Resolucion_proc').val(result.data.Resolucion_proc);
+                    $('#Observaciones_proc').val(result.data.Observaciones_proc);
+                    $('#Fecha_de_Validacion_proc').val(result.data.Fecha_de_Validacion_proc);
+                    $('#Hora_de_Validacion_proc').val(result.data.Hora_de_Validacion_proc);
+                    var control = $('#Usuario_que_Valida_proc');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Usuario_que_Valida_proc).trigger('keyup');
                     control.select2('close');
@@ -1933,7 +1940,10 @@
 	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
 	                    control.select2({ data: data });
 	                    control.val(result.data.Usuario_que_Valida_proc).trigger('change');
-                    }, 3000);                     $('#Resultado_proc').val(result.data.Resultado_proc);                     $('#Motivo_de_Rechazo_proc').val(result.data.Motivo_de_Rechazo_proc); 
+                    }, 3000);
+                    $('#Resultado_proc').val(result.data.Resultado_proc);
+                    $('#Motivo_de_Rechazo_proc').val(result.data.Motivo_de_Rechazo_proc);
+
                 },
                 error: function (result) {
                     showNotification("@Resources.Resources.ErrorContactingServer", "error");
