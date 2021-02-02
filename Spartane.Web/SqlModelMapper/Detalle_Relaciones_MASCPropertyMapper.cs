@@ -22,9 +22,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Delito[Descripcion]":
                 case "DelitoDescripcion":
                     return "Delito.Descripcion";
-                case "Solicitante[Nombre_Completo2]":
-                case "SolicitanteNombre_Completo2":
-                    return "Detalle_de_Datos_Generales.Nombre_Completo2";
+                case "Solicitante[Nombre_Completo]":
+                case "SolicitanteNombre_Completo":
+                    return "Detalle_de_Datos_Generales.Nombre_Completo";
 
                 default:
                     return propertyName;

@@ -14,7 +14,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Delito { get; set; }
         public string DelitoDescripcion { get; set; }
         public int? Solicitante { get; set; }
-        public string SolicitanteNombre_Completo2 { get; set; }
+        public string SolicitanteNombre_Completo { get; set; }
         
     }
 }

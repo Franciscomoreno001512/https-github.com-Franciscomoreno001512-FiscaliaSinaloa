@@ -1047,14 +1047,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Detalle_de_Datos_Generales.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Datos_Generales.Nombre_Completo2 as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Detalle_de_Datos_Generales.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Datos_Generales.Nombre_Completo as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDetalle_de_Datos_GeneralesApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Datos_Generales.Nombre_Completo2 ASC ").Resource;
+				var result = _IDetalle_de_Datos_GeneralesApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Datos_Generales.Nombre_Completo ASC ").Resource;
                
                 foreach (var item in result.Detalle_de_Datos_Generaless)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo2");
-                    item.Nombre_Completo2 =trans ??item.Nombre_Completo2;
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo");
+                    item.Nombre_Completo =trans ??item.Nombre_Completo;
                 }
                 return Json(result.Detalle_de_Datos_Generaless.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -1808,7 +1808,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Delito = m.Delito
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ??(string)m.Delito_Delito.Descripcion
                         ,Solicitante = m.Solicitante
-                        ,SolicitanteNombre_Completo2 = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo2") ??(string)m.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo2
+                        ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo") ??(string)m.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo
 
                 }).ToList(),
                 recordsTotal = result.RowCount,
@@ -1846,7 +1846,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Delito = m.Delito
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ??(string)m.Delito_Delito.Descripcion
                         ,Solicitante = m.Solicitante
-                        ,SolicitanteNombre_Completo2 = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo2") ??(string)m.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo2
+                        ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo") ??(string)m.Solicitante_Detalle_de_Datos_Generales.Nombre_Completo
 
 
                     }).ToList();
@@ -2127,7 +2127,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var result = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(false).Resource;
                 foreach (var item in result)
                 {
-                    item.Nombre_Completo2= CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo2");
+                    item.Nombre_Completo= CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo");
                 }
                 return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
             }
