@@ -4,7 +4,23 @@ var rowIndex = '';
 var saltarValidacion = false;
 $('#Detalle_de_Solicitudes_de_InvitacionesGuardarYNuevo').hide();
 $('#Detalle_de_Solicitudes_de_InvitacionesGuardarYCopia').hide();
+function IniciaMR()
+{	
+	$('th[class="ActionHeader sorting_asc"]').each(function () {
+		$(this).css("width","10%");
+    });	
+}
+
+
 $(document).ready(function () {
+
+
+setTimeout(function () {
+	IniciaMR();
+}, 1000);
+
+
+
 //BusinessRuleId:683, Attribute:263119, Operation:Field, Event:None
 $("#Detalle_de_Solicitudes_de_InvitacionesGrid").on('change', '.Fecha_de_Recepcion', function () {
 	nameOfTable = $(this).parent().parent().parent().parent()[0].id.replace('Grid', '') + '_';
@@ -260,12 +276,7 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:1961, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2492, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Fecha_de_la_cita' + rowIndex),EvaluaQuery(" exec uspGetFechaSiguienteReunion GLOBAL[SpartanOperationId]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_la_Cita' + rowIndex),EvaluaQuery(" exec uspGetHoraSiguienteReunion GLOBAL[SpartanOperationId]", rowIndex, nameOfTable));
-
-}
-//BusinessRuleId:2492, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 
 //BusinessRuleId:2505, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
@@ -273,6 +284,34 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:2505, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divTipo_de_Participacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Participacion' + rowIndex));
+
+}
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divTipo_de_Participacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Participacion' + rowIndex));
+
+}
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divTipo_de_Participacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Participacion' + rowIndex));
+
+}
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2492, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Fecha_de_la_cita' + rowIndex),EvaluaQuery(" exec uspGetFechaSiguienteReunion GLOBAL[SpartanOperationId]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_la_Cita' + rowIndex),EvaluaQuery(" exec uspGetHoraSiguienteReunion GLOBAL[SpartanOperationId]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Domicilio' + rowIndex),EvaluaQuery(" exec uspGetDomicilioSiguienteReunion GLOBAL[SpartanOperationId]	", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2492, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

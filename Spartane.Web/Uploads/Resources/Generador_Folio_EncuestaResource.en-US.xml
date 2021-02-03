@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Generador_Folio_Encuesta" value="Generador_Folio_Encuesta"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Fecha_Genera" value="Fecha_Genera"></resource>
+  <resource culture="en-US" name="Anio_Genera" value="Anio_Genera"></resource>
+  <resource culture="en-US" name="Modulo_Encuesta" value="Modulo_Encuesta"></resource>
+  <resource culture="en-US" name="Region" value="Region"></resource>
+  <resource culture="en-US" name="Consecutivo" value="Consecutivo"></resource>
+  <resource culture="en-US" name="Folio_Encuesta_Ultimo_Generado" value="Folio_Encuesta_Ultimo_Generado"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -8,9 +8,12 @@
 @{
 
 
-    List<SelectListItem> varTipo_de_Documento_Tipo = null;
-    if (ViewBag.Tipo_de_Documentos_Tipo != null)
-    { varTipo_de_Documento_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Documentos_Tipo; }
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
+    List<SelectListItem> varTipo_de_Documentos_Tipo = null;
+    if (ViewBag.Tipo_de_Documentoss_Tipo != null)
+    { varTipo_de_Documentos_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Documentoss_Tipo; }
 
 
     Permission permission = ViewBag.Permission;
@@ -136,13 +139,34 @@
                                     <label class="form-control" for="Detalle_Aseguramiento_DocumentosClave" id="Detalle_Aseguramiento_DocumentosClave">@Model.Clave</label>
                                 </div>
                             </div>
+<div class="form-group" id="divMotivo_de_Registro">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_DocumentosResources.Motivo_de_Registro</label>
+	<div class="col-sm-8" data-field-id="Motivo_de_Registro" data-attribute="268339" data-field-name="@Resources.Detalle_Aseguramiento_DocumentosResources.Motivo_de_Registro">
+		<select class="form-control" data-val="true" data-val-number="The field Motivo de Registro must be a number." data-val-required="The Motivo de Registro field is required." id="Detalle_Aseguramiento_DocumentosMotivo_de_Registro" name="Detalle_Aseguramiento_DocumentosMotivo_de_Registro">
+			<option value=""></option>
+			@if (varMotivo_de_Registro_Motivo_de_Registro != null){ 
+				foreach (var itemMotivo_de_Registro in varMotivo_de_Registro_Motivo_de_Registro)
+				{
+					if (itemMotivo_de_Registro.Value == Convert.ToString(Model.Motivo_de_Registro))
+					{
+						<option value="@itemMotivo_de_Registro.Value" selected>@itemMotivo_de_Registro.Text</option>
+					}
+					else
+					{
+						<option value="@itemMotivo_de_Registro.Value">@itemMotivo_de_Registro.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
 <div class="form-group" id="divTipo">
 	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_DocumentosResources.Tipo</label>
 	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267645" data-field-name="@Resources.Detalle_Aseguramiento_DocumentosResources.Tipo">
 		<select class="form-control" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Detalle_Aseguramiento_DocumentosTipo" name="Detalle_Aseguramiento_DocumentosTipo">
 			<option value=""></option>
-			@if (varTipo_de_Documento_Tipo != null){ 
-				foreach (var itemTipo in varTipo_de_Documento_Tipo)
+			@if (varTipo_de_Documentos_Tipo != null){ 
+				foreach (var itemTipo in varTipo_de_Documentos_Tipo)
 				{
 					if (itemTipo.Value == Convert.ToString(Model.Tipo))
 					{

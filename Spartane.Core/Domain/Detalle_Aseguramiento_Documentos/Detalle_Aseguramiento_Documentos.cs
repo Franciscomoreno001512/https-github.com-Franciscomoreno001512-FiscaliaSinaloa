@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Aseguramientos;
-using Spartane.Core.Domain.Tipo_de_Documento;
+using Spartane.Core.Domain.Motivo_de_Registro;
+using Spartane.Core.Domain.Tipo_de_Documentos;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,6 +20,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Documentos
     {
         public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public int? Tipo { get; set; }
         public decimal? Cantidad { get; set; }
         public string Observaciones { get; set; }
@@ -26,8 +28,10 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Documentos
 
         [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
+        [ForeignKey("Motivo_de_Registro")]
+        public virtual Spartane.Core.Domain.Motivo_de_Registro.Motivo_de_Registro Motivo_de_Registro_Motivo_de_Registro { get; set; }
         [ForeignKey("Tipo")]
-        public virtual Spartane.Core.Domain.Tipo_de_Documento.Tipo_de_Documento Tipo_Tipo_de_Documento { get; set; }
+        public virtual Spartane.Core.Domain.Tipo_de_Documentos.Tipo_de_Documentos Tipo_Tipo_de_Documentos { get; set; }
 
     }
 	
@@ -35,6 +39,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Documentos
     {
                 public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public int? Tipo { get; set; }
         public decimal? Cantidad { get; set; }
         public string Observaciones { get; set; }
@@ -42,8 +47,10 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Documentos
 
 		        [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
+        [ForeignKey("Motivo_de_Registro")]
+        public virtual Spartane.Core.Domain.Motivo_de_Registro.Motivo_de_Registro Motivo_de_Registro_Motivo_de_Registro { get; set; }
         [ForeignKey("Tipo")]
-        public virtual Spartane.Core.Domain.Tipo_de_Documento.Tipo_de_Documento Tipo_Tipo_de_Documento { get; set; }
+        public virtual Spartane.Core.Domain.Tipo_de_Documentos.Tipo_de_Documentos Tipo_Tipo_de_Documentos { get; set; }
 
     }
 

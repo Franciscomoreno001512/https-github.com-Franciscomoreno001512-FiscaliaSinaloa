@@ -23,8 +23,6 @@ using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
-using Spartane.Core.Domain.Spartan_User;
-using Spartane.Core.Domain.Estatus_Orientador;
 using Spartane.Core.Domain.Tipo_de_Acuerdo;
 using Spartane.Core.Domain.Periodicidad;
 using Spartane.Core.Domain.A_Tiempo;
@@ -60,8 +58,6 @@ using Spartane.Web.Areas.WebApiConsumer.Estado;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
-using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
-using Spartane.Web.Areas.WebApiConsumer.Estatus_Orientador;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Acuerdo;
 using Spartane.Web.Areas.WebApiConsumer.Periodicidad;
 using Spartane.Web.Areas.WebApiConsumer.A_Tiempo;
@@ -119,7 +115,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IPaisApiConsumer _IPaisApiConsumer;
         private IEstadoApiConsumer _IEstadoApiConsumer;
         private IColoniaApiConsumer _IColoniaApiConsumer;
-        private IEstatus_OrientadorApiConsumer _IEstatus_OrientadorApiConsumer;
         private ITipo_de_AcuerdoApiConsumer _ITipo_de_AcuerdoApiConsumer;
         private IPeriodicidadApiConsumer _IPeriodicidadApiConsumer;
         private Itipo_de_cierreApiConsumer _Itipo_de_cierreApiConsumer;
@@ -140,7 +135,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public expediente_ministerio_publicoController(Iexpediente_ministerio_publicoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_DenunciaApiConsumer Tipo_de_DenunciaApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , Iestatus_mpiApiConsumer estatus_mpiApiConsumer , Idetalle_de_observaciones_mpiApiConsumer detalle_de_observaciones_mpiApiConsumer  , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IEstatus_OrientadorApiConsumer Estatus_OrientadorApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer , IPeriodicidadApiConsumer PeriodicidadApiConsumer , Itipo_de_cierreApiConsumer tipo_de_cierreApiConsumer )
+        public expediente_ministerio_publicoController(Iexpediente_ministerio_publicoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_DenunciaApiConsumer Tipo_de_DenunciaApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , Iestatus_mpiApiConsumer estatus_mpiApiConsumer , Idetalle_de_observaciones_mpiApiConsumer detalle_de_observaciones_mpiApiConsumer  , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer , IPeriodicidadApiConsumer PeriodicidadApiConsumer , Itipo_de_cierreApiConsumer tipo_de_cierreApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -174,8 +169,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
-            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
-            this._IEstatus_OrientadorApiConsumer = Estatus_OrientadorApiConsumer;
             this._ITipo_de_AcuerdoApiConsumer = Tipo_de_AcuerdoApiConsumer;
             this._IPeriodicidadApiConsumer = PeriodicidadApiConsumer;
             this._IA_TiempoApiConsumer = A_TiempoApiConsumer;
@@ -304,12 +297,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Y_Calle = expediente_ministerio_publicoData.Y_Calle
                     ,LongitudH = expediente_ministerio_publicoData.LongitudH
                     ,LatitudH = expediente_ministerio_publicoData.LatitudH
-                    ,Fecha_de_Canalizacion = (expediente_ministerio_publicoData.Fecha_de_Canalizacion == null ? string.Empty : Convert.ToDateTime(expediente_ministerio_publicoData.Fecha_de_Canalizacion).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Canalizacion = expediente_ministerio_publicoData.Hora_de_Canalizacion
-                    ,usuario_que_canaliza = expediente_ministerio_publicoData.usuario_que_canaliza
-                    ,usuario_que_canalizaName = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.usuario_que_canaliza), "Spartan_User") ??  (string)expediente_ministerio_publicoData.usuario_que_canaliza_Spartan_User.Name
-                    ,canalizar_a = expediente_ministerio_publicoData.canalizar_a
-                    ,canalizar_aDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.canalizar_a), "Estatus_Orientador") ??  (string)expediente_ministerio_publicoData.canalizar_a_Estatus_Orientador.Descripcion
                     ,tipo_de_acuerdo = expediente_ministerio_publicoData.tipo_de_acuerdo
                     ,tipo_de_acuerdoDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.tipo_de_acuerdo), "Tipo_de_Acuerdo") ??  (string)expediente_ministerio_publicoData.tipo_de_acuerdo_Tipo_de_Acuerdo.Descripcion
                     ,fecha_de_inicio_de_acuerdo = (expediente_ministerio_publicoData.fecha_de_inicio_de_acuerdo == null ? string.Empty : Convert.ToDateTime(expediente_ministerio_publicoData.fecha_de_inicio_de_acuerdo).ToString(ConfigurationProperty.DateFormat))
@@ -374,13 +361,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Lugar_Tipos_Lugar_de_los_Hechos = Lugar_Tipos_Lugar_de_los_Hechos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_Tipo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IEstatus_OrientadorApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estatus_Orientadors_canalizar_a = _IEstatus_OrientadorApiConsumer.SelAll(true);
-            if (Estatus_Orientadors_canalizar_a != null && Estatus_Orientadors_canalizar_a.Resource != null)
-                ViewBag.Estatus_Orientadors_canalizar_a = Estatus_Orientadors_canalizar_a.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Orientador", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_AcuerdoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Acuerdos_tipo_de_acuerdo = _ITipo_de_AcuerdoApiConsumer.SelAll(true);
@@ -520,12 +500,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Y_Calle = expediente_ministerio_publicoData.Y_Calle
                     ,LongitudH = expediente_ministerio_publicoData.LongitudH
                     ,LatitudH = expediente_ministerio_publicoData.LatitudH
-                    ,Fecha_de_Canalizacion = (expediente_ministerio_publicoData.Fecha_de_Canalizacion == null ? string.Empty : Convert.ToDateTime(expediente_ministerio_publicoData.Fecha_de_Canalizacion).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Canalizacion = expediente_ministerio_publicoData.Hora_de_Canalizacion
-                    ,usuario_que_canaliza = expediente_ministerio_publicoData.usuario_que_canaliza
-                    ,usuario_que_canalizaName = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.usuario_que_canaliza), "Spartan_User") ??  (string)expediente_ministerio_publicoData.usuario_que_canaliza_Spartan_User.Name
-                    ,canalizar_a = expediente_ministerio_publicoData.canalizar_a
-                    ,canalizar_aDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.canalizar_a), "Estatus_Orientador") ??  (string)expediente_ministerio_publicoData.canalizar_a_Estatus_Orientador.Descripcion
                     ,tipo_de_acuerdo = expediente_ministerio_publicoData.tipo_de_acuerdo
                     ,tipo_de_acuerdoDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.tipo_de_acuerdo), "Tipo_de_Acuerdo") ??  (string)expediente_ministerio_publicoData.tipo_de_acuerdo_Tipo_de_Acuerdo.Descripcion
                     ,fecha_de_inicio_de_acuerdo = (expediente_ministerio_publicoData.fecha_de_inicio_de_acuerdo == null ? string.Empty : Convert.ToDateTime(expediente_ministerio_publicoData.fecha_de_inicio_de_acuerdo).ToString(ConfigurationProperty.DateFormat))
@@ -588,13 +562,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Lugar_Tipos_Lugar_de_los_Hechos = Lugar_Tipos_Lugar_de_los_Hechos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_Tipo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IEstatus_OrientadorApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estatus_Orientadors_canalizar_a = _IEstatus_OrientadorApiConsumer.SelAll(true);
-            if (Estatus_Orientadors_canalizar_a != null && Estatus_Orientadors_canalizar_a.Resource != null)
-                ViewBag.Estatus_Orientadors_canalizar_a = Estatus_Orientadors_canalizar_a.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Orientador", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_AcuerdoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Acuerdos_tipo_de_acuerdo = _ITipo_de_AcuerdoApiConsumer.SelAll(true);
@@ -876,27 +843,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public ActionResult GetEstatus_OrientadorAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IEstatus_OrientadorApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IEstatus_OrientadorApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Orientador", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
         public ActionResult GetTipo_de_AcuerdoAll()
         {
             try
@@ -1027,13 +973,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_Tipo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IEstatus_OrientadorApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estatus_Orientadors_canalizar_a = _IEstatus_OrientadorApiConsumer.SelAll(true);
-            if (Estatus_Orientadors_canalizar_a != null && Estatus_Orientadors_canalizar_a.Resource != null)
-                ViewBag.Estatus_Orientadors_canalizar_a = Estatus_Orientadors_canalizar_a.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Orientador", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _ITipo_de_AcuerdoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Acuerdos_tipo_de_acuerdo = _ITipo_de_AcuerdoApiConsumer.SelAll(true);
             if (Tipo_de_Acuerdos_tipo_de_acuerdo != null && Tipo_de_Acuerdos_tipo_de_acuerdo.Resource != null)
@@ -1107,13 +1046,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Lugar_Tipos_Lugar_de_los_Hechos = Lugar_Tipos_Lugar_de_los_Hechos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_Tipo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IEstatus_OrientadorApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estatus_Orientadors_canalizar_a = _IEstatus_OrientadorApiConsumer.SelAll(true);
-            if (Estatus_Orientadors_canalizar_a != null && Estatus_Orientadors_canalizar_a.Resource != null)
-                ViewBag.Estatus_Orientadors_canalizar_a = Estatus_Orientadors_canalizar_a.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Orientador", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_AcuerdoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Acuerdos_tipo_de_acuerdo = _ITipo_de_AcuerdoApiConsumer.SelAll(true);
@@ -1213,10 +1145,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
-                        ,Fecha_de_Canalizacion = (m.Fecha_de_Canalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Canalizacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Canalizacion = m.Hora_de_Canalizacion
-                        ,usuario_que_canalizaName = CultureHelper.GetTraduction(m.usuario_que_canaliza_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_canaliza_Spartan_User.Name
-                        ,canalizar_aDescripcion = CultureHelper.GetTraduction(m.canalizar_a_Estatus_Orientador.Clave.ToString(), "Descripcion") ?? (string)m.canalizar_a_Estatus_Orientador.Descripcion
                         ,tipo_de_acuerdoDescripcion = CultureHelper.GetTraduction(m.tipo_de_acuerdo_Tipo_de_Acuerdo.Clave.ToString(), "Descripcion") ?? (string)m.tipo_de_acuerdo_Tipo_de_Acuerdo.Descripcion
                         ,fecha_de_inicio_de_acuerdo = (m.fecha_de_inicio_de_acuerdo == null ? string.Empty : Convert.ToDateTime(m.fecha_de_inicio_de_acuerdo).ToString(ConfigurationProperty.DateFormat))
                         ,fecha_de_cumplimiento = (m.fecha_de_cumplimiento == null ? string.Empty : Convert.ToDateTime(m.fecha_de_cumplimiento).ToString(ConfigurationProperty.DateFormat))
@@ -1378,10 +1306,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
-                        ,Fecha_de_Canalizacion = (m.Fecha_de_Canalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Canalizacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Canalizacion = m.Hora_de_Canalizacion
-                        ,usuario_que_canalizaName = CultureHelper.GetTraduction(m.usuario_que_canaliza_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_canaliza_Spartan_User.Name
-                        ,canalizar_aDescripcion = CultureHelper.GetTraduction(m.canalizar_a_Estatus_Orientador.Clave.ToString(), "Descripcion") ?? (string)m.canalizar_a_Estatus_Orientador.Descripcion
                         ,tipo_de_acuerdoDescripcion = CultureHelper.GetTraduction(m.tipo_de_acuerdo_Tipo_de_Acuerdo.Clave.ToString(), "Descripcion") ?? (string)m.tipo_de_acuerdo_Tipo_de_Acuerdo.Descripcion
                         ,fecha_de_inicio_de_acuerdo = (m.fecha_de_inicio_de_acuerdo == null ? string.Empty : Convert.ToDateTime(m.fecha_de_inicio_de_acuerdo).ToString(ConfigurationProperty.DateFormat))
                         ,fecha_de_cumplimiento = (m.fecha_de_cumplimiento == null ? string.Empty : Convert.ToDateTime(m.fecha_de_cumplimiento).ToString(ConfigurationProperty.DateFormat))
@@ -1672,33 +1596,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.Nombre =trans ??item.Nombre;
                 }
                 return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public JsonResult Getexpediente_ministerio_publico_usuario_que_canaliza_Spartan_User(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
-               
-                foreach (var item in result.Spartan_Users)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
-                    item.Name =trans ??item.Name;
-                }
-                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -2449,83 +2346,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.FromFecha_de_Canalizacion) || !string.IsNullOrEmpty(filter.ToFecha_de_Canalizacion))
-            {
-                var Fecha_de_CanalizacionFrom = DateTime.ParseExact(filter.FromFecha_de_Canalizacion, ConfigurationProperty.DateFormat,
-                    CultureInfo.InvariantCulture as IFormatProvider);
-                var Fecha_de_CanalizacionTo = DateTime.ParseExact(filter.ToFecha_de_Canalizacion, ConfigurationProperty.DateFormat,
-                  CultureInfo.InvariantCulture as IFormatProvider);
-
-                if (!string.IsNullOrEmpty(filter.FromFecha_de_Canalizacion))
-                    where += " AND expediente_ministerio_publico.Fecha_de_Canalizacion >= '" + Fecha_de_CanalizacionFrom.ToString("MM-dd-yyyy") + "'";
-                if (!string.IsNullOrEmpty(filter.ToFecha_de_Canalizacion))
-                    where += " AND expediente_ministerio_publico.Fecha_de_Canalizacion <= '" + Fecha_de_CanalizacionTo.ToString("MM-dd-yyyy") + "'";
-            }
-
-            if (!string.IsNullOrEmpty(filter.FromHora_de_Canalizacion) || !string.IsNullOrEmpty(filter.ToHora_de_Canalizacion))
-            {
-                if (!string.IsNullOrEmpty(filter.FromHora_de_Canalizacion))
-                    where += " AND Convert(TIME,expediente_ministerio_publico.Hora_de_Canalizacion) >='" + filter.FromHora_de_Canalizacion + "'";
-                if (!string.IsNullOrEmpty(filter.ToHora_de_Canalizacion))
-                    where += " AND Convert(TIME,expediente_ministerio_publico.Hora_de_Canalizacion) <='" + filter.ToHora_de_Canalizacion + "'";
-            }
-
-            if (!string.IsNullOrEmpty(filter.Advanceusuario_que_canaliza))
-            {
-                switch (filter.usuario_que_canalizaFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Spartan_User.Name LIKE '" + filter.Advanceusuario_que_canaliza + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Spartan_User.Name LIKE '%" + filter.Advanceusuario_que_canaliza + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Spartan_User.Name = '" + filter.Advanceusuario_que_canaliza + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Spartan_User.Name LIKE '%" + filter.Advanceusuario_que_canaliza + "%'";
-                        break;
-                }
-            }
-            else if (filter.Advanceusuario_que_canalizaMultiple != null && filter.Advanceusuario_que_canalizaMultiple.Count() > 0)
-            {
-                var usuario_que_canalizaIds = string.Join(",", filter.Advanceusuario_que_canalizaMultiple);
-
-                where += " AND expediente_ministerio_publico.usuario_que_canaliza In (" + usuario_que_canalizaIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.Advancecanalizar_a))
-            {
-                switch (filter.canalizar_aFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Estatus_Orientador.Descripcion LIKE '" + filter.Advancecanalizar_a + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Estatus_Orientador.Descripcion LIKE '%" + filter.Advancecanalizar_a + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Estatus_Orientador.Descripcion = '" + filter.Advancecanalizar_a + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Estatus_Orientador.Descripcion LIKE '%" + filter.Advancecanalizar_a + "%'";
-                        break;
-                }
-            }
-            else if (filter.Advancecanalizar_aMultiple != null && filter.Advancecanalizar_aMultiple.Count() > 0)
-            {
-                var canalizar_aIds = string.Join(",", filter.Advancecanalizar_aMultiple);
-
-                where += " AND expediente_ministerio_publico.canalizar_a In (" + canalizar_aIds + ")";
-            }
-
             if (!string.IsNullOrEmpty(filter.Advancetipo_de_acuerdo))
             {
                 switch (filter.tipo_de_acuerdoFilter)
@@ -2991,10 +2811,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Y_Calle = varexpediente_ministerio_publico.Y_Calle
                         ,LongitudH = varexpediente_ministerio_publico.LongitudH
                         ,LatitudH = varexpediente_ministerio_publico.LatitudH
-                        ,Fecha_de_Canalizacion = (!String.IsNullOrEmpty(varexpediente_ministerio_publico.Fecha_de_Canalizacion)) ? DateTime.ParseExact(varexpediente_ministerio_publico.Fecha_de_Canalizacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Canalizacion = varexpediente_ministerio_publico.Hora_de_Canalizacion
-                        ,usuario_que_canaliza = varexpediente_ministerio_publico.usuario_que_canaliza
-                        ,canalizar_a = varexpediente_ministerio_publico.canalizar_a
                         ,tipo_de_acuerdo = varexpediente_ministerio_publico.tipo_de_acuerdo
                         ,fecha_de_inicio_de_acuerdo = (!String.IsNullOrEmpty(varexpediente_ministerio_publico.fecha_de_inicio_de_acuerdo)) ? DateTime.ParseExact(varexpediente_ministerio_publico.fecha_de_inicio_de_acuerdo, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,fecha_de_cumplimiento = (!String.IsNullOrEmpty(varexpediente_ministerio_publico.fecha_de_cumplimiento)) ? DateTime.ParseExact(varexpediente_ministerio_publico.fecha_de_cumplimiento, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
@@ -3576,10 +3392,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
-                        ,Fecha_de_Canalizacion = (m.Fecha_de_Canalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Canalizacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Canalizacion = m.Hora_de_Canalizacion
-                        ,usuario_que_canalizaName = CultureHelper.GetTraduction(m.usuario_que_canaliza_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_canaliza_Spartan_User.Name
-                        ,canalizar_aDescripcion = CultureHelper.GetTraduction(m.canalizar_a_Estatus_Orientador.Clave.ToString(), "Descripcion") ?? (string)m.canalizar_a_Estatus_Orientador.Descripcion
                         ,tipo_de_acuerdoDescripcion = CultureHelper.GetTraduction(m.tipo_de_acuerdo_Tipo_de_Acuerdo.Clave.ToString(), "Descripcion") ?? (string)m.tipo_de_acuerdo_Tipo_de_Acuerdo.Descripcion
                         ,fecha_de_inicio_de_acuerdo = (m.fecha_de_inicio_de_acuerdo == null ? string.Empty : Convert.ToDateTime(m.fecha_de_inicio_de_acuerdo).ToString(ConfigurationProperty.DateFormat))
                         ,fecha_de_cumplimiento = (m.fecha_de_cumplimiento == null ? string.Empty : Convert.ToDateTime(m.fecha_de_cumplimiento).ToString(ConfigurationProperty.DateFormat))
@@ -3700,10 +3512,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
-                        ,Fecha_de_Canalizacion = (m.Fecha_de_Canalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Canalizacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Canalizacion = m.Hora_de_Canalizacion
-                        ,usuario_que_canalizaName = CultureHelper.GetTraduction(m.usuario_que_canaliza_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_canaliza_Spartan_User.Name
-                        ,canalizar_aDescripcion = CultureHelper.GetTraduction(m.canalizar_a_Estatus_Orientador.Clave.ToString(), "Descripcion") ?? (string)m.canalizar_a_Estatus_Orientador.Descripcion
                         ,tipo_de_acuerdoDescripcion = CultureHelper.GetTraduction(m.tipo_de_acuerdo_Tipo_de_Acuerdo.Clave.ToString(), "Descripcion") ?? (string)m.tipo_de_acuerdo_Tipo_de_Acuerdo.Descripcion
                         ,fecha_de_inicio_de_acuerdo = (m.fecha_de_inicio_de_acuerdo == null ? string.Empty : Convert.ToDateTime(m.fecha_de_inicio_de_acuerdo).ToString(ConfigurationProperty.DateFormat))
                         ,fecha_de_cumplimiento = (m.fecha_de_cumplimiento == null ? string.Empty : Convert.ToDateTime(m.fecha_de_cumplimiento).ToString(ConfigurationProperty.DateFormat))
@@ -3923,73 +3731,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
-
-                    
-                };
-				var resultData = new
-                {
-                    data = result
-                    ,observaciones = detalle_de_observaciones_mpiData
-
-                };
-                return Json(resultData, JsonRequestBehavior.AllowGet);
-            }
-            return Json(null, JsonRequestBehavior.AllowGet);            
-        }
-
-		[HttpPost]
-        public ActionResult Post_Canalizar(expediente_ministerio_publico_CanalizarModel varexpediente_ministerio_publico)
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
-                var result = "";
-                var expediente_ministerio_publico_CanalizarInfo = new expediente_ministerio_publico_Canalizar
-                {
-                    clave = varexpediente_ministerio_publico.clave
-                                            ,Fecha_de_Canalizacion = (!String.IsNullOrEmpty(varexpediente_ministerio_publico.Fecha_de_Canalizacion)) ? DateTime.ParseExact(varexpediente_ministerio_publico.Fecha_de_Canalizacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Canalizacion = varexpediente_ministerio_publico.Hora_de_Canalizacion
-                        ,usuario_que_canaliza = varexpediente_ministerio_publico.usuario_que_canaliza
-                        ,canalizar_a = varexpediente_ministerio_publico.canalizar_a
-                    
-                };
-
-                result = _Iexpediente_ministerio_publicoApiConsumer.Update_Canalizar(expediente_ministerio_publico_CanalizarInfo).Resource.ToString();
-                Session["KeyValueInserted"] = result;
-                return Json(result, JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-        }
-		
-		[HttpGet]
-        public JsonResult Get_Canalizar(string Id)
-        {     
-            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var m = _Iexpediente_ministerio_publicoApiConsumer.Get_Canalizar(Id).Resource;
-                if (m == null)
-                    return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_detalle_de_observaciones_mpi;
-                var detalle_de_observaciones_mpiData = Getdetalle_de_observaciones_mpiData(Id.ToString(), 0, Int16.MaxValue, out RowCount_detalle_de_observaciones_mpi);
-
-                var result = new expediente_ministerio_publico_CanalizarModel
-                {
-                    clave = m.clave
-                        ,Fecha_de_Canalizacion = (m.Fecha_de_Canalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Canalizacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Canalizacion = m.Hora_de_Canalizacion
-                        ,usuario_que_canaliza = m.usuario_que_canaliza
-                        ,usuario_que_canalizaName = CultureHelper.GetTraduction(m.usuario_que_canaliza_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_canaliza_Spartan_User.Name
-                        ,canalizar_a = m.canalizar_a
-                        ,canalizar_aDescripcion = CultureHelper.GetTraduction(m.canalizar_a_Estatus_Orientador.Clave.ToString(), "Descripcion") ?? (string)m.canalizar_a_Estatus_Orientador.Descripcion
 
                     
                 };

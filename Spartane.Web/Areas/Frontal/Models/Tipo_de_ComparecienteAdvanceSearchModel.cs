@@ -22,6 +22,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }
 
+        public Filters TP_DescripcionCortaFilter { set; get; }
+        public string TP_DescripcionCorta { set; get; }
+
 
     }
 }

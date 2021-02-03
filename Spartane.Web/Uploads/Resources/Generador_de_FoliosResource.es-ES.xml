@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Generador_de_Folios" value="Generador_de_Folios"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Fecha_de_Generador_de_Folio" value="Fecha_de_Generador_de_Folio"></resource>
+  <resource culture="es-es" name="Anio_de_Generador_de_Folio" value="Anio_de_Generador_de_Folio"></resource>
+  <resource culture="es-es" name="Tipo_de_Denuncia" value="Tipo_de_Denuncia"></resource>
+  <resource culture="es-es" name="Region" value="Region"></resource>
+  <resource culture="es-es" name="Unidad" value="Unidad"></resource>
+  <resource culture="es-es" name="Consecutivo" value="Consecutivo"></resource>
+  <resource culture="es-es" name="Folio_Ultimo_Generado" value="Folio_Ultimo_Generado"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

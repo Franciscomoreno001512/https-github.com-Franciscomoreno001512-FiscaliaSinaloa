@@ -36,6 +36,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Modulo</summary>
+        public static string Modulo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderEncuesta.GetResource("Modulo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Tipo_Encuesta</summary>
+        public static string Tipo_Encuesta
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderEncuesta.GetResource("Tipo_Encuesta", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Numero_de_Preguntas</summary>
         public static string Numero_de_Preguntas
         {
@@ -93,56 +113,6 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderEncuesta.GetResource("Pregunta_5", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Pregunta_6</summary>
-        public static string Pregunta_6
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderEncuesta.GetResource("Pregunta_6", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Pregunta_7</summary>
-        public static string Pregunta_7
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderEncuesta.GetResource("Pregunta_7", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Pregunta_8</summary>
-        public static string Pregunta_8
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderEncuesta.GetResource("Pregunta_8", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Pregunta_9</summary>
-        public static string Pregunta_9
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderEncuesta.GetResource("Pregunta_9", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Pregunta_10</summary>
-        public static string Pregunta_10
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderEncuesta.GetResource("Pregunta_10", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

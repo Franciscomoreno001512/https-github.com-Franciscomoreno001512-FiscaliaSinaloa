@@ -56,6 +56,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Expediente_MASC</summary>
+        public static string Expediente_MASC
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Expediente_MASC", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Datos_Confidenciales</summary>
         public static string Datos_Confidenciales
         {
@@ -83,6 +93,46 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Datos_Generales.GetResource("Tipo_de_Compareciente", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Persona_Desaparecida</summary>
+        public static string Persona_Desaparecida
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Persona_Desaparecida", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Persona_Aparecio</summary>
+        public static string Persona_Aparecio
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Persona_Aparecio", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_de_Aparicion</summary>
+        public static string Fecha_de_Aparicion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Fecha_de_Aparicion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Con_Vida</summary>
+        public static string Con_Vida
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Con_Vida", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -516,6 +566,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Preferencia_Sexual</summary>
+        public static string Preferencia_Sexual
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Preferencia_Sexual", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Etnia</summary>
         public static string Etnia
         {
@@ -703,6 +763,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Datos_Generales.GetResource("Se_Informaron_sobre_sus_Derechos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Gravidez</summary>
+        public static string Gravidez
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Gravidez", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -1553,6 +1623,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Datos_Generales.GetResource("Largo_de_Cabello", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Forma_de_Cabello</summary>
+        public static string Forma_de_Cabello
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Forma_de_Cabello", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

@@ -16,6 +16,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Vigencia { get; set; }
         public string VigenciaAbreviacion { get; set; }
         public string Observaciones { get; set; }
+        [Range(0, 9999999999)]
+        public int? Justicia { get; set; }
 
     }
 	
@@ -27,6 +29,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Vigencia { get; set; }
         public string VigenciaAbreviacion { get; set; }
         public string Observaciones { get; set; }
+        [Range(0, 9999999999)]
+        public int? Justicia { get; set; }
 
     }
 

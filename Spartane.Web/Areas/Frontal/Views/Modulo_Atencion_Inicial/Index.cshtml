@@ -19,6 +19,7 @@
 @using Spartane.Core.Domain.Dialecto;
 @using Spartane.Core.Domain.Idioma;
 @using Spartane.Core.Domain.Estatus_Orientador;
+@using Spartane.Core.Domain.Unidad;
 @using Spartane.Core.Domain.Prioridad_del_Hecho;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Pais;
@@ -26,6 +27,7 @@
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Documento_Extraviado;
 @using Spartane.Core.Domain.Lugar_Tipo;
 @using Spartane.Core.Domain.Zona;
 @using Spartane.Core.Domain.Tipo_de_Acuerdo;
@@ -268,6 +270,7 @@
                                     <th>@Resources.Modulo_Atencion_InicialResources.Autoriza_Traductor</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Finalizar_Servicios_de_Apoyo</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Estatus2</th>
+                                    <th>@Resources.Modulo_Atencion_InicialResources.Unidad_canaliza</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Enviar_a_MP</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Correccion_de_Estatus</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Requiere_Servicios_de_Apoyo</th>
@@ -289,8 +292,11 @@
                                     <th>@Resources.Modulo_Atencion_InicialResources.Y_Calle</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Numero_Exrterior_de_los_Hechos</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Numero_Interior_de_los_Hechos</th>
+                                    <th>@Resources.Modulo_Atencion_InicialResources.Referencia_hechos</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Latitud</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Longitud</th>
+                                    <th>@Resources.Modulo_Atencion_InicialResources.Documento_Extraviado_hechos</th>
+                                    <th>@Resources.Modulo_Atencion_InicialResources.Tipo_de_Documento_Extraviado</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Tipo_de_Lugar_del_Hecho</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Zona_de_los_Hechos</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Turno</th>
@@ -364,6 +370,7 @@
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
@@ -386,6 +393,9 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -569,6 +579,7 @@
         var Autoriza_Traductor = $($('table td .filterData.form-control:input')[counter++]).val();
         var Finalizar_Servicios_de_Apoyo = $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatus2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad_canaliza =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Enviar_a_MP = $($('table td .filterData.form-control:input')[counter++]).val();
         var Correccion_de_Estatus = $($('table td .filterData.form-control:input')[counter++]).val();
         var Requiere_Servicios_de_Apoyo = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -590,8 +601,11 @@
         var Y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_Exrterior_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_Interior_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Latitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Longitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Documento_Extraviado_hechos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Documento_Extraviado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Lugar_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Zona_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -661,6 +675,7 @@
         + "&Autoriza_Traductor=" + Autoriza_Traductor
         + "&Finalizar_Servicios_de_Apoyo=" + Finalizar_Servicios_de_Apoyo
         + "&Estatus2=" + Estatus2
+        + "&Unidad_canaliza=" + Unidad_canaliza
         + "&Enviar_a_MP=" + Enviar_a_MP
         + "&Correccion_de_Estatus=" + Correccion_de_Estatus
         + "&Requiere_Servicios_de_Apoyo=" + Requiere_Servicios_de_Apoyo
@@ -682,8 +697,11 @@
         + "&Y_Calle=" + Y_Calle
         + "&Numero_Exrterior_de_los_Hechos=" + Numero_Exrterior_de_los_Hechos
         + "&Numero_Interior_de_los_Hechos=" + Numero_Interior_de_los_Hechos
+        + "&Referencia_hechos=" + Referencia_hechos
         + "&Latitud=" + Latitud
         + "&Longitud=" + Longitud
+        + "&Documento_Extraviado_hechos=" + Documento_Extraviado_hechos
+        + "&Tipo_de_Documento_Extraviado=" + Tipo_de_Documento_Extraviado
         + "&Tipo_de_Lugar_del_Hecho=" + Tipo_de_Lugar_del_Hecho
         + "&Zona_de_los_Hechos=" + Zona_de_los_Hechos
         + "&Turno=" + Turno
@@ -764,6 +782,7 @@
         var Autoriza_Traductor = $($('table td .filterData.form-control:input')[counter++]).val();
         var Finalizar_Servicios_de_Apoyo = $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatus2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad_canaliza =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Enviar_a_MP = $($('table td .filterData.form-control:input')[counter++]).val();
         var Correccion_de_Estatus = $($('table td .filterData.form-control:input')[counter++]).val();
         var Requiere_Servicios_de_Apoyo = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -785,8 +804,11 @@
         var Y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_Exrterior_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_Interior_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Latitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Longitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Documento_Extraviado_hechos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Documento_Extraviado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Lugar_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Zona_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -856,6 +878,7 @@
         + "&Autoriza_Traductor=" + Autoriza_Traductor
         + "&Finalizar_Servicios_de_Apoyo=" + Finalizar_Servicios_de_Apoyo
         + "&Estatus2=" + Estatus2
+        + "&Unidad_canaliza=" + Unidad_canaliza
         + "&Enviar_a_MP=" + Enviar_a_MP
         + "&Correccion_de_Estatus=" + Correccion_de_Estatus
         + "&Requiere_Servicios_de_Apoyo=" + Requiere_Servicios_de_Apoyo
@@ -877,8 +900,11 @@
         + "&Y_Calle=" + Y_Calle
         + "&Numero_Exrterior_de_los_Hechos=" + Numero_Exrterior_de_los_Hechos
         + "&Numero_Interior_de_los_Hechos=" + Numero_Interior_de_los_Hechos
+        + "&Referencia_hechos=" + Referencia_hechos
         + "&Latitud=" + Latitud
         + "&Longitud=" + Longitud
+        + "&Documento_Extraviado_hechos=" + Documento_Extraviado_hechos
+        + "&Tipo_de_Documento_Extraviado=" + Tipo_de_Documento_Extraviado
         + "&Tipo_de_Lugar_del_Hecho=" + Tipo_de_Lugar_del_Hecho
         + "&Zona_de_los_Hechos=" + Zona_de_los_Hechos
         + "&Turno=" + Turno
@@ -1086,11 +1112,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -1193,6 +1219,7 @@
                 ,{ "data": "Autoriza_Traductor", "orderable": true, "name": "Autoriza_Traductor","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Finalizar_Servicios_de_Apoyo", "orderable": true, "name": "Finalizar_Servicios_de_Apoyo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Estatus2Descripcion", "orderable": true, "name": "Estatus2Descripcion" }
+                ,{ "data": "Unidad_canalizaDescripcion", "orderable": true, "name": "Unidad_canalizaDescripcion" }
                 ,{ "data": "Enviar_a_MP", "orderable": true, "name": "Enviar_a_MP","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Correccion_de_Estatus", "orderable": true, "name": "Correccion_de_Estatus","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Requiere_Servicios_de_Apoyo", "orderable": true, "name": "Requiere_Servicios_de_Apoyo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
@@ -1214,8 +1241,11 @@
                 ,{ "data": "Y_Calle", "orderable": true, "name": "Y_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Numero_Exrterior_de_los_Hechos", "orderable": true, "name": "Numero_Exrterior_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Numero_Interior_de_los_Hechos", "orderable": true, "name": "Numero_Interior_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Referencia_hechos", "orderable": true, "name": "Referencia_hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Latitud", "orderable": true, "name": "Latitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Longitud", "orderable": true, "name": "Longitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Documento_Extraviado_hechos", "orderable": true, "name": "Documento_Extraviado_hechos","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Tipo_de_Documento_ExtraviadoDescripcion", "orderable": true, "name": "Tipo_de_Documento_ExtraviadoDescripcion" }
                 ,{ "data": "Tipo_de_Lugar_del_HechoDescripcion", "orderable": true, "name": "Tipo_de_Lugar_del_HechoDescripcion" }
                 ,{ "data": "Zona_de_los_HechosDescripcion", "orderable": true, "name": "Zona_de_los_HechosDescripcion" }
                 ,{ "data": "Turno", "orderable": true, "name": "Turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }

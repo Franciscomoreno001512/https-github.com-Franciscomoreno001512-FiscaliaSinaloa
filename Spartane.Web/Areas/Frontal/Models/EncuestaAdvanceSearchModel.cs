@@ -19,6 +19,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         [IsNumberAfterAttribute("FromClave", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToClave { set; get; }
 
+        public Filters ModuloFilter { set; get; }
+        public string AdvanceModulo { set; get; }
+        public int[] AdvanceModuloMultiple { set; get; }
+
+        public Filters Tipo_EncuestaFilter { set; get; }
+        public string AdvanceTipo_Encuesta { set; get; }
+        public int[] AdvanceTipo_EncuestaMultiple { set; get; }
+
         public Filters Numero_de_PreguntasFilter { set; get; }
         public string AdvanceNumero_de_Preguntas { set; get; }
         public int[] AdvanceNumero_de_PreguntasMultiple { set; get; }
@@ -37,21 +45,6 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters Pregunta_5Filter { set; get; }
         public string Pregunta_5 { set; get; }
-
-        public Filters Pregunta_6Filter { set; get; }
-        public string Pregunta_6 { set; get; }
-
-        public Filters Pregunta_7Filter { set; get; }
-        public string Pregunta_7 { set; get; }
-
-        public Filters Pregunta_8Filter { set; get; }
-        public string Pregunta_8 { set; get; }
-
-        public Filters Pregunta_9Filter { set; get; }
-        public string Pregunta_9 { set; get; }
-
-        public Filters Pregunta_10Filter { set; get; }
-        public string Pregunta_10 { set; get; }
 
 
     }

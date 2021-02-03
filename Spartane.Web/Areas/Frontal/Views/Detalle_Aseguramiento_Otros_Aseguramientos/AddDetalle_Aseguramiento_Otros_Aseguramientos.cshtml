@@ -8,15 +8,12 @@
 @{
 
 
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_Equipo_Tactico_Tipo = null;
     if (ViewBag.Tipo_de_Equipo_Tacticos_Tipo != null)
     { varTipo_de_Equipo_Tactico_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Equipo_Tacticos_Tipo; }
-    List<SelectListItem> varMarca_de_Equipo_Tactico_Marca = null;
-    if (ViewBag.Marca_de_Equipo_Tacticos_Marca != null)
-    { varMarca_de_Equipo_Tactico_Marca = (List<SelectListItem>)ViewBag.Marca_de_Equipo_Tacticos_Marca; }
-    List<SelectListItem> varModelo_de_equipo_tactico_Modelo = null;
-    if (ViewBag.Modelo_de_equipo_tacticos_Modelo != null)
-    { varModelo_de_equipo_tactico_Modelo = (List<SelectListItem>)ViewBag.Modelo_de_equipo_tacticos_Modelo; }
     List<SelectListItem> varUnidad_de_Medida_de_Equipo_Tactico_Unidad_de_Medida = null;
     if (ViewBag.Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida != null)
     { varUnidad_de_Medida_de_Equipo_Tactico_Unidad_de_Medida = (List<SelectListItem>)ViewBag.Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida; }
@@ -145,6 +142,27 @@
                                     <label class="form-control" for="Detalle_Aseguramiento_Otros_AseguramientosClave" id="Detalle_Aseguramiento_Otros_AseguramientosClave">@Model.Clave</label>
                                 </div>
                             </div>
+<div class="form-group" id="divMotivo_de_Registro">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Motivo_de_Registro</label>
+	<div class="col-sm-8" data-field-id="Motivo_de_Registro" data-attribute="268343" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Motivo_de_Registro">
+		<select class="form-control" data-val="true" data-val-number="The field Motivo de Registro must be a number." data-val-required="The Motivo de Registro field is required." id="Detalle_Aseguramiento_Otros_AseguramientosMotivo_de_Registro" name="Detalle_Aseguramiento_Otros_AseguramientosMotivo_de_Registro">
+			<option value=""></option>
+			@if (varMotivo_de_Registro_Motivo_de_Registro != null){ 
+				foreach (var itemMotivo_de_Registro in varMotivo_de_Registro_Motivo_de_Registro)
+				{
+					if (itemMotivo_de_Registro.Value == Convert.ToString(Model.Motivo_de_Registro))
+					{
+						<option value="@itemMotivo_de_Registro.Value" selected>@itemMotivo_de_Registro.Text</option>
+					}
+					else
+					{
+						<option value="@itemMotivo_de_Registro.Value">@itemMotivo_de_Registro.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
 <div class="form-group" id="divTipo">
 	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo</label>
 	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267589" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo">
@@ -167,47 +185,17 @@
 	</div>
 </div>
 <div class="form-group" id="divMarca">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Marca</label>
-	<div class="col-sm-8" data-field-id="Marca" data-attribute="267590" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Marca">
-		<select class="form-control" data-val="true" data-val-number="The field Marca must be a number." data-val-required="The Marca field is required." id="Detalle_Aseguramiento_Otros_AseguramientosMarca" name="Detalle_Aseguramiento_Otros_AseguramientosMarca">
-			<option value=""></option>
-			@if (varMarca_de_Equipo_Tactico_Marca != null){ 
-				foreach (var itemMarca in varMarca_de_Equipo_Tactico_Marca)
-				{
-					if (itemMarca.Value == Convert.ToString(Model.Marca))
-					{
-						<option value="@itemMarca.Value" selected>@itemMarca.Text</option>
-					}
-					else
-					{
-						<option value="@itemMarca.Value">@itemMarca.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Marca</label>
+                                <div class="col-sm-8" data-field-id="Marca" data-attribute="267590" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Marca">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Otros_AseguramientosMarca" name="Detalle_Aseguramiento_Otros_AseguramientosMarca" type="text" value="@Model.Marca">
+                                </div>
+                            </div>
 <div class="form-group" id="divModelo">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Modelo</label>
-	<div class="col-sm-8" data-field-id="Modelo" data-attribute="267591" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Modelo">
-		<select class="form-control" data-val="true" data-val-number="The field Modelo must be a number." data-val-required="The Modelo field is required." id="Detalle_Aseguramiento_Otros_AseguramientosModelo" name="Detalle_Aseguramiento_Otros_AseguramientosModelo">
-			<option value=""></option>
-			@if (varModelo_de_equipo_tactico_Modelo != null){ 
-				foreach (var itemModelo in varModelo_de_equipo_tactico_Modelo)
-				{
-					if (itemModelo.Value == Convert.ToString(Model.Modelo))
-					{
-						<option value="@itemModelo.Value" selected>@itemModelo.Text</option>
-					}
-					else
-					{
-						<option value="@itemModelo.Value">@itemModelo.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Modelo</label>
+                                <div class="col-sm-8" data-field-id="Modelo" data-attribute="267591" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Modelo">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Otros_AseguramientosModelo" name="Detalle_Aseguramiento_Otros_AseguramientosModelo" type="text" value="@Model.Modelo">
+                                </div>
+                            </div>
 <div class="form-group" id="divInventario">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Inventario</label>
                                 <div class="col-sm-8" data-field-id="Inventario" data-attribute="267592" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Inventario">

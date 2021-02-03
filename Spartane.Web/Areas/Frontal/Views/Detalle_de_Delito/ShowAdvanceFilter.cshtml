@@ -9,19 +9,22 @@
  List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
     List<SelectListItem> varFormato_de_Denuncia_Tipo_de_Denuncia = null;
     if (ViewBag.Formato_de_Denuncias_Tipo_de_Denuncia != null)
     { varFormato_de_Denuncia_Tipo_de_Denuncia = (List<SelectListItem>)ViewBag.Formato_de_Denuncias_Tipo_de_Denuncia; }
     List<SelectListItem> varDelitos_Violencia_Genero_Delito_Violencia_Genero = null;
     if (ViewBag.Delitos_Violencia_Generos_Delito_Violencia_Genero != null)
     { varDelitos_Violencia_Genero_Delito_Violencia_Genero = (List<SelectListItem>)ViewBag.Delitos_Violencia_Generos_Delito_Violencia_Genero; }
-    List<SelectListItem> varTitulo_del_Delito_Tipo_de_Delito = null;
+ List<SelectListItem> varTitulo_del_Delito_Tipo_de_Delito = null;
     if (ViewBag.Titulo_del_Delitos_Tipo_de_Delito != null)
     { varTitulo_del_Delito_Tipo_de_Delito = (List<SelectListItem>)ViewBag.Titulo_del_Delitos_Tipo_de_Delito; }
-    List<SelectListItem> varGrupo_del_Delito_Grupo_Delito = null;
+ List<SelectListItem> varGrupo_del_Delito_Grupo_Delito = null;
     if (ViewBag.Grupo_del_Delitos_Grupo_Delito != null)
     { varGrupo_del_Delito_Grupo_Delito = (List<SelectListItem>)ViewBag.Grupo_del_Delitos_Grupo_Delito; }
-    List<SelectListItem> varDelito_Delito = null;
+ List<SelectListItem> varDelito_Delito = null;
     if (ViewBag.Delitos_Delito != null)
     { varDelito_Delito = (List<SelectListItem>)ViewBag.Delitos_Delito; }
     List<SelectListItem> varCircunstancia_del_Delito_Circunstancia_Delito = null;
@@ -209,6 +212,9 @@
  List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_DelitoResources.Tipo_de_Denuncia</h3>
                 </div>
@@ -289,69 +295,15 @@
                         });
                     }
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_DelitoResources.Tipo_de_Delito</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Tipo_de_DelitoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_DelitoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Delito, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Delito" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTitulo_del_Delito_Tipo_de_Delito!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTipo_de_DelitoMultiple, varTitulo_del_Delito_Tipo_de_Delito,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTipo_de_Delito"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_DelitoResources.Grupo_Delito</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Grupo_DelitoFilter, filters, new { @class = "form-control", @id = "ddlGrupo_DelitoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceGrupo_Delito, new { @class = "form-control", @type = "text", @id = "txtAdvanceGrupo_Delito" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varGrupo_del_Delito_Grupo_Delito!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceGrupo_DelitoMultiple, varGrupo_del_Delito_Grupo_Delito,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceGrupo_Delito"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_DelitoResources.Delito</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.DelitoFilter, filters, new { @class = "form-control", @id = "ddlDelitoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceDelito, new { @class = "form-control", @type = "text", @id = "txtAdvanceDelito" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDelito_Delito!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceDelitoMultiple, varDelito_Delito,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceDelito"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varTitulo_del_Delito_Tipo_de_Delito = null;
+    if (ViewBag.Titulo_del_Delitos_Tipo_de_Delito != null)
+    { varTitulo_del_Delito_Tipo_de_Delito = (List<SelectListItem>)ViewBag.Titulo_del_Delitos_Tipo_de_Delito; }
+ List<SelectListItem> varGrupo_del_Delito_Grupo_Delito = null;
+    if (ViewBag.Grupo_del_Delitos_Grupo_Delito != null)
+    { varGrupo_del_Delito_Grupo_Delito = (List<SelectListItem>)ViewBag.Grupo_del_Delitos_Grupo_Delito; }
+ List<SelectListItem> varDelito_Delito = null;
+    if (ViewBag.Delitos_Delito != null)
+    { varDelito_Delito = (List<SelectListItem>)ViewBag.Delitos_Delito; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_DelitoResources.Circunstancia_Delito</h3>
                 </div>
@@ -1455,6 +1407,21 @@
                 advanceSearch.Expediente_MPSearchType = 2;
             }
         }
+        advanceSearch.Expediente_MASCSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MASC').val().length > 0 || $("#txtAdvanceExpediente_MASC").val() == "") {
+
+
+            if (isDetalle_de_DelitoTextSearch) {
+                advanceSearch.Expediente_MASCName = $("#txtAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCNameSearchType = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MASCToSearch = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 2;
+            }
+        }
         advanceSearch.Tipo_de_DenunciaSearchType = 0;
         if ($('#ddlAdvanceTipo_de_Denuncia').val().length > 0 || $("#txtAdvanceTipo_de_Denuncia").val() == "") {
 
@@ -2457,6 +2424,15 @@
         $("#ddlAdvanceExpediente_MP").change(function () {
             isDetalle_de_DelitoTextSearch = false;
             $("#txtAdvanceExpediente_MP").val('');
+        });
+        $("#txtAdvanceExpediente_MASC").keypress(function () {
+            isDetalle_de_DelitoTextSearch = true;
+            $("#ddlAdvanceExpediente_MASC").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MASC").change(function () {
+            isDetalle_de_DelitoTextSearch = false;
+            $("#txtAdvanceExpediente_MASC").val('');
         });
         $("#txtAdvanceTipo_de_Denuncia").keypress(function () {
             isDetalle_de_DelitoTextSearch = true;

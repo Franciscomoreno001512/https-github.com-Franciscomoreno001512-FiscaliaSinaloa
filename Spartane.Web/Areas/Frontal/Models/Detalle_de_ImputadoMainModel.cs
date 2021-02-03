@@ -81,6 +81,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Entre_Calle { get; set; }
         public string Y_Calle { get; set; }
         public string Numero_Exterior { get; set; }
+        public string Numero_Interior { get; set; }
+        public string Coordenada_X { get; set; }
+        public string Coordenada_Y { get; set; }
+        public string Observaciones { get; set; }
 
         public bool Removed { set; get; }
     }
@@ -88,7 +92,9 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Otros_NombresGridModelPost
     {
         public int Clave { get; set; }
-        public string Descripcion { get; set; }
+        public string Nombres { get; set; }
+        public string Apellido_Paterno { get; set; }
+        public string Apellido_Materno { get; set; }
 
         public bool Removed { set; get; }
     }

@@ -2,8 +2,8 @@
 <Roles>
   <Role culture="en-us" Id="1" value="Administrator"></Role>
   <Role culture="es-es" Id="1" value="Administrador"></Role>
-  <Role culture="en-us" Id="2" value="Coordinador de MASC"></Role>
-  <Role culture="es-es" Id="2" value="Coordinador de MASC"></Role>
+  <Role culture="en-us" Id="2" value="Director Regional MASC"></Role>
+  <Role culture="es-es" Id="2" value="Director Regional MASC"></Role>
   <Role culture="en-us" Id="3" value="Facilitador MASC"></Role>
   <Role culture="es-es" Id="3" value="Facilitador MASC"></Role>
   <Role culture="en-us" Id="4" value="Orientador"></Role>
@@ -54,4 +54,30 @@
   <Role culture="es-es" Id="104" value="Notificador"></Role>
   <Role culture="en-us" Id="105" value="Director MASC"></Role>
   <Role culture="es-es" Id="105" value="Director MASC"></Role>
+  <Role culture="en-us" Id="106" value="Encuesta"></Role>
+  <Role culture="es-es" Id="106" value="Encuesta"></Role>
+  <Role culture="en-us" Id="107" value="Dictaminador"></Role>
+  <Role culture="es-es" Id="107" value="Dictaminador"></Role>
+  <Role culture="en-us" Id="108" value="Denuncia"></Role>
+  <Role culture="es-es" Id="108" value="Denuncia"></Role>
+  <Role culture="en-us" Id="109" value="Portal Ciudadano"></Role>
+  <Role culture="es-es" Id="109" value="Portal Ciudadano"></Role>
+  <Role culture="en-us" Id="110" value="Denuncia Anónima"></Role>
+  <Role culture="es-es" Id="110" value="Denuncia Anónima"></Role>
+  <Role culture="en-us" Id="111" value="ViceFiscal"></Role>
+  <Role culture="es-es" Id="111" value="ViceFiscal"></Role>
+  <Role culture="en-us" Id="112" value="Director de Carpetas de Investigación"></Role>
+  <Role culture="es-es" Id="112" value="Director de Carpetas de Investigación"></Role>
+  <Role culture="en-us" Id="113" value="Director de Litigación Oral"></Role>
+  <Role culture="es-es" Id="113" value="Director de Litigación Oral"></Role>
+  <Role culture="en-us" Id="114" value="Órgano Interno de Control"></Role>
+  <Role culture="es-es" Id="114" value="Órgano Interno de Control"></Role>
+  <Role culture="en-us" Id="115" value="Recepcion SP"></Role>
+  <Role culture="es-es" Id="115" value="Recepcion SP"></Role>
+  <Role culture="en-us" Id="116" value="Coordinador Area Pericial SP"></Role>
+  <Role culture="es-es" Id="116" value="Coordinador Area Pericial SP"></Role>
+  <Role culture="en-us" Id="117" value="Perito"></Role>
+  <Role culture="es-es" Id="117" value="Perito"></Role>
+  <Role culture="en-us" Id="118" value="-"></Role>
+  <Role culture="es-es" Id="118" value="-"></Role>
 </Roles>

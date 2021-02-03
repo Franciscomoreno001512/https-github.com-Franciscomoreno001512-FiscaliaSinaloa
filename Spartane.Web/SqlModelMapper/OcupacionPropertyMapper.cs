@@ -25,6 +25,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Vigencia.Abreviacion";
                 case "Observaciones":
                     return "Ocupacion.Observaciones";
+                case "Vigenciax":
+                    return "Ocupacion.Vigenciax";
 
                 default:
                     return propertyName;

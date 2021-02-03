@@ -1,0 +1,1353 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Datos_de_los_Hechos_PCModel
+@{
+    Spartane_File attachedFileTiene_alguna_Foto_o_Evidencia = (Spartane_File)ViewBag.Tiene_alguna_Foto_o_EvidenciaSpartane_File;
+
+/*
+    string Fecha_del_Hecho = "";
+    if (Model.Fecha_del_Hecho == "")
+    { Model.Fecha_del_Hecho = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
+    List<SelectListItem> varTipo_de_Solicitud_Tipo_de_Solicitud = null;
+    if (ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud != null)
+    { varTipo_de_Solicitud_Tipo_de_Solicitud = (List<SelectListItem>)ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud; }
+    List<SelectListItem> varRespuesta_Fosa_clandestina = null;
+    if (ViewBag.Respuestas_Fosa_clandestina != null)
+    { varRespuesta_Fosa_clandestina = (List<SelectListItem>)ViewBag.Respuestas_Fosa_clandestina; }
+    List<SelectListItem> varRespuesta_Conoce_la_direccion = null;
+    if (ViewBag.Respuestas_Conoce_la_direccion != null)
+    { varRespuesta_Conoce_la_direccion = (List<SelectListItem>)ViewBag.Respuestas_Conoce_la_direccion; }
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+    List<SelectListItem> varDireccion_Exacta_Es_una_direccion_exacta_o_aproximada = null;
+    if (ViewBag.Direccion_Exactas_Es_una_direccion_exacta_o_aproximada != null)
+    { varDireccion_Exacta_Es_una_direccion_exacta_o_aproximada = (List<SelectListItem>)ViewBag.Direccion_Exactas_Es_una_direccion_exacta_o_aproximada; }
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Datos_de_los_Hechos_PCResources.Datos_de_los_Hechos_PC
+                <button onclick="Datos_de_los_Hechos_PCGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Datos_de_los_Hechos_PCBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Datos_de_los_Hechos_PCResources.Datos_de_los_Hechos_PC</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Datos_de_los_Hechos_PCDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Datos_de_los_Hechos_PCPropertyBusinessModal" id="Datos_de_los_Hechos_PCPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Datos_de_los_Hechos_PCBusinessRule-form" onclick="Datos_de_los_Hechos_PCGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Datos_de_los_Hechos_PCBusinessRuleModal" id="Datos_de_los_Hechos_PCBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Datos_de_los_Hechos_PC", FormMethod.Post, new { id = "CreateDatos_de_los_Hechos_PC", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Datos_de_los_Hechos_PCCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_de_los_hechos"> @Resources.Datos_de_los_Hechos_PCResources.TabDatos_de_los_hechos</a></li>
+<li class=""><a data-toggle="tab" href="#tabDomicilio_de_los_Hechos"> @Resources.Datos_de_los_Hechos_PCResources.TabDomicilio_de_los_Hechos</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_de_los_hechos" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="269222" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+				<div class="form-group" id="divSolicitud">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Solicitud" data-attribute="269223" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Solicitud">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Solicitud form-control select2-dropdown Datos_de_los_hechos' data-val="true" id="Solicitud" name="Solicitud">
+                                        <option value="@Model.Solicitud">@(Model.SolicitudFolio??Model.SolicitudFolio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269223).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud_de_Denuncia_Ciudadana', 'Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Tipo_de_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Solicitud" data-attribute="269373" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Tipo_de_Solicitud">
+                                    <select class="form-control Datos_de_los_hechos" data-val="true" data-val-number="The field Tipo de Solicitud must be a number." data-val-required="The Tipo de Solicitud field is required." id="Tipo_de_Solicitud" name="Tipo_de_Solicitud">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Solicitud_Tipo_de_Solicitud != null){ 
+                                            foreach (var itemTipo_de_Solicitud in varTipo_de_Solicitud_Tipo_de_Solicitud)
+                                            {
+                                                if (itemTipo_de_Solicitud.Value == Convert.ToString(Model.Tipo_de_Solicitud))
+                                                {
+                                                    <option value="@itemTipo_de_Solicitud.Value" selected>@itemTipo_de_Solicitud.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Solicitud.Value">@itemTipo_de_Solicitud.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Solicitud" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269373).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Solicitud', 'Tipo_de_Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTitulo_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Titulo_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Titulo_del_Hecho" data-attribute="269224" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Titulo_del_Hecho">
+                                    <input class="form-control Datos_de_los_hechos" id="Titulo_del_Hecho" name="Titulo_del_Hecho" type="text" value="@Model.Titulo_del_Hecho">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Titulo_del_Hecho" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNarrativa_Breve_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Narrativa_Breve_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Narrativa_Breve_de_los_Hechos" data-attribute="269225" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Narrativa_Breve_de_los_Hechos">
+                                    <textarea id="Narrativa_Breve_de_los_Hechos" name="Narrativa_Breve_de_los_Hechos" class="form-control Datos_de_los_hechos" rows="4" cols="50">@Model.Narrativa_Breve_de_los_Hechos</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Narrativa_Breve_de_los_Hechos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Fecha_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Fecha_del_Hecho" data-attribute="269226" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Fecha_del_Hecho">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_de_los_hechos" id="Fecha_del_Hecho"  name="Fecha_del_Hecho" type="text" value="@Model.Fecha_del_Hecho">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Aproximada_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Hora_Aproximada_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Hora_Aproximada_del_Hecho" data-attribute="269227" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Hora_Aproximada_del_Hecho">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_de_los_hechos" id="Hora_Aproximada_del_Hecho"  name="Hora_Aproximada_del_Hecho" type="text" data-autoclose="true" value="@Model.Hora_Aproximada_del_Hecho">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (attachedFileTiene_alguna_Foto_o_Evidencia != null && attachedFileTiene_alguna_Foto_o_Evidencia.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentTiene_alguna_Foto_o_Evidencia">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_de_los_hechos" data-field-id="Tiene_alguna_Foto_o_Evidencia" data-attribute="269228" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Tiene_alguna_Foto_o_Evidencia">
+                                        <a href="@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetFile")?id=@attachedFileTiene_alguna_Foto_o_Evidencia.File_Id" target="_blank">@attachedFileTiene_alguna_Foto_o_Evidencia.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainTiene_alguna_Foto_o_Evidencia('@attachedFileTiene_alguna_Foto_o_Evidencia.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveTiene_alguna_Foto_o_Evidencia" name="RemoveTiene_alguna_Foto_o_Evidencia" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_de_los_hechos" id="hdnAttachedTiene_alguna_Foto_o_Evidencia" type="hidden" name="Tiene_alguna_Foto_o_Evidencia" value="@Model.Tiene_alguna_Foto_o_Evidencia">
+                                </div>
+                            }
+                            <div class="form-group" id="divTiene_alguna_Foto_o_Evidencia">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Tiene_alguna_Foto_o_Evidencia</label>
+                                <div class="col-sm-8" data-field-id="Tiene_alguna_Foto_o_Evidencia" data-attribute="269228" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Tiene_alguna_Foto_o_Evidencia">
+                                    <input type="file" name="Tiene_alguna_Foto_o_EvidenciaFile" id="Tiene_alguna_Foto_o_EvidenciaFile" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFosa_clandestina">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Fosa_clandestina</label>
+                                <div class="col-sm-8" data-field-id="Fosa_clandestina" data-attribute="269413" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Fosa_clandestina">
+                                    <select class="form-control Datos_de_los_hechos" data-val="true" data-val-number="The field ¿Quieres reportar una fosa clandestina? must be a number." data-val-required="The ¿Quieres reportar una fosa clandestina? field is required." id="Fosa_clandestina" name="Fosa_clandestina">
+                                        <option value=""></option>
+                                        @if (varRespuesta_Fosa_clandestina != null){ 
+                                            foreach (var itemFosa_clandestina in varRespuesta_Fosa_clandestina)
+                                            {
+                                                if (itemFosa_clandestina.Value == Convert.ToString(Model.Fosa_clandestina))
+                                                {
+                                                    <option value="@itemFosa_clandestina.Value" selected>@itemFosa_clandestina.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemFosa_clandestina.Value">@itemFosa_clandestina.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Fosa_clandestina" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269413).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Respuesta', 'Fosa_clandestina');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabDomicilio_de_los_Hechos" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divConoce_la_direccion">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Conoce_la_direccion</label>
+                                <div class="col-sm-8" data-field-id="Conoce_la_direccion" data-attribute="269374" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Conoce_la_direccion">
+                                    <select class="form-control Domicilio_de_los_Hechos" data-val="true" data-val-number="The field ¿Conoce la dirección donde sucedieron los hechos? must be a number." data-val-required="The ¿Conoce la dirección donde sucedieron los hechos? field is required." id="Conoce_la_direccion" name="Conoce_la_direccion">
+                                        <option value=""></option>
+                                        @if (varRespuesta_Conoce_la_direccion != null){ 
+                                            foreach (var itemConoce_la_direccion in varRespuesta_Conoce_la_direccion)
+                                            {
+                                                if (itemConoce_la_direccion.Value == Convert.ToString(Model.Conoce_la_direccion))
+                                                {
+                                                    <option value="@itemConoce_la_direccion.Value" selected>@itemConoce_la_direccion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemConoce_la_direccion.Value">@itemConoce_la_direccion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Conoce_la_direccion" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269374).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Respuesta', 'Conoce_la_direccion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divPais">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Pais</label>
+                                <div class="col-sm-8" data-field-id="Pais" data-attribute="269229" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Pais">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Pais form-control select2-dropdown Domicilio_de_los_Hechos' data-val="true" id="Pais" name="Pais">
+                                        <option value="@Model.Pais">@(Model.PaisNombre??Model.PaisNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269229).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Pais', 'Pais');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divEstado">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Estado</label>
+                                <div class="col-sm-8" data-field-id="Estado" data-attribute="269230" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Estado">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Estado form-control select2-dropdown Domicilio_de_los_Hechos' data-val="true" id="Estado" name="Estado">
+                                        <option value="@Model.Estado">@(Model.EstadoNombre??Model.EstadoNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269230).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Estado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divMunicipio">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Municipio</label>
+                                <div class="col-sm-8" data-field-id="Municipio" data-attribute="269231" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Municipio">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Municipio form-control select2-dropdown Domicilio_de_los_Hechos' data-val="true" id="Municipio" name="Municipio">
+                                        <option value="@Model.Municipio">@(Model.MunicipioNombre??Model.MunicipioNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269231).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divPoblacion">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Poblacion</label>
+                                <div class="col-sm-8" data-field-id="Poblacion" data-attribute="269232" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Poblacion">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Poblacion form-control select2-dropdown Domicilio_de_los_Hechos' data-val="true" id="Poblacion" name="Poblacion">
+                                        <option value="@Model.Poblacion">@(Model.PoblacionNombre??Model.PoblacionNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269232).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Poblacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divColonia">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Colonia</label>
+                                <div class="col-sm-8" data-field-id="Colonia" data-attribute="269233" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Colonia">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Colonia form-control select2-dropdown Domicilio_de_los_Hechos' data-val="true" id="Colonia" name="Colonia">
+                                        <option value="@Model.Colonia">@(Model.ColoniaNombre??Model.ColoniaNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269233).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Colonia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divCodigo_Postal">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Codigo_Postal</label>
+                                <div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="269234" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Codigo_Postal">
+                                    <input class="form-control inputNumber Domicilio_de_los_Hechos" id="Codigo_Postal" name="Codigo_Postal" type="text" value="@Model.Codigo_Postal">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Postal" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCalle">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Calle</label>
+                                <div class="col-sm-8" data-field-id="Calle" data-attribute="269235" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Calle">
+                                    <input class="form-control Domicilio_de_los_Hechos" id="Calle" name="Calle" type="text" value="@Model.Calle">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Calle" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divEntre_Calle">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Entre_Calle</label>
+                                <div class="col-sm-8" data-field-id="Entre_Calle" data-attribute="269236" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Entre_Calle">
+                                    <input class="form-control Domicilio_de_los_Hechos" id="Entre_Calle" name="Entre_Calle" type="text" value="@Model.Entre_Calle">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Entre_Calle" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divY_Calle">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Y_Calle</label>
+                                <div class="col-sm-8" data-field-id="Y_Calle" data-attribute="269237" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Y_Calle">
+                                    <input class="form-control Domicilio_de_los_Hechos" id="Y_Calle" name="Y_Calle" type="text" value="@Model.Y_Calle">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Y_Calle" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_Exterior">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Numero_Exterior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="269238" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Numero_Exterior">
+                                    <input class="form-control Domicilio_de_los_Hechos" id="Numero_Exterior" name="Numero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Exterior" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_Interior">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Numero_Interior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="269239" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Numero_Interior">
+                                    <input class="form-control Domicilio_de_los_Hechos" id="Numero_Interior" name="Numero_Interior" type="text" value="@Model.Numero_Interior">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Interior" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divReferencia">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Referencia</label>
+                                <div class="col-sm-8" data-field-id="Referencia" data-attribute="269240" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Referencia">
+                                    <input class="form-control Domicilio_de_los_Hechos" id="Referencia" name="Referencia" type="text" value="@Model.Referencia">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Referencia" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divLatitud">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Latitud</label>
+                                <div class="col-sm-8" data-field-id="Latitud" data-attribute="269241" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Latitud">
+                                    <input class="form-control Domicilio_de_los_Hechos" id="Latitud" name="Latitud" type="text" value="@Model.Latitud">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Latitud" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divLongitud">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Longitud</label>
+                                <div class="col-sm-8" data-field-id="Longitud" data-attribute="269242" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Longitud">
+                                    <input class="form-control Domicilio_de_los_Hechos" id="Longitud" name="Longitud" type="text" value="@Model.Longitud">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Longitud" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divEs_una_direccion_exacta_o_aproximada">
+                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Es_una_direccion_exacta_o_aproximada</label>
+                                <div class="col-sm-8" data-field-id="Es_una_direccion_exacta_o_aproximada" data-attribute="269352" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Es_una_direccion_exacta_o_aproximada">
+                                    <select class="form-control Domicilio_de_los_Hechos" data-val="true" data-val-number="The field ¿Es una dirección exacta o apróximada? must be a number." data-val-required="The ¿Es una dirección exacta o apróximada? field is required." id="Es_una_direccion_exacta_o_aproximada" name="Es_una_direccion_exacta_o_aproximada">
+                                        <option value=""></option>
+                                        @if (varDireccion_Exacta_Es_una_direccion_exacta_o_aproximada != null){ 
+                                            foreach (var itemEs_una_direccion_exacta_o_aproximada in varDireccion_Exacta_Es_una_direccion_exacta_o_aproximada)
+                                            {
+                                                if (itemEs_una_direccion_exacta_o_aproximada.Value == Convert.ToString(Model.Es_una_direccion_exacta_o_aproximada))
+                                                {
+                                                    <option value="@itemEs_una_direccion_exacta_o_aproximada.Value" selected>@itemEs_una_direccion_exacta_o_aproximada.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemEs_una_direccion_exacta_o_aproximada.Value">@itemEs_una_direccion_exacta_o_aproximada.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Es_una_direccion_exacta_o_aproximada" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269352).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Direccion_Exacta', 'Es_una_direccion_exacta_o_aproximada');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Datos_de_los_Hechos_PCGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Datos_de_los_Hechos_PCCreateForm');"  />
+									<button onclick="Datos_de_los_Hechos_PCGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Datos_de_los_Hechos_PCBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Datos_de_los_Hechos_PCGuardarYNuevo" onclick="return checkClientValidate('Datos_de_los_Hechos_PCCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Datos_de_los_Hechos_PCGuardarYCopia" onclick="return checkClientValidate('Datos_de_los_Hechos_PCCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnDatos_de_los_Hechos_PCBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnDatos_de_los_Hechos_PCBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnDatos_de_los_Hechos_PCBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Datos_de_los_Hechos_PCCancelar" name="Datos_de_los_Hechos_PCCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Datos_de_los_Hechos_PCGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Datos_de_los_Hechos_PCBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Datos_de_los_Hechos_PC.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Datos_de_los_Hechos_PCGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Datos_de_los_Hechos_PCCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+        function RemoveAttachmentMainTiene_alguna_Foto_o_Evidencia () {
+            $("#hdnRemoveTiene_alguna_Foto_o_Evidencia").val("1");
+            $("#divAttachmentTiene_alguna_Foto_o_Evidencia").hide();
+        }
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_de_los_hechos = true;
+
+		var Tab_Domicilio_de_los_Hechos = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45711');
+		    
+		   
+                        $('#Fecha_del_Hecho').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_Aproximada_del_Hecho').clockpicker();
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Datos_de_los_Hechos_PCGuardarYNuevo').hide();
+                $('#Datos_de_los_Hechos_PCGuardarYCopia').hide();
+                $('#Datos_de_los_Hechos_PCCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Datos_de_los_Hechos_PCGuardar').val('Actualizar Seccion ' + '@Resources.Datos_de_los_Hechos_PCResources.Datos_de_los_Hechos_PC' )
+            }
+
+			
+			       var AutoCompleteSolicitudData =[];
+       $(".AutoCompleteDatos_de_los_Hechos_PC_Solicitud").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Solicitud_Solicitud_de_Denuncia_Ciudadana")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDatos_de_los_Hechos_PC_Solicitud_Solicitud_de_Denuncia_CiudadanaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_PC_Solicitud");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompletePaisData =[];
+       $(".AutoCompleteDatos_de_los_Hechos_PC_Pais").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Pais_Pais")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDatos_de_los_Hechos_PC_Pais_PaisData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_PC_Pais");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteEstadoData =[];
+       $(".AutoCompleteDatos_de_los_Hechos_PC_Estado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Estado_Estado")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDatos_de_los_Hechos_PC_Estado_EstadoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_PC_Estado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteMunicipioData =[];
+       $(".AutoCompleteDatos_de_los_Hechos_PC_Municipio").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Municipio_Municipio")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDatos_de_los_Hechos_PC_Municipio_MunicipioData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_PC_Municipio");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompletePoblacionData =[];
+       $(".AutoCompleteDatos_de_los_Hechos_PC_Poblacion").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Poblacion_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDatos_de_los_Hechos_PC_Poblacion_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_PC_Poblacion");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteColoniaData =[];
+       $(".AutoCompleteDatos_de_los_Hechos_PC_Colonia").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Colonia_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDatos_de_los_Hechos_PC_Colonia_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_PC_Colonia");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_de_los_hechos)
+					Fill_Datos_de_los_hechos();
+
+				if (Tab_Domicilio_de_los_Hechos)
+					Fill_Domicilio_de_los_Hechos();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendDatos_de_los_Hechos_PCData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDatos_de_los_Hechos_PC").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDatos_de_los_Hechos_PC")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_de_los_hechos && !checkClientValidate('Datos_de_los_Hechos_PCCreateForm', 'Datos_de_los_hechos')) {
+				return false;
+			}						
+
+			if (Tab_Domicilio_de_los_Hechos && !checkClientValidate('Datos_de_los_Hechos_PCCreateForm', 'Domicilio_de_los_Hechos')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_de_los_hechos)
+				Save_Datos_de_los_hechos(id);
+
+			if (Tab_Domicilio_de_los_Hechos)
+				Save_Domicilio_de_los_Hechos(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Datos_de_los_Hechos_PCBusinessRuleModal").html(data);
+			});
+		}
+                function Datos_de_los_Hechos_PCGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45711');
+			$('#Screen').val('Datos_de_los_Hechos_PC');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Datos_de_los_Hechos_PCBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDatos_de_los_Hechos_PC').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Datos_de_los_Hechos_PCGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_de_los_hechos()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/Get_Datos_de_los_hechos")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    var control = $('#Solicitud');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Solicitud).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Solicitud).trigger('change');
+                    }, 3000);
+                    $('#Tipo_de_Solicitud').val(result.data.Tipo_de_Solicitud);
+                    $('#Titulo_del_Hecho').val(result.data.Titulo_del_Hecho);
+                    $('#Narrativa_Breve_de_los_Hechos').val(result.data.Narrativa_Breve_de_los_Hechos);
+                    $('#Fecha_del_Hecho').val(result.data.Fecha_del_Hecho);
+                    $('#Hora_Aproximada_del_Hecho').val(result.data.Hora_Aproximada_del_Hecho);
+                    $('#Tiene_alguna_Foto_o_Evidencia').val(result.data.Tiene_alguna_Foto_o_Evidencia);
+                    $('#Fosa_clandestina').val(result.data.Fosa_clandestina);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_de_los_hechos(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Solicitud', $('#Solicitud').val());
+                data.append('Tipo_de_Solicitud', $('#Tipo_de_Solicitud').val());
+                data.append('Titulo_del_Hecho', $('#Titulo_del_Hecho').val());
+                data.append('Narrativa_Breve_de_los_Hechos', $('#Narrativa_Breve_de_los_Hechos').val());
+                data.append('Fecha_del_Hecho', $('#Fecha_del_Hecho').val());
+                data.append('Hora_Aproximada_del_Hecho', $('#Hora_Aproximada_del_Hecho').val());
+                data.append('Tiene_alguna_Foto_o_Evidencia', $('#hdnAttachedTiene_alguna_Foto_o_Evidencia').val());
+                data.append('Tiene_alguna_Foto_o_EvidenciaFile', $('#Tiene_alguna_Foto_o_EvidenciaFile')[0].files[0]);
+                data.append('Tiene_alguna_Foto_o_EvidenciaRemoveAttachment', $('#hdnRemoveTiene_alguna_Foto_o_Evidencia').val());
+                data.append('Fosa_clandestina', $('#Fosa_clandestina').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/Post_Datos_de_los_hechos")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_de_los_hechos");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_de_los_hechos");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Domicilio_de_los_Hechos()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/Get_Domicilio_de_los_Hechos")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Conoce_la_direccion').val(result.data.Conoce_la_direccion);
+                    var control = $('#Pais');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Pais).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Pais).trigger('change');
+                    }, 3000);
+                    var control = $('#Estado');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Estado).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Estado).trigger('change');
+                    }, 3000);
+                    var control = $('#Municipio');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Municipio).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Municipio).trigger('change');
+                    }, 3000);
+                    var control = $('#Poblacion');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Poblacion).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Poblacion).trigger('change');
+                    }, 3000);
+                    var control = $('#Colonia');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Colonia).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Colonia).trigger('change');
+                    }, 3000);
+                    $('#Codigo_Postal').val(result.data.Codigo_Postal);
+                    $('#Calle').val(result.data.Calle);
+                    $('#Entre_Calle').val(result.data.Entre_Calle);
+                    $('#Y_Calle').val(result.data.Y_Calle);
+                    $('#Numero_Exterior').val(result.data.Numero_Exterior);
+                    $('#Numero_Interior').val(result.data.Numero_Interior);
+                    $('#Referencia').val(result.data.Referencia);
+                    $('#Latitud').val(result.data.Latitud);
+                    $('#Longitud').val(result.data.Longitud);
+                    $('#Es_una_direccion_exacta_o_aproximada').val(result.data.Es_una_direccion_exacta_o_aproximada);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Domicilio_de_los_Hechos(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Conoce_la_direccion', $('#Conoce_la_direccion').val());
+                data.append('Pais', $('#Pais').val());
+                data.append('Estado', $('#Estado').val());
+                data.append('Municipio', $('#Municipio').val());
+                data.append('Poblacion', $('#Poblacion').val());
+                data.append('Colonia', $('#Colonia').val());
+                data.append('Codigo_Postal', $('#Codigo_Postal').val());
+                data.append('Calle', $('#Calle').val());
+                data.append('Entre_Calle', $('#Entre_Calle').val());
+                data.append('Y_Calle', $('#Y_Calle').val());
+                data.append('Numero_Exterior', $('#Numero_Exterior').val());
+                data.append('Numero_Interior', $('#Numero_Interior').val());
+                data.append('Referencia', $('#Referencia').val());
+                data.append('Latitud', $('#Latitud').val());
+                data.append('Longitud', $('#Longitud').val());
+                data.append('Es_una_direccion_exacta_o_aproximada', $('#Es_una_direccion_exacta_o_aproximada').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/Post_Domicilio_de_los_Hechos")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Domicilio_de_los_Hechos");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Domicilio_de_los_Hechos");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Datos_de_los_Hechos_PC_cmbLabelSelect" name="Datos_de_los_Hechos_PC_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

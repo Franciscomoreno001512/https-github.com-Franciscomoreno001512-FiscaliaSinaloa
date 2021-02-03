@@ -304,6 +304,10 @@
             advanceSearch.Detalle_de_Documentos_MPOArchivoFrom = $("#txtAdvanceFromArchivo").val();
             advanceSearch.Detalle_de_Documentos_MPOArchivoTo = $("#txtAdvanceToArchivo").val();
         }
+        if ($("#ddlAdvanceLista_para_periciales").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Documentos_MPOLista_para_periciales = $("#ddlAdvanceLista_para_periciales").val();
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblDetalle_de_Documentos_MPO').DataTable().draw();

@@ -44,4 +44,12 @@
   <Module culture="es-es" Id="90" value="Notificadores"></Module>
   <Module culture="en-us" Id="91" value="Ministerio Público"></Module>
   <Module culture="es-es" Id="91" value="Ministerio Público"></Module>
+  <Module culture="en-us" Id="92" value="Portal Ciudadano"></Module>
+  <Module culture="es-es" Id="92" value="Portal Ciudadano"></Module>
+  <Module culture="en-us" Id="93" value="Mandamientos Judiciales"></Module>
+  <Module culture="es-es" Id="93" value="Mandamientos Judiciales"></Module>
+  <Module culture="en-us" Id="94" value="Órgano Interno de Control"></Module>
+  <Module culture="es-es" Id="94" value="Órgano Interno de Control"></Module>
+  <Module culture="en-us" Id="95" value="Servicios Periciales"></Module>
+  <Module culture="es-es" Id="95" value="Servicios Periciales"></Module>
 </Modules>

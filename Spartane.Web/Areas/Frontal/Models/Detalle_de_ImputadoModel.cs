@@ -17,6 +17,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Modulo_Atencion_InicialNUAT { get; set; }
         public int? Expediente_MP { get; set; }
         public string Expediente_MPnic { get; set; }
+        public int? Expediente_MASC { get; set; }
+        public string Expediente_MASCNumero_de_Folio { get; set; }
         public bool Quien_Resulte_Responsable { get; set; }
         public bool Se_Presenta_con_Detenido { get; set; }
         public string Folio_Registro_Nacional_de_Detenciones { get; set; }
@@ -101,6 +103,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool Bajo_el_Efecto_de_una_Droga { get; set; }
         public string Nombre_de_Droga { get; set; }
         public bool Inimputable { get; set; }
+        public bool Gravidez { get; set; }
         public int? Tipo_de_Inimputabilidad { get; set; }
         public string Tipo_de_InimputabilidadDescripcion { get; set; }
         public string Especifique { get; set; }
@@ -276,6 +279,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Modulo_Atencion_InicialNUAT { get; set; }
         public int? Expediente_MP { get; set; }
         public string Expediente_MPnic { get; set; }
+        public int? Expediente_MASC { get; set; }
+        public string Expediente_MASCNumero_de_Folio { get; set; }
         public bool? Quien_Resulte_Responsable { get; set; }
         public bool? Se_Presenta_con_Detenido { get; set; }
         public string Folio_Registro_Nacional_de_Detenciones { get; set; }
@@ -360,6 +365,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Bajo_el_Efecto_de_una_Droga { get; set; }
         public string Nombre_de_Droga { get; set; }
         public bool? Inimputable { get; set; }
+        public bool? Gravidez { get; set; }
         public int? Tipo_de_Inimputabilidad { get; set; }
         public string Tipo_de_InimputabilidadDescripcion { get; set; }
         public string Especifique { get; set; }

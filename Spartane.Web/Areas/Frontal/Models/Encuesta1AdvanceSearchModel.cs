@@ -19,52 +19,80 @@ namespace Spartane.Web.Areas.Frontal.Models
         [IsNumberAfterAttribute("FromClave", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToClave { set; get; }
 
-        public Filters Numero_de_PreguntasFilter { set; get; }
-        public string AdvanceNumero_de_Preguntas { set; get; }
-        public int[] AdvanceNumero_de_PreguntasMultiple { set; get; }
+        public Filters FolioFilter { set; get; }
+        public string Folio { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_Enviado { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_Enviado", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_Enviado { set; get; }
+
+        public string ToHora_Enviado { set; get; }
+        public string FromHora_Enviado { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_Respuesta { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_Respuesta", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_Respuesta { set; get; }
+
+        public string ToHora_Respuesta { set; get; }
+        public string FromHora_Respuesta { set; get; }
 
         public Filters NUATFilter { set; get; }
         public string NUAT { set; get; }
 
+        public Filters ModuloFilter { set; get; }
+        public string AdvanceModulo { set; get; }
+        public int[] AdvanceModuloMultiple { set; get; }
+
+        public Filters Tipo_EncuestaFilter { set; get; }
+        public string AdvanceTipo_Encuesta { set; get; }
+        public int[] AdvanceTipo_EncuestaMultiple { set; get; }
+
+        public Filters Numero_de_PreguntasFilter { set; get; }
+        public string AdvanceNumero_de_Preguntas { set; get; }
+        public int[] AdvanceNumero_de_PreguntasMultiple { set; get; }
+
         public Filters Pregunta1Filter { set; get; }
-        public string AdvancePregunta1 { set; get; }
-        public int[] AdvancePregunta1Multiple { set; get; }
+        public string Pregunta1 { set; get; }
+
+        public Filters Respuesta_1Filter { set; get; }
+        public string AdvanceRespuesta_1 { set; get; }
+        public int[] AdvanceRespuesta_1Multiple { set; get; }
 
         public Filters Pregunta2Filter { set; get; }
-        public string AdvancePregunta2 { set; get; }
-        public int[] AdvancePregunta2Multiple { set; get; }
+        public string Pregunta2 { set; get; }
+
+        public Filters Respuesta_2Filter { set; get; }
+        public string AdvanceRespuesta_2 { set; get; }
+        public int[] AdvanceRespuesta_2Multiple { set; get; }
 
         public Filters Pregunta3Filter { set; get; }
-        public string AdvancePregunta3 { set; get; }
-        public int[] AdvancePregunta3Multiple { set; get; }
+        public string Pregunta3 { set; get; }
+
+        public Filters Respuesta_3Filter { set; get; }
+        public string AdvanceRespuesta_3 { set; get; }
+        public int[] AdvanceRespuesta_3Multiple { set; get; }
 
         public Filters Pregunta4Filter { set; get; }
-        public string AdvancePregunta4 { set; get; }
-        public int[] AdvancePregunta4Multiple { set; get; }
+        public string Pregunta4 { set; get; }
+
+        public Filters Respuesta_4Filter { set; get; }
+        public string AdvanceRespuesta_4 { set; get; }
+        public int[] AdvanceRespuesta_4Multiple { set; get; }
 
         public Filters Pregunta5Filter { set; get; }
-        public string AdvancePregunta5 { set; get; }
-        public int[] AdvancePregunta5Multiple { set; get; }
+        public string Pregunta5 { set; get; }
 
-        public Filters Pregunta6Filter { set; get; }
-        public string AdvancePregunta6 { set; get; }
-        public int[] AdvancePregunta6Multiple { set; get; }
+        public Filters Respuesta_5Filter { set; get; }
+        public string AdvanceRespuesta_5 { set; get; }
+        public int[] AdvanceRespuesta_5Multiple { set; get; }
 
-        public Filters Pregunta7Filter { set; get; }
-        public string AdvancePregunta7 { set; get; }
-        public int[] AdvancePregunta7Multiple { set; get; }
-
-        public Filters Pregunta8Filter { set; get; }
-        public string AdvancePregunta8 { set; get; }
-        public int[] AdvancePregunta8Multiple { set; get; }
-
-        public Filters Pregunta9Filter { set; get; }
-        public string AdvancePregunta9 { set; get; }
-        public int[] AdvancePregunta9Multiple { set; get; }
-
-        public Filters Pregunta10Filter { set; get; }
-        public string AdvancePregunta10 { set; get; }
-        public int[] AdvancePregunta10Multiple { set; get; }
+        public Filters EstatusFilter { set; get; }
+        public string AdvanceEstatus { set; get; }
+        public int[] AdvanceEstatusMultiple { set; get; }
 
 
     }

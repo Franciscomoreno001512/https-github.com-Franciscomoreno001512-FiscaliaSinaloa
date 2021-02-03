@@ -1,0 +1,480 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Registro_de_Huellas_DactilaresAdvanceSearchModel
+@{
+ List<SelectListItem> varexpediente_ministerio_publico_Carpeta_de_Investigacion = null;
+    if (ViewBag.expediente_ministerio_publicos_Carpeta_de_Investigacion != null)
+    { varexpediente_ministerio_publico_Carpeta_de_Investigacion = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Carpeta_de_Investigacion; }
+ List<SelectListItem> varDetalle_de_Datos_Generales_Probable_Responsable = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable != null)
+    { varDetalle_de_Datos_Generales_Probable_Responsable = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Registro_de_Huellas_Dactilares", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+ List<SelectListItem> varexpediente_ministerio_publico_Carpeta_de_Investigacion = null;
+    if (ViewBag.expediente_ministerio_publicos_Carpeta_de_Investigacion != null)
+    { varexpediente_ministerio_publico_Carpeta_de_Investigacion = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Carpeta_de_Investigacion; }
+ List<SelectListItem> varDetalle_de_Datos_Generales_Probable_Responsable = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable != null)
+    { varDetalle_de_Datos_Generales_Probable_Responsable = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable; }
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Menique</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromIzquierda_Menique, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromIzquierda_Menique" })
+                    @Html.ValidationMessageFor(m => m.FromIzquierda_Menique)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToIzquierda_Menique, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToIzquierda_Menique", @data_min = "txtAdvanceFromIzquierda_Menique" })
+                    @Html.ValidationMessageFor(m => m.ToIzquierda_Menique)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Anular</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromIzquierda_Anular, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromIzquierda_Anular" })
+                    @Html.ValidationMessageFor(m => m.FromIzquierda_Anular)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToIzquierda_Anular, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToIzquierda_Anular", @data_min = "txtAdvanceFromIzquierda_Anular" })
+                    @Html.ValidationMessageFor(m => m.ToIzquierda_Anular)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Medio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromIzquierda_Medio, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromIzquierda_Medio" })
+                    @Html.ValidationMessageFor(m => m.FromIzquierda_Medio)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToIzquierda_Medio, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToIzquierda_Medio", @data_min = "txtAdvanceFromIzquierda_Medio" })
+                    @Html.ValidationMessageFor(m => m.ToIzquierda_Medio)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Indice</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromIzquierda_Indice, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromIzquierda_Indice" })
+                    @Html.ValidationMessageFor(m => m.FromIzquierda_Indice)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToIzquierda_Indice, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToIzquierda_Indice", @data_min = "txtAdvanceFromIzquierda_Indice" })
+                    @Html.ValidationMessageFor(m => m.ToIzquierda_Indice)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Izquierda_Pulgar</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromIzquierda_Pulgar, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromIzquierda_Pulgar" })
+                    @Html.ValidationMessageFor(m => m.FromIzquierda_Pulgar)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToIzquierda_Pulgar, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToIzquierda_Pulgar", @data_min = "txtAdvanceFromIzquierda_Pulgar" })
+                    @Html.ValidationMessageFor(m => m.ToIzquierda_Pulgar)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Menique</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromDerecha_Menique, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromDerecha_Menique" })
+                    @Html.ValidationMessageFor(m => m.FromDerecha_Menique)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToDerecha_Menique, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToDerecha_Menique", @data_min = "txtAdvanceFromDerecha_Menique" })
+                    @Html.ValidationMessageFor(m => m.ToDerecha_Menique)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Anular</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromDerecha_Anular, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromDerecha_Anular" })
+                    @Html.ValidationMessageFor(m => m.FromDerecha_Anular)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToDerecha_Anular, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToDerecha_Anular", @data_min = "txtAdvanceFromDerecha_Anular" })
+                    @Html.ValidationMessageFor(m => m.ToDerecha_Anular)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Medio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromDerecha_Medio, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromDerecha_Medio" })
+                    @Html.ValidationMessageFor(m => m.FromDerecha_Medio)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToDerecha_Medio, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToDerecha_Medio", @data_min = "txtAdvanceFromDerecha_Medio" })
+                    @Html.ValidationMessageFor(m => m.ToDerecha_Medio)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Indice</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromDerecha_Indice, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromDerecha_Indice" })
+                    @Html.ValidationMessageFor(m => m.FromDerecha_Indice)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToDerecha_Indice, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToDerecha_Indice", @data_min = "txtAdvanceFromDerecha_Indice" })
+                    @Html.ValidationMessageFor(m => m.ToDerecha_Indice)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Registro_de_Huellas_DactilaresResources.Derecha_Pulgar</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromDerecha_Pulgar, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromDerecha_Pulgar" })
+                    @Html.ValidationMessageFor(m => m.FromDerecha_Pulgar)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToDerecha_Pulgar, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToDerecha_Pulgar", @data_min = "txtAdvanceFromDerecha_Pulgar" })
+                    @Html.ValidationMessageFor(m => m.ToDerecha_Pulgar)
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Registro_de_Huellas_Dactilares/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Registro_de_Huellas_DactilaresClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.Carpeta_de_InvestigacionSearchType = 0;
+        if ($('#ddlAdvanceCarpeta_de_Investigacion').val().length > 0 || $("#txtAdvanceCarpeta_de_Investigacion").val() == "") {
+
+
+            if (isRegistro_de_Huellas_DactilaresTextSearch) {
+                advanceSearch.Carpeta_de_InvestigacionName = $("#txtAdvanceCarpeta_de_Investigacion").val();
+                advanceSearch.Carpeta_de_InvestigacionNameSearchType = $("#ddlAdvanceCarpeta_de_Investigacion").val();
+                advanceSearch.Carpeta_de_InvestigacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Carpeta_de_InvestigacionToSearch = $("#ddlAdvanceCarpeta_de_Investigacion").val();
+                advanceSearch.Carpeta_de_InvestigacionSearchType = 2;
+            }
+        }
+        advanceSearch.Probable_ResponsableSearchType = 0;
+        if ($('#ddlAdvanceProbable_Responsable').val().length > 0 || $("#txtAdvanceProbable_Responsable").val() == "") {
+
+
+            if (isRegistro_de_Huellas_DactilaresTextSearch) {
+                advanceSearch.Probable_ResponsableName = $("#txtAdvanceProbable_Responsable").val();
+                advanceSearch.Probable_ResponsableNameSearchType = $("#ddlAdvanceProbable_Responsable").val();
+                advanceSearch.Probable_ResponsableSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Probable_ResponsableToSearch = $("#ddlAdvanceProbable_Responsable").val();
+                advanceSearch.Probable_ResponsableSearchType = 2;
+            }
+        }
+        advanceSearch.Mano_Izquierda_4_DedosSearchType = 0;
+        if ($('#ddlAdvanceMano_Izquierda_4_Dedos').val().length > 0 || $("#txtAdvanceMano_Izquierda_4_Dedos").val() == "") {
+
+
+            if (isRegistro_de_Huellas_DactilaresTextSearch) {
+                advanceSearch.Mano_Izquierda_4_DedosName = $("#txtAdvanceMano_Izquierda_4_Dedos").val();
+                advanceSearch.Mano_Izquierda_4_DedosNameSearchType = $("#ddlAdvanceMano_Izquierda_4_Dedos").val();
+                advanceSearch.Mano_Izquierda_4_DedosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Mano_Izquierda_4_DedosToSearch = $("#ddlAdvanceMano_Izquierda_4_Dedos").val();
+                advanceSearch.Mano_Izquierda_4_DedosSearchType = 2;
+            }
+        }
+        advanceSearch.Mano_Derecha_4_DedosSearchType = 0;
+        if ($('#ddlAdvanceMano_Derecha_4_Dedos').val().length > 0 || $("#txtAdvanceMano_Derecha_4_Dedos").val() == "") {
+
+
+            if (isRegistro_de_Huellas_DactilaresTextSearch) {
+                advanceSearch.Mano_Derecha_4_DedosName = $("#txtAdvanceMano_Derecha_4_Dedos").val();
+                advanceSearch.Mano_Derecha_4_DedosNameSearchType = $("#ddlAdvanceMano_Derecha_4_Dedos").val();
+                advanceSearch.Mano_Derecha_4_DedosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Mano_Derecha_4_DedosToSearch = $("#ddlAdvanceMano_Derecha_4_Dedos").val();
+                advanceSearch.Mano_Derecha_4_DedosSearchType = 2;
+            }
+        }
+        advanceSearch.PulgaresSearchType = 0;
+        if ($('#ddlAdvancePulgares').val().length > 0 || $("#txtAdvancePulgares").val() == "") {
+
+
+            if (isRegistro_de_Huellas_DactilaresTextSearch) {
+                advanceSearch.PulgaresName = $("#txtAdvancePulgares").val();
+                advanceSearch.PulgaresNameSearchType = $("#ddlAdvancePulgares").val();
+                advanceSearch.PulgaresSearchType = 1;
+            }
+            else {
+
+                advanceSearch.PulgaresToSearch = $("#ddlAdvancePulgares").val();
+                advanceSearch.PulgaresSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromIzquierda_Menique").val() != "" || $("#txtAdvanceToIzquierda_Menique").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresIzquierda_MeniqueFrom = $("#txtAdvanceFromIzquierda_Menique").val();
+            advanceSearch.Registro_de_Huellas_DactilaresIzquierda_MeniqueTo = $("#txtAdvanceToIzquierda_Menique").val();
+        }
+        if ($("#txtAdvanceFromIzquierda_Anular").val() != "" || $("#txtAdvanceToIzquierda_Anular").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresIzquierda_AnularFrom = $("#txtAdvanceFromIzquierda_Anular").val();
+            advanceSearch.Registro_de_Huellas_DactilaresIzquierda_AnularTo = $("#txtAdvanceToIzquierda_Anular").val();
+        }
+        if ($("#txtAdvanceFromIzquierda_Medio").val() != "" || $("#txtAdvanceToIzquierda_Medio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresIzquierda_MedioFrom = $("#txtAdvanceFromIzquierda_Medio").val();
+            advanceSearch.Registro_de_Huellas_DactilaresIzquierda_MedioTo = $("#txtAdvanceToIzquierda_Medio").val();
+        }
+        if ($("#txtAdvanceFromIzquierda_Indice").val() != "" || $("#txtAdvanceToIzquierda_Indice").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresIzquierda_IndiceFrom = $("#txtAdvanceFromIzquierda_Indice").val();
+            advanceSearch.Registro_de_Huellas_DactilaresIzquierda_IndiceTo = $("#txtAdvanceToIzquierda_Indice").val();
+        }
+        if ($("#txtAdvanceFromIzquierda_Pulgar").val() != "" || $("#txtAdvanceToIzquierda_Pulgar").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresIzquierda_PulgarFrom = $("#txtAdvanceFromIzquierda_Pulgar").val();
+            advanceSearch.Registro_de_Huellas_DactilaresIzquierda_PulgarTo = $("#txtAdvanceToIzquierda_Pulgar").val();
+        }
+        if ($("#txtAdvanceFromDerecha_Menique").val() != "" || $("#txtAdvanceToDerecha_Menique").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresDerecha_MeniqueFrom = $("#txtAdvanceFromDerecha_Menique").val();
+            advanceSearch.Registro_de_Huellas_DactilaresDerecha_MeniqueTo = $("#txtAdvanceToDerecha_Menique").val();
+        }
+        if ($("#txtAdvanceFromDerecha_Anular").val() != "" || $("#txtAdvanceToDerecha_Anular").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresDerecha_AnularFrom = $("#txtAdvanceFromDerecha_Anular").val();
+            advanceSearch.Registro_de_Huellas_DactilaresDerecha_AnularTo = $("#txtAdvanceToDerecha_Anular").val();
+        }
+        if ($("#txtAdvanceFromDerecha_Medio").val() != "" || $("#txtAdvanceToDerecha_Medio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresDerecha_MedioFrom = $("#txtAdvanceFromDerecha_Medio").val();
+            advanceSearch.Registro_de_Huellas_DactilaresDerecha_MedioTo = $("#txtAdvanceToDerecha_Medio").val();
+        }
+        if ($("#txtAdvanceFromDerecha_Indice").val() != "" || $("#txtAdvanceToDerecha_Indice").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresDerecha_IndiceFrom = $("#txtAdvanceFromDerecha_Indice").val();
+            advanceSearch.Registro_de_Huellas_DactilaresDerecha_IndiceTo = $("#txtAdvanceToDerecha_Indice").val();
+        }
+        if ($("#txtAdvanceFromDerecha_Pulgar").val() != "" || $("#txtAdvanceToDerecha_Pulgar").val() != "") {
+            hasParameter = true;
+            advanceSearch.Registro_de_Huellas_DactilaresDerecha_PulgarFrom = $("#txtAdvanceFromDerecha_Pulgar").val();
+            advanceSearch.Registro_de_Huellas_DactilaresDerecha_PulgarTo = $("#txtAdvanceToDerecha_Pulgar").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblRegistro_de_Huellas_Dactilares').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isRegistro_de_Huellas_DactilaresTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceCarpeta_de_Investigacion").keypress(function () {
+            isRegistro_de_Huellas_DactilaresTextSearch = true;
+            $("#ddlAdvanceCarpeta_de_Investigacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceCarpeta_de_Investigacion").change(function () {
+            isRegistro_de_Huellas_DactilaresTextSearch = false;
+            $("#txtAdvanceCarpeta_de_Investigacion").val('');
+        });
+        $("#txtAdvanceProbable_Responsable").keypress(function () {
+            isRegistro_de_Huellas_DactilaresTextSearch = true;
+            $("#ddlAdvanceProbable_Responsable").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceProbable_Responsable").change(function () {
+            isRegistro_de_Huellas_DactilaresTextSearch = false;
+            $("#txtAdvanceProbable_Responsable").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

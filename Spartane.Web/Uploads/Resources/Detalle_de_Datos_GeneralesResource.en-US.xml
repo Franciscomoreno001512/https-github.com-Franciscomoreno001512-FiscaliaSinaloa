@@ -4,9 +4,14 @@
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Modulo_Atencion_Inicial" value="Módulo Atención Inicial"></resource>
   <resource culture="en-US" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="en-US" name="Expediente_MASC" value="Expediente_MASC "></resource>
   <resource culture="en-US" name="Datos_Confidenciales" value="Desea que sus Datos se Guarden de Forma Confidencial"></resource>
   <resource culture="en-US" name="Se_Informo_sobre_el_Procedimiento" value="Resguardo de Identidad"></resource>
   <resource culture="en-US" name="Tipo_de_Compareciente" value="Tipo de Compareciente"></resource>
+  <resource culture="en-US" name="Persona_Desaparecida" value="Persona Desaparecida"></resource>
+  <resource culture="en-US" name="Persona_Aparecio" value="Persona Apareció"></resource>
+  <resource culture="en-US" name="Fecha_de_Aparicion" value="Fecha de Aparición"></resource>
+  <resource culture="en-US" name="Con_Vida" value="Con Vida"></resource>
   <resource culture="en-US" name="Persona_Moral" value="Persona Moral"></resource>
   <resource culture="en-US" name="Q_Q_R_O_" value="Q.Q.R.O."></resource>
   <resource culture="en-US" name="Es_victima" value="Es victima"></resource>
@@ -50,6 +55,7 @@
   <resource culture="en-US" name="Correo_Electronico" value="Correo Electrónico "></resource>
   <resource culture="en-US" name="Situacion_de_Vulnerabilidad" value="¿Grupo en Situación de Vulnerabilidad?"></resource>
   <resource culture="en-US" name="Grupo_al_que_pertenece" value="Grupo al que pertenece"></resource>
+  <resource culture="en-US" name="Preferencia_Sexual" value="Preferencia Sexual"></resource>
   <resource culture="en-US" name="Etnia" value="Etnia"></resource>
   <resource culture="en-US" name="No_de_Hijos" value="No. de Hijos"></resource>
   <resource culture="en-US" name="Religion" value="Religión"></resource>
@@ -69,6 +75,7 @@
   <resource culture="en-US" name="Tipo_de_Inimputabilidad" value="Tipo de Inimputabilidad"></resource>
   <resource culture="en-US" name="Especifique" value="Especifique"></resource>
   <resource culture="en-US" name="Se_Informaron_sobre_sus_Derechos" value="Lectura de Derechos"></resource>
+  <resource culture="en-US" name="Gravidez" value="Gravidez"></resource>
   <resource culture="en-US" name="Adicciones_de_Involucrado" value="Adicciones de Involucrado"></resource>
   <resource culture="en-US" name="Lugares_que_Frecuenta" value="Lugares que Frecuenta"></resource>
   <resource culture="en-US" name="Datos_Personales_Adicionales" value="Datos Personales Adicionales"></resource>
@@ -154,6 +161,7 @@
   <resource culture="en-US" name="Color_Piel" value="Color Piel"></resource>
   <resource culture="en-US" name="Frente" value="Frente"></resource>
   <resource culture="en-US" name="Largo_de_Cabello" value="Largo de Cabello"></resource>
+  <resource culture="en-US" name="Forma_de_Cabello" value="Forma de Cabello"></resource>
   <resource culture="en-US" name="Color_Cabello" value="Color Cabello"></resource>
   <resource culture="en-US" name="Calvicie" value="Calvicie"></resource>
   <resource culture="en-US" name="Color_Ojos" value="Color Ojos"></resource>

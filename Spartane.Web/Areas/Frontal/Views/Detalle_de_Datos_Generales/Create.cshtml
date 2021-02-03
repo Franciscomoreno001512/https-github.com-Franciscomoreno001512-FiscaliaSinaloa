@@ -9,6 +9,9 @@
     Spartane_File attachedFileImagen_Tatuaje = (Spartane_File)ViewBag.Imagen_TatuajeSpartane_File;
 
 /*
+    string Fecha_de_Aparicion = "";
+    if (Model.Fecha_de_Aparicion == "")
+    { Model.Fecha_de_Aparicion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string Fecha_de_Nacimiento = "";
     if (Model.Fecha_de_Nacimiento == "")
     { Model.Fecha_de_Nacimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
@@ -26,9 +29,15 @@
  List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
     List<SelectListItem> varTipo_de_Compareciente_Tipo_de_Compareciente = null;
     if (ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente != null)
     { varTipo_de_Compareciente_Tipo_de_Compareciente = (List<SelectListItem>)ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente; }
+    List<SelectListItem> varA_Tiempo_Con_Vida = null;
+    if (ViewBag.A_Tiempos_Con_Vida != null)
+    { varA_Tiempo_Con_Vida = (List<SelectListItem>)ViewBag.A_Tiempos_Con_Vida; }
     List<SelectListItem> varGenero_Sexo = null;
     if (ViewBag.Generos_Sexo != null)
     { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
@@ -71,6 +80,9 @@
     List<SelectListItem> varGrupo_al_que_Pertenece_Grupo_al_que_pertenece = null;
     if (ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece != null)
     { varGrupo_al_que_Pertenece_Grupo_al_que_pertenece = (List<SelectListItem>)ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece; }
+    List<SelectListItem> varPreferencia_Sexual_Preferencia_Sexual = null;
+    if (ViewBag.Preferencia_Sexuals_Preferencia_Sexual != null)
+    { varPreferencia_Sexual_Preferencia_Sexual = (List<SelectListItem>)ViewBag.Preferencia_Sexuals_Preferencia_Sexual; }
     List<SelectListItem> varEtnia_Etnia = null;
     if (ViewBag.Etnias_Etnia != null)
     { varEtnia_Etnia = (List<SelectListItem>)ViewBag.Etnias_Etnia; }
@@ -224,6 +236,9 @@
     List<SelectListItem> varLargo_de_Cabello_Largo_de_Cabello = null;
     if (ViewBag.Largo_de_Cabellos_Largo_de_Cabello != null)
     { varLargo_de_Cabello_Largo_de_Cabello = (List<SelectListItem>)ViewBag.Largo_de_Cabellos_Largo_de_Cabello; }
+    List<SelectListItem> varForma_Cabello_Forma_de_Cabello = null;
+    if (ViewBag.Forma_Cabellos_Forma_de_Cabello != null)
+    { varForma_Cabello_Forma_de_Cabello = (List<SelectListItem>)ViewBag.Forma_Cabellos_Forma_de_Cabello; }
     List<SelectListItem> varColor_de_Cabello_Color_Cabello = null;
     if (ViewBag.Color_de_Cabellos_Color_Cabello != null)
     { varColor_de_Cabello_Color_Cabello = (List<SelectListItem>)ViewBag.Color_de_Cabellos_Color_Cabello; }
@@ -491,6 +506,20 @@
                                 </div>
                                 }
                             </div>
+				<div class="form-group" id="divExpediente_MASC">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Expediente_MASC</label>
+                                <div class="col-sm-8" data-field-id="Expediente_MASC" data-attribute="268447" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Expediente_MASC">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Datos_Generales_Expediente_MASC form-control select2-dropdown Datos_Generales' data-val="true" id="Expediente_MASC" name="Expediente_MASC">
+                                        <option value="@Model.Expediente_MASC">@(Model.Expediente_MASCNumero_de_Folio??Model.Expediente_MASCNumero_de_Folio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268447).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Expediente_MASC');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divDatos_Confidenciales">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Datos_Confidenciales</label>
                                 <div class="col-sm-8" data-field-id="Datos_Confidenciales" data-attribute="263859" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Datos_Confidenciales">
@@ -528,6 +557,57 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Compareciente', 'Tipo_de_Compareciente');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divPersona_Desaparecida">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Persona_Desaparecida</label>
+                                <div class="col-sm-8" data-field-id="Persona_Desaparecida" data-attribute="268328" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Persona_Desaparecida">
+                                    @Html.CheckBoxFor(m => m.Persona_Desaparecida, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPersona_Aparecio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Persona_Aparecio</label>
+                                <div class="col-sm-8" data-field-id="Persona_Aparecio" data-attribute="268329" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Persona_Aparecio">
+                                    @Html.CheckBoxFor(m => m.Persona_Aparecio, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Aparicion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Fecha_de_Aparicion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Aparicion" data-attribute="268330" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Fecha_de_Aparicion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Aparicion"  name="Fecha_de_Aparicion" type="text" value="@Model.Fecha_de_Aparicion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCon_Vida">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Con_Vida</label>
+                                <div class="col-sm-8" data-field-id="Con_Vida" data-attribute="268331" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Con_Vida">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Con Vida must be a number." data-val-required="The Con Vida field is required." id="Con_Vida" name="Con_Vida">
+                                        <option value=""></option>
+                                        @if (varA_Tiempo_Con_Vida != null){ 
+                                            foreach (var itemCon_Vida in varA_Tiempo_Con_Vida)
+                                            {
+                                                if (itemCon_Vida.Value == Convert.ToString(Model.Con_Vida))
+                                                {
+                                                    <option value="@itemCon_Vida.Value" selected>@itemCon_Vida.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemCon_Vida.Value">@itemCon_Vida.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Con_Vida" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268331).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('A_Tiempo', 'Con_Vida');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -1028,6 +1108,34 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divPreferencia_Sexual">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Preferencia_Sexual</label>
+                                <div class="col-sm-8" data-field-id="Preferencia_Sexual" data-attribute="271302" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Preferencia_Sexual">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Preferencia Sexual must be a number." data-val-required="The Preferencia Sexual field is required." id="Preferencia_Sexual" name="Preferencia_Sexual">
+                                        <option value=""></option>
+                                        @if (varPreferencia_Sexual_Preferencia_Sexual != null){ 
+                                            foreach (var itemPreferencia_Sexual in varPreferencia_Sexual_Preferencia_Sexual)
+                                            {
+                                                if (itemPreferencia_Sexual.Value == Convert.ToString(Model.Preferencia_Sexual))
+                                                {
+                                                    <option value="@itemPreferencia_Sexual.Value" selected>@itemPreferencia_Sexual.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemPreferencia_Sexual.Value">@itemPreferencia_Sexual.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Preferencia_Sexual" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 271302).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Preferencia_Sexual', 'Preferencia_Sexual');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divEtnia">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Etnia</label>
                                 <div class="col-sm-8" data-field-id="Etnia" data-attribute="265587" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Etnia">
@@ -1422,6 +1530,12 @@
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Se_Informaron_sobre_sus_Derechos</label>
                                 <div class="col-sm-8" data-field-id="Se_Informaron_sobre_sus_Derechos" data-attribute="263857" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Se_Informaron_sobre_sus_Derechos">
                                     @Html.CheckBoxFor(m => m.Se_Informaron_sobre_sus_Derechos, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divGravidez">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Gravidez</label>
+                                <div class="col-sm-8" data-field-id="Gravidez" data-attribute="268122" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Gravidez">
+                                    @Html.CheckBoxFor(m => m.Gravidez, new { @class = "i-checks Datos_Generales" })
                                 </div>
                             </div>
                             <div id="divAdicciones_de_Involucrado">
@@ -1853,6 +1967,30 @@
                                                                 <i class="fa fa-cogs fa-spin"></i>
                                                             </a>
                                                         </button>@Resources.Otros_Domicilios_InvolucradoResources.Numero_Exterior</span></th>
+                                                <th class="Numero_InteriorHeader"><span>
+<button type="button" data-attribute="268113" data-field-id="Otros_Domicilios_InvolucradoNumero_Interior" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Numero_Interior" data-toggle="modal" data-target="#Detalle_de_Datos_GeneralesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_InvolucradoResources.Numero_Interior">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_InvolucradoResources.Numero_Interior</span></th>
+                                                <th class="Coordenada_XHeader"><span>
+<button type="button" data-attribute="268114" data-field-id="Otros_Domicilios_InvolucradoCoordenada_X" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_X" data-toggle="modal" data-target="#Detalle_de_Datos_GeneralesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_X">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_X</span></th>
+                                                <th class="Coordenada_YHeader"><span>
+<button type="button" data-attribute="268115" data-field-id="Otros_Domicilios_InvolucradoCoordenada_Y" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_Y" data-toggle="modal" data-target="#Detalle_de_Datos_GeneralesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_Y">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_Y</span></th>
+                                                <th class="ObservacionesHeader"><span>
+<button type="button" data-attribute="268116" data-field-id="Otros_Domicilios_InvolucradoObservaciones" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Observaciones" data-toggle="modal" data-target="#Detalle_de_Datos_GeneralesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_InvolucradoResources.Observaciones">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_InvolucradoResources.Observaciones</span></th>
 
                                             </tr>
                                         </thead>
@@ -2966,6 +3104,34 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divForma_de_Cabello">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Forma_de_Cabello</label>
+                                <div class="col-sm-8" data-field-id="Forma_de_Cabello" data-attribute="268103" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Forma_de_Cabello">
+                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Forma de Cabello must be a number." data-val-required="The Forma de Cabello field is required." id="Forma_de_Cabello" name="Forma_de_Cabello">
+                                        <option value=""></option>
+                                        @if (varForma_Cabello_Forma_de_Cabello != null){ 
+                                            foreach (var itemForma_de_Cabello in varForma_Cabello_Forma_de_Cabello)
+                                            {
+                                                if (itemForma_de_Cabello.Value == Convert.ToString(Model.Forma_de_Cabello))
+                                                {
+                                                    <option value="@itemForma_de_Cabello.Value" selected>@itemForma_de_Cabello.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemForma_de_Cabello.Value">@itemForma_de_Cabello.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Forma_de_Cabello" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268103).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Forma_Cabello', 'Forma_de_Cabello');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divColor_Cabello">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Color_Cabello</label>
                                 <div class="col-sm-8" data-field-id="Color_Cabello" data-attribute="266548" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Color_Cabello">
@@ -3827,11 +3993,23 @@
 
 
 
+
+
+
+
            
               showOtros_Domicilios_InvolucradoGrid(null);
 
 		   
-                        $('#Fecha_de_Nacimiento').datepicker({
+                        $('#Fecha_de_Aparicion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Fecha_de_Nacimiento').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
                 forceParse: false,
@@ -3933,6 +4111,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_de_Datos_Generales_Expediente_MP");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteExpediente_MASCData =[];
+       $(".AutoCompleteDetalle_de_Datos_Generales_Expediente_MASC").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Datos_Generales/GetDetalle_de_Datos_Generales_Expediente_MASC_Solicitud")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Datos_Generales_Expediente_MASC_SolicitudData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Datos_Generales_Expediente_MASC");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -5816,6 +6027,10 @@
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Entre_Calle)).addClass('Entre_Calle').attr('id', nameOfTable + 'Entre_Calle' + rowIndex).attr('data-field', 'Entre_Calle');
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Y_Calle)).addClass('Y_Calle').attr('id', nameOfTable + 'Y_Calle' + rowIndex).attr('data-field', 'Y_Calle');
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Numero_Exterior)).addClass('Numero_Exterior').attr('id', nameOfTable + 'Numero_Exterior' + rowIndex).attr('data-field', 'Numero_Exterior');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Numero_Interior)).addClass('Numero_Interior').attr('id', nameOfTable + 'Numero_Interior' + rowIndex).attr('data-field', 'Numero_Interior');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Coordenada_X)).addClass('Coordenada_X').attr('id', nameOfTable + 'Coordenada_X' + rowIndex).attr('data-field', 'Coordenada_X');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Coordenada_Y)).addClass('Coordenada_Y').attr('id', nameOfTable + 'Coordenada_Y' + rowIndex).attr('data-field', 'Coordenada_Y');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Observaciones)).addClass('Observaciones').attr('id', nameOfTable + 'Observaciones' + rowIndex).attr('data-field', 'Observaciones');
 
             return columnData;
         }
@@ -5986,6 +6201,22 @@
                 $('<td id="'+nameOfTable+'Numero_Exterior'+rowIndex+'">').text(data.Numero_Exterior).appendTo(row);
             else 
                 $('<td style="display:none;" id="'+nameOfTable+'Numero_Exterior'+rowIndex+'">').text(data.Numero_Exterior).appendTo(row);
+            if ($('.Numero_Interior' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Numero_Interior'+rowIndex+'">').text(data.Numero_Interior).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Numero_Interior'+rowIndex+'">').text(data.Numero_Interior).appendTo(row);
+            if ($('.Coordenada_X' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Coordenada_X'+rowIndex+'">').text(data.Coordenada_X).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Coordenada_X'+rowIndex+'">').text(data.Coordenada_X).appendTo(row);
+            if ($('.Coordenada_Y' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Coordenada_Y'+rowIndex+'">').text(data.Coordenada_Y).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Coordenada_Y'+rowIndex+'">').text(data.Coordenada_Y).appendTo(row);
+            if ($('.Observaciones' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Observaciones'+rowIndex+'">').text(data.Observaciones).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Observaciones'+rowIndex+'">').text(data.Observaciones).appendTo(row);
 
         }
 
@@ -6011,6 +6242,10 @@
                     { "data": "Entre_Calle", "orderable": false },
                     { "data": "Y_Calle", "orderable": false },
                     { "data": "Numero_Exterior", "orderable": false },
+                    { "data": "Numero_Interior", "orderable": false },
+                    { "data": "Coordenada_X", "orderable": false },
+                    { "data": "Coordenada_Y", "orderable": false },
+                    { "data": "Observaciones", "orderable": false },
 
                 ],
                 "order": [[0, "asc"]],
@@ -6111,6 +6346,10 @@
                 }
             });
         }
+
+
+
+
 
 
 
@@ -6342,6 +6581,10 @@
             $('.select2-search__field').val(' ');
             $('.select2-search__field').keyup();
         });
+
+
+
+
 
 
 
@@ -6647,9 +6890,22 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Expediente_MP).trigger('change');
                     }, 3000);
+                    var control = $('#Expediente_MASC');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Expediente_MASC).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Expediente_MASC).trigger('change');
+                    }, 3000);
                     $('#Datos_Confidenciales').prop('checked', result.data.Datos_Confidenciales);
                     $('#Se_Informo_sobre_el_Procedimiento').prop('checked', result.data.Se_Informo_sobre_el_Procedimiento);
                     $('#Tipo_de_Compareciente').val(result.data.Tipo_de_Compareciente);
+                    $('#Persona_Desaparecida').prop('checked', result.data.Persona_Desaparecida);
+                    $('#Persona_Aparecio').prop('checked', result.data.Persona_Aparecio);
+                    $('#Fecha_de_Aparicion').val(result.data.Fecha_de_Aparicion);
+                    $('#Con_Vida').val(result.data.Con_Vida);
                     $('#Persona_Moral').prop('checked', result.data.Persona_Moral);
                     $('#Q_Q_R_O_').prop('checked', result.data.Q_Q_R_O_);
                     $('#Es_victima').prop('checked', result.data.Es_victima);
@@ -6749,6 +7005,7 @@
                     $('#Correo_Electronico').val(result.data.Correo_Electronico);
                     $('#Situacion_de_Vulnerabilidad').prop('checked', result.data.Situacion_de_Vulnerabilidad);
                     $('#Grupo_al_que_pertenece').val(result.data.Grupo_al_que_pertenece);
+                    $('#Preferencia_Sexual').val(result.data.Preferencia_Sexual);
                     $('#Etnia').val(result.data.Etnia);
                     $('#No_de_Hijos').val(result.data.No_de_Hijos);
                     $('#Religion').val(result.data.Religion);
@@ -6784,6 +7041,7 @@
                     $('#Tipo_de_Inimputabilidad').val(result.data.Tipo_de_Inimputabilidad);
                     $('#Especifique').val(result.data.Especifique);
                     $('#Se_Informaron_sobre_sus_Derechos').prop('checked', result.data.Se_Informaron_sobre_sus_Derechos);
+                    $('#Gravidez').prop('checked', result.data.Gravidez);
                     Adicciones_de_InvolucradoDataDataTable = result.Adicciones_de_Involucrado;
                     showAdicciones_de_InvolucradoGrid(result.Adicciones_de_Involucrado);
                     $('#Adicciones_de_InvolucradoGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
@@ -6821,9 +7079,14 @@
 			data.append('Clave', newId);
 			                data.append('Modulo_Atencion_Inicial', $('#Modulo_Atencion_Inicial').val());
                 data.append('Expediente_MP', $('#Expediente_MP').val());
+                data.append('Expediente_MASC', $('#Expediente_MASC').val());
                 data.append('Datos_Confidenciales', $('#Datos_Confidenciales').prop('checked'));
                 data.append('Se_Informo_sobre_el_Procedimiento', $('#Se_Informo_sobre_el_Procedimiento').prop('checked'));
                 data.append('Tipo_de_Compareciente', $('#Tipo_de_Compareciente').val());
+                data.append('Persona_Desaparecida', $('#Persona_Desaparecida').prop('checked'));
+                data.append('Persona_Aparecio', $('#Persona_Aparecio').prop('checked'));
+                data.append('Fecha_de_Aparicion', $('#Fecha_de_Aparicion').val());
+                data.append('Con_Vida', $('#Con_Vida').val());
                 data.append('Persona_Moral', $('#Persona_Moral').prop('checked'));
                 data.append('Q_Q_R_O_', $('#Q_Q_R_O_').prop('checked'));
                 data.append('Es_victima', $('#Es_victima').prop('checked'));
@@ -6867,6 +7130,7 @@
                 data.append('Correo_Electronico', $('#Correo_Electronico').val());
                 data.append('Situacion_de_Vulnerabilidad', $('#Situacion_de_Vulnerabilidad').prop('checked'));
                 data.append('Grupo_al_que_pertenece', $('#Grupo_al_que_pertenece').val());
+                data.append('Preferencia_Sexual', $('#Preferencia_Sexual').val());
                 data.append('Etnia', $('#Etnia').val());
                 data.append('No_de_Hijos', $('#No_de_Hijos').val());
                 data.append('Religion', $('#Religion').val());
@@ -6886,6 +7150,7 @@
                 data.append('Tipo_de_Inimputabilidad', $('#Tipo_de_Inimputabilidad').val());
                 data.append('Especifique', $('#Especifique').val());
                 data.append('Se_Informaron_sobre_sus_Derechos', $('#Se_Informaron_sobre_sus_Derechos').prop('checked'));
+                data.append('Gravidez', $('#Gravidez').prop('checked'));
                 data.append('Discapacidad_Mental', $('#Discapacidad_Mental').val());
                 data.append('Discapacidad_Fisica', $('#Discapacidad_Fisica').val());
                 data.append('Discapacidad_Sensorial', $('#Discapacidad_Sensorial').val());
@@ -7288,6 +7553,7 @@
                     $('#Color_Piel').val(result.data.Color_Piel);
                     $('#Frente').val(result.data.Frente);
                     $('#Largo_de_Cabello').val(result.data.Largo_de_Cabello);
+                    $('#Forma_de_Cabello').val(result.data.Forma_de_Cabello);
                     $('#Color_Cabello').val(result.data.Color_Cabello);
                     $('#Calvicie').val(result.data.Calvicie);
                     $('#Color_Ojos').val(result.data.Color_Ojos);
@@ -7333,6 +7599,7 @@
                 data.append('Color_Piel', $('#Color_Piel').val());
                 data.append('Frente', $('#Frente').val());
                 data.append('Largo_de_Cabello', $('#Largo_de_Cabello').val());
+                data.append('Forma_de_Cabello', $('#Forma_de_Cabello').val());
                 data.append('Color_Cabello', $('#Color_Cabello').val());
                 data.append('Calvicie', $('#Calvicie').val());
                 data.append('Color_Ojos', $('#Color_Ojos').val());

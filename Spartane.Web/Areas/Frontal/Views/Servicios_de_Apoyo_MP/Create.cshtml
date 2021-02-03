@@ -665,7 +665,8 @@
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
-        });
+            });
+            debugger;
        var AutoCompleteDiligencia_a_EnviarData =[];
        $(".AutoCompleteServicios_de_Apoyo_MP_Diligencia_a_Enviar").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -1048,6 +1049,7 @@
                     $('#Solicitud').val(result.data.Solicitud);
                     $('#Fecha_de_Termino_para_Entrega').val(result.data.Fecha_de_Termino_para_Entrega);
                     $('#Hora_de_Termino_para_Entrega').val(result.data.Hora_de_Termino_para_Entrega);
+                    debugger;
                     var control = $('#Diligencia_a_Enviar');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Diligencia_a_Enviar).trigger('keyup');

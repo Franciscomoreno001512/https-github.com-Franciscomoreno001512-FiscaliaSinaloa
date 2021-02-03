@@ -10,6 +10,12 @@
 /*
 
 */
+    List<SelectListItem> varModulo_Encuesta_Modulo = null;
+    if (ViewBag.Modulo_Encuestas_Modulo != null)
+    { varModulo_Encuesta_Modulo = (List<SelectListItem>)ViewBag.Modulo_Encuestas_Modulo; }
+    List<SelectListItem> varTipo_Encuesta_Tipo_Encuesta = null;
+    if (ViewBag.Tipo_Encuestas_Tipo_Encuesta != null)
+    { varTipo_Encuesta_Tipo_Encuesta = (List<SelectListItem>)ViewBag.Tipo_Encuestas_Tipo_Encuesta; }
     List<SelectListItem> varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = null;
     if (ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null)
     { varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = (List<SelectListItem>)ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas; }
@@ -158,6 +164,62 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="form-group" id="divModulo">
+                                <label class="col-sm-2 control-label">@Resources.EncuestaResources.Modulo</label>
+                                <div class="col-sm-8" data-field-id="Modulo" data-attribute="268254" data-field-name="@Resources.EncuestaResources.Modulo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Módulo must be a number." data-val-required="The Módulo field is required." id="Modulo" name="Modulo">
+                                        <option value=""></option>
+                                        @if (varModulo_Encuesta_Modulo != null){ 
+                                            foreach (var itemModulo in varModulo_Encuesta_Modulo)
+                                            {
+                                                if (itemModulo.Value == Convert.ToString(Model.Modulo))
+                                                {
+                                                    <option value="@itemModulo.Value" selected>@itemModulo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemModulo.Value">@itemModulo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Modulo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268254).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Modulo_Encuesta', 'Modulo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_Encuesta">
+                                <label class="col-sm-2 control-label">@Resources.EncuestaResources.Tipo_Encuesta</label>
+                                <div class="col-sm-8" data-field-id="Tipo_Encuesta" data-attribute="269382" data-field-name="@Resources.EncuestaResources.Tipo_Encuesta">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo Encuesta must be a number." data-val-required="The Tipo Encuesta field is required." id="Tipo_Encuesta" name="Tipo_Encuesta">
+                                        <option value=""></option>
+                                        @if (varTipo_Encuesta_Tipo_Encuesta != null){ 
+                                            foreach (var itemTipo_Encuesta in varTipo_Encuesta_Tipo_Encuesta)
+                                            {
+                                                if (itemTipo_Encuesta.Value == Convert.ToString(Model.Tipo_Encuesta))
+                                                {
+                                                    <option value="@itemTipo_Encuesta.Value" selected>@itemTipo_Encuesta.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_Encuesta.Value">@itemTipo_Encuesta.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_Encuesta" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269382).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_Encuesta', 'Tipo_Encuesta');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divNumero_de_Preguntas">
                                 <label class="col-sm-2 control-label">@Resources.EncuestaResources.Numero_de_Preguntas</label>
                                 <div class="col-sm-8" data-field-id="Numero_de_Preguntas" data-attribute="263924" data-field-name="@Resources.EncuestaResources.Numero_de_Preguntas">
@@ -219,41 +281,6 @@
                                 <div class="col-sm-8" data-field-id="Pregunta_5" data-attribute="263929" data-field-name="@Resources.EncuestaResources.Pregunta_5">
                                     <input class="form-control Datos_Generales" id="Pregunta_5" name="Pregunta_5" type="text" value="@Model.Pregunta_5">
                                     @*<span class="field-validation-valid" data-valmsg-for="Pregunta_5" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divPregunta_6">
-                                <label class="col-sm-2 control-label">@Resources.EncuestaResources.Pregunta_6</label>
-                                <div class="col-sm-8" data-field-id="Pregunta_6" data-attribute="263930" data-field-name="@Resources.EncuestaResources.Pregunta_6">
-                                    <input class="form-control Datos_Generales" id="Pregunta_6" name="Pregunta_6" type="text" value="@Model.Pregunta_6">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Pregunta_6" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divPregunta_7">
-                                <label class="col-sm-2 control-label">@Resources.EncuestaResources.Pregunta_7</label>
-                                <div class="col-sm-8" data-field-id="Pregunta_7" data-attribute="263931" data-field-name="@Resources.EncuestaResources.Pregunta_7">
-                                    <input class="form-control Datos_Generales" id="Pregunta_7" name="Pregunta_7" type="text" value="@Model.Pregunta_7">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Pregunta_7" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divPregunta_8">
-                                <label class="col-sm-2 control-label">@Resources.EncuestaResources.Pregunta_8</label>
-                                <div class="col-sm-8" data-field-id="Pregunta_8" data-attribute="263932" data-field-name="@Resources.EncuestaResources.Pregunta_8">
-                                    <input class="form-control Datos_Generales" id="Pregunta_8" name="Pregunta_8" type="text" value="@Model.Pregunta_8">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Pregunta_8" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divPregunta_9">
-                                <label class="col-sm-2 control-label">@Resources.EncuestaResources.Pregunta_9</label>
-                                <div class="col-sm-8" data-field-id="Pregunta_9" data-attribute="263933" data-field-name="@Resources.EncuestaResources.Pregunta_9">
-                                    <input class="form-control Datos_Generales" id="Pregunta_9" name="Pregunta_9" type="text" value="@Model.Pregunta_9">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Pregunta_9" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divPregunta_10">
-                                <label class="col-sm-2 control-label">@Resources.EncuestaResources.Pregunta_10</label>
-                                <div class="col-sm-8" data-field-id="Pregunta_10" data-attribute="263934" data-field-name="@Resources.EncuestaResources.Pregunta_10">
-                                    <input class="form-control Datos_Generales" id="Pregunta_10" name="Pregunta_10" type="text" value="@Model.Pregunta_10">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Pregunta_10" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             </div>
@@ -390,24 +417,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45110');
+		    
 		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
-
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -424,6 +436,21 @@
 			
 			
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 
@@ -688,17 +715,14 @@
                 async: false,
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
+                    $('#Modulo').val(result.data.Modulo);
+                    $('#Tipo_Encuesta').val(result.data.Tipo_Encuesta);
                     $('#Numero_de_Preguntas').val(result.data.Numero_de_Preguntas);
                     $('#Pregunta_1').val(result.data.Pregunta_1);
                     $('#Pregunta_2').val(result.data.Pregunta_2);
                     $('#Pregunta_3').val(result.data.Pregunta_3);
                     $('#Pregunta_4').val(result.data.Pregunta_4);
                     $('#Pregunta_5').val(result.data.Pregunta_5);
-                    $('#Pregunta_6').val(result.data.Pregunta_6);
-                    $('#Pregunta_7').val(result.data.Pregunta_7);
-                    $('#Pregunta_8').val(result.data.Pregunta_8);
-                    $('#Pregunta_9').val(result.data.Pregunta_9);
-                    $('#Pregunta_10').val(result.data.Pregunta_10);
 
                 },
                 error: function (result) {
@@ -710,17 +734,14 @@
 		function Save_Datos_Generales(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
-			                data.append('Numero_de_Preguntas', $('#Numero_de_Preguntas').val());
+			                data.append('Modulo', $('#Modulo').val());
+                data.append('Tipo_Encuesta', $('#Tipo_Encuesta').val());
+                data.append('Numero_de_Preguntas', $('#Numero_de_Preguntas').val());
                 data.append('Pregunta_1', $('#Pregunta_1').val());
                 data.append('Pregunta_2', $('#Pregunta_2').val());
                 data.append('Pregunta_3', $('#Pregunta_3').val());
                 data.append('Pregunta_4', $('#Pregunta_4').val());
                 data.append('Pregunta_5', $('#Pregunta_5').val());
-                data.append('Pregunta_6', $('#Pregunta_6').val());
-                data.append('Pregunta_7', $('#Pregunta_7').val());
-                data.append('Pregunta_8', $('#Pregunta_8').val());
-                data.append('Pregunta_9', $('#Pregunta_9').val());
-                data.append('Pregunta_10', $('#Pregunta_10').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Encuesta/Post_Datos_Generales")',

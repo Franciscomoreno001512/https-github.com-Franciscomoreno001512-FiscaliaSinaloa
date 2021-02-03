@@ -1,6 +1,8 @@
 ﻿@using System.Collections.Generic
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Encuesta;
+@using Spartane.Core.Domain.Modulo_Encuesta;
+@using Spartane.Core.Domain.Tipo_Encuesta;
 @using Spartane.Core.Domain.Catalogo_Numero_de_Preguntas;
 
 @using Spartane.Core.Domain.Permission
@@ -198,17 +200,14 @@
                                 <tr>
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.EncuestaResources.Clave</th>
+                                    <th>@Resources.EncuestaResources.Modulo</th>
+                                    <th>@Resources.EncuestaResources.Tipo_Encuesta</th>
                                     <th>@Resources.EncuestaResources.Numero_de_Preguntas</th>
                                     <th>@Resources.EncuestaResources.Pregunta_1</th>
                                     <th>@Resources.EncuestaResources.Pregunta_2</th>
                                     <th>@Resources.EncuestaResources.Pregunta_3</th>
                                     <th>@Resources.EncuestaResources.Pregunta_4</th>
                                     <th>@Resources.EncuestaResources.Pregunta_5</th>
-                                    <th>@Resources.EncuestaResources.Pregunta_6</th>
-                                    <th>@Resources.EncuestaResources.Pregunta_7</th>
-                                    <th>@Resources.EncuestaResources.Pregunta_8</th>
-                                    <th>@Resources.EncuestaResources.Pregunta_9</th>
-                                    <th>@Resources.EncuestaResources.Pregunta_10</th>
 
                                 </tr>
                             </thead>
@@ -216,9 +215,6 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -343,31 +339,25 @@
         var queryString = GetQueryString();
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_Encuesta =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Preguntas =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta_1 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta_2 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta_3 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta_4 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta_5 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta_6 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta_7 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta_8 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta_9 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta_10 =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
+        + "&Modulo=" + Modulo
+        + "&Tipo_Encuesta=" + Tipo_Encuesta
         + "&Numero_de_Preguntas=" + Numero_de_Preguntas
         + "&Pregunta_1=" + Pregunta_1
         + "&Pregunta_2=" + Pregunta_2
         + "&Pregunta_3=" + Pregunta_3
         + "&Pregunta_4=" + Pregunta_4
         + "&Pregunta_5=" + Pregunta_5
-        + "&Pregunta_6=" + Pregunta_6
-        + "&Pregunta_7=" + Pregunta_7
-        + "&Pregunta_8=" + Pregunta_8
-        + "&Pregunta_9=" + Pregunta_9
-        + "&Pregunta_10=" + Pregunta_10
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Encuesta/Export?format=")" + format
@@ -382,31 +372,25 @@
 	
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_Encuesta =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Preguntas =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta_1 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta_2 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta_3 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta_4 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta_5 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta_6 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta_7 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta_8 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta_9 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta_10 =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
+        + "&Modulo=" + Modulo
+        + "&Tipo_Encuesta=" + Tipo_Encuesta
         + "&Numero_de_Preguntas=" + Numero_de_Preguntas
         + "&Pregunta_1=" + Pregunta_1
         + "&Pregunta_2=" + Pregunta_2
         + "&Pregunta_3=" + Pregunta_3
         + "&Pregunta_4=" + Pregunta_4
         + "&Pregunta_5=" + Pregunta_5
-        + "&Pregunta_6=" + Pregunta_6
-        + "&Pregunta_7=" + Pregunta_7
-        + "&Pregunta_8=" + Pregunta_8
-        + "&Pregunta_9=" + Pregunta_9
-        + "&Pregunta_10=" + Pregunta_10
 ;
 
     }
@@ -587,11 +571,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -655,17 +639,14 @@
                     }
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "ModuloDescripcion", "orderable": true, "name": "ModuloDescripcion" }
+                ,{ "data": "Tipo_EncuestaDescripcion", "orderable": true, "name": "Tipo_EncuestaDescripcion" }
                 ,{ "data": "Numero_de_PreguntasDescripcion", "orderable": true, "name": "Numero_de_PreguntasDescripcion" }
                 ,{ "data": "Pregunta_1", "orderable": true, "name": "Pregunta_1", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Pregunta_2", "orderable": true, "name": "Pregunta_2", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Pregunta_3", "orderable": true, "name": "Pregunta_3", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Pregunta_4", "orderable": true, "name": "Pregunta_4", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Pregunta_5", "orderable": true, "name": "Pregunta_5", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Pregunta_6", "orderable": true, "name": "Pregunta_6", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Pregunta_7", "orderable": true, "name": "Pregunta_7", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Pregunta_8", "orderable": true, "name": "Pregunta_8", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Pregunta_9", "orderable": true, "name": "Pregunta_9", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Pregunta_10", "orderable": true, "name": "Pregunta_10", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],
 			"colReorder": true,

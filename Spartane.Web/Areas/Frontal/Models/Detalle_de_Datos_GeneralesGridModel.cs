@@ -13,10 +13,17 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Modulo_Atencion_InicialNUAT { get; set; }
         public int? Expediente_MP { get; set; }
         public string Expediente_MPnic { get; set; }
+        public int? Expediente_MASC { get; set; }
+        public string Expediente_MASCNumero_de_Folio { get; set; }
         public bool? Datos_Confidenciales { get; set; }
         public bool? Se_Informo_sobre_el_Procedimiento { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
         public string Tipo_de_ComparecienteDescripcion { get; set; }
+        public bool? Persona_Desaparecida { get; set; }
+        public bool? Persona_Aparecio { get; set; }
+        public string Fecha_de_Aparicion { get; set; }
+        public short? Con_Vida { get; set; }
+        public string Con_VidaDescripcion { get; set; }
         public bool? Persona_Moral { get; set; }
         public bool? Q_Q_R_O_ { get; set; }
         public bool? Es_victima { get; set; }
@@ -74,6 +81,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Situacion_de_Vulnerabilidad { get; set; }
         public int? Grupo_al_que_pertenece { get; set; }
         public string Grupo_al_que_perteneceDescripcion { get; set; }
+        public int? Preferencia_Sexual { get; set; }
+        public string Preferencia_SexualDescripcion { get; set; }
         public int? Etnia { get; set; }
         public string EtniaDescripcion { get; set; }
         public short? No_de_Hijos { get; set; }
@@ -107,6 +116,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_InimputabilidadDescripcion { get; set; }
         public string Especifique { get; set; }
         public bool? Se_Informaron_sobre_sus_Derechos { get; set; }
+        public bool? Gravidez { get; set; }
         public int? Discapacidad_Mental { get; set; }
         public string Discapacidad_MentalDescripcion { get; set; }
         public int? Discapacidad_Fisica { get; set; }
@@ -224,6 +234,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string FrenteDescripcion { get; set; }
         public int? Largo_de_Cabello { get; set; }
         public string Largo_de_CabelloDescripcion { get; set; }
+        public int? Forma_de_Cabello { get; set; }
+        public string Forma_de_CabelloDescripcion { get; set; }
         public int? Color_Cabello { get; set; }
         public string Color_CabelloDescripcion { get; set; }
         public int? Calvicie { get; set; }

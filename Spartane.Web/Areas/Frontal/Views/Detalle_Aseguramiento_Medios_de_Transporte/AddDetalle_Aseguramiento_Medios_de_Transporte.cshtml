@@ -8,30 +8,36 @@
 @{
 
 
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_medios_de_transporte_Tipo = null;
     if (ViewBag.Tipo_de_medios_de_transportes_Tipo != null)
     { varTipo_de_medios_de_transporte_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_medios_de_transportes_Tipo; }
  List<SelectListItem> varMarca_de_Medio_de_transporte_Marca = null;
     if (ViewBag.Marca_de_Medio_de_transportes_Marca != null)
     { varMarca_de_Medio_de_transporte_Marca = (List<SelectListItem>)ViewBag.Marca_de_Medio_de_transportes_Marca; }
- List<SelectListItem> varSubmarca_de_medio_de_transporte_Submarca = null;
-    if (ViewBag.Submarca_de_medio_de_transportes_Submarca != null)
-    { varSubmarca_de_medio_de_transporte_Submarca = (List<SelectListItem>)ViewBag.Submarca_de_medio_de_transportes_Submarca; }
  List<SelectListItem> varModelo_de_medio_de_transporte_Modelo = null;
     if (ViewBag.Modelo_de_medio_de_transportes_Modelo != null)
     { varModelo_de_medio_de_transporte_Modelo = (List<SelectListItem>)ViewBag.Modelo_de_medio_de_transportes_Modelo; }
-    List<SelectListItem> varColor_de_medio_de_trasporte_Color = null;
-    if (ViewBag.Color_de_medio_de_trasportes_Color != null)
-    { varColor_de_medio_de_trasporte_Color = (List<SelectListItem>)ViewBag.Color_de_medio_de_trasportes_Color; }
     List<SelectListItem> varUso_del_medio_de_transporte_Uso = null;
     if (ViewBag.Uso_del_medio_de_transportes_Uso != null)
     { varUso_del_medio_de_transporte_Uso = (List<SelectListItem>)ViewBag.Uso_del_medio_de_transportes_Uso; }
     List<SelectListItem> varProcedencia_del_medio_de_transporte_Procedencia = null;
     if (ViewBag.Procedencia_del_medio_de_transportes_Procedencia != null)
     { varProcedencia_del_medio_de_transporte_Procedencia = (List<SelectListItem>)ViewBag.Procedencia_del_medio_de_transportes_Procedencia; }
-    List<SelectListItem> varDetencion_Detencion = null;
-    if (ViewBag.Detencions_Detencion != null)
-    { varDetencion_Detencion = (List<SelectListItem>)ViewBag.Detencions_Detencion; }
+    List<SelectListItem> varA_Tiempo_Seguro = null;
+    if (ViewBag.A_Tiempos_Seguro != null)
+    { varA_Tiempo_Seguro = (List<SelectListItem>)ViewBag.A_Tiempos_Seguro; }
+    List<SelectListItem> varCompania_de_Seguros_Compania_de_Seguros = null;
+    if (ViewBag.Compania_de_Seguross_Compania_de_Seguros != null)
+    { varCompania_de_Seguros_Compania_de_Seguros = (List<SelectListItem>)ViewBag.Compania_de_Seguross_Compania_de_Seguros; }
+    List<SelectListItem> varUbicacion_de_Medio_de_Transporte_Ubicacion = null;
+    if (ViewBag.Ubicacion_de_Medio_de_Transportes_Ubicacion != null)
+    { varUbicacion_de_Medio_de_Transporte_Ubicacion = (List<SelectListItem>)ViewBag.Ubicacion_de_Medio_de_Transportes_Ubicacion; }
+    List<SelectListItem> varPension_Pension = null;
+    if (ViewBag.Pensions_Pension != null)
+    { varPension_Pension = (List<SelectListItem>)ViewBag.Pensions_Pension; }
 
 
     Permission permission = ViewBag.Permission;
@@ -157,6 +163,27 @@
                                     <label class="form-control" for="Detalle_Aseguramiento_Medios_de_TransporteClave" id="Detalle_Aseguramiento_Medios_de_TransporteClave">@Model.Clave</label>
                                 </div>
                             </div>
+<div class="form-group" id="divMotivo_de_Registro">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Motivo_de_Registro</label>
+	<div class="col-sm-8" data-field-id="Motivo_de_Registro" data-attribute="268334" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Motivo_de_Registro">
+		<select class="form-control" data-val="true" data-val-number="The field Motivo de Registro must be a number." data-val-required="The Motivo de Registro field is required." id="Detalle_Aseguramiento_Medios_de_TransporteMotivo_de_Registro" name="Detalle_Aseguramiento_Medios_de_TransporteMotivo_de_Registro">
+			<option value=""></option>
+			@if (varMotivo_de_Registro_Motivo_de_Registro != null){ 
+				foreach (var itemMotivo_de_Registro in varMotivo_de_Registro_Motivo_de_Registro)
+				{
+					if (itemMotivo_de_Registro.Value == Convert.ToString(Model.Motivo_de_Registro))
+					{
+						<option value="@itemMotivo_de_Registro.Value" selected>@itemMotivo_de_Registro.Text</option>
+					}
+					else
+					{
+						<option value="@itemMotivo_de_Registro.Value">@itemMotivo_de_Registro.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
 <div class="form-group" id="divTipo">
 	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Tipo</label>
 	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267566" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Tipo">
@@ -178,12 +205,6 @@
 		</select>
 	</div>
 </div>
-<div class="form-group" id="divEspecifique">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Especifique</label>
-                                <div class="col-sm-8" data-field-id="Especifique" data-attribute="267567" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Especifique">
-                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteEspecifique" name="Detalle_Aseguramiento_Medios_de_TransporteEspecifique" type="text" value="@Model.Especifique">
-                                </div>
-                            </div>
 <div class="form-group" id="divMarca">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Marca</label>
                                 <div class="col-sm-8" data-field-id="Marca" data-attribute="267664" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Marca">
@@ -195,9 +216,7 @@
 <div class="form-group" id="divSubmarca">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Submarca</label>
                                 <div class="col-sm-8" data-field-id="Submarca" data-attribute="267667" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Submarca">
-                                    <select class='fullWidth AutoCompleteSubmarca_de_medio_de_transporte form-control select2-dropdown' data-val="true" id="Detalle_Aseguramiento_Medios_de_TransporteSubmarca" name="Detalle_Aseguramiento_Medios_de_TransporteSubmarca">
-                                        <option value="@Model.Submarca">@(Model.SubmarcaDescripcion??Model.SubmarcaDescripcion)</option>
-                                    </select>
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteSubmarca" name="Detalle_Aseguramiento_Medios_de_TransporteSubmarca" type="text" value="@Model.Submarca">
                                 </div>
                             </div>
 <div class="form-group" id="divModelo">
@@ -215,26 +234,11 @@
                                 </div>
                             </div>
 <div class="form-group" id="divColor">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Color</label>
-	<div class="col-sm-8" data-field-id="Color" data-attribute="267670" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Color">
-		<select class="form-control" data-val="true" data-val-number="The field Color must be a number." data-val-required="The Color field is required." id="Detalle_Aseguramiento_Medios_de_TransporteColor" name="Detalle_Aseguramiento_Medios_de_TransporteColor">
-			<option value=""></option>
-			@if (varColor_de_medio_de_trasporte_Color != null){ 
-				foreach (var itemColor in varColor_de_medio_de_trasporte_Color)
-				{
-					if (itemColor.Value == Convert.ToString(Model.Color))
-					{
-						<option value="@itemColor.Value" selected>@itemColor.Text</option>
-					}
-					else
-					{
-						<option value="@itemColor.Value">@itemColor.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Color</label>
+                                <div class="col-sm-8" data-field-id="Color" data-attribute="267670" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Color">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteColor" name="Detalle_Aseguramiento_Medios_de_TransporteColor" type="text" value="@Model.Color">
+                                </div>
+                            </div>
 <div class="form-group" id="divNumero_de_Motor">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Numero_de_Motor</label>
                                 <div class="col-sm-8" data-field-id="Numero_de_Motor" data-attribute="267672" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Numero_de_Motor">
@@ -295,6 +299,48 @@
 		</select>
 	</div>
 </div>
+<div class="form-group" id="divSeguro">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Seguro</label>
+	<div class="col-sm-8" data-field-id="Seguro" data-attribute="268342" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Seguro">
+		<select class="form-control" data-val="true" data-val-number="The field ¿Cuenta con Seguro? must be a number." data-val-required="The ¿Cuenta con Seguro? field is required." id="Detalle_Aseguramiento_Medios_de_TransporteSeguro" name="Detalle_Aseguramiento_Medios_de_TransporteSeguro">
+			<option value=""></option>
+			@if (varA_Tiempo_Seguro != null){ 
+				foreach (var itemSeguro in varA_Tiempo_Seguro)
+				{
+					if (itemSeguro.Value == Convert.ToString(Model.Seguro))
+					{
+						<option value="@itemSeguro.Value" selected>@itemSeguro.Text</option>
+					}
+					else
+					{
+						<option value="@itemSeguro.Value">@itemSeguro.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCompania_de_Seguros">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Compania_de_Seguros</label>
+	<div class="col-sm-8" data-field-id="Compania_de_Seguros" data-attribute="268356" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Compania_de_Seguros">
+		<select class="form-control" data-val="true" data-val-number="The field Compañía de Seguros must be a number." data-val-required="The Compañía de Seguros field is required." id="Detalle_Aseguramiento_Medios_de_TransporteCompania_de_Seguros" name="Detalle_Aseguramiento_Medios_de_TransporteCompania_de_Seguros">
+			<option value=""></option>
+			@if (varCompania_de_Seguros_Compania_de_Seguros != null){ 
+				foreach (var itemCompania_de_Seguros in varCompania_de_Seguros_Compania_de_Seguros)
+				{
+					if (itemCompania_de_Seguros.Value == Convert.ToString(Model.Compania_de_Seguros))
+					{
+						<option value="@itemCompania_de_Seguros.Value" selected>@itemCompania_de_Seguros.Text</option>
+					}
+					else
+					{
+						<option value="@itemCompania_de_Seguros.Value">@itemCompania_de_Seguros.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
 <div class="form-group" id="divEmpresa">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Empresa</label>
                                 <div class="col-sm-8" data-field-id="Empresa" data-attribute="267677" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Empresa">
@@ -319,33 +365,60 @@
                                     <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteDestino" name="Detalle_Aseguramiento_Medios_de_TransporteDestino" type="text" value="@Model.Destino">
                                 </div>
                             </div>
-<div class="form-group" id="divObservaciones">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Observaciones</label>
-                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="267681" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Observaciones">
-                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteObservaciones" name="Detalle_Aseguramiento_Medios_de_TransporteObservaciones" type="text" value="@Model.Observaciones">
-                                </div>
-                            </div>
-<div class="form-group" id="divDetencion">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Detencion</label>
-	<div class="col-sm-8" data-field-id="Detencion" data-attribute="267682" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Detencion">
-		<select class="form-control" data-val="true" data-val-number="The field Detención must be a number." data-val-required="The Detención field is required." id="Detalle_Aseguramiento_Medios_de_TransporteDetencion" name="Detalle_Aseguramiento_Medios_de_TransporteDetencion">
+<div class="form-group" id="divUbicacion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Ubicacion</label>
+	<div class="col-sm-8" data-field-id="Ubicacion" data-attribute="268357" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Ubicacion">
+		<select class="form-control" data-val="true" data-val-number="The field Ubicación must be a number." data-val-required="The Ubicación field is required." id="Detalle_Aseguramiento_Medios_de_TransporteUbicacion" name="Detalle_Aseguramiento_Medios_de_TransporteUbicacion">
 			<option value=""></option>
-			@if (varDetencion_Detencion != null){ 
-				foreach (var itemDetencion in varDetencion_Detencion)
+			@if (varUbicacion_de_Medio_de_Transporte_Ubicacion != null){ 
+				foreach (var itemUbicacion in varUbicacion_de_Medio_de_Transporte_Ubicacion)
 				{
-					if (itemDetencion.Value == Convert.ToString(Model.Detencion))
+					if (itemUbicacion.Value == Convert.ToString(Model.Ubicacion))
 					{
-						<option value="@itemDetencion.Value" selected>@itemDetencion.Text</option>
+						<option value="@itemUbicacion.Value" selected>@itemUbicacion.Text</option>
 					}
 					else
 					{
-						<option value="@itemDetencion.Value">@itemDetencion.Text</option>
+						<option value="@itemUbicacion.Value">@itemUbicacion.Text</option>
 					}
 				}
 			}
 		</select>
 	</div>
 </div>
+<div class="form-group" id="divPension">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Pension</label>
+	<div class="col-sm-8" data-field-id="Pension" data-attribute="268358" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Pension">
+		<select class="form-control" data-val="true" data-val-number="The field Pensión must be a number." data-val-required="The Pensión field is required." id="Detalle_Aseguramiento_Medios_de_TransportePension" name="Detalle_Aseguramiento_Medios_de_TransportePension">
+			<option value=""></option>
+			@if (varPension_Pension != null){ 
+				foreach (var itemPension in varPension_Pension)
+				{
+					if (itemPension.Value == Convert.ToString(Model.Pension))
+					{
+						<option value="@itemPension.Value" selected>@itemPension.Text</option>
+					}
+					else
+					{
+						<option value="@itemPension.Value">@itemPension.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divDomicilio_Resguardo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Domicilio_Resguardo</label>
+                                <div class="col-sm-8" data-field-id="Domicilio_Resguardo" data-attribute="268359" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Domicilio_Resguardo">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteDomicilio_Resguardo" name="Detalle_Aseguramiento_Medios_de_TransporteDomicilio_Resguardo" type="text" value="@Model.Domicilio_Resguardo">
+                                </div>
+                            </div>
+<div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="267681" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Observaciones">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteObservaciones" name="Detalle_Aseguramiento_Medios_de_TransporteObservaciones" type="text" value="@Model.Observaciones">
+                                </div>
+                            </div>
 
 								</div>	
 							</div>
@@ -476,39 +549,6 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Marca");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
-       var AutoCompleteSubmarcaData =[];
-       $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/GetDetalle_Aseguramiento_Medios_de_Transporte_Submarca_Submarca_de_medio_de_transporte")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca_Submarca_de_medio_de_transporteData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();

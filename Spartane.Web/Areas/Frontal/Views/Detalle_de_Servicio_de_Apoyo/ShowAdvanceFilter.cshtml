@@ -3,9 +3,18 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_de_Servicio_de_ApoyoAdvanceSearchModel
 @{
+    List<SelectListItem> varOrigen_de_Invitacion_Origen = null;
+    if (ViewBag.Origen_de_Invitacions_Origen != null)
+    { varOrigen_de_Invitacion_Origen = (List<SelectListItem>)ViewBag.Origen_de_Invitacions_Origen; }
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial; }
+ List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
+    if (ViewBag.Solicituds_Modulo_Mecanismos_Alternos != null)
+    { varSolicitud_Modulo_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Modulo_Mecanismos_Alternos; }
+ List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
+    if (ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico != null)
+    { varexpediente_ministerio_publico_Modulo_Ministerio_Publico = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico; }
     List<SelectListItem> varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio = null;
     if (ViewBag.Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio != null)
     { varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio = (List<SelectListItem>)ViewBag.Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio; }
@@ -18,6 +27,33 @@
     List<SelectListItem> varCompareciente_Compareciente = null;
     if (ViewBag.Comparecientes_Compareciente != null)
     { varCompareciente_Compareciente = (List<SelectListItem>)ViewBag.Comparecientes_Compareciente; }
+ List<SelectListItem> varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = null;
+    if (ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial != null)
+    { varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = (List<SelectListItem>)ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial; }
+ List<SelectListItem> varDetalle_de_documentos_Documento_Mecanismos_Alternos = null;
+    if (ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos != null)
+    { varDetalle_de_documentos_Documento_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos; }
+ List<SelectListItem> varDiligencias_MP_Documento_Ministerio_Publico = null;
+    if (ViewBag.Diligencias_MPs_Documento_Ministerio_Publico != null)
+    { varDiligencias_MP_Documento_Ministerio_Publico = (List<SelectListItem>)ViewBag.Diligencias_MPs_Documento_Ministerio_Publico; }
+ List<SelectListItem> varDocumento_Diligencia = null;
+    if (ViewBag.Documentos_Diligencia != null)
+    { varDocumento_Diligencia = (List<SelectListItem>)ViewBag.Documentos_Diligencia; }
+    List<SelectListItem> varAutoridad_Servicio_Pericial_Autoridades = null;
+    if (ViewBag.Autoridad_Servicio_Pericials_Autoridades != null)
+    { varAutoridad_Servicio_Pericial_Autoridades = (List<SelectListItem>)ViewBag.Autoridad_Servicio_Pericials_Autoridades; }
+    List<SelectListItem> varAgencia_Servicio_Pericial_Agencia = null;
+    if (ViewBag.Agencia_Servicio_Pericials_Agencia != null)
+    { varAgencia_Servicio_Pericial_Agencia = (List<SelectListItem>)ViewBag.Agencia_Servicio_Pericials_Agencia; }
+    List<SelectListItem> varDictamen_Servicio_Pericial_Dictamen = null;
+    if (ViewBag.Dictamen_Servicio_Pericials_Dictamen != null)
+    { varDictamen_Servicio_Pericial_Dictamen = (List<SelectListItem>)ViewBag.Dictamen_Servicio_Pericials_Dictamen; }
+    List<SelectListItem> varArea_Pericial_Area_Pericial = null;
+    if (ViewBag.Area_Pericials_Area_Pericial != null)
+    { varArea_Pericial_Area_Pericial = (List<SelectListItem>)ViewBag.Area_Pericials_Area_Pericial; }
+    List<SelectListItem> varSpartan_User_Perito = null;
+    if (ViewBag.Spartan_Users_Perito != null)
+    { varSpartan_User_Perito = (List<SelectListItem>)ViewBag.Spartan_Users_Perito; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -66,9 +102,36 @@
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Origen</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OrigenFilter, filters, new { @class = "form-control", @id = "ddlOrigenFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceOrigen, new { @class = "form-control", @type = "text", @id = "txtAdvanceOrigen" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varOrigen_de_Invitacion_Origen!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceOrigenMultiple, varOrigen_de_Invitacion_Origen,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceOrigen"
+                        });
+                    }
+                </div>
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_de_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_de_Atencion_Inicial; }
+ List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
+    if (ViewBag.Solicituds_Modulo_Mecanismos_Alternos != null)
+    { varSolicitud_Modulo_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Modulo_Mecanismos_Alternos; }
+ List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
+    if (ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico != null)
+    { varexpediente_ministerio_publico_Modulo_Ministerio_Publico = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Tipo_de_Servicio</h3>
                 </div>
@@ -133,14 +196,6 @@
                     }
                 </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Dictamen</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.DictamenFilter, filters, new { @class = "form-control", @id = "ddlDictamenFilter" })
-                    @Html.TextBoxFor(m => m.Dictamen, new { @class = "form-control", @type = "text", @id = "txtDictamen" })
-                </div>
-                <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Responsable</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -169,6 +224,204 @@
                         });
                     }
                 </div>
+ List<SelectListItem> varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = null;
+    if (ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial != null)
+    { varDetalle_de_Documentos_MPO_Documento_Atencion_Inicial = (List<SelectListItem>)ViewBag.Detalle_de_Documentos_MPOs_Documento_Atencion_Inicial; }
+ List<SelectListItem> varDetalle_de_documentos_Documento_Mecanismos_Alternos = null;
+    if (ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos != null)
+    { varDetalle_de_documentos_Documento_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Detalle_de_documentoss_Documento_Mecanismos_Alternos; }
+ List<SelectListItem> varDiligencias_MP_Documento_Ministerio_Publico = null;
+    if (ViewBag.Diligencias_MPs_Documento_Ministerio_Publico != null)
+    { varDiligencias_MP_Documento_Ministerio_Publico = (List<SelectListItem>)ViewBag.Diligencias_MPs_Documento_Ministerio_Publico; }
+ List<SelectListItem> varDocumento_Diligencia = null;
+    if (ViewBag.Documentos_Diligencia != null)
+    { varDocumento_Diligencia = (List<SelectListItem>)ViewBag.Documentos_Diligencia; }
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Archivo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromArchivo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromArchivo" })
+                    @Html.ValidationMessageFor(m => m.FromArchivo)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToArchivo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToArchivo", @data_min = "txtAdvanceFromArchivo" })
+                    @Html.ValidationMessageFor(m => m.ToArchivo)
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Fecha_de_Registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Registro" name="FromFecha_de_Registro" type="text" value="@Model.FromFecha_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Registro" name="ToFecha_de_Registro" type="text" value="@Model.ToFecha_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Fecha_de_Solicitud</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Solicitud" name="FromFecha_de_Solicitud" type="text" value="@Model.FromFecha_de_Solicitud" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Solicitud" name="ToFecha_de_Solicitud" type="text" value="@Model.ToFecha_de_Solicitud" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Numero_Oficio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_OficioFilter, filters, new { @class = "form-control", @id = "ddlNumero_OficioFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Oficio, new { @class = "form-control", @type = "text", @id = "txtNumero_Oficio" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Nombre_Solicitante</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombre_SolicitanteFilter, filters, new { @class = "form-control", @id = "ddlNombre_SolicitanteFilter" })
+                    @Html.TextBoxFor(m => m.Nombre_Solicitante, new { @class = "form-control", @type = "text", @id = "txtNombre_Solicitante" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Rango_Solicitante</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Rango_SolicitanteFilter, filters, new { @class = "form-control", @id = "ddlRango_SolicitanteFilter" })
+                    @Html.TextBoxFor(m => m.Rango_Solicitante, new { @class = "form-control", @type = "text", @id = "txtRango_Solicitante" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Autoridades</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AutoridadesFilter, filters, new { @class = "form-control", @id = "ddlAutoridadesFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceAutoridades, new { @class = "form-control", @type = "text", @id = "txtAdvanceAutoridades" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varAutoridad_Servicio_Pericial_Autoridades!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceAutoridadesMultiple, varAutoridad_Servicio_Pericial_Autoridades,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceAutoridades"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Agencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AgenciaFilter, filters, new { @class = "form-control", @id = "ddlAgenciaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceAgencia, new { @class = "form-control", @type = "text", @id = "txtAdvanceAgencia" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varAgencia_Servicio_Pericial_Agencia!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceAgenciaMultiple, varAgencia_Servicio_Pericial_Agencia,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceAgencia"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Observaciones</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Dictamen</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DictamenFilter, filters, new { @class = "form-control", @id = "ddlDictamenFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceDictamen, new { @class = "form-control", @type = "text", @id = "txtAdvanceDictamen" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDictamen_Servicio_Pericial_Dictamen!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceDictamenMultiple, varDictamen_Servicio_Pericial_Dictamen,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceDictamen"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Area_Pericial</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Area_PericialFilter, filters, new { @class = "form-control", @id = "ddlArea_PericialFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceArea_Pericial, new { @class = "form-control", @type = "text", @id = "txtAdvanceArea_Pericial" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varArea_Pericial_Area_Pericial!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceArea_PericialMultiple, varArea_Pericial_Area_Pericial,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceArea_Pericial"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Servicio_de_ApoyoResources.Perito</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.PeritoFilter, filters, new { @class = "form-control", @id = "ddlPeritoFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePerito, new { @class = "form-control", @type = "text", @id = "txtAdvancePerito" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varSpartan_User_Perito!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePeritoMultiple, varSpartan_User_Perito,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePerito"
+                        });
+                    }
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -186,6 +439,21 @@
             advanceSearch.Detalle_de_Servicio_de_ApoyoClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_de_Servicio_de_ApoyoClaveTo = $("#txtAdvanceToClave").val();
         }
+        advanceSearch.OrigenSearchType = 0;
+        if ($('#ddlAdvanceOrigen').val().length > 0 || $("#txtAdvanceOrigen").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.OrigenName = $("#txtAdvanceOrigen").val();
+                advanceSearch.OrigenNameSearchType = $("#ddlAdvanceOrigen").val();
+                advanceSearch.OrigenSearchType = 1;
+            }
+            else {
+
+                advanceSearch.OrigenToSearch = $("#ddlAdvanceOrigen").val();
+                advanceSearch.OrigenSearchType = 2;
+            }
+        }
         advanceSearch.Modulo_de_Atencion_InicialSearchType = 0;
         if ($('#ddlAdvanceModulo_de_Atencion_Inicial').val().length > 0 || $("#txtAdvanceModulo_de_Atencion_Inicial").val() == "") {
 
@@ -199,6 +467,36 @@
 
                 advanceSearch.Modulo_de_Atencion_InicialToSearch = $("#ddlAdvanceModulo_de_Atencion_Inicial").val();
                 advanceSearch.Modulo_de_Atencion_InicialSearchType = 2;
+            }
+        }
+        advanceSearch.Modulo_Mecanismos_AlternosSearchType = 0;
+        if ($('#ddlAdvanceModulo_Mecanismos_Alternos').val().length > 0 || $("#txtAdvanceModulo_Mecanismos_Alternos").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.Modulo_Mecanismos_AlternosName = $("#txtAdvanceModulo_Mecanismos_Alternos").val();
+                advanceSearch.Modulo_Mecanismos_AlternosNameSearchType = $("#ddlAdvanceModulo_Mecanismos_Alternos").val();
+                advanceSearch.Modulo_Mecanismos_AlternosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Modulo_Mecanismos_AlternosToSearch = $("#ddlAdvanceModulo_Mecanismos_Alternos").val();
+                advanceSearch.Modulo_Mecanismos_AlternosSearchType = 2;
+            }
+        }
+        advanceSearch.Modulo_Ministerio_PublicoSearchType = 0;
+        if ($('#ddlAdvanceModulo_Ministerio_Publico').val().length > 0 || $("#txtAdvanceModulo_Ministerio_Publico").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.Modulo_Ministerio_PublicoName = $("#txtAdvanceModulo_Ministerio_Publico").val();
+                advanceSearch.Modulo_Ministerio_PublicoNameSearchType = $("#ddlAdvanceModulo_Ministerio_Publico").val();
+                advanceSearch.Modulo_Ministerio_PublicoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Modulo_Ministerio_PublicoToSearch = $("#ddlAdvanceModulo_Ministerio_Publico").val();
+                advanceSearch.Modulo_Ministerio_PublicoSearchType = 2;
             }
         }
         advanceSearch.Tipo_de_ServicioSearchType = 0;
@@ -250,11 +548,6 @@
                 advanceSearch.IdiomaSearchType = 2;
             }
         }
-        if ($("#txtAdvanceDictamen").val() != "") {
-            hasParameter = true;
-            advanceSearch.Detalle_de_Servicio_de_ApoyoDictamen = $("#txtAdvanceDictamen").val();
-            advanceSearch.Detalle_de_Servicio_de_ApoyoDictamenSearchType = $("#ddlAdvanceDictamenFilter").val();
-        }
         if ($("#txtAdvanceResponsable").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Servicio_de_ApoyoResponsable = $("#txtAdvanceResponsable").val();
@@ -275,6 +568,195 @@
                 advanceSearch.ComparecienteSearchType = 2;
             }
         }
+        advanceSearch.Documento_Atencion_InicialSearchType = 0;
+        if ($('#ddlAdvanceDocumento_Atencion_Inicial').val().length > 0 || $("#txtAdvanceDocumento_Atencion_Inicial").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.Documento_Atencion_InicialName = $("#txtAdvanceDocumento_Atencion_Inicial").val();
+                advanceSearch.Documento_Atencion_InicialNameSearchType = $("#ddlAdvanceDocumento_Atencion_Inicial").val();
+                advanceSearch.Documento_Atencion_InicialSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Documento_Atencion_InicialToSearch = $("#ddlAdvanceDocumento_Atencion_Inicial").val();
+                advanceSearch.Documento_Atencion_InicialSearchType = 2;
+            }
+        }
+        advanceSearch.Documento_Mecanismos_AlternosSearchType = 0;
+        if ($('#ddlAdvanceDocumento_Mecanismos_Alternos').val().length > 0 || $("#txtAdvanceDocumento_Mecanismos_Alternos").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.Documento_Mecanismos_AlternosName = $("#txtAdvanceDocumento_Mecanismos_Alternos").val();
+                advanceSearch.Documento_Mecanismos_AlternosNameSearchType = $("#ddlAdvanceDocumento_Mecanismos_Alternos").val();
+                advanceSearch.Documento_Mecanismos_AlternosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Documento_Mecanismos_AlternosToSearch = $("#ddlAdvanceDocumento_Mecanismos_Alternos").val();
+                advanceSearch.Documento_Mecanismos_AlternosSearchType = 2;
+            }
+        }
+        advanceSearch.Documento_Ministerio_PublicoSearchType = 0;
+        if ($('#ddlAdvanceDocumento_Ministerio_Publico').val().length > 0 || $("#txtAdvanceDocumento_Ministerio_Publico").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.Documento_Ministerio_PublicoName = $("#txtAdvanceDocumento_Ministerio_Publico").val();
+                advanceSearch.Documento_Ministerio_PublicoNameSearchType = $("#ddlAdvanceDocumento_Ministerio_Publico").val();
+                advanceSearch.Documento_Ministerio_PublicoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Documento_Ministerio_PublicoToSearch = $("#ddlAdvanceDocumento_Ministerio_Publico").val();
+                advanceSearch.Documento_Ministerio_PublicoSearchType = 2;
+            }
+        }
+        advanceSearch.DiligenciaSearchType = 0;
+        if ($('#ddlAdvanceDiligencia').val().length > 0 || $("#txtAdvanceDiligencia").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.DiligenciaName = $("#txtAdvanceDiligencia").val();
+                advanceSearch.DiligenciaNameSearchType = $("#ddlAdvanceDiligencia").val();
+                advanceSearch.DiligenciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.DiligenciaToSearch = $("#ddlAdvanceDiligencia").val();
+                advanceSearch.DiligenciaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromArchivo").val() != "" || $("#txtAdvanceToArchivo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Servicio_de_ApoyoArchivoFrom = $("#txtAdvanceFromArchivo").val();
+            advanceSearch.Detalle_de_Servicio_de_ApoyoArchivoTo = $("#txtAdvanceToArchivo").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Registro").val() != "" || $("#txtAdvanceToFecha_de_Registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Servicio_de_ApoyoFecha_de_RegistroFrom = $("#txtAdvanceFromFecha_de_Registro").val();
+            advanceSearch.Detalle_de_Servicio_de_ApoyoFecha_de_RegistroTo = $("#txtAdvanceToFecha_de_Registro").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Solicitud").val() != "" || $("#txtAdvanceToFecha_de_Solicitud").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Servicio_de_ApoyoFecha_de_SolicitudFrom = $("#txtAdvanceFromFecha_de_Solicitud").val();
+            advanceSearch.Detalle_de_Servicio_de_ApoyoFecha_de_SolicitudTo = $("#txtAdvanceToFecha_de_Solicitud").val();
+        }
+        if ($("#txtAdvanceNumero_Oficio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Servicio_de_ApoyoNumero_Oficio = $("#txtAdvanceNumero_Oficio").val();
+            advanceSearch.Detalle_de_Servicio_de_ApoyoNumero_OficioSearchType = $("#ddlAdvanceNumero_OficioFilter").val();
+        }
+        advanceSearch.ImagenSearchType = 0;
+        if ($('#ddlAdvanceImagen').val().length > 0 || $("#txtAdvanceImagen").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.ImagenName = $("#txtAdvanceImagen").val();
+                advanceSearch.ImagenNameSearchType = $("#ddlAdvanceImagen").val();
+                advanceSearch.ImagenSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ImagenToSearch = $("#ddlAdvanceImagen").val();
+                advanceSearch.ImagenSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNombre_Solicitante").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Servicio_de_ApoyoNombre_Solicitante = $("#txtAdvanceNombre_Solicitante").val();
+            advanceSearch.Detalle_de_Servicio_de_ApoyoNombre_SolicitanteSearchType = $("#ddlAdvanceNombre_SolicitanteFilter").val();
+        }
+        if ($("#txtAdvanceRango_Solicitante").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Servicio_de_ApoyoRango_Solicitante = $("#txtAdvanceRango_Solicitante").val();
+            advanceSearch.Detalle_de_Servicio_de_ApoyoRango_SolicitanteSearchType = $("#ddlAdvanceRango_SolicitanteFilter").val();
+        }
+        advanceSearch.AutoridadesSearchType = 0;
+        if ($('#ddlAdvanceAutoridades').val().length > 0 || $("#txtAdvanceAutoridades").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.AutoridadesName = $("#txtAdvanceAutoridades").val();
+                advanceSearch.AutoridadesNameSearchType = $("#ddlAdvanceAutoridades").val();
+                advanceSearch.AutoridadesSearchType = 1;
+            }
+            else {
+
+                advanceSearch.AutoridadesToSearch = $("#ddlAdvanceAutoridades").val();
+                advanceSearch.AutoridadesSearchType = 2;
+            }
+        }
+        advanceSearch.AgenciaSearchType = 0;
+        if ($('#ddlAdvanceAgencia').val().length > 0 || $("#txtAdvanceAgencia").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.AgenciaName = $("#txtAdvanceAgencia").val();
+                advanceSearch.AgenciaNameSearchType = $("#ddlAdvanceAgencia").val();
+                advanceSearch.AgenciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.AgenciaToSearch = $("#ddlAdvanceAgencia").val();
+                advanceSearch.AgenciaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceObservaciones").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Servicio_de_ApoyoObservaciones = $("#txtAdvanceObservaciones").val();
+            advanceSearch.Detalle_de_Servicio_de_ApoyoObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        advanceSearch.DictamenSearchType = 0;
+        if ($('#ddlAdvanceDictamen').val().length > 0 || $("#txtAdvanceDictamen").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.DictamenName = $("#txtAdvanceDictamen").val();
+                advanceSearch.DictamenNameSearchType = $("#ddlAdvanceDictamen").val();
+                advanceSearch.DictamenSearchType = 1;
+            }
+            else {
+
+                advanceSearch.DictamenToSearch = $("#ddlAdvanceDictamen").val();
+                advanceSearch.DictamenSearchType = 2;
+            }
+        }
+        if ($("#ddlAdvanceContestacion_lista_para_enviarse").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Servicio_de_ApoyoContestacion_lista_para_enviarse = $("#ddlAdvanceContestacion_lista_para_enviarse").val();
+        }
+        advanceSearch.Area_PericialSearchType = 0;
+        if ($('#ddlAdvanceArea_Pericial').val().length > 0 || $("#txtAdvanceArea_Pericial").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.Area_PericialName = $("#txtAdvanceArea_Pericial").val();
+                advanceSearch.Area_PericialNameSearchType = $("#ddlAdvanceArea_Pericial").val();
+                advanceSearch.Area_PericialSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Area_PericialToSearch = $("#ddlAdvanceArea_Pericial").val();
+                advanceSearch.Area_PericialSearchType = 2;
+            }
+        }
+        advanceSearch.PeritoSearchType = 0;
+        if ($('#ddlAdvancePerito').val().length > 0 || $("#txtAdvancePerito").val() == "") {
+
+
+            if (isDetalle_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.PeritoName = $("#txtAdvancePerito").val();
+                advanceSearch.PeritoNameSearchType = $("#ddlAdvancePerito").val();
+                advanceSearch.PeritoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.PeritoToSearch = $("#ddlAdvancePerito").val();
+                advanceSearch.PeritoSearchType = 2;
+            }
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblDetalle_de_Servicio_de_Apoyo').DataTable().draw();
@@ -293,6 +775,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceOrigen").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceOrigen").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceOrigen").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceOrigen").val('');
+        });
         $("#txtAdvanceModulo_de_Atencion_Inicial").keypress(function () {
             isDetalle_de_Servicio_de_ApoyoTextSearch = true;
             $("#ddlAdvanceModulo_de_Atencion_Inicial").val('').trigger("chosen:updated");
@@ -301,6 +792,24 @@
         $("#ddlAdvanceModulo_de_Atencion_Inicial").change(function () {
             isDetalle_de_Servicio_de_ApoyoTextSearch = false;
             $("#txtAdvanceModulo_de_Atencion_Inicial").val('');
+        });
+        $("#txtAdvanceModulo_Mecanismos_Alternos").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceModulo_Mecanismos_Alternos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo_Mecanismos_Alternos").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceModulo_Mecanismos_Alternos").val('');
+        });
+        $("#txtAdvanceModulo_Ministerio_Publico").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceModulo_Ministerio_Publico").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo_Ministerio_Publico").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceModulo_Ministerio_Publico").val('');
         });
         $("#txtAdvanceTipo_de_Servicio").keypress(function () {
             isDetalle_de_Servicio_de_ApoyoTextSearch = true;
@@ -337,6 +846,87 @@
         $("#ddlAdvanceCompareciente").change(function () {
             isDetalle_de_Servicio_de_ApoyoTextSearch = false;
             $("#txtAdvanceCompareciente").val('');
+        });
+        $("#txtAdvanceDocumento_Atencion_Inicial").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDocumento_Atencion_Inicial").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDocumento_Atencion_Inicial").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDocumento_Atencion_Inicial").val('');
+        });
+        $("#txtAdvanceDocumento_Mecanismos_Alternos").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDocumento_Mecanismos_Alternos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDocumento_Mecanismos_Alternos").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDocumento_Mecanismos_Alternos").val('');
+        });
+        $("#txtAdvanceDocumento_Ministerio_Publico").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDocumento_Ministerio_Publico").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDocumento_Ministerio_Publico").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDocumento_Ministerio_Publico").val('');
+        });
+        $("#txtAdvanceDiligencia").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDiligencia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDiligencia").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDiligencia").val('');
+        });
+        $("#txtAdvanceAutoridades").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceAutoridades").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceAutoridades").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceAutoridades").val('');
+        });
+        $("#txtAdvanceAgencia").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceAgencia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceAgencia").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceAgencia").val('');
+        });
+        $("#txtAdvanceDictamen").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDictamen").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDictamen").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDictamen").val('');
+        });
+        $("#txtAdvanceArea_Pericial").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceArea_Pericial").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceArea_Pericial").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceArea_Pericial").val('');
+        });
+        $("#txtAdvancePerito").keypress(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvancePerito").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePerito").change(function () {
+            isDetalle_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvancePerito").val('');
         });
 
     });

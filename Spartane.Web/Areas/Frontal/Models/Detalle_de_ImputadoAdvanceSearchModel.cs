@@ -18,6 +18,7 @@ namespace Spartane.Web.Areas.Frontal.Models
             Viene_en_Estado_de_Ebriedad = RadioOptions.NoApply;
             Bajo_el_Efecto_de_una_Droga = RadioOptions.NoApply;
             Inimputable = RadioOptions.NoApply;
+            Gravidez = RadioOptions.NoApply;
             Imagen_Tatuaje = RadioOptions.NoApply;
 
         }
@@ -36,6 +37,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Expediente_MPFilter { set; get; }
         public string AdvanceExpediente_MP { set; get; }
         public int[] AdvanceExpediente_MPMultiple { set; get; }
+
+        public Filters Expediente_MASCFilter { set; get; }
+        public string AdvanceExpediente_MASC { set; get; }
+        public int[] AdvanceExpediente_MASCMultiple { set; get; }
 
         public RadioOptions Quien_Resulte_Responsable { set; get; }
 
@@ -239,6 +244,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Nombre_de_Droga { set; get; }
 
         public RadioOptions Inimputable { set; get; }
+
+        public RadioOptions Gravidez { set; get; }
 
         public Filters Tipo_de_InimputabilidadFilter { set; get; }
         public string AdvanceTipo_de_Inimputabilidad { set; get; }

@@ -136,6 +136,106 @@ namespace Resources
             }
         }
 
+        /// <summary>delitox</summary>
+        public static string delitox
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("delitox", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>ARTICULO</summary>
+        public static string ARTICULO
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("ARTICULO", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>DETALLE</summary>
+        public static string DETALLE
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("DETALLE", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>TIPO_AGENCIA</summary>
+        public static string TIPO_AGENCIA
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("TIPO_AGENCIA", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>ESTADISTICO_SSP</summary>
+        public static string ESTADISTICO_SSP
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("ESTADISTICO_SSP", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>VAL_VEHICULO</summary>
+        public static string VAL_VEHICULO
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("VAL_VEHICULO", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>TIPO_DELITO</summary>
+        public static string TIPO_DELITO
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("TIPO_DELITO", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>circunstancia_clasif</summary>
+        public static string circunstancia_clasif
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("circunstancia_clasif", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>PRINCIPAL</summary>
+        public static string PRINCIPAL
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("PRINCIPAL", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>orden</summary>
+        public static string orden
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("orden", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDelito.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

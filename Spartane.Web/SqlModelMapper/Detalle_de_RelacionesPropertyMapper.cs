@@ -22,12 +22,12 @@ namespace Spartane.Web.SqlModelMapper
                 case "Expediente_MP[nic]":
                 case "Expediente_MPnic":
                     return "expediente_ministerio_publico.nic";
-                case "Involucrado[Nombre_Completo]":
-                case "InvolucradoNombre_Completo":
-                    return "Detalle_de_Datos_Generales.Nombre_Completo";
-                case "Probable_Responsable[Nombre_Completo_del_Tutor]":
-                case "Probable_ResponsableNombre_Completo_del_Tutor":
-                    return "Detalle_de_Imputado.Nombre_Completo_del_Tutor";
+                case "Involucrado[Nombre_Completo2]":
+                case "InvolucradoNombre_Completo2":
+                    return "Detalle_de_Datos_Generales.Nombre_Completo2";
+                case "Probable_Responsable[Nombre_Completo_Detenido]":
+                case "Probable_ResponsableNombre_Completo_Detenido":
+                    return "Detalle_de_Imputado.Nombre_Completo_Detenido";
                 case "Delito[Descripcion]":
                 case "DelitoDescripcion":
                     return "Delito.Descripcion";
@@ -37,6 +37,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Parentesco[Descripcion]":
                 case "ParentescoDescripcion":
                     return "Parentesco.Descripcion";
+                case "Descripcion":
+                    return "Detalle_de_Relaciones.Descripcion";
 
                 default:
                     return propertyName;

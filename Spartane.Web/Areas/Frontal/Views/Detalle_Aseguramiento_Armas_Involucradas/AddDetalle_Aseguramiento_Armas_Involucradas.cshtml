@@ -8,6 +8,9 @@
 @{
 
 
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_Arma_Tipo = null;
     if (ViewBag.Tipo_de_Armas_Tipo != null)
     { varTipo_de_Arma_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Armas_Tipo; }
@@ -17,9 +20,9 @@
     List<SelectListItem> varCalibre_de_Arma_Calibre = null;
     if (ViewBag.Calibre_de_Armas_Calibre != null)
     { varCalibre_de_Arma_Calibre = (List<SelectListItem>)ViewBag.Calibre_de_Armas_Calibre; }
-    List<SelectListItem> varClasificacion_de_Artefacto_y_Explosivo_Clasificacion = null;
-    if (ViewBag.Clasificacion_de_Artefacto_y_Explosivos_Clasificacion != null)
-    { varClasificacion_de_Artefacto_y_Explosivo_Clasificacion = (List<SelectListItem>)ViewBag.Clasificacion_de_Artefacto_y_Explosivos_Clasificacion; }
+    List<SelectListItem> varTipo_Clasificacion_Clasificacion = null;
+    if (ViewBag.Tipo_Clasificacions_Clasificacion != null)
+    { varTipo_Clasificacion_Clasificacion = (List<SelectListItem>)ViewBag.Tipo_Clasificacions_Clasificacion; }
 
 
     Permission permission = ViewBag.Permission;
@@ -145,6 +148,27 @@
                                     <label class="form-control" for="Detalle_Aseguramiento_Armas_InvolucradasClave" id="Detalle_Aseguramiento_Armas_InvolucradasClave">@Model.Clave</label>
                                 </div>
                             </div>
+<div class="form-group" id="divMotivo_de_Registro">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Motivo_de_Registro</label>
+	<div class="col-sm-8" data-field-id="Motivo_de_Registro" data-attribute="268336" data-field-name="@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Motivo_de_Registro">
+		<select class="form-control" data-val="true" data-val-number="The field Motivo de Registro must be a number." data-val-required="The Motivo de Registro field is required." id="Detalle_Aseguramiento_Armas_InvolucradasMotivo_de_Registro" name="Detalle_Aseguramiento_Armas_InvolucradasMotivo_de_Registro">
+			<option value=""></option>
+			@if (varMotivo_de_Registro_Motivo_de_Registro != null){ 
+				foreach (var itemMotivo_de_Registro in varMotivo_de_Registro_Motivo_de_Registro)
+				{
+					if (itemMotivo_de_Registro.Value == Convert.ToString(Model.Motivo_de_Registro))
+					{
+						<option value="@itemMotivo_de_Registro.Value" selected>@itemMotivo_de_Registro.Text</option>
+					}
+					else
+					{
+						<option value="@itemMotivo_de_Registro.Value">@itemMotivo_de_Registro.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
 <div class="form-group" id="divTipo">
 	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Tipo</label>
 	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267531" data-field-name="@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Tipo">
@@ -226,6 +250,12 @@
                                     <input class="form-control" id="Detalle_Aseguramiento_Armas_InvolucradasSerie" name="Detalle_Aseguramiento_Armas_InvolucradasSerie" type="text" value="@Model.Serie">
                                 </div>
                             </div>
+<div class="form-group" id="divArma_Oficial">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Arma_Oficial</label>
+                                <div class="col-sm-8" data-field-id="Arma_Oficial" data-attribute="268362" data-field-name="@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Arma_Oficial">
+                                    @Html.CheckBoxFor(m => m.Arma_Oficial, new { @class = "i-checks" })
+                                </div>
+                            </div>
 <div class="form-group" id="divInventario">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Inventario</label>
                                 <div class="col-sm-8" data-field-id="Inventario" data-attribute="267537" data-field-name="@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Inventario">
@@ -237,8 +267,8 @@
 	<div class="col-sm-8" data-field-id="Clasificacion" data-attribute="267538" data-field-name="@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Clasificacion">
 		<select class="form-control" data-val="true" data-val-number="The field Clasificación must be a number." data-val-required="The Clasificación field is required." id="Detalle_Aseguramiento_Armas_InvolucradasClasificacion" name="Detalle_Aseguramiento_Armas_InvolucradasClasificacion">
 			<option value=""></option>
-			@if (varClasificacion_de_Artefacto_y_Explosivo_Clasificacion != null){ 
-				foreach (var itemClasificacion in varClasificacion_de_Artefacto_y_Explosivo_Clasificacion)
+			@if (varTipo_Clasificacion_Clasificacion != null){ 
+				foreach (var itemClasificacion in varTipo_Clasificacion_Clasificacion)
 				{
 					if (itemClasificacion.Value == Convert.ToString(Model.Clasificacion))
 					{
@@ -253,12 +283,12 @@
 		</select>
 	</div>
 </div>
-<div class="form-group" id="divCantidad">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Cantidad</label>
-	<div class="col-sm-8" data-field-id="Cantidad" data-attribute="267539" data-field-name="@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Cantidad">
-		<input class="form-control inputNumber" id="Detalle_Aseguramiento_Armas_InvolucradasCantidad" name="Detalle_Aseguramiento_Armas_InvolucradasCantidad" type="text" value="@Model.Cantidad">
-	</div>
-</div>
+<div class="form-group" id="divValor_Estimado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Valor_Estimado</label>
+                                <div class="col-sm-8" data-field-id="Valor_Estimado" data-attribute="268363" data-field-name="@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Valor_Estimado">
+                                    <input class="form-control col-md-12 inputNumber" id="Detalle_Aseguramiento_Armas_InvolucradasValor_Estimado" name="Detalle_Aseguramiento_Armas_InvolucradasValor_Estimado" type="text" min="0.00" max="999999.99" value="@Model.Valor_Estimado.ToString()">
+                                </div>
+                            </div>
 <div class="form-group" id="divLugar_de_Hallazgo">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Lugar_de_Hallazgo</label>
                                 <div class="col-sm-8" data-field-id="Lugar_de_Hallazgo" data-attribute="267540" data-field-name="@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Lugar_de_Hallazgo">

@@ -3,6 +3,12 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.EncuestaAdvanceSearchModel
 @{
+    List<SelectListItem> varModulo_Encuesta_Modulo = null;
+    if (ViewBag.Modulo_Encuestas_Modulo != null)
+    { varModulo_Encuesta_Modulo = (List<SelectListItem>)ViewBag.Modulo_Encuestas_Modulo; }
+    List<SelectListItem> varTipo_Encuesta_Tipo_Encuesta = null;
+    if (ViewBag.Tipo_Encuestas_Tipo_Encuesta != null)
+    { varTipo_Encuesta_Tipo_Encuesta = (List<SelectListItem>)ViewBag.Tipo_Encuestas_Tipo_Encuesta; }
     List<SelectListItem> varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = null;
     if (ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null)
     { varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = (List<SelectListItem>)ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas; }
@@ -53,6 +59,48 @@
                     <label class="">@Resources.Resources.To: </label>
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.EncuestaResources.Modulo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ModuloFilter, filters, new { @class = "form-control", @id = "ddlModuloFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceModulo, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varModulo_Encuesta_Modulo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceModuloMultiple, varModulo_Encuesta_Modulo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceModulo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.EncuestaResources.Tipo_Encuesta</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_EncuestaFilter, filters, new { @class = "form-control", @id = "ddlTipo_EncuestaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_Encuesta, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_Encuesta" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_Encuesta_Tipo_Encuesta!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_EncuestaMultiple, varTipo_Encuesta_Tipo_Encuesta,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_Encuesta"
+                        });
+                    }
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.EncuestaResources.Numero_de_Preguntas</h3>
@@ -115,46 +163,6 @@
                     @Html.DropDownListFor(m => m.Pregunta_5Filter, filters, new { @class = "form-control", @id = "ddlPregunta_5Filter" })
                     @Html.TextBoxFor(m => m.Pregunta_5, new { @class = "form-control", @type = "text", @id = "txtPregunta_5" })
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.EncuestaResources.Pregunta_6</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Pregunta_6Filter, filters, new { @class = "form-control", @id = "ddlPregunta_6Filter" })
-                    @Html.TextBoxFor(m => m.Pregunta_6, new { @class = "form-control", @type = "text", @id = "txtPregunta_6" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.EncuestaResources.Pregunta_7</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Pregunta_7Filter, filters, new { @class = "form-control", @id = "ddlPregunta_7Filter" })
-                    @Html.TextBoxFor(m => m.Pregunta_7, new { @class = "form-control", @type = "text", @id = "txtPregunta_7" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.EncuestaResources.Pregunta_8</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Pregunta_8Filter, filters, new { @class = "form-control", @id = "ddlPregunta_8Filter" })
-                    @Html.TextBoxFor(m => m.Pregunta_8, new { @class = "form-control", @type = "text", @id = "txtPregunta_8" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.EncuestaResources.Pregunta_9</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Pregunta_9Filter, filters, new { @class = "form-control", @id = "ddlPregunta_9Filter" })
-                    @Html.TextBoxFor(m => m.Pregunta_9, new { @class = "form-control", @type = "text", @id = "txtPregunta_9" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.EncuestaResources.Pregunta_10</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Pregunta_10Filter, filters, new { @class = "form-control", @id = "ddlPregunta_10Filter" })
-                    @Html.TextBoxFor(m => m.Pregunta_10, new { @class = "form-control", @type = "text", @id = "txtPregunta_10" })
-                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Encuesta/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -171,6 +179,36 @@
             hasParameter = true;
             advanceSearch.EncuestaClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.EncuestaClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.ModuloSearchType = 0;
+        if ($('#ddlAdvanceModulo').val().length > 0 || $("#txtAdvanceModulo").val() == "") {
+
+
+            if (isEncuestaTextSearch) {
+                advanceSearch.ModuloName = $("#txtAdvanceModulo").val();
+                advanceSearch.ModuloNameSearchType = $("#ddlAdvanceModulo").val();
+                advanceSearch.ModuloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ModuloToSearch = $("#ddlAdvanceModulo").val();
+                advanceSearch.ModuloSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_EncuestaSearchType = 0;
+        if ($('#ddlAdvanceTipo_Encuesta').val().length > 0 || $("#txtAdvanceTipo_Encuesta").val() == "") {
+
+
+            if (isEncuestaTextSearch) {
+                advanceSearch.Tipo_EncuestaName = $("#txtAdvanceTipo_Encuesta").val();
+                advanceSearch.Tipo_EncuestaNameSearchType = $("#ddlAdvanceTipo_Encuesta").val();
+                advanceSearch.Tipo_EncuestaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_EncuestaToSearch = $("#ddlAdvanceTipo_Encuesta").val();
+                advanceSearch.Tipo_EncuestaSearchType = 2;
+            }
         }
         advanceSearch.Numero_de_PreguntasSearchType = 0;
         if ($('#ddlAdvanceNumero_de_Preguntas').val().length > 0 || $("#txtAdvanceNumero_de_Preguntas").val() == "") {
@@ -212,31 +250,6 @@
             advanceSearch.EncuestaPregunta_5 = $("#txtAdvancePregunta_5").val();
             advanceSearch.EncuestaPregunta_5SearchType = $("#ddlAdvancePregunta_5Filter").val();
         }
-        if ($("#txtAdvancePregunta_6").val() != "") {
-            hasParameter = true;
-            advanceSearch.EncuestaPregunta_6 = $("#txtAdvancePregunta_6").val();
-            advanceSearch.EncuestaPregunta_6SearchType = $("#ddlAdvancePregunta_6Filter").val();
-        }
-        if ($("#txtAdvancePregunta_7").val() != "") {
-            hasParameter = true;
-            advanceSearch.EncuestaPregunta_7 = $("#txtAdvancePregunta_7").val();
-            advanceSearch.EncuestaPregunta_7SearchType = $("#ddlAdvancePregunta_7Filter").val();
-        }
-        if ($("#txtAdvancePregunta_8").val() != "") {
-            hasParameter = true;
-            advanceSearch.EncuestaPregunta_8 = $("#txtAdvancePregunta_8").val();
-            advanceSearch.EncuestaPregunta_8SearchType = $("#ddlAdvancePregunta_8Filter").val();
-        }
-        if ($("#txtAdvancePregunta_9").val() != "") {
-            hasParameter = true;
-            advanceSearch.EncuestaPregunta_9 = $("#txtAdvancePregunta_9").val();
-            advanceSearch.EncuestaPregunta_9SearchType = $("#ddlAdvancePregunta_9Filter").val();
-        }
-        if ($("#txtAdvancePregunta_10").val() != "") {
-            hasParameter = true;
-            advanceSearch.EncuestaPregunta_10 = $("#txtAdvancePregunta_10").val();
-            advanceSearch.EncuestaPregunta_10SearchType = $("#ddlAdvancePregunta_10Filter").val();
-        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblEncuesta').DataTable().draw();
@@ -255,6 +268,24 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceModulo").keypress(function () {
+            isEncuestaTextSearch = true;
+            $("#ddlAdvanceModulo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo").change(function () {
+            isEncuestaTextSearch = false;
+            $("#txtAdvanceModulo").val('');
+        });
+        $("#txtAdvanceTipo_Encuesta").keypress(function () {
+            isEncuestaTextSearch = true;
+            $("#ddlAdvanceTipo_Encuesta").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_Encuesta").change(function () {
+            isEncuestaTextSearch = false;
+            $("#txtAdvanceTipo_Encuesta").val('');
+        });
         $("#txtAdvanceNumero_de_Preguntas").keypress(function () {
             isEncuestaTextSearch = true;
             $("#ddlAdvanceNumero_de_Preguntas").val('').trigger("chosen:updated");

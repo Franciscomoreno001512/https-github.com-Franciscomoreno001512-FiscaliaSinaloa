@@ -2,10 +2,9 @@
 <resources>
   <resource culture="es-es" name="Detalle_Aseguramiento_Inmuebles" value="Detalle Aseguramiento Inmuebles"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Motivo_de_Registro" value="Motivo de Registro"></resource>
   <resource culture="es-es" name="Zona" value="Zona"></resource>
   <resource culture="es-es" name="Tipo" value="Tipo"></resource>
-  <resource culture="es-es" name="Terreno" value="Terreno"></resource>
-  <resource culture="es-es" name="Especifique_Otro" value="Especifique Otro"></resource>
   <resource culture="es-es" name="Calle" value="Calle"></resource>
   <resource culture="es-es" name="Exterior" value="No. Ext"></resource>
   <resource culture="es-es" name="Interior" value="No. Int"></resource>

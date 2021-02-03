@@ -174,11 +174,6 @@ $(document).ready(function () {
       }
     });
 	$("form#CreateDetalle_de_documentos").on('click', '#Detalle_de_documentosGuardar', function () {
-        debugger;
-
-        if ($("#Archivo").val() == '0' || $("#Archivo").val() == '') {
-            alert('No se puede guardar porque no se ha generado un documento.')
-        } else {
 		$('#Detalle_de_documentosGuardar').attr('disabled', true);
 		$('#Detalle_de_documentosGuardar').unbind()
         if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
@@ -219,7 +214,6 @@ $(document).ready(function () {
 		else {
 			$('#Detalle_de_documentosGuardar').removeAttr('disabled');
 			$('#Detalle_de_documentosGuardar').bind()
-		}
 		}
     });
 	$("form#CreateDetalle_de_documentos").on('click', '#Detalle_de_documentosGuardarYNuevo', function () {	

@@ -2,17 +2,14 @@
 <resources>
   <resource culture="en-us" name="Encuesta" value="Editor de Encuesta"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Modulo" value="Módulo"></resource>
+  <resource culture="en-US" name="Tipo_Encuesta" value="Tipo Encuesta"></resource>
   <resource culture="en-US" name="Numero_de_Preguntas" value="Número de Preguntas"></resource>
   <resource culture="en-US" name="Pregunta_1" value="Pregunta #1"></resource>
   <resource culture="en-US" name="Pregunta_2" value="Pregunta #2"></resource>
   <resource culture="en-US" name="Pregunta_3" value="Pregunta #3"></resource>
   <resource culture="en-US" name="Pregunta_4" value="Pregunta #4"></resource>
   <resource culture="en-US" name="Pregunta_5" value="Pregunta #5"></resource>
-  <resource culture="en-US" name="Pregunta_6" value="Pregunta #6"></resource>
-  <resource culture="en-US" name="Pregunta_7" value="Pregunta #7"></resource>
-  <resource culture="en-US" name="Pregunta_8" value="Pregunta #8"></resource>
-  <resource culture="en-US" name="Pregunta_9" value="Pregunta #9"></resource>
-  <resource culture="en-US" name="Pregunta_10" value="Pregunta #10"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

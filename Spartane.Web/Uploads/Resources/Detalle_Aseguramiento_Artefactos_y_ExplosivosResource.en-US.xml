@@ -2,8 +2,8 @@
 <resources>
   <resource culture="en-us" name="Detalle_Aseguramiento_Artefactos_y_Explosivos" value="Detalle Aseguramiento Artefactos y Explosivos"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Motivo_de_Registro" value="Motivo de Registro"></resource>
   <resource culture="en-US" name="Clasificacion" value="Clasificación"></resource>
-  <resource culture="en-US" name="Tipo" value="Tipo"></resource>
   <resource culture="en-US" name="Cantidad" value="Cantidad"></resource>
   <resource culture="en-US" name="Lugar_de_Hallazgo" value="Lugar de Hallazgo"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>

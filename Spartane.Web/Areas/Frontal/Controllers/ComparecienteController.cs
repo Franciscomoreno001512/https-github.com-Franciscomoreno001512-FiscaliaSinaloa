@@ -156,6 +156,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = ComparecienteData.Clave 
 	                    ,Nombre_Completo = ComparecienteData.Nombre_Completo
                     ,Registro_de_Atencion_Inicial = ComparecienteData.Registro_de_Atencion_Inicial
+                    ,AVPR_NAVPR = ComparecienteData.AVPR_NAVPR
+                    ,AVPR_APBIS = ComparecienteData.AVPR_APBIS
+                    ,AVPR_CVEMU = ComparecienteData.AVPR_CVEMU
+                    ,AVPR_CVEAG = ComparecienteData.AVPR_CVEAG
+                    ,OFEN_CONOF = ComparecienteData.OFEN_CONOF
+                    ,OFEN_OPATE = ComparecienteData.OFEN_OPATE
+                    ,OFEN_OMATE = ComparecienteData.OFEN_OMATE
+                    ,OFEN_ONOMB = ComparecienteData.OFEN_ONOMB
+                    ,OFEN_INSTI = ComparecienteData.OFEN_INSTI
+                    ,OFEN_ESTAD = ComparecienteData.OFEN_ESTAD
+                    ,OFEN_EDAD = ComparecienteData.OFEN_EDAD
+                    ,OFEN_OCUPA = ComparecienteData.OFEN_OCUPA
+                    ,FECHAREGIS = (ComparecienteData.FECHAREGIS == null ? string.Empty : Convert.ToDateTime(ComparecienteData.FECHAREGIS).ToString(ConfigurationProperty.DateFormat))
+                    ,USUARIO = ComparecienteData.USUARIO
+                    ,HORAREGIST = ComparecienteData.HORAREGIST
+                    ,fuente = ComparecienteData.fuente
+                    ,fecenvio = (ComparecienteData.fecenvio == null ? string.Empty : Convert.ToDateTime(ComparecienteData.fecenvio).ToString(ConfigurationProperty.DateFormat))
+                    ,OFEN_PROBABLE = ComparecienteData.OFEN_PROBABLE
+                    ,OFEN_RSOMENOR = ComparecienteData.OFEN_RSOMENOR
+                    ,REPR_Sexo = ComparecienteData.REPR_Sexo
+                    ,REPR_NACIONALIDAD = ComparecienteData.REPR_NACIONALIDAD
+                    ,REPR_ESCOLARIDAD = ComparecienteData.REPR_ESCOLARIDAD
+                    ,TIPO_EDAD = ComparecienteData.TIPO_EDAD
+                    ,IdEstadoInstitucion = ComparecienteData.IdEstadoInstitucion
 
 					};
 				}
@@ -230,6 +254,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = ComparecienteData.Clave 
 	                    ,Nombre_Completo = ComparecienteData.Nombre_Completo
                     ,Registro_de_Atencion_Inicial = ComparecienteData.Registro_de_Atencion_Inicial
+                    ,AVPR_NAVPR = ComparecienteData.AVPR_NAVPR
+                    ,AVPR_APBIS = ComparecienteData.AVPR_APBIS
+                    ,AVPR_CVEMU = ComparecienteData.AVPR_CVEMU
+                    ,AVPR_CVEAG = ComparecienteData.AVPR_CVEAG
+                    ,OFEN_CONOF = ComparecienteData.OFEN_CONOF
+                    ,OFEN_OPATE = ComparecienteData.OFEN_OPATE
+                    ,OFEN_OMATE = ComparecienteData.OFEN_OMATE
+                    ,OFEN_ONOMB = ComparecienteData.OFEN_ONOMB
+                    ,OFEN_INSTI = ComparecienteData.OFEN_INSTI
+                    ,OFEN_ESTAD = ComparecienteData.OFEN_ESTAD
+                    ,OFEN_EDAD = ComparecienteData.OFEN_EDAD
+                    ,OFEN_OCUPA = ComparecienteData.OFEN_OCUPA
+                    ,FECHAREGIS = (ComparecienteData.FECHAREGIS == null ? string.Empty : Convert.ToDateTime(ComparecienteData.FECHAREGIS).ToString(ConfigurationProperty.DateFormat))
+                    ,USUARIO = ComparecienteData.USUARIO
+                    ,HORAREGIST = ComparecienteData.HORAREGIST
+                    ,fuente = ComparecienteData.fuente
+                    ,fecenvio = (ComparecienteData.fecenvio == null ? string.Empty : Convert.ToDateTime(ComparecienteData.fecenvio).ToString(ConfigurationProperty.DateFormat))
+                    ,OFEN_PROBABLE = ComparecienteData.OFEN_PROBABLE
+                    ,OFEN_RSOMENOR = ComparecienteData.OFEN_RSOMENOR
+                    ,REPR_Sexo = ComparecienteData.REPR_Sexo
+                    ,REPR_NACIONALIDAD = ComparecienteData.REPR_NACIONALIDAD
+                    ,REPR_ESCOLARIDAD = ComparecienteData.REPR_ESCOLARIDAD
+                    ,TIPO_EDAD = ComparecienteData.TIPO_EDAD
+                    ,IdEstadoInstitucion = ComparecienteData.IdEstadoInstitucion
 
 					};
 				}
@@ -342,6 +390,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
 			,Nombre_Completo = m.Nombre_Completo
 			,Registro_de_Atencion_Inicial = m.Registro_de_Atencion_Inicial
+			,AVPR_NAVPR = m.AVPR_NAVPR
+			,AVPR_APBIS = m.AVPR_APBIS
+			,AVPR_CVEMU = m.AVPR_CVEMU
+			,AVPR_CVEAG = m.AVPR_CVEAG
+			,OFEN_CONOF = m.OFEN_CONOF
+			,OFEN_OPATE = m.OFEN_OPATE
+			,OFEN_OMATE = m.OFEN_OMATE
+			,OFEN_ONOMB = m.OFEN_ONOMB
+			,OFEN_INSTI = m.OFEN_INSTI
+			,OFEN_ESTAD = m.OFEN_ESTAD
+			,OFEN_EDAD = m.OFEN_EDAD
+			,OFEN_OCUPA = m.OFEN_OCUPA
+                        ,FECHAREGIS = (m.FECHAREGIS == null ? string.Empty : Convert.ToDateTime(m.FECHAREGIS).ToString(ConfigurationProperty.DateFormat))
+			,USUARIO = m.USUARIO
+			,HORAREGIST = m.HORAREGIST
+			,fuente = m.fuente
+                        ,fecenvio = (m.fecenvio == null ? string.Empty : Convert.ToDateTime(m.fecenvio).ToString(ConfigurationProperty.DateFormat))
+			,OFEN_PROBABLE = m.OFEN_PROBABLE
+			,OFEN_RSOMENOR = m.OFEN_RSOMENOR
+			,REPR_Sexo = m.REPR_Sexo
+			,REPR_NACIONALIDAD = m.REPR_NACIONALIDAD
+			,REPR_ESCOLARIDAD = m.REPR_ESCOLARIDAD
+			,TIPO_EDAD = m.TIPO_EDAD
+			,IdEstadoInstitucion = m.IdEstadoInstitucion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -458,6 +530,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
 			,Nombre_Completo = m.Nombre_Completo
 			,Registro_de_Atencion_Inicial = m.Registro_de_Atencion_Inicial
+			,AVPR_NAVPR = m.AVPR_NAVPR
+			,AVPR_APBIS = m.AVPR_APBIS
+			,AVPR_CVEMU = m.AVPR_CVEMU
+			,AVPR_CVEAG = m.AVPR_CVEAG
+			,OFEN_CONOF = m.OFEN_CONOF
+			,OFEN_OPATE = m.OFEN_OPATE
+			,OFEN_OMATE = m.OFEN_OMATE
+			,OFEN_ONOMB = m.OFEN_ONOMB
+			,OFEN_INSTI = m.OFEN_INSTI
+			,OFEN_ESTAD = m.OFEN_ESTAD
+			,OFEN_EDAD = m.OFEN_EDAD
+			,OFEN_OCUPA = m.OFEN_OCUPA
+                        ,FECHAREGIS = (m.FECHAREGIS == null ? string.Empty : Convert.ToDateTime(m.FECHAREGIS).ToString(ConfigurationProperty.DateFormat))
+			,USUARIO = m.USUARIO
+			,HORAREGIST = m.HORAREGIST
+			,fuente = m.fuente
+                        ,fecenvio = (m.fecenvio == null ? string.Empty : Convert.ToDateTime(m.fecenvio).ToString(ConfigurationProperty.DateFormat))
+			,OFEN_PROBABLE = m.OFEN_PROBABLE
+			,OFEN_RSOMENOR = m.OFEN_RSOMENOR
+			,REPR_Sexo = m.REPR_Sexo
+			,REPR_NACIONALIDAD = m.REPR_NACIONALIDAD
+			,REPR_ESCOLARIDAD = m.REPR_ESCOLARIDAD
+			,TIPO_EDAD = m.TIPO_EDAD
+			,IdEstadoInstitucion = m.IdEstadoInstitucion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -512,6 +608,390 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Compareciente.Registro_de_Atencion_Inicial >= " + filter.FromRegistro_de_Atencion_Inicial;
                 if (!string.IsNullOrEmpty(filter.ToRegistro_de_Atencion_Inicial))
                     where += " AND Compareciente.Registro_de_Atencion_Inicial <= " + filter.ToRegistro_de_Atencion_Inicial;
+            }
+
+            if (!string.IsNullOrEmpty(filter.AVPR_NAVPR))
+            {
+                switch (filter.AVPR_NAVPRFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.AVPR_NAVPR LIKE '" + filter.AVPR_NAVPR + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.AVPR_NAVPR LIKE '%" + filter.AVPR_NAVPR + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.AVPR_NAVPR = '" + filter.AVPR_NAVPR + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.AVPR_NAVPR LIKE '%" + filter.AVPR_NAVPR + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.AVPR_APBIS))
+            {
+                switch (filter.AVPR_APBISFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.AVPR_APBIS LIKE '" + filter.AVPR_APBIS + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.AVPR_APBIS LIKE '%" + filter.AVPR_APBIS + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.AVPR_APBIS = '" + filter.AVPR_APBIS + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.AVPR_APBIS LIKE '%" + filter.AVPR_APBIS + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.AVPR_CVEMU))
+            {
+                switch (filter.AVPR_CVEMUFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.AVPR_CVEMU LIKE '" + filter.AVPR_CVEMU + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.AVPR_CVEMU LIKE '%" + filter.AVPR_CVEMU + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.AVPR_CVEMU = '" + filter.AVPR_CVEMU + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.AVPR_CVEMU LIKE '%" + filter.AVPR_CVEMU + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.AVPR_CVEAG))
+            {
+                switch (filter.AVPR_CVEAGFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.AVPR_CVEAG LIKE '" + filter.AVPR_CVEAG + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.AVPR_CVEAG LIKE '%" + filter.AVPR_CVEAG + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.AVPR_CVEAG = '" + filter.AVPR_CVEAG + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.AVPR_CVEAG LIKE '%" + filter.AVPR_CVEAG + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.OFEN_CONOF))
+            {
+                switch (filter.OFEN_CONOFFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.OFEN_CONOF LIKE '" + filter.OFEN_CONOF + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.OFEN_CONOF LIKE '%" + filter.OFEN_CONOF + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.OFEN_CONOF = '" + filter.OFEN_CONOF + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.OFEN_CONOF LIKE '%" + filter.OFEN_CONOF + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.OFEN_OPATE))
+            {
+                switch (filter.OFEN_OPATEFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.OFEN_OPATE LIKE '" + filter.OFEN_OPATE + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.OFEN_OPATE LIKE '%" + filter.OFEN_OPATE + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.OFEN_OPATE = '" + filter.OFEN_OPATE + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.OFEN_OPATE LIKE '%" + filter.OFEN_OPATE + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.OFEN_OMATE))
+            {
+                switch (filter.OFEN_OMATEFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.OFEN_OMATE LIKE '" + filter.OFEN_OMATE + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.OFEN_OMATE LIKE '%" + filter.OFEN_OMATE + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.OFEN_OMATE = '" + filter.OFEN_OMATE + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.OFEN_OMATE LIKE '%" + filter.OFEN_OMATE + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.OFEN_ONOMB))
+            {
+                switch (filter.OFEN_ONOMBFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.OFEN_ONOMB LIKE '" + filter.OFEN_ONOMB + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.OFEN_ONOMB LIKE '%" + filter.OFEN_ONOMB + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.OFEN_ONOMB = '" + filter.OFEN_ONOMB + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.OFEN_ONOMB LIKE '%" + filter.OFEN_ONOMB + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromOFEN_INSTI) || !string.IsNullOrEmpty(filter.ToOFEN_INSTI))
+            {
+                if (!string.IsNullOrEmpty(filter.FromOFEN_INSTI))
+                    where += " AND Compareciente.OFEN_INSTI >= " + filter.FromOFEN_INSTI;
+                if (!string.IsNullOrEmpty(filter.ToOFEN_INSTI))
+                    where += " AND Compareciente.OFEN_INSTI <= " + filter.ToOFEN_INSTI;
+            }
+
+            if (!string.IsNullOrEmpty(filter.OFEN_ESTAD))
+            {
+                switch (filter.OFEN_ESTADFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.OFEN_ESTAD LIKE '" + filter.OFEN_ESTAD + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.OFEN_ESTAD LIKE '%" + filter.OFEN_ESTAD + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.OFEN_ESTAD = '" + filter.OFEN_ESTAD + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.OFEN_ESTAD LIKE '%" + filter.OFEN_ESTAD + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromOFEN_EDAD) || !string.IsNullOrEmpty(filter.ToOFEN_EDAD))
+            {
+                if (!string.IsNullOrEmpty(filter.FromOFEN_EDAD))
+                    where += " AND Compareciente.OFEN_EDAD >= " + filter.FromOFEN_EDAD;
+                if (!string.IsNullOrEmpty(filter.ToOFEN_EDAD))
+                    where += " AND Compareciente.OFEN_EDAD <= " + filter.ToOFEN_EDAD;
+            }
+
+            if (!string.IsNullOrEmpty(filter.OFEN_OCUPA))
+            {
+                switch (filter.OFEN_OCUPAFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.OFEN_OCUPA LIKE '" + filter.OFEN_OCUPA + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.OFEN_OCUPA LIKE '%" + filter.OFEN_OCUPA + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.OFEN_OCUPA = '" + filter.OFEN_OCUPA + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.OFEN_OCUPA LIKE '%" + filter.OFEN_OCUPA + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromFECHAREGIS) || !string.IsNullOrEmpty(filter.ToFECHAREGIS))
+            {
+                var FECHAREGISFrom = DateTime.ParseExact(filter.FromFECHAREGIS, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var FECHAREGISTo = DateTime.ParseExact(filter.ToFECHAREGIS, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFECHAREGIS))
+                    where += " AND Compareciente.FECHAREGIS >= '" + FECHAREGISFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFECHAREGIS))
+                    where += " AND Compareciente.FECHAREGIS <= '" + FECHAREGISTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.USUARIO))
+            {
+                switch (filter.USUARIOFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.USUARIO LIKE '" + filter.USUARIO + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.USUARIO LIKE '%" + filter.USUARIO + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.USUARIO = '" + filter.USUARIO + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.USUARIO LIKE '%" + filter.USUARIO + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.HORAREGIST))
+            {
+                switch (filter.HORAREGISTFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.HORAREGIST LIKE '" + filter.HORAREGIST + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.HORAREGIST LIKE '%" + filter.HORAREGIST + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.HORAREGIST = '" + filter.HORAREGIST + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.HORAREGIST LIKE '%" + filter.HORAREGIST + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromfuente) || !string.IsNullOrEmpty(filter.Tofuente))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromfuente))
+                    where += " AND Compareciente.fuente >= " + filter.Fromfuente;
+                if (!string.IsNullOrEmpty(filter.Tofuente))
+                    where += " AND Compareciente.fuente <= " + filter.Tofuente;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromfecenvio) || !string.IsNullOrEmpty(filter.Tofecenvio))
+            {
+                var fecenvioFrom = DateTime.ParseExact(filter.Fromfecenvio, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var fecenvioTo = DateTime.ParseExact(filter.Tofecenvio, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.Fromfecenvio))
+                    where += " AND Compareciente.fecenvio >= '" + fecenvioFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.Tofecenvio))
+                    where += " AND Compareciente.fecenvio <= '" + fecenvioTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromOFEN_PROBABLE) || !string.IsNullOrEmpty(filter.ToOFEN_PROBABLE))
+            {
+                if (!string.IsNullOrEmpty(filter.FromOFEN_PROBABLE))
+                    where += " AND Compareciente.OFEN_PROBABLE >= " + filter.FromOFEN_PROBABLE;
+                if (!string.IsNullOrEmpty(filter.ToOFEN_PROBABLE))
+                    where += " AND Compareciente.OFEN_PROBABLE <= " + filter.ToOFEN_PROBABLE;
+            }
+
+            if (!string.IsNullOrEmpty(filter.OFEN_RSOMENOR))
+            {
+                switch (filter.OFEN_RSOMENORFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Compareciente.OFEN_RSOMENOR LIKE '" + filter.OFEN_RSOMENOR + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Compareciente.OFEN_RSOMENOR LIKE '%" + filter.OFEN_RSOMENOR + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Compareciente.OFEN_RSOMENOR = '" + filter.OFEN_RSOMENOR + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Compareciente.OFEN_RSOMENOR LIKE '%" + filter.OFEN_RSOMENOR + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromREPR_Sexo) || !string.IsNullOrEmpty(filter.ToREPR_Sexo))
+            {
+                if (!string.IsNullOrEmpty(filter.FromREPR_Sexo))
+                    where += " AND Compareciente.REPR_Sexo >= " + filter.FromREPR_Sexo;
+                if (!string.IsNullOrEmpty(filter.ToREPR_Sexo))
+                    where += " AND Compareciente.REPR_Sexo <= " + filter.ToREPR_Sexo;
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromREPR_NACIONALIDAD) || !string.IsNullOrEmpty(filter.ToREPR_NACIONALIDAD))
+            {
+                if (!string.IsNullOrEmpty(filter.FromREPR_NACIONALIDAD))
+                    where += " AND Compareciente.REPR_NACIONALIDAD >= " + filter.FromREPR_NACIONALIDAD;
+                if (!string.IsNullOrEmpty(filter.ToREPR_NACIONALIDAD))
+                    where += " AND Compareciente.REPR_NACIONALIDAD <= " + filter.ToREPR_NACIONALIDAD;
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromREPR_ESCOLARIDAD) || !string.IsNullOrEmpty(filter.ToREPR_ESCOLARIDAD))
+            {
+                if (!string.IsNullOrEmpty(filter.FromREPR_ESCOLARIDAD))
+                    where += " AND Compareciente.REPR_ESCOLARIDAD >= " + filter.FromREPR_ESCOLARIDAD;
+                if (!string.IsNullOrEmpty(filter.ToREPR_ESCOLARIDAD))
+                    where += " AND Compareciente.REPR_ESCOLARIDAD <= " + filter.ToREPR_ESCOLARIDAD;
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromTIPO_EDAD) || !string.IsNullOrEmpty(filter.ToTIPO_EDAD))
+            {
+                if (!string.IsNullOrEmpty(filter.FromTIPO_EDAD))
+                    where += " AND Compareciente.TIPO_EDAD >= " + filter.FromTIPO_EDAD;
+                if (!string.IsNullOrEmpty(filter.ToTIPO_EDAD))
+                    where += " AND Compareciente.TIPO_EDAD <= " + filter.ToTIPO_EDAD;
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromIdEstadoInstitucion) || !string.IsNullOrEmpty(filter.ToIdEstadoInstitucion))
+            {
+                if (!string.IsNullOrEmpty(filter.FromIdEstadoInstitucion))
+                    where += " AND Compareciente.IdEstadoInstitucion >= " + filter.FromIdEstadoInstitucion;
+                if (!string.IsNullOrEmpty(filter.ToIdEstadoInstitucion))
+                    where += " AND Compareciente.IdEstadoInstitucion <= " + filter.ToIdEstadoInstitucion;
             }
 
 
@@ -571,6 +1051,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         Clave = varCompareciente.Clave
                         ,Nombre_Completo = varCompareciente.Nombre_Completo
                         ,Registro_de_Atencion_Inicial = varCompareciente.Registro_de_Atencion_Inicial
+                        ,AVPR_NAVPR = varCompareciente.AVPR_NAVPR
+                        ,AVPR_APBIS = varCompareciente.AVPR_APBIS
+                        ,AVPR_CVEMU = varCompareciente.AVPR_CVEMU
+                        ,AVPR_CVEAG = varCompareciente.AVPR_CVEAG
+                        ,OFEN_CONOF = varCompareciente.OFEN_CONOF
+                        ,OFEN_OPATE = varCompareciente.OFEN_OPATE
+                        ,OFEN_OMATE = varCompareciente.OFEN_OMATE
+                        ,OFEN_ONOMB = varCompareciente.OFEN_ONOMB
+                        ,OFEN_INSTI = varCompareciente.OFEN_INSTI
+                        ,OFEN_ESTAD = varCompareciente.OFEN_ESTAD
+                        ,OFEN_EDAD = varCompareciente.OFEN_EDAD
+                        ,OFEN_OCUPA = varCompareciente.OFEN_OCUPA
+                        ,FECHAREGIS = (!String.IsNullOrEmpty(varCompareciente.FECHAREGIS)) ? DateTime.ParseExact(varCompareciente.FECHAREGIS, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,USUARIO = varCompareciente.USUARIO
+                        ,HORAREGIST = varCompareciente.HORAREGIST
+                        ,fuente = varCompareciente.fuente
+                        ,fecenvio = (!String.IsNullOrEmpty(varCompareciente.fecenvio)) ? DateTime.ParseExact(varCompareciente.fecenvio, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,OFEN_PROBABLE = varCompareciente.OFEN_PROBABLE
+                        ,OFEN_RSOMENOR = varCompareciente.OFEN_RSOMENOR
+                        ,REPR_Sexo = varCompareciente.REPR_Sexo
+                        ,REPR_NACIONALIDAD = varCompareciente.REPR_NACIONALIDAD
+                        ,REPR_ESCOLARIDAD = varCompareciente.REPR_ESCOLARIDAD
+                        ,TIPO_EDAD = varCompareciente.TIPO_EDAD
+                        ,IdEstadoInstitucion = varCompareciente.IdEstadoInstitucion
 
                     };
 
@@ -913,7 +1417,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+			string[] arrayColumnsVisible = null;
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -960,6 +1464,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
 			,Nombre_Completo = m.Nombre_Completo
 			,Registro_de_Atencion_Inicial = m.Registro_de_Atencion_Inicial
+			,AVPR_NAVPR = m.AVPR_NAVPR
+			,AVPR_APBIS = m.AVPR_APBIS
+			,AVPR_CVEMU = m.AVPR_CVEMU
+			,AVPR_CVEAG = m.AVPR_CVEAG
+			,OFEN_CONOF = m.OFEN_CONOF
+			,OFEN_OPATE = m.OFEN_OPATE
+			,OFEN_OMATE = m.OFEN_OMATE
+			,OFEN_ONOMB = m.OFEN_ONOMB
+			,OFEN_INSTI = m.OFEN_INSTI
+			,OFEN_ESTAD = m.OFEN_ESTAD
+			,OFEN_EDAD = m.OFEN_EDAD
+			,OFEN_OCUPA = m.OFEN_OCUPA
+                        ,FECHAREGIS = (m.FECHAREGIS == null ? string.Empty : Convert.ToDateTime(m.FECHAREGIS).ToString(ConfigurationProperty.DateFormat))
+			,USUARIO = m.USUARIO
+			,HORAREGIST = m.HORAREGIST
+			,fuente = m.fuente
+                        ,fecenvio = (m.fecenvio == null ? string.Empty : Convert.ToDateTime(m.fecenvio).ToString(ConfigurationProperty.DateFormat))
+			,OFEN_PROBABLE = m.OFEN_PROBABLE
+			,OFEN_RSOMENOR = m.OFEN_RSOMENOR
+			,REPR_Sexo = m.REPR_Sexo
+			,REPR_NACIONALIDAD = m.REPR_NACIONALIDAD
+			,REPR_ESCOLARIDAD = m.REPR_ESCOLARIDAD
+			,TIPO_EDAD = m.TIPO_EDAD
+			,IdEstadoInstitucion = m.IdEstadoInstitucion
 
             }).ToList();
 
@@ -1035,6 +1563,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
 			,Nombre_Completo = m.Nombre_Completo
 			,Registro_de_Atencion_Inicial = m.Registro_de_Atencion_Inicial
+			,AVPR_NAVPR = m.AVPR_NAVPR
+			,AVPR_APBIS = m.AVPR_APBIS
+			,AVPR_CVEMU = m.AVPR_CVEMU
+			,AVPR_CVEAG = m.AVPR_CVEAG
+			,OFEN_CONOF = m.OFEN_CONOF
+			,OFEN_OPATE = m.OFEN_OPATE
+			,OFEN_OMATE = m.OFEN_OMATE
+			,OFEN_ONOMB = m.OFEN_ONOMB
+			,OFEN_INSTI = m.OFEN_INSTI
+			,OFEN_ESTAD = m.OFEN_ESTAD
+			,OFEN_EDAD = m.OFEN_EDAD
+			,OFEN_OCUPA = m.OFEN_OCUPA
+                        ,FECHAREGIS = (m.FECHAREGIS == null ? string.Empty : Convert.ToDateTime(m.FECHAREGIS).ToString(ConfigurationProperty.DateFormat))
+			,USUARIO = m.USUARIO
+			,HORAREGIST = m.HORAREGIST
+			,fuente = m.fuente
+                        ,fecenvio = (m.fecenvio == null ? string.Empty : Convert.ToDateTime(m.fecenvio).ToString(ConfigurationProperty.DateFormat))
+			,OFEN_PROBABLE = m.OFEN_PROBABLE
+			,OFEN_RSOMENOR = m.OFEN_RSOMENOR
+			,REPR_Sexo = m.REPR_Sexo
+			,REPR_NACIONALIDAD = m.REPR_NACIONALIDAD
+			,REPR_ESCOLARIDAD = m.REPR_ESCOLARIDAD
+			,TIPO_EDAD = m.TIPO_EDAD
+			,IdEstadoInstitucion = m.IdEstadoInstitucion
 
             }).ToList();
 
@@ -1076,6 +1628,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = varCompareciente.Clave
                                             ,Nombre_Completo = varCompareciente.Nombre_Completo
                         ,Registro_de_Atencion_Inicial = varCompareciente.Registro_de_Atencion_Inicial
+                        ,AVPR_NAVPR = varCompareciente.AVPR_NAVPR
+                        ,AVPR_APBIS = varCompareciente.AVPR_APBIS
+                        ,AVPR_CVEMU = varCompareciente.AVPR_CVEMU
+                        ,AVPR_CVEAG = varCompareciente.AVPR_CVEAG
+                        ,OFEN_CONOF = varCompareciente.OFEN_CONOF
+                        ,OFEN_OPATE = varCompareciente.OFEN_OPATE
+                        ,OFEN_OMATE = varCompareciente.OFEN_OMATE
+                        ,OFEN_ONOMB = varCompareciente.OFEN_ONOMB
+                        ,OFEN_INSTI = varCompareciente.OFEN_INSTI
+                        ,OFEN_ESTAD = varCompareciente.OFEN_ESTAD
+                        ,OFEN_EDAD = varCompareciente.OFEN_EDAD
+                        ,OFEN_OCUPA = varCompareciente.OFEN_OCUPA
+                        ,FECHAREGIS = (!String.IsNullOrEmpty(varCompareciente.FECHAREGIS)) ? DateTime.ParseExact(varCompareciente.FECHAREGIS, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,USUARIO = varCompareciente.USUARIO
+                        ,HORAREGIST = varCompareciente.HORAREGIST
+                        ,fuente = varCompareciente.fuente
+                        ,fecenvio = (!String.IsNullOrEmpty(varCompareciente.fecenvio)) ? DateTime.ParseExact(varCompareciente.fecenvio, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,OFEN_PROBABLE = varCompareciente.OFEN_PROBABLE
+                        ,OFEN_RSOMENOR = varCompareciente.OFEN_RSOMENOR
+                        ,REPR_Sexo = varCompareciente.REPR_Sexo
+                        ,REPR_NACIONALIDAD = varCompareciente.REPR_NACIONALIDAD
+                        ,REPR_ESCOLARIDAD = varCompareciente.REPR_ESCOLARIDAD
+                        ,TIPO_EDAD = varCompareciente.TIPO_EDAD
+                        ,IdEstadoInstitucion = varCompareciente.IdEstadoInstitucion
                     
                 };
 
@@ -1106,6 +1682,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
 			,Nombre_Completo = m.Nombre_Completo
 			,Registro_de_Atencion_Inicial = m.Registro_de_Atencion_Inicial
+			,AVPR_NAVPR = m.AVPR_NAVPR
+			,AVPR_APBIS = m.AVPR_APBIS
+			,AVPR_CVEMU = m.AVPR_CVEMU
+			,AVPR_CVEAG = m.AVPR_CVEAG
+			,OFEN_CONOF = m.OFEN_CONOF
+			,OFEN_OPATE = m.OFEN_OPATE
+			,OFEN_OMATE = m.OFEN_OMATE
+			,OFEN_ONOMB = m.OFEN_ONOMB
+			,OFEN_INSTI = m.OFEN_INSTI
+			,OFEN_ESTAD = m.OFEN_ESTAD
+			,OFEN_EDAD = m.OFEN_EDAD
+			,OFEN_OCUPA = m.OFEN_OCUPA
+                        ,FECHAREGIS = (m.FECHAREGIS == null ? string.Empty : Convert.ToDateTime(m.FECHAREGIS).ToString(ConfigurationProperty.DateFormat))
+			,USUARIO = m.USUARIO
+			,HORAREGIST = m.HORAREGIST
+			,fuente = m.fuente
+                        ,fecenvio = (m.fecenvio == null ? string.Empty : Convert.ToDateTime(m.fecenvio).ToString(ConfigurationProperty.DateFormat))
+			,OFEN_PROBABLE = m.OFEN_PROBABLE
+			,OFEN_RSOMENOR = m.OFEN_RSOMENOR
+			,REPR_Sexo = m.REPR_Sexo
+			,REPR_NACIONALIDAD = m.REPR_NACIONALIDAD
+			,REPR_ESCOLARIDAD = m.REPR_ESCOLARIDAD
+			,TIPO_EDAD = m.TIPO_EDAD
+			,IdEstadoInstitucion = m.IdEstadoInstitucion
 
                     
                 };

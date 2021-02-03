@@ -12,13 +12,12 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
         public short? Zona { get; set; }
         public string ZonaDescripcion { get; set; }
         public short? Tipo { get; set; }
         public string TipoDescripcion { get; set; }
-        public short? Terreno { get; set; }
-        public string TerrenoDescripcion { get; set; }
-        public string Especifique_Otro { get; set; }
         public string Calle { get; set; }
         public string Exterior { get; set; }
         public string Interior { get; set; }
@@ -27,7 +26,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string EstadoNombre { get; set; }
         public int? Municipio { get; set; }
         public string MunicipioNombre { get; set; }
-        public string Colonia { get; set; }
+        public int? Colonia { get; set; }
+        public string ColoniaNombre { get; set; }
         public string Registro_Publico_Propiedad { get; set; }
         public string Entrecalles { get; set; }
         public string Propietario { get; set; }
@@ -39,13 +39,12 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
         public short? Zona { get; set; }
         public string ZonaDescripcion { get; set; }
         public short? Tipo { get; set; }
         public string TipoDescripcion { get; set; }
-        public short? Terreno { get; set; }
-        public string TerrenoDescripcion { get; set; }
-        public string Especifique_Otro { get; set; }
         public string Calle { get; set; }
         public string Exterior { get; set; }
         public string Interior { get; set; }
@@ -54,7 +53,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string EstadoNombre { get; set; }
         public int? Municipio { get; set; }
         public string MunicipioNombre { get; set; }
-        public string Colonia { get; set; }
+        public int? Colonia { get; set; }
+        public string ColoniaNombre { get; set; }
         public string Registro_Publico_Propiedad { get; set; }
         public string Entrecalles { get; set; }
         public string Propietario { get; set; }

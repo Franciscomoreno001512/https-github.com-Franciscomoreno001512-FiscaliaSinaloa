@@ -27,6 +27,16 @@ namespace Spartane.Core.Domain.Delito
         public bool? Tentativa { get; set; }
         public bool? Activo { get; set; }
         public bool? Robo_de_Vehiculo { get; set; }
+        public int? delitox { get; set; }
+        public string ARTICULO { get; set; }
+        public string DETALLE { get; set; }
+        public int? TIPO_AGENCIA { get; set; }
+        public string ESTADISTICO_SSP { get; set; }
+        public string VAL_VEHICULO { get; set; }
+        public string TIPO_DELITO { get; set; }
+        public int? circunstancia_clasif { get; set; }
+        public int? PRINCIPAL { get; set; }
+        public int? orden { get; set; }
 
         [ForeignKey("Titulo_del_Delito")]
         public virtual Spartane.Core.Domain.Titulo_del_Delito.Titulo_del_Delito Titulo_del_Delito_Titulo_del_Delito { get; set; }
@@ -47,6 +57,16 @@ namespace Spartane.Core.Domain.Delito
         public bool? Tentativa { get; set; }
         public bool? Activo { get; set; }
         public bool? Robo_de_Vehiculo { get; set; }
+        public int? delitox { get; set; }
+        public string ARTICULO { get; set; }
+        public string DETALLE { get; set; }
+        public int? TIPO_AGENCIA { get; set; }
+        public string ESTADISTICO_SSP { get; set; }
+        public string VAL_VEHICULO { get; set; }
+        public string TIPO_DELITO { get; set; }
+        public int? circunstancia_clasif { get; set; }
+        public int? PRINCIPAL { get; set; }
+        public int? orden { get; set; }
 
 		        [ForeignKey("Titulo_del_Delito")]
         public virtual Spartane.Core.Domain.Titulo_del_Delito.Titulo_del_Delito Titulo_del_Delito_Titulo_del_Delito { get; set; }

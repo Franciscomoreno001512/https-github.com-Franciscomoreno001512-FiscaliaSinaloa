@@ -12,6 +12,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
         public string Tipo { get; set; }
         public string Unidad_de_medida { get; set; }
         [Range(0.00, 999999.99)]
@@ -24,6 +26,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
         public string Tipo { get; set; }
         public string Unidad_de_medida { get; set; }
         [Range(0.00, 999999.99)]

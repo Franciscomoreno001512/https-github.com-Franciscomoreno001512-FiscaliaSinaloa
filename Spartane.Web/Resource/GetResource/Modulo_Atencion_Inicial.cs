@@ -426,6 +426,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Unidad_canaliza</summary>
+        public static string Unidad_canaliza
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Atencion_Inicial.GetResource("Unidad_canaliza", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Enviar_a_MP</summary>
         public static string Enviar_a_MP
         {
@@ -646,6 +656,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Referencia_hechos</summary>
+        public static string Referencia_hechos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Atencion_Inicial.GetResource("Referencia_hechos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Latitud</summary>
         public static string Latitud
         {
@@ -663,6 +683,26 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderModulo_Atencion_Inicial.GetResource("Longitud", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Documento_Extraviado_hechos</summary>
+        public static string Documento_Extraviado_hechos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Atencion_Inicial.GetResource("Documento_Extraviado_hechos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Tipo_de_Documento_Extraviado</summary>
+        public static string Tipo_de_Documento_Extraviado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Atencion_Inicial.GetResource("Tipo_de_Documento_Extraviado", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

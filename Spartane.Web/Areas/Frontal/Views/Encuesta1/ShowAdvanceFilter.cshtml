@@ -3,39 +3,33 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Encuesta1AdvanceSearchModel
 @{
+    List<SelectListItem> varModulo_Encuesta_Modulo = null;
+    if (ViewBag.Modulo_Encuestas_Modulo != null)
+    { varModulo_Encuesta_Modulo = (List<SelectListItem>)ViewBag.Modulo_Encuestas_Modulo; }
+    List<SelectListItem> varTipo_Encuesta_Tipo_Encuesta = null;
+    if (ViewBag.Tipo_Encuestas_Tipo_Encuesta != null)
+    { varTipo_Encuesta_Tipo_Encuesta = (List<SelectListItem>)ViewBag.Tipo_Encuestas_Tipo_Encuesta; }
     List<SelectListItem> varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = null;
     if (ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null)
     { varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = (List<SelectListItem>)ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas; }
-    List<SelectListItem> varCatalogo_Respuesta_Pregunta1 = null;
-    if (ViewBag.Catalogo_Respuestas_Pregunta1 != null)
-    { varCatalogo_Respuesta_Pregunta1 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Pregunta1; }
-    List<SelectListItem> varCatalogo_Respuesta_Pregunta2 = null;
-    if (ViewBag.Catalogo_Respuestas_Pregunta2 != null)
-    { varCatalogo_Respuesta_Pregunta2 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Pregunta2; }
-    List<SelectListItem> varCatalogo_Respuesta_Pregunta3 = null;
-    if (ViewBag.Catalogo_Respuestas_Pregunta3 != null)
-    { varCatalogo_Respuesta_Pregunta3 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Pregunta3; }
-    List<SelectListItem> varCatalogo_Respuesta_Pregunta4 = null;
-    if (ViewBag.Catalogo_Respuestas_Pregunta4 != null)
-    { varCatalogo_Respuesta_Pregunta4 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Pregunta4; }
-    List<SelectListItem> varCatalogo_Respuesta_Pregunta5 = null;
-    if (ViewBag.Catalogo_Respuestas_Pregunta5 != null)
-    { varCatalogo_Respuesta_Pregunta5 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Pregunta5; }
-    List<SelectListItem> varCatalogo_Respuesta_Pregunta6 = null;
-    if (ViewBag.Catalogo_Respuestas_Pregunta6 != null)
-    { varCatalogo_Respuesta_Pregunta6 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Pregunta6; }
-    List<SelectListItem> varCatalogo_Respuesta_Pregunta7 = null;
-    if (ViewBag.Catalogo_Respuestas_Pregunta7 != null)
-    { varCatalogo_Respuesta_Pregunta7 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Pregunta7; }
-    List<SelectListItem> varCatalogo_Respuesta_Pregunta8 = null;
-    if (ViewBag.Catalogo_Respuestas_Pregunta8 != null)
-    { varCatalogo_Respuesta_Pregunta8 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Pregunta8; }
-    List<SelectListItem> varCatalogo_Respuesta_Pregunta9 = null;
-    if (ViewBag.Catalogo_Respuestas_Pregunta9 != null)
-    { varCatalogo_Respuesta_Pregunta9 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Pregunta9; }
-    List<SelectListItem> varCatalogo_Respuesta_Pregunta10 = null;
-    if (ViewBag.Catalogo_Respuestas_Pregunta10 != null)
-    { varCatalogo_Respuesta_Pregunta10 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Pregunta10; }
+    List<SelectListItem> varCatalogo_Respuesta_Respuesta_1 = null;
+    if (ViewBag.Catalogo_Respuestas_Respuesta_1 != null)
+    { varCatalogo_Respuesta_Respuesta_1 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Respuesta_1; }
+    List<SelectListItem> varCatalogo_Respuesta_Respuesta_2 = null;
+    if (ViewBag.Catalogo_Respuestas_Respuesta_2 != null)
+    { varCatalogo_Respuesta_Respuesta_2 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Respuesta_2; }
+    List<SelectListItem> varCatalogo_Respuesta_Respuesta_3 = null;
+    if (ViewBag.Catalogo_Respuestas_Respuesta_3 != null)
+    { varCatalogo_Respuesta_Respuesta_3 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Respuesta_3; }
+    List<SelectListItem> varCatalogo_Respuesta_Respuesta_4 = null;
+    if (ViewBag.Catalogo_Respuestas_Respuesta_4 != null)
+    { varCatalogo_Respuesta_Respuesta_4 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Respuesta_4; }
+    List<SelectListItem> varCatalogo_Respuesta_Respuesta_5 = null;
+    if (ViewBag.Catalogo_Respuestas_Respuesta_5 != null)
+    { varCatalogo_Respuesta_Respuesta_5 = (List<SelectListItem>)ViewBag.Catalogo_Respuestas_Respuesta_5; }
+    List<SelectListItem> varEstatus_Encuesta_Estatus = null;
+    if (ViewBag.Estatus_Encuestas_Estatus != null)
+    { varEstatus_Encuesta_Estatus = (List<SelectListItem>)ViewBag.Estatus_Encuestas_Estatus; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -85,6 +79,140 @@
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Encuesta1Resources.Folio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.FolioFilter, filters, new { @class = "form-control", @id = "ddlFolioFilter" })
+                    @Html.TextBoxFor(m => m.Folio, new { @class = "form-control", @type = "text", @id = "txtFolio" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Encuesta1Resources.Fecha_Enviado</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_Enviado" name="FromFecha_Enviado" type="text" value="@Model.FromFecha_Enviado" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_Enviado" name="ToFecha_Enviado" type="text" value="@Model.ToFecha_Enviado" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Encuesta1Resources.Hora_Enviado</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Enviado" name="FromHora_Enviado" type="text" value="@Model.FromHora_Enviado" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Enviado" name="ToHora_Enviado" type="text" value="@Model.ToHora_Enviado" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Encuesta1Resources.Fecha_Respuesta</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_Respuesta" name="FromFecha_Respuesta" type="text" value="@Model.FromFecha_Respuesta" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_Respuesta" name="ToFecha_Respuesta" type="text" value="@Model.ToFecha_Respuesta" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Encuesta1Resources.Hora_Respuesta</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Respuesta" name="FromHora_Respuesta" type="text" value="@Model.FromHora_Respuesta" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Respuesta" name="ToHora_Respuesta" type="text" value="@Model.ToHora_Respuesta" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Encuesta1Resources.NUAT</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NUATFilter, filters, new { @class = "form-control", @id = "ddlNUATFilter" })
+                    @Html.TextBoxFor(m => m.NUAT, new { @class = "form-control", @type = "text", @id = "txtNUAT" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Encuesta1Resources.Modulo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ModuloFilter, filters, new { @class = "form-control", @id = "ddlModuloFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceModulo, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varModulo_Encuesta_Modulo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceModuloMultiple, varModulo_Encuesta_Modulo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceModulo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Encuesta1Resources.Tipo_Encuesta</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_EncuestaFilter, filters, new { @class = "form-control", @id = "ddlTipo_EncuestaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_Encuesta, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_Encuesta" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_Encuesta_Tipo_Encuesta!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_EncuestaMultiple, varTipo_Encuesta_Tipo_Encuesta,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_Encuesta"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Encuesta1Resources.Numero_de_Preguntas</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -106,31 +234,31 @@
                     }
                 </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Encuesta1Resources.NUAT</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.NUATFilter, filters, new { @class = "form-control", @id = "ddlNUATFilter" })
-                    @Html.TextBoxFor(m => m.NUAT, new { @class = "form-control", @type = "text", @id = "txtNUAT" })
-                </div>
-                <div class="MarginBottom">
                     <h3>@Resources.Encuesta1Resources.Pregunta1</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Pregunta1Filter, filters, new { @class = "form-control", @id = "ddlPregunta1Filter" })
-                    @Html.TextBoxFor(m => m.AdvancePregunta1, new { @class = "form-control", @type = "text", @id = "txtAdvancePregunta1" })
+                    @Html.TextBoxFor(m => m.Pregunta1, new { @class = "form-control", @type = "text", @id = "txtPregunta1" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Encuesta1Resources.Respuesta_1</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Respuesta_1Filter, filters, new { @class = "form-control", @id = "ddlRespuesta_1Filter" })
+                    @Html.TextBoxFor(m => m.AdvanceRespuesta_1, new { @class = "form-control", @type = "text", @id = "txtAdvanceRespuesta_1" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCatalogo_Respuesta_Pregunta1!=null)
+                    @if (varCatalogo_Respuesta_Respuesta_1!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvancePregunta1Multiple, varCatalogo_Respuesta_Pregunta1,
+                        @Html.ListBoxFor(m => m.AdvanceRespuesta_1Multiple, varCatalogo_Respuesta_Respuesta_1,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvancePregunta1"
+                            @id = "ddlAdvanceRespuesta_1"
                         });
                     }
                 </div>
@@ -140,18 +268,26 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Pregunta2Filter, filters, new { @class = "form-control", @id = "ddlPregunta2Filter" })
-                    @Html.TextBoxFor(m => m.AdvancePregunta2, new { @class = "form-control", @type = "text", @id = "txtAdvancePregunta2" })
+                    @Html.TextBoxFor(m => m.Pregunta2, new { @class = "form-control", @type = "text", @id = "txtPregunta2" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Encuesta1Resources.Respuesta_2</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Respuesta_2Filter, filters, new { @class = "form-control", @id = "ddlRespuesta_2Filter" })
+                    @Html.TextBoxFor(m => m.AdvanceRespuesta_2, new { @class = "form-control", @type = "text", @id = "txtAdvanceRespuesta_2" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCatalogo_Respuesta_Pregunta2!=null)
+                    @if (varCatalogo_Respuesta_Respuesta_2!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvancePregunta2Multiple, varCatalogo_Respuesta_Pregunta2,
+                        @Html.ListBoxFor(m => m.AdvanceRespuesta_2Multiple, varCatalogo_Respuesta_Respuesta_2,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvancePregunta2"
+                            @id = "ddlAdvanceRespuesta_2"
                         });
                     }
                 </div>
@@ -161,18 +297,26 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Pregunta3Filter, filters, new { @class = "form-control", @id = "ddlPregunta3Filter" })
-                    @Html.TextBoxFor(m => m.AdvancePregunta3, new { @class = "form-control", @type = "text", @id = "txtAdvancePregunta3" })
+                    @Html.TextBoxFor(m => m.Pregunta3, new { @class = "form-control", @type = "text", @id = "txtPregunta3" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Encuesta1Resources.Respuesta_3</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Respuesta_3Filter, filters, new { @class = "form-control", @id = "ddlRespuesta_3Filter" })
+                    @Html.TextBoxFor(m => m.AdvanceRespuesta_3, new { @class = "form-control", @type = "text", @id = "txtAdvanceRespuesta_3" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCatalogo_Respuesta_Pregunta3!=null)
+                    @if (varCatalogo_Respuesta_Respuesta_3!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvancePregunta3Multiple, varCatalogo_Respuesta_Pregunta3,
+                        @Html.ListBoxFor(m => m.AdvanceRespuesta_3Multiple, varCatalogo_Respuesta_Respuesta_3,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvancePregunta3"
+                            @id = "ddlAdvanceRespuesta_3"
                         });
                     }
                 </div>
@@ -182,18 +326,26 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Pregunta4Filter, filters, new { @class = "form-control", @id = "ddlPregunta4Filter" })
-                    @Html.TextBoxFor(m => m.AdvancePregunta4, new { @class = "form-control", @type = "text", @id = "txtAdvancePregunta4" })
+                    @Html.TextBoxFor(m => m.Pregunta4, new { @class = "form-control", @type = "text", @id = "txtPregunta4" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Encuesta1Resources.Respuesta_4</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Respuesta_4Filter, filters, new { @class = "form-control", @id = "ddlRespuesta_4Filter" })
+                    @Html.TextBoxFor(m => m.AdvanceRespuesta_4, new { @class = "form-control", @type = "text", @id = "txtAdvanceRespuesta_4" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCatalogo_Respuesta_Pregunta4!=null)
+                    @if (varCatalogo_Respuesta_Respuesta_4!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvancePregunta4Multiple, varCatalogo_Respuesta_Pregunta4,
+                        @Html.ListBoxFor(m => m.AdvanceRespuesta_4Multiple, varCatalogo_Respuesta_Respuesta_4,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvancePregunta4"
+                            @id = "ddlAdvanceRespuesta_4"
                         });
                     }
                 </div>
@@ -203,123 +355,47 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Pregunta5Filter, filters, new { @class = "form-control", @id = "ddlPregunta5Filter" })
-                    @Html.TextBoxFor(m => m.AdvancePregunta5, new { @class = "form-control", @type = "text", @id = "txtAdvancePregunta5" })
+                    @Html.TextBoxFor(m => m.Pregunta5, new { @class = "form-control", @type = "text", @id = "txtPregunta5" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Encuesta1Resources.Respuesta_5</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Respuesta_5Filter, filters, new { @class = "form-control", @id = "ddlRespuesta_5Filter" })
+                    @Html.TextBoxFor(m => m.AdvanceRespuesta_5, new { @class = "form-control", @type = "text", @id = "txtAdvanceRespuesta_5" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCatalogo_Respuesta_Pregunta5!=null)
+                    @if (varCatalogo_Respuesta_Respuesta_5!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvancePregunta5Multiple, varCatalogo_Respuesta_Pregunta5,
+                        @Html.ListBoxFor(m => m.AdvanceRespuesta_5Multiple, varCatalogo_Respuesta_Respuesta_5,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvancePregunta5"
+                            @id = "ddlAdvanceRespuesta_5"
                         });
                     }
                 </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Encuesta1Resources.Pregunta6</h3>
+                    <h3>@Resources.Encuesta1Resources.Estatus</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Pregunta6Filter, filters, new { @class = "form-control", @id = "ddlPregunta6Filter" })
-                    @Html.TextBoxFor(m => m.AdvancePregunta6, new { @class = "form-control", @type = "text", @id = "txtAdvancePregunta6" })
+                    @Html.DropDownListFor(m => m.EstatusFilter, filters, new { @class = "form-control", @id = "ddlEstatusFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstatus, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstatus" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCatalogo_Respuesta_Pregunta6!=null)
+                    @if (varEstatus_Encuesta_Estatus!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvancePregunta6Multiple, varCatalogo_Respuesta_Pregunta6,
+                        @Html.ListBoxFor(m => m.AdvanceEstatusMultiple, varEstatus_Encuesta_Estatus,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvancePregunta6"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Encuesta1Resources.Pregunta7</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Pregunta7Filter, filters, new { @class = "form-control", @id = "ddlPregunta7Filter" })
-                    @Html.TextBoxFor(m => m.AdvancePregunta7, new { @class = "form-control", @type = "text", @id = "txtAdvancePregunta7" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCatalogo_Respuesta_Pregunta7!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvancePregunta7Multiple, varCatalogo_Respuesta_Pregunta7,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvancePregunta7"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Encuesta1Resources.Pregunta8</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Pregunta8Filter, filters, new { @class = "form-control", @id = "ddlPregunta8Filter" })
-                    @Html.TextBoxFor(m => m.AdvancePregunta8, new { @class = "form-control", @type = "text", @id = "txtAdvancePregunta8" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCatalogo_Respuesta_Pregunta8!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvancePregunta8Multiple, varCatalogo_Respuesta_Pregunta8,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvancePregunta8"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Encuesta1Resources.Pregunta9</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Pregunta9Filter, filters, new { @class = "form-control", @id = "ddlPregunta9Filter" })
-                    @Html.TextBoxFor(m => m.AdvancePregunta9, new { @class = "form-control", @type = "text", @id = "txtAdvancePregunta9" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCatalogo_Respuesta_Pregunta9!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvancePregunta9Multiple, varCatalogo_Respuesta_Pregunta9,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvancePregunta9"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Encuesta1Resources.Pregunta10</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Pregunta10Filter, filters, new { @class = "form-control", @id = "ddlPregunta10Filter" })
-                    @Html.TextBoxFor(m => m.AdvancePregunta10, new { @class = "form-control", @type = "text", @id = "txtAdvancePregunta10" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCatalogo_Respuesta_Pregunta10!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvancePregunta10Multiple, varCatalogo_Respuesta_Pregunta10,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvancePregunta10"
+                            @id = "ddlAdvanceEstatus"
                         });
                     }
                 </div>
@@ -340,6 +416,66 @@
             advanceSearch.Encuesta1ClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Encuesta1ClaveTo = $("#txtAdvanceToClave").val();
         }
+        if ($("#txtAdvanceFolio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Encuesta1Folio = $("#txtAdvanceFolio").val();
+            advanceSearch.Encuesta1FolioSearchType = $("#ddlAdvanceFolioFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_Enviado").val() != "" || $("#txtAdvanceToFecha_Enviado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Encuesta1Fecha_EnviadoFrom = $("#txtAdvanceFromFecha_Enviado").val();
+            advanceSearch.Encuesta1Fecha_EnviadoTo = $("#txtAdvanceToFecha_Enviado").val();
+        }
+        if ($("#txtAdvanceHora_Enviado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Encuesta1Hora_Enviado = $("#txtAdvanceHora_Enviado").val();
+            advanceSearch.Encuesta1Hora_EnviadoSearchType = $("#ddlAdvanceHora_EnviadoFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_Respuesta").val() != "" || $("#txtAdvanceToFecha_Respuesta").val() != "") {
+            hasParameter = true;
+            advanceSearch.Encuesta1Fecha_RespuestaFrom = $("#txtAdvanceFromFecha_Respuesta").val();
+            advanceSearch.Encuesta1Fecha_RespuestaTo = $("#txtAdvanceToFecha_Respuesta").val();
+        }
+        if ($("#txtAdvanceHora_Respuesta").val() != "") {
+            hasParameter = true;
+            advanceSearch.Encuesta1Hora_Respuesta = $("#txtAdvanceHora_Respuesta").val();
+            advanceSearch.Encuesta1Hora_RespuestaSearchType = $("#ddlAdvanceHora_RespuestaFilter").val();
+        }
+        if ($("#txtAdvanceNUAT").val() != "") {
+            hasParameter = true;
+            advanceSearch.Encuesta1NUAT = $("#txtAdvanceNUAT").val();
+            advanceSearch.Encuesta1NUATSearchType = $("#ddlAdvanceNUATFilter").val();
+        }
+        advanceSearch.ModuloSearchType = 0;
+        if ($('#ddlAdvanceModulo').val().length > 0 || $("#txtAdvanceModulo").val() == "") {
+
+
+            if (isEncuesta1TextSearch) {
+                advanceSearch.ModuloName = $("#txtAdvanceModulo").val();
+                advanceSearch.ModuloNameSearchType = $("#ddlAdvanceModulo").val();
+                advanceSearch.ModuloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ModuloToSearch = $("#ddlAdvanceModulo").val();
+                advanceSearch.ModuloSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_EncuestaSearchType = 0;
+        if ($('#ddlAdvanceTipo_Encuesta').val().length > 0 || $("#txtAdvanceTipo_Encuesta").val() == "") {
+
+
+            if (isEncuesta1TextSearch) {
+                advanceSearch.Tipo_EncuestaName = $("#txtAdvanceTipo_Encuesta").val();
+                advanceSearch.Tipo_EncuestaNameSearchType = $("#ddlAdvanceTipo_Encuesta").val();
+                advanceSearch.Tipo_EncuestaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_EncuestaToSearch = $("#ddlAdvanceTipo_Encuesta").val();
+                advanceSearch.Tipo_EncuestaSearchType = 2;
+            }
+        }
         advanceSearch.Numero_de_PreguntasSearchType = 0;
         if ($('#ddlAdvanceNumero_de_Preguntas').val().length > 0 || $("#txtAdvanceNumero_de_Preguntas").val() == "") {
 
@@ -355,159 +491,119 @@
                 advanceSearch.Numero_de_PreguntasSearchType = 2;
             }
         }
-        if ($("#txtAdvanceNUAT").val() != "") {
+        if ($("#txtAdvancePregunta1").val() != "") {
             hasParameter = true;
-            advanceSearch.Encuesta1NUAT = $("#txtAdvanceNUAT").val();
-            advanceSearch.Encuesta1NUATSearchType = $("#ddlAdvanceNUATFilter").val();
+            advanceSearch.Encuesta1Pregunta1 = $("#txtAdvancePregunta1").val();
+            advanceSearch.Encuesta1Pregunta1SearchType = $("#ddlAdvancePregunta1Filter").val();
         }
-        advanceSearch.Pregunta1SearchType = 0;
-        if ($('#ddlAdvancePregunta1').val().length > 0 || $("#txtAdvancePregunta1").val() == "") {
+        advanceSearch.Respuesta_1SearchType = 0;
+        if ($('#ddlAdvanceRespuesta_1').val().length > 0 || $("#txtAdvanceRespuesta_1").val() == "") {
 
 
             if (isEncuesta1TextSearch) {
-                advanceSearch.Pregunta1Name = $("#txtAdvancePregunta1").val();
-                advanceSearch.Pregunta1NameSearchType = $("#ddlAdvancePregunta1").val();
-                advanceSearch.Pregunta1SearchType = 1;
+                advanceSearch.Respuesta_1Name = $("#txtAdvanceRespuesta_1").val();
+                advanceSearch.Respuesta_1NameSearchType = $("#ddlAdvanceRespuesta_1").val();
+                advanceSearch.Respuesta_1SearchType = 1;
             }
             else {
 
-                advanceSearch.Pregunta1ToSearch = $("#ddlAdvancePregunta1").val();
-                advanceSearch.Pregunta1SearchType = 2;
+                advanceSearch.Respuesta_1ToSearch = $("#ddlAdvanceRespuesta_1").val();
+                advanceSearch.Respuesta_1SearchType = 2;
             }
         }
-        advanceSearch.Pregunta2SearchType = 0;
-        if ($('#ddlAdvancePregunta2').val().length > 0 || $("#txtAdvancePregunta2").val() == "") {
+        if ($("#txtAdvancePregunta2").val() != "") {
+            hasParameter = true;
+            advanceSearch.Encuesta1Pregunta2 = $("#txtAdvancePregunta2").val();
+            advanceSearch.Encuesta1Pregunta2SearchType = $("#ddlAdvancePregunta2Filter").val();
+        }
+        advanceSearch.Respuesta_2SearchType = 0;
+        if ($('#ddlAdvanceRespuesta_2').val().length > 0 || $("#txtAdvanceRespuesta_2").val() == "") {
 
 
             if (isEncuesta1TextSearch) {
-                advanceSearch.Pregunta2Name = $("#txtAdvancePregunta2").val();
-                advanceSearch.Pregunta2NameSearchType = $("#ddlAdvancePregunta2").val();
-                advanceSearch.Pregunta2SearchType = 1;
+                advanceSearch.Respuesta_2Name = $("#txtAdvanceRespuesta_2").val();
+                advanceSearch.Respuesta_2NameSearchType = $("#ddlAdvanceRespuesta_2").val();
+                advanceSearch.Respuesta_2SearchType = 1;
             }
             else {
 
-                advanceSearch.Pregunta2ToSearch = $("#ddlAdvancePregunta2").val();
-                advanceSearch.Pregunta2SearchType = 2;
+                advanceSearch.Respuesta_2ToSearch = $("#ddlAdvanceRespuesta_2").val();
+                advanceSearch.Respuesta_2SearchType = 2;
             }
         }
-        advanceSearch.Pregunta3SearchType = 0;
-        if ($('#ddlAdvancePregunta3').val().length > 0 || $("#txtAdvancePregunta3").val() == "") {
+        if ($("#txtAdvancePregunta3").val() != "") {
+            hasParameter = true;
+            advanceSearch.Encuesta1Pregunta3 = $("#txtAdvancePregunta3").val();
+            advanceSearch.Encuesta1Pregunta3SearchType = $("#ddlAdvancePregunta3Filter").val();
+        }
+        advanceSearch.Respuesta_3SearchType = 0;
+        if ($('#ddlAdvanceRespuesta_3').val().length > 0 || $("#txtAdvanceRespuesta_3").val() == "") {
 
 
             if (isEncuesta1TextSearch) {
-                advanceSearch.Pregunta3Name = $("#txtAdvancePregunta3").val();
-                advanceSearch.Pregunta3NameSearchType = $("#ddlAdvancePregunta3").val();
-                advanceSearch.Pregunta3SearchType = 1;
+                advanceSearch.Respuesta_3Name = $("#txtAdvanceRespuesta_3").val();
+                advanceSearch.Respuesta_3NameSearchType = $("#ddlAdvanceRespuesta_3").val();
+                advanceSearch.Respuesta_3SearchType = 1;
             }
             else {
 
-                advanceSearch.Pregunta3ToSearch = $("#ddlAdvancePregunta3").val();
-                advanceSearch.Pregunta3SearchType = 2;
+                advanceSearch.Respuesta_3ToSearch = $("#ddlAdvanceRespuesta_3").val();
+                advanceSearch.Respuesta_3SearchType = 2;
             }
         }
-        advanceSearch.Pregunta4SearchType = 0;
-        if ($('#ddlAdvancePregunta4').val().length > 0 || $("#txtAdvancePregunta4").val() == "") {
+        if ($("#txtAdvancePregunta4").val() != "") {
+            hasParameter = true;
+            advanceSearch.Encuesta1Pregunta4 = $("#txtAdvancePregunta4").val();
+            advanceSearch.Encuesta1Pregunta4SearchType = $("#ddlAdvancePregunta4Filter").val();
+        }
+        advanceSearch.Respuesta_4SearchType = 0;
+        if ($('#ddlAdvanceRespuesta_4').val().length > 0 || $("#txtAdvanceRespuesta_4").val() == "") {
 
 
             if (isEncuesta1TextSearch) {
-                advanceSearch.Pregunta4Name = $("#txtAdvancePregunta4").val();
-                advanceSearch.Pregunta4NameSearchType = $("#ddlAdvancePregunta4").val();
-                advanceSearch.Pregunta4SearchType = 1;
+                advanceSearch.Respuesta_4Name = $("#txtAdvanceRespuesta_4").val();
+                advanceSearch.Respuesta_4NameSearchType = $("#ddlAdvanceRespuesta_4").val();
+                advanceSearch.Respuesta_4SearchType = 1;
             }
             else {
 
-                advanceSearch.Pregunta4ToSearch = $("#ddlAdvancePregunta4").val();
-                advanceSearch.Pregunta4SearchType = 2;
+                advanceSearch.Respuesta_4ToSearch = $("#ddlAdvanceRespuesta_4").val();
+                advanceSearch.Respuesta_4SearchType = 2;
             }
         }
-        advanceSearch.Pregunta5SearchType = 0;
-        if ($('#ddlAdvancePregunta5').val().length > 0 || $("#txtAdvancePregunta5").val() == "") {
+        if ($("#txtAdvancePregunta5").val() != "") {
+            hasParameter = true;
+            advanceSearch.Encuesta1Pregunta5 = $("#txtAdvancePregunta5").val();
+            advanceSearch.Encuesta1Pregunta5SearchType = $("#ddlAdvancePregunta5Filter").val();
+        }
+        advanceSearch.Respuesta_5SearchType = 0;
+        if ($('#ddlAdvanceRespuesta_5').val().length > 0 || $("#txtAdvanceRespuesta_5").val() == "") {
 
 
             if (isEncuesta1TextSearch) {
-                advanceSearch.Pregunta5Name = $("#txtAdvancePregunta5").val();
-                advanceSearch.Pregunta5NameSearchType = $("#ddlAdvancePregunta5").val();
-                advanceSearch.Pregunta5SearchType = 1;
+                advanceSearch.Respuesta_5Name = $("#txtAdvanceRespuesta_5").val();
+                advanceSearch.Respuesta_5NameSearchType = $("#ddlAdvanceRespuesta_5").val();
+                advanceSearch.Respuesta_5SearchType = 1;
             }
             else {
 
-                advanceSearch.Pregunta5ToSearch = $("#ddlAdvancePregunta5").val();
-                advanceSearch.Pregunta5SearchType = 2;
+                advanceSearch.Respuesta_5ToSearch = $("#ddlAdvanceRespuesta_5").val();
+                advanceSearch.Respuesta_5SearchType = 2;
             }
         }
-        advanceSearch.Pregunta6SearchType = 0;
-        if ($('#ddlAdvancePregunta6').val().length > 0 || $("#txtAdvancePregunta6").val() == "") {
+        advanceSearch.EstatusSearchType = 0;
+        if ($('#ddlAdvanceEstatus').val().length > 0 || $("#txtAdvanceEstatus").val() == "") {
 
 
             if (isEncuesta1TextSearch) {
-                advanceSearch.Pregunta6Name = $("#txtAdvancePregunta6").val();
-                advanceSearch.Pregunta6NameSearchType = $("#ddlAdvancePregunta6").val();
-                advanceSearch.Pregunta6SearchType = 1;
+                advanceSearch.EstatusName = $("#txtAdvanceEstatus").val();
+                advanceSearch.EstatusNameSearchType = $("#ddlAdvanceEstatus").val();
+                advanceSearch.EstatusSearchType = 1;
             }
             else {
 
-                advanceSearch.Pregunta6ToSearch = $("#ddlAdvancePregunta6").val();
-                advanceSearch.Pregunta6SearchType = 2;
-            }
-        }
-        advanceSearch.Pregunta7SearchType = 0;
-        if ($('#ddlAdvancePregunta7').val().length > 0 || $("#txtAdvancePregunta7").val() == "") {
-
-
-            if (isEncuesta1TextSearch) {
-                advanceSearch.Pregunta7Name = $("#txtAdvancePregunta7").val();
-                advanceSearch.Pregunta7NameSearchType = $("#ddlAdvancePregunta7").val();
-                advanceSearch.Pregunta7SearchType = 1;
-            }
-            else {
-
-                advanceSearch.Pregunta7ToSearch = $("#ddlAdvancePregunta7").val();
-                advanceSearch.Pregunta7SearchType = 2;
-            }
-        }
-        advanceSearch.Pregunta8SearchType = 0;
-        if ($('#ddlAdvancePregunta8').val().length > 0 || $("#txtAdvancePregunta8").val() == "") {
-
-
-            if (isEncuesta1TextSearch) {
-                advanceSearch.Pregunta8Name = $("#txtAdvancePregunta8").val();
-                advanceSearch.Pregunta8NameSearchType = $("#ddlAdvancePregunta8").val();
-                advanceSearch.Pregunta8SearchType = 1;
-            }
-            else {
-
-                advanceSearch.Pregunta8ToSearch = $("#ddlAdvancePregunta8").val();
-                advanceSearch.Pregunta8SearchType = 2;
-            }
-        }
-        advanceSearch.Pregunta9SearchType = 0;
-        if ($('#ddlAdvancePregunta9').val().length > 0 || $("#txtAdvancePregunta9").val() == "") {
-
-
-            if (isEncuesta1TextSearch) {
-                advanceSearch.Pregunta9Name = $("#txtAdvancePregunta9").val();
-                advanceSearch.Pregunta9NameSearchType = $("#ddlAdvancePregunta9").val();
-                advanceSearch.Pregunta9SearchType = 1;
-            }
-            else {
-
-                advanceSearch.Pregunta9ToSearch = $("#ddlAdvancePregunta9").val();
-                advanceSearch.Pregunta9SearchType = 2;
-            }
-        }
-        advanceSearch.Pregunta10SearchType = 0;
-        if ($('#ddlAdvancePregunta10').val().length > 0 || $("#txtAdvancePregunta10").val() == "") {
-
-
-            if (isEncuesta1TextSearch) {
-                advanceSearch.Pregunta10Name = $("#txtAdvancePregunta10").val();
-                advanceSearch.Pregunta10NameSearchType = $("#ddlAdvancePregunta10").val();
-                advanceSearch.Pregunta10SearchType = 1;
-            }
-            else {
-
-                advanceSearch.Pregunta10ToSearch = $("#ddlAdvancePregunta10").val();
-                advanceSearch.Pregunta10SearchType = 2;
+                advanceSearch.EstatusToSearch = $("#ddlAdvanceEstatus").val();
+                advanceSearch.EstatusSearchType = 2;
             }
         }
 
@@ -528,6 +624,24 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceModulo").keypress(function () {
+            isEncuesta1TextSearch = true;
+            $("#ddlAdvanceModulo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo").change(function () {
+            isEncuesta1TextSearch = false;
+            $("#txtAdvanceModulo").val('');
+        });
+        $("#txtAdvanceTipo_Encuesta").keypress(function () {
+            isEncuesta1TextSearch = true;
+            $("#ddlAdvanceTipo_Encuesta").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_Encuesta").change(function () {
+            isEncuesta1TextSearch = false;
+            $("#txtAdvanceTipo_Encuesta").val('');
+        });
         $("#txtAdvanceNumero_de_Preguntas").keypress(function () {
             isEncuesta1TextSearch = true;
             $("#ddlAdvanceNumero_de_Preguntas").val('').trigger("chosen:updated");
@@ -537,95 +651,59 @@
             isEncuesta1TextSearch = false;
             $("#txtAdvanceNumero_de_Preguntas").val('');
         });
-        $("#txtAdvancePregunta1").keypress(function () {
+        $("#txtAdvanceRespuesta_1").keypress(function () {
             isEncuesta1TextSearch = true;
-            $("#ddlAdvancePregunta1").val('').trigger("chosen:updated");
+            $("#ddlAdvanceRespuesta_1").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvancePregunta1").change(function () {
+        $("#ddlAdvanceRespuesta_1").change(function () {
             isEncuesta1TextSearch = false;
-            $("#txtAdvancePregunta1").val('');
+            $("#txtAdvanceRespuesta_1").val('');
         });
-        $("#txtAdvancePregunta2").keypress(function () {
+        $("#txtAdvanceRespuesta_2").keypress(function () {
             isEncuesta1TextSearch = true;
-            $("#ddlAdvancePregunta2").val('').trigger("chosen:updated");
+            $("#ddlAdvanceRespuesta_2").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvancePregunta2").change(function () {
+        $("#ddlAdvanceRespuesta_2").change(function () {
             isEncuesta1TextSearch = false;
-            $("#txtAdvancePregunta2").val('');
+            $("#txtAdvanceRespuesta_2").val('');
         });
-        $("#txtAdvancePregunta3").keypress(function () {
+        $("#txtAdvanceRespuesta_3").keypress(function () {
             isEncuesta1TextSearch = true;
-            $("#ddlAdvancePregunta3").val('').trigger("chosen:updated");
+            $("#ddlAdvanceRespuesta_3").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvancePregunta3").change(function () {
+        $("#ddlAdvanceRespuesta_3").change(function () {
             isEncuesta1TextSearch = false;
-            $("#txtAdvancePregunta3").val('');
+            $("#txtAdvanceRespuesta_3").val('');
         });
-        $("#txtAdvancePregunta4").keypress(function () {
+        $("#txtAdvanceRespuesta_4").keypress(function () {
             isEncuesta1TextSearch = true;
-            $("#ddlAdvancePregunta4").val('').trigger("chosen:updated");
+            $("#ddlAdvanceRespuesta_4").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvancePregunta4").change(function () {
+        $("#ddlAdvanceRespuesta_4").change(function () {
             isEncuesta1TextSearch = false;
-            $("#txtAdvancePregunta4").val('');
+            $("#txtAdvanceRespuesta_4").val('');
         });
-        $("#txtAdvancePregunta5").keypress(function () {
+        $("#txtAdvanceRespuesta_5").keypress(function () {
             isEncuesta1TextSearch = true;
-            $("#ddlAdvancePregunta5").val('').trigger("chosen:updated");
+            $("#ddlAdvanceRespuesta_5").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvancePregunta5").change(function () {
+        $("#ddlAdvanceRespuesta_5").change(function () {
             isEncuesta1TextSearch = false;
-            $("#txtAdvancePregunta5").val('');
+            $("#txtAdvanceRespuesta_5").val('');
         });
-        $("#txtAdvancePregunta6").keypress(function () {
+        $("#txtAdvanceEstatus").keypress(function () {
             isEncuesta1TextSearch = true;
-            $("#ddlAdvancePregunta6").val('').trigger("chosen:updated");
+            $("#ddlAdvanceEstatus").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvancePregunta6").change(function () {
+        $("#ddlAdvanceEstatus").change(function () {
             isEncuesta1TextSearch = false;
-            $("#txtAdvancePregunta6").val('');
-        });
-        $("#txtAdvancePregunta7").keypress(function () {
-            isEncuesta1TextSearch = true;
-            $("#ddlAdvancePregunta7").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvancePregunta7").change(function () {
-            isEncuesta1TextSearch = false;
-            $("#txtAdvancePregunta7").val('');
-        });
-        $("#txtAdvancePregunta8").keypress(function () {
-            isEncuesta1TextSearch = true;
-            $("#ddlAdvancePregunta8").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvancePregunta8").change(function () {
-            isEncuesta1TextSearch = false;
-            $("#txtAdvancePregunta8").val('');
-        });
-        $("#txtAdvancePregunta9").keypress(function () {
-            isEncuesta1TextSearch = true;
-            $("#ddlAdvancePregunta9").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvancePregunta9").change(function () {
-            isEncuesta1TextSearch = false;
-            $("#txtAdvancePregunta9").val('');
-        });
-        $("#txtAdvancePregunta10").keypress(function () {
-            isEncuesta1TextSearch = true;
-            $("#ddlAdvancePregunta10").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvancePregunta10").change(function () {
-            isEncuesta1TextSearch = false;
-            $("#txtAdvancePregunta10").val('');
+            $("#txtAdvanceEstatus").val('');
         });
 
     });

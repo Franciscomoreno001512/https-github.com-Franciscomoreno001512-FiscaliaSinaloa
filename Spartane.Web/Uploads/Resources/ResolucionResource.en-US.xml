@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Resolucion" value="Resolución"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="Resolucion_Padre_para_Autorizacion" value="Resolución Padre para Autorización"></resource>
+  <resource culture="en-US" name="Generar_Judicializacion" value="Generar Judicialización"></resource>
+  <resource culture="en-US" name="ClaveFiscalia" value="ClaveFiscalia"></resource>
+  <resource culture="en-US" name="Aplica_para_Adolescentes" value="Aplica para Adolescentes"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

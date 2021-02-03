@@ -19,6 +19,7 @@ namespace Spartane.Web.Areas.Frontal.Models
             Correccion_de_Estatus = RadioOptions.NoApply;
             Requiere_Servicios_de_Apoyo = RadioOptions.NoApply;
             Persona_Moral = RadioOptions.NoApply;
+            Documento_Extraviado_hechos = RadioOptions.NoApply;
             Se_Acepta_Acuerdo = RadioOptions.NoApply;
             Cerrar = RadioOptions.NoApply;
 
@@ -172,6 +173,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceEstatus2 { set; get; }
         public int[] AdvanceEstatus2Multiple { set; get; }
 
+        public Filters Unidad_canalizaFilter { set; get; }
+        public string AdvanceUnidad_canaliza { set; get; }
+        public int[] AdvanceUnidad_canalizaMultiple { set; get; }
+
         public RadioOptions Enviar_a_MP { set; get; }
 
         public RadioOptions Correccion_de_Estatus { set; get; }
@@ -244,11 +249,20 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Numero_Interior_de_los_HechosFilter { set; get; }
         public string Numero_Interior_de_los_Hechos { set; get; }
 
+        public Filters Referencia_hechosFilter { set; get; }
+        public string Referencia_hechos { set; get; }
+
         public Filters LatitudFilter { set; get; }
         public string Latitud { set; get; }
 
         public Filters LongitudFilter { set; get; }
         public string Longitud { set; get; }
+
+        public RadioOptions Documento_Extraviado_hechos { set; get; }
+
+        public Filters Tipo_de_Documento_ExtraviadoFilter { set; get; }
+        public string AdvanceTipo_de_Documento_Extraviado { set; get; }
+        public int[] AdvanceTipo_de_Documento_ExtraviadoMultiple { set; get; }
 
         public Filters Tipo_de_Lugar_del_HechoFilter { set; get; }
         public string AdvanceTipo_de_Lugar_del_Hecho { set; get; }

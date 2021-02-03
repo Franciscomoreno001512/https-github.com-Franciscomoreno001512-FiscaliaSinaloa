@@ -10,6 +10,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public int? LLAVE { get; set; }
         
     }
 }

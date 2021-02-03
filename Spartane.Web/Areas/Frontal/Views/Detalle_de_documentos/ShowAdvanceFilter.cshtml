@@ -325,6 +325,10 @@
             advanceSearch.Detalle_de_documentosArchivoFrom = $("#txtAdvanceFromArchivo").val();
             advanceSearch.Detalle_de_documentosArchivoTo = $("#txtAdvanceToArchivo").val();
         }
+        if ($("#ddlAdvanceLista_para_periciales").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_documentosLista_para_periciales = $("#ddlAdvanceLista_para_periciales").val();
+        }
         if ($("#txtAdvanceDescripcion").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_documentosDescripcion = $("#txtAdvanceDescripcion").val();

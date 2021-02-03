@@ -2,6 +2,7 @@
 <resources>
   <resource culture="en-us" name="Detalle_Aseguramiento_Documentos" value="Detalle Aseguramiento Documentos"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Motivo_de_Registro" value="Motivo de Registro"></resource>
   <resource culture="en-US" name="Tipo" value="Tipo"></resource>
   <resource culture="en-US" name="Cantidad" value="Cantidad"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>

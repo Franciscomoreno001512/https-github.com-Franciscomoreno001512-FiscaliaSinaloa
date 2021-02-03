@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo_de_Registro</summary>
+        public static string Motivo_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Inmuebles.GetResource("Motivo_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Zona</summary>
         public static string Zona
         {
@@ -53,26 +63,6 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_Aseguramiento_Inmuebles.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Terreno</summary>
-        public static string Terreno
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Aseguramiento_Inmuebles.GetResource("Terreno", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Especifique_Otro</summary>
-        public static string Especifique_Otro
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Aseguramiento_Inmuebles.GetResource("Especifique_Otro", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

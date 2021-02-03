@@ -4,7 +4,9 @@ using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_de_Datos_Generales;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Tipo_de_Compareciente;
+using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
@@ -19,6 +21,7 @@ using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Grupo_al_que_Pertenece;
+using Spartane.Core.Domain.Preferencia_Sexual;
 using Spartane.Core.Domain.Etnia;
 using Spartane.Core.Domain.Religion;
 using Spartane.Core.Domain.Servicio_Medico;
@@ -70,6 +73,10 @@ using Spartane.Core.Domain.Colonia;
 
 
 
+
+
+
+
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
@@ -103,6 +110,7 @@ using Spartane.Core.Domain.Complexion;
 using Spartane.Core.Domain.Color_Piel;
 using Spartane.Core.Domain.Frente;
 using Spartane.Core.Domain.Largo_de_Cabello;
+using Spartane.Core.Domain.Forma_Cabello;
 using Spartane.Core.Domain.Color_de_Cabello;
 using Spartane.Core.Domain.Calvicie;
 using Spartane.Core.Domain.Color_Ojos;
@@ -138,7 +146,9 @@ using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Datos_Generales;
 using Spartane.Web.Areas.WebApiConsumer.Modulo_Atencion_Inicial;
 using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
+using Spartane.Web.Areas.WebApiConsumer.Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Compareciente;
+using Spartane.Web.Areas.WebApiConsumer.A_Tiempo;
 using Spartane.Web.Areas.WebApiConsumer.Genero;
 using Spartane.Web.Areas.WebApiConsumer.Estado_Civil;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Identificacion;
@@ -153,6 +163,7 @@ using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Grupo_al_que_Pertenece;
+using Spartane.Web.Areas.WebApiConsumer.Preferencia_Sexual;
 using Spartane.Web.Areas.WebApiConsumer.Etnia;
 using Spartane.Web.Areas.WebApiConsumer.Religion;
 using Spartane.Web.Areas.WebApiConsumer.Servicio_Medico;
@@ -227,6 +238,7 @@ using Spartane.Web.Areas.WebApiConsumer.Complexion;
 using Spartane.Web.Areas.WebApiConsumer.Color_Piel;
 using Spartane.Web.Areas.WebApiConsumer.Frente;
 using Spartane.Web.Areas.WebApiConsumer.Largo_de_Cabello;
+using Spartane.Web.Areas.WebApiConsumer.Forma_Cabello;
 using Spartane.Web.Areas.WebApiConsumer.Color_de_Cabello;
 using Spartane.Web.Areas.WebApiConsumer.Calvicie;
 using Spartane.Web.Areas.WebApiConsumer.Color_Ojos;
@@ -288,7 +300,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_de_Datos_GeneralesApiConsumer _IDetalle_de_Datos_GeneralesApiConsumer;
         private IModulo_Atencion_InicialApiConsumer _IModulo_Atencion_InicialApiConsumer;
         private Iexpediente_ministerio_publicoApiConsumer _Iexpediente_ministerio_publicoApiConsumer;
+        private ISolicitudApiConsumer _ISolicitudApiConsumer;
         private ITipo_de_ComparecienteApiConsumer _ITipo_de_ComparecienteApiConsumer;
+        private IA_TiempoApiConsumer _IA_TiempoApiConsumer;
         private IGeneroApiConsumer _IGeneroApiConsumer;
         private IEstado_CivilApiConsumer _IEstado_CivilApiConsumer;
         private ITipo_de_IdentificacionApiConsumer _ITipo_de_IdentificacionApiConsumer;
@@ -300,6 +314,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IEstadoApiConsumer _IEstadoApiConsumer;
         private IColoniaApiConsumer _IColoniaApiConsumer;
         private IGrupo_al_que_PerteneceApiConsumer _IGrupo_al_que_PerteneceApiConsumer;
+        private IPreferencia_SexualApiConsumer _IPreferencia_SexualApiConsumer;
         private IEtniaApiConsumer _IEtniaApiConsumer;
         private IReligionApiConsumer _IReligionApiConsumer;
         private IServicio_MedicoApiConsumer _IServicio_MedicoApiConsumer;
@@ -346,6 +361,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IColor_PielApiConsumer _IColor_PielApiConsumer;
         private IFrenteApiConsumer _IFrenteApiConsumer;
         private ILargo_de_CabelloApiConsumer _ILargo_de_CabelloApiConsumer;
+        private IForma_CabelloApiConsumer _IForma_CabelloApiConsumer;
         private IColor_de_CabelloApiConsumer _IColor_de_CabelloApiConsumer;
         private ICalvicieApiConsumer _ICalvicieApiConsumer;
         private IColor_OjosApiConsumer _IColor_OjosApiConsumer;
@@ -366,7 +382,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IBigoteApiConsumer _IBigoteApiConsumer;
         private ISenas_ParticularesApiConsumer _ISenas_ParticularesApiConsumer;
         private ISituacion_FisicaApiConsumer _ISituacion_FisicaApiConsumer;
-        private IA_TiempoApiConsumer _IA_TiempoApiConsumer;
         private ICausas_de_InterrupcionApiConsumer _ICausas_de_InterrupcionApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
@@ -385,7 +400,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Datos_GeneralesController(IDetalle_de_Datos_GeneralesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ITipo_de_ComparecienteApiConsumer Tipo_de_ComparecienteApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IOcupacionApiConsumer OcupacionApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , ICorporacionApiConsumer CorporacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IGrupo_al_que_PerteneceApiConsumer Grupo_al_que_PerteneceApiConsumer , IEtniaApiConsumer EtniaApiConsumer , IReligionApiConsumer ReligionApiConsumer , IServicio_MedicoApiConsumer Servicio_MedicoApiConsumer , IEscolaridadApiConsumer EscolaridadApiConsumer , IEspecialidadApiConsumer EspecialidadApiConsumer , IEstudios_SuperioresApiConsumer Estudios_SuperioresApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , ICalidad_MigratoriaApiConsumer Calidad_MigratoriaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IEstado_de_InvolucradoApiConsumer Estado_de_InvolucradoApiConsumer , ITipo_de_InimputabilidadApiConsumer Tipo_de_InimputabilidadApiConsumer , IAdicciones_de_InvolucradoApiConsumer Adicciones_de_InvolucradoApiConsumer , IAdiccionesApiConsumer AdiccionesApiConsumer  , ILugares_Frecuentes_InvolucradoApiConsumer Lugares_Frecuentes_InvolucradoApiConsumer , ILugaresApiConsumer LugaresApiConsumer  , IDatos_Personales_Adicionales_InvolucradoApiConsumer Datos_Personales_Adicionales_InvolucradoApiConsumer , IRedes_SocialesApiConsumer Redes_SocialesApiConsumer  , IOtras_Identificaciones_InvolucradoApiConsumer Otras_Identificaciones_InvolucradoApiConsumer  , IDiscapacidades_MentalesApiConsumer Discapacidades_MentalesApiConsumer , IDiscapacidades_FisicasApiConsumer Discapacidades_FisicasApiConsumer , IDiscapacidades_SensorialesApiConsumer Discapacidades_SensorialesApiConsumer , IDiscapacidades_PsicosocialesApiConsumer Discapacidades_PsicosocialesApiConsumer , IOtros_Domicilios_InvolucradoApiConsumer Otros_Domicilios_InvolucradoApiConsumer  , ILocalidadApiConsumer LocalidadApiConsumer , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , IDocumento_ExtraviadoApiConsumer Documento_ExtraviadoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IFroma_OjosApiConsumer Froma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , ITamano_de_NarizApiConsumer Tamano_de_NarizApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , ICausas_de_InterrupcionApiConsumer Causas_de_InterrupcionApiConsumer )
+        public Detalle_de_Datos_GeneralesController(IDetalle_de_Datos_GeneralesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ITipo_de_ComparecienteApiConsumer Tipo_de_ComparecienteApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IOcupacionApiConsumer OcupacionApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , ICorporacionApiConsumer CorporacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IGrupo_al_que_PerteneceApiConsumer Grupo_al_que_PerteneceApiConsumer , IPreferencia_SexualApiConsumer Preferencia_SexualApiConsumer , IEtniaApiConsumer EtniaApiConsumer , IReligionApiConsumer ReligionApiConsumer , IServicio_MedicoApiConsumer Servicio_MedicoApiConsumer , IEscolaridadApiConsumer EscolaridadApiConsumer , IEspecialidadApiConsumer EspecialidadApiConsumer , IEstudios_SuperioresApiConsumer Estudios_SuperioresApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , ICalidad_MigratoriaApiConsumer Calidad_MigratoriaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IEstado_de_InvolucradoApiConsumer Estado_de_InvolucradoApiConsumer , ITipo_de_InimputabilidadApiConsumer Tipo_de_InimputabilidadApiConsumer , IAdicciones_de_InvolucradoApiConsumer Adicciones_de_InvolucradoApiConsumer , IAdiccionesApiConsumer AdiccionesApiConsumer  , ILugares_Frecuentes_InvolucradoApiConsumer Lugares_Frecuentes_InvolucradoApiConsumer , ILugaresApiConsumer LugaresApiConsumer  , IDatos_Personales_Adicionales_InvolucradoApiConsumer Datos_Personales_Adicionales_InvolucradoApiConsumer , IRedes_SocialesApiConsumer Redes_SocialesApiConsumer  , IOtras_Identificaciones_InvolucradoApiConsumer Otras_Identificaciones_InvolucradoApiConsumer  , IDiscapacidades_MentalesApiConsumer Discapacidades_MentalesApiConsumer , IDiscapacidades_FisicasApiConsumer Discapacidades_FisicasApiConsumer , IDiscapacidades_SensorialesApiConsumer Discapacidades_SensorialesApiConsumer , IDiscapacidades_PsicosocialesApiConsumer Discapacidades_PsicosocialesApiConsumer , IOtros_Domicilios_InvolucradoApiConsumer Otros_Domicilios_InvolucradoApiConsumer  , ILocalidadApiConsumer LocalidadApiConsumer , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , IDocumento_ExtraviadoApiConsumer Documento_ExtraviadoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IFroma_OjosApiConsumer Froma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , ITamano_de_NarizApiConsumer Tamano_de_NarizApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , ICausas_de_InterrupcionApiConsumer Causas_de_InterrupcionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -401,7 +416,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._IModulo_Atencion_InicialApiConsumer = Modulo_Atencion_InicialApiConsumer;
             this._Iexpediente_ministerio_publicoApiConsumer = expediente_ministerio_publicoApiConsumer;
+            this._ISolicitudApiConsumer = SolicitudApiConsumer;
             this._ITipo_de_ComparecienteApiConsumer = Tipo_de_ComparecienteApiConsumer;
+            this._IA_TiempoApiConsumer = A_TiempoApiConsumer;
             this._IGeneroApiConsumer = GeneroApiConsumer;
             this._IEstado_CivilApiConsumer = Estado_CivilApiConsumer;
             this._ITipo_de_IdentificacionApiConsumer = Tipo_de_IdentificacionApiConsumer;
@@ -416,6 +433,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IGrupo_al_que_PerteneceApiConsumer = Grupo_al_que_PerteneceApiConsumer;
+            this._IPreferencia_SexualApiConsumer = Preferencia_SexualApiConsumer;
             this._IEtniaApiConsumer = EtniaApiConsumer;
             this._IReligionApiConsumer = ReligionApiConsumer;
             this._IServicio_MedicoApiConsumer = Servicio_MedicoApiConsumer;
@@ -490,6 +508,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IColor_PielApiConsumer = Color_PielApiConsumer;
             this._IFrenteApiConsumer = FrenteApiConsumer;
             this._ILargo_de_CabelloApiConsumer = Largo_de_CabelloApiConsumer;
+            this._IForma_CabelloApiConsumer = Forma_CabelloApiConsumer;
             this._IColor_de_CabelloApiConsumer = Color_de_CabelloApiConsumer;
             this._ICalvicieApiConsumer = CalvicieApiConsumer;
             this._IColor_OjosApiConsumer = Color_OjosApiConsumer;
@@ -602,10 +621,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_de_Datos_GeneralesData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                     ,Expediente_MP = Detalle_de_Datos_GeneralesData.Expediente_MP
                     ,Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Expediente_MP), "expediente_ministerio_publico") ??  (string)Detalle_de_Datos_GeneralesData.Expediente_MP_expediente_ministerio_publico.nic
+                    ,Expediente_MASC = Detalle_de_Datos_GeneralesData.Expediente_MASC
+                    ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Expediente_MASC), "Solicitud") ??  (string)Detalle_de_Datos_GeneralesData.Expediente_MASC_Solicitud.Numero_de_Folio
                     ,Datos_Confidenciales = Detalle_de_Datos_GeneralesData.Datos_Confidenciales.GetValueOrDefault()
                     ,Se_Informo_sobre_el_Procedimiento = Detalle_de_Datos_GeneralesData.Se_Informo_sobre_el_Procedimiento.GetValueOrDefault()
                     ,Tipo_de_Compareciente = Detalle_de_Datos_GeneralesData.Tipo_de_Compareciente
                     ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Tipo_de_Compareciente), "Tipo_de_Compareciente") ??  (string)Detalle_de_Datos_GeneralesData.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+                    ,Persona_Desaparecida = Detalle_de_Datos_GeneralesData.Persona_Desaparecida.GetValueOrDefault()
+                    ,Persona_Aparecio = Detalle_de_Datos_GeneralesData.Persona_Aparecio.GetValueOrDefault()
+                    ,Fecha_de_Aparicion = (Detalle_de_Datos_GeneralesData.Fecha_de_Aparicion == null ? string.Empty : Convert.ToDateTime(Detalle_de_Datos_GeneralesData.Fecha_de_Aparicion).ToString(ConfigurationProperty.DateFormat))
+                    ,Con_Vida = Detalle_de_Datos_GeneralesData.Con_Vida
+                    ,Con_VidaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Con_Vida), "A_Tiempo") ??  (string)Detalle_de_Datos_GeneralesData.Con_Vida_A_Tiempo.Descripcion
                     ,Persona_Moral = Detalle_de_Datos_GeneralesData.Persona_Moral.GetValueOrDefault()
                     ,Q_Q_R_O_ = Detalle_de_Datos_GeneralesData.Q_Q_R_O_.GetValueOrDefault()
                     ,Es_victima = Detalle_de_Datos_GeneralesData.Es_victima.GetValueOrDefault()
@@ -663,6 +689,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Situacion_de_Vulnerabilidad = Detalle_de_Datos_GeneralesData.Situacion_de_Vulnerabilidad.GetValueOrDefault()
                     ,Grupo_al_que_pertenece = Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece
                     ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece), "Grupo_al_que_Pertenece") ??  (string)Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                    ,Preferencia_Sexual = Detalle_de_Datos_GeneralesData.Preferencia_Sexual
+                    ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Preferencia_Sexual), "Preferencia_Sexual") ??  (string)Detalle_de_Datos_GeneralesData.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                     ,Etnia = Detalle_de_Datos_GeneralesData.Etnia
                     ,EtniaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Etnia), "Etnia") ??  (string)Detalle_de_Datos_GeneralesData.Etnia_Etnia.Descripcion
                     ,No_de_Hijos = Detalle_de_Datos_GeneralesData.No_de_Hijos
@@ -696,6 +724,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Tipo_de_Inimputabilidad), "Tipo_de_Inimputabilidad") ??  (string)Detalle_de_Datos_GeneralesData.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
                     ,Especifique = Detalle_de_Datos_GeneralesData.Especifique
                     ,Se_Informaron_sobre_sus_Derechos = Detalle_de_Datos_GeneralesData.Se_Informaron_sobre_sus_Derechos.GetValueOrDefault()
+                    ,Gravidez = Detalle_de_Datos_GeneralesData.Gravidez.GetValueOrDefault()
                     ,Discapacidad_Mental = Detalle_de_Datos_GeneralesData.Discapacidad_Mental
                     ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Discapacidad_Mental), "Discapacidades_Mentales") ??  (string)Detalle_de_Datos_GeneralesData.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
                     ,Discapacidad_Fisica = Detalle_de_Datos_GeneralesData.Discapacidad_Fisica
@@ -813,6 +842,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,FrenteDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Frente), "Frente") ??  (string)Detalle_de_Datos_GeneralesData.Frente_Frente.Descripcion
                     ,Largo_de_Cabello = Detalle_de_Datos_GeneralesData.Largo_de_Cabello
                     ,Largo_de_CabelloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Largo_de_Cabello), "Largo_de_Cabello") ??  (string)Detalle_de_Datos_GeneralesData.Largo_de_Cabello_Largo_de_Cabello.Descripcion
+                    ,Forma_de_Cabello = Detalle_de_Datos_GeneralesData.Forma_de_Cabello
+                    ,Forma_de_CabelloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Forma_de_Cabello), "Forma_Cabello") ??  (string)Detalle_de_Datos_GeneralesData.Forma_de_Cabello_Forma_Cabello.Descripcion
                     ,Color_Cabello = Detalle_de_Datos_GeneralesData.Color_Cabello
                     ,Color_CabelloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Color_Cabello), "Color_de_Cabello") ??  (string)Detalle_de_Datos_GeneralesData.Color_Cabello_Color_de_Cabello.Descripcion
                     ,Calvicie = Detalle_de_Datos_GeneralesData.Calvicie
@@ -881,6 +912,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Compareciente", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var A_Tiempos_Con_Vida = _IA_TiempoApiConsumer.SelAll(true);
+            if (A_Tiempos_Con_Vida != null && A_Tiempos_Con_Vida.Resource != null)
+                ViewBag.A_Tiempos_Con_Vida = A_Tiempos_Con_Vida.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Sexo != null && Generos_Sexo.Resource != null)
@@ -929,6 +967,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece = Grupo_al_que_Perteneces_Grupo_al_que_pertenece.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_al_que_Pertenece", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPreferencia_SexualApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Preferencia_Sexuals_Preferencia_Sexual = _IPreferencia_SexualApiConsumer.SelAll(true);
+            if (Preferencia_Sexuals_Preferencia_Sexual != null && Preferencia_Sexuals_Preferencia_Sexual.Resource != null)
+                ViewBag.Preferencia_Sexuals_Preferencia_Sexual = Preferencia_Sexuals_Preferencia_Sexual.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Preferencia_Sexual", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IEtniaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Etnias_Etnia = _IEtniaApiConsumer.SelAll(true);
@@ -1195,6 +1240,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Largo_de_Cabellos_Largo_de_Cabello = Largo_de_Cabellos_Largo_de_Cabello.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Largo_de_Cabello", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IForma_CabelloApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Forma_Cabellos_Forma_de_Cabello = _IForma_CabelloApiConsumer.SelAll(true);
+            if (Forma_Cabellos_Forma_de_Cabello != null && Forma_Cabellos_Forma_de_Cabello.Resource != null)
+                ViewBag.Forma_Cabellos_Forma_de_Cabello = Forma_Cabellos_Forma_de_Cabello.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_Cabello", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IColor_de_CabelloApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Color_de_Cabellos_Color_Cabello = _IColor_de_CabelloApiConsumer.SelAll(true);
@@ -1433,10 +1485,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_de_Datos_GeneralesData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                     ,Expediente_MP = Detalle_de_Datos_GeneralesData.Expediente_MP
                     ,Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Expediente_MP), "expediente_ministerio_publico") ??  (string)Detalle_de_Datos_GeneralesData.Expediente_MP_expediente_ministerio_publico.nic
+                    ,Expediente_MASC = Detalle_de_Datos_GeneralesData.Expediente_MASC
+                    ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Expediente_MASC), "Solicitud") ??  (string)Detalle_de_Datos_GeneralesData.Expediente_MASC_Solicitud.Numero_de_Folio
                     ,Datos_Confidenciales = Detalle_de_Datos_GeneralesData.Datos_Confidenciales.GetValueOrDefault()
                     ,Se_Informo_sobre_el_Procedimiento = Detalle_de_Datos_GeneralesData.Se_Informo_sobre_el_Procedimiento.GetValueOrDefault()
                     ,Tipo_de_Compareciente = Detalle_de_Datos_GeneralesData.Tipo_de_Compareciente
                     ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Tipo_de_Compareciente), "Tipo_de_Compareciente") ??  (string)Detalle_de_Datos_GeneralesData.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+                    ,Persona_Desaparecida = Detalle_de_Datos_GeneralesData.Persona_Desaparecida.GetValueOrDefault()
+                    ,Persona_Aparecio = Detalle_de_Datos_GeneralesData.Persona_Aparecio.GetValueOrDefault()
+                    ,Fecha_de_Aparicion = (Detalle_de_Datos_GeneralesData.Fecha_de_Aparicion == null ? string.Empty : Convert.ToDateTime(Detalle_de_Datos_GeneralesData.Fecha_de_Aparicion).ToString(ConfigurationProperty.DateFormat))
+                    ,Con_Vida = Detalle_de_Datos_GeneralesData.Con_Vida
+                    ,Con_VidaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Con_Vida), "A_Tiempo") ??  (string)Detalle_de_Datos_GeneralesData.Con_Vida_A_Tiempo.Descripcion
                     ,Persona_Moral = Detalle_de_Datos_GeneralesData.Persona_Moral.GetValueOrDefault()
                     ,Q_Q_R_O_ = Detalle_de_Datos_GeneralesData.Q_Q_R_O_.GetValueOrDefault()
                     ,Es_victima = Detalle_de_Datos_GeneralesData.Es_victima.GetValueOrDefault()
@@ -1494,6 +1553,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Situacion_de_Vulnerabilidad = Detalle_de_Datos_GeneralesData.Situacion_de_Vulnerabilidad.GetValueOrDefault()
                     ,Grupo_al_que_pertenece = Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece
                     ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece), "Grupo_al_que_Pertenece") ??  (string)Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                    ,Preferencia_Sexual = Detalle_de_Datos_GeneralesData.Preferencia_Sexual
+                    ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Preferencia_Sexual), "Preferencia_Sexual") ??  (string)Detalle_de_Datos_GeneralesData.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                     ,Etnia = Detalle_de_Datos_GeneralesData.Etnia
                     ,EtniaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Etnia), "Etnia") ??  (string)Detalle_de_Datos_GeneralesData.Etnia_Etnia.Descripcion
                     ,No_de_Hijos = Detalle_de_Datos_GeneralesData.No_de_Hijos
@@ -1527,6 +1588,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Tipo_de_Inimputabilidad), "Tipo_de_Inimputabilidad") ??  (string)Detalle_de_Datos_GeneralesData.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
                     ,Especifique = Detalle_de_Datos_GeneralesData.Especifique
                     ,Se_Informaron_sobre_sus_Derechos = Detalle_de_Datos_GeneralesData.Se_Informaron_sobre_sus_Derechos.GetValueOrDefault()
+                    ,Gravidez = Detalle_de_Datos_GeneralesData.Gravidez.GetValueOrDefault()
                     ,Discapacidad_Mental = Detalle_de_Datos_GeneralesData.Discapacidad_Mental
                     ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Discapacidad_Mental), "Discapacidades_Mentales") ??  (string)Detalle_de_Datos_GeneralesData.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
                     ,Discapacidad_Fisica = Detalle_de_Datos_GeneralesData.Discapacidad_Fisica
@@ -1644,6 +1706,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,FrenteDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Frente), "Frente") ??  (string)Detalle_de_Datos_GeneralesData.Frente_Frente.Descripcion
                     ,Largo_de_Cabello = Detalle_de_Datos_GeneralesData.Largo_de_Cabello
                     ,Largo_de_CabelloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Largo_de_Cabello), "Largo_de_Cabello") ??  (string)Detalle_de_Datos_GeneralesData.Largo_de_Cabello_Largo_de_Cabello.Descripcion
+                    ,Forma_de_Cabello = Detalle_de_Datos_GeneralesData.Forma_de_Cabello
+                    ,Forma_de_CabelloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Forma_de_Cabello), "Forma_Cabello") ??  (string)Detalle_de_Datos_GeneralesData.Forma_de_Cabello_Forma_Cabello.Descripcion
                     ,Color_Cabello = Detalle_de_Datos_GeneralesData.Color_Cabello
                     ,Color_CabelloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Color_Cabello), "Color_de_Cabello") ??  (string)Detalle_de_Datos_GeneralesData.Color_Cabello_Color_de_Cabello.Descripcion
                     ,Calvicie = Detalle_de_Datos_GeneralesData.Calvicie
@@ -1710,6 +1774,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Compareciente", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var A_Tiempos_Con_Vida = _IA_TiempoApiConsumer.SelAll(true);
+            if (A_Tiempos_Con_Vida != null && A_Tiempos_Con_Vida.Resource != null)
+                ViewBag.A_Tiempos_Con_Vida = A_Tiempos_Con_Vida.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Sexo != null && Generos_Sexo.Resource != null)
@@ -1758,6 +1829,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece = Grupo_al_que_Perteneces_Grupo_al_que_pertenece.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_al_que_Pertenece", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPreferencia_SexualApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Preferencia_Sexuals_Preferencia_Sexual = _IPreferencia_SexualApiConsumer.SelAll(true);
+            if (Preferencia_Sexuals_Preferencia_Sexual != null && Preferencia_Sexuals_Preferencia_Sexual.Resource != null)
+                ViewBag.Preferencia_Sexuals_Preferencia_Sexual = Preferencia_Sexuals_Preferencia_Sexual.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Preferencia_Sexual", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IEtniaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Etnias_Etnia = _IEtniaApiConsumer.SelAll(true);
@@ -2025,6 +2103,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Largo_de_Cabello", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IForma_CabelloApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Forma_Cabellos_Forma_de_Cabello = _IForma_CabelloApiConsumer.SelAll(true);
+            if (Forma_Cabellos_Forma_de_Cabello != null && Forma_Cabellos_Forma_de_Cabello.Resource != null)
+                ViewBag.Forma_Cabellos_Forma_de_Cabello = Forma_Cabellos_Forma_de_Cabello.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_Cabello", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IColor_de_CabelloApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Color_de_Cabellos_Color_Cabello = _IColor_de_CabelloApiConsumer.SelAll(true);
             if (Color_de_Cabellos_Color_Cabello != null && Color_de_Cabellos_Color_Cabello.Resource != null)
@@ -2248,6 +2333,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+		[HttpGet]
+        public ActionResult GetSolicitudAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ISolicitudApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Numero_de_Folio).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "Numero_de_Folio")?? m.Numero_de_Folio,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetTipo_de_ComparecienteAll()
         {
@@ -2261,6 +2367,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Compareciente", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetA_TiempoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IA_TiempoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -2333,7 +2460,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 		[HttpGet]
-        
+        public ActionResult GetNacionalidadAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _INacionalidadApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC")?? m.NacionalidadC,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public ActionResult GetOcupacionAll()
         {
             try
@@ -2439,7 +2586,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 		[HttpGet]
-       
         public ActionResult GetColoniaAll()
         {
             try
@@ -2473,6 +2619,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_al_que_Pertenece", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetPreferencia_SexualAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IPreferencia_SexualApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IPreferencia_SexualApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Preferencia_Sexual", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -2797,27 +2964,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public ActionResult GetNacionalidadAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _INacionalidadApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC")?? m.NacionalidadC,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
         public ActionResult GetLocalidadAll()
         {
             try
@@ -3082,6 +3228,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Largo_de_Cabello", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetForma_CabelloAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IForma_CabelloApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IForma_CabelloApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_Cabello", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -3511,27 +3678,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public ActionResult GetA_TiempoAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IA_TiempoApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
         public ActionResult GetCausas_de_InterrupcionAll()
         {
             try
@@ -3592,6 +3738,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Compareciente", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var A_Tiempos_Con_Vida = _IA_TiempoApiConsumer.SelAll(true);
+            if (A_Tiempos_Con_Vida != null && A_Tiempos_Con_Vida.Resource != null)
+                ViewBag.A_Tiempos_Con_Vida = A_Tiempos_Con_Vida.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Sexo != null && Generos_Sexo.Resource != null)
@@ -3640,6 +3793,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece = Grupo_al_que_Perteneces_Grupo_al_que_pertenece.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_al_que_Pertenece", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPreferencia_SexualApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Preferencia_Sexuals_Preferencia_Sexual = _IPreferencia_SexualApiConsumer.SelAll(true);
+            if (Preferencia_Sexuals_Preferencia_Sexual != null && Preferencia_Sexuals_Preferencia_Sexual.Resource != null)
+                ViewBag.Preferencia_Sexuals_Preferencia_Sexual = Preferencia_Sexuals_Preferencia_Sexual.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Preferencia_Sexual", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IEtniaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Etnias_Etnia = _IEtniaApiConsumer.SelAll(true);
@@ -3906,6 +4066,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Largo_de_Cabellos_Largo_de_Cabello = Largo_de_Cabellos_Largo_de_Cabello.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Largo_de_Cabello", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IForma_CabelloApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Forma_Cabellos_Forma_de_Cabello = _IForma_CabelloApiConsumer.SelAll(true);
+            if (Forma_Cabellos_Forma_de_Cabello != null && Forma_Cabellos_Forma_de_Cabello.Resource != null)
+                ViewBag.Forma_Cabellos_Forma_de_Cabello = Forma_Cabellos_Forma_de_Cabello.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_Cabello", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IColor_de_CabelloApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Color_de_Cabellos_Color_Cabello = _IColor_de_CabelloApiConsumer.SelAll(true);
@@ -4086,6 +4253,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Compareciente", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var A_Tiempos_Con_Vida = _IA_TiempoApiConsumer.SelAll(true);
+            if (A_Tiempos_Con_Vida != null && A_Tiempos_Con_Vida.Resource != null)
+                ViewBag.A_Tiempos_Con_Vida = A_Tiempos_Con_Vida.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Sexo != null && Generos_Sexo.Resource != null)
@@ -4134,6 +4308,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece = Grupo_al_que_Perteneces_Grupo_al_que_pertenece.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_al_que_Pertenece", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPreferencia_SexualApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Preferencia_Sexuals_Preferencia_Sexual = _IPreferencia_SexualApiConsumer.SelAll(true);
+            if (Preferencia_Sexuals_Preferencia_Sexual != null && Preferencia_Sexuals_Preferencia_Sexual.Resource != null)
+                ViewBag.Preferencia_Sexuals_Preferencia_Sexual = Preferencia_Sexuals_Preferencia_Sexual.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Preferencia_Sexual", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IEtniaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Etnias_Etnia = _IEtniaApiConsumer.SelAll(true);
@@ -4400,6 +4581,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Largo_de_Cabellos_Largo_de_Cabello = Largo_de_Cabellos_Largo_de_Cabello.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Largo_de_Cabello", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IForma_CabelloApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Forma_Cabellos_Forma_de_Cabello = _IForma_CabelloApiConsumer.SelAll(true);
+            if (Forma_Cabellos_Forma_de_Cabello != null && Forma_Cabellos_Forma_de_Cabello.Resource != null)
+                ViewBag.Forma_Cabellos_Forma_de_Cabello = Forma_Cabellos_Forma_de_Cabello.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_Cabello", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IColor_de_CabelloApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Color_de_Cabellos_Color_Cabello = _IColor_de_CabelloApiConsumer.SelAll(true);
@@ -4602,9 +4790,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(m.Expediente_MASC_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Expediente_MASC_Solicitud.Numero_de_Folio
 			,Datos_Confidenciales = m.Datos_Confidenciales
 			,Se_Informo_sobre_el_Procedimiento = m.Se_Informo_sobre_el_Procedimiento
                         ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Compareciente_Tipo_de_Compareciente.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+			,Persona_Desaparecida = m.Persona_Desaparecida
+			,Persona_Aparecio = m.Persona_Aparecio
+                        ,Fecha_de_Aparicion = (m.Fecha_de_Aparicion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Aparicion).ToString(ConfigurationProperty.DateFormat))
+                        ,Con_VidaDescripcion = CultureHelper.GetTraduction(m.Con_Vida_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Con_Vida_A_Tiempo.Descripcion
 			,Persona_Moral = m.Persona_Moral
 			,Q_Q_R_O_ = m.Q_Q_R_O_
 			,Es_victima = m.Es_victima
@@ -4648,6 +4841,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Electronico = m.Correo_Electronico
 			,Situacion_de_Vulnerabilidad = m.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                        ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(m.Preferencia_Sexual_Preferencia_Sexual.Clave.ToString(), "Descripcion") ?? (string)m.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                         ,EtniaDescripcion = CultureHelper.GetTraduction(m.Etnia_Etnia.Clave.ToString(), "Descripcion") ?? (string)m.Etnia_Etnia.Descripcion
 			,No_de_Hijos = m.No_de_Hijos
                         ,ReligionDescripcion = CultureHelper.GetTraduction(m.Religion_Religion.Clave.ToString(), "Descripcion") ?? (string)m.Religion_Religion.Descripcion
@@ -4667,6 +4861,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
 			,Se_Informaron_sobre_sus_Derechos = m.Se_Informaron_sobre_sus_Derechos
+			,Gravidez = m.Gravidez
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
                         ,Discapacidad_FisicaDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Fisica_Discapacidades_Fisicas.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Fisica_Discapacidades_Fisicas.Descripcion
                         ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
@@ -4747,6 +4942,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Color_PielDescrpicion = CultureHelper.GetTraduction(m.Color_Piel_Color_Piel.Clave.ToString(), "Descrpicion") ?? (string)m.Color_Piel_Color_Piel.Descrpicion
                         ,FrenteDescripcion = CultureHelper.GetTraduction(m.Frente_Frente.Clave.ToString(), "Descripcion") ?? (string)m.Frente_Frente.Descripcion
                         ,Largo_de_CabelloDescripcion = CultureHelper.GetTraduction(m.Largo_de_Cabello_Largo_de_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Largo_de_Cabello_Largo_de_Cabello.Descripcion
+                        ,Forma_de_CabelloDescripcion = CultureHelper.GetTraduction(m.Forma_de_Cabello_Forma_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Cabello_Forma_Cabello.Descripcion
                         ,Color_CabelloDescripcion = CultureHelper.GetTraduction(m.Color_Cabello_Color_de_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Color_Cabello_Color_de_Cabello.Descripcion
                         ,CalvicieDescripcion = CultureHelper.GetTraduction(m.Calvicie_Calvicie.Clave.ToString(), "Descripcion") ?? (string)m.Calvicie_Calvicie.Descripcion
                         ,Color_OjosDescripcion = CultureHelper.GetTraduction(m.Color_Ojos_Color_Ojos.Clave.ToString(), "Descripcion") ?? (string)m.Color_Ojos_Color_Ojos.Descripcion
@@ -4889,9 +5085,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(m.Expediente_MASC_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Expediente_MASC_Solicitud.Numero_de_Folio
 			,Datos_Confidenciales = m.Datos_Confidenciales
 			,Se_Informo_sobre_el_Procedimiento = m.Se_Informo_sobre_el_Procedimiento
                         ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Compareciente_Tipo_de_Compareciente.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+			,Persona_Desaparecida = m.Persona_Desaparecida
+			,Persona_Aparecio = m.Persona_Aparecio
+                        ,Fecha_de_Aparicion = (m.Fecha_de_Aparicion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Aparicion).ToString(ConfigurationProperty.DateFormat))
+                        ,Con_VidaDescripcion = CultureHelper.GetTraduction(m.Con_Vida_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Con_Vida_A_Tiempo.Descripcion
 			,Persona_Moral = m.Persona_Moral
 			,Q_Q_R_O_ = m.Q_Q_R_O_
 			,Es_victima = m.Es_victima
@@ -4935,6 +5136,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Electronico = m.Correo_Electronico
 			,Situacion_de_Vulnerabilidad = m.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                        ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(m.Preferencia_Sexual_Preferencia_Sexual.Clave.ToString(), "Descripcion") ?? (string)m.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                         ,EtniaDescripcion = CultureHelper.GetTraduction(m.Etnia_Etnia.Clave.ToString(), "Descripcion") ?? (string)m.Etnia_Etnia.Descripcion
 			,No_de_Hijos = m.No_de_Hijos
                         ,ReligionDescripcion = CultureHelper.GetTraduction(m.Religion_Religion.Clave.ToString(), "Descripcion") ?? (string)m.Religion_Religion.Descripcion
@@ -4954,6 +5156,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
 			,Se_Informaron_sobre_sus_Derechos = m.Se_Informaron_sobre_sus_Derechos
+			,Gravidez = m.Gravidez
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
                         ,Discapacidad_FisicaDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Fisica_Discapacidades_Fisicas.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Fisica_Discapacidades_Fisicas.Descripcion
                         ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
@@ -5034,6 +5237,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Color_PielDescrpicion = CultureHelper.GetTraduction(m.Color_Piel_Color_Piel.Clave.ToString(), "Descrpicion") ?? (string)m.Color_Piel_Color_Piel.Descrpicion
                         ,FrenteDescripcion = CultureHelper.GetTraduction(m.Frente_Frente.Clave.ToString(), "Descripcion") ?? (string)m.Frente_Frente.Descripcion
                         ,Largo_de_CabelloDescripcion = CultureHelper.GetTraduction(m.Largo_de_Cabello_Largo_de_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Largo_de_Cabello_Largo_de_Cabello.Descripcion
+                        ,Forma_de_CabelloDescripcion = CultureHelper.GetTraduction(m.Forma_de_Cabello_Forma_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Cabello_Forma_Cabello.Descripcion
                         ,Color_CabelloDescripcion = CultureHelper.GetTraduction(m.Color_Cabello_Color_de_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Color_Cabello_Color_de_Cabello.Descripcion
                         ,CalvicieDescripcion = CultureHelper.GetTraduction(m.Calvicie_Calvicie.Clave.ToString(), "Descripcion") ?? (string)m.Calvicie_Calvicie.Descripcion
                         ,Color_OjosDescripcion = CultureHelper.GetTraduction(m.Color_Ojos_Color_Ojos.Clave.ToString(), "Descripcion") ?? (string)m.Color_Ojos_Color_Ojos.Descripcion
@@ -5117,6 +5321,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.nic =trans ??item.nic;
                 }
                 return Json(result.expediente_ministerio_publicos.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Datos_Generales_Expediente_MASC_Solicitud(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Solicitud.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud.Numero_de_Folio as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISolicitudApiConsumer.ListaSelAll(1, 20,elWhere , " Solicitud.Numero_de_Folio ASC ").Resource;
+               
+                foreach (var item in result.Solicituds)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud", "Numero_de_Folio");
+                    item.Numero_de_Folio =trans ??item.Numero_de_Folio;
+                }
+                return Json(result.Solicituds.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -5854,6 +6085,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Detalle_de_Datos_Generales.Expediente_MP In (" + Expediente_MPIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceExpediente_MASC))
+            {
+                switch (filter.Expediente_MASCFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud.Numero_de_Folio LIKE '" + filter.AdvanceExpediente_MASC + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud.Numero_de_Folio LIKE '%" + filter.AdvanceExpediente_MASC + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud.Numero_de_Folio = '" + filter.AdvanceExpediente_MASC + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud.Numero_de_Folio LIKE '%" + filter.AdvanceExpediente_MASC + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceExpediente_MASCMultiple != null && filter.AdvanceExpediente_MASCMultiple.Count() > 0)
+            {
+                var Expediente_MASCIds = string.Join(",", filter.AdvanceExpediente_MASCMultiple);
+
+                where += " AND Detalle_de_Datos_Generales.Expediente_MASC In (" + Expediente_MASCIds + ")";
+            }
+
             if (filter.Datos_Confidenciales != RadioOptions.NoApply)
                 where += " AND Detalle_de_Datos_Generales.Datos_Confidenciales = " + Convert.ToInt32(filter.Datos_Confidenciales);
 
@@ -5886,6 +6145,53 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Tipo_de_ComparecienteIds = string.Join(",", filter.AdvanceTipo_de_ComparecienteMultiple);
 
                 where += " AND Detalle_de_Datos_Generales.Tipo_de_Compareciente In (" + Tipo_de_ComparecienteIds + ")";
+            }
+
+            if (filter.Persona_Desaparecida != RadioOptions.NoApply)
+                where += " AND Detalle_de_Datos_Generales.Persona_Desaparecida = " + Convert.ToInt32(filter.Persona_Desaparecida);
+
+            if (filter.Persona_Aparecio != RadioOptions.NoApply)
+                where += " AND Detalle_de_Datos_Generales.Persona_Aparecio = " + Convert.ToInt32(filter.Persona_Aparecio);
+
+            if (!string.IsNullOrEmpty(filter.FromFecha_de_Aparicion) || !string.IsNullOrEmpty(filter.ToFecha_de_Aparicion))
+            {
+                var Fecha_de_AparicionFrom = DateTime.ParseExact(filter.FromFecha_de_Aparicion, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_de_AparicionTo = DateTime.ParseExact(filter.ToFecha_de_Aparicion, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_de_Aparicion))
+                    where += " AND Detalle_de_Datos_Generales.Fecha_de_Aparicion >= '" + Fecha_de_AparicionFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_de_Aparicion))
+                    where += " AND Detalle_de_Datos_Generales.Fecha_de_Aparicion <= '" + Fecha_de_AparicionTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceCon_Vida))
+            {
+                switch (filter.Con_VidaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND A_Tiempo.Descripcion LIKE '" + filter.AdvanceCon_Vida + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND A_Tiempo.Descripcion LIKE '%" + filter.AdvanceCon_Vida + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND A_Tiempo.Descripcion = '" + filter.AdvanceCon_Vida + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND A_Tiempo.Descripcion LIKE '%" + filter.AdvanceCon_Vida + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceCon_VidaMultiple != null && filter.AdvanceCon_VidaMultiple.Count() > 0)
+            {
+                var Con_VidaIds = string.Join(",", filter.AdvanceCon_VidaMultiple);
+
+                where += " AND Detalle_de_Datos_Generales.Con_Vida In (" + Con_VidaIds + ")";
             }
 
             if (filter.Persona_Moral != RadioOptions.NoApply)
@@ -6791,6 +7097,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Detalle_de_Datos_Generales.Grupo_al_que_pertenece In (" + Grupo_al_que_perteneceIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvancePreferencia_Sexual))
+            {
+                switch (filter.Preferencia_SexualFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Preferencia_Sexual.Descripcion LIKE '" + filter.AdvancePreferencia_Sexual + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Preferencia_Sexual.Descripcion LIKE '%" + filter.AdvancePreferencia_Sexual + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Preferencia_Sexual.Descripcion = '" + filter.AdvancePreferencia_Sexual + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Preferencia_Sexual.Descripcion LIKE '%" + filter.AdvancePreferencia_Sexual + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvancePreferencia_SexualMultiple != null && filter.AdvancePreferencia_SexualMultiple.Count() > 0)
+            {
+                var Preferencia_SexualIds = string.Join(",", filter.AdvancePreferencia_SexualMultiple);
+
+                where += " AND Detalle_de_Datos_Generales.Preferencia_Sexual In (" + Preferencia_SexualIds + ")";
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceEtnia))
             {
                 switch (filter.EtniaFilter)
@@ -7221,6 +7555,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             if (filter.Se_Informaron_sobre_sus_Derechos != RadioOptions.NoApply)
                 where += " AND Detalle_de_Datos_Generales.Se_Informaron_sobre_sus_Derechos = " + Convert.ToInt32(filter.Se_Informaron_sobre_sus_Derechos);
+
+            if (filter.Gravidez != RadioOptions.NoApply)
+                where += " AND Detalle_de_Datos_Generales.Gravidez = " + Convert.ToInt32(filter.Gravidez);
 
             if (!string.IsNullOrEmpty(filter.AdvanceDiscapacidad_Mental))
             {
@@ -9097,6 +9434,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Detalle_de_Datos_Generales.Largo_de_Cabello In (" + Largo_de_CabelloIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceForma_de_Cabello))
+            {
+                switch (filter.Forma_de_CabelloFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Forma_Cabello.Descripcion LIKE '" + filter.AdvanceForma_de_Cabello + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Forma_Cabello.Descripcion LIKE '%" + filter.AdvanceForma_de_Cabello + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Forma_Cabello.Descripcion = '" + filter.AdvanceForma_de_Cabello + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Forma_Cabello.Descripcion LIKE '%" + filter.AdvanceForma_de_Cabello + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceForma_de_CabelloMultiple != null && filter.AdvanceForma_de_CabelloMultiple.Count() > 0)
+            {
+                var Forma_de_CabelloIds = string.Join(",", filter.AdvanceForma_de_CabelloMultiple);
+
+                where += " AND Detalle_de_Datos_Generales.Forma_de_Cabello In (" + Forma_de_CabelloIds + ")";
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceColor_Cabello))
             {
                 switch (filter.Color_CabelloFilter)
@@ -10154,6 +10519,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
+			,Numero_Interior = m.Numero_Interior
+			,Coordenada_X = m.Coordenada_X
+			,Coordenada_Y = m.Coordenada_Y
+			,Observaciones = m.Observaciones
 
                 }).ToList(),
                 recordsTotal = result.RowCount,
@@ -10199,6 +10568,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
+			,Numero_Interior = m.Numero_Interior
+			,Coordenada_X = m.Coordenada_X
+			,Coordenada_Y = m.Coordenada_Y
+			,Observaciones = m.Observaciones
 
 
                     }).ToList();
@@ -10368,9 +10741,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         Clave = varDetalle_de_Datos_Generales.Clave
                         ,Modulo_Atencion_Inicial = varDetalle_de_Datos_Generales.Modulo_Atencion_Inicial
                         ,Expediente_MP = varDetalle_de_Datos_Generales.Expediente_MP
+                        ,Expediente_MASC = varDetalle_de_Datos_Generales.Expediente_MASC
                         ,Datos_Confidenciales = varDetalle_de_Datos_Generales.Datos_Confidenciales
                         ,Se_Informo_sobre_el_Procedimiento = varDetalle_de_Datos_Generales.Se_Informo_sobre_el_Procedimiento
                         ,Tipo_de_Compareciente = varDetalle_de_Datos_Generales.Tipo_de_Compareciente
+                        ,Persona_Desaparecida = varDetalle_de_Datos_Generales.Persona_Desaparecida
+                        ,Persona_Aparecio = varDetalle_de_Datos_Generales.Persona_Aparecio
+                        ,Fecha_de_Aparicion = (!String.IsNullOrEmpty(varDetalle_de_Datos_Generales.Fecha_de_Aparicion)) ? DateTime.ParseExact(varDetalle_de_Datos_Generales.Fecha_de_Aparicion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Con_Vida = varDetalle_de_Datos_Generales.Con_Vida
                         ,Persona_Moral = varDetalle_de_Datos_Generales.Persona_Moral
                         ,Q_Q_R_O_ = varDetalle_de_Datos_Generales.Q_Q_R_O_
                         ,Es_victima = varDetalle_de_Datos_Generales.Es_victima
@@ -10414,6 +10792,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Correo_Electronico = varDetalle_de_Datos_Generales.Correo_Electronico
                         ,Situacion_de_Vulnerabilidad = varDetalle_de_Datos_Generales.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_pertenece = varDetalle_de_Datos_Generales.Grupo_al_que_pertenece
+                        ,Preferencia_Sexual = varDetalle_de_Datos_Generales.Preferencia_Sexual
                         ,Etnia = varDetalle_de_Datos_Generales.Etnia
                         ,No_de_Hijos = varDetalle_de_Datos_Generales.No_de_Hijos
                         ,Religion = varDetalle_de_Datos_Generales.Religion
@@ -10433,6 +10812,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Inimputabilidad = varDetalle_de_Datos_Generales.Tipo_de_Inimputabilidad
                         ,Especifique = varDetalle_de_Datos_Generales.Especifique
                         ,Se_Informaron_sobre_sus_Derechos = varDetalle_de_Datos_Generales.Se_Informaron_sobre_sus_Derechos
+                        ,Gravidez = varDetalle_de_Datos_Generales.Gravidez
                         ,Discapacidad_Mental = varDetalle_de_Datos_Generales.Discapacidad_Mental
                         ,Discapacidad_Fisica = varDetalle_de_Datos_Generales.Discapacidad_Fisica
                         ,Discapacidad_Sensorial = varDetalle_de_Datos_Generales.Discapacidad_Sensorial
@@ -10513,6 +10893,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Color_Piel = varDetalle_de_Datos_Generales.Color_Piel
                         ,Frente = varDetalle_de_Datos_Generales.Frente
                         ,Largo_de_Cabello = varDetalle_de_Datos_Generales.Largo_de_Cabello
+                        ,Forma_de_Cabello = varDetalle_de_Datos_Generales.Forma_de_Cabello
                         ,Color_Cabello = varDetalle_de_Datos_Generales.Color_Cabello
                         ,Calvicie = varDetalle_de_Datos_Generales.Calvicie
                         ,Color_Ojos = varDetalle_de_Datos_Generales.Color_Ojos
@@ -11180,6 +11561,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
+
+
                         //Removal Request
                         if (Otros_Domicilios_InvolucradoItem.Removed)
                         {
@@ -11202,6 +11587,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                             ,Entre_Calle = Otros_Domicilios_InvolucradoItem.Entre_Calle
                             ,Y_Calle = Otros_Domicilios_InvolucradoItem.Y_Calle
                             ,Numero_Exterior = Otros_Domicilios_InvolucradoItem.Numero_Exterior
+                            ,Numero_Interior = Otros_Domicilios_InvolucradoItem.Numero_Interior
+                            ,Coordenada_X = Otros_Domicilios_InvolucradoItem.Coordenada_X
+                            ,Coordenada_Y = Otros_Domicilios_InvolucradoItem.Coordenada_Y
+                            ,Observaciones = Otros_Domicilios_InvolucradoItem.Observaciones
 
                         };
 
@@ -11281,6 +11670,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+
+
+
+
 
 
 
@@ -11699,9 +12092,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(m.Expediente_MASC_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Expediente_MASC_Solicitud.Numero_de_Folio
 			,Datos_Confidenciales = m.Datos_Confidenciales
 			,Se_Informo_sobre_el_Procedimiento = m.Se_Informo_sobre_el_Procedimiento
                         ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Compareciente_Tipo_de_Compareciente.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+			,Persona_Desaparecida = m.Persona_Desaparecida
+			,Persona_Aparecio = m.Persona_Aparecio
+                        ,Fecha_de_Aparicion = (m.Fecha_de_Aparicion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Aparicion).ToString(ConfigurationProperty.DateFormat))
+                        ,Con_VidaDescripcion = CultureHelper.GetTraduction(m.Con_Vida_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Con_Vida_A_Tiempo.Descripcion
 			,Persona_Moral = m.Persona_Moral
 			,Q_Q_R_O_ = m.Q_Q_R_O_
 			,Es_victima = m.Es_victima
@@ -11745,6 +12143,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Electronico = m.Correo_Electronico
 			,Situacion_de_Vulnerabilidad = m.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                        ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(m.Preferencia_Sexual_Preferencia_Sexual.Clave.ToString(), "Descripcion") ?? (string)m.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                         ,EtniaDescripcion = CultureHelper.GetTraduction(m.Etnia_Etnia.Clave.ToString(), "Descripcion") ?? (string)m.Etnia_Etnia.Descripcion
 			,No_de_Hijos = m.No_de_Hijos
                         ,ReligionDescripcion = CultureHelper.GetTraduction(m.Religion_Religion.Clave.ToString(), "Descripcion") ?? (string)m.Religion_Religion.Descripcion
@@ -11764,6 +12163,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
 			,Se_Informaron_sobre_sus_Derechos = m.Se_Informaron_sobre_sus_Derechos
+			,Gravidez = m.Gravidez
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
                         ,Discapacidad_FisicaDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Fisica_Discapacidades_Fisicas.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Fisica_Discapacidades_Fisicas.Descripcion
                         ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
@@ -11844,6 +12244,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Color_PielDescrpicion = CultureHelper.GetTraduction(m.Color_Piel_Color_Piel.Clave.ToString(), "Descrpicion") ?? (string)m.Color_Piel_Color_Piel.Descrpicion
                         ,FrenteDescripcion = CultureHelper.GetTraduction(m.Frente_Frente.Clave.ToString(), "Descripcion") ?? (string)m.Frente_Frente.Descripcion
                         ,Largo_de_CabelloDescripcion = CultureHelper.GetTraduction(m.Largo_de_Cabello_Largo_de_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Largo_de_Cabello_Largo_de_Cabello.Descripcion
+                        ,Forma_de_CabelloDescripcion = CultureHelper.GetTraduction(m.Forma_de_Cabello_Forma_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Cabello_Forma_Cabello.Descripcion
                         ,Color_CabelloDescripcion = CultureHelper.GetTraduction(m.Color_Cabello_Color_de_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Color_Cabello_Color_de_Cabello.Descripcion
                         ,CalvicieDescripcion = CultureHelper.GetTraduction(m.Calvicie_Calvicie.Clave.ToString(), "Descripcion") ?? (string)m.Calvicie_Calvicie.Descripcion
                         ,Color_OjosDescripcion = CultureHelper.GetTraduction(m.Color_Ojos_Color_Ojos.Clave.ToString(), "Descripcion") ?? (string)m.Color_Ojos_Color_Ojos.Descripcion
@@ -11945,9 +12346,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(m.Expediente_MASC_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Expediente_MASC_Solicitud.Numero_de_Folio
 			,Datos_Confidenciales = m.Datos_Confidenciales
 			,Se_Informo_sobre_el_Procedimiento = m.Se_Informo_sobre_el_Procedimiento
                         ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Compareciente_Tipo_de_Compareciente.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+			,Persona_Desaparecida = m.Persona_Desaparecida
+			,Persona_Aparecio = m.Persona_Aparecio
+                        ,Fecha_de_Aparicion = (m.Fecha_de_Aparicion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Aparicion).ToString(ConfigurationProperty.DateFormat))
+                        ,Con_VidaDescripcion = CultureHelper.GetTraduction(m.Con_Vida_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Con_Vida_A_Tiempo.Descripcion
 			,Persona_Moral = m.Persona_Moral
 			,Q_Q_R_O_ = m.Q_Q_R_O_
 			,Es_victima = m.Es_victima
@@ -11991,6 +12397,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Electronico = m.Correo_Electronico
 			,Situacion_de_Vulnerabilidad = m.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                        ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(m.Preferencia_Sexual_Preferencia_Sexual.Clave.ToString(), "Descripcion") ?? (string)m.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                         ,EtniaDescripcion = CultureHelper.GetTraduction(m.Etnia_Etnia.Clave.ToString(), "Descripcion") ?? (string)m.Etnia_Etnia.Descripcion
 			,No_de_Hijos = m.No_de_Hijos
                         ,ReligionDescripcion = CultureHelper.GetTraduction(m.Religion_Religion.Clave.ToString(), "Descripcion") ?? (string)m.Religion_Religion.Descripcion
@@ -12010,6 +12417,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
 			,Se_Informaron_sobre_sus_Derechos = m.Se_Informaron_sobre_sus_Derechos
+			,Gravidez = m.Gravidez
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
                         ,Discapacidad_FisicaDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Fisica_Discapacidades_Fisicas.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Fisica_Discapacidades_Fisicas.Descripcion
                         ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
@@ -12090,6 +12498,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Color_PielDescrpicion = CultureHelper.GetTraduction(m.Color_Piel_Color_Piel.Clave.ToString(), "Descrpicion") ?? (string)m.Color_Piel_Color_Piel.Descrpicion
                         ,FrenteDescripcion = CultureHelper.GetTraduction(m.Frente_Frente.Clave.ToString(), "Descripcion") ?? (string)m.Frente_Frente.Descripcion
                         ,Largo_de_CabelloDescripcion = CultureHelper.GetTraduction(m.Largo_de_Cabello_Largo_de_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Largo_de_Cabello_Largo_de_Cabello.Descripcion
+                        ,Forma_de_CabelloDescripcion = CultureHelper.GetTraduction(m.Forma_de_Cabello_Forma_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Cabello_Forma_Cabello.Descripcion
                         ,Color_CabelloDescripcion = CultureHelper.GetTraduction(m.Color_Cabello_Color_de_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Color_Cabello_Color_de_Cabello.Descripcion
                         ,CalvicieDescripcion = CultureHelper.GetTraduction(m.Calvicie_Calvicie.Clave.ToString(), "Descripcion") ?? (string)m.Calvicie_Calvicie.Descripcion
                         ,Color_OjosDescripcion = CultureHelper.GetTraduction(m.Color_Ojos_Color_Ojos.Clave.ToString(), "Descripcion") ?? (string)m.Color_Ojos_Color_Ojos.Descripcion
@@ -12157,9 +12566,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = varDetalle_de_Datos_Generales.Clave
                                             ,Modulo_Atencion_Inicial = varDetalle_de_Datos_Generales.Modulo_Atencion_Inicial
                         ,Expediente_MP = varDetalle_de_Datos_Generales.Expediente_MP
+                        ,Expediente_MASC = varDetalle_de_Datos_Generales.Expediente_MASC
                         ,Datos_Confidenciales = varDetalle_de_Datos_Generales.Datos_Confidenciales
                         ,Se_Informo_sobre_el_Procedimiento = varDetalle_de_Datos_Generales.Se_Informo_sobre_el_Procedimiento
                         ,Tipo_de_Compareciente = varDetalle_de_Datos_Generales.Tipo_de_Compareciente
+                        ,Persona_Desaparecida = varDetalle_de_Datos_Generales.Persona_Desaparecida
+                        ,Persona_Aparecio = varDetalle_de_Datos_Generales.Persona_Aparecio
+                        ,Fecha_de_Aparicion = (!String.IsNullOrEmpty(varDetalle_de_Datos_Generales.Fecha_de_Aparicion)) ? DateTime.ParseExact(varDetalle_de_Datos_Generales.Fecha_de_Aparicion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Con_Vida = varDetalle_de_Datos_Generales.Con_Vida
                         ,Persona_Moral = varDetalle_de_Datos_Generales.Persona_Moral
                         ,Q_Q_R_O_ = varDetalle_de_Datos_Generales.Q_Q_R_O_
                         ,Es_victima = varDetalle_de_Datos_Generales.Es_victima
@@ -12203,6 +12617,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Correo_Electronico = varDetalle_de_Datos_Generales.Correo_Electronico
                         ,Situacion_de_Vulnerabilidad = varDetalle_de_Datos_Generales.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_pertenece = varDetalle_de_Datos_Generales.Grupo_al_que_pertenece
+                        ,Preferencia_Sexual = varDetalle_de_Datos_Generales.Preferencia_Sexual
                         ,Etnia = varDetalle_de_Datos_Generales.Etnia
                         ,No_de_Hijos = varDetalle_de_Datos_Generales.No_de_Hijos
                         ,Religion = varDetalle_de_Datos_Generales.Religion
@@ -12222,6 +12637,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Inimputabilidad = varDetalle_de_Datos_Generales.Tipo_de_Inimputabilidad
                         ,Especifique = varDetalle_de_Datos_Generales.Especifique
                         ,Se_Informaron_sobre_sus_Derechos = varDetalle_de_Datos_Generales.Se_Informaron_sobre_sus_Derechos
+                        ,Gravidez = varDetalle_de_Datos_Generales.Gravidez
                         ,Discapacidad_Mental = varDetalle_de_Datos_Generales.Discapacidad_Mental
                         ,Discapacidad_Fisica = varDetalle_de_Datos_Generales.Discapacidad_Fisica
                         ,Discapacidad_Sensorial = varDetalle_de_Datos_Generales.Discapacidad_Sensorial
@@ -12268,10 +12684,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Expediente_MP = m.Expediente_MP
                         ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        ,Expediente_MASC = m.Expediente_MASC
+                        ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(m.Expediente_MASC_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Expediente_MASC_Solicitud.Numero_de_Folio
 			,Datos_Confidenciales = m.Datos_Confidenciales
 			,Se_Informo_sobre_el_Procedimiento = m.Se_Informo_sobre_el_Procedimiento
                         ,Tipo_de_Compareciente = m.Tipo_de_Compareciente
                         ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Compareciente_Tipo_de_Compareciente.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+			,Persona_Desaparecida = m.Persona_Desaparecida
+			,Persona_Aparecio = m.Persona_Aparecio
+                        ,Fecha_de_Aparicion = (m.Fecha_de_Aparicion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Aparicion).ToString(ConfigurationProperty.DateFormat))
+                        ,Con_Vida = m.Con_Vida
+                        ,Con_VidaDescripcion = CultureHelper.GetTraduction(m.Con_Vida_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Con_Vida_A_Tiempo.Descripcion
 			,Persona_Moral = m.Persona_Moral
 			,Q_Q_R_O_ = m.Q_Q_R_O_
 			,Es_victima = m.Es_victima
@@ -12329,6 +12752,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Situacion_de_Vulnerabilidad = m.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_pertenece = m.Grupo_al_que_pertenece
                         ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                        ,Preferencia_Sexual = m.Preferencia_Sexual
+                        ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(m.Preferencia_Sexual_Preferencia_Sexual.Clave.ToString(), "Descripcion") ?? (string)m.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                         ,Etnia = m.Etnia
                         ,EtniaDescripcion = CultureHelper.GetTraduction(m.Etnia_Etnia.Clave.ToString(), "Descripcion") ?? (string)m.Etnia_Etnia.Descripcion
 			,No_de_Hijos = m.No_de_Hijos
@@ -12362,6 +12787,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
 			,Se_Informaron_sobre_sus_Derechos = m.Se_Informaron_sobre_sus_Derechos
+			,Gravidez = m.Gravidez
                         ,Discapacidad_Mental = m.Discapacidad_Mental
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
                         ,Discapacidad_Fisica = m.Discapacidad_Fisica
@@ -12788,6 +13214,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Color_Piel = varDetalle_de_Datos_Generales.Color_Piel
                         ,Frente = varDetalle_de_Datos_Generales.Frente
                         ,Largo_de_Cabello = varDetalle_de_Datos_Generales.Largo_de_Cabello
+                        ,Forma_de_Cabello = varDetalle_de_Datos_Generales.Forma_de_Cabello
                         ,Color_Cabello = varDetalle_de_Datos_Generales.Color_Cabello
                         ,Calvicie = varDetalle_de_Datos_Generales.Calvicie
                         ,Color_Ojos = varDetalle_de_Datos_Generales.Color_Ojos
@@ -12870,6 +13297,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,FrenteDescripcion = CultureHelper.GetTraduction(m.Frente_Frente.Clave.ToString(), "Descripcion") ?? (string)m.Frente_Frente.Descripcion
                         ,Largo_de_Cabello = m.Largo_de_Cabello
                         ,Largo_de_CabelloDescripcion = CultureHelper.GetTraduction(m.Largo_de_Cabello_Largo_de_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Largo_de_Cabello_Largo_de_Cabello.Descripcion
+                        ,Forma_de_Cabello = m.Forma_de_Cabello
+                        ,Forma_de_CabelloDescripcion = CultureHelper.GetTraduction(m.Forma_de_Cabello_Forma_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Cabello_Forma_Cabello.Descripcion
                         ,Color_Cabello = m.Color_Cabello
                         ,Color_CabelloDescripcion = CultureHelper.GetTraduction(m.Color_Cabello_Color_de_Cabello.Clave.ToString(), "Descripcion") ?? (string)m.Color_Cabello_Color_de_Cabello.Descripcion
                         ,Calvicie = m.Calvicie

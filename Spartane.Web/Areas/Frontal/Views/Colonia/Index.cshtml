@@ -205,6 +205,13 @@
                                     <th>@Resources.ColoniaResources.Zona</th>
                                     <th>@Resources.ColoniaResources.Vigente</th>
                                     <th>@Resources.ColoniaResources.Observaciones</th>
+                                    <th>@Resources.ColoniaResources.cod_pais</th>
+                                    <th>@Resources.ColoniaResources.cod_edo</th>
+                                    <th>@Resources.ColoniaResources.loc_justicia</th>
+                                    <th>@Resources.ColoniaResources.pob_justicia</th>
+                                    <th>@Resources.ColoniaResources.sector</th>
+                                    <th>@Resources.ColoniaResources.estatus</th>
+                                    <th>@Resources.ColoniaResources.cod_localidad</th>
 
                                 </tr>
                             </thead>
@@ -218,6 +225,13 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
 
                                 </tr>
                             </tfoot>
@@ -340,6 +354,13 @@
         var Zona =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Vigente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_edo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var loc_justicia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var pob_justicia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var sector =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_localidad =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -349,6 +370,13 @@
         + "&Zona=" + Zona
         + "&Vigente=" + Vigente
         + "&Observaciones=" + Observaciones
+        + "&cod_pais=" + cod_pais
+        + "&cod_edo=" + cod_edo
+        + "&loc_justicia=" + loc_justicia
+        + "&pob_justicia=" + pob_justicia
+        + "&sector=" + sector
+        + "&estatus=" + estatus
+        + "&cod_localidad=" + cod_localidad
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Colonia/Export?format=")" + format
@@ -369,6 +397,13 @@
         var Zona =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Vigente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_edo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var loc_justicia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var pob_justicia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var sector =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_localidad =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -378,6 +413,13 @@
         + "&Zona=" + Zona
         + "&Vigente=" + Vigente
         + "&Observaciones=" + Observaciones
+        + "&cod_pais=" + cod_pais
+        + "&cod_edo=" + cod_edo
+        + "&loc_justicia=" + loc_justicia
+        + "&pob_justicia=" + pob_justicia
+        + "&sector=" + sector
+        + "&estatus=" + estatus
+        + "&cod_localidad=" + cod_localidad
 ;
 
     }
@@ -558,11 +600,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -632,6 +674,13 @@
                 ,{ "data": "Zona", "orderable": true, "name": "Zona", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "VigenteAbreviacion", "orderable": true, "name": "VigenteAbreviacion" }
                 ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "cod_pais","className": "dt-right", "orderable": true, "name": "cod_pais" }
+                ,{ "data": "cod_edo","className": "dt-right", "orderable": true, "name": "cod_edo" }
+                ,{ "data": "loc_justicia","className": "dt-right", "orderable": true, "name": "loc_justicia" }
+                ,{ "data": "pob_justicia","className": "dt-right", "orderable": true, "name": "pob_justicia" }
+                ,{ "data": "sector","className": "dt-right", "orderable": true, "name": "sector" }
+                ,{ "data": "estatus", "orderable": true, "name": "estatus", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "cod_localidad","className": "dt-right", "orderable": true, "name": "cod_localidad" }
 
             ],
 			"colReorder": true,

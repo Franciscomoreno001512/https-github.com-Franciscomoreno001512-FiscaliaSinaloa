@@ -17,6 +17,8 @@ namespace Spartane.Core.Domain.Genero
     {
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string sexo { get; set; }
+        public string Inicial { get; set; }
 
 
     }
@@ -25,6 +27,8 @@ namespace Spartane.Core.Domain.Genero
     {
                 public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string sexo { get; set; }
+        public string Inicial { get; set; }
 
 		
     }

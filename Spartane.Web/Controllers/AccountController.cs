@@ -123,13 +123,360 @@ namespace Spartane.Web.Controllers
             return View(oLoginViewModel);
         }
 
-        /// <summary>
-        /// Login Post method for check authorization and logged in with system
-        /// </summary>
-        /// <param name="model"></param>
-        /// <param name="returnUrl"></param>
-        /// <returns></returns>
-        [HttpPost]
+
+		[HttpGet]
+		[AllowAnonymous]
+		public ActionResult CreateResponse(int Id = 0)
+		{
+			Spartan_Security_Log oSecurityLog = new Spartan_Security_Log();
+			string UserName = ConfigurationManager.AppSettings["userRegistro"];
+			string Password = ConfigurationManager.AppSettings["passwordRegistro"];
+			// Call Validate User API for user Exists in application
+			Spartan_User_Core UserDetails = _IUseroApiConsumer.ValidateUser(1, 10, "Username = '" + UserName + "'  COLLATE SQL_Latin1_General_CP1_CS_AS And Password = '" + EncryptHelper.CalculateMD5Hash(Password) + "'  COLLATE SQL_Latin1_General_CP1_CS_AS").Resource;
+			if (UserDetails.Spartan_Users != null && UserDetails.Spartan_Users.Count() > 0)
+			{
+				if (UserDetails.Spartan_Users[0].Status == 1)
+				{
+					var spartan_user = new Core.Domain.Spartan_User.Spartan_User
+					{
+						Id_User = UserDetails.Spartan_Users[0].Id_User,
+						Name = UserDetails.Spartan_Users[0].Name,
+						Password = UserDetails.Spartan_Users[0].Password
+					};
+
+					TTUsuario user = new TTUsuario
+					{
+						IdUsuario = Convert.ToInt16(UserDetails.Spartan_Users[0].Id_User),
+						Nombre = Convert.ToString(UserDetails.Spartan_Users[0].Name),
+						Clave_de_Acceso = UserDetails.Spartan_Users[0].Username,
+						//Activo = UserDetails.Spartan_Users[0].Status
+					};
+
+					SetSecurityLogging(ref oSecurityLog, (short)Event_Type.Login, UserDetails.Spartan_Users[0].Id_User, UserDetails.Spartan_Users[0].Role, (short)Result_Type.Granted);
+					int SecurityLogId = _ISpartanSecurityApiConsumer.Insert(oSecurityLog).Resource;
+
+					SetAuthentication(UserDetails);
+					//_authenticationService.SignIn(user, model.RememberMe);
+
+					//Adding user Core entity Data
+					SessionHelper.UserEntity = UserDetails.Spartan_Users[0];
+
+					//Getting User Image
+					_ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+					var userImage =
+						_ISpartane_FileApiConsumer.GetByKey(Convert.ToInt32(UserDetails.Spartan_Users[0].Image))
+							.Resource;
+					if (userImage != null && userImage.File != null)
+						SessionHelper.UserImage = userImage.File;
+					Response.Cookies["UserSettings"]["SecurityLogId"] = SecurityLogId.ToString();
+
+					Spartan_Session_Log oSessionLog = new Spartan_Session_Log();
+					SetSessionLogging(ref oSessionLog, (short)Event_Type.Login, (short)Event_Type.Login, SecurityLogId, UserDetails.Spartan_Users[0].Id_User, UserDetails.Spartan_Users[0].Role, (short)Result_Type.Granted);
+					_ISpartanSessionApiConsumer.Insert(oSessionLog);
+
+
+					//Saving Credentials
+					SessionHelper.UserCredential = new Spartane_Credential
+					{
+						Password = EncryptHelper.CalculateMD5Hash(Password),
+						UserName = UserName,
+					};
+					// save role id in session
+					SessionHelper.Role = UserDetails.Spartan_Users[0].Role;
+					// save role object in session
+					SessionHelper.Sprtan_Role = new RoleSpartanUserRole
+					{
+						Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Id,
+						Description = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Description,
+						Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status,
+						Status_Spartan_User_Role_Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status_Spartan_User_Role_Status,
+						User_Role_Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id,
+					};
+					Session["USERID"] = user.IdUsuario;
+					Session["USERROLEID"] = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id;
+					Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
+					Session["LANGUAGEID"] = 1;
+					SessionHelper.Relogin = false;
+					return RedirectToLocal("~/Frontal/Encuesta1/Create?Id=" + Id);
+				}
+			}
+
+			return Login("");
+		}
+
+		[AllowAnonymous]
+		[HttpPost]
+		public ActionResult ValidateLogin2(string username, string password)
+		{
+			try
+			{
+				username = ConfigurationManager.AppSettings["userTemp"].ToString();
+				password = ConfigurationManager.AppSettings["pwdTemp"].ToString();
+				var result1 = ValidateLogin(ConfigurationManager.AppSettings["userTemp"].ToString(), ConfigurationManager.AppSettings["pwdTemp"].ToString());
+				Session["BlockUser"] = null;
+				Spartan_Security_Log oSecurityLog = new Spartan_Security_Log();
+				Spartan_User_Core UserDetails = _IUseroApiConsumer.ValidateUser(1, 10, "Username = '" + username + "'  COLLATE SQL_Latin1_General_CP1_CS_AS And Password = '" + EncryptHelper.CalculateMD5Hash(password) + "'  COLLATE SQL_Latin1_General_CP1_CS_AS").Resource;
+				if (UserDetails.Spartan_Users != null && UserDetails.Spartan_Users.Count() > 0)
+				{
+					if (UserDetails.Spartan_Users[0].Status == 1)
+					{
+						var spartan_user = new Core.Domain.Spartan_User.Spartan_User
+						{
+							Id_User = UserDetails.Spartan_Users[0].Id_User,
+							Name = UserDetails.Spartan_Users[0].Name,
+							Password = UserDetails.Spartan_Users[0].Password
+						};
+
+						TTUsuario user = new TTUsuario
+						{
+							IdUsuario = Convert.ToInt16(UserDetails.Spartan_Users[0].Id_User),
+							Nombre = Convert.ToString(UserDetails.Spartan_Users[0].Name),
+							Clave_de_Acceso = UserDetails.Spartan_Users[0].Username,
+							//Activo = UserDetails.Spartan_Users[0].Status
+						};
+
+						SetSecurityLogging(ref oSecurityLog, (short)Event_Type.Login, UserDetails.Spartan_Users[0].Id_User, UserDetails.Spartan_Users[0].Role, (short)Result_Type.Granted);
+						int SecurityLogId = _ISpartanSecurityApiConsumer.Insert(oSecurityLog).Resource;
+
+						SetAuthentication(UserDetails);
+						//_authenticationService.SignIn(user, model.RememberMe);
+
+						//Adding user Core entity Data
+						SessionHelper.UserEntity = UserDetails.Spartan_Users[0];
+
+						//Getting User Image
+						_ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+						var userImage =
+							_ISpartane_FileApiConsumer.GetByKey(Convert.ToInt32(UserDetails.Spartan_Users[0].Image))
+								.Resource;
+						if (userImage != null && userImage.File != null)
+							SessionHelper.UserImage = userImage.File;
+						Response.Cookies["UserSettings"]["SecurityLogId"] = SecurityLogId.ToString();
+
+						Spartan_Session_Log oSessionLog = new Spartan_Session_Log();
+						SetSessionLogging(ref oSessionLog, (short)Event_Type.Login, (short)Event_Type.Login, SecurityLogId, UserDetails.Spartan_Users[0].Id_User, UserDetails.Spartan_Users[0].Role, (short)Result_Type.Granted);
+						_ISpartanSessionApiConsumer.Insert(oSessionLog);
+
+
+						//Saving Credentials
+						SessionHelper.UserCredential = new Spartane_Credential
+						{
+							Password = EncryptHelper.CalculateMD5Hash(password),
+							UserName = username,
+						};
+						// save role id in session
+						SessionHelper.Role = UserDetails.Spartan_Users[0].Role;
+						// save role object in session
+						SessionHelper.Sprtan_Role = new RoleSpartanUserRole
+						{
+							Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Id,
+							Description = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Description,
+							Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status,
+							Status_Spartan_User_Role_Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status_Spartan_User_Role_Status,
+							User_Role_Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id,
+						};
+						Session["USERID"] = user.IdUsuario;
+						Session["USERROLEID"] = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id;
+						Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
+						Session["LANGUAGEID"] = 1;
+						SessionHelper.Relogin = false;
+
+						// return RedirectToLocal();
+					}
+				}
+			}
+			catch (Exception err)
+			{
+				return Json(new { valor = "" });
+			}
+			return Json(new { valor = "../Frontal/Registro_de_Usuario/Create" });
+		}
+
+		[AllowAnonymous]
+		[HttpPost]
+		public ActionResult ValidateLogin3(string username, string password)
+		{
+			try
+			{
+				username = ConfigurationManager.AppSettings["userTemp2"].ToString();
+				password = ConfigurationManager.AppSettings["pwdTemp2"].ToString();
+				var result1 = ValidateLogin(ConfigurationManager.AppSettings["userTemp2"].ToString(), ConfigurationManager.AppSettings["pwdTemp2"].ToString());
+				Session["BlockUser"] = null;
+				Spartan_Security_Log oSecurityLog = new Spartan_Security_Log();
+				Spartan_User_Core UserDetails = _IUseroApiConsumer.ValidateUser(1, 10, "Username = '" + username + "'  COLLATE SQL_Latin1_General_CP1_CS_AS And Password = '" + EncryptHelper.CalculateMD5Hash(password) + "'  COLLATE SQL_Latin1_General_CP1_CS_AS").Resource;
+				if (UserDetails.Spartan_Users != null && UserDetails.Spartan_Users.Count() > 0)
+				{
+					if (UserDetails.Spartan_Users[0].Status == 1)
+					{
+						var spartan_user = new Core.Domain.Spartan_User.Spartan_User
+						{
+							Id_User = UserDetails.Spartan_Users[0].Id_User,
+							Name = UserDetails.Spartan_Users[0].Name,
+							Password = UserDetails.Spartan_Users[0].Password
+						};
+
+						TTUsuario user = new TTUsuario
+						{
+							IdUsuario = Convert.ToInt16(UserDetails.Spartan_Users[0].Id_User),
+							Nombre = Convert.ToString(UserDetails.Spartan_Users[0].Name),
+							Clave_de_Acceso = UserDetails.Spartan_Users[0].Username,
+							//Activo = UserDetails.Spartan_Users[0].Status
+						};
+
+						SetSecurityLogging(ref oSecurityLog, (short)Event_Type.Login, UserDetails.Spartan_Users[0].Id_User, UserDetails.Spartan_Users[0].Role, (short)Result_Type.Granted);
+						int SecurityLogId = _ISpartanSecurityApiConsumer.Insert(oSecurityLog).Resource;
+
+						SetAuthentication(UserDetails);
+						//_authenticationService.SignIn(user, model.RememberMe);
+
+						//Adding user Core entity Data
+						SessionHelper.UserEntity = UserDetails.Spartan_Users[0];
+
+						//Getting User Image
+						_ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+						var userImage =
+							_ISpartane_FileApiConsumer.GetByKey(Convert.ToInt32(UserDetails.Spartan_Users[0].Image))
+								.Resource;
+						if (userImage != null && userImage.File != null)
+							SessionHelper.UserImage = userImage.File;
+						Response.Cookies["UserSettings"]["SecurityLogId"] = SecurityLogId.ToString();
+
+						Spartan_Session_Log oSessionLog = new Spartan_Session_Log();
+						SetSessionLogging(ref oSessionLog, (short)Event_Type.Login, (short)Event_Type.Login, SecurityLogId, UserDetails.Spartan_Users[0].Id_User, UserDetails.Spartan_Users[0].Role, (short)Result_Type.Granted);
+						_ISpartanSessionApiConsumer.Insert(oSessionLog);
+
+
+						//Saving Credentials
+						SessionHelper.UserCredential = new Spartane_Credential
+						{
+							Password = EncryptHelper.CalculateMD5Hash(password),
+							UserName = username,
+						};
+						// save role id in session
+						SessionHelper.Role = UserDetails.Spartan_Users[0].Role;
+						// save role object in session
+						SessionHelper.Sprtan_Role = new RoleSpartanUserRole
+						{
+							Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Id,
+							Description = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Description,
+							Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status,
+							Status_Spartan_User_Role_Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status_Spartan_User_Role_Status,
+							User_Role_Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id,
+						};
+						Session["USERID"] = user.IdUsuario;
+						Session["USERROLEID"] = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id;
+						Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
+						Session["LANGUAGEID"] = 1;
+						SessionHelper.Relogin = false;
+
+						// return RedirectToLocal();
+					}
+				}
+			}
+			catch (Exception err)
+			{
+				return Json(new { valor = "" });
+			}
+			return Json(new { valor = "../Frontal/Involucrados_PC/Create" });
+		}
+
+		[AllowAnonymous]
+		[HttpPost]
+		public ActionResult ValidateLogin4(string username, string password)
+		{
+			try
+			{
+				username = ConfigurationManager.AppSettings["userTemp3"].ToString();
+				password = ConfigurationManager.AppSettings["pwdTemp3"].ToString();
+				var result1 = ValidateLogin(ConfigurationManager.AppSettings["userTemp3"].ToString(), ConfigurationManager.AppSettings["pwdTemp3"].ToString());
+				Session["BlockUser"] = null;
+				Spartan_Security_Log oSecurityLog = new Spartan_Security_Log();
+				Spartan_User_Core UserDetails = _IUseroApiConsumer.ValidateUser(1, 10, "Username = '" + username + "'  COLLATE SQL_Latin1_General_CP1_CS_AS And Password = '" + EncryptHelper.CalculateMD5Hash(password) + "'  COLLATE SQL_Latin1_General_CP1_CS_AS").Resource;
+				if (UserDetails.Spartan_Users != null && UserDetails.Spartan_Users.Count() > 0)
+				{
+					if (UserDetails.Spartan_Users[0].Status == 1)
+					{
+						var spartan_user = new Core.Domain.Spartan_User.Spartan_User
+						{
+							Id_User = UserDetails.Spartan_Users[0].Id_User,
+							Name = UserDetails.Spartan_Users[0].Name,
+							Password = UserDetails.Spartan_Users[0].Password
+						};
+
+						TTUsuario user = new TTUsuario
+						{
+							IdUsuario = Convert.ToInt16(UserDetails.Spartan_Users[0].Id_User),
+							Nombre = Convert.ToString(UserDetails.Spartan_Users[0].Name),
+							Clave_de_Acceso = UserDetails.Spartan_Users[0].Username,
+							//Activo = UserDetails.Spartan_Users[0].Status
+						};
+
+						SetSecurityLogging(ref oSecurityLog, (short)Event_Type.Login, UserDetails.Spartan_Users[0].Id_User, UserDetails.Spartan_Users[0].Role, (short)Result_Type.Granted);
+						int SecurityLogId = _ISpartanSecurityApiConsumer.Insert(oSecurityLog).Resource;
+
+						SetAuthentication(UserDetails);
+						//_authenticationService.SignIn(user, model.RememberMe);
+
+						//Adding user Core entity Data
+						SessionHelper.UserEntity = UserDetails.Spartan_Users[0];
+
+						//Getting User Image
+						_ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+						var userImage =
+							_ISpartane_FileApiConsumer.GetByKey(Convert.ToInt32(UserDetails.Spartan_Users[0].Image))
+								.Resource;
+						if (userImage != null && userImage.File != null)
+							SessionHelper.UserImage = userImage.File;
+						Response.Cookies["UserSettings"]["SecurityLogId"] = SecurityLogId.ToString();
+
+						Spartan_Session_Log oSessionLog = new Spartan_Session_Log();
+						SetSessionLogging(ref oSessionLog, (short)Event_Type.Login, (short)Event_Type.Login, SecurityLogId, UserDetails.Spartan_Users[0].Id_User, UserDetails.Spartan_Users[0].Role, (short)Result_Type.Granted);
+						_ISpartanSessionApiConsumer.Insert(oSessionLog);
+
+
+						//Saving Credentials
+						SessionHelper.UserCredential = new Spartane_Credential
+						{
+							Password = EncryptHelper.CalculateMD5Hash(password),
+							UserName = username,
+						};
+						// save role id in session
+						SessionHelper.Role = UserDetails.Spartan_Users[0].Role;
+						// save role object in session
+						SessionHelper.Sprtan_Role = new RoleSpartanUserRole
+						{
+							Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Id,
+							Description = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Description,
+							Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status,
+							Status_Spartan_User_Role_Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status_Spartan_User_Role_Status,
+							User_Role_Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id,
+						};
+						Session["USERID"] = user.IdUsuario;
+						Session["USERROLEID"] = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id;
+						Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
+						Session["LANGUAGEID"] = 1;
+						SessionHelper.Relogin = false;
+
+						// return RedirectToLocal();
+					}
+				}
+			}
+			catch (Exception err)
+			{
+				return Json(new { valor = "" });
+			}
+			return Json(new { valor = "../Frontal/Involucrados_PC/Create" });
+		}
+
+
+
+		/// <summary>
+		/// Login Post method for check authorization and logged in with system
+		/// </summary>
+		/// <param name="model"></param>
+		/// <param name="returnUrl"></param>
+		/// <returns></returns>
+		[HttpPost]
         [AllowAnonymous]
         public ActionResult Login(LoginViewModel model, string returnUrl = "")
         {

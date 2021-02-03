@@ -198,6 +198,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tentativa = DelitoData.Tentativa.GetValueOrDefault()
                     ,Activo = DelitoData.Activo.GetValueOrDefault()
                     ,Robo_de_Vehiculo = DelitoData.Robo_de_Vehiculo.GetValueOrDefault()
+                    ,delitox = DelitoData.delitox
+                    ,ARTICULO = DelitoData.ARTICULO
+                    ,DETALLE = DelitoData.DETALLE
+                    ,TIPO_AGENCIA = DelitoData.TIPO_AGENCIA
+                    ,ESTADISTICO_SSP = DelitoData.ESTADISTICO_SSP
+                    ,VAL_VEHICULO = DelitoData.VAL_VEHICULO
+                    ,TIPO_DELITO = DelitoData.TIPO_DELITO
+                    ,circunstancia_clasif = DelitoData.circunstancia_clasif
+                    ,PRINCIPAL = DelitoData.PRINCIPAL
+                    ,orden = DelitoData.orden
 
 					};
 				}
@@ -297,6 +307,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tentativa = DelitoData.Tentativa.GetValueOrDefault()
                     ,Activo = DelitoData.Activo.GetValueOrDefault()
                     ,Robo_de_Vehiculo = DelitoData.Robo_de_Vehiculo.GetValueOrDefault()
+                    ,delitox = DelitoData.delitox
+                    ,ARTICULO = DelitoData.ARTICULO
+                    ,DETALLE = DelitoData.DETALLE
+                    ,TIPO_AGENCIA = DelitoData.TIPO_AGENCIA
+                    ,ESTADISTICO_SSP = DelitoData.ESTADISTICO_SSP
+                    ,VAL_VEHICULO = DelitoData.VAL_VEHICULO
+                    ,TIPO_DELITO = DelitoData.TIPO_DELITO
+                    ,circunstancia_clasif = DelitoData.circunstancia_clasif
+                    ,PRINCIPAL = DelitoData.PRINCIPAL
+                    ,orden = DelitoData.orden
 
 					};
 				}
@@ -500,6 +520,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
 			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
+			,delitox = m.delitox
+			,ARTICULO = m.ARTICULO
+			,DETALLE = m.DETALLE
+			,TIPO_AGENCIA = m.TIPO_AGENCIA
+			,ESTADISTICO_SSP = m.ESTADISTICO_SSP
+			,VAL_VEHICULO = m.VAL_VEHICULO
+			,TIPO_DELITO = m.TIPO_DELITO
+			,circunstancia_clasif = m.circunstancia_clasif
+			,PRINCIPAL = m.PRINCIPAL
+			,orden = m.orden
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -623,6 +653,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
 			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
+			,delitox = m.delitox
+			,ARTICULO = m.ARTICULO
+			,DETALLE = m.DETALLE
+			,TIPO_AGENCIA = m.TIPO_AGENCIA
+			,ESTADISTICO_SSP = m.ESTADISTICO_SSP
+			,VAL_VEHICULO = m.VAL_VEHICULO
+			,TIPO_DELITO = m.TIPO_DELITO
+			,circunstancia_clasif = m.circunstancia_clasif
+			,PRINCIPAL = m.PRINCIPAL
+			,orden = m.orden
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -746,6 +786,156 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             if (filter.Robo_de_Vehiculo != RadioOptions.NoApply)
                 where += " AND Delito.Robo_de_Vehiculo = " + Convert.ToInt32(filter.Robo_de_Vehiculo);
+
+            if (!string.IsNullOrEmpty(filter.Fromdelitox) || !string.IsNullOrEmpty(filter.Todelitox))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromdelitox))
+                    where += " AND Delito.delitox >= " + filter.Fromdelitox;
+                if (!string.IsNullOrEmpty(filter.Todelitox))
+                    where += " AND Delito.delitox <= " + filter.Todelitox;
+            }
+
+            if (!string.IsNullOrEmpty(filter.ARTICULO))
+            {
+                switch (filter.ARTICULOFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Delito.ARTICULO LIKE '" + filter.ARTICULO + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Delito.ARTICULO LIKE '%" + filter.ARTICULO + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Delito.ARTICULO = '" + filter.ARTICULO + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Delito.ARTICULO LIKE '%" + filter.ARTICULO + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.DETALLE))
+            {
+                switch (filter.DETALLEFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Delito.DETALLE LIKE '" + filter.DETALLE + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Delito.DETALLE LIKE '%" + filter.DETALLE + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Delito.DETALLE = '" + filter.DETALLE + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Delito.DETALLE LIKE '%" + filter.DETALLE + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromTIPO_AGENCIA) || !string.IsNullOrEmpty(filter.ToTIPO_AGENCIA))
+            {
+                if (!string.IsNullOrEmpty(filter.FromTIPO_AGENCIA))
+                    where += " AND Delito.TIPO_AGENCIA >= " + filter.FromTIPO_AGENCIA;
+                if (!string.IsNullOrEmpty(filter.ToTIPO_AGENCIA))
+                    where += " AND Delito.TIPO_AGENCIA <= " + filter.ToTIPO_AGENCIA;
+            }
+
+            if (!string.IsNullOrEmpty(filter.ESTADISTICO_SSP))
+            {
+                switch (filter.ESTADISTICO_SSPFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Delito.ESTADISTICO_SSP LIKE '" + filter.ESTADISTICO_SSP + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Delito.ESTADISTICO_SSP LIKE '%" + filter.ESTADISTICO_SSP + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Delito.ESTADISTICO_SSP = '" + filter.ESTADISTICO_SSP + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Delito.ESTADISTICO_SSP LIKE '%" + filter.ESTADISTICO_SSP + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.VAL_VEHICULO))
+            {
+                switch (filter.VAL_VEHICULOFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Delito.VAL_VEHICULO LIKE '" + filter.VAL_VEHICULO + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Delito.VAL_VEHICULO LIKE '%" + filter.VAL_VEHICULO + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Delito.VAL_VEHICULO = '" + filter.VAL_VEHICULO + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Delito.VAL_VEHICULO LIKE '%" + filter.VAL_VEHICULO + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.TIPO_DELITO))
+            {
+                switch (filter.TIPO_DELITOFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Delito.TIPO_DELITO LIKE '" + filter.TIPO_DELITO + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Delito.TIPO_DELITO LIKE '%" + filter.TIPO_DELITO + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Delito.TIPO_DELITO = '" + filter.TIPO_DELITO + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Delito.TIPO_DELITO LIKE '%" + filter.TIPO_DELITO + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromcircunstancia_clasif) || !string.IsNullOrEmpty(filter.Tocircunstancia_clasif))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromcircunstancia_clasif))
+                    where += " AND Delito.circunstancia_clasif >= " + filter.Fromcircunstancia_clasif;
+                if (!string.IsNullOrEmpty(filter.Tocircunstancia_clasif))
+                    where += " AND Delito.circunstancia_clasif <= " + filter.Tocircunstancia_clasif;
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromPRINCIPAL) || !string.IsNullOrEmpty(filter.ToPRINCIPAL))
+            {
+                if (!string.IsNullOrEmpty(filter.FromPRINCIPAL))
+                    where += " AND Delito.PRINCIPAL >= " + filter.FromPRINCIPAL;
+                if (!string.IsNullOrEmpty(filter.ToPRINCIPAL))
+                    where += " AND Delito.PRINCIPAL <= " + filter.ToPRINCIPAL;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromorden) || !string.IsNullOrEmpty(filter.Toorden))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromorden))
+                    where += " AND Delito.orden >= " + filter.Fromorden;
+                if (!string.IsNullOrEmpty(filter.Toorden))
+                    where += " AND Delito.orden <= " + filter.Toorden;
+            }
 
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
@@ -916,6 +1106,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tentativa = varDelito.Tentativa
                         ,Activo = varDelito.Activo
                         ,Robo_de_Vehiculo = varDelito.Robo_de_Vehiculo
+                        ,delitox = varDelito.delitox
+                        ,ARTICULO = varDelito.ARTICULO
+                        ,DETALLE = varDelito.DETALLE
+                        ,TIPO_AGENCIA = varDelito.TIPO_AGENCIA
+                        ,ESTADISTICO_SSP = varDelito.ESTADISTICO_SSP
+                        ,VAL_VEHICULO = varDelito.VAL_VEHICULO
+                        ,TIPO_DELITO = varDelito.TIPO_DELITO
+                        ,circunstancia_clasif = varDelito.circunstancia_clasif
+                        ,PRINCIPAL = varDelito.PRINCIPAL
+                        ,orden = varDelito.orden
 
                     };
 
@@ -1429,7 +1629,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+			string[] arrayColumnsVisible = null;
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1483,6 +1683,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
 			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
+			,delitox = m.delitox
+			,ARTICULO = m.ARTICULO
+			,DETALLE = m.DETALLE
+			,TIPO_AGENCIA = m.TIPO_AGENCIA
+			,ESTADISTICO_SSP = m.ESTADISTICO_SSP
+			,VAL_VEHICULO = m.VAL_VEHICULO
+			,TIPO_DELITO = m.TIPO_DELITO
+			,circunstancia_clasif = m.circunstancia_clasif
+			,PRINCIPAL = m.PRINCIPAL
+			,orden = m.orden
 
             }).ToList();
 
@@ -1565,6 +1775,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
 			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
+			,delitox = m.delitox
+			,ARTICULO = m.ARTICULO
+			,DETALLE = m.DETALLE
+			,TIPO_AGENCIA = m.TIPO_AGENCIA
+			,ESTADISTICO_SSP = m.ESTADISTICO_SSP
+			,VAL_VEHICULO = m.VAL_VEHICULO
+			,TIPO_DELITO = m.TIPO_DELITO
+			,circunstancia_clasif = m.circunstancia_clasif
+			,PRINCIPAL = m.PRINCIPAL
+			,orden = m.orden
 
             }).ToList();
 
@@ -1613,6 +1833,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tentativa = varDelito.Tentativa
                         ,Activo = varDelito.Activo
                         ,Robo_de_Vehiculo = varDelito.Robo_de_Vehiculo
+                        ,delitox = varDelito.delitox
+                        ,ARTICULO = varDelito.ARTICULO
+                        ,DETALLE = varDelito.DETALLE
+                        ,TIPO_AGENCIA = varDelito.TIPO_AGENCIA
+                        ,ESTADISTICO_SSP = varDelito.ESTADISTICO_SSP
+                        ,VAL_VEHICULO = varDelito.VAL_VEHICULO
+                        ,TIPO_DELITO = varDelito.TIPO_DELITO
+                        ,circunstancia_clasif = varDelito.circunstancia_clasif
+                        ,PRINCIPAL = varDelito.PRINCIPAL
+                        ,orden = varDelito.orden
                     
                 };
 
@@ -1654,6 +1884,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
 			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
+			,delitox = m.delitox
+			,ARTICULO = m.ARTICULO
+			,DETALLE = m.DETALLE
+			,TIPO_AGENCIA = m.TIPO_AGENCIA
+			,ESTADISTICO_SSP = m.ESTADISTICO_SSP
+			,VAL_VEHICULO = m.VAL_VEHICULO
+			,TIPO_DELITO = m.TIPO_DELITO
+			,circunstancia_clasif = m.circunstancia_clasif
+			,PRINCIPAL = m.PRINCIPAL
+			,orden = m.orden
 
                     
                 };

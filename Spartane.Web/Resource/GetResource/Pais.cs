@@ -66,6 +66,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Nacionalidad</summary>
+        public static string Nacionalidad
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderPais.GetResource("Nacionalidad", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Abrevia</summary>
+        public static string Abrevia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderPais.GetResource("Abrevia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderPais.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

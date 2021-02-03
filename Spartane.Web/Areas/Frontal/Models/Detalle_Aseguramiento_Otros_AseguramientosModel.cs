@@ -12,12 +12,12 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
-        public short? Tipo { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
+        public int? Tipo { get; set; }
         public string TipoDescripcion { get; set; }
-        public short? Marca { get; set; }
-        public string MarcaDescripcion { get; set; }
-        public short? Modelo { get; set; }
-        public string ModeloDescripcion { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
         public string Inventario { get; set; }
         public string Serie { get; set; }
         public short? Unidad_de_Medida { get; set; }
@@ -32,12 +32,12 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
-        public short? Tipo { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
+        public int? Tipo { get; set; }
         public string TipoDescripcion { get; set; }
-        public short? Marca { get; set; }
-        public string MarcaDescripcion { get; set; }
-        public short? Modelo { get; set; }
-        public string ModeloDescripcion { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
         public string Inventario { get; set; }
         public string Serie { get; set; }
         public short? Unidad_de_Medida { get; set; }

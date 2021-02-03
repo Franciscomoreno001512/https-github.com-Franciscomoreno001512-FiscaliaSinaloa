@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Tipo_de_Compareciente;
+using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
@@ -20,6 +22,7 @@ using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Grupo_al_que_Pertenece;
+using Spartane.Core.Domain.Preferencia_Sexual;
 using Spartane.Core.Domain.Etnia;
 using Spartane.Core.Domain.Religion;
 using Spartane.Core.Domain.Servicio_Medico;
@@ -71,6 +74,7 @@ using Spartane.Core.Domain.Complexion;
 using Spartane.Core.Domain.Color_Piel;
 using Spartane.Core.Domain.Frente;
 using Spartane.Core.Domain.Largo_de_Cabello;
+using Spartane.Core.Domain.Forma_Cabello;
 using Spartane.Core.Domain.Color_de_Cabello;
 using Spartane.Core.Domain.Calvicie;
 using Spartane.Core.Domain.Color_Ojos;
@@ -110,9 +114,14 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public int? Expediente_MP { get; set; }
+        public int? Expediente_MASC { get; set; }
         public bool? Datos_Confidenciales { get; set; }
         public bool? Se_Informo_sobre_el_Procedimiento { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
+        public bool? Persona_Desaparecida { get; set; }
+        public bool? Persona_Aparecio { get; set; }
+        public DateTime? Fecha_de_Aparicion { get; set; }
+        public short? Con_Vida { get; set; }
         public bool? Persona_Moral { get; set; }
         public bool? Q_Q_R_O_ { get; set; }
         public bool? Es_victima { get; set; }
@@ -156,6 +165,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public string Correo_Electronico { get; set; }
         public bool? Situacion_de_Vulnerabilidad { get; set; }
         public int? Grupo_al_que_pertenece { get; set; }
+        public int? Preferencia_Sexual { get; set; }
         public int? Etnia { get; set; }
         public short? No_de_Hijos { get; set; }
         public short? Religion { get; set; }
@@ -175,6 +185,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int? Tipo_de_Inimputabilidad { get; set; }
         public string Especifique { get; set; }
         public bool? Se_Informaron_sobre_sus_Derechos { get; set; }
+        public bool? Gravidez { get; set; }
         public int? Discapacidad_Mental { get; set; }
         public int? Discapacidad_Fisica { get; set; }
         public int? Discapacidad_Sensorial { get; set; }
@@ -255,6 +266,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int? Color_Piel { get; set; }
         public int? Frente { get; set; }
         public int? Largo_de_Cabello { get; set; }
+        public int? Forma_de_Cabello { get; set; }
         public int? Color_Cabello { get; set; }
         public int? Calvicie { get; set; }
         public int? Color_Ojos { get; set; }
@@ -287,8 +299,12 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
         [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_MASC")]
+        public virtual Spartane.Core.Domain.Solicitud.Solicitud Expediente_MASC_Solicitud { get; set; }
         [ForeignKey("Tipo_de_Compareciente")]
         public virtual Spartane.Core.Domain.Tipo_de_Compareciente.Tipo_de_Compareciente Tipo_de_Compareciente_Tipo_de_Compareciente { get; set; }
+        [ForeignKey("Con_Vida")]
+        public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Con_Vida_A_Tiempo { get; set; }
         [ForeignKey("Sexo")]
         public virtual Spartane.Core.Domain.Genero.Genero Sexo_Genero { get; set; }
         [ForeignKey("Estado_Civil")]
@@ -317,6 +333,8 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_Colonia { get; set; }
         [ForeignKey("Grupo_al_que_pertenece")]
         public virtual Spartane.Core.Domain.Grupo_al_que_Pertenece.Grupo_al_que_Pertenece Grupo_al_que_pertenece_Grupo_al_que_Pertenece { get; set; }
+        [ForeignKey("Preferencia_Sexual")]
+        public virtual Spartane.Core.Domain.Preferencia_Sexual.Preferencia_Sexual Preferencia_Sexual_Preferencia_Sexual { get; set; }
         [ForeignKey("Etnia")]
         public virtual Spartane.Core.Domain.Etnia.Etnia Etnia_Etnia { get; set; }
         [ForeignKey("Religion")]
@@ -419,6 +437,8 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Frente.Frente Frente_Frente { get; set; }
         [ForeignKey("Largo_de_Cabello")]
         public virtual Spartane.Core.Domain.Largo_de_Cabello.Largo_de_Cabello Largo_de_Cabello_Largo_de_Cabello { get; set; }
+        [ForeignKey("Forma_de_Cabello")]
+        public virtual Spartane.Core.Domain.Forma_Cabello.Forma_Cabello Forma_de_Cabello_Forma_Cabello { get; set; }
         [ForeignKey("Color_Cabello")]
         public virtual Spartane.Core.Domain.Color_de_Cabello.Color_de_Cabello Color_Cabello_Color_de_Cabello { get; set; }
         [ForeignKey("Calvicie")]
@@ -475,9 +495,14 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
                 public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public int? Expediente_MP { get; set; }
+        public int? Expediente_MASC { get; set; }
         public bool? Datos_Confidenciales { get; set; }
         public bool? Se_Informo_sobre_el_Procedimiento { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
+        public bool? Persona_Desaparecida { get; set; }
+        public bool? Persona_Aparecio { get; set; }
+        public DateTime? Fecha_de_Aparicion { get; set; }
+        public short? Con_Vida { get; set; }
         public bool? Persona_Moral { get; set; }
         public bool? Q_Q_R_O_ { get; set; }
         public bool? Es_victima { get; set; }
@@ -521,6 +546,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public string Correo_Electronico { get; set; }
         public bool? Situacion_de_Vulnerabilidad { get; set; }
         public int? Grupo_al_que_pertenece { get; set; }
+        public int? Preferencia_Sexual { get; set; }
         public int? Etnia { get; set; }
         public short? No_de_Hijos { get; set; }
         public short? Religion { get; set; }
@@ -540,6 +566,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int? Tipo_de_Inimputabilidad { get; set; }
         public string Especifique { get; set; }
         public bool? Se_Informaron_sobre_sus_Derechos { get; set; }
+        public bool? Gravidez { get; set; }
         public int? Discapacidad_Mental { get; set; }
         public int? Discapacidad_Fisica { get; set; }
         public int? Discapacidad_Sensorial { get; set; }
@@ -549,8 +576,12 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
         [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_MASC")]
+        public virtual Spartane.Core.Domain.Solicitud.Solicitud Expediente_MASC_Solicitud { get; set; }
         [ForeignKey("Tipo_de_Compareciente")]
         public virtual Spartane.Core.Domain.Tipo_de_Compareciente.Tipo_de_Compareciente Tipo_de_Compareciente_Tipo_de_Compareciente { get; set; }
+        [ForeignKey("Con_Vida")]
+        public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Con_Vida_A_Tiempo { get; set; }
         [ForeignKey("Sexo")]
         public virtual Spartane.Core.Domain.Genero.Genero Sexo_Genero { get; set; }
         [ForeignKey("Estado_Civil")]
@@ -579,6 +610,8 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_Colonia { get; set; }
         [ForeignKey("Grupo_al_que_pertenece")]
         public virtual Spartane.Core.Domain.Grupo_al_que_Pertenece.Grupo_al_que_Pertenece Grupo_al_que_pertenece_Grupo_al_que_Pertenece { get; set; }
+        [ForeignKey("Preferencia_Sexual")]
+        public virtual Spartane.Core.Domain.Preferencia_Sexual.Preferencia_Sexual Preferencia_Sexual_Preferencia_Sexual { get; set; }
         [ForeignKey("Etnia")]
         public virtual Spartane.Core.Domain.Etnia.Etnia Etnia_Etnia { get; set; }
         [ForeignKey("Religion")]
@@ -766,6 +799,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int? Color_Piel { get; set; }
         public int? Frente { get; set; }
         public int? Largo_de_Cabello { get; set; }
+        public int? Forma_de_Cabello { get; set; }
         public int? Color_Cabello { get; set; }
         public int? Calvicie { get; set; }
         public int? Color_Ojos { get; set; }
@@ -808,6 +842,8 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Frente.Frente Frente_Frente { get; set; }
         [ForeignKey("Largo_de_Cabello")]
         public virtual Spartane.Core.Domain.Largo_de_Cabello.Largo_de_Cabello Largo_de_Cabello_Largo_de_Cabello { get; set; }
+        [ForeignKey("Forma_de_Cabello")]
+        public virtual Spartane.Core.Domain.Forma_Cabello.Forma_Cabello Forma_de_Cabello_Forma_Cabello { get; set; }
         [ForeignKey("Color_Cabello")]
         public virtual Spartane.Core.Domain.Color_de_Cabello.Color_de_Cabello Color_Cabello_Color_de_Cabello { get; set; }
         [ForeignKey("Calvicie")]

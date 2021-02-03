@@ -59,6 +59,33 @@
                     @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
                     @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.SentenciaResources.Descr</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DescrFilter, filters, new { @class = "form-control", @id = "ddlDescrFilter" })
+                    @Html.TextBoxFor(m => m.Descr, new { @class = "form-control", @type = "text", @id = "txtDescr" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.SentenciaResources.iddatos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromiddatos, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromiddatos" })
+                    @Html.ValidationMessageFor(m => m.Fromiddatos)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Toiddatos, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToiddatos", @data_min = "txtAdvanceFromiddatos" })
+                    @Html.ValidationMessageFor(m => m.Toiddatos)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.SentenciaResources.CveSentencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CveSentenciaFilter, filters, new { @class = "form-control", @id = "ddlCveSentenciaFilter" })
+                    @Html.TextBoxFor(m => m.CveSentencia, new { @class = "form-control", @type = "text", @id = "txtCveSentencia" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Sentencia/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -80,6 +107,21 @@
             hasParameter = true;
             advanceSearch.SentenciaDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.SentenciaDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+        }
+        if ($("#txtAdvanceDescr").val() != "") {
+            hasParameter = true;
+            advanceSearch.SentenciaDescr = $("#txtAdvanceDescr").val();
+            advanceSearch.SentenciaDescrSearchType = $("#ddlAdvanceDescrFilter").val();
+        }
+        if ($("#txtAdvanceFromiddatos").val() != "" || $("#txtAdvanceToiddatos").val() != "") {
+            hasParameter = true;
+            advanceSearch.SentenciaiddatosFrom = $("#txtAdvanceFromiddatos").val();
+            advanceSearch.SentenciaiddatosTo = $("#txtAdvanceToiddatos").val();
+        }
+        if ($("#txtAdvanceCveSentencia").val() != "") {
+            hasParameter = true;
+            advanceSearch.SentenciaCveSentencia = $("#txtAdvanceCveSentencia").val();
+            advanceSearch.SentenciaCveSentenciaSearchType = $("#ddlAdvanceCveSentenciaFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

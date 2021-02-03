@@ -12,13 +12,13 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
         public short? Tipo { get; set; }
         public string TipoDescripcion { get; set; }
-        public int? Suelo { get; set; }
-        public string SueloDescripcion { get; set; }
+        public string Suelo { get; set; }
         public string Descripcion { get; set; }
         public string Localizacion_1 { get; set; }
-        public string Localizacion_2 { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
         public int? Orientacion_de { get; set; }
@@ -36,13 +36,13 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
         public short? Tipo { get; set; }
         public string TipoDescripcion { get; set; }
-        public int? Suelo { get; set; }
-        public string SueloDescripcion { get; set; }
+        public string Suelo { get; set; }
         public string Descripcion { get; set; }
         public string Localizacion_1 { get; set; }
-        public string Localizacion_2 { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
         public int? Orientacion_de { get; set; }

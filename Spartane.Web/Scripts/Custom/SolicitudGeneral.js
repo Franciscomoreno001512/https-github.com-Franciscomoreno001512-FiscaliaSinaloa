@@ -1040,6 +1040,17 @@ function GetAutoCompleteSolicitud_Usuario_que_Registra_Spartan_UserData(data) {
     }
     return AutoCompleteUsuario_que_RegistraData;
 }
+var AutoCompleteUnidad_MASCData = [];
+function GetAutoCompleteSolicitud_Unidad_MASC_UnidadData(data) {
+	AutoCompleteUnidad_MASCData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUnidad_MASCData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteUnidad_MASCData;
+}
 var AutoCompleteNUATData = [];
 function GetAutoCompleteSolicitud_NUAT_Modulo_Atencion_InicialData(data) {
 	AutoCompleteNUATData = [];
@@ -1050,6 +1061,28 @@ function GetAutoCompleteSolicitud_NUAT_Modulo_Atencion_InicialData(data) {
         });
     }
     return AutoCompleteNUATData;
+}
+var AutoCompleteExpediente_MPIData = [];
+function GetAutoCompleteSolicitud_Expediente_MPI_expediente_ministerio_publicoData(data) {
+	AutoCompleteExpediente_MPIData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MPIData.push({
+            id: data[i].clave,
+            text: data[i].nic
+        });
+    }
+    return AutoCompleteExpediente_MPIData;
+}
+var AutoCompleteExpediente_CausaPenalData = [];
+function GetAutoCompleteSolicitud_Expediente_CausaPenal_Resolucion_MPData(data) {
+	AutoCompleteExpediente_CausaPenalData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_CausaPenalData.push({
+            id: data[i].Clave,
+            text: data[i].Observaciones
+        });
+    }
+    return AutoCompleteExpediente_CausaPenalData;
 }
 var AutoCompleteMunicipioData = [];
 function GetAutoCompleteSolicitud_Municipio_MunicipioData(data) {
@@ -1084,16 +1117,16 @@ function GetAutoCompleteSolicitud_Agente_del_Ministerio_Publico_Invest_Spartan_U
     }
     return AutoCompleteAgente_del_Ministerio_Publico_InvestData;
 }
-var AutoCompleteJuez_de_ControlData = [];
-function GetAutoCompleteSolicitud_Juez_de_Control_Spartan_UserData(data) {
-	AutoCompleteJuez_de_ControlData = [];
+var AutoCompleteUnidadData = [];
+function GetAutoCompleteSolicitud_Unidad_UnidadData(data) {
+	AutoCompleteUnidadData = [];
     for (var i = 0; i < data.length; i++) {
-        AutoCompleteJuez_de_ControlData.push({
-            id: data[i].Id_User,
-            text: data[i].Name
+        AutoCompleteUnidadData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
         });
     }
-    return AutoCompleteJuez_de_ControlData;
+    return AutoCompleteUnidadData;
 }
 var AutoCompletePaisHData = [];
 function GetAutoCompleteSolicitud_PaisH_PaisData(data) {
@@ -1150,17 +1183,6 @@ function GetAutoCompleteSolicitud_ColoniaH_ColoniaData(data) {
     }
     return AutoCompleteColoniaHData;
 }
-var AutoCompleteUsuario_que_ValidaData = [];
-function GetAutoCompleteSolicitud_Usuario_que_Valida_Spartan_UserData(data) {
-	AutoCompleteUsuario_que_ValidaData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteUsuario_que_ValidaData.push({
-            id: data[i].Id_User,
-            text: data[i].Name
-        });
-    }
-    return AutoCompleteUsuario_que_ValidaData;
-}
 var AutoCompleteEspecialista_AsignadoAData = [];
 function GetAutoCompleteSolicitud_Especialista_AsignadoA_Spartan_UserData(data) {
 	AutoCompleteEspecialista_AsignadoAData = [];
@@ -1196,6 +1218,50 @@ function GetAutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Facilitador_
     return AutoCompleteFacilitador_AsignadoData;
 }
 
+var AutoCompleteUsuario_que_Resuelve_SolicitudData = [];
+function GetAutoCompleteSolicitud_Usuario_que_Resuelve_Solicitud_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_Resuelve_SolicitudData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_Resuelve_SolicitudData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_Resuelve_SolicitudData;
+}
+var AutoCompleteUsuario_que_ValidaData = [];
+function GetAutoCompleteSolicitud_Usuario_que_Valida_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_ValidaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_ValidaData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_ValidaData;
+}
+var AutoCompleteUsuario_que_Resuelve_ProcedimientoData = [];
+function GetAutoCompleteSolicitud_Usuario_que_Resuelve_Procedimiento_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_Resuelve_ProcedimientoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_Resuelve_ProcedimientoData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_Resuelve_ProcedimientoData;
+}
+var AutoCompleteUsuario_que_Valida_ProcedimientoData = [];
+function GetAutoCompleteSolicitud_Usuario_que_Valida_Procedimiento_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_Valida_ProcedimientoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_Valida_ProcedimientoData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_Valida_ProcedimientoData;
+}
 //Grid GetAutocomplete
 
 //Grid GetAutocomplete
@@ -1251,9 +1317,18 @@ function ClearControls() {
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
+    $('#Unidad_MASC').empty();
+    $("#Unidad_MASC").append('<option value=""></option>');
+    $('#Unidad_MASC').val('0').trigger('change');
     $('#NUAT').empty();
     $("#NUAT").append('<option value=""></option>');
     $('#NUAT').val('0').trigger('change');
+    $('#Expediente_MPI').empty();
+    $("#Expediente_MPI").append('<option value=""></option>');
+    $('#Expediente_MPI').val('0').trigger('change');
+    $('#Expediente_CausaPenal').empty();
+    $("#Expediente_CausaPenal").append('<option value=""></option>');
+    $('#Expediente_CausaPenal').val('0').trigger('change');
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
@@ -1263,9 +1338,9 @@ function ClearControls() {
     $('#Agente_del_Ministerio_Publico_Invest').empty();
     $("#Agente_del_Ministerio_Publico_Invest").append('<option value=""></option>');
     $('#Agente_del_Ministerio_Publico_Invest').val('0').trigger('change');
-    $('#Juez_de_Control').empty();
-    $("#Juez_de_Control").append('<option value=""></option>');
-    $('#Juez_de_Control').val('0').trigger('change');
+    $('#Unidad').empty();
+    $("#Unidad").append('<option value=""></option>');
+    $('#Unidad').val('0').trigger('change');
     $('#PaisH').empty();
     $("#PaisH").append('<option value=""></option>');
     $('#PaisH').val('0').trigger('change');
@@ -1281,13 +1356,22 @@ function ClearControls() {
     $('#ColoniaH').empty();
     $("#ColoniaH").append('<option value=""></option>');
     $('#ColoniaH').val('0').trigger('change');
-    $('#Usuario_que_Valida').empty();
-    $("#Usuario_que_Valida").append('<option value=""></option>');
-    $('#Usuario_que_Valida').val('0').trigger('change');
     $('#Especialista_AsignadoA').empty();
     $("#Especialista_AsignadoA").append('<option value=""></option>');
     $('#Especialista_AsignadoA').val('0').trigger('change');
                 Detalle_Solicitud_Historial_de_AsignacionesClearGridData();
+    $('#Usuario_que_Resuelve_Solicitud').empty();
+    $("#Usuario_que_Resuelve_Solicitud").append('<option value=""></option>');
+    $('#Usuario_que_Resuelve_Solicitud').val('0').trigger('change');
+    $('#Usuario_que_Valida').empty();
+    $("#Usuario_que_Valida").append('<option value=""></option>');
+    $('#Usuario_que_Valida').val('0').trigger('change');
+    $('#Usuario_que_Resuelve_Procedimiento').empty();
+    $("#Usuario_que_Resuelve_Procedimiento").append('<option value=""></option>');
+    $('#Usuario_que_Resuelve_Procedimiento').val('0').trigger('change');
+    $('#Usuario_que_Valida_Procedimiento').empty();
+    $("#Usuario_que_Valida_Procedimiento").append('<option value=""></option>');
+    $('#Usuario_que_Valida_Procedimiento').val('0').trigger('change');
                 Detalle_de_Solicitud_Bitacora_de_CoincidClearGridData();
                 Detalle_Historico_JAClearGridData();
 
@@ -1440,9 +1524,18 @@ $(document).ready(function () {
 	    $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
+    $('#Unidad_MASC').empty();
+    $("#Unidad_MASC").append('<option value=""></option>');
+    $('#Unidad_MASC').val('0').trigger('change');
     $('#NUAT').empty();
     $("#NUAT").append('<option value=""></option>');
     $('#NUAT').val('0').trigger('change');
+    $('#Expediente_MPI').empty();
+    $("#Expediente_MPI").append('<option value=""></option>');
+    $('#Expediente_MPI').val('0').trigger('change');
+    $('#Expediente_CausaPenal').empty();
+    $("#Expediente_CausaPenal").append('<option value=""></option>');
+    $('#Expediente_CausaPenal').val('0').trigger('change');
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
@@ -1452,9 +1545,9 @@ $(document).ready(function () {
     $('#Agente_del_Ministerio_Publico_Invest').empty();
     $("#Agente_del_Ministerio_Publico_Invest").append('<option value=""></option>');
     $('#Agente_del_Ministerio_Publico_Invest').val('0').trigger('change');
-    $('#Juez_de_Control').empty();
-    $("#Juez_de_Control").append('<option value=""></option>');
-    $('#Juez_de_Control').val('0').trigger('change');
+    $('#Unidad').empty();
+    $("#Unidad").append('<option value=""></option>');
+    $('#Unidad').val('0').trigger('change');
     $('#PaisH').empty();
     $("#PaisH").append('<option value=""></option>');
     $('#PaisH').val('0').trigger('change');
@@ -1470,13 +1563,22 @@ $(document).ready(function () {
     $('#ColoniaH').empty();
     $("#ColoniaH").append('<option value=""></option>');
     $('#ColoniaH').val('0').trigger('change');
-    $('#Usuario_que_Valida').empty();
-    $("#Usuario_que_Valida").append('<option value=""></option>');
-    $('#Usuario_que_Valida').val('0').trigger('change');
     $('#Especialista_AsignadoA').empty();
     $("#Especialista_AsignadoA").append('<option value=""></option>');
     $('#Especialista_AsignadoA').val('0').trigger('change');
                 Detalle_Solicitud_Historial_de_AsignacionesClearGridData();
+    $('#Usuario_que_Resuelve_Solicitud').empty();
+    $("#Usuario_que_Resuelve_Solicitud").append('<option value=""></option>');
+    $('#Usuario_que_Resuelve_Solicitud').val('0').trigger('change');
+    $('#Usuario_que_Valida').empty();
+    $("#Usuario_que_Valida").append('<option value=""></option>');
+    $('#Usuario_que_Valida').val('0').trigger('change');
+    $('#Usuario_que_Resuelve_Procedimiento').empty();
+    $("#Usuario_que_Resuelve_Procedimiento").append('<option value=""></option>');
+    $('#Usuario_que_Resuelve_Procedimiento').val('0').trigger('change');
+    $('#Usuario_que_Valida_Procedimiento').empty();
+    $("#Usuario_que_Valida_Procedimiento").append('<option value=""></option>');
+    $('#Usuario_que_Valida_Procedimiento').val('0').trigger('change');
                 Detalle_de_Solicitud_Bitacora_de_CoincidClearGridData();
                 Detalle_Historico_JAClearGridData();
 

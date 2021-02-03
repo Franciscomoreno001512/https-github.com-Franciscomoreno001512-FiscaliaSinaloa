@@ -2,6 +2,8 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Encuesta;
+using Spartane.Core.Domain.Modulo_Encuesta;
+using Spartane.Core.Domain.Tipo_Encuesta;
 using Spartane.Core.Domain.Catalogo_Numero_de_Preguntas;
 
 using Spartane.Core.Enums;
@@ -13,6 +15,8 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Encuesta;
+using Spartane.Web.Areas.WebApiConsumer.Modulo_Encuesta;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_Encuesta;
 using Spartane.Web.Areas.WebApiConsumer.Catalogo_Numero_de_Preguntas;
 
 using Spartane.Web.AuthFilters;
@@ -50,6 +54,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IEncuestaService service = null;
         private IEncuestaApiConsumer _IEncuestaApiConsumer;
+        private IModulo_EncuestaApiConsumer _IModulo_EncuestaApiConsumer;
+        private ITipo_EncuestaApiConsumer _ITipo_EncuestaApiConsumer;
         private ICatalogo_Numero_de_PreguntasApiConsumer _ICatalogo_Numero_de_PreguntasApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
@@ -68,7 +74,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public EncuestaController(IEncuestaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IEncuestaApiConsumer EncuestaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ICatalogo_Numero_de_PreguntasApiConsumer Catalogo_Numero_de_PreguntasApiConsumer )
+        public EncuestaController(IEncuestaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IEncuestaApiConsumer EncuestaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_EncuestaApiConsumer Modulo_EncuestaApiConsumer , ITipo_EncuestaApiConsumer Tipo_EncuestaApiConsumer , ICatalogo_Numero_de_PreguntasApiConsumer Catalogo_Numero_de_PreguntasApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -82,6 +88,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
+            this._IModulo_EncuestaApiConsumer = Modulo_EncuestaApiConsumer;
+            this._ITipo_EncuestaApiConsumer = Tipo_EncuestaApiConsumer;
             this._ICatalogo_Numero_de_PreguntasApiConsumer = Catalogo_Numero_de_PreguntasApiConsumer;
 
         }
@@ -158,18 +166,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varEncuesta= new EncuestaModel
 					{
 						Clave  = EncuestaData.Clave 
-	                    ,Numero_de_Preguntas = EncuestaData.Numero_de_Preguntas
+	                    ,Modulo = EncuestaData.Modulo
+                    ,ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Modulo), "Modulo_Encuesta") ??  (string)EncuestaData.Modulo_Modulo_Encuesta.Descripcion
+                    ,Tipo_Encuesta = EncuestaData.Tipo_Encuesta
+                    ,Tipo_EncuestaDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Tipo_Encuesta), "Tipo_Encuesta") ??  (string)EncuestaData.Tipo_Encuesta_Tipo_Encuesta.Descripcion
+                    ,Numero_de_Preguntas = EncuestaData.Numero_de_Preguntas
                     ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Numero_de_Preguntas), "Catalogo_Numero_de_Preguntas") ??  (string)EncuestaData.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
                     ,Pregunta_1 = EncuestaData.Pregunta_1
                     ,Pregunta_2 = EncuestaData.Pregunta_2
                     ,Pregunta_3 = EncuestaData.Pregunta_3
                     ,Pregunta_4 = EncuestaData.Pregunta_4
                     ,Pregunta_5 = EncuestaData.Pregunta_5
-                    ,Pregunta_6 = EncuestaData.Pregunta_6
-                    ,Pregunta_7 = EncuestaData.Pregunta_7
-                    ,Pregunta_8 = EncuestaData.Pregunta_8
-                    ,Pregunta_9 = EncuestaData.Pregunta_9
-                    ,Pregunta_10 = EncuestaData.Pregunta_10
 
 					};
 				}
@@ -180,6 +187,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Encuestas_Tipo_Encuesta = _ITipo_EncuestaApiConsumer.SelAll(true);
+            if (Tipo_Encuestas_Tipo_Encuesta != null && Tipo_Encuestas_Tipo_Encuesta.Resource != null)
+                ViewBag.Tipo_Encuestas_Tipo_Encuesta = Tipo_Encuestas_Tipo_Encuesta.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
             if (Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null && Catalogo_Numero_de_Preguntass_Numero_de_Preguntas.Resource != null)
@@ -249,18 +270,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varEncuesta= new EncuestaModel
 					{
 						Clave  = EncuestaData.Clave 
-	                    ,Numero_de_Preguntas = EncuestaData.Numero_de_Preguntas
+	                    ,Modulo = EncuestaData.Modulo
+                    ,ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Modulo), "Modulo_Encuesta") ??  (string)EncuestaData.Modulo_Modulo_Encuesta.Descripcion
+                    ,Tipo_Encuesta = EncuestaData.Tipo_Encuesta
+                    ,Tipo_EncuestaDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Tipo_Encuesta), "Tipo_Encuesta") ??  (string)EncuestaData.Tipo_Encuesta_Tipo_Encuesta.Descripcion
+                    ,Numero_de_Preguntas = EncuestaData.Numero_de_Preguntas
                     ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Numero_de_Preguntas), "Catalogo_Numero_de_Preguntas") ??  (string)EncuestaData.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
                     ,Pregunta_1 = EncuestaData.Pregunta_1
                     ,Pregunta_2 = EncuestaData.Pregunta_2
                     ,Pregunta_3 = EncuestaData.Pregunta_3
                     ,Pregunta_4 = EncuestaData.Pregunta_4
                     ,Pregunta_5 = EncuestaData.Pregunta_5
-                    ,Pregunta_6 = EncuestaData.Pregunta_6
-                    ,Pregunta_7 = EncuestaData.Pregunta_7
-                    ,Pregunta_8 = EncuestaData.Pregunta_8
-                    ,Pregunta_9 = EncuestaData.Pregunta_9
-                    ,Pregunta_10 = EncuestaData.Pregunta_10
 
 					};
 				}
@@ -269,6 +289,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Encuestas_Tipo_Encuesta = _ITipo_EncuestaApiConsumer.SelAll(true);
+            if (Tipo_Encuestas_Tipo_Encuesta != null && Tipo_Encuestas_Tipo_Encuesta.Resource != null)
+                ViewBag.Tipo_Encuestas_Tipo_Encuesta = Tipo_Encuestas_Tipo_Encuesta.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
             if (Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null && Catalogo_Numero_de_Preguntass_Numero_de_Preguntas.Resource != null)
@@ -296,6 +330,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetModulo_EncuestaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IModulo_EncuestaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetTipo_EncuestaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_EncuestaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Encuesta", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetCatalogo_Numero_de_PreguntasAll()
         {
@@ -350,6 +426,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Encuestas_Tipo_Encuesta = _ITipo_EncuestaApiConsumer.SelAll(true);
+            if (Tipo_Encuestas_Tipo_Encuesta != null && Tipo_Encuestas_Tipo_Encuesta.Resource != null)
+                ViewBag.Tipo_Encuestas_Tipo_Encuesta = Tipo_Encuestas_Tipo_Encuesta.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
             if (Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null && Catalogo_Numero_de_Preguntass_Numero_de_Preguntas.Resource != null)
@@ -368,6 +458,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Encuestas_Tipo_Encuesta = _ITipo_EncuestaApiConsumer.SelAll(true);
+            if (Tipo_Encuestas_Tipo_Encuesta != null && Tipo_Encuestas_Tipo_Encuesta.Resource != null)
+                ViewBag.Tipo_Encuestas_Tipo_Encuesta = Tipo_Encuestas_Tipo_Encuesta.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
             if (Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null && Catalogo_Numero_de_Preguntass_Numero_de_Preguntas.Resource != null)
@@ -413,17 +517,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Encuestas.Select(m => new EncuestaGridModel
                     {
                     Clave = m.Clave
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
+                        ,Tipo_EncuestaDescripcion = CultureHelper.GetTraduction(m.Tipo_Encuesta_Tipo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Encuesta_Tipo_Encuesta.Descripcion
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
 			,Pregunta_1 = m.Pregunta_1
 			,Pregunta_2 = m.Pregunta_2
 			,Pregunta_3 = m.Pregunta_3
 			,Pregunta_4 = m.Pregunta_4
 			,Pregunta_5 = m.Pregunta_5
-			,Pregunta_6 = m.Pregunta_6
-			,Pregunta_7 = m.Pregunta_7
-			,Pregunta_8 = m.Pregunta_8
-			,Pregunta_9 = m.Pregunta_9
-			,Pregunta_10 = m.Pregunta_10
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -538,17 +639,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 aaData = result.Encuestas.Select(m => new EncuestaGridModel
             {
                     Clave = m.Clave
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
+                        ,Tipo_EncuestaDescripcion = CultureHelper.GetTraduction(m.Tipo_Encuesta_Tipo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Encuesta_Tipo_Encuesta.Descripcion
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
 			,Pregunta_1 = m.Pregunta_1
 			,Pregunta_2 = m.Pregunta_2
 			,Pregunta_3 = m.Pregunta_3
 			,Pregunta_4 = m.Pregunta_4
 			,Pregunta_5 = m.Pregunta_5
-			,Pregunta_6 = m.Pregunta_6
-			,Pregunta_7 = m.Pregunta_7
-			,Pregunta_8 = m.Pregunta_8
-			,Pregunta_9 = m.Pregunta_9
-			,Pregunta_10 = m.Pregunta_10
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -573,6 +671,62 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Encuesta.Clave >= " + filter.FromClave;
                 if (!string.IsNullOrEmpty(filter.ToClave))
                     where += " AND Encuesta.Clave <= " + filter.ToClave;
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceModulo))
+            {
+                switch (filter.ModuloFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Modulo_Encuesta.Descripcion LIKE '" + filter.AdvanceModulo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Modulo_Encuesta.Descripcion LIKE '%" + filter.AdvanceModulo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Modulo_Encuesta.Descripcion = '" + filter.AdvanceModulo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Modulo_Encuesta.Descripcion LIKE '%" + filter.AdvanceModulo + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceModuloMultiple != null && filter.AdvanceModuloMultiple.Count() > 0)
+            {
+                var ModuloIds = string.Join(",", filter.AdvanceModuloMultiple);
+
+                where += " AND Encuesta.Modulo In (" + ModuloIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo_Encuesta))
+            {
+                switch (filter.Tipo_EncuestaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_Encuesta.Descripcion LIKE '" + filter.AdvanceTipo_Encuesta + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_Encuesta.Descripcion LIKE '%" + filter.AdvanceTipo_Encuesta + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_Encuesta.Descripcion = '" + filter.AdvanceTipo_Encuesta + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_Encuesta.Descripcion LIKE '%" + filter.AdvanceTipo_Encuesta + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipo_EncuestaMultiple != null && filter.AdvanceTipo_EncuestaMultiple.Count() > 0)
+            {
+                var Tipo_EncuestaIds = string.Join(",", filter.AdvanceTipo_EncuestaMultiple);
+
+                where += " AND Encuesta.Tipo_Encuesta In (" + Tipo_EncuestaIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceNumero_de_Preguntas))
@@ -713,116 +867,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.Pregunta_6))
-            {
-                switch (filter.Pregunta_6Filter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Encuesta.Pregunta_6 LIKE '" + filter.Pregunta_6 + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Encuesta.Pregunta_6 LIKE '%" + filter.Pregunta_6 + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Encuesta.Pregunta_6 = '" + filter.Pregunta_6 + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Encuesta.Pregunta_6 LIKE '%" + filter.Pregunta_6 + "%'";
-                        break;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(filter.Pregunta_7))
-            {
-                switch (filter.Pregunta_7Filter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Encuesta.Pregunta_7 LIKE '" + filter.Pregunta_7 + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Encuesta.Pregunta_7 LIKE '%" + filter.Pregunta_7 + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Encuesta.Pregunta_7 = '" + filter.Pregunta_7 + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Encuesta.Pregunta_7 LIKE '%" + filter.Pregunta_7 + "%'";
-                        break;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(filter.Pregunta_8))
-            {
-                switch (filter.Pregunta_8Filter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Encuesta.Pregunta_8 LIKE '" + filter.Pregunta_8 + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Encuesta.Pregunta_8 LIKE '%" + filter.Pregunta_8 + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Encuesta.Pregunta_8 = '" + filter.Pregunta_8 + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Encuesta.Pregunta_8 LIKE '%" + filter.Pregunta_8 + "%'";
-                        break;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(filter.Pregunta_9))
-            {
-                switch (filter.Pregunta_9Filter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Encuesta.Pregunta_9 LIKE '" + filter.Pregunta_9 + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Encuesta.Pregunta_9 LIKE '%" + filter.Pregunta_9 + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Encuesta.Pregunta_9 = '" + filter.Pregunta_9 + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Encuesta.Pregunta_9 LIKE '%" + filter.Pregunta_9 + "%'";
-                        break;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(filter.Pregunta_10))
-            {
-                switch (filter.Pregunta_10Filter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Encuesta.Pregunta_10 LIKE '" + filter.Pregunta_10 + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Encuesta.Pregunta_10 LIKE '%" + filter.Pregunta_10 + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Encuesta.Pregunta_10 = '" + filter.Pregunta_10 + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Encuesta.Pregunta_10 LIKE '%" + filter.Pregunta_10 + "%'";
-                        break;
-                }
-            }
-
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -878,17 +922,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var EncuestaInfo = new Encuesta
                     {
                         Clave = varEncuesta.Clave
+                        ,Modulo = varEncuesta.Modulo
+                        ,Tipo_Encuesta = varEncuesta.Tipo_Encuesta
                         ,Numero_de_Preguntas = varEncuesta.Numero_de_Preguntas
                         ,Pregunta_1 = varEncuesta.Pregunta_1
                         ,Pregunta_2 = varEncuesta.Pregunta_2
                         ,Pregunta_3 = varEncuesta.Pregunta_3
                         ,Pregunta_4 = varEncuesta.Pregunta_4
                         ,Pregunta_5 = varEncuesta.Pregunta_5
-                        ,Pregunta_6 = varEncuesta.Pregunta_6
-                        ,Pregunta_7 = varEncuesta.Pregunta_7
-                        ,Pregunta_8 = varEncuesta.Pregunta_8
-                        ,Pregunta_9 = varEncuesta.Pregunta_9
-                        ,Pregunta_10 = varEncuesta.Pregunta_10
 
                     };
 
@@ -1276,17 +1317,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Encuestas.Select(m => new EncuestaGridModel
             {
                 Clave = m.Clave
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
+                        ,Tipo_EncuestaDescripcion = CultureHelper.GetTraduction(m.Tipo_Encuesta_Tipo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Encuesta_Tipo_Encuesta.Descripcion
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
 			,Pregunta_1 = m.Pregunta_1
 			,Pregunta_2 = m.Pregunta_2
 			,Pregunta_3 = m.Pregunta_3
 			,Pregunta_4 = m.Pregunta_4
 			,Pregunta_5 = m.Pregunta_5
-			,Pregunta_6 = m.Pregunta_6
-			,Pregunta_7 = m.Pregunta_7
-			,Pregunta_8 = m.Pregunta_8
-			,Pregunta_9 = m.Pregunta_9
-			,Pregunta_10 = m.Pregunta_10
 
             }).ToList();
 
@@ -1360,17 +1398,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Encuestas.Select(m => new EncuestaGridModel
             {
                 Clave = m.Clave
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
+                        ,Tipo_EncuestaDescripcion = CultureHelper.GetTraduction(m.Tipo_Encuesta_Tipo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Encuesta_Tipo_Encuesta.Descripcion
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
 			,Pregunta_1 = m.Pregunta_1
 			,Pregunta_2 = m.Pregunta_2
 			,Pregunta_3 = m.Pregunta_3
 			,Pregunta_4 = m.Pregunta_4
 			,Pregunta_5 = m.Pregunta_5
-			,Pregunta_6 = m.Pregunta_6
-			,Pregunta_7 = m.Pregunta_7
-			,Pregunta_8 = m.Pregunta_8
-			,Pregunta_9 = m.Pregunta_9
-			,Pregunta_10 = m.Pregunta_10
 
             }).ToList();
 
@@ -1410,17 +1445,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Encuesta_Datos_GeneralesInfo = new Encuesta_Datos_Generales
                 {
                     Clave = varEncuesta.Clave
-                                            ,Numero_de_Preguntas = varEncuesta.Numero_de_Preguntas
+                                            ,Modulo = varEncuesta.Modulo
+                        ,Tipo_Encuesta = varEncuesta.Tipo_Encuesta
+                        ,Numero_de_Preguntas = varEncuesta.Numero_de_Preguntas
                         ,Pregunta_1 = varEncuesta.Pregunta_1
                         ,Pregunta_2 = varEncuesta.Pregunta_2
                         ,Pregunta_3 = varEncuesta.Pregunta_3
                         ,Pregunta_4 = varEncuesta.Pregunta_4
                         ,Pregunta_5 = varEncuesta.Pregunta_5
-                        ,Pregunta_6 = varEncuesta.Pregunta_6
-                        ,Pregunta_7 = varEncuesta.Pregunta_7
-                        ,Pregunta_8 = varEncuesta.Pregunta_8
-                        ,Pregunta_9 = varEncuesta.Pregunta_9
-                        ,Pregunta_10 = varEncuesta.Pregunta_10
                     
                 };
 
@@ -1449,6 +1481,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var result = new Encuesta_Datos_GeneralesModel
                 {
                     Clave = m.Clave
+                        ,Modulo = m.Modulo
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
+                        ,Tipo_Encuesta = m.Tipo_Encuesta
+                        ,Tipo_EncuestaDescripcion = CultureHelper.GetTraduction(m.Tipo_Encuesta_Tipo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Encuesta_Tipo_Encuesta.Descripcion
                         ,Numero_de_Preguntas = m.Numero_de_Preguntas
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
 			,Pregunta_1 = m.Pregunta_1
@@ -1456,11 +1492,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Pregunta_3 = m.Pregunta_3
 			,Pregunta_4 = m.Pregunta_4
 			,Pregunta_5 = m.Pregunta_5
-			,Pregunta_6 = m.Pregunta_6
-			,Pregunta_7 = m.Pregunta_7
-			,Pregunta_8 = m.Pregunta_8
-			,Pregunta_9 = m.Pregunta_9
-			,Pregunta_10 = m.Pregunta_10
 
                     
                 };

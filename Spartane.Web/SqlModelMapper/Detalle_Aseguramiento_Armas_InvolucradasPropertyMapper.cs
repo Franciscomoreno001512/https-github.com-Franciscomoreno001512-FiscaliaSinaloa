@@ -16,6 +16,9 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Detalle_Aseguramiento_Armas_Involucradas.Clave";
+                case "Motivo_de_Registro[Descripcion]":
+                case "Motivo_de_RegistroDescripcion":
+                    return "Motivo_de_Registro.Descripcion";
                 case "Tipo[Nombre]":
                 case "TipoNombre":
                     return "Tipo_de_Arma.Nombre";
@@ -31,13 +34,15 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_Aseguramiento_Armas_Involucradas.Matricula";
                 case "Serie":
                     return "Detalle_Aseguramiento_Armas_Involucradas.Serie";
+                case "Arma_Oficial":
+                    return "Detalle_Aseguramiento_Armas_Involucradas.Arma_Oficial";
                 case "Inventario":
                     return "Detalle_Aseguramiento_Armas_Involucradas.Inventario";
                 case "Clasificacion[Descripcion]":
                 case "ClasificacionDescripcion":
-                    return "Clasificacion_de_Artefacto_y_Explosivo.Descripcion";
-                case "Cantidad":
-                    return "Detalle_Aseguramiento_Armas_Involucradas.Cantidad";
+                    return "Tipo_Clasificacion.Descripcion";
+                case "Valor_Estimado":
+                    return "Detalle_Aseguramiento_Armas_Involucradas.Valor_Estimado";
                 case "Lugar_de_Hallazgo":
                     return "Detalle_Aseguramiento_Armas_Involucradas.Lugar_de_Hallazgo";
                 case "Observaciones":
@@ -59,6 +64,10 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
+            if (columnName == "Arma_Oficial")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
 
 
             var operatorCondition = GetOperationType(columnName);

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Relaciones_MASC" value="Relaciones MASC"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="en-US" name="Numero_de_Procedimiento" value="Número de Procedimiento"></resource>
+  <resource culture="en-US" name="Relacion" value="Relación"></resource>
+  <resource culture="en-US" name="idRelacionOrigen" value="idRelacionOrigen"></resource>
+  <resource culture="en-US" name="Requiere_cambiar_la_relacion" value="¿Requiere cambiar la relación?"></resource>
+  <resource culture="en-US" name="Motivo_de_Cambio" value="Motivo de Cambio"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Fecha_de_Resolucion_solicitud" value="Fecha de Resolución"></resource>
+  <resource culture="en-US" name="Hora_de_Resolucion_solicitud" value="Hora de Resolución"></resource>
+  <resource culture="en-US" name="Usuario_que_Resuelve_solicitud" value="Usuario que Resuelve"></resource>
+  <resource culture="en-US" name="Resolucion" value="Resolución"></resource>
+  <resource culture="en-US" name="Tipo_de_Mecanismo" value="Tipo de Mecanismo"></resource>
+  <resource culture="en-US" name="Observaciones_solicitud" value="Observaciones"></resource>
+  <resource culture="en-US" name="Fecha_de_Validacion_solicitud" value="Fecha de Validación"></resource>
+  <resource culture="en-US" name="Hora_de_Validacion_solicitud" value="Hora de Validación"></resource>
+  <resource culture="en-US" name="Usuario_que_Valida_solicitud" value="Usuario que Valida"></resource>
+  <resource culture="en-US" name="resultado_solicitud" value="¿Autorizar que se rechace la solicitud?"></resource>
+  <resource culture="en-US" name="motivo_rechazo_solicitud" value="Motivo por el cual no autoriza que se rechace la solicitud"></resource>
+  <resource culture="en-US" name="Fecha_de_Resolucion_proc" value="Fecha de Resolución"></resource>
+  <resource culture="en-US" name="hora_resolucion_proc" value="Hora de Resolución"></resource>
+  <resource culture="en-US" name="usuario_resuelve_proc" value="Usuario que Resuelve"></resource>
+  <resource culture="en-US" name="Resolucion_proc" value="Resolución"></resource>
+  <resource culture="en-US" name="Observaciones_proc" value="Observaciones"></resource>
+  <resource culture="en-US" name="Fecha_de_Validacion_proc" value="Fecha de Validación"></resource>
+  <resource culture="en-US" name="Hora_de_Validacion_proc" value="Hora de Validación"></resource>
+  <resource culture="en-US" name="Usuario_que_Valida_proc" value="Usuario que Valida"></resource>
+  <resource culture="en-US" name="Resultado_proc" value="Resultado de Validación"></resource>
+  <resource culture="en-US" name="Motivo_de_Rechazo_proc" value="Motivo de Rechazo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabResolucion_de_Solicitud" value="Resolución de Solicitud"></resource>
+<resource culture="en-US" name="TabResolucion_de_Procedimiento" value="Resolución de Procedimiento"></resource>
+
+</resources>

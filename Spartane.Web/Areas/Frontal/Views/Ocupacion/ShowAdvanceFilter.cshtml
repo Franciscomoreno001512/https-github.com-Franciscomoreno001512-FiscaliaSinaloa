@@ -102,6 +102,14 @@
                     @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
                     @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.OcupacionResources.Vigenciax</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.VigenciaxFilter, filters, new { @class = "form-control", @id = "ddlVigenciaxFilter" })
+                    @Html.TextBoxFor(m => m.Vigenciax, new { @class = "form-control", @type = "text", @id = "txtVigenciax" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Ocupacion/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -148,6 +156,11 @@
             hasParameter = true;
             advanceSearch.OcupacionObservaciones = $("#txtAdvanceObservaciones").val();
             advanceSearch.OcupacionObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        if ($("#txtAdvanceVigenciax").val() != "") {
+            hasParameter = true;
+            advanceSearch.OcupacionVigenciax = $("#txtAdvanceVigenciax").val();
+            advanceSearch.OcupacionVigenciaxSearchType = $("#ddlAdvanceVigenciaxFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

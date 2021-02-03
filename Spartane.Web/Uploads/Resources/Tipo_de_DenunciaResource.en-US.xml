@@ -5,6 +5,8 @@
   <resource culture="en-US" name="Descripcion" value="Descripción "></resource>
   <resource culture="en-US" name="Vigencia" value="Vigencia"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="Abreviacion" value="Abreviacion"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

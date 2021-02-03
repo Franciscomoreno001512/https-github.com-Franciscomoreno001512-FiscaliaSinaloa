@@ -2,18 +2,26 @@
 <resources>
   <resource culture="en-us" name="Encuesta1" value="Encuesta"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
-  <resource culture="en-US" name="Numero_de_Preguntas" value="Número de Preguntas"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Fecha_Enviado" value="Fecha Enviado"></resource>
+  <resource culture="en-US" name="Hora_Enviado" value="Hora Enviado"></resource>
+  <resource culture="en-US" name="Fecha_Respuesta" value="Fecha Respuesta"></resource>
+  <resource culture="en-US" name="Hora_Respuesta" value="Hora Respuesta"></resource>
   <resource culture="en-US" name="NUAT" value="NUAT"></resource>
+  <resource culture="en-US" name="Modulo" value="Módulo"></resource>
+  <resource culture="en-US" name="Tipo_Encuesta" value="Tipo Encuesta"></resource>
+  <resource culture="en-US" name="Numero_de_Preguntas" value="Número de Preguntas"></resource>
   <resource culture="en-US" name="Pregunta1" value="Pregunta #1"></resource>
+  <resource culture="en-US" name="Respuesta_1" value="Respuesta #1"></resource>
   <resource culture="en-US" name="Pregunta2" value="Pregunta #2"></resource>
+  <resource culture="en-US" name="Respuesta_2" value="Respuesta #2"></resource>
   <resource culture="en-US" name="Pregunta3" value="Pregunta #3"></resource>
+  <resource culture="en-US" name="Respuesta_3" value="Respuesta #3"></resource>
   <resource culture="en-US" name="Pregunta4" value="Pregunta #4"></resource>
+  <resource culture="en-US" name="Respuesta_4" value="Respuesta #4"></resource>
   <resource culture="en-US" name="Pregunta5" value="Pregunta #5"></resource>
-  <resource culture="en-US" name="Pregunta6" value="Pregunta #6"></resource>
-  <resource culture="en-US" name="Pregunta7" value="Pregunta #7"></resource>
-  <resource culture="en-US" name="Pregunta8" value="Pregunta #8"></resource>
-  <resource culture="en-US" name="Pregunta9" value="Pregunta #9"></resource>
-  <resource culture="en-US" name="Pregunta10" value="Pregunta #10"></resource>
+  <resource culture="en-US" name="Respuesta_5" value="Respuesta #5"></resource>
+  <resource culture="en-US" name="Estatus" value="Estatus"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

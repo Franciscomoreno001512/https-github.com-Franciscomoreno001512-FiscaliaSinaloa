@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo_de_Registro</summary>
+        public static string Motivo_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Artefactos_y_Explosivos.GetResource("Motivo_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Clasificacion</summary>
         public static string Clasificacion
         {
@@ -43,16 +53,6 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_Aseguramiento_Artefactos_y_Explosivos.GetResource("Clasificacion", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Tipo</summary>
-        public static string Tipo
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Aseguramiento_Artefactos_y_Explosivos.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

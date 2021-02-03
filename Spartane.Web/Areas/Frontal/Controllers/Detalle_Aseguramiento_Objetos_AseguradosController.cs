@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Objetos_Asegurados;
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Equipo_de_Comunicacion;
 using Spartane.Core.Domain.Marca_de_Equipo_de_Comunicacion;
 
@@ -14,6 +15,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Objetos_Asegurados;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_de_Comunicacion;
 using Spartane.Web.Areas.WebApiConsumer.Marca_de_Equipo_de_Comunicacion;
 
@@ -42,6 +44,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_Objetos_AseguradosService service = null;
         private IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer _IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer;
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
         private ITipo_de_Equipo_de_ComunicacionApiConsumer _ITipo_de_Equipo_de_ComunicacionApiConsumer;
         private IMarca_de_Equipo_de_ComunicacionApiConsumer _IMarca_de_Equipo_de_ComunicacionApiConsumer;
 
@@ -57,7 +60,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_Objetos_AseguradosController(IDetalle_Aseguramiento_Objetos_AseguradosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer Detalle_Aseguramiento_Objetos_AseguradosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_Equipo_de_ComunicacionApiConsumer Tipo_de_Equipo_de_ComunicacionApiConsumer , IMarca_de_Equipo_de_ComunicacionApiConsumer Marca_de_Equipo_de_ComunicacionApiConsumer )
+        public Detalle_Aseguramiento_Objetos_AseguradosController(IDetalle_Aseguramiento_Objetos_AseguradosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer Detalle_Aseguramiento_Objetos_AseguradosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer , ITipo_de_Equipo_de_ComunicacionApiConsumer Tipo_de_Equipo_de_ComunicacionApiConsumer , IMarca_de_Equipo_de_ComunicacionApiConsumer Marca_de_Equipo_de_ComunicacionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -67,6 +70,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_Equipo_de_ComunicacionApiConsumer = Tipo_de_Equipo_de_ComunicacionApiConsumer;
             this._IMarca_de_Equipo_de_ComunicacionApiConsumer = Marca_de_Equipo_de_ComunicacionApiConsumer;
 
@@ -117,6 +121,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_Aseguramiento_Objetos_Asegurados = new Detalle_Aseguramiento_Objetos_AseguradosModel
                 {
                     Clave = (int)Detalle_Aseguramiento_Objetos_AseguradosData.Clave
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_Objetos_AseguradosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Objetos_AseguradosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_Objetos_AseguradosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                     ,Numero = Detalle_Aseguramiento_Objetos_AseguradosData.Numero
                     ,Tipo = Detalle_Aseguramiento_Objetos_AseguradosData.Tipo
                     ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Objetos_AseguradosData.Tipo), "Tipo_de_Equipo_de_Comunicacion") ??  (string)Detalle_Aseguramiento_Objetos_AseguradosData.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
@@ -131,6 +137,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Equipo_de_Comunicacions_Tipo = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(true);
             if (Tipo_de_Equipo_de_Comunicacions_Tipo != null && Tipo_de_Equipo_de_Comunicacions_Tipo.Resource != null)
@@ -178,7 +191,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_Aseguramiento_Objetos_Asegurados= new Detalle_Aseguramiento_Objetos_AseguradosModel
 					{
 						Clave  = Detalle_Aseguramiento_Objetos_AseguradosData.Clave 
-	                    ,Numero = Detalle_Aseguramiento_Objetos_AseguradosData.Numero
+	                    ,Motivo_de_Registro = Detalle_Aseguramiento_Objetos_AseguradosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Objetos_AseguradosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_Objetos_AseguradosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                    ,Numero = Detalle_Aseguramiento_Objetos_AseguradosData.Numero
                     ,Tipo = Detalle_Aseguramiento_Objetos_AseguradosData.Tipo
                     ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Objetos_AseguradosData.Tipo), "Tipo_de_Equipo_de_Comunicacion") ??  (string)Detalle_Aseguramiento_Objetos_AseguradosData.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
                     ,Marca = Detalle_Aseguramiento_Objetos_AseguradosData.Marca
@@ -193,6 +208,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Equipo_de_Comunicacions_Tipo = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(true);
             if (Tipo_de_Equipo_de_Comunicacions_Tipo != null && Tipo_de_Equipo_de_Comunicacions_Tipo.Resource != null)
@@ -227,6 +249,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetMotivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetTipo_de_Equipo_de_ComunicacionAll()
         {
@@ -290,6 +333,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_Objetos_Aseguradoss.Select(m => new Detalle_Aseguramiento_Objetos_AseguradosGridModel
                     {
                     Clave = m.Clave
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
 			,Numero = m.Numero
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
                         ,MarcaDescripcion = CultureHelper.GetTraduction(m.Marca_Marca_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ?? (string)m.Marca_Marca_de_Equipo_de_Comunicacion.Descripcion
@@ -359,6 +403,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_Aseguramiento_Objetos_AseguradosInfo = new Detalle_Aseguramiento_Objetos_Asegurados
                     {
                         Clave = varDetalle_Aseguramiento_Objetos_Asegurados.Clave
+                        ,Motivo_de_Registro = varDetalle_Aseguramiento_Objetos_Asegurados.Motivo_de_Registro
                         ,Numero = varDetalle_Aseguramiento_Objetos_Asegurados.Numero
                         ,Tipo = varDetalle_Aseguramiento_Objetos_Asegurados.Tipo
                         ,Marca = varDetalle_Aseguramiento_Objetos_Asegurados.Marca
@@ -591,6 +636,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Objetos_Aseguradoss.Select(m => new Detalle_Aseguramiento_Objetos_AseguradosGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,Numero = m.Numero
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
                 ,MarcaDescripcion = (string)m.Marca_Marca_de_Equipo_de_Comunicacion.Descripcion
@@ -642,6 +688,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Objetos_Aseguradoss.Select(m => new Detalle_Aseguramiento_Objetos_AseguradosGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,Numero = m.Numero
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
                 ,MarcaDescripcion = (string)m.Marca_Marca_de_Equipo_de_Comunicacion.Descripcion

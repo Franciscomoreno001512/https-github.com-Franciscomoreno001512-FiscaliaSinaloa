@@ -1,0 +1,297 @@
+/* DOCUMENTO CSS PRINCIPAL */
+/* Portal Ciudadano | FGE-Sinaloa */
+/* Autor: Yesenia Cazares, Eder Bermudez - Totaltech */
+/* * * FUENTE * * */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+/*
+font-family: 'Nunito', sans-serif;
+
+Extra-light 200 
+Extra-light 200 italic
+Light 300
+Light 300 italic
+Regular 400
+Regular 400 italic
+Semi-bold 600
+Semi-bold 600 italic
+Bold 700
+Bold 700 italic
+Extra-bold 800
+Extra-bold 800 italic
+Black 900
+Black 900 italic
+*/
+/* * * COLORES * * */
+.txt-blanco {
+  color: white;
+}
+
+.txt-14 {
+  font-size: 0.875rem;
+}
+
+html,
+body {
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+p {
+  font-size: 0.875rem;
+}
+
+body.fondo-azul {
+  background: url("../Images/bg-blue-sisweb-ciesa.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1 {
+  font-weight: bold;
+  color: #001A45;
+  text-transform: capitalize;
+}
+
+h1.pildora {
+  display: block;
+  margin: 0.25rem 0.5rem;
+  background-color: #CADFFF;
+  border-radius: 15px;
+}
+
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row.display-flex > [class*=col-] card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  border-radius: 1rem;
+  background-color: white;
+  padding: 1rem 1rem 3rem 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 1.5rem;
+}
+
+.card-icon i {
+  font-size: 3.4rem;
+  line-height: 1;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #001A45;
+}
+
+.card-body {
+  color: #262626;
+}
+
+a:hover .card {
+  background-color: #001A45;
+}
+
+a:hover .card-icon i,
+a:hover .card-title,
+a:hover .card-body {
+  color: #CADFFF;
+}
+
+/* * * * LOGIN * * * */
+body.login {
+  background-color: white;
+  background: url("../Images/login-gallery/fondo-login.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.logo-fiscalia {
+  width: 180px;
+  height: 180px;
+  float: left;
+}
+
+.logo-saproj {
+  width: 90px;
+  height: 90px;
+  float: right;
+}
+
+.logo-tt {
+  width: 90px;
+  height: 90px;
+}
+
+#galeria {
+  display: flex;
+  overflow: hidden;
+  max-height: 45%;
+}
+
+#galeria img {
+  margin-top: -50%;
+  width: 100%;
+}
+
+.carousel {
+  position: unset;
+}
+
+@media (min-width: 992px) {
+  #galeria {
+    max-height: 100%;
+    position: relative;
+  }
+
+  #galeria img {
+    margin-top: 0%;
+  }
+}
+.align-v {
+  margin-top: 5%;
+}
+
+.carousel-indicators .active {
+  background-color: #001A45;
+}
+
+.carousel-indicators li {
+  background-color: #CADFFF;
+}
+
+/* * * * FORMULARIO * * * */
+.control-label {
+  margin: 0.75rem 0;
+  padding-top: 6px;
+}
+
+input[type=text],
+input[type=password],
+select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 0.75rem 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+a.btn,
+input[type=submit],
+input[type=button] {
+  padding: 6px 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+a.btn:hover,
+input[type=submit]:hover,
+input[type=button]:hover {
+  background-color: #001A45 !important;
+  color: white !important;
+}
+
+.btn-iniciarS {
+  width: 100%;
+  background-color: #0049C2 !important;
+  color: white !important;
+}
+
+.btn-registrarme {
+  width: 100%;
+  background-color: #CADFFF !important;
+  color: #001A45 !important;
+}
+
+.btn-cancelar {
+  width: 100%;
+}
+
+.link-pass {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.link-pass a:hover {
+  text-decoration: underline;
+  color: #001A45;
+}
+
+/* * * * SPARTANE * * *
+.col-sm-12.control-label {
+    text-align: left;
+} */
+/* * * * SPARTANE LOGIN* * * */
+.portal-c .tabs-container {
+  border: 1px solid #001A45;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+}
+
+.portal-c .tabs-container .panel-body {
+  border: 0;
+}
+
+.portal-c .nav.nav-tabs li {
+  display: none;
+}
+
+.portal-c .nav.nav-tabs li.active {
+  width: 100%;
+  display: block;
+}
+
+.portal-c .nav.nav-tabs li.active a,
+.portal-c .nav.nav-tabs li.active a:hover,
+.portal-c .nav.nav-tabs li.active a:focus {
+  margin: 0;
+  background-color: #001A45;
+  color: white;
+  border: none;
+}
+
+.portal-c .form-control {
+  border: 1px solid #D1D3D4 !important;
+}
+
+.portal-c .form-control:focus {
+  border: 1px solid #001A45 !important;
+}
+
+.portal-c .tabs-container input[type=button],
+.portal-c .tabs-container input[type=submit] {
+  border: 1px solid #001A45 !important;
+  background-color: #D1D3D4;
+  color: #001A45;
+}
+
+.portal-c .tabs-container input[type=button]:hover,
+.portal-c .tabs-container input[type=submit]:hover {
+  background-color: #001A45;
+  color: #D1D3D4;
+}
+
+/* * * * MODAL * * * */
+.logo-modal {
+  height: 100px;
+  width: 100px;
+}

@@ -1,0 +1,531 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Robo_de_Vehiculo_PCAdvanceSearchModel
+@{
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
+    List<SelectListItem> varTipo_de_Solicitud_Tipo_de_Solicitud = null;
+    if (ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud != null)
+    { varTipo_de_Solicitud_Tipo_de_Solicitud = (List<SelectListItem>)ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud; }
+    List<SelectListItem> varMarca_del_Vehiculo_Marca = null;
+    if (ViewBag.Marca_del_Vehiculos_Marca != null)
+    { varMarca_del_Vehiculo_Marca = (List<SelectListItem>)ViewBag.Marca_del_Vehiculos_Marca; }
+    List<SelectListItem> varSub_Marca_del_Vehiculo_Sub_Marca = null;
+    if (ViewBag.Sub_Marca_del_Vehiculos_Sub_Marca != null)
+    { varSub_Marca_del_Vehiculo_Sub_Marca = (List<SelectListItem>)ViewBag.Sub_Marca_del_Vehiculos_Sub_Marca; }
+    List<SelectListItem> varTipo_de_Vehiculo_Tipo_de_Vehiculo = null;
+    if (ViewBag.Tipo_de_Vehiculos_Tipo_de_Vehiculo != null)
+    { varTipo_de_Vehiculo_Tipo_de_Vehiculo = (List<SelectListItem>)ViewBag.Tipo_de_Vehiculos_Tipo_de_Vehiculo; }
+    List<SelectListItem> varColor_Vehiculo_Color = null;
+    if (ViewBag.Color_Vehiculos_Color != null)
+    { varColor_Vehiculo_Color = (List<SelectListItem>)ViewBag.Color_Vehiculos_Color; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Robo_de_Vehiculo_PC", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Robo_de_Vehiculo_PCResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Solicitud</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_SolicitudFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_SolicitudFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Solicitud, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Solicitud" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Solicitud_Tipo_de_Solicitud!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_SolicitudMultiple, varTipo_de_Solicitud_Tipo_de_Solicitud,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Solicitud"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Robo_de_Vehiculo_PCResources.Marca</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.MarcaFilter, filters, new { @class = "form-control", @id = "ddlMarcaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMarca, new { @class = "form-control", @type = "text", @id = "txtAdvanceMarca" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMarca_del_Vehiculo_Marca!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMarcaMultiple, varMarca_del_Vehiculo_Marca,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMarca"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Robo_de_Vehiculo_PCResources.Sub_Marca</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Sub_MarcaFilter, filters, new { @class = "form-control", @id = "ddlSub_MarcaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceSub_Marca, new { @class = "form-control", @type = "text", @id = "txtAdvanceSub_Marca" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varSub_Marca_del_Vehiculo_Sub_Marca!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceSub_MarcaMultiple, varSub_Marca_del_Vehiculo_Sub_Marca,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceSub_Marca"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Vehiculo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_VehiculoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_VehiculoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Vehiculo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Vehiculo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Vehiculo_Tipo_de_Vehiculo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_VehiculoMultiple, varTipo_de_Vehiculo_Tipo_de_Vehiculo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Vehiculo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Robo_de_Vehiculo_PCResources.Modelo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromModelo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromModelo" })
+                    @Html.ValidationMessageFor(m => m.FromModelo)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToModelo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToModelo", @data_min = "txtAdvanceFromModelo" })
+                    @Html.ValidationMessageFor(m => m.ToModelo)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Robo_de_Vehiculo_PCResources.Color</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ColorFilter, filters, new { @class = "form-control", @id = "ddlColorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceColor, new { @class = "form-control", @type = "text", @id = "txtAdvanceColor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varColor_Vehiculo_Color!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceColorMultiple, varColor_Vehiculo_Color,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceColor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Robo_de_Vehiculo_PCResources.Placas</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.PlacasFilter, filters, new { @class = "form-control", @id = "ddlPlacasFilter" })
+                    @Html.TextBoxFor(m => m.Placas, new { @class = "form-control", @type = "text", @id = "txtPlacas" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Robo_de_Vehiculo_PCResources.Senas_Particulares</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Senas_ParticularesFilter, filters, new { @class = "form-control", @id = "ddlSenas_ParticularesFilter" })
+                    @Html.TextBoxFor(m => m.Senas_Particulares, new { @class = "form-control", @type = "text", @id = "txtSenas_Particulares" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Robo_de_Vehiculo_PC/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Robo_de_Vehiculo_PCClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Robo_de_Vehiculo_PCClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.SolicitudSearchType = 0;
+        if ($('#ddlAdvanceSolicitud').val().length > 0 || $("#txtAdvanceSolicitud").val() == "") {
+
+
+            if (isRobo_de_Vehiculo_PCTextSearch) {
+                advanceSearch.SolicitudName = $("#txtAdvanceSolicitud").val();
+                advanceSearch.SolicitudNameSearchType = $("#ddlAdvanceSolicitud").val();
+                advanceSearch.SolicitudSearchType = 1;
+            }
+            else {
+
+                advanceSearch.SolicitudToSearch = $("#ddlAdvanceSolicitud").val();
+                advanceSearch.SolicitudSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_SolicitudSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Solicitud').val().length > 0 || $("#txtAdvanceTipo_de_Solicitud").val() == "") {
+
+
+            if (isRobo_de_Vehiculo_PCTextSearch) {
+                advanceSearch.Tipo_de_SolicitudName = $("#txtAdvanceTipo_de_Solicitud").val();
+                advanceSearch.Tipo_de_SolicitudNameSearchType = $("#ddlAdvanceTipo_de_Solicitud").val();
+                advanceSearch.Tipo_de_SolicitudSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_SolicitudToSearch = $("#ddlAdvanceTipo_de_Solicitud").val();
+                advanceSearch.Tipo_de_SolicitudSearchType = 2;
+            }
+        }
+        if ($("#ddlAdvanceRobo_de_Vehiculo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Robo_de_Vehiculo_PCRobo_de_Vehiculo = $("#ddlAdvanceRobo_de_Vehiculo").val();
+        }
+        advanceSearch.MarcaSearchType = 0;
+        if ($('#ddlAdvanceMarca').val().length > 0 || $("#txtAdvanceMarca").val() == "") {
+
+
+            if (isRobo_de_Vehiculo_PCTextSearch) {
+                advanceSearch.MarcaName = $("#txtAdvanceMarca").val();
+                advanceSearch.MarcaNameSearchType = $("#ddlAdvanceMarca").val();
+                advanceSearch.MarcaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.MarcaToSearch = $("#ddlAdvanceMarca").val();
+                advanceSearch.MarcaSearchType = 2;
+            }
+        }
+        advanceSearch.Sub_MarcaSearchType = 0;
+        if ($('#ddlAdvanceSub_Marca').val().length > 0 || $("#txtAdvanceSub_Marca").val() == "") {
+
+
+            if (isRobo_de_Vehiculo_PCTextSearch) {
+                advanceSearch.Sub_MarcaName = $("#txtAdvanceSub_Marca").val();
+                advanceSearch.Sub_MarcaNameSearchType = $("#ddlAdvanceSub_Marca").val();
+                advanceSearch.Sub_MarcaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Sub_MarcaToSearch = $("#ddlAdvanceSub_Marca").val();
+                advanceSearch.Sub_MarcaSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_VehiculoSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Vehiculo').val().length > 0 || $("#txtAdvanceTipo_de_Vehiculo").val() == "") {
+
+
+            if (isRobo_de_Vehiculo_PCTextSearch) {
+                advanceSearch.Tipo_de_VehiculoName = $("#txtAdvanceTipo_de_Vehiculo").val();
+                advanceSearch.Tipo_de_VehiculoNameSearchType = $("#ddlAdvanceTipo_de_Vehiculo").val();
+                advanceSearch.Tipo_de_VehiculoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_VehiculoToSearch = $("#ddlAdvanceTipo_de_Vehiculo").val();
+                advanceSearch.Tipo_de_VehiculoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromModelo").val() != "" || $("#txtAdvanceToModelo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Robo_de_Vehiculo_PCModeloFrom = $("#txtAdvanceFromModelo").val();
+            advanceSearch.Robo_de_Vehiculo_PCModeloTo = $("#txtAdvanceToModelo").val();
+        }
+        advanceSearch.ColorSearchType = 0;
+        if ($('#ddlAdvanceColor').val().length > 0 || $("#txtAdvanceColor").val() == "") {
+
+
+            if (isRobo_de_Vehiculo_PCTextSearch) {
+                advanceSearch.ColorName = $("#txtAdvanceColor").val();
+                advanceSearch.ColorNameSearchType = $("#ddlAdvanceColor").val();
+                advanceSearch.ColorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ColorToSearch = $("#ddlAdvanceColor").val();
+                advanceSearch.ColorSearchType = 2;
+            }
+        }
+        if ($("#txtAdvancePlacas").val() != "") {
+            hasParameter = true;
+            advanceSearch.Robo_de_Vehiculo_PCPlacas = $("#txtAdvancePlacas").val();
+            advanceSearch.Robo_de_Vehiculo_PCPlacasSearchType = $("#ddlAdvancePlacasFilter").val();
+        }
+        if ($("#txtAdvanceSenas_Particulares").val() != "") {
+            hasParameter = true;
+            advanceSearch.Robo_de_Vehiculo_PCSenas_Particulares = $("#txtAdvanceSenas_Particulares").val();
+            advanceSearch.Robo_de_Vehiculo_PCSenas_ParticularesSearchType = $("#ddlAdvanceSenas_ParticularesFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblRobo_de_Vehiculo_PC').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isRobo_de_Vehiculo_PCTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceSolicitud").keypress(function () {
+            isRobo_de_Vehiculo_PCTextSearch = true;
+            $("#ddlAdvanceSolicitud").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSolicitud").change(function () {
+            isRobo_de_Vehiculo_PCTextSearch = false;
+            $("#txtAdvanceSolicitud").val('');
+        });
+        $("#txtAdvanceTipo_de_Solicitud").keypress(function () {
+            isRobo_de_Vehiculo_PCTextSearch = true;
+            $("#ddlAdvanceTipo_de_Solicitud").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Solicitud").change(function () {
+            isRobo_de_Vehiculo_PCTextSearch = false;
+            $("#txtAdvanceTipo_de_Solicitud").val('');
+        });
+        $("#txtAdvanceMarca").keypress(function () {
+            isRobo_de_Vehiculo_PCTextSearch = true;
+            $("#ddlAdvanceMarca").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMarca").change(function () {
+            isRobo_de_Vehiculo_PCTextSearch = false;
+            $("#txtAdvanceMarca").val('');
+        });
+        $("#txtAdvanceSub_Marca").keypress(function () {
+            isRobo_de_Vehiculo_PCTextSearch = true;
+            $("#ddlAdvanceSub_Marca").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSub_Marca").change(function () {
+            isRobo_de_Vehiculo_PCTextSearch = false;
+            $("#txtAdvanceSub_Marca").val('');
+        });
+        $("#txtAdvanceTipo_de_Vehiculo").keypress(function () {
+            isRobo_de_Vehiculo_PCTextSearch = true;
+            $("#ddlAdvanceTipo_de_Vehiculo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Vehiculo").change(function () {
+            isRobo_de_Vehiculo_PCTextSearch = false;
+            $("#txtAdvanceTipo_de_Vehiculo").val('');
+        });
+        $("#txtAdvanceColor").keypress(function () {
+            isRobo_de_Vehiculo_PCTextSearch = true;
+            $("#ddlAdvanceColor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColor").change(function () {
+            isRobo_de_Vehiculo_PCTextSearch = false;
+            $("#txtAdvanceColor").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

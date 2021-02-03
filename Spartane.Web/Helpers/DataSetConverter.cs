@@ -158,13 +158,13 @@ namespace Spartane.Web.Helpers
                     table.Columns[i].ColumnName = resultMeta[i].Logical_Name;
 
             ///Delete columns not visible
-            for (int i = 0; i < columsVisible.Count(); i++)
-            {
-                if (columsVisible[i] == "false")
-                {
-                    table.Columns.RemoveAt(i - 1);
-                }
-            }
+            //for (int i = 0; i < columsVisible.Count(); i++)
+            //{
+            //    if (columsVisible[i] == "false")
+            //    {
+            //        table.Columns.RemoveAt(i - 1);
+            //    }
+            //}
 
             return table;
         }

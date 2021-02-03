@@ -6,15 +6,18 @@
  List<SelectListItem> varSolicitud_Solicitud = null;
     if (ViewBag.Solicituds_Solicitud != null)
     { varSolicitud_Solicitud = (List<SelectListItem>)ViewBag.Solicituds_Solicitud; }
- List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
-    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
-    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
- List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
-    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
-    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
+ List<SelectListItem> varRelaciones_MASC_Relacion = null;
+    if (ViewBag.Relaciones_MASCs_Relacion != null)
+    { varRelaciones_MASC_Relacion = (List<SelectListItem>)ViewBag.Relaciones_MASCs_Relacion; }
     List<SelectListItem> varCumplimiento_Cumplimiento = null;
     if (ViewBag.Cumplimientos_Cumplimiento != null)
     { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
+    List<SelectListItem> varForma_de_Cumplimiento_Forma_de_Pago = null;
+    if (ViewBag.Forma_de_Cumplimientos_Forma_de_Pago != null)
+    { varForma_de_Cumplimiento_Forma_de_Pago = (List<SelectListItem>)ViewBag.Forma_de_Cumplimientos_Forma_de_Pago; }
+    List<SelectListItem> varA_Tiempo_Concluir_Acuerdo = null;
+    if (ViewBag.A_Tiempos_Concluir_Acuerdo != null)
+    { varA_Tiempo_Concluir_Acuerdo = (List<SelectListItem>)ViewBag.A_Tiempos_Concluir_Acuerdo; }
  List<SelectListItem> varSpartan_User_Especialista = null;
     if (ViewBag.Spartan_Users_Especialista != null)
     { varSpartan_User_Especialista = (List<SelectListItem>)ViewBag.Spartan_Users_Especialista; }
@@ -107,12 +110,6 @@
                 </span>
             </div>
         </div>
- List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
-    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
-    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
- List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
-    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
-    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
         <div class="MarginBottom ">
             <h3>@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_Requerida</h3>
         </div>
@@ -132,6 +129,30 @@
                 </span>
             </div>
         </div>
+ List<SelectListItem> varRelaciones_MASC_Relacion = null;
+    if (ViewBag.Relaciones_MASCs_Relacion != null)
+    { varRelaciones_MASC_Relacion = (List<SelectListItem>)ViewBag.Relaciones_MASCs_Relacion; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CumplimientoFilter, filters, new { @class = "form-control", @id = "ddlCumplimientoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceCumplimiento, new { @class = "form-control", @type = "text", @id = "txtAdvanceCumplimiento" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varCumplimiento_Cumplimiento!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceCumplimientoMultiple, varCumplimiento_Cumplimiento,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceCumplimiento"
+                        });
+                    }
+                </div>
         <div class="MarginBottom ">
             <h3>@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento</h3>
         </div>
@@ -152,23 +173,52 @@
             </div>
         </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento</h3>
+                    <h3>@Resources.Detalle_de_Solicitud_SeguimientoResources.Forma_de_Pago</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.CumplimientoFilter, filters, new { @class = "form-control", @id = "ddlCumplimientoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceCumplimiento, new { @class = "form-control", @type = "text", @id = "txtAdvanceCumplimiento" })
+                    @Html.DropDownListFor(m => m.Forma_de_PagoFilter, filters, new { @class = "form-control", @id = "ddlForma_de_PagoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceForma_de_Pago, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_de_Pago" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCumplimiento_Cumplimiento!=null)
+                    @if (varForma_de_Cumplimiento_Forma_de_Pago!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceCumplimientoMultiple, varCumplimiento_Cumplimiento,
+                        @Html.ListBoxFor(m => m.AdvanceForma_de_PagoMultiple, varForma_de_Cumplimiento_Forma_de_Pago,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvanceCumplimiento"
+                            @id = "ddlAdvanceForma_de_Pago"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Solicitud_SeguimientoResources.Descripcion_de_Cumplimiento</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Descripcion_de_CumplimientoFilter, filters, new { @class = "form-control", @id = "ddlDescripcion_de_CumplimientoFilter" })
+                    @Html.TextBoxFor(m => m.Descripcion_de_Cumplimiento, new { @class = "form-control", @type = "text", @id = "txtDescripcion_de_Cumplimiento" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Solicitud_SeguimientoResources.Concluir_Acuerdo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Concluir_AcuerdoFilter, filters, new { @class = "form-control", @id = "ddlConcluir_AcuerdoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceConcluir_Acuerdo, new { @class = "form-control", @type = "text", @id = "txtAdvanceConcluir_Acuerdo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varA_Tiempo_Concluir_Acuerdo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceConcluir_AcuerdoMultiple, varA_Tiempo_Concluir_Acuerdo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceConcluir_Acuerdo"
                         });
                     }
                 </div>
@@ -225,45 +275,25 @@
             advanceSearch.Detalle_de_Solicitud_SeguimientoHora_de_Registro = $("#txtAdvanceHora_de_Registro").val();
             advanceSearch.Detalle_de_Solicitud_SeguimientoHora_de_RegistroSearchType = $("#ddlAdvanceHora_de_RegistroFilter").val();
         }
-        advanceSearch.RequeridoSearchType = 0;
-        if ($('#ddlAdvanceRequerido').val().length > 0 || $("#txtAdvanceRequerido").val() == "") {
-
-
-            if (isDetalle_de_Solicitud_SeguimientoTextSearch) {
-                advanceSearch.RequeridoName = $("#txtAdvanceRequerido").val();
-                advanceSearch.RequeridoNameSearchType = $("#ddlAdvanceRequerido").val();
-                advanceSearch.RequeridoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.RequeridoToSearch = $("#ddlAdvanceRequerido").val();
-                advanceSearch.RequeridoSearchType = 2;
-            }
-        }
-        advanceSearch.SolicitanteSearchType = 0;
-        if ($('#ddlAdvanceSolicitante').val().length > 0 || $("#txtAdvanceSolicitante").val() == "") {
-
-
-            if (isDetalle_de_Solicitud_SeguimientoTextSearch) {
-                advanceSearch.SolicitanteName = $("#txtAdvanceSolicitante").val();
-                advanceSearch.SolicitanteNameSearchType = $("#ddlAdvanceSolicitante").val();
-                advanceSearch.SolicitanteSearchType = 1;
-            }
-            else {
-
-                advanceSearch.SolicitanteToSearch = $("#ddlAdvanceSolicitante").val();
-                advanceSearch.SolicitanteSearchType = 2;
-            }
-        }
         if ($("#txtAdvanceFromFecha_Requerida").val() != "" || $("#txtAdvanceToFecha_Requerida").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Solicitud_SeguimientoFecha_RequeridaFrom = $("#txtAdvanceFromFecha_Requerida").val();
             advanceSearch.Detalle_de_Solicitud_SeguimientoFecha_RequeridaTo = $("#txtAdvanceToFecha_Requerida").val();
         }
-        if ($("#txtAdvanceFromFecha_de_Cumplimiento").val() != "" || $("#txtAdvanceToFecha_de_Cumplimiento").val() != "") {
-            hasParameter = true;
-            advanceSearch.Detalle_de_Solicitud_SeguimientoFecha_de_CumplimientoFrom = $("#txtAdvanceFromFecha_de_Cumplimiento").val();
-            advanceSearch.Detalle_de_Solicitud_SeguimientoFecha_de_CumplimientoTo = $("#txtAdvanceToFecha_de_Cumplimiento").val();
+        advanceSearch.RelacionSearchType = 0;
+        if ($('#ddlAdvanceRelacion').val().length > 0 || $("#txtAdvanceRelacion").val() == "") {
+
+
+            if (isDetalle_de_Solicitud_SeguimientoTextSearch) {
+                advanceSearch.RelacionName = $("#txtAdvanceRelacion").val();
+                advanceSearch.RelacionNameSearchType = $("#ddlAdvanceRelacion").val();
+                advanceSearch.RelacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.RelacionToSearch = $("#ddlAdvanceRelacion").val();
+                advanceSearch.RelacionSearchType = 2;
+            }
         }
         advanceSearch.CumplimientoSearchType = 0;
         if ($('#ddlAdvanceCumplimiento').val().length > 0 || $("#txtAdvanceCumplimiento").val() == "") {
@@ -280,10 +310,50 @@
                 advanceSearch.CumplimientoSearchType = 2;
             }
         }
+        if ($("#txtAdvanceFromFecha_de_Cumplimiento").val() != "" || $("#txtAdvanceToFecha_de_Cumplimiento").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Solicitud_SeguimientoFecha_de_CumplimientoFrom = $("#txtAdvanceFromFecha_de_Cumplimiento").val();
+            advanceSearch.Detalle_de_Solicitud_SeguimientoFecha_de_CumplimientoTo = $("#txtAdvanceToFecha_de_Cumplimiento").val();
+        }
+        advanceSearch.Forma_de_PagoSearchType = 0;
+        if ($('#ddlAdvanceForma_de_Pago').val().length > 0 || $("#txtAdvanceForma_de_Pago").val() == "") {
+
+
+            if (isDetalle_de_Solicitud_SeguimientoTextSearch) {
+                advanceSearch.Forma_de_PagoName = $("#txtAdvanceForma_de_Pago").val();
+                advanceSearch.Forma_de_PagoNameSearchType = $("#ddlAdvanceForma_de_Pago").val();
+                advanceSearch.Forma_de_PagoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Forma_de_PagoToSearch = $("#ddlAdvanceForma_de_Pago").val();
+                advanceSearch.Forma_de_PagoSearchType = 2;
+            }
+        }
         if ($("#txtAdvanceFromCantidad_del_Monto").val() != "" || $("#txtAdvanceToCantidad_del_Monto").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Solicitud_SeguimientoCantidad_del_MontoFrom = $("#txtAdvanceFromCantidad_del_Monto").val();
             advanceSearch.Detalle_de_Solicitud_SeguimientoCantidad_del_MontoTo = $("#txtAdvanceToCantidad_del_Monto").val();
+        }
+        if ($("#txtAdvanceDescripcion_de_Cumplimiento").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Solicitud_SeguimientoDescripcion_de_Cumplimiento = $("#txtAdvanceDescripcion_de_Cumplimiento").val();
+            advanceSearch.Detalle_de_Solicitud_SeguimientoDescripcion_de_CumplimientoSearchType = $("#ddlAdvanceDescripcion_de_CumplimientoFilter").val();
+        }
+        advanceSearch.Concluir_AcuerdoSearchType = 0;
+        if ($('#ddlAdvanceConcluir_Acuerdo').val().length > 0 || $("#txtAdvanceConcluir_Acuerdo").val() == "") {
+
+
+            if (isDetalle_de_Solicitud_SeguimientoTextSearch) {
+                advanceSearch.Concluir_AcuerdoName = $("#txtAdvanceConcluir_Acuerdo").val();
+                advanceSearch.Concluir_AcuerdoNameSearchType = $("#ddlAdvanceConcluir_Acuerdo").val();
+                advanceSearch.Concluir_AcuerdoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Concluir_AcuerdoToSearch = $("#ddlAdvanceConcluir_Acuerdo").val();
+                advanceSearch.Concluir_AcuerdoSearchType = 2;
+            }
         }
         advanceSearch.EspecialistaSearchType = 0;
         if ($('#ddlAdvanceEspecialista').val().length > 0 || $("#txtAdvanceEspecialista").val() == "") {
@@ -347,23 +417,14 @@
             isDetalle_de_Solicitud_SeguimientoTextSearch = false;
             $("#txtAdvanceSolicitud").val('');
         });
-        $("#txtAdvanceRequerido").keypress(function () {
+        $("#txtAdvanceRelacion").keypress(function () {
             isDetalle_de_Solicitud_SeguimientoTextSearch = true;
-            $("#ddlAdvanceRequerido").val('').trigger("chosen:updated");
+            $("#ddlAdvanceRelacion").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceRequerido").change(function () {
+        $("#ddlAdvanceRelacion").change(function () {
             isDetalle_de_Solicitud_SeguimientoTextSearch = false;
-            $("#txtAdvanceRequerido").val('');
-        });
-        $("#txtAdvanceSolicitante").keypress(function () {
-            isDetalle_de_Solicitud_SeguimientoTextSearch = true;
-            $("#ddlAdvanceSolicitante").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceSolicitante").change(function () {
-            isDetalle_de_Solicitud_SeguimientoTextSearch = false;
-            $("#txtAdvanceSolicitante").val('');
+            $("#txtAdvanceRelacion").val('');
         });
         $("#txtAdvanceCumplimiento").keypress(function () {
             isDetalle_de_Solicitud_SeguimientoTextSearch = true;
@@ -373,6 +434,24 @@
         $("#ddlAdvanceCumplimiento").change(function () {
             isDetalle_de_Solicitud_SeguimientoTextSearch = false;
             $("#txtAdvanceCumplimiento").val('');
+        });
+        $("#txtAdvanceForma_de_Pago").keypress(function () {
+            isDetalle_de_Solicitud_SeguimientoTextSearch = true;
+            $("#ddlAdvanceForma_de_Pago").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceForma_de_Pago").change(function () {
+            isDetalle_de_Solicitud_SeguimientoTextSearch = false;
+            $("#txtAdvanceForma_de_Pago").val('');
+        });
+        $("#txtAdvanceConcluir_Acuerdo").keypress(function () {
+            isDetalle_de_Solicitud_SeguimientoTextSearch = true;
+            $("#ddlAdvanceConcluir_Acuerdo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceConcluir_Acuerdo").change(function () {
+            isDetalle_de_Solicitud_SeguimientoTextSearch = false;
+            $("#txtAdvanceConcluir_Acuerdo").val('');
         });
         $("#txtAdvanceEspecialista").keypress(function () {
             isDetalle_de_Solicitud_SeguimientoTextSearch = true;

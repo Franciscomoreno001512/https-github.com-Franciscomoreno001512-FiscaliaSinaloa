@@ -13,6 +13,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         {
             Datos_Confidenciales = RadioOptions.NoApply;
             Se_Informo_sobre_el_Procedimiento = RadioOptions.NoApply;
+            Persona_Desaparecida = RadioOptions.NoApply;
+            Persona_Aparecio = RadioOptions.NoApply;
             Persona_Moral = RadioOptions.NoApply;
             Q_Q_R_O_ = RadioOptions.NoApply;
             Es_victima = RadioOptions.NoApply;
@@ -20,6 +22,7 @@ namespace Spartane.Web.Areas.Frontal.Models
             Incompleto = RadioOptions.NoApply;
             Incapaz = RadioOptions.NoApply;
             Se_Informaron_sobre_sus_Derechos = RadioOptions.NoApply;
+            Gravidez = RadioOptions.NoApply;
             Documento_Extraviado = RadioOptions.NoApply;
             Imagen_Tatuaje = RadioOptions.NoApply;
 
@@ -38,6 +41,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceExpediente_MP { set; get; }
         public int[] AdvanceExpediente_MPMultiple { set; get; }
 
+        public Filters Expediente_MASCFilter { set; get; }
+        public string AdvanceExpediente_MASC { set; get; }
+        public int[] AdvanceExpediente_MASCMultiple { set; get; }
+
         public RadioOptions Datos_Confidenciales { set; get; }
 
         public RadioOptions Se_Informo_sobre_el_Procedimiento { set; get; }
@@ -45,6 +52,20 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Tipo_de_ComparecienteFilter { set; get; }
         public string AdvanceTipo_de_Compareciente { set; get; }
         public int[] AdvanceTipo_de_ComparecienteMultiple { set; get; }
+
+        public RadioOptions Persona_Desaparecida { set; get; }
+
+        public RadioOptions Persona_Aparecio { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_de_Aparicion { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_de_Aparicion", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_de_Aparicion { set; get; }
+
+        public Filters Con_VidaFilter { set; get; }
+        public string AdvanceCon_Vida { set; get; }
+        public int[] AdvanceCon_VidaMultiple { set; get; }
 
         public RadioOptions Persona_Moral { set; get; }
 
@@ -197,6 +218,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceGrupo_al_que_pertenece { set; get; }
         public int[] AdvanceGrupo_al_que_perteneceMultiple { set; get; }
 
+        public Filters Preferencia_SexualFilter { set; get; }
+        public string AdvancePreferencia_Sexual { set; get; }
+        public int[] AdvancePreferencia_SexualMultiple { set; get; }
+
         public Filters EtniaFilter { set; get; }
         public string AdvanceEtnia { set; get; }
         public int[] AdvanceEtniaMultiple { set; get; }
@@ -267,6 +292,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Especifique { set; get; }
 
         public RadioOptions Se_Informaron_sobre_sus_Derechos { set; get; }
+
+        public RadioOptions Gravidez { set; get; }
 
         public Filters Discapacidad_MentalFilter { set; get; }
         public string AdvanceDiscapacidad_Mental { set; get; }
@@ -561,6 +588,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Largo_de_CabelloFilter { set; get; }
         public string AdvanceLargo_de_Cabello { set; get; }
         public int[] AdvanceLargo_de_CabelloMultiple { set; get; }
+
+        public Filters Forma_de_CabelloFilter { set; get; }
+        public string AdvanceForma_de_Cabello { set; get; }
+        public int[] AdvanceForma_de_CabelloMultiple { set; get; }
 
         public Filters Color_CabelloFilter { set; get; }
         public string AdvanceColor_Cabello { set; get; }

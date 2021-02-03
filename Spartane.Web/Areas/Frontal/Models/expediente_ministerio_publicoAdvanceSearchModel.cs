@@ -138,23 +138,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters LatitudHFilter { set; get; }
         public string LatitudH { set; get; }
 
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_Canalizacion { set; get; }
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_Canalizacion", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_Canalizacion { set; get; }
-
-        public string ToHora_de_Canalizacion { set; get; }
-        public string FromHora_de_Canalizacion { set; get; }
-
-        public Filters usuario_que_canalizaFilter { set; get; }
-        public string Advanceusuario_que_canaliza { set; get; }
-        public int[] Advanceusuario_que_canalizaMultiple { set; get; }
-
-        public Filters canalizar_aFilter { set; get; }
-        public string Advancecanalizar_a { set; get; }
-        public int[] Advancecanalizar_aMultiple { set; get; }
-
         public Filters tipo_de_acuerdoFilter { set; get; }
         public string Advancetipo_de_acuerdo { set; get; }
         public int[] Advancetipo_de_acuerdoMultiple { set; get; }

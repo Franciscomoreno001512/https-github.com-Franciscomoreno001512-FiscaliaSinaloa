@@ -114,7 +114,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         // GET: Frontal/Tipo_de_Equipo_Tactico/Create
           [ObjectAuth(ObjectId = (ModuleObjectId)45521, PermissionType = PermissionTypes.New,
             OptionalParameter = "Id", OptionalPermissionType = PermissionTypes.Edit, OptionalPermissionTypeConsult = PermissionTypes.Consult)]
-        public ActionResult Create(short Id = 0,  int consult = 0, int ModuleId=0)
+        public ActionResult Create(int Id = 0,  int consult = 0, int ModuleId=0)
         {
                        if(ModuleId == 0)
                        {
@@ -516,7 +516,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
         [HttpDelete]
-        public ActionResult Delete(short id)
+        public ActionResult Delete(int id)
         {
             try
             {

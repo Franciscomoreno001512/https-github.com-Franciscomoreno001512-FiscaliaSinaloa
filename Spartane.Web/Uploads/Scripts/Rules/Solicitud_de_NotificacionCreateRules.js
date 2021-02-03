@@ -3,6 +3,15 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
+//BusinessRuleId:3066, Attribute:266221, Operation:Field, Event:None
+$("form#CreateSolicitud_de_Notificacion").on('change', '#Resultado', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Resultado' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { SetRequiredToControl( $('#' + nameOfTable + 'Incidente_en_la_Recepcion' + rowIndex));} else { SetNotRequiredToControl( $('#' + nameOfTable + 'Incidente_en_la_Recepcion' + rowIndex));}
+});
+
+//BusinessRuleId:3066, Attribute:266221, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {

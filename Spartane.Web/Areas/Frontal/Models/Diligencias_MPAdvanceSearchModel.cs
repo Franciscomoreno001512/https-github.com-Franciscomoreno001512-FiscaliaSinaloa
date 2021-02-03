@@ -12,6 +12,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Diligencias_MPAdvanceSearchModel()
         {
             Archivo_Adjunto = RadioOptions.NoApply;
+            Lista_para_periciales = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -69,6 +70,8 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }
+
+        public RadioOptions Lista_para_periciales { set; get; }
 
 
     }

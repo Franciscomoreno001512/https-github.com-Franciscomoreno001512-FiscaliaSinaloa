@@ -3,12 +3,12 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_de_Pistas_de_AterrizajeAdvanceSearchModel
 @{
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_Pista_de_Aterrizaje_Tipo = null;
     if (ViewBag.Tipo_de_Pista_de_Aterrizajes_Tipo != null)
     { varTipo_de_Pista_de_Aterrizaje_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Pista_de_Aterrizajes_Tipo; }
-    List<SelectListItem> varTipo_de_Suelo_Suelo = null;
-    if (ViewBag.Tipo_de_Suelos_Suelo != null)
-    { varTipo_de_Suelo_Suelo = (List<SelectListItem>)ViewBag.Tipo_de_Suelos_Suelo; }
     List<SelectListItem> varTipo_de_Orientacion_Orientacion_de = null;
     if (ViewBag.Tipo_de_Orientacions_Orientacion_de != null)
     { varTipo_de_Orientacion_Orientacion_de = (List<SelectListItem>)ViewBag.Tipo_de_Orientacions_Orientacion_de; }
@@ -64,6 +64,27 @@
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Motivo_de_Registro</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Motivo_de_RegistroFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_RegistroFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMotivo_de_Registro, new { @class = "form-control", @type = "text", @id = "txtAdvanceMotivo_de_Registro" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMotivo_de_Registro_Motivo_de_Registro!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMotivo_de_RegistroMultiple, varMotivo_de_Registro_Motivo_de_Registro,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMotivo_de_Registro"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Tipo</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -90,20 +111,7 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.SueloFilter, filters, new { @class = "form-control", @id = "ddlSueloFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceSuelo, new { @class = "form-control", @type = "text", @id = "txtAdvanceSuelo" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_de_Suelo_Suelo!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceSueloMultiple, varTipo_de_Suelo_Suelo,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceSuelo"
-                        });
-                    }
+                    @Html.TextBoxFor(m => m.Suelo, new { @class = "form-control", @type = "text", @id = "txtSuelo" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Descripcion</h3>
@@ -120,14 +128,6 @@
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Localizacion_1Filter, filters, new { @class = "form-control", @id = "ddlLocalizacion_1Filter" })
                     @Html.TextBoxFor(m => m.Localizacion_1, new { @class = "form-control", @type = "text", @id = "txtLocalizacion_1" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Localizacion_2</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Localizacion_2Filter, filters, new { @class = "form-control", @id = "ddlLocalizacion_2Filter" })
-                    @Html.TextBoxFor(m => m.Localizacion_2, new { @class = "form-control", @type = "text", @id = "txtLocalizacion_2" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Latitud</h3>
@@ -226,6 +226,21 @@
             advanceSearch.Detalle_Aseguramiento_de_Pistas_de_AterrizajeClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_Aseguramiento_de_Pistas_de_AterrizajeClaveTo = $("#txtAdvanceToClave").val();
         }
+        advanceSearch.Motivo_de_RegistroSearchType = 0;
+        if ($('#ddlAdvanceMotivo_de_Registro').val().length > 0 || $("#txtAdvanceMotivo_de_Registro").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_de_Pistas_de_AterrizajeTextSearch) {
+                advanceSearch.Motivo_de_RegistroName = $("#txtAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroNameSearchType = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Motivo_de_RegistroToSearch = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 2;
+            }
+        }
         advanceSearch.TipoSearchType = 0;
         if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
 
@@ -241,20 +256,10 @@
                 advanceSearch.TipoSearchType = 2;
             }
         }
-        advanceSearch.SueloSearchType = 0;
-        if ($('#ddlAdvanceSuelo').val().length > 0 || $("#txtAdvanceSuelo").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_de_Pistas_de_AterrizajeTextSearch) {
-                advanceSearch.SueloName = $("#txtAdvanceSuelo").val();
-                advanceSearch.SueloNameSearchType = $("#ddlAdvanceSuelo").val();
-                advanceSearch.SueloSearchType = 1;
-            }
-            else {
-
-                advanceSearch.SueloToSearch = $("#ddlAdvanceSuelo").val();
-                advanceSearch.SueloSearchType = 2;
-            }
+        if ($("#txtAdvanceSuelo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_Pistas_de_AterrizajeSuelo = $("#txtAdvanceSuelo").val();
+            advanceSearch.Detalle_Aseguramiento_de_Pistas_de_AterrizajeSueloSearchType = $("#ddlAdvanceSueloFilter").val();
         }
         if ($("#txtAdvanceDescripcion").val() != "") {
             hasParameter = true;
@@ -265,11 +270,6 @@
             hasParameter = true;
             advanceSearch.Detalle_Aseguramiento_de_Pistas_de_AterrizajeLocalizacion_1 = $("#txtAdvanceLocalizacion_1").val();
             advanceSearch.Detalle_Aseguramiento_de_Pistas_de_AterrizajeLocalizacion_1SearchType = $("#ddlAdvanceLocalizacion_1Filter").val();
-        }
-        if ($("#txtAdvanceLocalizacion_2").val() != "") {
-            hasParameter = true;
-            advanceSearch.Detalle_Aseguramiento_de_Pistas_de_AterrizajeLocalizacion_2 = $("#txtAdvanceLocalizacion_2").val();
-            advanceSearch.Detalle_Aseguramiento_de_Pistas_de_AterrizajeLocalizacion_2SearchType = $("#ddlAdvanceLocalizacion_2Filter").val();
         }
         if ($("#txtAdvanceLatitud").val() != "") {
             hasParameter = true;
@@ -339,6 +339,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceMotivo_de_Registro").keypress(function () {
+            isDetalle_Aseguramiento_de_Pistas_de_AterrizajeTextSearch = true;
+            $("#ddlAdvanceMotivo_de_Registro").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMotivo_de_Registro").change(function () {
+            isDetalle_Aseguramiento_de_Pistas_de_AterrizajeTextSearch = false;
+            $("#txtAdvanceMotivo_de_Registro").val('');
+        });
         $("#txtAdvanceTipo").keypress(function () {
             isDetalle_Aseguramiento_de_Pistas_de_AterrizajeTextSearch = true;
             $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
@@ -347,15 +356,6 @@
         $("#ddlAdvanceTipo").change(function () {
             isDetalle_Aseguramiento_de_Pistas_de_AterrizajeTextSearch = false;
             $("#txtAdvanceTipo").val('');
-        });
-        $("#txtAdvanceSuelo").keypress(function () {
-            isDetalle_Aseguramiento_de_Pistas_de_AterrizajeTextSearch = true;
-            $("#ddlAdvanceSuelo").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceSuelo").change(function () {
-            isDetalle_Aseguramiento_de_Pistas_de_AterrizajeTextSearch = false;
-            $("#txtAdvanceSuelo").val('');
         });
         $("#txtAdvanceOrientacion_de").keypress(function () {
             isDetalle_Aseguramiento_de_Pistas_de_AterrizajeTextSearch = true;

@@ -66,6 +66,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Expediente_MASC</summary>
+        public static string Expediente_MASC
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Imputado.GetResource("Expediente_MASC", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Quien_Resulte_Responsable</summary>
         public static string Quien_Resulte_Responsable
         {
@@ -643,6 +653,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Imputado.GetResource("Inimputable", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Gravidez</summary>
+        public static string Gravidez
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Imputado.GetResource("Gravidez", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

@@ -66,26 +66,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Requerido</summary>
-        public static string Requerido
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Requerido", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Solicitante</summary>
-        public static string Solicitante
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Solicitante", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Fecha_Requerida</summary>
         public static string Fecha_Requerida
         {
@@ -96,13 +76,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Fecha_de_Cumplimiento</summary>
-        public static string Fecha_de_Cumplimiento
+        /// <summary>Relacion</summary>
+        public static string Relacion
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Fecha_de_Cumplimiento", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Relacion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -116,6 +96,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Fecha_de_Cumplimiento</summary>
+        public static string Fecha_de_Cumplimiento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Fecha_de_Cumplimiento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Forma_de_Pago</summary>
+        public static string Forma_de_Pago
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Forma_de_Pago", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Cantidad_del_Monto</summary>
         public static string Cantidad_del_Monto
         {
@@ -123,6 +123,26 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Cantidad_del_Monto", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Descripcion_de_Cumplimiento</summary>
+        public static string Descripcion_de_Cumplimiento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Descripcion_de_Cumplimiento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Concluir_Acuerdo</summary>
+        public static string Concluir_Acuerdo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Concluir_Acuerdo", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

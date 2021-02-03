@@ -162,6 +162,27 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divDescr">
+                                <label class="col-sm-2 control-label">@Resources.SentenciaResources.Descr</label>
+                                <div class="col-sm-8" data-field-id="Descr" data-attribute="268824" data-field-name="@Resources.SentenciaResources.Descr">
+                                    <textarea id="Descr" name="Descr" class="form-control Datos_Generales" rows="4" cols="50">@Model.Descr</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Descr" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="dividdatos">
+                                <label class="col-sm-2 control-label">@Resources.SentenciaResources.iddatos</label>
+                                <div class="col-sm-8" data-field-id="iddatos" data-attribute="268825" data-field-name="@Resources.SentenciaResources.iddatos">
+                                    <input class="form-control inputNumber Datos_Generales" id="iddatos" name="iddatos" type="text" value="@Model.iddatos">
+                                    @*<span class="field-validation-valid" data-valmsg-for="iddatos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCveSentencia">
+                                <label class="col-sm-2 control-label">@Resources.SentenciaResources.CveSentencia</label>
+                                <div class="col-sm-8" data-field-id="CveSentencia" data-attribute="268826" data-field-name="@Resources.SentenciaResources.CveSentencia">
+                                    <input class="form-control Datos_Generales" id="CveSentencia" name="CveSentencia" type="text" value="@Model.CveSentencia">
+                                    @*<span class="field-validation-valid" data-valmsg-for="CveSentencia" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -296,24 +317,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45181');
+		    
 		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
-
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -330,6 +336,21 @@
 			
 			
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 
@@ -595,6 +616,9 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Descripcion').val(result.data.Descripcion);
+                    $('#Descr').val(result.data.Descr);
+                    $('#iddatos').val(result.data.iddatos);
+                    $('#CveSentencia').val(result.data.CveSentencia);
 
                 },
                 error: function (result) {
@@ -607,6 +631,9 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Descripcion', $('#Descripcion').val());
+                data.append('Descr', $('#Descr').val());
+                data.append('iddatos', $('#iddatos').val());
+                data.append('CveSentencia', $('#CveSentencia').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Sentencia/Post_Datos_Generales")',

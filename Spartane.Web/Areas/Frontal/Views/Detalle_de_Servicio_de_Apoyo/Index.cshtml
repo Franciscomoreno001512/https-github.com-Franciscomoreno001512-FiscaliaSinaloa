@@ -1,11 +1,23 @@
 ﻿@using System.Collections.Generic
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Detalle_de_Servicio_de_Apoyo;
+@using Spartane.Core.Domain.Origen_de_Invitacion;
 @using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+@using Spartane.Core.Domain.Solicitud;
+@using Spartane.Core.Domain.expediente_ministerio_publico;
 @using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
 @using Spartane.Core.Domain.Dialecto;
 @using Spartane.Core.Domain.Idioma;
 @using Spartane.Core.Domain.Compareciente;
+@using Spartane.Core.Domain.Detalle_de_Documentos_MPO;
+@using Spartane.Core.Domain.Detalle_de_documentos;
+@using Spartane.Core.Domain.Diligencias_MP;
+@using Spartane.Core.Domain.Documento;
+@using Spartane.Core.Domain.Autoridad_Servicio_Pericial;
+@using Spartane.Core.Domain.Agencia_Servicio_Pericial;
+@using Spartane.Core.Domain.Dictamen_Servicio_Pericial;
+@using Spartane.Core.Domain.Area_Pericial;
+@using Spartane.Core.Domain.Spartan_User;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -202,14 +214,33 @@
                                 <tr>
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Clave</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Origen</th>
                                     <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Modulo_de_Atencion_Inicial</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Modulo_Mecanismos_Alternos</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Modulo_Ministerio_Publico</th>
                                     <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Tipo_de_Servicio</th>
                                     <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Requiere_Traductor</th>
                                     <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Lengua_Originaria</th>
                                     <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Idioma</th>
-                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Dictamen</th>
                                     <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Responsable</th>
                                     <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Compareciente</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Atencion_Inicial</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Mecanismos_Alternos</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Documento_Ministerio_Publico</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Diligencia</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Archivo</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Fecha_de_Registro</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Fecha_de_Solicitud</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Numero_Oficio</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Nombre_Solicitante</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Rango_Solicitante</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Autoridades</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Agencia</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Observaciones</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Dictamen</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Contestacion_lista_para_enviarse</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Area_Pericial</th>
+                                    <th>@Resources.Detalle_de_Servicio_de_ApoyoResources.Perito</th>
 
                                 </tr>
                             </thead>
@@ -219,10 +250,29 @@
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
@@ -341,25 +391,63 @@
         var queryString = GetQueryString();
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo_de_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo_Mecanismos_Alternos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo_Ministerio_Publico =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Servicio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Requiere_Traductor = $($('table td .filterData.form-control:input')[counter++]).val();
         var Lengua_Originaria =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Dictamen =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Compareciente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Documento_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Documento_Mecanismos_Alternos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Documento_Ministerio_Publico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Diligencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Oficio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Solicitante =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Rango_Solicitante =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Autoridades =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Agencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Dictamen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Contestacion_lista_para_enviarse = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Area_Pericial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Perito =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
+        + "&Origen=" + Origen
         + "&Modulo_de_Atencion_Inicial=" + Modulo_de_Atencion_Inicial
+        + "&Modulo_Mecanismos_Alternos=" + Modulo_Mecanismos_Alternos
+        + "&Modulo_Ministerio_Publico=" + Modulo_Ministerio_Publico
         + "&Tipo_de_Servicio=" + Tipo_de_Servicio
         + "&Requiere_Traductor=" + Requiere_Traductor
         + "&Lengua_Originaria=" + Lengua_Originaria
         + "&Idioma=" + Idioma
-        + "&Dictamen=" + Dictamen
         + "&Responsable=" + Responsable
         + "&Compareciente=" + Compareciente
+        + "&Documento_Atencion_Inicial=" + Documento_Atencion_Inicial
+        + "&Documento_Mecanismos_Alternos=" + Documento_Mecanismos_Alternos
+        + "&Documento_Ministerio_Publico=" + Documento_Ministerio_Publico
+        + "&Diligencia=" + Diligencia
+        + "&Archivo=" + Archivo
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Fecha_de_Solicitud=" + Fecha_de_Solicitud
+        + "&Numero_Oficio=" + Numero_Oficio
+        + "&Nombre_Solicitante=" + Nombre_Solicitante
+        + "&Rango_Solicitante=" + Rango_Solicitante
+        + "&Autoridades=" + Autoridades
+        + "&Agencia=" + Agencia
+        + "&Observaciones=" + Observaciones
+        + "&Dictamen=" + Dictamen
+        + "&Contestacion_lista_para_enviarse=" + Contestacion_lista_para_enviarse
+        + "&Area_Pericial=" + Area_Pericial
+        + "&Perito=" + Perito
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/Export?format=")" + format
@@ -374,25 +462,63 @@
 	
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo_de_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo_Mecanismos_Alternos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo_Ministerio_Publico =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Servicio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Requiere_Traductor = $($('table td .filterData.form-control:input')[counter++]).val();
         var Lengua_Originaria =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Dictamen =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Compareciente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Documento_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Documento_Mecanismos_Alternos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Documento_Ministerio_Publico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Diligencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Oficio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Solicitante =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Rango_Solicitante =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Autoridades =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Agencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Dictamen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Contestacion_lista_para_enviarse = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Area_Pericial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Perito =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
+        + "&Origen=" + Origen
         + "&Modulo_de_Atencion_Inicial=" + Modulo_de_Atencion_Inicial
+        + "&Modulo_Mecanismos_Alternos=" + Modulo_Mecanismos_Alternos
+        + "&Modulo_Ministerio_Publico=" + Modulo_Ministerio_Publico
         + "&Tipo_de_Servicio=" + Tipo_de_Servicio
         + "&Requiere_Traductor=" + Requiere_Traductor
         + "&Lengua_Originaria=" + Lengua_Originaria
         + "&Idioma=" + Idioma
-        + "&Dictamen=" + Dictamen
         + "&Responsable=" + Responsable
         + "&Compareciente=" + Compareciente
+        + "&Documento_Atencion_Inicial=" + Documento_Atencion_Inicial
+        + "&Documento_Mecanismos_Alternos=" + Documento_Mecanismos_Alternos
+        + "&Documento_Ministerio_Publico=" + Documento_Ministerio_Publico
+        + "&Diligencia=" + Diligencia
+        + "&Archivo=" + Archivo
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Fecha_de_Solicitud=" + Fecha_de_Solicitud
+        + "&Numero_Oficio=" + Numero_Oficio
+        + "&Nombre_Solicitante=" + Nombre_Solicitante
+        + "&Rango_Solicitante=" + Rango_Solicitante
+        + "&Autoridades=" + Autoridades
+        + "&Agencia=" + Agencia
+        + "&Observaciones=" + Observaciones
+        + "&Dictamen=" + Dictamen
+        + "&Contestacion_lista_para_enviarse=" + Contestacion_lista_para_enviarse
+        + "&Area_Pericial=" + Area_Pericial
+        + "&Perito=" + Perito
 ;
 
     }
@@ -491,7 +617,7 @@
 
     function SetTitle(printWindow) {
         if (printWindow.document) {
-            printWindow.document.title = "Servicios de Apoyo AT Print";
+            printWindow.document.title = "Servicios Periciales AT Print";
         } else {
             setTimeout(SetTitle, 10);
         }
@@ -573,11 +699,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -641,14 +767,33 @@
                     }
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "OrigenDescripcion", "orderable": true, "name": "OrigenDescripcion" }
                 ,{ "data": "Modulo_de_Atencion_InicialNUAT", "orderable": true, "name": "Modulo_de_Atencion_InicialNUAT"}
+                ,{ "data": "Modulo_Mecanismos_AlternosCDI", "orderable": true, "name": "Modulo_Mecanismos_AlternosCDI"}
+                ,{ "data": "Modulo_Ministerio_Publiconic", "orderable": true, "name": "Modulo_Ministerio_Publiconic"}
                 ,{ "data": "Tipo_de_ServicioServicio", "orderable": true, "name": "Tipo_de_ServicioServicio" }
                 ,{ "data": "Requiere_Traductor", "orderable": true, "name": "Requiere_Traductor","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Lengua_OriginariaDescripcion", "orderable": true, "name": "Lengua_OriginariaDescripcion" }
                 ,{ "data": "IdiomaDescripcion", "orderable": true, "name": "IdiomaDescripcion" }
-                ,{ "data": "Dictamen", "orderable": true, "name": "Dictamen", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Responsable", "orderable": true, "name": "Responsable", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "ComparecienteNombre_Completo", "orderable": true, "name": "ComparecienteNombre_Completo" }
+                ,{ "data": "Documento_Atencion_InicialObservaciones", "orderable": true, "name": "Documento_Atencion_InicialObservaciones"}
+                ,{ "data": "Documento_Mecanismos_AlternosDescripcion", "orderable": true, "name": "Documento_Mecanismos_AlternosDescripcion"}
+                ,{ "data": "Documento_Ministerio_PublicoDescripcion", "orderable": true, "name": "Documento_Ministerio_PublicoDescripcion"}
+                ,{ "data": "DiligenciaDescripcion", "orderable": true, "name": "DiligenciaDescripcion"}
+                ,{ "data": "Archivo","className": "dt-right", "orderable": true, "name": "Archivo" }
+                ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
+                ,{ "data": "Fecha_de_Solicitud", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Solicitud" }
+                ,{ "data": "Numero_Oficio", "orderable": true, "name": "Numero_Oficio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Nombre_Solicitante", "orderable": true, "name": "Nombre_Solicitante", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Rango_Solicitante", "orderable": true, "name": "Rango_Solicitante", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "AutoridadesDescripcion", "orderable": true, "name": "AutoridadesDescripcion" }
+                ,{ "data": "AgenciaDescripcion", "orderable": true, "name": "AgenciaDescripcion" }
+                ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "DictamenDescripcion", "orderable": true, "name": "DictamenDescripcion" }
+                ,{ "data": "Contestacion_lista_para_enviarse", "orderable": true, "name": "Contestacion_lista_para_enviarse","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Area_PericialDescripcion", "orderable": true, "name": "Area_PericialDescripcion" }
+                ,{ "data": "PeritoName", "orderable": true, "name": "PeritoName" }
 
             ],
 			"colReorder": true,

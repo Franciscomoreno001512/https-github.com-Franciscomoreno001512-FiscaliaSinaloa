@@ -198,6 +198,7 @@
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Tipo_de_ComparecienteResources.Clave</th>
                                     <th>@Resources.Tipo_de_ComparecienteResources.Descripcion</th>
+                                    <th>@Resources.Tipo_de_ComparecienteResources.TP_DescripcionCorta</th>
 
                                 </tr>
                             </thead>
@@ -205,6 +206,7 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
@@ -323,10 +325,12 @@
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var TP_DescripcionCorta =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
         + "&Descripcion=" + Descripcion
+        + "&TP_DescripcionCorta=" + TP_DescripcionCorta
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Tipo_de_Compareciente/Export?format=")" + format
@@ -342,10 +346,12 @@
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var TP_DescripcionCorta =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
         + "&Descripcion=" + Descripcion
+        + "&TP_DescripcionCorta=" + TP_DescripcionCorta
 ;
 
     }
@@ -526,11 +532,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -595,6 +601,7 @@
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "Descripcion", "orderable": true, "name": "Descripcion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "TP_DescripcionCorta", "orderable": true, "name": "TP_DescripcionCorta", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],
 			"colReorder": true,

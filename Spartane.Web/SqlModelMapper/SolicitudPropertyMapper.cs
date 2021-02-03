@@ -31,9 +31,14 @@ namespace Spartane.Web.SqlModelMapper
                 case "NUAT[NUAT]":
                 case "NUATNUAT":
                     return "Modulo_Atencion_Inicial.NUAT";
-                case "Unidad[Descripcion]":
-                case "UnidadDescripcion":
-                    return "Unidad.Descripcion";
+                case "NUAT_Codigo":
+                    return "Solicitud.NUAT_Codigo";
+                case "Expediente_MPI[nic]":
+                case "Expediente_MPInic":
+                    return "expediente_ministerio_publico.nic";
+                case "Expediente_CausaPenal[Observaciones]":
+                case "Expediente_CausaPenalObservaciones":
+                    return "Resolucion_MP.Observaciones";
                 case "Municipio[Nombre]":
                 case "MunicipioNombre":
                     return "Municipio.Nombre";
@@ -61,9 +66,11 @@ namespace Spartane.Web.SqlModelMapper
                 case "Agente_del_Ministerio_Publico_Invest[Name]":
                 case "Agente_del_Ministerio_Publico_InvestName":
                     return "Spartan_User.Name";
-                case "Juez_de_Control[Name]":
-                case "Juez_de_ControlName":
-                    return "Spartan_User.Name";
+                case "Juez_de_Control":
+                    return "Solicitud.Juez_de_Control";
+                case "Unidad[Descripcion]":
+                case "UnidadDescripcion":
+                    return "Unidad.Descripcion";
                 case "Titulo_del_Hecho":
                     return "Solicitud.Titulo_del_Hecho";
                 case "Fecha_del_Hecho":
@@ -106,6 +113,23 @@ namespace Spartane.Web.SqlModelMapper
                     return "Solicitud.LongitudH";
                 case "LatitudH":
                     return "Solicitud.LatitudH";
+                case "Especialista_AsignadoA[Name]":
+                case "Especialista_AsignadoAName":
+                    return "Spartan_User.Name";
+                case "Motivo_cambio_facilitador":
+                    return "Solicitud.Motivo_cambio_facilitador";
+                case "Asignar_Especialista_Automatico":
+                    return "Solicitud.Asignar_Especialista_Automatico";
+                case "Razone":
+                    return "Solicitud.Razone";
+                case "Fecha_de_AsignacionA":
+                    return "Solicitud.Fecha_de_AsignacionA";
+                case "Hora_de_AsignacionA":
+                    return "Solicitud.Hora_de_AsignacionA";
+                case "Fecha_de_Atencion_del_Especialista":
+                    return "Solicitud.Fecha_de_Atencion_del_Especialista";
+                case "Hora_de_Atencion_del_Especialista":
+                    return "Solicitud.Hora_de_Atencion_del_Especialista";
                 case "Rechazar":
                     return "Solicitud.Rechazar";
                 case "Motivo_de_Rechazo[Descripcion]":
@@ -124,6 +148,17 @@ namespace Spartane.Web.SqlModelMapper
                     return "Solicitud.Fecha_de_Cierre";
                 case "Hora_de_Cierre":
                     return "Solicitud.Hora_de_Cierre";
+                case "Usuario_que_Resuelve_Solicitud[Name]":
+                case "Usuario_que_Resuelve_SolicitudName":
+                    return "Spartan_User.Name";
+                case "Resolucion_Solicitud[Descripcion]":
+                case "Resolucion_SolicitudDescripcion":
+                    return "Resolucion_MASC.Descripcion";
+                case "Tipo_de_Mecanismo[Descripcion]":
+                case "Tipo_de_MecanismoDescripcion":
+                    return "Tipo_de_Mecanismo_Alterno.Descripcion";
+                case "Observaciones_Solicitud":
+                    return "Solicitud.Observaciones_Solicitud";
                 case "Fecha_Validacion":
                     return "Solicitud.Fecha_Validacion";
                 case "Hora_Validacion":
@@ -131,31 +166,35 @@ namespace Spartane.Web.SqlModelMapper
                 case "Usuario_que_Valida[Name]":
                 case "Usuario_que_ValidaName":
                     return "Spartan_User.Name";
-                case "Resultado[Descripcion]":
-                case "ResultadoDescripcion":
+                case "Autoriza_Cierre_de_Expediente[Descripcion]":
+                case "Autoriza_Cierre_de_ExpedienteDescripcion":
                     return "Resultado_de_Revision.Descripcion";
                 case "Motivo_de_Rechazo_Solicitud":
                     return "Solicitud.Motivo_de_Rechazo_Solicitud";
-                case "Especialista_AsignadoA[Name]":
-                case "Especialista_AsignadoAName":
+                case "Fecha_de_Resolucion_Procedimiento":
+                    return "Solicitud.Fecha_de_Resolucion_Procedimiento";
+                case "Hora_de_Resolucion_Procedimiento":
+                    return "Solicitud.Hora_de_Resolucion_Procedimiento";
+                case "Resolucion_de_Procedimiento[Descripcion]":
+                case "Resolucion_de_ProcedimientoDescripcion":
+                    return "Resolucion_MASC.Descripcion";
+                case "Usuario_que_Resuelve_Procedimiento[Name]":
+                case "Usuario_que_Resuelve_ProcedimientoName":
                     return "Spartan_User.Name";
-                case "Motivo_cambio_facilitador":
-                    return "Solicitud.Motivo_cambio_facilitador";
-                case "Asignar_Especialista_Automatico":
-                    return "Solicitud.Asignar_Especialista_Automatico";
-                case "Razone":
-                    return "Solicitud.Razone";
-                case "Tipo_de_Mecanismo[Descripcion]":
-                case "Tipo_de_MecanismoDescripcion":
-                    return "Tipo_de_Mecanismo_Alterno.Descripcion";
-                case "Fecha_de_AsignacionA":
-                    return "Solicitud.Fecha_de_AsignacionA";
-                case "Hora_de_AsignacionA":
-                    return "Solicitud.Hora_de_AsignacionA";
-                case "Fecha_de_Atencion_del_Especialista":
-                    return "Solicitud.Fecha_de_Atencion_del_Especialista";
-                case "Hora_de_Atencion_del_Especialista":
-                    return "Solicitud.Hora_de_Atencion_del_Especialista";
+                case "Observaciones_Procedimiento":
+                    return "Solicitud.Observaciones_Procedimiento";
+                case "Fecha_de_Validacion_Procedimiento":
+                    return "Solicitud.Fecha_de_Validacion_Procedimiento";
+                case "Hora_de_Validacion_Procedimiento":
+                    return "Solicitud.Hora_de_Validacion_Procedimiento";
+                case "Usuario_que_Valida_Procedimiento[Name]":
+                case "Usuario_que_Valida_ProcedimientoName":
+                    return "Spartan_User.Name";
+                case "Resultado_Procedimiento[Descripcion]":
+                case "Resultado_ProcedimientoDescripcion":
+                    return "Resultado_de_Revision.Descripcion";
+                case "Motivo_de_Rechazo_Procedimiento":
+                    return "Solicitud.Motivo_de_Rechazo_Procedimiento";
 
                 default:
                     return propertyName;
@@ -217,6 +256,32 @@ namespace Spartane.Web.SqlModelMapper
 
                 }
             }
+            if (columnName == "Asignar_Especialista_Automatico")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Fecha_de_AsignacionA")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (columnName == "Fecha_de_Atencion_del_Especialista")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
             if (columnName == "Rechazar")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
@@ -243,11 +308,7 @@ namespace Spartane.Web.SqlModelMapper
 
                 }
             }
-            if (columnName == "Asignar_Especialista_Automatico")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Fecha_de_AsignacionA")
+            if (columnName == "Fecha_de_Resolucion_Procedimiento")
             {
                 try
                 {
@@ -258,7 +319,7 @@ namespace Spartane.Web.SqlModelMapper
 
                 }
             }
-            if (columnName == "Fecha_de_Atencion_del_Especialista")
+            if (columnName == "Fecha_de_Validacion_Procedimiento")
             {
                 try
                 {

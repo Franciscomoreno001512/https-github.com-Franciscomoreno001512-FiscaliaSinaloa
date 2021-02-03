@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Registro_de_Usuario" value="Registro Usuarios"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Nombres" value="Nombre(s)"></resource>
+  <resource culture="es-es" name="Apellido_Paterno" value="Apellido Paterno"></resource>
+  <resource culture="es-es" name="Apellido_Materno" value="Apellido Materno"></resource>
+  <resource culture="es-es" name="Nombre_Completo" value="Nombre Completo"></resource>
+  <resource culture="es-es" name="Usuario" value="Usuario"></resource>
+  <resource culture="es-es" name="Contrasena" value="Contraseña"></resource>
+  <resource culture="es-es" name="Confirmar_Contrasena" value="Confirmar Contraseña"></resource>
+  <resource culture="es-es" name="Correo" value="Correo"></resource>
+  <resource culture="es-es" name="Celular" value="Celular"></resource>
+  <resource culture="es-es" name="Codigo_Verificacion_Correo" value="Código Verificación Correo"></resource>
+  <resource culture="es-es" name="Codigo_Verificacion_Celular" value="Código Verificación Celular"></resource>
+  <resource culture="es-es" name="Codigo_Reestablecer_Contrasena" value="Código Reestablecer Contraseña"></resource>
+  <resource culture="es-es" name="El_correo_fue_Validado" value="¿El correo fue Validado?"></resource>
+  <resource culture="es-es" name="El_Celular_fue_Validado" value="¿El Celular fue Validado?"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

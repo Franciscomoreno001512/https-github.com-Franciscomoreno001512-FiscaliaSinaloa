@@ -162,6 +162,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = Forma_de_MentonData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(Forma_de_MentonData.Vigencia), "Vigencia") ??  (string)Forma_de_MentonData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = Forma_de_MentonData.Observaciones
+                    ,LLAVE = Forma_de_MentonData.LLAVE
 
 					};
 				}
@@ -245,6 +246,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = Forma_de_MentonData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(Forma_de_MentonData.Vigencia), "Vigencia") ??  (string)Forma_de_MentonData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = Forma_de_MentonData.Observaciones
+                    ,LLAVE = Forma_de_MentonData.LLAVE
 
 					};
 				}
@@ -400,6 +402,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,LLAVE = m.LLAVE
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -517,6 +520,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,LLAVE = m.LLAVE
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -615,6 +619,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.FromLLAVE) || !string.IsNullOrEmpty(filter.ToLLAVE))
+            {
+                if (!string.IsNullOrEmpty(filter.FromLLAVE))
+                    where += " AND Forma_de_Menton.LLAVE >= " + filter.FromLLAVE;
+                if (!string.IsNullOrEmpty(filter.ToLLAVE))
+                    where += " AND Forma_de_Menton.LLAVE <= " + filter.ToLLAVE;
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -673,6 +685,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Descripcion = varForma_de_Menton.Descripcion
                         ,Vigencia = varForma_de_Menton.Vigencia
                         ,Observaciones = varForma_de_Menton.Observaciones
+                        ,LLAVE = varForma_de_Menton.LLAVE
 
                     };
 
@@ -1015,7 +1028,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+			string[] arrayColumnsVisible = null;
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1063,6 +1076,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,LLAVE = m.LLAVE
 
             }).ToList();
 
@@ -1139,6 +1153,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,LLAVE = m.LLAVE
 
             }).ToList();
 
@@ -1181,6 +1196,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                                             ,Descripcion = varForma_de_Menton.Descripcion
                         ,Vigencia = varForma_de_Menton.Vigencia
                         ,Observaciones = varForma_de_Menton.Observaciones
+                        ,LLAVE = varForma_de_Menton.LLAVE
                     
                 };
 
@@ -1213,6 +1229,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,LLAVE = m.LLAVE
 
                     
                 };

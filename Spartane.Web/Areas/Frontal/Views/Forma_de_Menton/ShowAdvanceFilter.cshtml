@@ -91,6 +91,17 @@
                     @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
                     @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Forma_de_MentonResources.LLAVE</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromLLAVE, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromLLAVE" })
+                    @Html.ValidationMessageFor(m => m.FromLLAVE)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToLLAVE, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToLLAVE", @data_min = "txtAdvanceFromLLAVE" })
+                    @Html.ValidationMessageFor(m => m.ToLLAVE)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Forma_de_Menton/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -132,6 +143,11 @@
             hasParameter = true;
             advanceSearch.Forma_de_MentonObservaciones = $("#txtAdvanceObservaciones").val();
             advanceSearch.Forma_de_MentonObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        if ($("#txtAdvanceFromLLAVE").val() != "" || $("#txtAdvanceToLLAVE").val() != "") {
+            hasParameter = true;
+            advanceSearch.Forma_de_MentonLLAVEFrom = $("#txtAdvanceFromLLAVE").val();
+            advanceSearch.Forma_de_MentonLLAVETo = $("#txtAdvanceToLLAVE").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

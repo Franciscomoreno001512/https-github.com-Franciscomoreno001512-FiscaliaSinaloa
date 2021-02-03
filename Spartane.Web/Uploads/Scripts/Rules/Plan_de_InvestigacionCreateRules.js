@@ -14,6 +14,13 @@ function EjecutarValidacionesAntesDeGuardar(){
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
+//BusinessRuleId:2792, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" update Plan_de_Investigacion set Expediente_MP = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2792, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

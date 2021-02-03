@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Queja_Sugerencia_Ciudadana" value="Queja/Sugerencia Ciudadana"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Tipo_de_Registro" value="Tipo de Registro"></resource>
+  <resource culture="es-es" name="Queja" value="Queja"></resource>
+  <resource culture="es-es" name="Sugerencia" value="Sugerencia"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+  <resource culture="es-es" name="Motivo_de_Eliminacion" value="Motivo de Eliminación"></resource>
+  <resource culture="es-es" name="Contestacion" value="Contestación"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -365,10 +365,10 @@
                                     <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_de_Solicitante_en_InvitacionesGrid">
                                         <thead>
                                             <tr>
-                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+                                                <th class="ActionHeader" style="width:150px"><span>@Resources.Resources.Actions</span></th>
 
 
-                                                <th class="NombreHeader" style="width:250px"><span>
+                                                <th class="NombreHeader" style="width:500px"><span>
 <button type="button" data-attribute="263751" data-field-id="Detalle_de_Solicitante_en_InvitacionesNombre" data-field-name="@Resources.Detalle_de_Solicitante_en_InvitacionesResources.Nombre" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
                                                             <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Solicitante_en_InvitacionesResources.Nombre">
                                                                 <i class="fa fa-cogs fa-spin"></i>
@@ -414,10 +414,10 @@
                                     <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_de_Requerido_en_InvitacionesGrid">
                                         <thead>
                                             <tr>
-                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+                                                <th class="ActionHeader" style="width:150px"><span>@Resources.Resources.Actions</span></th>
 
 
-                                                <th class="NombreHeader" style="width:250px"><span>
+                                                <th class="NombreHeader" style="width:500px"><span>
 <button type="button" data-attribute="263747" data-field-id="Detalle_de_Requerido_en_InvitacionesNombre" data-field-name="@Resources.Detalle_de_Requerido_en_InvitacionesResources.Nombre" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
                                                             <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Requerido_en_InvitacionesResources.Nombre">
                                                                 <i class="fa fa-cogs fa-spin"></i>
@@ -1853,6 +1853,16 @@
 			});
 		}
 
+    function RedireccionaX()
+    {
+        @*var isNew = $('#hdnIsNew').val();
+        if (isNew == "True") {
+            var urii = "@Url.Action("Create", "Detalle_de_documentos", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+           // var  = "@Url.Content("~/Frontal/Detalle_de_documentos/Create?Length=21?isPartial=true")";
+            window.open(htmlDecode(urii), '_blank', 'height=' + screen.height + ', width=' + screen.width);
+             
+            }*@
+    }
 
     </script>
 }

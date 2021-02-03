@@ -17,8 +17,6 @@ using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
-using Spartane.Core.Domain.Spartan_User;
-using Spartane.Core.Domain.Estatus_Orientador;
 using Spartane.Core.Domain.Tipo_de_Acuerdo;
 using Spartane.Core.Domain.Periodicidad;
 using Spartane.Core.Domain.A_Tiempo;
@@ -69,10 +67,6 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public string Y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }
-        public DateTime? Fecha_de_Canalizacion { get; set; }
-        public string Hora_de_Canalizacion { get; set; }
-        public int? usuario_que_canaliza { get; set; }
-        public int? canalizar_a { get; set; }
         public int? tipo_de_acuerdo { get; set; }
         public DateTime? fecha_de_inicio_de_acuerdo { get; set; }
         public DateTime? fecha_de_cumplimiento { get; set; }
@@ -117,10 +111,6 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("ColoniaH")]
         public virtual Spartane.Core.Domain.Colonia.Colonia ColoniaH_Colonia { get; set; }
-        [ForeignKey("usuario_que_canaliza")]
-        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User usuario_que_canaliza_Spartan_User { get; set; }
-        [ForeignKey("canalizar_a")]
-        public virtual Spartane.Core.Domain.Estatus_Orientador.Estatus_Orientador canalizar_a_Estatus_Orientador { get; set; }
         [ForeignKey("tipo_de_acuerdo")]
         public virtual Spartane.Core.Domain.Tipo_de_Acuerdo.Tipo_de_Acuerdo tipo_de_acuerdo_Tipo_de_Acuerdo { get; set; }
         [ForeignKey("periodicidad")]
@@ -205,21 +195,6 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("ColoniaH")]
         public virtual Spartane.Core.Domain.Colonia.Colonia ColoniaH_Colonia { get; set; }
-
-    }
-
-	public class expediente_ministerio_publico_Canalizar
-    {
-                public int clave { get; set; }
-        public DateTime? Fecha_de_Canalizacion { get; set; }
-        public string Hora_de_Canalizacion { get; set; }
-        public int? usuario_que_canaliza { get; set; }
-        public int? canalizar_a { get; set; }
-
-		        [ForeignKey("usuario_que_canaliza")]
-        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User usuario_que_canaliza_Spartan_User { get; set; }
-        [ForeignKey("canalizar_a")]
-        public virtual Spartane.Core.Domain.Estatus_Orientador.Estatus_Orientador canalizar_a_Estatus_Orientador { get; set; }
 
     }
 

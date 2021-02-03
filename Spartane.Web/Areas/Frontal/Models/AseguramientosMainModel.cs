@@ -31,24 +31,28 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Medios_de_TransporteGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Tipo { get; set; }
-        public string Especifique { get; set; }
         public short? Marca { get; set; }
-        public short? Submarca { get; set; }
+        public string Submarca { get; set; }
         public short? Modelo { get; set; }
         public string Placas { get; set; }
-        public short? Color { get; set; }
+        public string Color { get; set; }
         public string Numero_de_Motor { get; set; }
         public string Serie { get; set; }
         public short? Uso { get; set; }
         public short? Cap__De_Pasajeros { get; set; }
         public short? Procedencia { get; set; }
+        public short? Seguro { get; set; }
+        public int? Compania_de_Seguros { get; set; }
         public string Empresa { get; set; }
         public string Capacidad_de_Carga { get; set; }
         public string Origen { get; set; }
         public string Destino { get; set; }
+        public int? Ubicacion { get; set; }
+        public int? Pension { get; set; }
+        public string Domicilio_Resguardo { get; set; }
         public string Observaciones { get; set; }
-        public short? Detencion { get; set; }
 
         public bool Removed { set; get; }
     }
@@ -56,7 +60,9 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_de_Drogas_InvolucradasGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Tipo { get; set; }
+        public int? Modo_de_Asegurado { get; set; }
         public short? Unidad_de_Medida { get; set; }
         public decimal? Cantidad { get; set; }
         public string Observaciones { get; set; }
@@ -67,15 +73,17 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Armas_InvolucradasGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public int? Tipo { get; set; }
         public string Descripcion_del_Arma { get; set; }
         public int? Marca { get; set; }
         public short? Calibre { get; set; }
         public string Matricula { get; set; }
         public string Serie { get; set; }
+        public bool? Arma_Oficial { get; set; }
         public string Inventario { get; set; }
-        public short? Clasificacion { get; set; }
-        public int? Cantidad { get; set; }
+        public int? Clasificacion { get; set; }
+        public decimal? Valor_Estimado { get; set; }
         public string Lugar_de_Hallazgo { get; set; }
         public string Observaciones { get; set; }
 
@@ -85,8 +93,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Artefactos_y_ExplosivosGridModelPost
     {
         public int Clave { get; set; }
-        public int? Clasificacion { get; set; }
-        public int? Tipo { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public short? Clasificacion { get; set; }
         public decimal? Cantidad { get; set; }
         public string Lugar_de_Hallazgo { get; set; }
         public string Observaciones { get; set; }
@@ -97,6 +105,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_de_Cargador_CartuchosGridModelPost
     {
         public int Clave { get; set; }
+        public short? Calibre { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public int? cartuchos_municiones { get; set; }
         public string Cartuchos_Habiles { get; set; }
         public int? Cartuchos_Percutidos { get; set; }
@@ -108,6 +118,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Objetos_AseguradosGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public string Numero { get; set; }
         public short? Tipo { get; set; }
         public short? Marca { get; set; }
@@ -120,6 +131,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_DocumentosGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public int? Tipo { get; set; }
         public decimal? Cantidad { get; set; }
         public string Observaciones { get; set; }
@@ -131,6 +143,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_MonedaGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Tipo { get; set; }
         public decimal? Cantidad { get; set; }
         public string Observaciones { get; set; }
@@ -142,9 +155,10 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Otros_AseguramientosGridModelPost
     {
         public int Clave { get; set; }
-        public short? Tipo { get; set; }
-        public short? Marca { get; set; }
-        public short? Modelo { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public int? Tipo { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
         public string Inventario { get; set; }
         public string Serie { get; set; }
         public short? Unidad_de_Medida { get; set; }
@@ -157,6 +171,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Electronicos_y_MultimediaGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Aparatos { get; set; }
         public short? Documentos_Multimedia { get; set; }
         public string Descripcion { get; set; }
@@ -169,6 +184,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_PirateriaGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Tipo { get; set; }
         public string Descripcion { get; set; }
         public decimal? Cantidad { get; set; }
@@ -181,17 +197,16 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_InmueblesGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Zona { get; set; }
         public short? Tipo { get; set; }
-        public short? Terreno { get; set; }
-        public string Especifique_Otro { get; set; }
         public string Calle { get; set; }
         public string Exterior { get; set; }
         public string Interior { get; set; }
         public string C_P { get; set; }
         public int? Estado { get; set; }
         public int? Municipio { get; set; }
-        public string Colonia { get; set; }
+        public int? Colonia { get; set; }
         public string Registro_Publico_Propiedad { get; set; }
         public string Entrecalles { get; set; }
         public string Propietario { get; set; }
@@ -203,6 +218,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_de_PlantiosGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Tipo { get; set; }
         public int? No__de_Plantios { get; set; }
         public decimal? Kilogramos { get; set; }
@@ -222,11 +238,11 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_de_Pistas_de_AterrizajeGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Tipo { get; set; }
-        public int? Suelo { get; set; }
+        public string Suelo { get; set; }
         public string Descripcion { get; set; }
         public string Localizacion_1 { get; set; }
-        public string Localizacion_2 { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
         public int? Orientacion_de { get; set; }
@@ -240,6 +256,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_OtrosGridModelPost
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public string Tipo { get; set; }
         public string Unidad_de_medida { get; set; }
         public decimal? Cantidad { get; set; }

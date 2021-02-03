@@ -16,9 +16,18 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Detalle_de_Servicio_de_Apoyo.Clave";
+                case "Origen[Descripcion]":
+                case "OrigenDescripcion":
+                    return "Origen_de_Invitacion.Descripcion";
                 case "Modulo_de_Atencion_Inicial[NUAT]":
                 case "Modulo_de_Atencion_InicialNUAT":
                     return "Modulo_Atencion_Inicial.NUAT";
+                case "Modulo_Mecanismos_Alternos[CDI]":
+                case "Modulo_Mecanismos_AlternosCDI":
+                    return "Solicitud.CDI";
+                case "Modulo_Ministerio_Publico[nic]":
+                case "Modulo_Ministerio_Publiconic":
+                    return "expediente_ministerio_publico.nic";
                 case "Tipo_de_Servicio[Servicio]":
                 case "Tipo_de_ServicioServicio":
                     return "Tipo_de_Servicio_de_Apoyo.Servicio";
@@ -30,13 +39,54 @@ namespace Spartane.Web.SqlModelMapper
                 case "Idioma[Descripcion]":
                 case "IdiomaDescripcion":
                     return "Idioma.Descripcion";
-                case "Dictamen":
-                    return "Detalle_de_Servicio_de_Apoyo.Dictamen";
                 case "Responsable":
                     return "Detalle_de_Servicio_de_Apoyo.Responsable";
                 case "Compareciente[Nombre_Completo]":
                 case "ComparecienteNombre_Completo":
                     return "Compareciente.Nombre_Completo";
+                case "Documento_Atencion_Inicial[Observaciones]":
+                case "Documento_Atencion_InicialObservaciones":
+                    return "Detalle_de_Documentos_MPO.Observaciones";
+                case "Documento_Mecanismos_Alternos[Descripcion]":
+                case "Documento_Mecanismos_AlternosDescripcion":
+                    return "Detalle_de_documentos.Descripcion";
+                case "Documento_Ministerio_Publico[Descripcion]":
+                case "Documento_Ministerio_PublicoDescripcion":
+                    return "Diligencias_MP.Descripcion";
+                case "Diligencia[Descripcion]":
+                case "DiligenciaDescripcion":
+                    return "Documento.Descripcion";
+                case "Archivo":
+                    return "Detalle_de_Servicio_de_Apoyo.Archivo";
+                case "Fecha_de_Registro":
+                    return "Detalle_de_Servicio_de_Apoyo.Fecha_de_Registro";
+                case "Fecha_de_Solicitud":
+                    return "Detalle_de_Servicio_de_Apoyo.Fecha_de_Solicitud";
+                case "Numero_Oficio":
+                    return "Detalle_de_Servicio_de_Apoyo.Numero_Oficio";
+                case "Nombre_Solicitante":
+                    return "Detalle_de_Servicio_de_Apoyo.Nombre_Solicitante";
+                case "Rango_Solicitante":
+                    return "Detalle_de_Servicio_de_Apoyo.Rango_Solicitante";
+                case "Autoridades[Descripcion]":
+                case "AutoridadesDescripcion":
+                    return "Autoridad_Servicio_Pericial.Descripcion";
+                case "Agencia[Descripcion]":
+                case "AgenciaDescripcion":
+                    return "Agencia_Servicio_Pericial.Descripcion";
+                case "Observaciones":
+                    return "Detalle_de_Servicio_de_Apoyo.Observaciones";
+                case "Dictamen[Descripcion]":
+                case "DictamenDescripcion":
+                    return "Dictamen_Servicio_Pericial.Descripcion";
+                case "Contestacion_lista_para_enviarse":
+                    return "Detalle_de_Servicio_de_Apoyo.Contestacion_lista_para_enviarse";
+                case "Area_Pericial[Descripcion]":
+                case "Area_PericialDescripcion":
+                    return "Area_Pericial.Descripcion";
+                case "Perito[Name]":
+                case "PeritoName":
+                    return "Spartan_User.Name";
 
                 default:
                     return propertyName;
@@ -55,6 +105,32 @@ namespace Spartane.Web.SqlModelMapper
         public string GetOperatorString(object value, string columnName)
         {
             if (columnName == "Requiere_Traductor")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Fecha_de_Registro")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (columnName == "Fecha_de_Solicitud")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (columnName == "Contestacion_lista_para_enviarse")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

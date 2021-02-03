@@ -26,6 +26,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Expediente_MP[nic]":
                 case "Expediente_MPnic":
                     return "expediente_ministerio_publico.nic";
+                case "Expediente_MASC[Numero_de_Folio]":
+                case "Expediente_MASCNumero_de_Folio":
+                    return "Solicitud.Numero_de_Folio";
                 case "Tipo_de_Denuncia[Descripcion]":
                 case "Tipo_de_DenunciaDescripcion":
                     return "Formato_de_Denuncia.Descripcion";

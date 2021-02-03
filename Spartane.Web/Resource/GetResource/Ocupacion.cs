@@ -76,6 +76,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Vigenciax</summary>
+        public static string Vigenciax
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderOcupacion.GetResource("Vigenciax", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderOcupacion.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

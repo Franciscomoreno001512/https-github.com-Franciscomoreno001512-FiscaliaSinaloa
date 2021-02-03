@@ -156,6 +156,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Lista_para_periciales</summary>
+        public static string Lista_para_periciales
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_documentos.GetResource("Lista_para_periciales", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Descripcion</summary>
         public static string Descripcion
         {

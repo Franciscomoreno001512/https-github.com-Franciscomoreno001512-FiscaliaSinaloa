@@ -3,15 +3,12 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_Otros_AseguramientosAdvanceSearchModel
 @{
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_Equipo_Tactico_Tipo = null;
     if (ViewBag.Tipo_de_Equipo_Tacticos_Tipo != null)
     { varTipo_de_Equipo_Tactico_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Equipo_Tacticos_Tipo; }
-    List<SelectListItem> varMarca_de_Equipo_Tactico_Marca = null;
-    if (ViewBag.Marca_de_Equipo_Tacticos_Marca != null)
-    { varMarca_de_Equipo_Tactico_Marca = (List<SelectListItem>)ViewBag.Marca_de_Equipo_Tacticos_Marca; }
-    List<SelectListItem> varModelo_de_equipo_tactico_Modelo = null;
-    if (ViewBag.Modelo_de_equipo_tacticos_Modelo != null)
-    { varModelo_de_equipo_tactico_Modelo = (List<SelectListItem>)ViewBag.Modelo_de_equipo_tacticos_Modelo; }
     List<SelectListItem> varUnidad_de_Medida_de_Equipo_Tactico_Unidad_de_Medida = null;
     if (ViewBag.Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida != null)
     { varUnidad_de_Medida_de_Equipo_Tactico_Unidad_de_Medida = (List<SelectListItem>)ViewBag.Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida; }
@@ -64,6 +61,27 @@
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Motivo_de_Registro</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Motivo_de_RegistroFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_RegistroFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMotivo_de_Registro, new { @class = "form-control", @type = "text", @id = "txtAdvanceMotivo_de_Registro" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMotivo_de_Registro_Motivo_de_Registro!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMotivo_de_RegistroMultiple, varMotivo_de_Registro_Motivo_de_Registro,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMotivo_de_Registro"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -90,20 +108,7 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.MarcaFilter, filters, new { @class = "form-control", @id = "ddlMarcaFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceMarca, new { @class = "form-control", @type = "text", @id = "txtAdvanceMarca" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varMarca_de_Equipo_Tactico_Marca!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceMarcaMultiple, varMarca_de_Equipo_Tactico_Marca,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceMarca"
-                        });
-                    }
+                    @Html.TextBoxFor(m => m.Marca, new { @class = "form-control", @type = "text", @id = "txtMarca" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Modelo</h3>
@@ -111,20 +116,7 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.ModeloFilter, filters, new { @class = "form-control", @id = "ddlModeloFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceModelo, new { @class = "form-control", @type = "text", @id = "txtAdvanceModelo" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varModelo_de_equipo_tactico_Modelo!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceModeloMultiple, varModelo_de_equipo_tactico_Modelo,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceModelo"
-                        });
-                    }
+                    @Html.TextBoxFor(m => m.Modelo, new { @class = "form-control", @type = "text", @id = "txtModelo" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Inventario</h3>
@@ -199,6 +191,21 @@
             advanceSearch.Detalle_Aseguramiento_Otros_AseguramientosClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_Aseguramiento_Otros_AseguramientosClaveTo = $("#txtAdvanceToClave").val();
         }
+        advanceSearch.Motivo_de_RegistroSearchType = 0;
+        if ($('#ddlAdvanceMotivo_de_Registro').val().length > 0 || $("#txtAdvanceMotivo_de_Registro").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Otros_AseguramientosTextSearch) {
+                advanceSearch.Motivo_de_RegistroName = $("#txtAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroNameSearchType = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Motivo_de_RegistroToSearch = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 2;
+            }
+        }
         advanceSearch.TipoSearchType = 0;
         if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
 
@@ -214,35 +221,15 @@
                 advanceSearch.TipoSearchType = 2;
             }
         }
-        advanceSearch.MarcaSearchType = 0;
-        if ($('#ddlAdvanceMarca').val().length > 0 || $("#txtAdvanceMarca").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_Otros_AseguramientosTextSearch) {
-                advanceSearch.MarcaName = $("#txtAdvanceMarca").val();
-                advanceSearch.MarcaNameSearchType = $("#ddlAdvanceMarca").val();
-                advanceSearch.MarcaSearchType = 1;
-            }
-            else {
-
-                advanceSearch.MarcaToSearch = $("#ddlAdvanceMarca").val();
-                advanceSearch.MarcaSearchType = 2;
-            }
+        if ($("#txtAdvanceMarca").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Otros_AseguramientosMarca = $("#txtAdvanceMarca").val();
+            advanceSearch.Detalle_Aseguramiento_Otros_AseguramientosMarcaSearchType = $("#ddlAdvanceMarcaFilter").val();
         }
-        advanceSearch.ModeloSearchType = 0;
-        if ($('#ddlAdvanceModelo').val().length > 0 || $("#txtAdvanceModelo").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_Otros_AseguramientosTextSearch) {
-                advanceSearch.ModeloName = $("#txtAdvanceModelo").val();
-                advanceSearch.ModeloNameSearchType = $("#ddlAdvanceModelo").val();
-                advanceSearch.ModeloSearchType = 1;
-            }
-            else {
-
-                advanceSearch.ModeloToSearch = $("#ddlAdvanceModelo").val();
-                advanceSearch.ModeloSearchType = 2;
-            }
+        if ($("#txtAdvanceModelo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Otros_AseguramientosModelo = $("#txtAdvanceModelo").val();
+            advanceSearch.Detalle_Aseguramiento_Otros_AseguramientosModeloSearchType = $("#ddlAdvanceModeloFilter").val();
         }
         if ($("#txtAdvanceInventario").val() != "") {
             hasParameter = true;
@@ -297,6 +284,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceMotivo_de_Registro").keypress(function () {
+            isDetalle_Aseguramiento_Otros_AseguramientosTextSearch = true;
+            $("#ddlAdvanceMotivo_de_Registro").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMotivo_de_Registro").change(function () {
+            isDetalle_Aseguramiento_Otros_AseguramientosTextSearch = false;
+            $("#txtAdvanceMotivo_de_Registro").val('');
+        });
         $("#txtAdvanceTipo").keypress(function () {
             isDetalle_Aseguramiento_Otros_AseguramientosTextSearch = true;
             $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
@@ -305,24 +301,6 @@
         $("#ddlAdvanceTipo").change(function () {
             isDetalle_Aseguramiento_Otros_AseguramientosTextSearch = false;
             $("#txtAdvanceTipo").val('');
-        });
-        $("#txtAdvanceMarca").keypress(function () {
-            isDetalle_Aseguramiento_Otros_AseguramientosTextSearch = true;
-            $("#ddlAdvanceMarca").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceMarca").change(function () {
-            isDetalle_Aseguramiento_Otros_AseguramientosTextSearch = false;
-            $("#txtAdvanceMarca").val('');
-        });
-        $("#txtAdvanceModelo").keypress(function () {
-            isDetalle_Aseguramiento_Otros_AseguramientosTextSearch = true;
-            $("#ddlAdvanceModelo").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceModelo").change(function () {
-            isDetalle_Aseguramiento_Otros_AseguramientosTextSearch = false;
-            $("#txtAdvanceModelo").val('');
         });
         $("#txtAdvanceUnidad_de_Medida").keypress(function () {
             isDetalle_Aseguramiento_Otros_AseguramientosTextSearch = true;

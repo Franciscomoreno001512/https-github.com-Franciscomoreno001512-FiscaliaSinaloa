@@ -85,6 +85,9 @@
     List<SelectListItem> varEstatus_Orientador_Estatus2 = null;
     if (ViewBag.Estatus_Orientadors_Estatus2 != null)
     { varEstatus_Orientador_Estatus2 = (List<SelectListItem>)ViewBag.Estatus_Orientadors_Estatus2; }
+    List<SelectListItem> varUnidad_Unidad_canaliza = null;
+    if (ViewBag.Unidads_Unidad_canaliza != null)
+    { varUnidad_Unidad_canaliza = (List<SelectListItem>)ViewBag.Unidads_Unidad_canaliza; }
     List<SelectListItem> varPrioridad_del_Hecho_Prioridad_del_Hecho = null;
     if (ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho != null)
     { varPrioridad_del_Hecho_Prioridad_del_Hecho = (List<SelectListItem>)ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho; }
@@ -106,6 +109,9 @@
  List<SelectListItem> varColonia_Colonia_de_los_Hechos = null;
     if (ViewBag.Colonias_Colonia_de_los_Hechos != null)
     { varColonia_Colonia_de_los_Hechos = (List<SelectListItem>)ViewBag.Colonias_Colonia_de_los_Hechos; }
+    List<SelectListItem> varDocumento_Extraviado_Tipo_de_Documento_Extraviado = null;
+    if (ViewBag.Documento_Extraviados_Tipo_de_Documento_Extraviado != null)
+    { varDocumento_Extraviado_Tipo_de_Documento_Extraviado = (List<SelectListItem>)ViewBag.Documento_Extraviados_Tipo_de_Documento_Extraviado; }
     List<SelectListItem> varLugar_Tipo_Tipo_de_Lugar_del_Hecho = null;
     if (ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho != null)
     { varLugar_Tipo_Tipo_de_Lugar_del_Hecho = (List<SelectListItem>)ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho; }
@@ -951,6 +957,34 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divUnidad_canaliza">
+                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Unidad_canaliza</label>
+                                <div class="col-sm-8" data-field-id="Unidad_canaliza" data-attribute="268121" data-field-name="@Resources.Modulo_Atencion_InicialResources.Unidad_canaliza">
+                                    <select class="form-control Canalizar" data-val="true" data-val-number="The field Unidad must be a number." data-val-required="The Unidad field is required." id="Unidad_canaliza" name="Unidad_canaliza">
+                                        <option value=""></option>
+                                        @if (varUnidad_Unidad_canaliza != null){ 
+                                            foreach (var itemUnidad_canaliza in varUnidad_Unidad_canaliza)
+                                            {
+                                                if (itemUnidad_canaliza.Value == Convert.ToString(Model.Unidad_canaliza))
+                                                {
+                                                    <option value="@itemUnidad_canaliza.Value" selected>@itemUnidad_canaliza.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemUnidad_canaliza.Value">@itemUnidad_canaliza.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Unidad_canaliza" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268121).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Unidad', 'Unidad_canaliza');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divEnviar_a_MP">
                                 <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Enviar_a_MP</label>
                                 <div class="col-sm-8" data-field-id="Enviar_a_MP" data-attribute="262846" data-field-name="@Resources.Modulo_Atencion_InicialResources.Enviar_a_MP">
@@ -1243,6 +1277,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Numero_Interior_de_los_Hechos" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divReferencia_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Referencia_hechos</label>
+                                <div class="col-sm-8" data-field-id="Referencia_hechos" data-attribute="268429" data-field-name="@Resources.Modulo_Atencion_InicialResources.Referencia_hechos">
+                                    <input class="form-control Datos_de_los_Hechos_en_MPO" id="Referencia_hechos" name="Referencia_hechos" type="text" value="@Model.Referencia_hechos">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Referencia_hechos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             <div class="form-group" id="divLatitud">
                                 <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Latitud</label>
                                 <div class="col-sm-8" data-field-id="Latitud" data-attribute="262820" data-field-name="@Resources.Modulo_Atencion_InicialResources.Latitud">
@@ -1256,6 +1297,40 @@
                                     <input class="form-control Datos_de_los_Hechos_en_MPO" id="Longitud" name="Longitud" type="text" value="@Model.Longitud">
                                     @*<span class="field-validation-valid" data-valmsg-for="Longitud" data-valmsg-replace="true"></span>*@
                                 </div>
+                            </div>
+                            <div class="form-group" id="divDocumento_Extraviado_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Documento_Extraviado_hechos</label>
+                                <div class="col-sm-8" data-field-id="Documento_Extraviado_hechos" data-attribute="268430" data-field-name="@Resources.Modulo_Atencion_InicialResources.Documento_Extraviado_hechos">
+                                    @Html.CheckBoxFor(m => m.Documento_Extraviado_hechos, new { @class = "i-checks Datos_de_los_Hechos_en_MPO" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divTipo_de_Documento_Extraviado">
+                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Tipo_de_Documento_Extraviado</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Documento_Extraviado" data-attribute="268431" data-field-name="@Resources.Modulo_Atencion_InicialResources.Tipo_de_Documento_Extraviado">
+                                    <select class="form-control Datos_de_los_Hechos_en_MPO" data-val="true" data-val-number="The field Tipo de Documento Extraviado must be a number." data-val-required="The Tipo de Documento Extraviado field is required." id="Tipo_de_Documento_Extraviado" name="Tipo_de_Documento_Extraviado">
+                                        <option value=""></option>
+                                        @if (varDocumento_Extraviado_Tipo_de_Documento_Extraviado != null){ 
+                                            foreach (var itemTipo_de_Documento_Extraviado in varDocumento_Extraviado_Tipo_de_Documento_Extraviado)
+                                            {
+                                                if (itemTipo_de_Documento_Extraviado.Value == Convert.ToString(Model.Tipo_de_Documento_Extraviado))
+                                                {
+                                                    <option value="@itemTipo_de_Documento_Extraviado.Value" selected>@itemTipo_de_Documento_Extraviado.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Documento_Extraviado.Value">@itemTipo_de_Documento_Extraviado.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Documento_Extraviado" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268431).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Documento_Extraviado', 'Tipo_de_Documento_Extraviado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             <div class="form-group" id="divTipo_de_Lugar_del_Hecho">
                                 <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Tipo_de_Lugar_del_Hecho</label>
@@ -2083,7 +2158,7 @@
                 url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetModulo_Atencion_Inicial_Usuario_que_Registra_Spartan_User")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -2116,7 +2191,7 @@
                 url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetModulo_Atencion_Inicial_Municipio_Municipio")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -4203,6 +4278,7 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Estatus2').val(result.data.Estatus2);
+                    $('#Unidad_canaliza').val(result.data.Unidad_canaliza);
                     $('#Enviar_a_MP').prop('checked', result.data.Enviar_a_MP);
                     $('#Correccion_de_Estatus').prop('checked', result.data.Correccion_de_Estatus);
                     Detalle_de_Canalizar_EstatusDataDataTable = result.Historial_de_Canalizaciones;
@@ -4221,6 +4297,7 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Estatus2', $('#Estatus2').val());
+                data.append('Unidad_canaliza', $('#Unidad_canaliza').val());
                 data.append('Enviar_a_MP', $('#Enviar_a_MP').prop('checked'));
                 data.append('Correccion_de_Estatus', $('#Correccion_de_Estatus').prop('checked'));
 
@@ -4370,8 +4447,11 @@
                     $('#Y_Calle').val(result.data.Y_Calle);
                     $('#Numero_Exrterior_de_los_Hechos').val(result.data.Numero_Exrterior_de_los_Hechos);
                     $('#Numero_Interior_de_los_Hechos').val(result.data.Numero_Interior_de_los_Hechos);
+                    $('#Referencia_hechos').val(result.data.Referencia_hechos);
                     $('#Latitud').val(result.data.Latitud);
                     $('#Longitud').val(result.data.Longitud);
+                    $('#Documento_Extraviado_hechos').prop('checked', result.data.Documento_Extraviado_hechos);
+                    $('#Tipo_de_Documento_Extraviado').val(result.data.Tipo_de_Documento_Extraviado);
                     $('#Tipo_de_Lugar_del_Hecho').val(result.data.Tipo_de_Lugar_del_Hecho);
                     $('#Zona_de_los_Hechos').val(result.data.Zona_de_los_Hechos);
                     $('#Turno').val(result.data.Turno);
@@ -4403,8 +4483,11 @@
                 data.append('Y_Calle', $('#Y_Calle').val());
                 data.append('Numero_Exrterior_de_los_Hechos', $('#Numero_Exrterior_de_los_Hechos').val());
                 data.append('Numero_Interior_de_los_Hechos', $('#Numero_Interior_de_los_Hechos').val());
+                data.append('Referencia_hechos', $('#Referencia_hechos').val());
                 data.append('Latitud', $('#Latitud').val());
                 data.append('Longitud', $('#Longitud').val());
+                data.append('Documento_Extraviado_hechos', $('#Documento_Extraviado_hechos').prop('checked'));
+                data.append('Tipo_de_Documento_Extraviado', $('#Tipo_de_Documento_Extraviado').val());
                 data.append('Tipo_de_Lugar_del_Hecho', $('#Tipo_de_Lugar_del_Hecho').val());
                 data.append('Zona_de_los_Hechos', $('#Zona_de_los_Hechos').val());
                 data.append('Turno', $('#Turno').val());

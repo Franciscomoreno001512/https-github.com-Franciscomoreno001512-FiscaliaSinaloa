@@ -1,16 +1,37 @@
 ﻿<?xml version="1.0" standalone="yes"?>
 <resources>
-  <resource culture="es-es" name="Detalle_de_Servicio_de_Apoyo" value="Servicios de Apoyo AT"></resource>
+  <resource culture="es-es" name="Detalle_de_Servicio_de_Apoyo" value="Servicios Periciales AT"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Origen" value="Origen"></resource>
   <resource culture="es-es" name="Modulo_de_Atencion_Inicial" value="Módulo de Atención Inicial"></resource>
+  <resource culture="es-es" name="Modulo_Mecanismos_Alternos" value="Modulo Mecanismos Alternos"></resource>
+  <resource culture="es-es" name="Modulo_Ministerio_Publico" value="Modulo Ministerio Público"></resource>
   <resource culture="es-es" name="Tipo_de_Servicio" value="Tipo de Servicio"></resource>
   <resource culture="es-es" name="Requiere_Traductor" value="¿Requiere Traductor?"></resource>
   <resource culture="es-es" name="Lengua_Originaria" value="Lengua Originaria"></resource>
   <resource culture="es-es" name="Idioma" value="Idioma"></resource>
-  <resource culture="es-es" name="Dictamen" value="Dictamen"></resource>
   <resource culture="es-es" name="Responsable" value="Responsable"></resource>
   <resource culture="es-es" name="Compareciente" value="Compareciente"></resource>
+  <resource culture="es-es" name="Documento_Atencion_Inicial" value="Documento Atención Inicial"></resource>
+  <resource culture="es-es" name="Documento_Mecanismos_Alternos" value="Documento Mecanismos Alternos"></resource>
+  <resource culture="es-es" name="Documento_Ministerio_Publico" value="Documento Ministerio Público"></resource>
+  <resource culture="es-es" name="Diligencia" value="Diligencia"></resource>
+  <resource culture="es-es" name="Archivo" value="Archivo"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Fecha_de_Solicitud" value="Fecha de Solicitud"></resource>
+  <resource culture="es-es" name="Numero_Oficio" value="Número Oficio"></resource>
+  <resource culture="es-es" name="Imagen" value="Imagen"></resource>
+  <resource culture="es-es" name="Nombre_Solicitante" value="Nombre Solicitante"></resource>
+  <resource culture="es-es" name="Rango_Solicitante" value="Rango Solicitante"></resource>
+  <resource culture="es-es" name="Autoridades" value="Autoridades"></resource>
+  <resource culture="es-es" name="Agencia" value="Agencia"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Dictamen" value="Dictamen"></resource>
+  <resource culture="es-es" name="Contestacion_lista_para_enviarse" value="Contestación lista para enviarse"></resource>
+  <resource culture="es-es" name="Area_Pericial" value="Área Pericial"></resource>
+  <resource culture="es-es" name="Perito" value="Perito"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabCanalizar" value="Canalizar"></resource>
 
 </resources>

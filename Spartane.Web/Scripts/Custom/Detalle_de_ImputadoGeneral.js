@@ -1399,6 +1399,10 @@ function GetOtros_Domicilios_Probable_Responsable_ColoniaDropDown() {
 
 
 
+
+
+
+
 function GetInsertOtros_Domicilios_Probable_ResponsableRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
@@ -1412,6 +1416,10 @@ function GetInsertOtros_Domicilios_Probable_ResponsableRowControls(index) {
     columnData[6] = $($.parseHTML(inputData)).addClass('Otros_Domicilios_Probable_Responsable_Entre_Calle Entre_Calle').attr('id', 'Otros_Domicilios_Probable_Responsable_Entre_Calle_' + index).attr('data-field', 'Entre_Calle');
     columnData[7] = $($.parseHTML(inputData)).addClass('Otros_Domicilios_Probable_Responsable_Y_Calle Y_Calle').attr('id', 'Otros_Domicilios_Probable_Responsable_Y_Calle_' + index).attr('data-field', 'Y_Calle');
     columnData[8] = $($.parseHTML(inputData)).addClass('Otros_Domicilios_Probable_Responsable_Numero_Exterior Numero_Exterior').attr('id', 'Otros_Domicilios_Probable_Responsable_Numero_Exterior_' + index).attr('data-field', 'Numero_Exterior');
+    columnData[9] = $($.parseHTML(inputData)).addClass('Otros_Domicilios_Probable_Responsable_Numero_Interior Numero_Interior').attr('id', 'Otros_Domicilios_Probable_Responsable_Numero_Interior_' + index).attr('data-field', 'Numero_Interior');
+    columnData[10] = $($.parseHTML(inputData)).addClass('Otros_Domicilios_Probable_Responsable_Coordenada_X Coordenada_X').attr('id', 'Otros_Domicilios_Probable_Responsable_Coordenada_X_' + index).attr('data-field', 'Coordenada_X');
+    columnData[11] = $($.parseHTML(inputData)).addClass('Otros_Domicilios_Probable_Responsable_Coordenada_Y Coordenada_Y').attr('id', 'Otros_Domicilios_Probable_Responsable_Coordenada_Y_' + index).attr('data-field', 'Coordenada_Y');
+    columnData[12] = $($.parseHTML(inputData)).addClass('Otros_Domicilios_Probable_Responsable_Observaciones Observaciones').attr('id', 'Otros_Domicilios_Probable_Responsable_Observaciones_' + index).attr('data-field', 'Observaciones');
 
 
     initiateUIControls();
@@ -1442,6 +1450,10 @@ if (EjecutarValidacionesAntesDeGuardarMROtros_Domicilios_Probable_Responsable("O
         ,Entre_Calle:  data.childNodes[counter++].childNodes[0].value
         ,Y_Calle:  data.childNodes[counter++].childNodes[0].value
         ,Numero_Exterior:  data.childNodes[counter++].childNodes[0].value
+        ,Numero_Interior:  data.childNodes[counter++].childNodes[0].value
+        ,Coordenada_X:  data.childNodes[counter++].childNodes[0].value
+        ,Coordenada_Y:  data.childNodes[counter++].childNodes[0].value
+        ,Observaciones:  data.childNodes[counter++].childNodes[0].value
 
     }
     Otros_Domicilios_Probable_ResponsableTable.fnUpdate(newData, rowIndex, null, true);
@@ -1486,6 +1498,10 @@ function GetOtros_Domicilios_Probable_ResponsableFromDataTable() {
                 ,Entre_Calle: gridData[i].Entre_Calle
                 ,Y_Calle: gridData[i].Y_Calle
                 ,Numero_Exterior: gridData[i].Numero_Exterior
+                ,Numero_Interior: gridData[i].Numero_Interior
+                ,Coordenada_X: gridData[i].Coordenada_X
+                ,Coordenada_Y: gridData[i].Coordenada_Y
+                ,Observaciones: gridData[i].Observaciones
 
                 ,Removed: false
             });
@@ -1505,6 +1521,10 @@ function GetOtros_Domicilios_Probable_ResponsableFromDataTable() {
                 ,Entre_Calle: removedOtros_Domicilios_Probable_ResponsableData[i].Entre_Calle
                 ,Y_Calle: removedOtros_Domicilios_Probable_ResponsableData[i].Y_Calle
                 ,Numero_Exterior: removedOtros_Domicilios_Probable_ResponsableData[i].Numero_Exterior
+                ,Numero_Interior: removedOtros_Domicilios_Probable_ResponsableData[i].Numero_Interior
+                ,Coordenada_X: removedOtros_Domicilios_Probable_ResponsableData[i].Coordenada_X
+                ,Coordenada_Y: removedOtros_Domicilios_Probable_ResponsableData[i].Coordenada_Y
+                ,Observaciones: removedOtros_Domicilios_Probable_ResponsableData[i].Observaciones
 
                 , Removed: true
             });
@@ -1577,8 +1597,16 @@ function Otros_Domicilios_Probable_ResponsableEditRowPopup(rowIndex, currentRow)
     $('#Otros_Domicilios_Probable_ResponsableEntre_Calle').val(prevData.Entre_Calle);
     $('#Otros_Domicilios_Probable_ResponsableY_Calle').val(prevData.Y_Calle);
     $('#Otros_Domicilios_Probable_ResponsableNumero_Exterior').val(prevData.Numero_Exterior);
+    $('#Otros_Domicilios_Probable_ResponsableNumero_Interior').val(prevData.Numero_Interior);
+    $('#Otros_Domicilios_Probable_ResponsableCoordenada_X').val(prevData.Coordenada_X);
+    $('#Otros_Domicilios_Probable_ResponsableCoordenada_Y').val(prevData.Coordenada_Y);
+    $('#Otros_Domicilios_Probable_ResponsableObservaciones').val(prevData.Observaciones);
 
     initiateUIControls();
+
+
+
+
 
 
 
@@ -1610,6 +1638,10 @@ function Otros_Domicilios_Probable_ResponsableAddInsertRow() {
         ,Entre_Calle: ""
         ,Y_Calle: ""
         ,Numero_Exterior: ""
+        ,Numero_Interior: ""
+        ,Coordenada_X: ""
+        ,Coordenada_Y: ""
+        ,Observaciones: ""
 
     }
 }
@@ -1650,6 +1682,10 @@ function GetOtros_Domicilios_Probable_Responsable() {
         form_data.append('[' + i + '].Entre_Calle', Otros_Domicilios_Probable_ResponsableData[i].Entre_Calle);
         form_data.append('[' + i + '].Y_Calle', Otros_Domicilios_Probable_ResponsableData[i].Y_Calle);
         form_data.append('[' + i + '].Numero_Exterior', Otros_Domicilios_Probable_ResponsableData[i].Numero_Exterior);
+        form_data.append('[' + i + '].Numero_Interior', Otros_Domicilios_Probable_ResponsableData[i].Numero_Interior);
+        form_data.append('[' + i + '].Coordenada_X', Otros_Domicilios_Probable_ResponsableData[i].Coordenada_X);
+        form_data.append('[' + i + '].Coordenada_Y', Otros_Domicilios_Probable_ResponsableData[i].Coordenada_Y);
+        form_data.append('[' + i + '].Observaciones', Otros_Domicilios_Probable_ResponsableData[i].Observaciones);
 
         form_data.append('[' + i + '].Removed', Otros_Domicilios_Probable_ResponsableData[i].Removed);
     }
@@ -1673,6 +1709,10 @@ function Otros_Domicilios_Probable_ResponsableInsertRowFromPopup(rowIndex) {
         ,Entre_Calle: $('#Otros_Domicilios_Probable_ResponsableEntre_Calle').val()
         ,Y_Calle: $('#Otros_Domicilios_Probable_ResponsableY_Calle').val()
         ,Numero_Exterior: $('#Otros_Domicilios_Probable_ResponsableNumero_Exterior').val()
+        ,Numero_Interior: $('#Otros_Domicilios_Probable_ResponsableNumero_Interior').val()
+        ,Coordenada_X: $('#Otros_Domicilios_Probable_ResponsableCoordenada_X').val()
+        ,Coordenada_Y: $('#Otros_Domicilios_Probable_ResponsableCoordenada_Y').val()
+        ,Observaciones: $('#Otros_Domicilios_Probable_ResponsableObservaciones').val()
 
     }
 
@@ -1696,11 +1736,15 @@ var Otros_NombrescountRowsChecked = 0;
 
 
 
+
+
 function GetInsertOtros_NombresRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $($.parseHTML(inputData)).addClass('Otros_Nombres_Descripcion Descripcion').attr('id', 'Otros_Nombres_Descripcion_' + index).attr('data-field', 'Descripcion');
+    columnData[0] = $($.parseHTML(inputData)).addClass('Otros_Nombres_Nombres Nombres').attr('id', 'Otros_Nombres_Nombres_' + index).attr('data-field', 'Nombres');
+    columnData[1] = $($.parseHTML(inputData)).addClass('Otros_Nombres_Apellido_Paterno Apellido_Paterno').attr('id', 'Otros_Nombres_Apellido_Paterno_' + index).attr('data-field', 'Apellido_Paterno');
+    columnData[2] = $($.parseHTML(inputData)).addClass('Otros_Nombres_Apellido_Materno Apellido_Materno').attr('id', 'Otros_Nombres_Apellido_Materno_' + index).attr('data-field', 'Apellido_Materno');
 
 
     initiateUIControls();
@@ -1718,7 +1762,9 @@ if (EjecutarValidacionesAntesDeGuardarMROtros_Nombres("Otros_Nombres_", "_" + ro
         Clave: prevData.Clave,
         IsInsertRow: false
 
-        ,Descripcion:  data.childNodes[counter++].childNodes[0].value
+        ,Nombres:  data.childNodes[counter++].childNodes[0].value
+        ,Apellido_Paterno:  data.childNodes[counter++].childNodes[0].value
+        ,Apellido_Materno:  data.childNodes[counter++].childNodes[0].value
 
     }
     Otros_NombresTable.fnUpdate(newData, rowIndex, null, true);
@@ -1754,7 +1800,9 @@ function GetOtros_NombresFromDataTable() {
             Otros_NombresData.push({
                 Clave: gridData[i].Clave
 
-                ,Descripcion: gridData[i].Descripcion
+                ,Nombres: gridData[i].Nombres
+                ,Apellido_Paterno: gridData[i].Apellido_Paterno
+                ,Apellido_Materno: gridData[i].Apellido_Materno
 
                 ,Removed: false
             });
@@ -1765,7 +1813,9 @@ function GetOtros_NombresFromDataTable() {
             Otros_NombresData.push({
                 Clave: removedOtros_NombresData[i].Clave
 
-                ,Descripcion: removedOtros_NombresData[i].Descripcion
+                ,Nombres: removedOtros_NombresData[i].Nombres
+                ,Apellido_Paterno: removedOtros_NombresData[i].Apellido_Paterno
+                ,Apellido_Materno: removedOtros_NombresData[i].Apellido_Materno
 
                 , Removed: true
             });
@@ -1829,9 +1879,13 @@ function Otros_NombresEditRowPopup(rowIndex, currentRow) {
     var prevData = Otros_NombresTable.fnGetData(rowIndexTable);
     GetAddOtros_NombresPopup(rowIndex, 1, prevData.Clave);
 
-    $('#Otros_NombresDescripcion').val(prevData.Descripcion);
+    $('#Otros_NombresNombres').val(prevData.Nombres);
+    $('#Otros_NombresApellido_Paterno').val(prevData.Apellido_Paterno);
+    $('#Otros_NombresApellido_Materno').val(prevData.Apellido_Materno);
 
     initiateUIControls();
+
+
 
 
 
@@ -1846,7 +1900,9 @@ function Otros_NombresAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
-        ,Descripcion: ""
+        ,Nombres: ""
+        ,Apellido_Paterno: ""
+        ,Apellido_Materno: ""
 
     }
 }
@@ -1878,7 +1934,9 @@ function GetOtros_Nombres() {
     for (var i = 0; i < Otros_NombresData.length; i++) {
         form_data.append('[' + i + '].Clave', Otros_NombresData[i].Clave);
 
-        form_data.append('[' + i + '].Descripcion', Otros_NombresData[i].Descripcion);
+        form_data.append('[' + i + '].Nombres', Otros_NombresData[i].Nombres);
+        form_data.append('[' + i + '].Apellido_Paterno', Otros_NombresData[i].Apellido_Paterno);
+        form_data.append('[' + i + '].Apellido_Materno', Otros_NombresData[i].Apellido_Materno);
 
         form_data.append('[' + i + '].Removed', Otros_NombresData[i].Removed);
     }
@@ -1892,7 +1950,9 @@ function Otros_NombresInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
-        ,Descripcion: $('#Otros_NombresDescripcion').val()
+        ,Nombres: $('#Otros_NombresNombres').val()
+        ,Apellido_Paterno: $('#Otros_NombresApellido_Paterno').val()
+        ,Apellido_Materno: $('#Otros_NombresApellido_Materno').val()
 
     }
 
@@ -2232,6 +2292,17 @@ function GetAutoCompleteDetalle_de_Imputado_Expediente_MP_expediente_ministerio_
     }
     return AutoCompleteExpediente_MPData;
 }
+var AutoCompleteExpediente_MASCData = [];
+function GetAutoCompleteDetalle_de_Imputado_Expediente_MASC_SolicitudData(data) {
+	AutoCompleteExpediente_MASCData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MASCData.push({
+            id: data[i].Clave,
+            text: data[i].Numero_de_Folio
+        });
+    }
+    return AutoCompleteExpediente_MASCData;
+}
 //Grid GetAutocomplete
 var AutoCompleteMunicipio_de_DetencionData = [];
 function GetAutoCompleteLugar_de_Detencion_Municipio_de_Detencion_MunicipioData(data) {
@@ -2553,6 +2624,9 @@ function ClearControls() {
     $('#Expediente_MP').empty();
     $("#Expediente_MP").append('<option value=""></option>');
     $('#Expediente_MP').val('0').trigger('change');
+    $('#Expediente_MASC').empty();
+    $("#Expediente_MASC").append('<option value=""></option>');
+    $('#Expediente_MASC').val('0').trigger('change');
                 Lugar_de_DetencionClearGridData();
     $('#Pais_de_Origen').empty();
     $("#Pais_de_Origen").append('<option value=""></option>');
@@ -2794,6 +2868,9 @@ $(document).ready(function () {
     $('#Expediente_MP').empty();
     $("#Expediente_MP").append('<option value=""></option>');
     $('#Expediente_MP').val('0').trigger('change');
+    $('#Expediente_MASC').empty();
+    $("#Expediente_MASC").append('<option value=""></option>');
+    $('#Expediente_MASC').val('0').trigger('change');
                 Lugar_de_DetencionClearGridData();
     $('#Pais_de_Origen').empty();
     $("#Pais_de_Origen").append('<option value=""></option>');

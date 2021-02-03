@@ -41,6 +41,7 @@
   <resource culture="en-US" name="Autoriza_Traductor" value="Autoriza o no Autoriza Servicio"></resource>
   <resource culture="en-US" name="Finalizar_Servicios_de_Apoyo" value="Finalizar Servicios de Apoyo"></resource>
   <resource culture="en-US" name="Estatus2" value="Canalizar a"></resource>
+  <resource culture="en-US" name="Unidad_canaliza" value="Unidad"></resource>
   <resource culture="en-US" name="Enviar_a_MP" value="Enviar a MP"></resource>
   <resource culture="en-US" name="Correccion_de_Estatus" value="Corrección de Estatus"></resource>
   <resource culture="en-US" name="Historial_de_Canalizaciones" value="Historial de Canalizaciones"></resource>
@@ -63,8 +64,11 @@
   <resource culture="en-US" name="Y_Calle" value="Y Calle"></resource>
   <resource culture="en-US" name="Numero_Exrterior_de_los_Hechos" value="Número Exterior"></resource>
   <resource culture="en-US" name="Numero_Interior_de_los_Hechos" value="Número Interior"></resource>
+  <resource culture="en-US" name="Referencia_hechos" value="Referencia"></resource>
   <resource culture="en-US" name="Latitud" value="Latitud"></resource>
   <resource culture="en-US" name="Longitud" value="Longitud"></resource>
+  <resource culture="en-US" name="Documento_Extraviado_hechos" value="Documento Extraviado"></resource>
+  <resource culture="en-US" name="Tipo_de_Documento_Extraviado" value="Tipo de Documento Extraviado"></resource>
   <resource culture="en-US" name="Tipo_de_Lugar_del_Hecho" value="Tipo de Lugar del Hecho"></resource>
   <resource culture="en-US" name="Zona_de_los_Hechos" value="Zona"></resource>
   <resource culture="en-US" name="Turno" value="Turno"></resource>

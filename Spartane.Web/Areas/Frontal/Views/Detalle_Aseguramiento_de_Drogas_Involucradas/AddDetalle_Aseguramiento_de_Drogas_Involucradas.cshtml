@@ -8,9 +8,15 @@
 @{
 
 
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_Droga_Tipo = null;
     if (ViewBag.Tipo_de_Drogas_Tipo != null)
     { varTipo_de_Droga_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Drogas_Tipo; }
+    List<SelectListItem> varModo_de_Asegurado_de_Drogas_Modo_de_Asegurado = null;
+    if (ViewBag.Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado != null)
+    { varModo_de_Asegurado_de_Drogas_Modo_de_Asegurado = (List<SelectListItem>)ViewBag.Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado; }
     List<SelectListItem> varUnidad_de_medida_de_tipo_de_droga_Unidad_de_Medida = null;
     if (ViewBag.Unidad_de_medida_de_tipo_de_drogas_Unidad_de_Medida != null)
     { varUnidad_de_medida_de_tipo_de_droga_Unidad_de_Medida = (List<SelectListItem>)ViewBag.Unidad_de_medida_de_tipo_de_drogas_Unidad_de_Medida; }
@@ -139,6 +145,27 @@
                                     <label class="form-control" for="Detalle_Aseguramiento_de_Drogas_InvolucradasClave" id="Detalle_Aseguramiento_de_Drogas_InvolucradasClave">@Model.Clave</label>
                                 </div>
                             </div>
+<div class="form-group" id="divMotivo_de_Registro">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Drogas_InvolucradasResources.Motivo_de_Registro</label>
+	<div class="col-sm-8" data-field-id="Motivo_de_Registro" data-attribute="268335" data-field-name="@Resources.Detalle_Aseguramiento_de_Drogas_InvolucradasResources.Motivo_de_Registro">
+		<select class="form-control" data-val="true" data-val-number="The field Motivo de Registro must be a number." data-val-required="The Motivo de Registro field is required." id="Detalle_Aseguramiento_de_Drogas_InvolucradasMotivo_de_Registro" name="Detalle_Aseguramiento_de_Drogas_InvolucradasMotivo_de_Registro">
+			<option value=""></option>
+			@if (varMotivo_de_Registro_Motivo_de_Registro != null){ 
+				foreach (var itemMotivo_de_Registro in varMotivo_de_Registro_Motivo_de_Registro)
+				{
+					if (itemMotivo_de_Registro.Value == Convert.ToString(Model.Motivo_de_Registro))
+					{
+						<option value="@itemMotivo_de_Registro.Value" selected>@itemMotivo_de_Registro.Text</option>
+					}
+					else
+					{
+						<option value="@itemMotivo_de_Registro.Value">@itemMotivo_de_Registro.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
 <div class="form-group" id="divTipo">
 	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Drogas_InvolucradasResources.Tipo</label>
 	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267612" data-field-name="@Resources.Detalle_Aseguramiento_de_Drogas_InvolucradasResources.Tipo">
@@ -154,6 +181,27 @@
 					else
 					{
 						<option value="@itemTipo.Value">@itemTipo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divModo_de_Asegurado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Drogas_InvolucradasResources.Modo_de_Asegurado</label>
+	<div class="col-sm-8" data-field-id="Modo_de_Asegurado" data-attribute="268365" data-field-name="@Resources.Detalle_Aseguramiento_de_Drogas_InvolucradasResources.Modo_de_Asegurado">
+		<select class="form-control" data-val="true" data-val-number="The field Modo de Asegurado must be a number." data-val-required="The Modo de Asegurado field is required." id="Detalle_Aseguramiento_de_Drogas_InvolucradasModo_de_Asegurado" name="Detalle_Aseguramiento_de_Drogas_InvolucradasModo_de_Asegurado">
+			<option value=""></option>
+			@if (varModo_de_Asegurado_de_Drogas_Modo_de_Asegurado != null){ 
+				foreach (var itemModo_de_Asegurado in varModo_de_Asegurado_de_Drogas_Modo_de_Asegurado)
+				{
+					if (itemModo_de_Asegurado.Value == Convert.ToString(Model.Modo_de_Asegurado))
+					{
+						<option value="@itemModo_de_Asegurado.Value" selected>@itemModo_de_Asegurado.Text</option>
+					}
+					else
+					{
+						<option value="@itemModo_de_Asegurado.Value">@itemModo_de_Asegurado.Text</option>
 					}
 				}
 			}

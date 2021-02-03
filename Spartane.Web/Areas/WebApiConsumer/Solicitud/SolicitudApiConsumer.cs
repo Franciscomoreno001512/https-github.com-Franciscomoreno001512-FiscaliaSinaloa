@@ -281,36 +281,6 @@ public ApiResponse<int> Update_Hechos(Solicitud_Hechos entity)
             }
         }
 
-public ApiResponse<int> Update_Cierre(Solicitud_Cierre entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Cierre",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Solicitud_Cierre> Get_Cierre(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Solicitud.Solicitud_Cierre>(baseApi, ApiControllerUrl + "/Get_Cierre?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Solicitud.Solicitud_Cierre>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Solicitud.Solicitud_Cierre>(false, null);
-            }
-        }
-
 public ApiResponse<int> Update_Asignacion(Solicitud_Asignacion entity)
         {
             try
@@ -338,6 +308,66 @@ public ApiResponse<int> Update_Asignacion(Solicitud_Asignacion entity)
             catch (Exception ex)
             {
                 return new ApiResponse<Core.Domain.Solicitud.Solicitud_Asignacion>(false, null);
+            }
+        }
+
+public ApiResponse<int> Update_Resolucion_de_Solicitud(Solicitud_Resolucion_de_Solicitud entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Resolucion_de_Solicitud",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Solicitud_Resolucion_de_Solicitud> Get_Resolucion_de_Solicitud(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Solicitud.Solicitud_Resolucion_de_Solicitud>(baseApi, ApiControllerUrl + "/Get_Resolucion_de_Solicitud?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Solicitud.Solicitud_Resolucion_de_Solicitud>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Solicitud.Solicitud_Resolucion_de_Solicitud>(false, null);
+            }
+        }
+
+public ApiResponse<int> Update_Resolucion_de_Procedimiento(Solicitud_Resolucion_de_Procedimiento entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Resolucion_de_Procedimiento",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Solicitud_Resolucion_de_Procedimiento> Get_Resolucion_de_Procedimiento(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Solicitud.Solicitud_Resolucion_de_Procedimiento>(baseApi, ApiControllerUrl + "/Get_Resolucion_de_Procedimiento?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Solicitud.Solicitud_Resolucion_de_Procedimiento>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Solicitud.Solicitud_Resolucion_de_Procedimiento>(false, null);
             }
         }
 

@@ -11,8 +11,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public SolicitudAdvanceSearchModel()
         {
-            Rechazar = RadioOptions.NoApply;
             Asignar_Especialista_Automatico = RadioOptions.NoApply;
+            Rechazar = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -45,9 +45,16 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceNUAT { set; get; }
         public int[] AdvanceNUATMultiple { set; get; }
 
-        public Filters UnidadFilter { set; get; }
-        public string AdvanceUnidad { set; get; }
-        public int[] AdvanceUnidadMultiple { set; get; }
+        public Filters NUAT_CodigoFilter { set; get; }
+        public string NUAT_Codigo { set; get; }
+
+        public Filters Expediente_MPIFilter { set; get; }
+        public string AdvanceExpediente_MPI { set; get; }
+        public int[] AdvanceExpediente_MPIMultiple { set; get; }
+
+        public Filters Expediente_CausaPenalFilter { set; get; }
+        public string AdvanceExpediente_CausaPenal { set; get; }
+        public int[] AdvanceExpediente_CausaPenalMultiple { set; get; }
 
         public Filters MunicipioFilter { set; get; }
         public string AdvanceMunicipio { set; get; }
@@ -94,8 +101,11 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int[] AdvanceAgente_del_Ministerio_Publico_InvestMultiple { set; get; }
 
         public Filters Juez_de_ControlFilter { set; get; }
-        public string AdvanceJuez_de_Control { set; get; }
-        public int[] AdvanceJuez_de_ControlMultiple { set; get; }
+        public string Juez_de_Control { set; get; }
+
+        public Filters UnidadFilter { set; get; }
+        public string AdvanceUnidad { set; get; }
+        public int[] AdvanceUnidadMultiple { set; get; }
 
         public Filters Titulo_del_HechoFilter { set; get; }
         public string Titulo_del_Hecho { set; get; }
@@ -163,6 +173,36 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters LatitudHFilter { set; get; }
         public string LatitudH { set; get; }
 
+        public Filters Especialista_AsignadoAFilter { set; get; }
+        public string AdvanceEspecialista_AsignadoA { set; get; }
+        public int[] AdvanceEspecialista_AsignadoAMultiple { set; get; }
+
+        public Filters Motivo_cambio_facilitadorFilter { set; get; }
+        public string Motivo_cambio_facilitador { set; get; }
+
+        public RadioOptions Asignar_Especialista_Automatico { set; get; }
+
+        public Filters RazoneFilter { set; get; }
+        public string Razone { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_de_AsignacionA { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_de_AsignacionA", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_de_AsignacionA { set; get; }
+
+        public string ToHora_de_AsignacionA { set; get; }
+        public string FromHora_de_AsignacionA { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_de_Atencion_del_Especialista { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_de_Atencion_del_Especialista", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_de_Atencion_del_Especialista { set; get; }
+
+        public string ToHora_de_Atencion_del_Especialista { set; get; }
+        public string FromHora_de_Atencion_del_Especialista { set; get; }
+
         public RadioOptions Rechazar { set; get; }
 
         public Filters Motivo_de_RechazoFilter { set; get; }
@@ -190,6 +230,21 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string ToHora_de_Cierre { set; get; }
         public string FromHora_de_Cierre { set; get; }
 
+        public Filters Usuario_que_Resuelve_SolicitudFilter { set; get; }
+        public string AdvanceUsuario_que_Resuelve_Solicitud { set; get; }
+        public int[] AdvanceUsuario_que_Resuelve_SolicitudMultiple { set; get; }
+
+        public Filters Resolucion_SolicitudFilter { set; get; }
+        public string AdvanceResolucion_Solicitud { set; get; }
+        public int[] AdvanceResolucion_SolicitudMultiple { set; get; }
+
+        public Filters Tipo_de_MecanismoFilter { set; get; }
+        public string AdvanceTipo_de_Mecanismo { set; get; }
+        public int[] AdvanceTipo_de_MecanismoMultiple { set; get; }
+
+        public Filters Observaciones_SolicitudFilter { set; get; }
+        public string Observaciones_Solicitud { set; get; }
+
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string FromFecha_Validacion { set; get; }
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
@@ -203,46 +258,52 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceUsuario_que_Valida { set; get; }
         public int[] AdvanceUsuario_que_ValidaMultiple { set; get; }
 
-        public Filters ResultadoFilter { set; get; }
-        public string AdvanceResultado { set; get; }
-        public int[] AdvanceResultadoMultiple { set; get; }
+        public Filters Autoriza_Cierre_de_ExpedienteFilter { set; get; }
+        public string AdvanceAutoriza_Cierre_de_Expediente { set; get; }
+        public int[] AdvanceAutoriza_Cierre_de_ExpedienteMultiple { set; get; }
 
         public Filters Motivo_de_Rechazo_SolicitudFilter { set; get; }
         public string Motivo_de_Rechazo_Solicitud { set; get; }
 
-        public Filters Especialista_AsignadoAFilter { set; get; }
-        public string AdvanceEspecialista_AsignadoA { set; get; }
-        public int[] AdvanceEspecialista_AsignadoAMultiple { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_de_Resolucion_Procedimiento { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_de_Resolucion_Procedimiento", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_de_Resolucion_Procedimiento { set; get; }
 
-        public Filters Motivo_cambio_facilitadorFilter { set; get; }
-        public string Motivo_cambio_facilitador { set; get; }
+        public string ToHora_de_Resolucion_Procedimiento { set; get; }
+        public string FromHora_de_Resolucion_Procedimiento { set; get; }
 
-        public RadioOptions Asignar_Especialista_Automatico { set; get; }
+        public Filters Resolucion_de_ProcedimientoFilter { set; get; }
+        public string AdvanceResolucion_de_Procedimiento { set; get; }
+        public int[] AdvanceResolucion_de_ProcedimientoMultiple { set; get; }
 
-        public Filters RazoneFilter { set; get; }
-        public string Razone { set; get; }
+        public Filters Usuario_que_Resuelve_ProcedimientoFilter { set; get; }
+        public string AdvanceUsuario_que_Resuelve_Procedimiento { set; get; }
+        public int[] AdvanceUsuario_que_Resuelve_ProcedimientoMultiple { set; get; }
 
-        public Filters Tipo_de_MecanismoFilter { set; get; }
-        public string AdvanceTipo_de_Mecanismo { set; get; }
-        public int[] AdvanceTipo_de_MecanismoMultiple { set; get; }
+        public Filters Observaciones_ProcedimientoFilter { set; get; }
+        public string Observaciones_Procedimiento { set; get; }
 
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_AsignacionA { set; get; }
+        public string FromFecha_de_Validacion_Procedimiento { set; get; }
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_AsignacionA", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_AsignacionA { set; get; }
+        [IsDateAfter("FromFecha_de_Validacion_Procedimiento", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_de_Validacion_Procedimiento { set; get; }
 
-        public string ToHora_de_AsignacionA { set; get; }
-        public string FromHora_de_AsignacionA { set; get; }
+        public string ToHora_de_Validacion_Procedimiento { set; get; }
+        public string FromHora_de_Validacion_Procedimiento { set; get; }
 
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_Atencion_del_Especialista { set; get; }
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_Atencion_del_Especialista", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_Atencion_del_Especialista { set; get; }
+        public Filters Usuario_que_Valida_ProcedimientoFilter { set; get; }
+        public string AdvanceUsuario_que_Valida_Procedimiento { set; get; }
+        public int[] AdvanceUsuario_que_Valida_ProcedimientoMultiple { set; get; }
 
-        public string ToHora_de_Atencion_del_Especialista { set; get; }
-        public string FromHora_de_Atencion_del_Especialista { set; get; }
+        public Filters Resultado_ProcedimientoFilter { set; get; }
+        public string AdvanceResultado_Procedimiento { set; get; }
+        public int[] AdvanceResultado_ProcedimientoMultiple { set; get; }
+
+        public Filters Motivo_de_Rechazo_ProcedimientoFilter { set; get; }
+        public string Motivo_de_Rechazo_Procedimiento { set; get; }
 
 
     }

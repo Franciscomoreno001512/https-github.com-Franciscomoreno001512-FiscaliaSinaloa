@@ -9,9 +9,15 @@
  List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
     List<SelectListItem> varTipo_de_Compareciente_Tipo_de_Compareciente = null;
     if (ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente != null)
     { varTipo_de_Compareciente_Tipo_de_Compareciente = (List<SelectListItem>)ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente; }
+    List<SelectListItem> varA_Tiempo_Con_Vida = null;
+    if (ViewBag.A_Tiempos_Con_Vida != null)
+    { varA_Tiempo_Con_Vida = (List<SelectListItem>)ViewBag.A_Tiempos_Con_Vida; }
     List<SelectListItem> varGenero_Sexo = null;
     if (ViewBag.Generos_Sexo != null)
     { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
@@ -54,6 +60,9 @@
     List<SelectListItem> varGrupo_al_que_Pertenece_Grupo_al_que_pertenece = null;
     if (ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece != null)
     { varGrupo_al_que_Pertenece_Grupo_al_que_pertenece = (List<SelectListItem>)ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece; }
+    List<SelectListItem> varPreferencia_Sexual_Preferencia_Sexual = null;
+    if (ViewBag.Preferencia_Sexuals_Preferencia_Sexual != null)
+    { varPreferencia_Sexual_Preferencia_Sexual = (List<SelectListItem>)ViewBag.Preferencia_Sexuals_Preferencia_Sexual; }
     List<SelectListItem> varEtnia_Etnia = null;
     if (ViewBag.Etnias_Etnia != null)
     { varEtnia_Etnia = (List<SelectListItem>)ViewBag.Etnias_Etnia; }
@@ -207,6 +216,9 @@
     List<SelectListItem> varLargo_de_Cabello_Largo_de_Cabello = null;
     if (ViewBag.Largo_de_Cabellos_Largo_de_Cabello != null)
     { varLargo_de_Cabello_Largo_de_Cabello = (List<SelectListItem>)ViewBag.Largo_de_Cabellos_Largo_de_Cabello; }
+    List<SelectListItem> varForma_Cabello_Forma_de_Cabello = null;
+    if (ViewBag.Forma_Cabellos_Forma_de_Cabello != null)
+    { varForma_Cabello_Forma_de_Cabello = (List<SelectListItem>)ViewBag.Forma_Cabellos_Forma_de_Cabello; }
     List<SelectListItem> varColor_de_Cabello_Color_Cabello = null;
     if (ViewBag.Color_de_Cabellos_Color_Cabello != null)
     { varColor_de_Cabello_Color_Cabello = (List<SelectListItem>)ViewBag.Color_de_Cabellos_Color_Cabello; }
@@ -330,6 +342,9 @@
  List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Datos_GeneralesResources.Tipo_de_Compareciente</h3>
                 </div>
@@ -348,6 +363,46 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceTipo_de_Compareciente"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Datos_GeneralesResources.Fecha_de_Aparicion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Aparicion" name="FromFecha_de_Aparicion" type="text" value="@Model.FromFecha_de_Aparicion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Aparicion" name="ToFecha_de_Aparicion" type="text" value="@Model.ToFecha_de_Aparicion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_GeneralesResources.Con_Vida</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Con_VidaFilter, filters, new { @class = "form-control", @id = "ddlCon_VidaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceCon_Vida, new { @class = "form-control", @type = "text", @id = "txtAdvanceCon_Vida" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varA_Tiempo_Con_Vida!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceCon_VidaMultiple, varA_Tiempo_Con_Vida,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceCon_Vida"
                         });
                     }
                 </div>
@@ -736,6 +791,27 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceGrupo_al_que_pertenece"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_GeneralesResources.Preferencia_Sexual</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Preferencia_SexualFilter, filters, new { @class = "form-control", @id = "ddlPreferencia_SexualFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePreferencia_Sexual, new { @class = "form-control", @type = "text", @id = "txtAdvancePreferencia_Sexual" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPreferencia_Sexual_Preferencia_Sexual!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePreferencia_SexualMultiple, varPreferencia_Sexual_Preferencia_Sexual,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePreferencia_Sexual"
                         });
                     }
                 </div>
@@ -1977,6 +2053,27 @@
                     }
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_GeneralesResources.Forma_de_Cabello</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Forma_de_CabelloFilter, filters, new { @class = "form-control", @id = "ddlForma_de_CabelloFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceForma_de_Cabello, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_de_Cabello" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varForma_Cabello_Forma_de_Cabello!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceForma_de_CabelloMultiple, varForma_Cabello_Forma_de_Cabello,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceForma_de_Cabello"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Datos_GeneralesResources.Color_Cabello</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -2522,6 +2619,21 @@
                 advanceSearch.Expediente_MPSearchType = 2;
             }
         }
+        advanceSearch.Expediente_MASCSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MASC').val().length > 0 || $("#txtAdvanceExpediente_MASC").val() == "") {
+
+
+            if (isDetalle_de_Datos_GeneralesTextSearch) {
+                advanceSearch.Expediente_MASCName = $("#txtAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCNameSearchType = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MASCToSearch = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 2;
+            }
+        }
         if ($("#ddlAdvanceDatos_Confidenciales").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Datos_GeneralesDatos_Confidenciales = $("#ddlAdvanceDatos_Confidenciales").val();
@@ -2543,6 +2655,34 @@
 
                 advanceSearch.Tipo_de_ComparecienteToSearch = $("#ddlAdvanceTipo_de_Compareciente").val();
                 advanceSearch.Tipo_de_ComparecienteSearchType = 2;
+            }
+        }
+        if ($("#ddlAdvancePersona_Desaparecida").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_GeneralesPersona_Desaparecida = $("#ddlAdvancePersona_Desaparecida").val();
+        }
+        if ($("#ddlAdvancePersona_Aparecio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_GeneralesPersona_Aparecio = $("#ddlAdvancePersona_Aparecio").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Aparicion").val() != "" || $("#txtAdvanceToFecha_de_Aparicion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_GeneralesFecha_de_AparicionFrom = $("#txtAdvanceFromFecha_de_Aparicion").val();
+            advanceSearch.Detalle_de_Datos_GeneralesFecha_de_AparicionTo = $("#txtAdvanceToFecha_de_Aparicion").val();
+        }
+        advanceSearch.Con_VidaSearchType = 0;
+        if ($('#ddlAdvanceCon_Vida').val().length > 0 || $("#txtAdvanceCon_Vida").val() == "") {
+
+
+            if (isDetalle_de_Datos_GeneralesTextSearch) {
+                advanceSearch.Con_VidaName = $("#txtAdvanceCon_Vida").val();
+                advanceSearch.Con_VidaNameSearchType = $("#ddlAdvanceCon_Vida").val();
+                advanceSearch.Con_VidaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Con_VidaToSearch = $("#ddlAdvanceCon_Vida").val();
+                advanceSearch.Con_VidaSearchType = 2;
             }
         }
         if ($("#ddlAdvancePersona_Moral").val() != "") {
@@ -2896,6 +3036,21 @@
                 advanceSearch.Grupo_al_que_perteneceSearchType = 2;
             }
         }
+        advanceSearch.Preferencia_SexualSearchType = 0;
+        if ($('#ddlAdvancePreferencia_Sexual').val().length > 0 || $("#txtAdvancePreferencia_Sexual").val() == "") {
+
+
+            if (isDetalle_de_Datos_GeneralesTextSearch) {
+                advanceSearch.Preferencia_SexualName = $("#txtAdvancePreferencia_Sexual").val();
+                advanceSearch.Preferencia_SexualNameSearchType = $("#ddlAdvancePreferencia_Sexual").val();
+                advanceSearch.Preferencia_SexualSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Preferencia_SexualToSearch = $("#ddlAdvancePreferencia_Sexual").val();
+                advanceSearch.Preferencia_SexualSearchType = 2;
+            }
+        }
         advanceSearch.EtniaSearchType = 0;
         if ($('#ddlAdvanceEtnia').val().length > 0 || $("#txtAdvanceEtnia").val() == "") {
 
@@ -3127,6 +3282,10 @@
         if ($("#ddlAdvanceSe_Informaron_sobre_sus_Derechos").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Datos_GeneralesSe_Informaron_sobre_sus_Derechos = $("#ddlAdvanceSe_Informaron_sobre_sus_Derechos").val();
+        }
+        if ($("#ddlAdvanceGravidez").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_GeneralesGravidez = $("#ddlAdvanceGravidez").val();
         }
         advanceSearch.Discapacidad_MentalSearchType = 0;
         if ($('#ddlAdvanceDiscapacidad_Mental').val().length > 0 || $("#txtAdvanceDiscapacidad_Mental").val() == "") {
@@ -3897,6 +4056,21 @@
                 advanceSearch.Largo_de_CabelloSearchType = 2;
             }
         }
+        advanceSearch.Forma_de_CabelloSearchType = 0;
+        if ($('#ddlAdvanceForma_de_Cabello').val().length > 0 || $("#txtAdvanceForma_de_Cabello").val() == "") {
+
+
+            if (isDetalle_de_Datos_GeneralesTextSearch) {
+                advanceSearch.Forma_de_CabelloName = $("#txtAdvanceForma_de_Cabello").val();
+                advanceSearch.Forma_de_CabelloNameSearchType = $("#ddlAdvanceForma_de_Cabello").val();
+                advanceSearch.Forma_de_CabelloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Forma_de_CabelloToSearch = $("#ddlAdvanceForma_de_Cabello").val();
+                advanceSearch.Forma_de_CabelloSearchType = 2;
+            }
+        }
         advanceSearch.Color_CabelloSearchType = 0;
         if ($('#ddlAdvanceColor_Cabello').val().length > 0 || $("#txtAdvanceColor_Cabello").val() == "") {
 
@@ -4303,6 +4477,15 @@
             isDetalle_de_Datos_GeneralesTextSearch = false;
             $("#txtAdvanceExpediente_MP").val('');
         });
+        $("#txtAdvanceExpediente_MASC").keypress(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = true;
+            $("#ddlAdvanceExpediente_MASC").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MASC").change(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = false;
+            $("#txtAdvanceExpediente_MASC").val('');
+        });
         $("#txtAdvanceTipo_de_Compareciente").keypress(function () {
             isDetalle_de_Datos_GeneralesTextSearch = true;
             $("#ddlAdvanceTipo_de_Compareciente").val('').trigger("chosen:updated");
@@ -4311,6 +4494,15 @@
         $("#ddlAdvanceTipo_de_Compareciente").change(function () {
             isDetalle_de_Datos_GeneralesTextSearch = false;
             $("#txtAdvanceTipo_de_Compareciente").val('');
+        });
+        $("#txtAdvanceCon_Vida").keypress(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = true;
+            $("#ddlAdvanceCon_Vida").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceCon_Vida").change(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = false;
+            $("#txtAdvanceCon_Vida").val('');
         });
         $("#txtAdvanceSexo").keypress(function () {
             isDetalle_de_Datos_GeneralesTextSearch = true;
@@ -4437,6 +4629,15 @@
         $("#ddlAdvanceGrupo_al_que_pertenece").change(function () {
             isDetalle_de_Datos_GeneralesTextSearch = false;
             $("#txtAdvanceGrupo_al_que_pertenece").val('');
+        });
+        $("#txtAdvancePreferencia_Sexual").keypress(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = true;
+            $("#ddlAdvancePreferencia_Sexual").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePreferencia_Sexual").change(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = false;
+            $("#txtAdvancePreferencia_Sexual").val('');
         });
         $("#txtAdvanceEtnia").keypress(function () {
             isDetalle_de_Datos_GeneralesTextSearch = true;
@@ -4896,6 +5097,15 @@
         $("#ddlAdvanceLargo_de_Cabello").change(function () {
             isDetalle_de_Datos_GeneralesTextSearch = false;
             $("#txtAdvanceLargo_de_Cabello").val('');
+        });
+        $("#txtAdvanceForma_de_Cabello").keypress(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = true;
+            $("#ddlAdvanceForma_de_Cabello").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceForma_de_Cabello").change(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = false;
+            $("#txtAdvanceForma_de_Cabello").val('');
         });
         $("#txtAdvanceColor_Cabello").keypress(function () {
             isDetalle_de_Datos_GeneralesTextSearch = true;

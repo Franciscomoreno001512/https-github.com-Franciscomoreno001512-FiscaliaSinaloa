@@ -3,6 +3,27 @@
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Medios_de_Transporte MultiRow
 var Detalle_Aseguramiento_Medios_de_TransportecountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Medios_de_Transporte_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroDropdown;
+}
 function GetDetalle_Aseguramiento_Medios_de_Transporte_Tipo_de_medios_de_transporteName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Tipo_de_medios_de_transporteItems.length; i++) {
         if (Detalle_Aseguramiento_Medios_de_Transporte_Tipo_de_medios_de_transporteItems[i].Clave == Id) {
@@ -24,7 +45,6 @@ function GetDetalle_Aseguramiento_Medios_de_Transporte_Tipo_de_medios_de_transpo
     }
     return Detalle_Aseguramiento_Medios_de_Transporte_Tipo_de_medios_de_transporteDropdown;
 }
-
 function GetDetalle_Aseguramiento_Medios_de_Transporte_Marca_de_Medio_de_transporteName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Marca_de_Medio_de_transporteItems.length; i++) {
         if (Detalle_Aseguramiento_Medios_de_Transporte_Marca_de_Medio_de_transporteItems[i].Clave == Id) {
@@ -44,25 +64,7 @@ function GetDetalle_Aseguramiento_Medios_de_Transporte_Marca_de_Medio_de_transpo
     }
     return Detalle_Aseguramiento_Medios_de_Transporte_Marca_de_Medio_de_transporteDropdown;
 }
-function GetDetalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems.length; i++) {
-        if (Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteDropDown() {
-    var Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Medios_de_Transporte_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteDropdown);
-
-    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems.length; i++) {
-        $('<option />', { value: Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems[i].Clave, text: Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteDropdown);
-    }
-    return Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteDropdown;
-}
 function GetDetalle_Aseguramiento_Medios_de_Transporte_Modelo_de_medio_de_transporteName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Modelo_de_medio_de_transporteItems.length; i++) {
         if (Detalle_Aseguramiento_Medios_de_Transporte_Modelo_de_medio_de_transporteItems[i].Clave == Id) {
@@ -83,27 +85,7 @@ function GetDetalle_Aseguramiento_Medios_de_Transporte_Modelo_de_medio_de_transp
     return Detalle_Aseguramiento_Medios_de_Transporte_Modelo_de_medio_de_transporteDropdown;
 }
 
-function GetDetalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteItems.length; i++) {
-        if (Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteDropDown() {
-    var Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Medios_de_Transporte_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteDropdown);
-    if(Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteItems[i].Clave, text:    Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteDropdown;
-}
 
 
 function GetDetalle_Aseguramiento_Medios_de_Transporte_Uso_del_medio_de_transporteName(Id) {
@@ -149,56 +131,124 @@ function GetDetalle_Aseguramiento_Medios_de_Transporte_Procedencia_del_medio_de_
     }
     return Detalle_Aseguramiento_Medios_de_Transporte_Procedencia_del_medio_de_transporteDropdown;
 }
-
-
-
-
-
-function GetDetalle_Aseguramiento_Medios_de_Transporte_DetencionName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems.length; i++) {
-        if (Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems[i].Descripcion;
+function GetDetalle_Aseguramiento_Medios_de_Transporte_A_TiempoName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoItems.length; i++) {
+        if (Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoItems[i].Descripcion;
         }
     }
     return "";
 }
 
-function GetDetalle_Aseguramiento_Medios_de_Transporte_DetencionDropDown() {
-    var Detalle_Aseguramiento_Medios_de_Transporte_DetencionDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Medios_de_Transporte_cmbLabelSelect").val();
+function GetDetalle_Aseguramiento_Medios_de_Transporte_A_TiempoDropDown() {
+    var Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Medios_de_Transporte_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_DetencionDropdown);
-    if(Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems != null)
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoDropdown);
+    if(Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoItems != null)
     {
-       for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems[i].Clave, text:    Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_DetencionDropdown);
+       for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoItems[i].Clave, text:    Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoDropdown);
        }
     }
-    return Detalle_Aseguramiento_Medios_de_Transporte_DetencionDropdown;
+    return Detalle_Aseguramiento_Medios_de_Transporte_A_TiempoDropdown;
 }
+function GetDetalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosItems.length; i++) {
+        if (Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosDropDown() {
+    var Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Medios_de_Transporte_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosDropdown);
+    if(Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosItems[i].Clave, text:    Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosDropdown;
+}
+
+
+
+
+function GetDetalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteItems.length; i++) {
+        if (Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteDropDown() {
+    var Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Medios_de_Transporte_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteDropdown);
+    if(Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteItems[i].Clave, text:    Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteDropdown;
+}
+function GetDetalle_Aseguramiento_Medios_de_Transporte_PensionName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_PensionItems.length; i++) {
+        if (Detalle_Aseguramiento_Medios_de_Transporte_PensionItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Medios_de_Transporte_PensionItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Medios_de_Transporte_PensionDropDown() {
+    var Detalle_Aseguramiento_Medios_de_Transporte_PensionDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Medios_de_Transporte_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_PensionDropdown);
+    if(Detalle_Aseguramiento_Medios_de_Transporte_PensionItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_PensionItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Medios_de_Transporte_PensionItems[i].Clave, text:    Detalle_Aseguramiento_Medios_de_Transporte_PensionItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_PensionDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Medios_de_Transporte_PensionDropdown;
+}
+
+
 
 
 function GetInsertDetalle_Aseguramiento_Medios_de_TransporteRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_Tipo_de_medios_de_transporteDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Tipo_de_medios_de_transporte', 'Tipo', 267566)));
-    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Especifique Especifique').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Especifique_' + index).attr('data-field', 'Especifique');
+    columnData[0] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Motivo_de_Registro', 'Motivo_de_Registro', 268334)));
+    columnData[1] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_Tipo_de_medios_de_transporteDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Tipo_de_medios_de_transporte', 'Tipo', 267566)));
     columnData[2] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Marca'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Marca Marca').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Marca_' + index).attr('data-field', 'Marca').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Marca_de_Medio_de_transporte', 'Marca', 267664)));
-    columnData[3] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Submarca Submarca').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Submarca_' + index).attr('data-field', 'Submarca').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Submarca_de_medio_de_transporte', 'Submarca', 267667)));
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Submarca Submarca').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Submarca_' + index).attr('data-field', 'Submarca');
     columnData[4] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Modelo'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Modelo Modelo').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Modelo_' + index).attr('data-field', 'Modelo').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Modelo_de_medio_de_transporte', 'Modelo', 267668)));
     columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Placas Placas').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Placas_' + index).attr('data-field', 'Placas');
-    columnData[6] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Color Color').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Color_' + index).attr('data-field', 'Color').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Color_de_medio_de_trasporte', 'Color', 267670)));
+    columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Color Color').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Color_' + index).attr('data-field', 'Color');
     columnData[7] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Numero_de_Motor Numero_de_Motor').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Numero_de_Motor_' + index).attr('data-field', 'Numero_de_Motor');
     columnData[8] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Serie Serie').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Serie_' + index).attr('data-field', 'Serie');
     columnData[9] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_Uso_del_medio_de_transporteDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Uso Uso').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Uso_' + index).attr('data-field', 'Uso').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Uso_del_medio_de_transporte', 'Uso', 267674)));
     columnData[10] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Cap__De_Pasajeros Cap__De_Pasajeros').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Cap__De_Pasajeros_' + index).attr('data-field', 'Cap__De_Pasajeros');
     columnData[11] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_Procedencia_del_medio_de_transporteDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Procedencia Procedencia').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Procedencia_' + index).attr('data-field', 'Procedencia').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Procedencia_del_medio_de_transporte', 'Procedencia', 267676)));
-    columnData[12] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Empresa Empresa').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Empresa_' + index).attr('data-field', 'Empresa');
-    columnData[13] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Capacidad_de_Carga Capacidad_de_Carga').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Capacidad_de_Carga_' + index).attr('data-field', 'Capacidad_de_Carga');
-    columnData[14] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Origen Origen').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Origen_' + index).attr('data-field', 'Origen');
-    columnData[15] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Destino Destino').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Destino_' + index).attr('data-field', 'Destino');
-    columnData[16] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Observaciones_' + index).attr('data-field', 'Observaciones');
-    columnData[17] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_DetencionDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Detencion Detencion').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Detencion_' + index).attr('data-field', 'Detencion').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Detencion', 'Detencion', 267682)));
+    columnData[12] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_A_TiempoDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Seguro Seguro').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Seguro_' + index).attr('data-field', 'Seguro').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'A_Tiempo', 'Seguro', 268342)));
+    columnData[13] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_Seguros Compania_de_Seguros').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Compania_de_Seguros_' + index).attr('data-field', 'Compania_de_Seguros').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Compania_de_Seguros', 'Compania_de_Seguros', 268356)));
+    columnData[14] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Empresa Empresa').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Empresa_' + index).attr('data-field', 'Empresa');
+    columnData[15] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Capacidad_de_Carga Capacidad_de_Carga').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Capacidad_de_Carga_' + index).attr('data-field', 'Capacidad_de_Carga');
+    columnData[16] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Origen Origen').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Origen_' + index).attr('data-field', 'Origen');
+    columnData[17] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Destino Destino').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Destino_' + index).attr('data-field', 'Destino');
+    columnData[18] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion Ubicacion').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Ubicacion_' + index).attr('data-field', 'Ubicacion').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Ubicacion_de_Medio_de_Transporte', 'Ubicacion', 268357)));
+    columnData[19] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_PensionDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Pension Pension').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Pension_' + index).attr('data-field', 'Pension').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Pension', 'Pension', 268358)));
+    columnData[20] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Domicilio_Resguardo Domicilio_Resguardo').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Domicilio_Resguardo_' + index).attr('data-field', 'Domicilio_Resguardo');
+    columnData[21] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Observaciones_' + index).attr('data-field', 'Observaciones');
 
 
     initiateUIControls();
@@ -216,12 +266,11 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Medios_de_Transpor
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
-        ,Especifique:  data.childNodes[counter++].childNodes[0].value
         , MarcaDescripcion:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Marca:  data.childNodes[counter++].childNodes[0].value 	
-        , SubmarcaDescripcion:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
-        , Submarca:  data.childNodes[counter++].childNodes[0].value 	
+        ,Submarca:  data.childNodes[counter++].childNodes[0].value
         , ModeloDescripcion:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Modelo:  data.childNodes[counter++].childNodes[0].value 	
         ,Placas:  data.childNodes[counter++].childNodes[0].value
@@ -231,12 +280,16 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Medios_de_Transpor
         ,Uso:  data.childNodes[counter++].childNodes[0].value
         ,Cap__De_Pasajeros: data.childNodes[counter++].childNodes[0].value
         ,Procedencia:  data.childNodes[counter++].childNodes[0].value
+        ,Seguro:  data.childNodes[counter++].childNodes[0].value
+        ,Compania_de_Seguros:  data.childNodes[counter++].childNodes[0].value
         ,Empresa:  data.childNodes[counter++].childNodes[0].value
         ,Capacidad_de_Carga:  data.childNodes[counter++].childNodes[0].value
         ,Origen:  data.childNodes[counter++].childNodes[0].value
         ,Destino:  data.childNodes[counter++].childNodes[0].value
+        ,Ubicacion:  data.childNodes[counter++].childNodes[0].value
+        ,Pension:  data.childNodes[counter++].childNodes[0].value
+        ,Domicilio_Resguardo:  data.childNodes[counter++].childNodes[0].value
         ,Observaciones:  data.childNodes[counter++].childNodes[0].value
-        ,Detencion:  data.childNodes[counter++].childNodes[0].value
 
     }
     Detalle_Aseguramiento_Medios_de_TransporteTable.fnUpdate(newData, rowIndex, null, true);
@@ -272,8 +325,8 @@ function GetDetalle_Aseguramiento_Medios_de_TransporteFromDataTable() {
             Detalle_Aseguramiento_Medios_de_TransporteData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Tipo: gridData[i].Tipo
-                ,Especifique: gridData[i].Especifique
                 ,Marca: gridData[i].Marca
                 ,Submarca: gridData[i].Submarca
                 ,Modelo: gridData[i].Modelo
@@ -284,12 +337,16 @@ function GetDetalle_Aseguramiento_Medios_de_TransporteFromDataTable() {
                 ,Uso: gridData[i].Uso
                 ,Cap__De_Pasajeros: gridData[i].Cap__De_Pasajeros
                 ,Procedencia: gridData[i].Procedencia
+                ,Seguro: gridData[i].Seguro
+                ,Compania_de_Seguros: gridData[i].Compania_de_Seguros
                 ,Empresa: gridData[i].Empresa
                 ,Capacidad_de_Carga: gridData[i].Capacidad_de_Carga
                 ,Origen: gridData[i].Origen
                 ,Destino: gridData[i].Destino
+                ,Ubicacion: gridData[i].Ubicacion
+                ,Pension: gridData[i].Pension
+                ,Domicilio_Resguardo: gridData[i].Domicilio_Resguardo
                 ,Observaciones: gridData[i].Observaciones
-                ,Detencion: gridData[i].Detencion
 
                 ,Removed: false
             });
@@ -300,8 +357,8 @@ function GetDetalle_Aseguramiento_Medios_de_TransporteFromDataTable() {
             Detalle_Aseguramiento_Medios_de_TransporteData.push({
                 Clave: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Motivo_de_Registro
                 ,Tipo: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Tipo
-                ,Especifique: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Especifique
                 ,Marca: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Marca
                 ,Submarca: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Submarca
                 ,Modelo: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Modelo
@@ -312,12 +369,16 @@ function GetDetalle_Aseguramiento_Medios_de_TransporteFromDataTable() {
                 ,Uso: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Uso
                 ,Cap__De_Pasajeros: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Cap__De_Pasajeros
                 ,Procedencia: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Procedencia
+                ,Seguro: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Seguro
+                ,Compania_de_Seguros: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Compania_de_Seguros
                 ,Empresa: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Empresa
                 ,Capacidad_de_Carga: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Capacidad_de_Carga
                 ,Origen: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Origen
                 ,Destino: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Destino
+                ,Ubicacion: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Ubicacion
+                ,Pension: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Pension
+                ,Domicilio_Resguardo: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Domicilio_Resguardo
                 ,Observaciones: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Observaciones
-                ,Detencion: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Detencion
 
                 , Removed: true
             });
@@ -381,10 +442,10 @@ function Detalle_Aseguramiento_Medios_de_TransporteEditRowPopup(rowIndex, curren
     var prevData = Detalle_Aseguramiento_Medios_de_TransporteTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_Medios_de_TransportePopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_Medios_de_TransporteMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_Medios_de_TransporteTipo').val(prevData.Tipo);
-    $('#Detalle_Aseguramiento_Medios_de_TransporteEspecifique').val(prevData.Especifique);
     $('#dvDetalle_Aseguramiento_Medios_de_TransporteMarca').html($($.parseHTML(GetGridAutoComplete(prevData.Marca.label,'AutoCompleteMarca'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Marca'));
-    $('#dvDetalle_Aseguramiento_Medios_de_TransporteSubmarca').html($($.parseHTML(GetGridAutoComplete(prevData.Submarca.label,'AutoCompleteSubmarca'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Submarca'));
+    $('#Detalle_Aseguramiento_Medios_de_TransporteSubmarca').val(prevData.Submarca);
     $('#dvDetalle_Aseguramiento_Medios_de_TransporteModelo').html($($.parseHTML(GetGridAutoComplete(prevData.Modelo.label,'AutoCompleteModelo'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Modelo'));
     $('#Detalle_Aseguramiento_Medios_de_TransportePlacas').val(prevData.Placas);
     $('#Detalle_Aseguramiento_Medios_de_TransporteColor').val(prevData.Color);
@@ -393,14 +454,22 @@ function Detalle_Aseguramiento_Medios_de_TransporteEditRowPopup(rowIndex, curren
     $('#Detalle_Aseguramiento_Medios_de_TransporteUso').val(prevData.Uso);
     $('#Detalle_Aseguramiento_Medios_de_TransporteCap__De_Pasajeros').val(prevData.Cap__De_Pasajeros);
     $('#Detalle_Aseguramiento_Medios_de_TransporteProcedencia').val(prevData.Procedencia);
+    $('#Detalle_Aseguramiento_Medios_de_TransporteSeguro').val(prevData.Seguro);
+    $('#Detalle_Aseguramiento_Medios_de_TransporteCompania_de_Seguros').val(prevData.Compania_de_Seguros);
     $('#Detalle_Aseguramiento_Medios_de_TransporteEmpresa').val(prevData.Empresa);
     $('#Detalle_Aseguramiento_Medios_de_TransporteCapacidad_de_Carga').val(prevData.Capacidad_de_Carga);
     $('#Detalle_Aseguramiento_Medios_de_TransporteOrigen').val(prevData.Origen);
     $('#Detalle_Aseguramiento_Medios_de_TransporteDestino').val(prevData.Destino);
+    $('#Detalle_Aseguramiento_Medios_de_TransporteUbicacion').val(prevData.Ubicacion);
+    $('#Detalle_Aseguramiento_Medios_de_TransportePension').val(prevData.Pension);
+    $('#Detalle_Aseguramiento_Medios_de_TransporteDomicilio_Resguardo').val(prevData.Domicilio_Resguardo);
     $('#Detalle_Aseguramiento_Medios_de_TransporteObservaciones').val(prevData.Observaciones);
-    $('#Detalle_Aseguramiento_Medios_de_TransporteDetencion').val(prevData.Detencion);
 
     initiateUIControls();
+
+
+
+
 
 
 
@@ -432,8 +501,8 @@ function Detalle_Aseguramiento_Medios_de_TransporteAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Tipo: ""
-        ,Especifique: ""
         ,Marca: ""
         ,Submarca: ""
         ,Modelo: ""
@@ -444,12 +513,16 @@ function Detalle_Aseguramiento_Medios_de_TransporteAddInsertRow() {
         ,Uso: ""
         ,Cap__De_Pasajeros: ""
         ,Procedencia: ""
+        ,Seguro: ""
+        ,Compania_de_Seguros: ""
         ,Empresa: ""
         ,Capacidad_de_Carga: ""
         ,Origen: ""
         ,Destino: ""
+        ,Ubicacion: ""
+        ,Pension: ""
+        ,Domicilio_Resguardo: ""
         ,Observaciones: ""
-        ,Detencion: ""
 
     }
 }
@@ -481,8 +554,8 @@ function GetDetalle_Aseguramiento_Medios_de_Transporte() {
     for (var i = 0; i < Detalle_Aseguramiento_Medios_de_TransporteData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_Medios_de_TransporteData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_Medios_de_TransporteData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_Medios_de_TransporteData[i].Tipo);
-        form_data.append('[' + i + '].Especifique', Detalle_Aseguramiento_Medios_de_TransporteData[i].Especifique);
         form_data.append('[' + i + '].Marca', Detalle_Aseguramiento_Medios_de_TransporteData[i].Marca);
         form_data.append('[' + i + '].Submarca', Detalle_Aseguramiento_Medios_de_TransporteData[i].Submarca);
         form_data.append('[' + i + '].Modelo', Detalle_Aseguramiento_Medios_de_TransporteData[i].Modelo);
@@ -493,12 +566,16 @@ function GetDetalle_Aseguramiento_Medios_de_Transporte() {
         form_data.append('[' + i + '].Uso', Detalle_Aseguramiento_Medios_de_TransporteData[i].Uso);
         form_data.append('[' + i + '].Cap__De_Pasajeros', Detalle_Aseguramiento_Medios_de_TransporteData[i].Cap__De_Pasajeros);
         form_data.append('[' + i + '].Procedencia', Detalle_Aseguramiento_Medios_de_TransporteData[i].Procedencia);
+        form_data.append('[' + i + '].Seguro', Detalle_Aseguramiento_Medios_de_TransporteData[i].Seguro);
+        form_data.append('[' + i + '].Compania_de_Seguros', Detalle_Aseguramiento_Medios_de_TransporteData[i].Compania_de_Seguros);
         form_data.append('[' + i + '].Empresa', Detalle_Aseguramiento_Medios_de_TransporteData[i].Empresa);
         form_data.append('[' + i + '].Capacidad_de_Carga', Detalle_Aseguramiento_Medios_de_TransporteData[i].Capacidad_de_Carga);
         form_data.append('[' + i + '].Origen', Detalle_Aseguramiento_Medios_de_TransporteData[i].Origen);
         form_data.append('[' + i + '].Destino', Detalle_Aseguramiento_Medios_de_TransporteData[i].Destino);
+        form_data.append('[' + i + '].Ubicacion', Detalle_Aseguramiento_Medios_de_TransporteData[i].Ubicacion);
+        form_data.append('[' + i + '].Pension', Detalle_Aseguramiento_Medios_de_TransporteData[i].Pension);
+        form_data.append('[' + i + '].Domicilio_Resguardo', Detalle_Aseguramiento_Medios_de_TransporteData[i].Domicilio_Resguardo);
         form_data.append('[' + i + '].Observaciones', Detalle_Aseguramiento_Medios_de_TransporteData[i].Observaciones);
-        form_data.append('[' + i + '].Detencion', Detalle_Aseguramiento_Medios_de_TransporteData[i].Detencion);
 
         form_data.append('[' + i + '].Removed', Detalle_Aseguramiento_Medios_de_TransporteData[i].Removed);
     }
@@ -512,8 +589,8 @@ function Detalle_Aseguramiento_Medios_de_TransporteInsertRowFromPopup(rowIndex) 
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_Medios_de_TransporteMotivo_de_Registro').val()
         ,Tipo: $('#Detalle_Aseguramiento_Medios_de_TransporteTipo').val()
-        ,Especifique: $('#Detalle_Aseguramiento_Medios_de_TransporteEspecifique').val()
         ,Marca: $('#Detalle_Aseguramiento_Medios_de_TransporteMarca').val()
         ,Submarca: $('#Detalle_Aseguramiento_Medios_de_TransporteSubmarca').val()
         ,Modelo: $('#Detalle_Aseguramiento_Medios_de_TransporteModelo').val()
@@ -525,12 +602,16 @@ function Detalle_Aseguramiento_Medios_de_TransporteInsertRowFromPopup(rowIndex) 
         ,Cap__De_Pasajeros: $('#Detalle_Aseguramiento_Medios_de_TransporteCap__De_Pasajeros').val()
 
         ,Procedencia: $('#Detalle_Aseguramiento_Medios_de_TransporteProcedencia').val()
+        ,Seguro: $('#Detalle_Aseguramiento_Medios_de_TransporteSeguro').val()
+        ,Compania_de_Seguros: $('#Detalle_Aseguramiento_Medios_de_TransporteCompania_de_Seguros').val()
         ,Empresa: $('#Detalle_Aseguramiento_Medios_de_TransporteEmpresa').val()
         ,Capacidad_de_Carga: $('#Detalle_Aseguramiento_Medios_de_TransporteCapacidad_de_Carga').val()
         ,Origen: $('#Detalle_Aseguramiento_Medios_de_TransporteOrigen').val()
         ,Destino: $('#Detalle_Aseguramiento_Medios_de_TransporteDestino').val()
+        ,Ubicacion: $('#Detalle_Aseguramiento_Medios_de_TransporteUbicacion').val()
+        ,Pension: $('#Detalle_Aseguramiento_Medios_de_TransportePension').val()
+        ,Domicilio_Resguardo: $('#Detalle_Aseguramiento_Medios_de_TransporteDomicilio_Resguardo').val()
         ,Observaciones: $('#Detalle_Aseguramiento_Medios_de_TransporteObservaciones').val()
-        ,Detencion: $('#Detalle_Aseguramiento_Medios_de_TransporteDetencion').val()
 
     }
 
@@ -551,6 +632,27 @@ function Detalle_Aseguramiento_Medios_de_TransporteRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_de_Drogas_Involucradas MultiRow
 var Detalle_Aseguramiento_de_Drogas_InvolucradascountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_de_Drogas_Involucradas_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroDropdown;
+}
 function GetDetalle_Aseguramiento_de_Drogas_Involucradas_Tipo_de_DrogaName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_de_Drogas_Involucradas_Tipo_de_DrogaItems.length; i++) {
         if (Detalle_Aseguramiento_de_Drogas_Involucradas_Tipo_de_DrogaItems[i].Clave == Id) {
@@ -571,6 +673,27 @@ function GetDetalle_Aseguramiento_de_Drogas_Involucradas_Tipo_de_DrogaDropDown()
        }
     }
     return Detalle_Aseguramiento_de_Drogas_Involucradas_Tipo_de_DrogaDropdown;
+}
+function GetDetalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasItems.length; i++) {
+        if (Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasDropDown() {
+    var Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_de_Drogas_Involucradas_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasDropdown);
+    if(Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasItems[i].Clave, text:    Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasDropdown;
 }
 function GetDetalle_Aseguramiento_de_Drogas_Involucradas_Unidad_de_medida_de_tipo_de_drogaName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_de_Drogas_Involucradas_Unidad_de_medida_de_tipo_de_drogaItems.length; i++) {
@@ -601,10 +724,12 @@ function GetInsertDetalle_Aseguramiento_de_Drogas_InvolucradasRowControls(index)
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_de_Drogas_Involucradas_Tipo_de_DrogaDropDown()).addClass('Detalle_Aseguramiento_de_Drogas_Involucradas_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_de_Drogas_Involucradas_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Drogas_Involucradas', 'Tipo_de_Droga', 'Tipo', 267612)));
-    columnData[1] = $(GetDetalle_Aseguramiento_de_Drogas_Involucradas_Unidad_de_medida_de_tipo_de_drogaDropDown()).addClass('Detalle_Aseguramiento_de_Drogas_Involucradas_Unidad_de_Medida Unidad_de_Medida').attr('id', 'Detalle_Aseguramiento_de_Drogas_Involucradas_Unidad_de_Medida_' + index).attr('data-field', 'Unidad_de_Medida').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Drogas_Involucradas', 'Unidad_de_medida_de_tipo_de_droga', 'Unidad_de_Medida', 267613)));
-    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Drogas_Involucradas_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_de_Drogas_Involucradas_Cantidad_' + index).attr('data-field', 'Cantidad');
-    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Drogas_Involucradas_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_de_Drogas_Involucradas_Observaciones_' + index).attr('data-field', 'Observaciones');
+    columnData[0] = $(GetDetalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Drogas_Involucradas', 'Motivo_de_Registro', 'Motivo_de_Registro', 268335)));
+    columnData[1] = $(GetDetalle_Aseguramiento_de_Drogas_Involucradas_Tipo_de_DrogaDropDown()).addClass('Detalle_Aseguramiento_de_Drogas_Involucradas_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_de_Drogas_Involucradas_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Drogas_Involucradas', 'Tipo_de_Droga', 'Tipo', 267612)));
+    columnData[2] = $(GetDetalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasDropDown()).addClass('Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado Modo_de_Asegurado').attr('id', 'Detalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_' + index).attr('data-field', 'Modo_de_Asegurado').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Drogas_Involucradas', 'Modo_de_Asegurado_de_Drogas', 'Modo_de_Asegurado', 268365)));
+    columnData[3] = $(GetDetalle_Aseguramiento_de_Drogas_Involucradas_Unidad_de_medida_de_tipo_de_drogaDropDown()).addClass('Detalle_Aseguramiento_de_Drogas_Involucradas_Unidad_de_Medida Unidad_de_Medida').attr('id', 'Detalle_Aseguramiento_de_Drogas_Involucradas_Unidad_de_Medida_' + index).attr('data-field', 'Unidad_de_Medida').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Drogas_Involucradas', 'Unidad_de_medida_de_tipo_de_droga', 'Unidad_de_Medida', 267613)));
+    columnData[4] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Drogas_Involucradas_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_de_Drogas_Involucradas_Cantidad_' + index).attr('data-field', 'Cantidad');
+    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Drogas_Involucradas_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_de_Drogas_Involucradas_Observaciones_' + index).attr('data-field', 'Observaciones');
 
 
     initiateUIControls();
@@ -622,7 +747,9 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_de_Drogas_Involucr
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
+        ,Modo_de_Asegurado:  data.childNodes[counter++].childNodes[0].value
         ,Unidad_de_Medida:  data.childNodes[counter++].childNodes[0].value
         ,Cantidad: data.childNodes[counter++].childNodes[0].value
         ,Observaciones:  data.childNodes[counter++].childNodes[0].value
@@ -661,7 +788,9 @@ function GetDetalle_Aseguramiento_de_Drogas_InvolucradasFromDataTable() {
             Detalle_Aseguramiento_de_Drogas_InvolucradasData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Tipo: gridData[i].Tipo
+                ,Modo_de_Asegurado: gridData[i].Modo_de_Asegurado
                 ,Unidad_de_Medida: gridData[i].Unidad_de_Medida
                 ,Cantidad: gridData[i].Cantidad
                 ,Observaciones: gridData[i].Observaciones
@@ -675,7 +804,9 @@ function GetDetalle_Aseguramiento_de_Drogas_InvolucradasFromDataTable() {
             Detalle_Aseguramiento_de_Drogas_InvolucradasData.push({
                 Clave: removedDetalle_Aseguramiento_de_Drogas_InvolucradasData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_de_Drogas_InvolucradasData[i].Motivo_de_Registro
                 ,Tipo: removedDetalle_Aseguramiento_de_Drogas_InvolucradasData[i].Tipo
+                ,Modo_de_Asegurado: removedDetalle_Aseguramiento_de_Drogas_InvolucradasData[i].Modo_de_Asegurado
                 ,Unidad_de_Medida: removedDetalle_Aseguramiento_de_Drogas_InvolucradasData[i].Unidad_de_Medida
                 ,Cantidad: removedDetalle_Aseguramiento_de_Drogas_InvolucradasData[i].Cantidad
                 ,Observaciones: removedDetalle_Aseguramiento_de_Drogas_InvolucradasData[i].Observaciones
@@ -742,12 +873,16 @@ function Detalle_Aseguramiento_de_Drogas_InvolucradasEditRowPopup(rowIndex, curr
     var prevData = Detalle_Aseguramiento_de_Drogas_InvolucradasTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_de_Drogas_InvolucradasPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_de_Drogas_InvolucradasMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_de_Drogas_InvolucradasTipo').val(prevData.Tipo);
+    $('#Detalle_Aseguramiento_de_Drogas_InvolucradasModo_de_Asegurado').val(prevData.Modo_de_Asegurado);
     $('#Detalle_Aseguramiento_de_Drogas_InvolucradasUnidad_de_Medida').val(prevData.Unidad_de_Medida);
     $('#Detalle_Aseguramiento_de_Drogas_InvolucradasCantidad').val(prevData.Cantidad);
     $('#Detalle_Aseguramiento_de_Drogas_InvolucradasObservaciones').val(prevData.Observaciones);
 
     initiateUIControls();
+
+
 
 
 
@@ -765,7 +900,9 @@ function Detalle_Aseguramiento_de_Drogas_InvolucradasAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Tipo: ""
+        ,Modo_de_Asegurado: ""
         ,Unidad_de_Medida: ""
         ,Cantidad: ""
         ,Observaciones: ""
@@ -800,7 +937,9 @@ function GetDetalle_Aseguramiento_de_Drogas_Involucradas() {
     for (var i = 0; i < Detalle_Aseguramiento_de_Drogas_InvolucradasData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_de_Drogas_InvolucradasData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_de_Drogas_InvolucradasData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_de_Drogas_InvolucradasData[i].Tipo);
+        form_data.append('[' + i + '].Modo_de_Asegurado', Detalle_Aseguramiento_de_Drogas_InvolucradasData[i].Modo_de_Asegurado);
         form_data.append('[' + i + '].Unidad_de_Medida', Detalle_Aseguramiento_de_Drogas_InvolucradasData[i].Unidad_de_Medida);
         form_data.append('[' + i + '].Cantidad', Detalle_Aseguramiento_de_Drogas_InvolucradasData[i].Cantidad);
         form_data.append('[' + i + '].Observaciones', Detalle_Aseguramiento_de_Drogas_InvolucradasData[i].Observaciones);
@@ -817,7 +956,9 @@ function Detalle_Aseguramiento_de_Drogas_InvolucradasInsertRowFromPopup(rowIndex
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_de_Drogas_InvolucradasMotivo_de_Registro').val()
         ,Tipo: $('#Detalle_Aseguramiento_de_Drogas_InvolucradasTipo').val()
+        ,Modo_de_Asegurado: $('#Detalle_Aseguramiento_de_Drogas_InvolucradasModo_de_Asegurado').val()
         ,Unidad_de_Medida: $('#Detalle_Aseguramiento_de_Drogas_InvolucradasUnidad_de_Medida').val()
         ,Cantidad: $('#Detalle_Aseguramiento_de_Drogas_InvolucradasCantidad').val()
         ,Observaciones: $('#Detalle_Aseguramiento_de_Drogas_InvolucradasObservaciones').val()
@@ -841,6 +982,27 @@ function Detalle_Aseguramiento_de_Drogas_InvolucradasRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Armas_Involucradas MultiRow
 var Detalle_Aseguramiento_Armas_InvolucradascountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Armas_Involucradas_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroDropdown;
+}
 function GetDetalle_Aseguramiento_Armas_Involucradas_Tipo_de_ArmaName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Tipo_de_ArmaItems.length; i++) {
         if (Detalle_Aseguramiento_Armas_Involucradas_Tipo_de_ArmaItems[i].Clave == Id) {
@@ -908,26 +1070,27 @@ function GetDetalle_Aseguramiento_Armas_Involucradas_Calibre_de_ArmaDropDown() {
 
 
 
-function GetDetalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems.length; i++) {
-        if (Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Descripcion;
+
+function GetDetalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems.length; i++) {
+        if (Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems[i].Descripcion;
         }
     }
     return "";
 }
 
-function GetDetalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropDown() {
-    var Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Armas_Involucradas_cmbLabelSelect").val();
+function GetDetalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropDown() {
+    var Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Armas_Involucradas_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropdown);
-    if(Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems != null)
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropdown);
+    if(Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems != null)
     {
-       for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Clave, text:    Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropdown);
+       for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems[i].Clave, text:    Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropdown);
        }
     }
-    return Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropdown;
+    return Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropdown;
 }
 
 
@@ -938,17 +1101,19 @@ function GetInsertDetalle_Aseguramiento_Armas_InvolucradasRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Tipo_de_ArmaDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Tipo_de_Arma', 'Tipo', 267531)));
-    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Descripcion_del_Arma Descripcion_del_Arma').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Descripcion_del_Arma_' + index).attr('data-field', 'Descripcion_del_Arma');
-    columnData[2] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Marca_de_ArmaDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Marca Marca').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Marca_' + index).attr('data-field', 'Marca').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Marca_de_Arma', 'Marca', 267533)));
-    columnData[3] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Calibre_de_ArmaDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Calibre Calibre').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Calibre_' + index).attr('data-field', 'Calibre').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Calibre_de_Arma', 'Calibre', 267534)));
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Matricula Matricula').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Matricula_' + index).attr('data-field', 'Matricula');
-    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Serie Serie').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Serie_' + index).attr('data-field', 'Serie');
-    columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Inventario Inventario').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Inventario_' + index).attr('data-field', 'Inventario');
-    columnData[7] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Clasificacion Clasificacion').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_' + index).attr('data-field', 'Clasificacion').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Clasificacion_de_Artefacto_y_Explosivo', 'Clasificacion', 267538)));
-    columnData[8] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Armas_Involucradas_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Cantidad_' + index).attr('data-field', 'Cantidad');
-    columnData[9] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Lugar_de_Hallazgo Lugar_de_Hallazgo').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Lugar_de_Hallazgo_' + index).attr('data-field', 'Lugar_de_Hallazgo');
-    columnData[10] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Observaciones_' + index).attr('data-field', 'Observaciones');
+    columnData[0] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Motivo_de_Registro', 'Motivo_de_Registro', 268336)));
+    columnData[1] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Tipo_de_ArmaDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Tipo_de_Arma', 'Tipo', 267531)));
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Descripcion_del_Arma Descripcion_del_Arma').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Descripcion_del_Arma_' + index).attr('data-field', 'Descripcion_del_Arma');
+    columnData[3] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Marca_de_ArmaDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Marca Marca').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Marca_' + index).attr('data-field', 'Marca').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Marca_de_Arma', 'Marca', 267533)));
+    columnData[4] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Calibre_de_ArmaDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Calibre Calibre').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Calibre_' + index).attr('data-field', 'Calibre').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Calibre_de_Arma', 'Calibre', 267534)));
+    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Matricula Matricula').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Matricula_' + index).attr('data-field', 'Matricula');
+    columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Serie Serie').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Serie_' + index).attr('data-field', 'Serie');
+    columnData[7] = $($.parseHTML(GetGridCheckBox())).addClass('Detalle_Aseguramiento_Armas_Involucradas_Arma_Oficial Arma_Oficial').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Arma_Oficial_' + index).attr('data-field', 'Arma_Oficial');
+    columnData[8] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Inventario Inventario').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Inventario_' + index).attr('data-field', 'Inventario');
+    columnData[9] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Clasificacion Clasificacion').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_' + index).attr('data-field', 'Clasificacion').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Tipo_Clasificacion', 'Clasificacion', 267538)));
+    columnData[10] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Armas_Involucradas_Valor_Estimado Valor_Estimado inputMoney').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Valor_Estimado_' + index).attr('data-field', 'Valor_Estimado');
+    columnData[11] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Lugar_de_Hallazgo Lugar_de_Hallazgo').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Lugar_de_Hallazgo_' + index).attr('data-field', 'Lugar_de_Hallazgo');
+    columnData[12] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Observaciones_' + index).attr('data-field', 'Observaciones');
 
 
     initiateUIControls();
@@ -966,15 +1131,17 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Armas_Involucradas
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Descripcion_del_Arma:  data.childNodes[counter++].childNodes[0].value
         ,Marca:  data.childNodes[counter++].childNodes[0].value
         ,Calibre:  data.childNodes[counter++].childNodes[0].value
         ,Matricula:  data.childNodes[counter++].childNodes[0].value
         ,Serie:  data.childNodes[counter++].childNodes[0].value
+        ,Arma_Oficial: $(data.childNodes[counter++].childNodes[2]).is(':checked')
         ,Inventario:  data.childNodes[counter++].childNodes[0].value
         ,Clasificacion:  data.childNodes[counter++].childNodes[0].value
-        ,Cantidad: data.childNodes[counter++].childNodes[0].value
+        ,Valor_Estimado:  data.childNodes[counter++].childNodes[0].value
         ,Lugar_de_Hallazgo:  data.childNodes[counter++].childNodes[0].value
         ,Observaciones:  data.childNodes[counter++].childNodes[0].value
 
@@ -1012,15 +1179,17 @@ function GetDetalle_Aseguramiento_Armas_InvolucradasFromDataTable() {
             Detalle_Aseguramiento_Armas_InvolucradasData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Tipo: gridData[i].Tipo
                 ,Descripcion_del_Arma: gridData[i].Descripcion_del_Arma
                 ,Marca: gridData[i].Marca
                 ,Calibre: gridData[i].Calibre
                 ,Matricula: gridData[i].Matricula
                 ,Serie: gridData[i].Serie
+                ,Arma_Oficial: gridData[i].Arma_Oficial
                 ,Inventario: gridData[i].Inventario
                 ,Clasificacion: gridData[i].Clasificacion
-                ,Cantidad: gridData[i].Cantidad
+                ,Valor_Estimado: gridData[i].Valor_Estimado
                 ,Lugar_de_Hallazgo: gridData[i].Lugar_de_Hallazgo
                 ,Observaciones: gridData[i].Observaciones
 
@@ -1033,15 +1202,17 @@ function GetDetalle_Aseguramiento_Armas_InvolucradasFromDataTable() {
             Detalle_Aseguramiento_Armas_InvolucradasData.push({
                 Clave: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Motivo_de_Registro
                 ,Tipo: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Tipo
                 ,Descripcion_del_Arma: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Descripcion_del_Arma
                 ,Marca: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Marca
                 ,Calibre: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Calibre
                 ,Matricula: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Matricula
                 ,Serie: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Serie
+                ,Arma_Oficial: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Arma_Oficial
                 ,Inventario: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Inventario
                 ,Clasificacion: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Clasificacion
-                ,Cantidad: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Cantidad
+                ,Valor_Estimado: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Valor_Estimado
                 ,Lugar_de_Hallazgo: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Lugar_de_Hallazgo
                 ,Observaciones: removedDetalle_Aseguramiento_Armas_InvolucradasData[i].Observaciones
 
@@ -1107,19 +1278,23 @@ function Detalle_Aseguramiento_Armas_InvolucradasEditRowPopup(rowIndex, currentR
     var prevData = Detalle_Aseguramiento_Armas_InvolucradasTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_Armas_InvolucradasPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_Armas_InvolucradasMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_Armas_InvolucradasTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_Armas_InvolucradasDescripcion_del_Arma').val(prevData.Descripcion_del_Arma);
     $('#Detalle_Aseguramiento_Armas_InvolucradasMarca').val(prevData.Marca);
     $('#Detalle_Aseguramiento_Armas_InvolucradasCalibre').val(prevData.Calibre);
     $('#Detalle_Aseguramiento_Armas_InvolucradasMatricula').val(prevData.Matricula);
     $('#Detalle_Aseguramiento_Armas_InvolucradasSerie').val(prevData.Serie);
+    $('#Detalle_Aseguramiento_Armas_InvolucradasArma_Oficial').prop('checked', prevData.Arma_Oficial);
     $('#Detalle_Aseguramiento_Armas_InvolucradasInventario').val(prevData.Inventario);
     $('#Detalle_Aseguramiento_Armas_InvolucradasClasificacion').val(prevData.Clasificacion);
-    $('#Detalle_Aseguramiento_Armas_InvolucradasCantidad').val(prevData.Cantidad);
+    $('#Detalle_Aseguramiento_Armas_InvolucradasValor_Estimado').val(prevData.Valor_Estimado);
     $('#Detalle_Aseguramiento_Armas_InvolucradasLugar_de_Hallazgo').val(prevData.Lugar_de_Hallazgo);
     $('#Detalle_Aseguramiento_Armas_InvolucradasObservaciones').val(prevData.Observaciones);
 
     initiateUIControls();
+
+
 
 
 
@@ -1144,15 +1319,17 @@ function Detalle_Aseguramiento_Armas_InvolucradasAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Tipo: ""
         ,Descripcion_del_Arma: ""
         ,Marca: ""
         ,Calibre: ""
         ,Matricula: ""
         ,Serie: ""
+        ,Arma_Oficial: ""
         ,Inventario: ""
         ,Clasificacion: ""
-        ,Cantidad: ""
+        ,Valor_Estimado: ""
         ,Lugar_de_Hallazgo: ""
         ,Observaciones: ""
 
@@ -1186,15 +1363,17 @@ function GetDetalle_Aseguramiento_Armas_Involucradas() {
     for (var i = 0; i < Detalle_Aseguramiento_Armas_InvolucradasData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_Armas_InvolucradasData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_Armas_InvolucradasData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_Armas_InvolucradasData[i].Tipo);
         form_data.append('[' + i + '].Descripcion_del_Arma', Detalle_Aseguramiento_Armas_InvolucradasData[i].Descripcion_del_Arma);
         form_data.append('[' + i + '].Marca', Detalle_Aseguramiento_Armas_InvolucradasData[i].Marca);
         form_data.append('[' + i + '].Calibre', Detalle_Aseguramiento_Armas_InvolucradasData[i].Calibre);
         form_data.append('[' + i + '].Matricula', Detalle_Aseguramiento_Armas_InvolucradasData[i].Matricula);
         form_data.append('[' + i + '].Serie', Detalle_Aseguramiento_Armas_InvolucradasData[i].Serie);
+        form_data.append('[' + i + '].Arma_Oficial', Detalle_Aseguramiento_Armas_InvolucradasData[i].Arma_Oficial);
         form_data.append('[' + i + '].Inventario', Detalle_Aseguramiento_Armas_InvolucradasData[i].Inventario);
         form_data.append('[' + i + '].Clasificacion', Detalle_Aseguramiento_Armas_InvolucradasData[i].Clasificacion);
-        form_data.append('[' + i + '].Cantidad', Detalle_Aseguramiento_Armas_InvolucradasData[i].Cantidad);
+        form_data.append('[' + i + '].Valor_Estimado', Detalle_Aseguramiento_Armas_InvolucradasData[i].Valor_Estimado.toString().replace('$',''));
         form_data.append('[' + i + '].Lugar_de_Hallazgo', Detalle_Aseguramiento_Armas_InvolucradasData[i].Lugar_de_Hallazgo);
         form_data.append('[' + i + '].Observaciones', Detalle_Aseguramiento_Armas_InvolucradasData[i].Observaciones);
 
@@ -1210,16 +1389,17 @@ function Detalle_Aseguramiento_Armas_InvolucradasInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_Armas_InvolucradasMotivo_de_Registro').val()
         ,Tipo: $('#Detalle_Aseguramiento_Armas_InvolucradasTipo').val()
         ,Descripcion_del_Arma: $('#Detalle_Aseguramiento_Armas_InvolucradasDescripcion_del_Arma').val()
         ,Marca: $('#Detalle_Aseguramiento_Armas_InvolucradasMarca').val()
         ,Calibre: $('#Detalle_Aseguramiento_Armas_InvolucradasCalibre').val()
         ,Matricula: $('#Detalle_Aseguramiento_Armas_InvolucradasMatricula').val()
         ,Serie: $('#Detalle_Aseguramiento_Armas_InvolucradasSerie').val()
+        ,Arma_Oficial: $('#Detalle_Aseguramiento_Armas_InvolucradasArma_Oficial').is(':checked')
         ,Inventario: $('#Detalle_Aseguramiento_Armas_InvolucradasInventario').val()
         ,Clasificacion: $('#Detalle_Aseguramiento_Armas_InvolucradasClasificacion').val()
-        ,Cantidad: $('#Detalle_Aseguramiento_Armas_InvolucradasCantidad').val()
-
+        ,Valor_Estimado: $('#Detalle_Aseguramiento_Armas_InvolucradasValor_Estimado').val()
         ,Lugar_de_Hallazgo: $('#Detalle_Aseguramiento_Armas_InvolucradasLugar_de_Hallazgo').val()
         ,Observaciones: $('#Detalle_Aseguramiento_Armas_InvolucradasObservaciones').val()
 
@@ -1242,47 +1422,47 @@ function Detalle_Aseguramiento_Armas_InvolucradasRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Artefactos_y_Explosivos MultiRow
 var Detalle_Aseguramiento_Artefactos_y_ExplosivoscountRowsChecked = 0;
 
-function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems.length; i++) {
-        if (Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems[i].Descripcion;
+function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroItems[i].Descripcion;
         }
     }
     return "";
 }
 
-function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropDown() {
-    var Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Artefactos_y_Explosivos_cmbLabelSelect").val();
+function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Artefactos_y_Explosivos_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropdown);
-    if(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems != null)
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroItems != null)
     {
-       for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems[i].Clave, text:    Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropdown);
+       for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroDropdown);
        }
     }
-    return Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropdown;
+    return Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroDropdown;
 }
-function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems.length; i++) {
-        if (Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems[i].Descripcion;
+function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems.length; i++) {
+        if (Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Descripcion;
         }
     }
     return "";
 }
 
-function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropDown() {
-    var Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Artefactos_y_Explosivos_cmbLabelSelect").val();
+function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropDown() {
+    var Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Artefactos_y_Explosivos_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropdown);
-    if(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems != null)
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropdown);
+    if(Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems != null)
     {
-       for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems[i].Clave, text:    Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropdown);
+       for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Clave, text:    Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropdown);
        }
     }
-    return Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropdown;
+    return Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropdown;
 }
 
 
@@ -1293,8 +1473,8 @@ function GetInsertDetalle_Aseguramiento_Artefactos_y_ExplosivosRowControls(index
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropDown()).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion Clasificacion').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_' + index).attr('data-field', 'Clasificacion').after($.parseHTML(addNew('Detalle_Aseguramiento_Artefactos_y_Explosivos', 'Tipo_Clasificacion', 'Clasificacion', 267544)));
-    columnData[1] = $(GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropDown()).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Artefactos_y_Explosivos', 'Tipo_Artefacto', 'Tipo', 267545)));
+    columnData[0] = $(GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Artefactos_y_Explosivos', 'Motivo_de_Registro', 'Motivo_de_Registro', 268341)));
+    columnData[1] = $(GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropDown()).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion Clasificacion').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_' + index).attr('data-field', 'Clasificacion').after($.parseHTML(addNew('Detalle_Aseguramiento_Artefactos_y_Explosivos', 'Clasificacion_de_Artefacto_y_Explosivo', 'Clasificacion', 267544)));
     columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Cantidad_' + index).attr('data-field', 'Cantidad');
     columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Lugar_de_Hallazgo Lugar_de_Hallazgo').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Lugar_de_Hallazgo_' + index).attr('data-field', 'Lugar_de_Hallazgo');
     columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Observaciones_' + index).attr('data-field', 'Observaciones');
@@ -1315,8 +1495,8 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Artefactos_y_Explo
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Clasificacion:  data.childNodes[counter++].childNodes[0].value
-        ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Cantidad: data.childNodes[counter++].childNodes[0].value
         ,Lugar_de_Hallazgo:  data.childNodes[counter++].childNodes[0].value
         ,Observaciones:  data.childNodes[counter++].childNodes[0].value
@@ -1355,8 +1535,8 @@ function GetDetalle_Aseguramiento_Artefactos_y_ExplosivosFromDataTable() {
             Detalle_Aseguramiento_Artefactos_y_ExplosivosData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Clasificacion: gridData[i].Clasificacion
-                ,Tipo: gridData[i].Tipo
                 ,Cantidad: gridData[i].Cantidad
                 ,Lugar_de_Hallazgo: gridData[i].Lugar_de_Hallazgo
                 ,Observaciones: gridData[i].Observaciones
@@ -1370,8 +1550,8 @@ function GetDetalle_Aseguramiento_Artefactos_y_ExplosivosFromDataTable() {
             Detalle_Aseguramiento_Artefactos_y_ExplosivosData.push({
                 Clave: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Motivo_de_Registro
                 ,Clasificacion: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Clasificacion
-                ,Tipo: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Tipo
                 ,Cantidad: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Cantidad
                 ,Lugar_de_Hallazgo: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Lugar_de_Hallazgo
                 ,Observaciones: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Observaciones
@@ -1438,8 +1618,8 @@ function Detalle_Aseguramiento_Artefactos_y_ExplosivosEditRowPopup(rowIndex, cur
     var prevData = Detalle_Aseguramiento_Artefactos_y_ExplosivosTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_Artefactos_y_ExplosivosPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosClasificacion').val(prevData.Clasificacion);
-    $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosCantidad').val(prevData.Cantidad);
     $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosLugar_de_Hallazgo').val(prevData.Lugar_de_Hallazgo);
     $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosObservaciones').val(prevData.Observaciones);
@@ -1463,8 +1643,8 @@ function Detalle_Aseguramiento_Artefactos_y_ExplosivosAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Clasificacion: ""
-        ,Tipo: ""
         ,Cantidad: ""
         ,Lugar_de_Hallazgo: ""
         ,Observaciones: ""
@@ -1499,8 +1679,8 @@ function GetDetalle_Aseguramiento_Artefactos_y_Explosivos() {
     for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_ExplosivosData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Clasificacion', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Clasificacion);
-        form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Tipo);
         form_data.append('[' + i + '].Cantidad', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Cantidad);
         form_data.append('[' + i + '].Lugar_de_Hallazgo', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Lugar_de_Hallazgo);
         form_data.append('[' + i + '].Observaciones', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Observaciones);
@@ -1517,8 +1697,8 @@ function Detalle_Aseguramiento_Artefactos_y_ExplosivosInsertRowFromPopup(rowInde
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosMotivo_de_Registro').val()
         ,Clasificacion: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosClasificacion').val()
-        ,Tipo: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosTipo').val()
         ,Cantidad: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosCantidad').val()
         ,Lugar_de_Hallazgo: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosLugar_de_Hallazgo').val()
         ,Observaciones: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosObservaciones').val()
@@ -1542,6 +1722,48 @@ function Detalle_Aseguramiento_Artefactos_y_ExplosivosRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_de_Cargador_Cartuchos MultiRow
 var Detalle_Aseguramiento_de_Cargador_CartuchoscountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaItems.length; i++) {
+        if (Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaDropDown() {
+    var Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_de_Cargador_Cartuchos_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaDropdown);
+    if(Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaItems[i].Clave, text:    Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaDropdown;
+}
+function GetDetalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_de_Cargador_Cartuchos_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroDropdown;
+}
 
 
 
@@ -1552,10 +1774,12 @@ function GetInsertDetalle_Aseguramiento_de_Cargador_CartuchosRowControls(index) 
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Cargador_Cartuchos_cartuchos_municiones cartuchos_municiones').attr('id', 'Detalle_Aseguramiento_de_Cargador_Cartuchos_cartuchos_municiones_' + index).attr('data-field', 'cartuchos_municiones');
-    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Cargador_Cartuchos_Cartuchos_Habiles Cartuchos_Habiles').attr('id', 'Detalle_Aseguramiento_de_Cargador_Cartuchos_Cartuchos_Habiles_' + index).attr('data-field', 'Cartuchos_Habiles');
-    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Cargador_Cartuchos_Cartuchos_Percutidos Cartuchos_Percutidos').attr('id', 'Detalle_Aseguramiento_de_Cargador_Cartuchos_Cartuchos_Percutidos_' + index).attr('data-field', 'Cartuchos_Percutidos');
-    columnData[3] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Cargador_Cartuchos_cargadores cargadores').attr('id', 'Detalle_Aseguramiento_de_Cargador_Cartuchos_cargadores_' + index).attr('data-field', 'cargadores');
+    columnData[0] = $(GetDetalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaDropDown()).addClass('Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre Calibre').attr('id', 'Detalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_' + index).attr('data-field', 'Calibre').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Cargador_Cartuchos', 'Calibre_de_Arma', 'Calibre', 268366)));
+    columnData[1] = $(GetDetalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Cargador_Cartuchos', 'Motivo_de_Registro', 'Motivo_de_Registro', 268337)));
+    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Cargador_Cartuchos_cartuchos_municiones cartuchos_municiones').attr('id', 'Detalle_Aseguramiento_de_Cargador_Cartuchos_cartuchos_municiones_' + index).attr('data-field', 'cartuchos_municiones');
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Cargador_Cartuchos_Cartuchos_Habiles Cartuchos_Habiles').attr('id', 'Detalle_Aseguramiento_de_Cargador_Cartuchos_Cartuchos_Habiles_' + index).attr('data-field', 'Cartuchos_Habiles');
+    columnData[4] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Cargador_Cartuchos_Cartuchos_Percutidos Cartuchos_Percutidos').attr('id', 'Detalle_Aseguramiento_de_Cargador_Cartuchos_Cartuchos_Percutidos_' + index).attr('data-field', 'Cartuchos_Percutidos');
+    columnData[5] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Cargador_Cartuchos_cargadores cargadores').attr('id', 'Detalle_Aseguramiento_de_Cargador_Cartuchos_cargadores_' + index).attr('data-field', 'cargadores');
 
 
     initiateUIControls();
@@ -1573,6 +1797,8 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_de_Cargador_Cartuc
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Calibre:  data.childNodes[counter++].childNodes[0].value
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,cartuchos_municiones: data.childNodes[counter++].childNodes[0].value
         ,Cartuchos_Habiles:  data.childNodes[counter++].childNodes[0].value
         ,Cartuchos_Percutidos: data.childNodes[counter++].childNodes[0].value
@@ -1612,6 +1838,8 @@ function GetDetalle_Aseguramiento_de_Cargador_CartuchosFromDataTable() {
             Detalle_Aseguramiento_de_Cargador_CartuchosData.push({
                 Clave: gridData[i].Clave
 
+                ,Calibre: gridData[i].Calibre
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,cartuchos_municiones: gridData[i].cartuchos_municiones
                 ,Cartuchos_Habiles: gridData[i].Cartuchos_Habiles
                 ,Cartuchos_Percutidos: gridData[i].Cartuchos_Percutidos
@@ -1626,6 +1854,8 @@ function GetDetalle_Aseguramiento_de_Cargador_CartuchosFromDataTable() {
             Detalle_Aseguramiento_de_Cargador_CartuchosData.push({
                 Clave: removedDetalle_Aseguramiento_de_Cargador_CartuchosData[i].Clave
 
+                ,Calibre: removedDetalle_Aseguramiento_de_Cargador_CartuchosData[i].Calibre
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_de_Cargador_CartuchosData[i].Motivo_de_Registro
                 ,cartuchos_municiones: removedDetalle_Aseguramiento_de_Cargador_CartuchosData[i].cartuchos_municiones
                 ,Cartuchos_Habiles: removedDetalle_Aseguramiento_de_Cargador_CartuchosData[i].Cartuchos_Habiles
                 ,Cartuchos_Percutidos: removedDetalle_Aseguramiento_de_Cargador_CartuchosData[i].Cartuchos_Percutidos
@@ -1693,12 +1923,16 @@ function Detalle_Aseguramiento_de_Cargador_CartuchosEditRowPopup(rowIndex, curre
     var prevData = Detalle_Aseguramiento_de_Cargador_CartuchosTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_de_Cargador_CartuchosPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_de_Cargador_CartuchosCalibre').val(prevData.Calibre);
+    $('#Detalle_Aseguramiento_de_Cargador_CartuchosMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_de_Cargador_Cartuchoscartuchos_municiones').val(prevData.cartuchos_municiones);
     $('#Detalle_Aseguramiento_de_Cargador_CartuchosCartuchos_Habiles').val(prevData.Cartuchos_Habiles);
     $('#Detalle_Aseguramiento_de_Cargador_CartuchosCartuchos_Percutidos').val(prevData.Cartuchos_Percutidos);
     $('#Detalle_Aseguramiento_de_Cargador_Cartuchoscargadores').val(prevData.cargadores);
 
     initiateUIControls();
+
+
 
 
 
@@ -1716,6 +1950,8 @@ function Detalle_Aseguramiento_de_Cargador_CartuchosAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Calibre: ""
+        ,Motivo_de_Registro: ""
         ,cartuchos_municiones: ""
         ,Cartuchos_Habiles: ""
         ,Cartuchos_Percutidos: ""
@@ -1751,6 +1987,8 @@ function GetDetalle_Aseguramiento_de_Cargador_Cartuchos() {
     for (var i = 0; i < Detalle_Aseguramiento_de_Cargador_CartuchosData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_de_Cargador_CartuchosData[i].Clave);
 
+        form_data.append('[' + i + '].Calibre', Detalle_Aseguramiento_de_Cargador_CartuchosData[i].Calibre);
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_de_Cargador_CartuchosData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].cartuchos_municiones', Detalle_Aseguramiento_de_Cargador_CartuchosData[i].cartuchos_municiones);
         form_data.append('[' + i + '].Cartuchos_Habiles', Detalle_Aseguramiento_de_Cargador_CartuchosData[i].Cartuchos_Habiles);
         form_data.append('[' + i + '].Cartuchos_Percutidos', Detalle_Aseguramiento_de_Cargador_CartuchosData[i].Cartuchos_Percutidos);
@@ -1768,6 +2006,8 @@ function Detalle_Aseguramiento_de_Cargador_CartuchosInsertRowFromPopup(rowIndex)
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Calibre: $('#Detalle_Aseguramiento_de_Cargador_CartuchosCalibre').val()
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_de_Cargador_CartuchosMotivo_de_Registro').val()
         ,cartuchos_municiones: $('#Detalle_Aseguramiento_de_Cargador_Cartuchoscartuchos_municiones').val()
 
         ,Cartuchos_Habiles: $('#Detalle_Aseguramiento_de_Cargador_CartuchosCartuchos_Habiles').val()
@@ -1795,6 +2035,27 @@ function Detalle_Aseguramiento_de_Cargador_CartuchosRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Objetos_Asegurados MultiRow
 var Detalle_Aseguramiento_Objetos_AseguradoscountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Objetos_Asegurados_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroDropdown;
+}
 
 function GetDetalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionItems.length; i++) {
@@ -1846,11 +2107,12 @@ function GetInsertDetalle_Aseguramiento_Objetos_AseguradosRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Numero Numero').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Numero_' + index).attr('data-field', 'Numero');
-    columnData[1] = $(GetDetalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionDropDown()).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Objetos_Asegurados', 'Tipo_de_Equipo_de_Comunicacion', 'Tipo', 267577)));
-    columnData[2] = $(GetDetalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionDropDown()).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Marca Marca').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Marca_' + index).attr('data-field', 'Marca').after($.parseHTML(addNew('Detalle_Aseguramiento_Objetos_Asegurados', 'Marca_de_Equipo_de_Comunicacion', 'Marca', 267578)));
-    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Serie Serie').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Serie_' + index).attr('data-field', 'Serie');
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_IMEI IMEI').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_IMEI_' + index).attr('data-field', 'IMEI');
+    columnData[0] = $(GetDetalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Objetos_Asegurados', 'Motivo_de_Registro', 'Motivo_de_Registro', 268338)));
+    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Numero Numero').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Numero_' + index).attr('data-field', 'Numero');
+    columnData[2] = $(GetDetalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionDropDown()).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Objetos_Asegurados', 'Tipo_de_Equipo_de_Comunicacion', 'Tipo', 267577)));
+    columnData[3] = $(GetDetalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionDropDown()).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Marca Marca').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Marca_' + index).attr('data-field', 'Marca').after($.parseHTML(addNew('Detalle_Aseguramiento_Objetos_Asegurados', 'Marca_de_Equipo_de_Comunicacion', 'Marca', 267578)));
+    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Serie Serie').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Serie_' + index).attr('data-field', 'Serie');
+    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_IMEI IMEI').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_IMEI_' + index).attr('data-field', 'IMEI');
 
 
     initiateUIControls();
@@ -1868,6 +2130,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Objetos_Asegurados
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Numero:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Marca:  data.childNodes[counter++].childNodes[0].value
@@ -1908,6 +2171,7 @@ function GetDetalle_Aseguramiento_Objetos_AseguradosFromDataTable() {
             Detalle_Aseguramiento_Objetos_AseguradosData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Numero: gridData[i].Numero
                 ,Tipo: gridData[i].Tipo
                 ,Marca: gridData[i].Marca
@@ -1923,6 +2187,7 @@ function GetDetalle_Aseguramiento_Objetos_AseguradosFromDataTable() {
             Detalle_Aseguramiento_Objetos_AseguradosData.push({
                 Clave: removedDetalle_Aseguramiento_Objetos_AseguradosData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_Objetos_AseguradosData[i].Motivo_de_Registro
                 ,Numero: removedDetalle_Aseguramiento_Objetos_AseguradosData[i].Numero
                 ,Tipo: removedDetalle_Aseguramiento_Objetos_AseguradosData[i].Tipo
                 ,Marca: removedDetalle_Aseguramiento_Objetos_AseguradosData[i].Marca
@@ -1991,6 +2256,7 @@ function Detalle_Aseguramiento_Objetos_AseguradosEditRowPopup(rowIndex, currentR
     var prevData = Detalle_Aseguramiento_Objetos_AseguradosTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_Objetos_AseguradosPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_Objetos_AseguradosMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_Objetos_AseguradosNumero').val(prevData.Numero);
     $('#Detalle_Aseguramiento_Objetos_AseguradosTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_Objetos_AseguradosMarca').val(prevData.Marca);
@@ -1998,6 +2264,7 @@ function Detalle_Aseguramiento_Objetos_AseguradosEditRowPopup(rowIndex, currentR
     $('#Detalle_Aseguramiento_Objetos_AseguradosIMEI').val(prevData.IMEI);
 
     initiateUIControls();
+
 
 
 
@@ -2016,6 +2283,7 @@ function Detalle_Aseguramiento_Objetos_AseguradosAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Numero: ""
         ,Tipo: ""
         ,Marca: ""
@@ -2052,6 +2320,7 @@ function GetDetalle_Aseguramiento_Objetos_Asegurados() {
     for (var i = 0; i < Detalle_Aseguramiento_Objetos_AseguradosData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_Objetos_AseguradosData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_Objetos_AseguradosData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Numero', Detalle_Aseguramiento_Objetos_AseguradosData[i].Numero);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_Objetos_AseguradosData[i].Tipo);
         form_data.append('[' + i + '].Marca', Detalle_Aseguramiento_Objetos_AseguradosData[i].Marca);
@@ -2070,6 +2339,7 @@ function Detalle_Aseguramiento_Objetos_AseguradosInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_Objetos_AseguradosMotivo_de_Registro').val()
         ,Numero: $('#Detalle_Aseguramiento_Objetos_AseguradosNumero').val()
         ,Tipo: $('#Detalle_Aseguramiento_Objetos_AseguradosTipo').val()
         ,Marca: $('#Detalle_Aseguramiento_Objetos_AseguradosMarca').val()
@@ -2095,26 +2365,47 @@ function Detalle_Aseguramiento_Objetos_AseguradosRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Documentos MultiRow
 var Detalle_Aseguramiento_DocumentoscountRowsChecked = 0;
 
-function GetDetalle_Aseguramiento_Documentos_Tipo_de_DocumentoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems.length; i++) {
-        if (Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems[i].Descripcion;
+function GetDetalle_Aseguramiento_Documentos_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Documentos_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Documentos_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Documentos_Motivo_de_RegistroItems[i].Descripcion;
         }
     }
     return "";
 }
 
-function GetDetalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropDown() {
-    var Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Documentos_cmbLabelSelect").val();
+function GetDetalle_Aseguramiento_Documentos_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Documentos_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Documentos_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropdown);
-    if(Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems != null)
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Documentos_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Documentos_Motivo_de_RegistroItems != null)
     {
-       for (var i = 0; i < Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems[i].Clave, text:    Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropdown);
+       for (var i = 0; i < Detalle_Aseguramiento_Documentos_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Documentos_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Documentos_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Documentos_Motivo_de_RegistroDropdown);
        }
     }
-    return Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropdown;
+    return Detalle_Aseguramiento_Documentos_Motivo_de_RegistroDropdown;
+}
+function GetDetalle_Aseguramiento_Documentos_Tipo_de_DocumentosName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosItems.length; i++) {
+        if (Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Documentos_Tipo_de_DocumentosDropDown() {
+    var Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Documentos_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosDropdown);
+    if(Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosItems[i].Clave, text:    Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Documentos_Tipo_de_DocumentosDropdown;
 }
 
 
@@ -2125,10 +2416,11 @@ function GetInsertDetalle_Aseguramiento_DocumentosRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropDown()).addClass('Detalle_Aseguramiento_Documentos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Documentos_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Documentos', 'Tipo_de_Documento', 'Tipo', 267645)));
-    columnData[1] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Documentos_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Documentos_Cantidad_' + index).attr('data-field', 'Cantidad');
-    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Documentos_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Documentos_Observaciones_' + index).attr('data-field', 'Observaciones');
-    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Documentos_Descipcion_de_Documento Descipcion_de_Documento').attr('id', 'Detalle_Aseguramiento_Documentos_Descipcion_de_Documento_' + index).attr('data-field', 'Descipcion_de_Documento');
+    columnData[0] = $(GetDetalle_Aseguramiento_Documentos_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Documentos_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Documentos_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Documentos', 'Motivo_de_Registro', 'Motivo_de_Registro', 268339)));
+    columnData[1] = $(GetDetalle_Aseguramiento_Documentos_Tipo_de_DocumentosDropDown()).addClass('Detalle_Aseguramiento_Documentos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Documentos_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Documentos', 'Tipo_de_Documentos', 'Tipo', 267645)));
+    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Documentos_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Documentos_Cantidad_' + index).attr('data-field', 'Cantidad');
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Documentos_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Documentos_Observaciones_' + index).attr('data-field', 'Observaciones');
+    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Documentos_Descipcion_de_Documento Descipcion_de_Documento').attr('id', 'Detalle_Aseguramiento_Documentos_Descipcion_de_Documento_' + index).attr('data-field', 'Descipcion_de_Documento');
 
 
     initiateUIControls();
@@ -2146,6 +2438,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Documentos("Detall
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Cantidad: data.childNodes[counter++].childNodes[0].value
         ,Observaciones:  data.childNodes[counter++].childNodes[0].value
@@ -2185,6 +2478,7 @@ function GetDetalle_Aseguramiento_DocumentosFromDataTable() {
             Detalle_Aseguramiento_DocumentosData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Tipo: gridData[i].Tipo
                 ,Cantidad: gridData[i].Cantidad
                 ,Observaciones: gridData[i].Observaciones
@@ -2199,6 +2493,7 @@ function GetDetalle_Aseguramiento_DocumentosFromDataTable() {
             Detalle_Aseguramiento_DocumentosData.push({
                 Clave: removedDetalle_Aseguramiento_DocumentosData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_DocumentosData[i].Motivo_de_Registro
                 ,Tipo: removedDetalle_Aseguramiento_DocumentosData[i].Tipo
                 ,Cantidad: removedDetalle_Aseguramiento_DocumentosData[i].Cantidad
                 ,Observaciones: removedDetalle_Aseguramiento_DocumentosData[i].Observaciones
@@ -2266,12 +2561,14 @@ function Detalle_Aseguramiento_DocumentosEditRowPopup(rowIndex, currentRow) {
     var prevData = Detalle_Aseguramiento_DocumentosTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_DocumentosPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_DocumentosMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_DocumentosTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_DocumentosCantidad').val(prevData.Cantidad);
     $('#Detalle_Aseguramiento_DocumentosObservaciones').val(prevData.Observaciones);
     $('#Detalle_Aseguramiento_DocumentosDescipcion_de_Documento').val(prevData.Descipcion_de_Documento);
 
     initiateUIControls();
+
 
 
 
@@ -2289,6 +2586,7 @@ function Detalle_Aseguramiento_DocumentosAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Tipo: ""
         ,Cantidad: ""
         ,Observaciones: ""
@@ -2324,6 +2622,7 @@ function GetDetalle_Aseguramiento_Documentos() {
     for (var i = 0; i < Detalle_Aseguramiento_DocumentosData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_DocumentosData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_DocumentosData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_DocumentosData[i].Tipo);
         form_data.append('[' + i + '].Cantidad', Detalle_Aseguramiento_DocumentosData[i].Cantidad);
         form_data.append('[' + i + '].Observaciones', Detalle_Aseguramiento_DocumentosData[i].Observaciones);
@@ -2341,6 +2640,7 @@ function Detalle_Aseguramiento_DocumentosInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_DocumentosMotivo_de_Registro').val()
         ,Tipo: $('#Detalle_Aseguramiento_DocumentosTipo').val()
         ,Cantidad: $('#Detalle_Aseguramiento_DocumentosCantidad').val()
         ,Observaciones: $('#Detalle_Aseguramiento_DocumentosObservaciones').val()
@@ -2365,6 +2665,27 @@ function Detalle_Aseguramiento_DocumentosRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Moneda MultiRow
 var Detalle_Aseguramiento_MonedacountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_Moneda_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Moneda_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Moneda_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Moneda_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Moneda_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Moneda_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Moneda_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Moneda_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Moneda_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Moneda_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Moneda_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Moneda_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Moneda_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Moneda_Motivo_de_RegistroDropdown;
+}
 function GetDetalle_Aseguramiento_Moneda_Tipo_de_MonedaName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Moneda_Tipo_de_MonedaItems.length; i++) {
         if (Detalle_Aseguramiento_Moneda_Tipo_de_MonedaItems[i].Clave == Id) {
@@ -2415,10 +2736,11 @@ function GetInsertDetalle_Aseguramiento_MonedaRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Moneda_Tipo_de_MonedaDropDown()).addClass('Detalle_Aseguramiento_Moneda_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Moneda_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Moneda', 'Tipo_de_Moneda', 'Tipo', 267570)));
-    columnData[1] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Moneda_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Moneda_Cantidad_' + index).attr('data-field', 'Cantidad');
-    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Moneda_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Moneda_Observaciones_' + index).attr('data-field', 'Observaciones');
-    columnData[3] = $(GetDetalle_Aseguramiento_Moneda_Tipo_de_DineroDropDown()).addClass('Detalle_Aseguramiento_Moneda_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_Moneda_Descripcion_' + index).attr('data-field', 'Descripcion').after($.parseHTML(addNew('Detalle_Aseguramiento_Moneda', 'Tipo_de_Dinero', 'Descripcion', 267573)));
+    columnData[0] = $(GetDetalle_Aseguramiento_Moneda_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Moneda_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Moneda_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Moneda', 'Motivo_de_Registro', 'Motivo_de_Registro', 268340)));
+    columnData[1] = $(GetDetalle_Aseguramiento_Moneda_Tipo_de_MonedaDropDown()).addClass('Detalle_Aseguramiento_Moneda_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Moneda_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Moneda', 'Tipo_de_Moneda', 'Tipo', 267570)));
+    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Moneda_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Moneda_Cantidad_' + index).attr('data-field', 'Cantidad');
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Moneda_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Moneda_Observaciones_' + index).attr('data-field', 'Observaciones');
+    columnData[4] = $(GetDetalle_Aseguramiento_Moneda_Tipo_de_DineroDropDown()).addClass('Detalle_Aseguramiento_Moneda_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_Moneda_Descripcion_' + index).attr('data-field', 'Descripcion').after($.parseHTML(addNew('Detalle_Aseguramiento_Moneda', 'Tipo_de_Dinero', 'Descripcion', 267573)));
 
 
     initiateUIControls();
@@ -2436,6 +2758,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Moneda("Detalle_As
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Cantidad: data.childNodes[counter++].childNodes[0].value
         ,Observaciones:  data.childNodes[counter++].childNodes[0].value
@@ -2475,6 +2798,7 @@ function GetDetalle_Aseguramiento_MonedaFromDataTable() {
             Detalle_Aseguramiento_MonedaData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Tipo: gridData[i].Tipo
                 ,Cantidad: gridData[i].Cantidad
                 ,Observaciones: gridData[i].Observaciones
@@ -2489,6 +2813,7 @@ function GetDetalle_Aseguramiento_MonedaFromDataTable() {
             Detalle_Aseguramiento_MonedaData.push({
                 Clave: removedDetalle_Aseguramiento_MonedaData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_MonedaData[i].Motivo_de_Registro
                 ,Tipo: removedDetalle_Aseguramiento_MonedaData[i].Tipo
                 ,Cantidad: removedDetalle_Aseguramiento_MonedaData[i].Cantidad
                 ,Observaciones: removedDetalle_Aseguramiento_MonedaData[i].Observaciones
@@ -2556,12 +2881,14 @@ function Detalle_Aseguramiento_MonedaEditRowPopup(rowIndex, currentRow) {
     var prevData = Detalle_Aseguramiento_MonedaTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_MonedaPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_MonedaMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_MonedaTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_MonedaCantidad').val(prevData.Cantidad);
     $('#Detalle_Aseguramiento_MonedaObservaciones').val(prevData.Observaciones);
     $('#Detalle_Aseguramiento_MonedaDescripcion').val(prevData.Descripcion);
 
     initiateUIControls();
+
 
 
 
@@ -2579,6 +2906,7 @@ function Detalle_Aseguramiento_MonedaAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Tipo: ""
         ,Cantidad: ""
         ,Observaciones: ""
@@ -2614,6 +2942,7 @@ function GetDetalle_Aseguramiento_Moneda() {
     for (var i = 0; i < Detalle_Aseguramiento_MonedaData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_MonedaData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_MonedaData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_MonedaData[i].Tipo);
         form_data.append('[' + i + '].Cantidad', Detalle_Aseguramiento_MonedaData[i].Cantidad);
         form_data.append('[' + i + '].Observaciones', Detalle_Aseguramiento_MonedaData[i].Observaciones);
@@ -2631,6 +2960,7 @@ function Detalle_Aseguramiento_MonedaInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_MonedaMotivo_de_Registro').val()
         ,Tipo: $('#Detalle_Aseguramiento_MonedaTipo').val()
         ,Cantidad: $('#Detalle_Aseguramiento_MonedaCantidad').val()
         ,Observaciones: $('#Detalle_Aseguramiento_MonedaObservaciones').val()
@@ -2655,6 +2985,27 @@ function Detalle_Aseguramiento_MonedaRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Otros_Aseguramientos MultiRow
 var Detalle_Aseguramiento_Otros_AseguramientoscountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Otros_Aseguramientos_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropdown;
+}
 function GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems.length; i++) {
         if (Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Clave == Id) {
@@ -2676,48 +3027,8 @@ function GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDro
     }
     return Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown;
 }
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems.length; i++) {
-        if (Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropDown() {
-    var Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Otros_Aseguramientos_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropdown);
-    if(Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems[i].Clave, text:    Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropdown;
-}
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems.length; i++) {
-        if (Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropDown() {
-    var Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Otros_Aseguramientos_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropdown);
-    if(Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems[i].Clave, text:    Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropdown;
-}
 
 
 function GetDetalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida_de_Equipo_TacticoName(Id) {
@@ -2749,14 +3060,15 @@ function GetInsertDetalle_Aseguramiento_Otros_AseguramientosRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Tipo_de_Equipo_Tactico', 'Tipo', 267589)));
-    columnData[1] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Marca Marca').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Marca_' + index).attr('data-field', 'Marca').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Marca_de_Equipo_Tactico', 'Marca', 267590)));
-    columnData[2] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Modelo Modelo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_' + index).attr('data-field', 'Modelo').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Modelo_de_equipo_tactico', 'Modelo', 267591)));
-    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Inventario Inventario').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Inventario_' + index).attr('data-field', 'Inventario');
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Serie Serie').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Serie_' + index).attr('data-field', 'Serie');
-    columnData[5] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida_de_Equipo_TacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida Unidad_de_Medida').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida_' + index).attr('data-field', 'Unidad_de_Medida').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Unidad_de_Medida_de_Equipo_Tactico', 'Unidad_de_Medida', 267594)));
-    columnData[6] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Cantidad_' + index).attr('data-field', 'Cantidad');
-    columnData[7] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Observaciones_' + index).attr('data-field', 'Observaciones');
+    columnData[0] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Motivo_de_Registro', 'Motivo_de_Registro', 268343)));
+    columnData[1] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Tipo_de_Equipo_Tactico', 'Tipo', 267589)));
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Marca Marca').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Marca_' + index).attr('data-field', 'Marca');
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Modelo Modelo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_' + index).attr('data-field', 'Modelo');
+    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Inventario Inventario').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Inventario_' + index).attr('data-field', 'Inventario');
+    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Serie Serie').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Serie_' + index).attr('data-field', 'Serie');
+    columnData[6] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida_de_Equipo_TacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida Unidad_de_Medida').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida_' + index).attr('data-field', 'Unidad_de_Medida').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Unidad_de_Medida_de_Equipo_Tactico', 'Unidad_de_Medida', 267594)));
+    columnData[7] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Cantidad_' + index).attr('data-field', 'Cantidad');
+    columnData[8] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Observaciones_' + index).attr('data-field', 'Observaciones');
 
 
     initiateUIControls();
@@ -2774,6 +3086,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Otros_Aseguramient
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Marca:  data.childNodes[counter++].childNodes[0].value
         ,Modelo:  data.childNodes[counter++].childNodes[0].value
@@ -2817,6 +3130,7 @@ function GetDetalle_Aseguramiento_Otros_AseguramientosFromDataTable() {
             Detalle_Aseguramiento_Otros_AseguramientosData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Tipo: gridData[i].Tipo
                 ,Marca: gridData[i].Marca
                 ,Modelo: gridData[i].Modelo
@@ -2835,6 +3149,7 @@ function GetDetalle_Aseguramiento_Otros_AseguramientosFromDataTable() {
             Detalle_Aseguramiento_Otros_AseguramientosData.push({
                 Clave: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Motivo_de_Registro
                 ,Tipo: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Tipo
                 ,Marca: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Marca
                 ,Modelo: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Modelo
@@ -2906,6 +3221,7 @@ function Detalle_Aseguramiento_Otros_AseguramientosEditRowPopup(rowIndex, curren
     var prevData = Detalle_Aseguramiento_Otros_AseguramientosTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_Otros_AseguramientosPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_Otros_AseguramientosMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_Otros_AseguramientosTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_Otros_AseguramientosMarca').val(prevData.Marca);
     $('#Detalle_Aseguramiento_Otros_AseguramientosModelo').val(prevData.Modelo);
@@ -2916,6 +3232,7 @@ function Detalle_Aseguramiento_Otros_AseguramientosEditRowPopup(rowIndex, curren
     $('#Detalle_Aseguramiento_Otros_AseguramientosObservaciones').val(prevData.Observaciones);
 
     initiateUIControls();
+
 
 
 
@@ -2937,6 +3254,7 @@ function Detalle_Aseguramiento_Otros_AseguramientosAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Tipo: ""
         ,Marca: ""
         ,Modelo: ""
@@ -2976,6 +3294,7 @@ function GetDetalle_Aseguramiento_Otros_Aseguramientos() {
     for (var i = 0; i < Detalle_Aseguramiento_Otros_AseguramientosData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_Otros_AseguramientosData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_Otros_AseguramientosData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_Otros_AseguramientosData[i].Tipo);
         form_data.append('[' + i + '].Marca', Detalle_Aseguramiento_Otros_AseguramientosData[i].Marca);
         form_data.append('[' + i + '].Modelo', Detalle_Aseguramiento_Otros_AseguramientosData[i].Modelo);
@@ -2997,6 +3316,7 @@ function Detalle_Aseguramiento_Otros_AseguramientosInsertRowFromPopup(rowIndex) 
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_Otros_AseguramientosMotivo_de_Registro').val()
         ,Tipo: $('#Detalle_Aseguramiento_Otros_AseguramientosTipo').val()
         ,Marca: $('#Detalle_Aseguramiento_Otros_AseguramientosMarca').val()
         ,Modelo: $('#Detalle_Aseguramiento_Otros_AseguramientosModelo').val()
@@ -3025,6 +3345,27 @@ function Detalle_Aseguramiento_Otros_AseguramientosRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Electronicos_y_Multimedia MultiRow
 var Detalle_Aseguramiento_Electronicos_y_MultimediacountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Electronicos_y_Multimedia_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroDropdown;
+}
 function GetDetalle_Aseguramiento_Electronicos_y_Multimedia_Aparato_Electronicos_y_MultimediaName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Electronicos_y_Multimedia_Aparato_Electronicos_y_MultimediaItems.length; i++) {
         if (Detalle_Aseguramiento_Electronicos_y_Multimedia_Aparato_Electronicos_y_MultimediaItems[i].Clave == Id) {
@@ -3076,11 +3417,12 @@ function GetInsertDetalle_Aseguramiento_Electronicos_y_MultimediaRowControls(ind
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Electronicos_y_Multimedia_Aparato_Electronicos_y_MultimediaDropDown()).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_Aparatos Aparatos').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_Aparatos_' + index).attr('data-field', 'Aparatos').after($.parseHTML(addNew('Detalle_Aseguramiento_Electronicos_y_Multimedia', 'Aparato_Electronicos_y_Multimedia', 'Aparatos', 267526)));
-    columnData[1] = $(GetDetalle_Aseguramiento_Electronicos_y_Multimedia_Documentos_MultimediaDropDown()).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_Documentos_Multimedia Documentos_Multimedia').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_Documentos_Multimedia_' + index).attr('data-field', 'Documentos_Multimedia').after($.parseHTML(addNew('Detalle_Aseguramiento_Electronicos_y_Multimedia', 'Documentos_Multimedia', 'Documentos_Multimedia', 267527)));
-    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_Descripcion_' + index).attr('data-field', 'Descripcion');
-    columnData[3] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_Cantidad_' + index).attr('data-field', 'Cantidad');
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_A_resguardo A_resguardo').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_A_resguardo_' + index).attr('data-field', 'A_resguardo');
+    columnData[0] = $(GetDetalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Electronicos_y_Multimedia', 'Motivo_de_Registro', 'Motivo_de_Registro', 268344)));
+    columnData[1] = $(GetDetalle_Aseguramiento_Electronicos_y_Multimedia_Aparato_Electronicos_y_MultimediaDropDown()).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_Aparatos Aparatos').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_Aparatos_' + index).attr('data-field', 'Aparatos').after($.parseHTML(addNew('Detalle_Aseguramiento_Electronicos_y_Multimedia', 'Aparato_Electronicos_y_Multimedia', 'Aparatos', 267526)));
+    columnData[2] = $(GetDetalle_Aseguramiento_Electronicos_y_Multimedia_Documentos_MultimediaDropDown()).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_Documentos_Multimedia Documentos_Multimedia').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_Documentos_Multimedia_' + index).attr('data-field', 'Documentos_Multimedia').after($.parseHTML(addNew('Detalle_Aseguramiento_Electronicos_y_Multimedia', 'Documentos_Multimedia', 'Documentos_Multimedia', 267527)));
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_Descripcion_' + index).attr('data-field', 'Descripcion');
+    columnData[4] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_Cantidad_' + index).attr('data-field', 'Cantidad');
+    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Electronicos_y_Multimedia_A_resguardo A_resguardo').attr('id', 'Detalle_Aseguramiento_Electronicos_y_Multimedia_A_resguardo_' + index).attr('data-field', 'A_resguardo');
 
 
     initiateUIControls();
@@ -3098,6 +3440,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Electronicos_y_Mul
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Aparatos:  data.childNodes[counter++].childNodes[0].value
         ,Documentos_Multimedia:  data.childNodes[counter++].childNodes[0].value
         ,Descripcion:  data.childNodes[counter++].childNodes[0].value
@@ -3138,6 +3481,7 @@ function GetDetalle_Aseguramiento_Electronicos_y_MultimediaFromDataTable() {
             Detalle_Aseguramiento_Electronicos_y_MultimediaData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Aparatos: gridData[i].Aparatos
                 ,Documentos_Multimedia: gridData[i].Documentos_Multimedia
                 ,Descripcion: gridData[i].Descripcion
@@ -3153,6 +3497,7 @@ function GetDetalle_Aseguramiento_Electronicos_y_MultimediaFromDataTable() {
             Detalle_Aseguramiento_Electronicos_y_MultimediaData.push({
                 Clave: removedDetalle_Aseguramiento_Electronicos_y_MultimediaData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_Electronicos_y_MultimediaData[i].Motivo_de_Registro
                 ,Aparatos: removedDetalle_Aseguramiento_Electronicos_y_MultimediaData[i].Aparatos
                 ,Documentos_Multimedia: removedDetalle_Aseguramiento_Electronicos_y_MultimediaData[i].Documentos_Multimedia
                 ,Descripcion: removedDetalle_Aseguramiento_Electronicos_y_MultimediaData[i].Descripcion
@@ -3221,6 +3566,7 @@ function Detalle_Aseguramiento_Electronicos_y_MultimediaEditRowPopup(rowIndex, c
     var prevData = Detalle_Aseguramiento_Electronicos_y_MultimediaTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_Electronicos_y_MultimediaPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_Electronicos_y_MultimediaMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_Electronicos_y_MultimediaAparatos').val(prevData.Aparatos);
     $('#Detalle_Aseguramiento_Electronicos_y_MultimediaDocumentos_Multimedia').val(prevData.Documentos_Multimedia);
     $('#Detalle_Aseguramiento_Electronicos_y_MultimediaDescripcion').val(prevData.Descripcion);
@@ -3228,6 +3574,7 @@ function Detalle_Aseguramiento_Electronicos_y_MultimediaEditRowPopup(rowIndex, c
     $('#Detalle_Aseguramiento_Electronicos_y_MultimediaA_resguardo').val(prevData.A_resguardo);
 
     initiateUIControls();
+
 
 
 
@@ -3246,6 +3593,7 @@ function Detalle_Aseguramiento_Electronicos_y_MultimediaAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Aparatos: ""
         ,Documentos_Multimedia: ""
         ,Descripcion: ""
@@ -3282,6 +3630,7 @@ function GetDetalle_Aseguramiento_Electronicos_y_Multimedia() {
     for (var i = 0; i < Detalle_Aseguramiento_Electronicos_y_MultimediaData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_Electronicos_y_MultimediaData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_Electronicos_y_MultimediaData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Aparatos', Detalle_Aseguramiento_Electronicos_y_MultimediaData[i].Aparatos);
         form_data.append('[' + i + '].Documentos_Multimedia', Detalle_Aseguramiento_Electronicos_y_MultimediaData[i].Documentos_Multimedia);
         form_data.append('[' + i + '].Descripcion', Detalle_Aseguramiento_Electronicos_y_MultimediaData[i].Descripcion);
@@ -3300,6 +3649,7 @@ function Detalle_Aseguramiento_Electronicos_y_MultimediaInsertRowFromPopup(rowIn
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_Electronicos_y_MultimediaMotivo_de_Registro').val()
         ,Aparatos: $('#Detalle_Aseguramiento_Electronicos_y_MultimediaAparatos').val()
         ,Documentos_Multimedia: $('#Detalle_Aseguramiento_Electronicos_y_MultimediaDocumentos_Multimedia').val()
         ,Descripcion: $('#Detalle_Aseguramiento_Electronicos_y_MultimediaDescripcion').val()
@@ -3325,6 +3675,27 @@ function Detalle_Aseguramiento_Electronicos_y_MultimediaRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Pirateria MultiRow
 var Detalle_Aseguramiento_PirateriacountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_Pirateria_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Pirateria_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Pirateria_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Pirateria_Motivo_de_RegistroDropdown;
+}
 function GetDetalle_Aseguramiento_Pirateria_Tipo_de_PirateriaName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Pirateria_Tipo_de_PirateriaItems.length; i++) {
         if (Detalle_Aseguramiento_Pirateria_Tipo_de_PirateriaItems[i].Clave == Id) {
@@ -3376,11 +3747,12 @@ function GetInsertDetalle_Aseguramiento_PirateriaRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Pirateria_Tipo_de_PirateriaDropDown()).addClass('Detalle_Aseguramiento_Pirateria_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Pirateria_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Pirateria', 'Tipo_de_Pirateria', 'Tipo', 267599)));
-    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Pirateria_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_Pirateria_Descripcion_' + index).attr('data-field', 'Descripcion');
-    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Pirateria_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Pirateria_Cantidad_' + index).attr('data-field', 'Cantidad');
-    columnData[3] = $(GetDetalle_Aseguramiento_Pirateria_Unidad_de_Medida_de_pirateriaDropDown()).addClass('Detalle_Aseguramiento_Pirateria_Unidad_de_Medicion Unidad_de_Medicion').attr('id', 'Detalle_Aseguramiento_Pirateria_Unidad_de_Medicion_' + index).attr('data-field', 'Unidad_de_Medicion').after($.parseHTML(addNew('Detalle_Aseguramiento_Pirateria', 'Unidad_de_Medida_de_pirateria', 'Unidad_de_Medicion', 267602)));
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Pirateria_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Pirateria_Observaciones_' + index).attr('data-field', 'Observaciones');
+    columnData[0] = $(GetDetalle_Aseguramiento_Pirateria_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Pirateria_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Pirateria_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Pirateria', 'Motivo_de_Registro', 'Motivo_de_Registro', 268347)));
+    columnData[1] = $(GetDetalle_Aseguramiento_Pirateria_Tipo_de_PirateriaDropDown()).addClass('Detalle_Aseguramiento_Pirateria_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Pirateria_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Pirateria', 'Tipo_de_Pirateria', 'Tipo', 267599)));
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Pirateria_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_Pirateria_Descripcion_' + index).attr('data-field', 'Descripcion');
+    columnData[3] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Pirateria_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Pirateria_Cantidad_' + index).attr('data-field', 'Cantidad');
+    columnData[4] = $(GetDetalle_Aseguramiento_Pirateria_Unidad_de_Medida_de_pirateriaDropDown()).addClass('Detalle_Aseguramiento_Pirateria_Unidad_de_Medicion Unidad_de_Medicion').attr('id', 'Detalle_Aseguramiento_Pirateria_Unidad_de_Medicion_' + index).attr('data-field', 'Unidad_de_Medicion').after($.parseHTML(addNew('Detalle_Aseguramiento_Pirateria', 'Unidad_de_Medida_de_pirateria', 'Unidad_de_Medicion', 267602)));
+    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Pirateria_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Pirateria_Observaciones_' + index).attr('data-field', 'Observaciones');
 
 
     initiateUIControls();
@@ -3398,6 +3770,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Pirateria("Detalle
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Descripcion:  data.childNodes[counter++].childNodes[0].value
         ,Cantidad: data.childNodes[counter++].childNodes[0].value
@@ -3438,6 +3811,7 @@ function GetDetalle_Aseguramiento_PirateriaFromDataTable() {
             Detalle_Aseguramiento_PirateriaData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Tipo: gridData[i].Tipo
                 ,Descripcion: gridData[i].Descripcion
                 ,Cantidad: gridData[i].Cantidad
@@ -3453,6 +3827,7 @@ function GetDetalle_Aseguramiento_PirateriaFromDataTable() {
             Detalle_Aseguramiento_PirateriaData.push({
                 Clave: removedDetalle_Aseguramiento_PirateriaData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_PirateriaData[i].Motivo_de_Registro
                 ,Tipo: removedDetalle_Aseguramiento_PirateriaData[i].Tipo
                 ,Descripcion: removedDetalle_Aseguramiento_PirateriaData[i].Descripcion
                 ,Cantidad: removedDetalle_Aseguramiento_PirateriaData[i].Cantidad
@@ -3521,6 +3896,7 @@ function Detalle_Aseguramiento_PirateriaEditRowPopup(rowIndex, currentRow) {
     var prevData = Detalle_Aseguramiento_PirateriaTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_PirateriaPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_PirateriaMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_PirateriaTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_PirateriaDescripcion').val(prevData.Descripcion);
     $('#Detalle_Aseguramiento_PirateriaCantidad').val(prevData.Cantidad);
@@ -3528,6 +3904,7 @@ function Detalle_Aseguramiento_PirateriaEditRowPopup(rowIndex, currentRow) {
     $('#Detalle_Aseguramiento_PirateriaObservaciones').val(prevData.Observaciones);
 
     initiateUIControls();
+
 
 
 
@@ -3546,6 +3923,7 @@ function Detalle_Aseguramiento_PirateriaAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Tipo: ""
         ,Descripcion: ""
         ,Cantidad: ""
@@ -3582,6 +3960,7 @@ function GetDetalle_Aseguramiento_Pirateria() {
     for (var i = 0; i < Detalle_Aseguramiento_PirateriaData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_PirateriaData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_PirateriaData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_PirateriaData[i].Tipo);
         form_data.append('[' + i + '].Descripcion', Detalle_Aseguramiento_PirateriaData[i].Descripcion);
         form_data.append('[' + i + '].Cantidad', Detalle_Aseguramiento_PirateriaData[i].Cantidad);
@@ -3600,6 +3979,7 @@ function Detalle_Aseguramiento_PirateriaInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_PirateriaMotivo_de_Registro').val()
         ,Tipo: $('#Detalle_Aseguramiento_PirateriaTipo').val()
         ,Descripcion: $('#Detalle_Aseguramiento_PirateriaDescripcion').val()
         ,Cantidad: $('#Detalle_Aseguramiento_PirateriaCantidad').val()
@@ -3625,6 +4005,27 @@ function Detalle_Aseguramiento_PirateriaRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Inmuebles MultiRow
 var Detalle_Aseguramiento_InmueblescountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_Inmuebles_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Inmuebles_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Inmuebles_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Inmuebles_Motivo_de_RegistroDropdown;
+}
 function GetDetalle_Aseguramiento_Inmuebles_Tipo_de_ZonaName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_Tipo_de_ZonaItems.length; i++) {
         if (Detalle_Aseguramiento_Inmuebles_Tipo_de_ZonaItems[i].Clave == Id) {
@@ -3667,28 +4068,6 @@ function GetDetalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleDropDown() {
     }
     return Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleDropdown;
 }
-function GetDetalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems.length; i++) {
-        if (Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropDown() {
-    var Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Inmuebles_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropdown);
-    if(Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems[i].Clave, text:    Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropdown;
-}
-
 
 
 
@@ -3731,7 +4110,25 @@ function GetDetalle_Aseguramiento_Inmuebles_MunicipioDropDown() {
     }
     return Detalle_Aseguramiento_Inmuebles_MunicipioDropdown;
 }
+function GetDetalle_Aseguramiento_Inmuebles_ColoniaName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_ColoniaItems.length; i++) {
+        if (Detalle_Aseguramiento_Inmuebles_ColoniaItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Inmuebles_ColoniaItems[i].Nombre;
+        }
+    }
+    return "";
+}
 
+function GetDetalle_Aseguramiento_Inmuebles_ColoniaDropDown() {
+    var Detalle_Aseguramiento_Inmuebles_ColoniaDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Inmuebles_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Inmuebles_ColoniaDropdown);
+
+    for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_ColoniaItems.length; i++) {
+        $('<option />', { value: Detalle_Aseguramiento_Inmuebles_ColoniaItems[i].Clave, text: Detalle_Aseguramiento_Inmuebles_ColoniaItems[i].Nombre }).appendTo(Detalle_Aseguramiento_Inmuebles_ColoniaDropdown);
+    }
+    return Detalle_Aseguramiento_Inmuebles_ColoniaDropdown;
+}
 
 
 
@@ -3742,21 +4139,20 @@ function GetInsertDetalle_Aseguramiento_InmueblesRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Inmuebles_Tipo_de_ZonaDropDown()).addClass('Detalle_Aseguramiento_Inmuebles_Zona Zona').attr('id', 'Detalle_Aseguramiento_Inmuebles_Zona_' + index).attr('data-field', 'Zona').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Tipo_de_Zona', 'Zona', 267549)));
-    columnData[1] = $(GetDetalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleDropDown()).addClass('Detalle_Aseguramiento_Inmuebles_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Inmuebles_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Tipo_de_Inmueble', 'Tipo', 267550)));
-    columnData[2] = $(GetDetalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropDown()).addClass('Detalle_Aseguramiento_Inmuebles_Terreno Terreno').attr('id', 'Detalle_Aseguramiento_Inmuebles_Terreno_' + index).attr('data-field', 'Terreno').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Terreno_de_Inmuebles', 'Terreno', 267551)));
-    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Especifique_Otro Especifique_Otro').attr('id', 'Detalle_Aseguramiento_Inmuebles_Especifique_Otro_' + index).attr('data-field', 'Especifique_Otro');
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Calle Calle').attr('id', 'Detalle_Aseguramiento_Inmuebles_Calle_' + index).attr('data-field', 'Calle');
-    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Exterior Exterior').attr('id', 'Detalle_Aseguramiento_Inmuebles_Exterior_' + index).attr('data-field', 'Exterior');
-    columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Interior Interior').attr('id', 'Detalle_Aseguramiento_Inmuebles_Interior_' + index).attr('data-field', 'Interior');
-    columnData[7] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_C_P C_P').attr('id', 'Detalle_Aseguramiento_Inmuebles_C_P_' + index).attr('data-field', 'C_P');
-    columnData[8] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Inmuebles_Estado'))).addClass('Detalle_Aseguramiento_Inmuebles_Estado Estado').attr('id', 'Detalle_Aseguramiento_Inmuebles_Estado_' + index).attr('data-field', 'Estado').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Estado', 'Estado', 267557)));
-    columnData[9] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Inmuebles_Municipio'))).addClass('Detalle_Aseguramiento_Inmuebles_Municipio Municipio').attr('id', 'Detalle_Aseguramiento_Inmuebles_Municipio_' + index).attr('data-field', 'Municipio').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Municipio', 'Municipio', 267558)));
-    columnData[10] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Colonia Colonia').attr('id', 'Detalle_Aseguramiento_Inmuebles_Colonia_' + index).attr('data-field', 'Colonia');
-    columnData[11] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Registro_Publico_Propiedad Registro_Publico_Propiedad').attr('id', 'Detalle_Aseguramiento_Inmuebles_Registro_Publico_Propiedad_' + index).attr('data-field', 'Registro_Publico_Propiedad');
-    columnData[12] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Entrecalles Entrecalles').attr('id', 'Detalle_Aseguramiento_Inmuebles_Entrecalles_' + index).attr('data-field', 'Entrecalles');
-    columnData[13] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Propietario Propietario').attr('id', 'Detalle_Aseguramiento_Inmuebles_Propietario_' + index).attr('data-field', 'Propietario');
-    columnData[14] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Inmuebles_Observaciones_' + index).attr('data-field', 'Observaciones');
+    columnData[0] = $(GetDetalle_Aseguramiento_Inmuebles_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Inmuebles_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Inmuebles_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Motivo_de_Registro', 'Motivo_de_Registro', 268352)));
+    columnData[1] = $(GetDetalle_Aseguramiento_Inmuebles_Tipo_de_ZonaDropDown()).addClass('Detalle_Aseguramiento_Inmuebles_Zona Zona').attr('id', 'Detalle_Aseguramiento_Inmuebles_Zona_' + index).attr('data-field', 'Zona').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Tipo_de_Zona', 'Zona', 267549)));
+    columnData[2] = $(GetDetalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleDropDown()).addClass('Detalle_Aseguramiento_Inmuebles_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Inmuebles_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Tipo_de_Inmueble', 'Tipo', 267550)));
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Calle Calle').attr('id', 'Detalle_Aseguramiento_Inmuebles_Calle_' + index).attr('data-field', 'Calle');
+    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Exterior Exterior').attr('id', 'Detalle_Aseguramiento_Inmuebles_Exterior_' + index).attr('data-field', 'Exterior');
+    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Interior Interior').attr('id', 'Detalle_Aseguramiento_Inmuebles_Interior_' + index).attr('data-field', 'Interior');
+    columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_C_P C_P').attr('id', 'Detalle_Aseguramiento_Inmuebles_C_P_' + index).attr('data-field', 'C_P');
+    columnData[7] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Inmuebles_Estado'))).addClass('Detalle_Aseguramiento_Inmuebles_Estado Estado').attr('id', 'Detalle_Aseguramiento_Inmuebles_Estado_' + index).attr('data-field', 'Estado').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Estado', 'Estado', 267557)));
+    columnData[8] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Inmuebles_Municipio'))).addClass('Detalle_Aseguramiento_Inmuebles_Municipio Municipio').attr('id', 'Detalle_Aseguramiento_Inmuebles_Municipio_' + index).attr('data-field', 'Municipio').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Municipio', 'Municipio', 267558)));
+    columnData[9] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Inmuebles_Colonia'))).addClass('Detalle_Aseguramiento_Inmuebles_Colonia Colonia').attr('id', 'Detalle_Aseguramiento_Inmuebles_Colonia_' + index).attr('data-field', 'Colonia').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Colonia', 'Colonia', 267559)));
+    columnData[10] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Registro_Publico_Propiedad Registro_Publico_Propiedad').attr('id', 'Detalle_Aseguramiento_Inmuebles_Registro_Publico_Propiedad_' + index).attr('data-field', 'Registro_Publico_Propiedad');
+    columnData[11] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Entrecalles Entrecalles').attr('id', 'Detalle_Aseguramiento_Inmuebles_Entrecalles_' + index).attr('data-field', 'Entrecalles');
+    columnData[12] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Propietario Propietario').attr('id', 'Detalle_Aseguramiento_Inmuebles_Propietario_' + index).attr('data-field', 'Propietario');
+    columnData[13] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Inmuebles_Observaciones_' + index).attr('data-field', 'Observaciones');
 
 
     initiateUIControls();
@@ -3774,10 +4170,9 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Inmuebles("Detalle
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Zona:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
-        ,Terreno:  data.childNodes[counter++].childNodes[0].value
-        ,Especifique_Otro:  data.childNodes[counter++].childNodes[0].value
         ,Calle:  data.childNodes[counter++].childNodes[0].value
         ,Exterior:  data.childNodes[counter++].childNodes[0].value
         ,Interior:  data.childNodes[counter++].childNodes[0].value
@@ -3786,7 +4181,8 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Inmuebles("Detalle
         , Estado:  data.childNodes[counter++].childNodes[0].value 	
         , MunicipioNombre:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Municipio:  data.childNodes[counter++].childNodes[0].value 	
-        ,Colonia:  data.childNodes[counter++].childNodes[0].value
+        , ColoniaNombre:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
+        , Colonia:  data.childNodes[counter++].childNodes[0].value 	
         ,Registro_Publico_Propiedad:  data.childNodes[counter++].childNodes[0].value
         ,Entrecalles:  data.childNodes[counter++].childNodes[0].value
         ,Propietario:  data.childNodes[counter++].childNodes[0].value
@@ -3826,10 +4222,9 @@ function GetDetalle_Aseguramiento_InmueblesFromDataTable() {
             Detalle_Aseguramiento_InmueblesData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Zona: gridData[i].Zona
                 ,Tipo: gridData[i].Tipo
-                ,Terreno: gridData[i].Terreno
-                ,Especifique_Otro: gridData[i].Especifique_Otro
                 ,Calle: gridData[i].Calle
                 ,Exterior: gridData[i].Exterior
                 ,Interior: gridData[i].Interior
@@ -3851,10 +4246,9 @@ function GetDetalle_Aseguramiento_InmueblesFromDataTable() {
             Detalle_Aseguramiento_InmueblesData.push({
                 Clave: removedDetalle_Aseguramiento_InmueblesData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_InmueblesData[i].Motivo_de_Registro
                 ,Zona: removedDetalle_Aseguramiento_InmueblesData[i].Zona
                 ,Tipo: removedDetalle_Aseguramiento_InmueblesData[i].Tipo
-                ,Terreno: removedDetalle_Aseguramiento_InmueblesData[i].Terreno
-                ,Especifique_Otro: removedDetalle_Aseguramiento_InmueblesData[i].Especifique_Otro
                 ,Calle: removedDetalle_Aseguramiento_InmueblesData[i].Calle
                 ,Exterior: removedDetalle_Aseguramiento_InmueblesData[i].Exterior
                 ,Interior: removedDetalle_Aseguramiento_InmueblesData[i].Interior
@@ -3929,24 +4323,22 @@ function Detalle_Aseguramiento_InmueblesEditRowPopup(rowIndex, currentRow) {
     var prevData = Detalle_Aseguramiento_InmueblesTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_InmueblesPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_InmueblesMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_InmueblesZona').val(prevData.Zona);
     $('#Detalle_Aseguramiento_InmueblesTipo').val(prevData.Tipo);
-    $('#Detalle_Aseguramiento_InmueblesTerreno').val(prevData.Terreno);
-    $('#Detalle_Aseguramiento_InmueblesEspecifique_Otro').val(prevData.Especifique_Otro);
     $('#Detalle_Aseguramiento_InmueblesCalle').val(prevData.Calle);
     $('#Detalle_Aseguramiento_InmueblesExterior').val(prevData.Exterior);
     $('#Detalle_Aseguramiento_InmueblesInterior').val(prevData.Interior);
     $('#Detalle_Aseguramiento_InmueblesC_P').val(prevData.C_P);
     $('#dvDetalle_Aseguramiento_InmueblesEstado').html($($.parseHTML(GetGridAutoComplete(prevData.Estado.label,'AutoCompleteEstado'))).addClass('Detalle_Aseguramiento_Inmuebles_Estado'));
     $('#dvDetalle_Aseguramiento_InmueblesMunicipio').html($($.parseHTML(GetGridAutoComplete(prevData.Municipio.label,'AutoCompleteMunicipio'))).addClass('Detalle_Aseguramiento_Inmuebles_Municipio'));
-    $('#Detalle_Aseguramiento_InmueblesColonia').val(prevData.Colonia);
+    $('#dvDetalle_Aseguramiento_InmueblesColonia').html($($.parseHTML(GetGridAutoComplete(prevData.Colonia.label,'AutoCompleteColonia'))).addClass('Detalle_Aseguramiento_Inmuebles_Colonia'));
     $('#Detalle_Aseguramiento_InmueblesRegistro_Publico_Propiedad').val(prevData.Registro_Publico_Propiedad);
     $('#Detalle_Aseguramiento_InmueblesEntrecalles').val(prevData.Entrecalles);
     $('#Detalle_Aseguramiento_InmueblesPropietario').val(prevData.Propietario);
     $('#Detalle_Aseguramiento_InmueblesObservaciones').val(prevData.Observaciones);
 
     initiateUIControls();
-
 
 
 
@@ -3974,10 +4366,9 @@ function Detalle_Aseguramiento_InmueblesAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Zona: ""
         ,Tipo: ""
-        ,Terreno: ""
-        ,Especifique_Otro: ""
         ,Calle: ""
         ,Exterior: ""
         ,Interior: ""
@@ -4020,10 +4411,9 @@ function GetDetalle_Aseguramiento_Inmuebles() {
     for (var i = 0; i < Detalle_Aseguramiento_InmueblesData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_InmueblesData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_InmueblesData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Zona', Detalle_Aseguramiento_InmueblesData[i].Zona);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_InmueblesData[i].Tipo);
-        form_data.append('[' + i + '].Terreno', Detalle_Aseguramiento_InmueblesData[i].Terreno);
-        form_data.append('[' + i + '].Especifique_Otro', Detalle_Aseguramiento_InmueblesData[i].Especifique_Otro);
         form_data.append('[' + i + '].Calle', Detalle_Aseguramiento_InmueblesData[i].Calle);
         form_data.append('[' + i + '].Exterior', Detalle_Aseguramiento_InmueblesData[i].Exterior);
         form_data.append('[' + i + '].Interior', Detalle_Aseguramiento_InmueblesData[i].Interior);
@@ -4048,10 +4438,9 @@ function Detalle_Aseguramiento_InmueblesInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_InmueblesMotivo_de_Registro').val()
         ,Zona: $('#Detalle_Aseguramiento_InmueblesZona').val()
         ,Tipo: $('#Detalle_Aseguramiento_InmueblesTipo').val()
-        ,Terreno: $('#Detalle_Aseguramiento_InmueblesTerreno').val()
-        ,Especifique_Otro: $('#Detalle_Aseguramiento_InmueblesEspecifique_Otro').val()
         ,Calle: $('#Detalle_Aseguramiento_InmueblesCalle').val()
         ,Exterior: $('#Detalle_Aseguramiento_InmueblesExterior').val()
         ,Interior: $('#Detalle_Aseguramiento_InmueblesInterior').val()
@@ -4083,6 +4472,27 @@ function Detalle_Aseguramiento_InmueblesRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_de_Plantios MultiRow
 var Detalle_Aseguramiento_de_PlantioscountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_de_Plantios_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_de_Plantios_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_de_Plantios_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_de_Plantios_Motivo_de_RegistroDropdown;
+}
 function GetDetalle_Aseguramiento_de_Plantios_Tipo_de_PlantioName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_de_Plantios_Tipo_de_PlantioItems.length; i++) {
         if (Detalle_Aseguramiento_de_Plantios_Tipo_de_PlantioItems[i].Clave == Id) {
@@ -4141,18 +4551,19 @@ function GetInsertDetalle_Aseguramiento_de_PlantiosRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_de_Plantios_Tipo_de_PlantioDropDown()).addClass('Detalle_Aseguramiento_de_Plantios_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_de_Plantios_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Plantios', 'Tipo_de_Plantio', 'Tipo', 267631)));
-    columnData[1] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Plantios_No__de_Plantios No__de_Plantios').attr('id', 'Detalle_Aseguramiento_de_Plantios_No__de_Plantios_' + index).attr('data-field', 'No__de_Plantios');
-    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Plantios_Kilogramos Kilogramos').attr('id', 'Detalle_Aseguramiento_de_Plantios_Kilogramos_' + index).attr('data-field', 'Kilogramos');
-    columnData[3] = $(GetDetalle_Aseguramiento_de_Plantios_Metodo_de_DestruccionDropDown()).addClass('Detalle_Aseguramiento_de_Plantios_Metodo_de_Destruccion Metodo_de_Destruccion').attr('id', 'Detalle_Aseguramiento_de_Plantios_Metodo_de_Destruccion_' + index).attr('data-field', 'Metodo_de_Destruccion').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Plantios', 'Metodo_de_Destruccion', 'Metodo_de_Destruccion', 267634)));
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Superficie Superficie').attr('id', 'Detalle_Aseguramiento_de_Plantios_Superficie_' + index).attr('data-field', 'Superficie');
-    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Altura Altura').attr('id', 'Detalle_Aseguramiento_de_Plantios_Altura_' + index).attr('data-field', 'Altura');
-    columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Densidad Densidad').attr('id', 'Detalle_Aseguramiento_de_Plantios_Densidad_' + index).attr('data-field', 'Densidad');
-    columnData[7] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Peso_por_planta Peso_por_planta').attr('id', 'Detalle_Aseguramiento_de_Plantios_Peso_por_planta_' + index).attr('data-field', 'Peso_por_planta');
-    columnData[8] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Latitud Latitud').attr('id', 'Detalle_Aseguramiento_de_Plantios_Latitud_' + index).attr('data-field', 'Latitud');
-    columnData[9] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Longitud Longitud').attr('id', 'Detalle_Aseguramiento_de_Plantios_Longitud_' + index).attr('data-field', 'Longitud');
-    columnData[10] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Plantios_Largo Largo').attr('id', 'Detalle_Aseguramiento_de_Plantios_Largo_' + index).attr('data-field', 'Largo');
-    columnData[11] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Plantios_Ancho Ancho').attr('id', 'Detalle_Aseguramiento_de_Plantios_Ancho_' + index).attr('data-field', 'Ancho');
+    columnData[0] = $(GetDetalle_Aseguramiento_de_Plantios_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_de_Plantios_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_de_Plantios_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Plantios', 'Motivo_de_Registro', 'Motivo_de_Registro', 268353)));
+    columnData[1] = $(GetDetalle_Aseguramiento_de_Plantios_Tipo_de_PlantioDropDown()).addClass('Detalle_Aseguramiento_de_Plantios_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_de_Plantios_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Plantios', 'Tipo_de_Plantio', 'Tipo', 267631)));
+    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Plantios_No__de_Plantios No__de_Plantios').attr('id', 'Detalle_Aseguramiento_de_Plantios_No__de_Plantios_' + index).attr('data-field', 'No__de_Plantios');
+    columnData[3] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Plantios_Kilogramos Kilogramos').attr('id', 'Detalle_Aseguramiento_de_Plantios_Kilogramos_' + index).attr('data-field', 'Kilogramos');
+    columnData[4] = $(GetDetalle_Aseguramiento_de_Plantios_Metodo_de_DestruccionDropDown()).addClass('Detalle_Aseguramiento_de_Plantios_Metodo_de_Destruccion Metodo_de_Destruccion').attr('id', 'Detalle_Aseguramiento_de_Plantios_Metodo_de_Destruccion_' + index).attr('data-field', 'Metodo_de_Destruccion').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Plantios', 'Metodo_de_Destruccion', 'Metodo_de_Destruccion', 267634)));
+    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Superficie Superficie').attr('id', 'Detalle_Aseguramiento_de_Plantios_Superficie_' + index).attr('data-field', 'Superficie');
+    columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Altura Altura').attr('id', 'Detalle_Aseguramiento_de_Plantios_Altura_' + index).attr('data-field', 'Altura');
+    columnData[7] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Densidad Densidad').attr('id', 'Detalle_Aseguramiento_de_Plantios_Densidad_' + index).attr('data-field', 'Densidad');
+    columnData[8] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Peso_por_planta Peso_por_planta').attr('id', 'Detalle_Aseguramiento_de_Plantios_Peso_por_planta_' + index).attr('data-field', 'Peso_por_planta');
+    columnData[9] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Latitud Latitud').attr('id', 'Detalle_Aseguramiento_de_Plantios_Latitud_' + index).attr('data-field', 'Latitud');
+    columnData[10] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Plantios_Longitud Longitud').attr('id', 'Detalle_Aseguramiento_de_Plantios_Longitud_' + index).attr('data-field', 'Longitud');
+    columnData[11] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Plantios_Largo Largo').attr('id', 'Detalle_Aseguramiento_de_Plantios_Largo_' + index).attr('data-field', 'Largo');
+    columnData[12] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_de_Plantios_Ancho Ancho').attr('id', 'Detalle_Aseguramiento_de_Plantios_Ancho_' + index).attr('data-field', 'Ancho');
 
 
     initiateUIControls();
@@ -4170,6 +4581,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_de_Plantios("Detal
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,No__de_Plantios: data.childNodes[counter++].childNodes[0].value
         ,Kilogramos: data.childNodes[counter++].childNodes[0].value
@@ -4217,6 +4629,7 @@ function GetDetalle_Aseguramiento_de_PlantiosFromDataTable() {
             Detalle_Aseguramiento_de_PlantiosData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Tipo: gridData[i].Tipo
                 ,No__de_Plantios: gridData[i].No__de_Plantios
                 ,Kilogramos: gridData[i].Kilogramos
@@ -4239,6 +4652,7 @@ function GetDetalle_Aseguramiento_de_PlantiosFromDataTable() {
             Detalle_Aseguramiento_de_PlantiosData.push({
                 Clave: removedDetalle_Aseguramiento_de_PlantiosData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_de_PlantiosData[i].Motivo_de_Registro
                 ,Tipo: removedDetalle_Aseguramiento_de_PlantiosData[i].Tipo
                 ,No__de_Plantios: removedDetalle_Aseguramiento_de_PlantiosData[i].No__de_Plantios
                 ,Kilogramos: removedDetalle_Aseguramiento_de_PlantiosData[i].Kilogramos
@@ -4314,6 +4728,7 @@ function Detalle_Aseguramiento_de_PlantiosEditRowPopup(rowIndex, currentRow) {
     var prevData = Detalle_Aseguramiento_de_PlantiosTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_de_PlantiosPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_de_PlantiosMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_de_PlantiosTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_de_PlantiosNo__de_Plantios').val(prevData.No__de_Plantios);
     $('#Detalle_Aseguramiento_de_PlantiosKilogramos').val(prevData.Kilogramos);
@@ -4342,6 +4757,7 @@ function Detalle_Aseguramiento_de_PlantiosEditRowPopup(rowIndex, currentRow) {
 
 
 
+
 }
 
 function Detalle_Aseguramiento_de_PlantiosAddInsertRow() {
@@ -4353,6 +4769,7 @@ function Detalle_Aseguramiento_de_PlantiosAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Tipo: ""
         ,No__de_Plantios: ""
         ,Kilogramos: ""
@@ -4396,6 +4813,7 @@ function GetDetalle_Aseguramiento_de_Plantios() {
     for (var i = 0; i < Detalle_Aseguramiento_de_PlantiosData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_de_PlantiosData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_de_PlantiosData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_de_PlantiosData[i].Tipo);
         form_data.append('[' + i + '].No__de_Plantios', Detalle_Aseguramiento_de_PlantiosData[i].No__de_Plantios);
         form_data.append('[' + i + '].Kilogramos', Detalle_Aseguramiento_de_PlantiosData[i].Kilogramos);
@@ -4421,6 +4839,7 @@ function Detalle_Aseguramiento_de_PlantiosInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_de_PlantiosMotivo_de_Registro').val()
         ,Tipo: $('#Detalle_Aseguramiento_de_PlantiosTipo').val()
         ,No__de_Plantios: $('#Detalle_Aseguramiento_de_PlantiosNo__de_Plantios').val()
 
@@ -4454,6 +4873,27 @@ function Detalle_Aseguramiento_de_PlantiosRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_de_Pistas_de_Aterrizaje MultiRow
 var Detalle_Aseguramiento_de_Pistas_de_AterrizajecountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroDropdown;
+}
 function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeItems.length; i++) {
         if (Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeItems[i].Clave == Id) {
@@ -4474,27 +4914,6 @@ function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_Aterr
        }
     }
     return Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeDropdown;
-}
-function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems.length; i++) {
-        if (Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropDown() {
-    var Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropdown);
-    if(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems[i].Clave, text:    Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropdown;
 }
 
 
@@ -4551,11 +4970,11 @@ function GetInsertDetalle_Aseguramiento_de_Pistas_de_AterrizajeRowControls(index
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeDropDown()).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje', 'Tipo_de_Pista_de_Aterrizaje', 'Tipo', 267618)));
-    columnData[1] = $(GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropDown()).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Suelo Suelo').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Suelo_' + index).attr('data-field', 'Suelo').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje', 'Tipo_de_Suelo', 'Suelo', 267619)));
-    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Descripcion_' + index).attr('data-field', 'Descripcion');
-    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Localizacion_1 Localizacion_1').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Localizacion_1_' + index).attr('data-field', 'Localizacion_1');
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Localizacion_2 Localizacion_2').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Localizacion_2_' + index).attr('data-field', 'Localizacion_2');
+    columnData[0] = $(GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje', 'Motivo_de_Registro', 'Motivo_de_Registro', 268354)));
+    columnData[1] = $(GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeDropDown()).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje', 'Tipo_de_Pista_de_Aterrizaje', 'Tipo', 267618)));
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Suelo Suelo').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Suelo_' + index).attr('data-field', 'Suelo');
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Descripcion_' + index).attr('data-field', 'Descripcion');
+    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Localizacion_1 Localizacion_1').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Localizacion_1_' + index).attr('data-field', 'Localizacion_1');
     columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Latitud Latitud').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Latitud_' + index).attr('data-field', 'Latitud');
     columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Longitud Longitud').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Longitud_' + index).attr('data-field', 'Longitud');
     columnData[7] = $(GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_OrientacionDropDown()).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Orientacion_de Orientacion_de').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Orientacion_de_' + index).attr('data-field', 'Orientacion_de').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje', 'Tipo_de_Orientacion', 'Orientacion_de', 267625)));
@@ -4579,11 +4998,11 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_de_Pistas_de_Aterr
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Suelo:  data.childNodes[counter++].childNodes[0].value
         ,Descripcion:  data.childNodes[counter++].childNodes[0].value
         ,Localizacion_1:  data.childNodes[counter++].childNodes[0].value
-        ,Localizacion_2:  data.childNodes[counter++].childNodes[0].value
         ,Latitud:  data.childNodes[counter++].childNodes[0].value
         ,Longitud:  data.childNodes[counter++].childNodes[0].value
         ,Orientacion_de:  data.childNodes[counter++].childNodes[0].value
@@ -4625,11 +5044,11 @@ function GetDetalle_Aseguramiento_de_Pistas_de_AterrizajeFromDataTable() {
             Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Tipo: gridData[i].Tipo
                 ,Suelo: gridData[i].Suelo
                 ,Descripcion: gridData[i].Descripcion
                 ,Localizacion_1: gridData[i].Localizacion_1
-                ,Localizacion_2: gridData[i].Localizacion_2
                 ,Latitud: gridData[i].Latitud
                 ,Longitud: gridData[i].Longitud
                 ,Orientacion_de: gridData[i].Orientacion_de
@@ -4646,11 +5065,11 @@ function GetDetalle_Aseguramiento_de_Pistas_de_AterrizajeFromDataTable() {
             Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.push({
                 Clave: removedDetalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Motivo_de_Registro
                 ,Tipo: removedDetalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Tipo
                 ,Suelo: removedDetalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Suelo
                 ,Descripcion: removedDetalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Descripcion
                 ,Localizacion_1: removedDetalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Localizacion_1
-                ,Localizacion_2: removedDetalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Localizacion_2
                 ,Latitud: removedDetalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Latitud
                 ,Longitud: removedDetalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Longitud
                 ,Orientacion_de: removedDetalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Orientacion_de
@@ -4720,11 +5139,11 @@ function Detalle_Aseguramiento_de_Pistas_de_AterrizajeEditRowPopup(rowIndex, cur
     var prevData = Detalle_Aseguramiento_de_Pistas_de_AterrizajeTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_de_Pistas_de_AterrizajePopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeSuelo').val(prevData.Suelo);
     $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeDescripcion').val(prevData.Descripcion);
     $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeLocalizacion_1').val(prevData.Localizacion_1);
-    $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeLocalizacion_2').val(prevData.Localizacion_2);
     $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeLatitud').val(prevData.Latitud);
     $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeLongitud').val(prevData.Longitud);
     $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeOrientacion_de').val(prevData.Orientacion_de);
@@ -4757,11 +5176,11 @@ function Detalle_Aseguramiento_de_Pistas_de_AterrizajeAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Tipo: ""
         ,Suelo: ""
         ,Descripcion: ""
         ,Localizacion_1: ""
-        ,Localizacion_2: ""
         ,Latitud: ""
         ,Longitud: ""
         ,Orientacion_de: ""
@@ -4799,11 +5218,11 @@ function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje() {
     for (var i = 0; i < Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Tipo);
         form_data.append('[' + i + '].Suelo', Detalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Suelo);
         form_data.append('[' + i + '].Descripcion', Detalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Descripcion);
         form_data.append('[' + i + '].Localizacion_1', Detalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Localizacion_1);
-        form_data.append('[' + i + '].Localizacion_2', Detalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Localizacion_2);
         form_data.append('[' + i + '].Latitud', Detalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Latitud);
         form_data.append('[' + i + '].Longitud', Detalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Longitud);
         form_data.append('[' + i + '].Orientacion_de', Detalle_Aseguramiento_de_Pistas_de_AterrizajeData[i].Orientacion_de);
@@ -4823,11 +5242,11 @@ function Detalle_Aseguramiento_de_Pistas_de_AterrizajeInsertRowFromPopup(rowInde
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeMotivo_de_Registro').val()
         ,Tipo: $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeTipo').val()
         ,Suelo: $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeSuelo').val()
         ,Descripcion: $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeDescripcion').val()
         ,Localizacion_1: $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeLocalizacion_1').val()
-        ,Localizacion_2: $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeLocalizacion_2').val()
         ,Latitud: $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeLatitud').val()
         ,Longitud: $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeLongitud').val()
         ,Orientacion_de: $('#Detalle_Aseguramiento_de_Pistas_de_AterrizajeOrientacion_de').val()
@@ -4854,6 +5273,27 @@ function Detalle_Aseguramiento_de_Pistas_de_AterrizajeRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Otros MultiRow
 var Detalle_Aseguramiento_OtroscountRowsChecked = 0;
 
+function GetDetalle_Aseguramiento_Otros_Motivo_de_RegistroName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Otros_Motivo_de_RegistroItems.length; i++) {
+        if (Detalle_Aseguramiento_Otros_Motivo_de_RegistroItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Otros_Motivo_de_RegistroItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Otros_Motivo_de_RegistroDropDown() {
+    var Detalle_Aseguramiento_Otros_Motivo_de_RegistroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Otros_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Otros_Motivo_de_RegistroDropdown);
+    if(Detalle_Aseguramiento_Otros_Motivo_de_RegistroItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Otros_Motivo_de_RegistroItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Otros_Motivo_de_RegistroItems[i].Clave, text:    Detalle_Aseguramiento_Otros_Motivo_de_RegistroItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Otros_Motivo_de_RegistroDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Otros_Motivo_de_RegistroDropdown;
+}
 
 
 
@@ -4864,10 +5304,11 @@ function GetInsertDetalle_Aseguramiento_OtrosRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Otros_Tipo_' + index).attr('data-field', 'Tipo');
-    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Unidad_de_medida Unidad_de_medida').attr('id', 'Detalle_Aseguramiento_Otros_Unidad_de_medida_' + index).attr('data-field', 'Unidad_de_medida');
-    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Otros_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Otros_Cantidad_' + index).attr('data-field', 'Cantidad');
-    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_Otros_Descripcion_' + index).attr('data-field', 'Descripcion');
+    columnData[0] = $(GetDetalle_Aseguramiento_Otros_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Otros_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Otros_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros', 'Motivo_de_Registro', 'Motivo_de_Registro', 268355)));
+    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Otros_Tipo_' + index).attr('data-field', 'Tipo');
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Unidad_de_medida Unidad_de_medida').attr('id', 'Detalle_Aseguramiento_Otros_Unidad_de_medida_' + index).attr('data-field', 'Unidad_de_medida');
+    columnData[3] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Otros_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Otros_Cantidad_' + index).attr('data-field', 'Cantidad');
+    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_Otros_Descripcion_' + index).attr('data-field', 'Descripcion');
 
 
     initiateUIControls();
@@ -4885,6 +5326,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Otros("Detalle_Ase
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Unidad_de_medida:  data.childNodes[counter++].childNodes[0].value
         ,Cantidad: data.childNodes[counter++].childNodes[0].value
@@ -4924,6 +5366,7 @@ function GetDetalle_Aseguramiento_OtrosFromDataTable() {
             Detalle_Aseguramiento_OtrosData.push({
                 Clave: gridData[i].Clave
 
+                ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
                 ,Tipo: gridData[i].Tipo
                 ,Unidad_de_medida: gridData[i].Unidad_de_medida
                 ,Cantidad: gridData[i].Cantidad
@@ -4938,6 +5381,7 @@ function GetDetalle_Aseguramiento_OtrosFromDataTable() {
             Detalle_Aseguramiento_OtrosData.push({
                 Clave: removedDetalle_Aseguramiento_OtrosData[i].Clave
 
+                ,Motivo_de_Registro: removedDetalle_Aseguramiento_OtrosData[i].Motivo_de_Registro
                 ,Tipo: removedDetalle_Aseguramiento_OtrosData[i].Tipo
                 ,Unidad_de_medida: removedDetalle_Aseguramiento_OtrosData[i].Unidad_de_medida
                 ,Cantidad: removedDetalle_Aseguramiento_OtrosData[i].Cantidad
@@ -5005,12 +5449,14 @@ function Detalle_Aseguramiento_OtrosEditRowPopup(rowIndex, currentRow) {
     var prevData = Detalle_Aseguramiento_OtrosTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_OtrosPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_Aseguramiento_OtrosMotivo_de_Registro').val(prevData.Motivo_de_Registro);
     $('#Detalle_Aseguramiento_OtrosTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_OtrosUnidad_de_medida').val(prevData.Unidad_de_medida);
     $('#Detalle_Aseguramiento_OtrosCantidad').val(prevData.Cantidad);
     $('#Detalle_Aseguramiento_OtrosDescripcion').val(prevData.Descripcion);
 
     initiateUIControls();
+
 
 
 
@@ -5028,6 +5474,7 @@ function Detalle_Aseguramiento_OtrosAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Motivo_de_Registro: ""
         ,Tipo: ""
         ,Unidad_de_medida: ""
         ,Cantidad: ""
@@ -5063,6 +5510,7 @@ function GetDetalle_Aseguramiento_Otros() {
     for (var i = 0; i < Detalle_Aseguramiento_OtrosData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_OtrosData[i].Clave);
 
+        form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_OtrosData[i].Motivo_de_Registro);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_OtrosData[i].Tipo);
         form_data.append('[' + i + '].Unidad_de_medida', Detalle_Aseguramiento_OtrosData[i].Unidad_de_medida);
         form_data.append('[' + i + '].Cantidad', Detalle_Aseguramiento_OtrosData[i].Cantidad);
@@ -5080,6 +5528,7 @@ function Detalle_Aseguramiento_OtrosInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Motivo_de_Registro: $('#Detalle_Aseguramiento_OtrosMotivo_de_Registro').val()
         ,Tipo: $('#Detalle_Aseguramiento_OtrosTipo').val()
         ,Unidad_de_medida: $('#Detalle_Aseguramiento_OtrosUnidad_de_medida').val()
         ,Cantidad: $('#Detalle_Aseguramiento_OtrosCantidad').val()
@@ -5771,17 +6220,6 @@ function GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Marca_Marca_d
     }
     return AutoCompleteMarcaData;
 }
-var AutoCompleteSubmarcaData = [];
-function GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca_Submarca_de_medio_de_transporteData(data) {
-	AutoCompleteSubmarcaData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteSubmarcaData.push({
-            id: data[i].Clave,
-            text: data[i].Descripcion
-        });
-    }
-    return AutoCompleteSubmarcaData;
-}
 var AutoCompleteModeloData = [];
 function GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Modelo_Modelo_de_medio_de_transporteData(data) {
 	AutoCompleteModeloData = [];
@@ -5836,6 +6274,17 @@ function GetAutoCompleteDetalle_Aseguramiento_Inmuebles_Municipio_MunicipioData(
         });
     }
     return AutoCompleteMunicipioData;
+}
+var AutoCompleteColoniaData = [];
+function GetAutoCompleteDetalle_Aseguramiento_Inmuebles_Colonia_ColoniaData(data) {
+	AutoCompleteColoniaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteColoniaData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteColoniaData;
 }
 
 //Grid GetAutocomplete

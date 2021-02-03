@@ -162,6 +162,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = Estado_de_InvolucradoData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(Estado_de_InvolucradoData.Vigencia), "Vigencia") ??  (string)Estado_de_InvolucradoData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = Estado_de_InvolucradoData.Observaciones
+                    ,Justicia = Estado_de_InvolucradoData.Justicia
 
 					};
 				}
@@ -245,6 +246,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = Estado_de_InvolucradoData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(Estado_de_InvolucradoData.Vigencia), "Vigencia") ??  (string)Estado_de_InvolucradoData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = Estado_de_InvolucradoData.Observaciones
+                    ,Justicia = Estado_de_InvolucradoData.Justicia
 
 					};
 				}
@@ -400,6 +402,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Justicia = m.Justicia
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -517,6 +520,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Justicia = m.Justicia
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -615,6 +619,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.FromJusticia) || !string.IsNullOrEmpty(filter.ToJusticia))
+            {
+                if (!string.IsNullOrEmpty(filter.FromJusticia))
+                    where += " AND Estado_de_Involucrado.Justicia >= " + filter.FromJusticia;
+                if (!string.IsNullOrEmpty(filter.ToJusticia))
+                    where += " AND Estado_de_Involucrado.Justicia <= " + filter.ToJusticia;
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -673,6 +685,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Descripcion = varEstado_de_Involucrado.Descripcion
                         ,Vigencia = varEstado_de_Involucrado.Vigencia
                         ,Observaciones = varEstado_de_Involucrado.Observaciones
+                        ,Justicia = varEstado_de_Involucrado.Justicia
 
                     };
 
@@ -1015,7 +1028,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+			string[] arrayColumnsVisible = null;
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1063,6 +1076,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Justicia = m.Justicia
 
             }).ToList();
 
@@ -1139,6 +1153,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Justicia = m.Justicia
 
             }).ToList();
 
@@ -1181,6 +1196,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                                             ,Descripcion = varEstado_de_Involucrado.Descripcion
                         ,Vigencia = varEstado_de_Involucrado.Vigencia
                         ,Observaciones = varEstado_de_Involucrado.Observaciones
+                        ,Justicia = varEstado_de_Involucrado.Justicia
                     
                 };
 
@@ -1213,6 +1229,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Justicia = m.Justicia
 
                     
                 };

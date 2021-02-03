@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Marca_de_Equipo_de_Comunicacion;
+using Spartane.Core.Domain.Tipo_de_Equipo_de_Comunicacion;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -12,6 +13,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Marca_de_Equipo_de_Comunicacion;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_de_Comunicacion;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -48,6 +50,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IMarca_de_Equipo_de_ComunicacionService service = null;
         private IMarca_de_Equipo_de_ComunicacionApiConsumer _IMarca_de_Equipo_de_ComunicacionApiConsumer;
+        private ITipo_de_Equipo_de_ComunicacionApiConsumer _ITipo_de_Equipo_de_ComunicacionApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -65,7 +68,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Marca_de_Equipo_de_ComunicacionController(IMarca_de_Equipo_de_ComunicacionService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IMarca_de_Equipo_de_ComunicacionApiConsumer Marca_de_Equipo_de_ComunicacionApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer )
+        public Marca_de_Equipo_de_ComunicacionController(IMarca_de_Equipo_de_ComunicacionService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IMarca_de_Equipo_de_ComunicacionApiConsumer Marca_de_Equipo_de_ComunicacionApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ITipo_de_Equipo_de_ComunicacionApiConsumer Tipo_de_Equipo_de_ComunicacionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -79,6 +82,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
+            this._ITipo_de_Equipo_de_ComunicacionApiConsumer = Tipo_de_Equipo_de_ComunicacionApiConsumer;
 
         }
 
@@ -155,6 +159,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Marca_de_Equipo_de_ComunicacionData.Clave 
 	                    ,Descripcion = Marca_de_Equipo_de_ComunicacionData.Descripcion
+                    ,Tipo_de_Equipo = Marca_de_Equipo_de_ComunicacionData.Tipo_de_Equipo
+                    ,Tipo_de_EquipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Marca_de_Equipo_de_ComunicacionData.Tipo_de_Equipo), "Tipo_de_Equipo_de_Comunicacion") ??  (string)Marca_de_Equipo_de_ComunicacionData.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
 
 					};
 				}
@@ -165,6 +171,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(true);
+            if (Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo != null && Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo.Resource != null)
+                ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo = Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_de_Comunicacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -228,6 +241,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Marca_de_Equipo_de_ComunicacionData.Clave 
 	                    ,Descripcion = Marca_de_Equipo_de_ComunicacionData.Descripcion
+                    ,Tipo_de_Equipo = Marca_de_Equipo_de_ComunicacionData.Tipo_de_Equipo
+                    ,Tipo_de_EquipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Marca_de_Equipo_de_ComunicacionData.Tipo_de_Equipo), "Tipo_de_Equipo_de_Comunicacion") ??  (string)Marca_de_Equipo_de_ComunicacionData.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
 
 					};
 				}
@@ -236,6 +251,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(true);
+            if (Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo != null && Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo.Resource != null)
+                ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo = Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_de_Comunicacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return PartialView("AddMarca_de_Equipo_de_Comunicacion", varMarca_de_Equipo_de_Comunicacion);
@@ -256,6 +278,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetTipo_de_Equipo_de_ComunicacionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_de_Comunicacion", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -289,6 +332,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(true);
+            if (Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo != null && Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo.Resource != null)
+                ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo = Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_de_Comunicacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return View(model);  
@@ -300,6 +350,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(true);
+            if (Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo != null && Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo.Resource != null)
+                ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo = Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_de_Comunicacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             var previousFiltersObj = new Marca_de_Equipo_de_ComunicacionAdvanceSearchModel();
@@ -339,6 +396,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+                        ,Tipo_de_EquipoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -454,6 +512,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+                        ,Tipo_de_EquipoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -500,6 +559,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         where += " AND Marca_de_Equipo_de_Comunicacion.Descripcion LIKE '%" + filter.Descripcion + "%'";
                         break;
                 }
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Equipo))
+            {
+                switch (filter.Tipo_de_EquipoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Equipo_de_Comunicacion.Descripcion LIKE '" + filter.AdvanceTipo_de_Equipo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Equipo_de_Comunicacion.Descripcion LIKE '%" + filter.AdvanceTipo_de_Equipo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Equipo_de_Comunicacion.Descripcion = '" + filter.AdvanceTipo_de_Equipo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Equipo_de_Comunicacion.Descripcion LIKE '%" + filter.AdvanceTipo_de_Equipo + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipo_de_EquipoMultiple != null && filter.AdvanceTipo_de_EquipoMultiple.Count() > 0)
+            {
+                var Tipo_de_EquipoIds = string.Join(",", filter.AdvanceTipo_de_EquipoMultiple);
+
+                where += " AND Marca_de_Equipo_de_Comunicacion.Tipo_de_Equipo In (" + Tipo_de_EquipoIds + ")";
             }
 
 
@@ -558,6 +645,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varMarca_de_Equipo_de_Comunicacion.Clave
                         ,Descripcion = varMarca_de_Equipo_de_Comunicacion.Descripcion
+                        ,Tipo_de_Equipo = varMarca_de_Equipo_de_Comunicacion.Tipo_de_Equipo
 
                     };
 
@@ -946,6 +1034,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+                        ,Tipo_de_EquipoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
 
             }).ToList();
 
@@ -1020,6 +1109,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+                        ,Tipo_de_EquipoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
 
             }).ToList();
 
@@ -1060,6 +1150,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varMarca_de_Equipo_de_Comunicacion.Clave
                                             ,Descripcion = varMarca_de_Equipo_de_Comunicacion.Descripcion
+                        ,Tipo_de_Equipo = varMarca_de_Equipo_de_Comunicacion.Tipo_de_Equipo
                     
                 };
 
@@ -1089,6 +1180,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+                        ,Tipo_de_Equipo = m.Tipo_de_Equipo
+                        ,Tipo_de_EquipoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
 
                     
                 };

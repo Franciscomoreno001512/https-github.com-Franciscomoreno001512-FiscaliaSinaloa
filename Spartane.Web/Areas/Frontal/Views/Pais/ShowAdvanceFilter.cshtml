@@ -91,6 +91,22 @@
                     @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
                     @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.PaisResources.Nacionalidad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NacionalidadFilter, filters, new { @class = "form-control", @id = "ddlNacionalidadFilter" })
+                    @Html.TextBoxFor(m => m.Nacionalidad, new { @class = "form-control", @type = "text", @id = "txtNacionalidad" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.PaisResources.Abrevia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AbreviaFilter, filters, new { @class = "form-control", @id = "ddlAbreviaFilter" })
+                    @Html.TextBoxFor(m => m.Abrevia, new { @class = "form-control", @type = "text", @id = "txtAbrevia" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Pais/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -132,6 +148,16 @@
             hasParameter = true;
             advanceSearch.PaisObservaciones = $("#txtAdvanceObservaciones").val();
             advanceSearch.PaisObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        if ($("#txtAdvanceNacionalidad").val() != "") {
+            hasParameter = true;
+            advanceSearch.PaisNacionalidad = $("#txtAdvanceNacionalidad").val();
+            advanceSearch.PaisNacionalidadSearchType = $("#ddlAdvanceNacionalidadFilter").val();
+        }
+        if ($("#txtAdvanceAbrevia").val() != "") {
+            hasParameter = true;
+            advanceSearch.PaisAbrevia = $("#txtAdvanceAbrevia").val();
+            advanceSearch.PaisAbreviaSearchType = $("#ddlAdvanceAbreviaFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

@@ -24,6 +24,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Expediente_MP[nic]":
                 case "Expediente_MPnic":
                     return "expediente_ministerio_publico.nic";
+                case "Expediente_MASC[Numero_de_Folio]":
+                case "Expediente_MASCNumero_de_Folio":
+                    return "Solicitud.Numero_de_Folio";
                 case "Quien_Resulte_Responsable":
                     return "Detalle_de_Imputado.Quien_Resulte_Responsable";
                 case "Se_Presenta_con_Detenido":
@@ -161,6 +164,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_Imputado.Nombre_de_Droga";
                 case "Inimputable":
                     return "Detalle_de_Imputado.Inimputable";
+                case "Gravidez":
+                    return "Detalle_de_Imputado.Gravidez";
                 case "Tipo_de_Inimputabilidad[Descripcion]":
                 case "Tipo_de_InimputabilidadDescripcion":
                     return "Tipo_de_Inimputabilidad.Descripcion";
@@ -471,6 +476,10 @@ namespace Spartane.Web.SqlModelMapper
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "Inimputable")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Gravidez")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

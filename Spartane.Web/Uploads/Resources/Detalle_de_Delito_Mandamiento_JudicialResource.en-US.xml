@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Delito_Mandamiento_Judicial" value="Detalle de Delito Mandamiento Judicial"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Delito" value="Delito"></resource>
+  <resource culture="en-US" name="Modalidad" value="Modalidad"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -12,10 +12,10 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
-        public int? Clasificacion { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
+        public short? Clasificacion { get; set; }
         public string ClasificacionDescripcion { get; set; }
-        public int? Tipo { get; set; }
-        public string TipoDescripcion { get; set; }
         [Range(0.00, 999999.99)]
         public decimal? Cantidad { get; set; }
         public string Lugar_de_Hallazgo { get; set; }
@@ -27,10 +27,10 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
-        public int? Clasificacion { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
+        public short? Clasificacion { get; set; }
         public string ClasificacionDescripcion { get; set; }
-        public int? Tipo { get; set; }
-        public string TipoDescripcion { get; set; }
         [Range(0.00, 999999.99)]
         public decimal? Cantidad { get; set; }
         public string Lugar_de_Hallazgo { get; set; }

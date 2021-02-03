@@ -9,10 +9,10 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Artefactos_y_ExplosivosGridModel
     {
         public int Clave { get; set; }
-        public int? Clasificacion { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
+        public short? Clasificacion { get; set; }
         public string ClasificacionDescripcion { get; set; }
-        public int? Tipo { get; set; }
-        public string TipoDescripcion { get; set; }
         public decimal? Cantidad { get; set; }
         public string Lugar_de_Hallazgo { get; set; }
         public string Observaciones { get; set; }

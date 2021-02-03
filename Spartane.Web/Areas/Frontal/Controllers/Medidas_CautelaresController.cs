@@ -155,6 +155,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Medidas_CautelaresData.Clave 
 	                    ,Descripcion = Medidas_CautelaresData.Descripcion
+                    ,Fraccion = Medidas_CautelaresData.Fraccion
+                    ,Aplica_para_Adolescentes = Medidas_CautelaresData.Aplica_para_Adolescentes.GetValueOrDefault()
+                    ,Aplica_para_Adultos = Medidas_CautelaresData.Aplica_para_Adultos.GetValueOrDefault()
+                    ,Tipo = Medidas_CautelaresData.Tipo
 
 					};
 				}
@@ -228,6 +232,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Medidas_CautelaresData.Clave 
 	                    ,Descripcion = Medidas_CautelaresData.Descripcion
+                    ,Fraccion = Medidas_CautelaresData.Fraccion
+                    ,Aplica_para_Adolescentes = Medidas_CautelaresData.Aplica_para_Adolescentes.GetValueOrDefault()
+                    ,Aplica_para_Adultos = Medidas_CautelaresData.Aplica_para_Adultos.GetValueOrDefault()
+                    ,Tipo = Medidas_CautelaresData.Tipo
 
 					};
 				}
@@ -339,6 +347,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Fraccion = m.Fraccion
+			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
+			,Aplica_para_Adultos = m.Aplica_para_Adultos
+			,Tipo = m.Tipo
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -454,6 +466,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Fraccion = m.Fraccion
+			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
+			,Aplica_para_Adultos = m.Aplica_para_Adultos
+			,Tipo = m.Tipo
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -498,6 +514,56 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                     case Models.Filters.Contains:
                         where += " AND Medidas_Cautelares.Descripcion LIKE '%" + filter.Descripcion + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fraccion))
+            {
+                switch (filter.FraccionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Medidas_Cautelares.Fraccion LIKE '" + filter.Fraccion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Medidas_Cautelares.Fraccion LIKE '%" + filter.Fraccion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Medidas_Cautelares.Fraccion = '" + filter.Fraccion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Medidas_Cautelares.Fraccion LIKE '%" + filter.Fraccion + "%'";
+                        break;
+                }
+            }
+
+            if (filter.Aplica_para_Adolescentes != RadioOptions.NoApply)
+                where += " AND Medidas_Cautelares.Aplica_para_Adolescentes = " + Convert.ToInt32(filter.Aplica_para_Adolescentes);
+
+            if (filter.Aplica_para_Adultos != RadioOptions.NoApply)
+                where += " AND Medidas_Cautelares.Aplica_para_Adultos = " + Convert.ToInt32(filter.Aplica_para_Adultos);
+
+            if (!string.IsNullOrEmpty(filter.Tipo))
+            {
+                switch (filter.TipoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Medidas_Cautelares.Tipo LIKE '" + filter.Tipo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Medidas_Cautelares.Tipo LIKE '%" + filter.Tipo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Medidas_Cautelares.Tipo = '" + filter.Tipo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Medidas_Cautelares.Tipo LIKE '%" + filter.Tipo + "%'";
                         break;
                 }
             }
@@ -558,6 +624,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varMedidas_Cautelares.Clave
                         ,Descripcion = varMedidas_Cautelares.Descripcion
+                        ,Fraccion = varMedidas_Cautelares.Fraccion
+                        ,Aplica_para_Adolescentes = varMedidas_Cautelares.Aplica_para_Adolescentes
+                        ,Aplica_para_Adultos = varMedidas_Cautelares.Aplica_para_Adultos
+                        ,Tipo = varMedidas_Cautelares.Tipo
 
                     };
 
@@ -946,6 +1016,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Fraccion = m.Fraccion
+			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
+			,Aplica_para_Adultos = m.Aplica_para_Adultos
+			,Tipo = m.Tipo
 
             }).ToList();
 
@@ -1020,6 +1094,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Fraccion = m.Fraccion
+			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
+			,Aplica_para_Adultos = m.Aplica_para_Adultos
+			,Tipo = m.Tipo
 
             }).ToList();
 
@@ -1060,6 +1138,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varMedidas_Cautelares.Clave
                                             ,Descripcion = varMedidas_Cautelares.Descripcion
+                        ,Fraccion = varMedidas_Cautelares.Fraccion
+                        ,Aplica_para_Adolescentes = varMedidas_Cautelares.Aplica_para_Adolescentes
+                        ,Aplica_para_Adultos = varMedidas_Cautelares.Aplica_para_Adultos
+                        ,Tipo = varMedidas_Cautelares.Tipo
                     
                 };
 
@@ -1089,6 +1171,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Fraccion = m.Fraccion
+			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
+			,Aplica_para_Adultos = m.Aplica_para_Adultos
+			,Tipo = m.Tipo
 
                     
                 };

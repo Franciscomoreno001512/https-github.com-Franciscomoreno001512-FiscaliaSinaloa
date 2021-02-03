@@ -4,7 +4,19 @@ var rowIndex = '';
 var saltarValidacion = false;
 $('#Detalle_de_Reuniones_de_MediacionGuardarYNuevo').hide()
 $('#Detalle_de_Reuniones_de_MediacionGuardarYCopia').hide()
+function IniciaMR()
+{
+	$('th[class="ActionHeader sorting_asc"]').each(function () {
+		$(this).css("width","10%");
+    });	
+}
 $(document).ready(function () {
+	
+	
+	
+setTimeout(function () {
+	IniciaMR();
+}, 1000);
 
 
 
@@ -205,6 +217,15 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:2170, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+//BusinessRuleId:2998, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if( TryParseInt('101', '101')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ) { EvaluaQuery(" uspAsignarFacilitador GLOBAL[SpartanOperationId],GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:2998, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

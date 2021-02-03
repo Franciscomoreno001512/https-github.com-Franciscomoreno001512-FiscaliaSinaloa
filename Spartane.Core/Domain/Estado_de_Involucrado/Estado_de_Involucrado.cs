@@ -20,6 +20,7 @@ namespace Spartane.Core.Domain.Estado_de_Involucrado
         public string Descripcion { get; set; }
         public int? Vigencia { get; set; }
         public string Observaciones { get; set; }
+        public int? Justicia { get; set; }
 
         [ForeignKey("Vigencia")]
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigencia_Vigencia { get; set; }
@@ -32,6 +33,7 @@ namespace Spartane.Core.Domain.Estado_de_Involucrado
         public string Descripcion { get; set; }
         public int? Vigencia { get; set; }
         public string Observaciones { get; set; }
+        public int? Justicia { get; set; }
 
 		        [ForeignKey("Vigencia")]
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigencia_Vigencia { get; set; }

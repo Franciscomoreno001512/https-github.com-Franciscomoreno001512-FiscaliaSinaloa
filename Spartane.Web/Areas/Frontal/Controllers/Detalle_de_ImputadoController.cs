@@ -4,6 +4,7 @@ using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_de_Imputado;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Lugar_de_Detencion;
 
 
@@ -73,7 +74,13 @@ using Spartane.Core.Domain.Colonia;
 
 
 
+
+
+
+
 using Spartane.Core.Domain.Otros_Nombres;
+
+
 
 
 
@@ -141,6 +148,7 @@ using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Imputado;
 using Spartane.Web.Areas.WebApiConsumer.Modulo_Atencion_Inicial;
 using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
+using Spartane.Web.Areas.WebApiConsumer.Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Lugar_de_Detencion;
 
 
@@ -293,6 +301,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_de_ImputadoApiConsumer _IDetalle_de_ImputadoApiConsumer;
         private IModulo_Atencion_InicialApiConsumer _IModulo_Atencion_InicialApiConsumer;
         private Iexpediente_ministerio_publicoApiConsumer _Iexpediente_ministerio_publicoApiConsumer;
+        private ISolicitudApiConsumer _ISolicitudApiConsumer;
         private ILugar_de_DetencionApiConsumer _ILugar_de_DetencionApiConsumer;
 
 
@@ -393,7 +402,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_ImputadoController(IDetalle_de_ImputadoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ILugar_de_DetencionApiConsumer Lugar_de_DetencionApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , ICorporacionApiConsumer CorporacionApiConsumer  , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IEscolaridadApiConsumer EscolaridadApiConsumer , IOcupacionApiConsumer OcupacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IEtniaApiConsumer EtniaApiConsumer , IReligionApiConsumer ReligionApiConsumer , IServicio_MedicoApiConsumer Servicio_MedicoApiConsumer , IEspecialidadApiConsumer EspecialidadApiConsumer , IEstudios_SuperioresApiConsumer Estudios_SuperioresApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , ICalidad_MigratoriaApiConsumer Calidad_MigratoriaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , ITipo_de_InimputabilidadApiConsumer Tipo_de_InimputabilidadApiConsumer , IAdicciones_Probable_ResponsableApiConsumer Adicciones_Probable_ResponsableApiConsumer , IAdiccionesApiConsumer AdiccionesApiConsumer  , ILugares_Frecuentes_Probable_ResponsableApiConsumer Lugares_Frecuentes_Probable_ResponsableApiConsumer , ILugaresApiConsumer LugaresApiConsumer  , IDatos_Personales_Adicionales_Probable_ResponsableApiConsumer Datos_Personales_Adicionales_Probable_ResponsableApiConsumer , IRedes_SocialesApiConsumer Redes_SocialesApiConsumer  , IOtras_Identificaciones_Probable_ResponsableApiConsumer Otras_Identificaciones_Probable_ResponsableApiConsumer  , IDiscapacidades_MentalesApiConsumer Discapacidades_MentalesApiConsumer , IDiscapacidades_FisicasApiConsumer Discapacidades_FisicasApiConsumer , IDiscapacidades_SensorialesApiConsumer Discapacidades_SensorialesApiConsumer , IDiscapacidades_PsicosocialesApiConsumer Discapacidades_PsicosocialesApiConsumer , IOtros_Domicilios_Probable_ResponsableApiConsumer Otros_Domicilios_Probable_ResponsableApiConsumer  , IOtros_NombresApiConsumer Otros_NombresApiConsumer  , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IFroma_OjosApiConsumer Froma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , INariz_BaseApiConsumer Nariz_BaseApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer )
+        public Detalle_de_ImputadoController(IDetalle_de_ImputadoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ILugar_de_DetencionApiConsumer Lugar_de_DetencionApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , ICorporacionApiConsumer CorporacionApiConsumer  , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IEscolaridadApiConsumer EscolaridadApiConsumer , IOcupacionApiConsumer OcupacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IEtniaApiConsumer EtniaApiConsumer , IReligionApiConsumer ReligionApiConsumer , IServicio_MedicoApiConsumer Servicio_MedicoApiConsumer , IEspecialidadApiConsumer EspecialidadApiConsumer , IEstudios_SuperioresApiConsumer Estudios_SuperioresApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , ICalidad_MigratoriaApiConsumer Calidad_MigratoriaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , ITipo_de_InimputabilidadApiConsumer Tipo_de_InimputabilidadApiConsumer , IAdicciones_Probable_ResponsableApiConsumer Adicciones_Probable_ResponsableApiConsumer , IAdiccionesApiConsumer AdiccionesApiConsumer  , ILugares_Frecuentes_Probable_ResponsableApiConsumer Lugares_Frecuentes_Probable_ResponsableApiConsumer , ILugaresApiConsumer LugaresApiConsumer  , IDatos_Personales_Adicionales_Probable_ResponsableApiConsumer Datos_Personales_Adicionales_Probable_ResponsableApiConsumer , IRedes_SocialesApiConsumer Redes_SocialesApiConsumer  , IOtras_Identificaciones_Probable_ResponsableApiConsumer Otras_Identificaciones_Probable_ResponsableApiConsumer  , IDiscapacidades_MentalesApiConsumer Discapacidades_MentalesApiConsumer , IDiscapacidades_FisicasApiConsumer Discapacidades_FisicasApiConsumer , IDiscapacidades_SensorialesApiConsumer Discapacidades_SensorialesApiConsumer , IDiscapacidades_PsicosocialesApiConsumer Discapacidades_PsicosocialesApiConsumer , IOtros_Domicilios_Probable_ResponsableApiConsumer Otros_Domicilios_Probable_ResponsableApiConsumer  , IOtros_NombresApiConsumer Otros_NombresApiConsumer  , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IFroma_OjosApiConsumer Froma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , INariz_BaseApiConsumer Nariz_BaseApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -409,6 +418,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._IModulo_Atencion_InicialApiConsumer = Modulo_Atencion_InicialApiConsumer;
             this._Iexpediente_ministerio_publicoApiConsumer = expediente_ministerio_publicoApiConsumer;
+            this._ISolicitudApiConsumer = SolicitudApiConsumer;
             this._ILugar_de_DetencionApiConsumer = Lugar_de_DetencionApiConsumer;
 
 
@@ -617,6 +627,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_de_ImputadoData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                     ,Expediente_MP = Detalle_de_ImputadoData.Expediente_MP
                     ,Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Expediente_MP), "expediente_ministerio_publico") ??  (string)Detalle_de_ImputadoData.Expediente_MP_expediente_ministerio_publico.nic
+                    ,Expediente_MASC = Detalle_de_ImputadoData.Expediente_MASC
+                    ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Expediente_MASC), "Solicitud") ??  (string)Detalle_de_ImputadoData.Expediente_MASC_Solicitud.Numero_de_Folio
                     ,Quien_Resulte_Responsable = Detalle_de_ImputadoData.Quien_Resulte_Responsable.GetValueOrDefault()
                     ,Se_Presenta_con_Detenido = Detalle_de_ImputadoData.Se_Presenta_con_Detenido.GetValueOrDefault()
                     ,Folio_Registro_Nacional_de_Detenciones = Detalle_de_ImputadoData.Folio_Registro_Nacional_de_Detenciones
@@ -697,6 +709,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Bajo_el_Efecto_de_una_Droga = Detalle_de_ImputadoData.Bajo_el_Efecto_de_una_Droga.GetValueOrDefault()
                     ,Nombre_de_Droga = Detalle_de_ImputadoData.Nombre_de_Droga
                     ,Inimputable = Detalle_de_ImputadoData.Inimputable.GetValueOrDefault()
+                    ,Gravidez = Detalle_de_ImputadoData.Gravidez.GetValueOrDefault()
                     ,Tipo_de_Inimputabilidad = Detalle_de_ImputadoData.Tipo_de_Inimputabilidad
                     ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Tipo_de_Inimputabilidad), "Tipo_de_Inimputabilidad") ??  (string)Detalle_de_ImputadoData.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
                     ,Especifique = Detalle_de_ImputadoData.Especifique
@@ -1375,6 +1388,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_de_ImputadoData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                     ,Expediente_MP = Detalle_de_ImputadoData.Expediente_MP
                     ,Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Expediente_MP), "expediente_ministerio_publico") ??  (string)Detalle_de_ImputadoData.Expediente_MP_expediente_ministerio_publico.nic
+                    ,Expediente_MASC = Detalle_de_ImputadoData.Expediente_MASC
+                    ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Expediente_MASC), "Solicitud") ??  (string)Detalle_de_ImputadoData.Expediente_MASC_Solicitud.Numero_de_Folio
                     ,Quien_Resulte_Responsable = Detalle_de_ImputadoData.Quien_Resulte_Responsable.GetValueOrDefault()
                     ,Se_Presenta_con_Detenido = Detalle_de_ImputadoData.Se_Presenta_con_Detenido.GetValueOrDefault()
                     ,Folio_Registro_Nacional_de_Detenciones = Detalle_de_ImputadoData.Folio_Registro_Nacional_de_Detenciones
@@ -1455,6 +1470,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Bajo_el_Efecto_de_una_Droga = Detalle_de_ImputadoData.Bajo_el_Efecto_de_una_Droga.GetValueOrDefault()
                     ,Nombre_de_Droga = Detalle_de_ImputadoData.Nombre_de_Droga
                     ,Inimputable = Detalle_de_ImputadoData.Inimputable.GetValueOrDefault()
+                    ,Gravidez = Detalle_de_ImputadoData.Gravidez.GetValueOrDefault()
                     ,Tipo_de_Inimputabilidad = Detalle_de_ImputadoData.Tipo_de_Inimputabilidad
                     ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Tipo_de_Inimputabilidad), "Tipo_de_Inimputabilidad") ??  (string)Detalle_de_ImputadoData.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
                     ,Especifique = Detalle_de_ImputadoData.Especifique
@@ -2105,6 +2121,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic")?? m.nic,
                     Value = Convert.ToString(m.clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetSolicitudAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ISolicitudApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Numero_de_Folio).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "Numero_de_Folio")?? m.Numero_de_Folio,
+                    Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
@@ -4206,6 +4243,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Persona_Moral = m.Persona_Moral
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(m.Expediente_MASC_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Expediente_MASC_Solicitud.Numero_de_Folio
 			,Quien_Resulte_Responsable = m.Quien_Resulte_Responsable
 			,Se_Presenta_con_Detenido = m.Se_Presenta_con_Detenido
 			,Folio_Registro_Nacional_de_Detenciones = m.Folio_Registro_Nacional_de_Detenciones
@@ -4263,6 +4301,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Bajo_el_Efecto_de_una_Droga = m.Bajo_el_Efecto_de_una_Droga
 			,Nombre_de_Droga = m.Nombre_de_Droga
 			,Inimputable = m.Inimputable
+			,Gravidez = m.Gravidez
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
@@ -4481,6 +4520,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Persona_Moral = m.Persona_Moral
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(m.Expediente_MASC_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Expediente_MASC_Solicitud.Numero_de_Folio
 			,Quien_Resulte_Responsable = m.Quien_Resulte_Responsable
 			,Se_Presenta_con_Detenido = m.Se_Presenta_con_Detenido
 			,Folio_Registro_Nacional_de_Detenciones = m.Folio_Registro_Nacional_de_Detenciones
@@ -4538,6 +4578,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Bajo_el_Efecto_de_una_Droga = m.Bajo_el_Efecto_de_una_Droga
 			,Nombre_de_Droga = m.Nombre_de_Droga
 			,Inimputable = m.Inimputable
+			,Gravidez = m.Gravidez
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
@@ -4696,6 +4737,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.nic =trans ??item.nic;
                 }
                 return Json(result.expediente_ministerio_publicos.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Imputado_Expediente_MASC_Solicitud(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Solicitud.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud.Numero_de_Folio as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISolicitudApiConsumer.ListaSelAll(1, 20,elWhere , " Solicitud.Numero_de_Folio ASC ").Resource;
+               
+                foreach (var item in result.Solicituds)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud", "Numero_de_Folio");
+                    item.Numero_de_Folio =trans ??item.Numero_de_Folio;
+                }
+                return Json(result.Solicituds.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -5438,6 +5506,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Expediente_MPIds = string.Join(",", filter.AdvanceExpediente_MPMultiple);
 
                 where += " AND Detalle_de_Imputado.Expediente_MP In (" + Expediente_MPIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceExpediente_MASC))
+            {
+                switch (filter.Expediente_MASCFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud.Numero_de_Folio LIKE '" + filter.AdvanceExpediente_MASC + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud.Numero_de_Folio LIKE '%" + filter.AdvanceExpediente_MASC + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud.Numero_de_Folio = '" + filter.AdvanceExpediente_MASC + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud.Numero_de_Folio LIKE '%" + filter.AdvanceExpediente_MASC + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceExpediente_MASCMultiple != null && filter.AdvanceExpediente_MASCMultiple.Count() > 0)
+            {
+                var Expediente_MASCIds = string.Join(",", filter.AdvanceExpediente_MASCMultiple);
+
+                where += " AND Detalle_de_Imputado.Expediente_MASC In (" + Expediente_MASCIds + ")";
             }
 
             if (filter.Quien_Resulte_Responsable != RadioOptions.NoApply)
@@ -6652,6 +6748,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             if (filter.Inimputable != RadioOptions.NoApply)
                 where += " AND Detalle_de_Imputado.Inimputable = " + Convert.ToInt32(filter.Inimputable);
+
+            if (filter.Gravidez != RadioOptions.NoApply)
+                where += " AND Detalle_de_Imputado.Gravidez = " + Convert.ToInt32(filter.Gravidez);
 
             if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Inimputabilidad))
             {
@@ -9575,6 +9674,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
+			,Numero_Interior = m.Numero_Interior
+			,Coordenada_X = m.Coordenada_X
+			,Coordenada_Y = m.Coordenada_Y
+			,Observaciones = m.Observaciones
 
                 }).ToList(),
                 recordsTotal = result.RowCount,
@@ -9620,6 +9723,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
+			,Numero_Interior = m.Numero_Interior
+			,Coordenada_X = m.Coordenada_X
+			,Coordenada_Y = m.Coordenada_Y
+			,Observaciones = m.Observaciones
 
 
                     }).ToList();
@@ -9659,7 +9766,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
-			,Descripcion = m.Descripcion
+			,Nombres = m.Nombres
+			,Apellido_Paterno = m.Apellido_Paterno
+			,Apellido_Materno = m.Apellido_Materno
 
                 }).ToList(),
                 recordsTotal = result.RowCount,
@@ -9692,7 +9801,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
-			,Descripcion = m.Descripcion
+			,Nombres = m.Nombres
+			,Apellido_Paterno = m.Apellido_Paterno
+			,Apellido_Materno = m.Apellido_Materno
 
 
                     }).ToList();
@@ -9903,6 +10014,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Persona_Moral = varDetalle_de_Imputado.Persona_Moral
                         ,Modulo_Atencion_Inicial = varDetalle_de_Imputado.Modulo_Atencion_Inicial
                         ,Expediente_MP = varDetalle_de_Imputado.Expediente_MP
+                        ,Expediente_MASC = varDetalle_de_Imputado.Expediente_MASC
                         ,Quien_Resulte_Responsable = varDetalle_de_Imputado.Quien_Resulte_Responsable
                         ,Se_Presenta_con_Detenido = varDetalle_de_Imputado.Se_Presenta_con_Detenido
                         ,Folio_Registro_Nacional_de_Detenciones = varDetalle_de_Imputado.Folio_Registro_Nacional_de_Detenciones
@@ -9960,6 +10072,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Bajo_el_Efecto_de_una_Droga = varDetalle_de_Imputado.Bajo_el_Efecto_de_una_Droga
                         ,Nombre_de_Droga = varDetalle_de_Imputado.Nombre_de_Droga
                         ,Inimputable = varDetalle_de_Imputado.Inimputable
+                        ,Gravidez = varDetalle_de_Imputado.Gravidez
                         ,Tipo_de_Inimputabilidad = varDetalle_de_Imputado.Tipo_de_Inimputabilidad
                         ,Especifique = varDetalle_de_Imputado.Especifique
                         ,Discapacidad_Mental = varDetalle_de_Imputado.Discapacidad_Mental
@@ -10864,6 +10977,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
+
+
                         //Removal Request
                         if (Otros_Domicilios_Probable_ResponsableItem.Removed)
                         {
@@ -10886,6 +11003,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                             ,Entre_Calle = Otros_Domicilios_Probable_ResponsableItem.Entre_Calle
                             ,Y_Calle = Otros_Domicilios_Probable_ResponsableItem.Y_Calle
                             ,Numero_Exterior = Otros_Domicilios_Probable_ResponsableItem.Numero_Exterior
+                            ,Numero_Interior = Otros_Domicilios_Probable_ResponsableItem.Numero_Interior
+                            ,Coordenada_X = Otros_Domicilios_Probable_ResponsableItem.Coordenada_X
+                            ,Coordenada_Y = Otros_Domicilios_Probable_ResponsableItem.Coordenada_Y
+                            ,Observaciones = Otros_Domicilios_Probable_ResponsableItem.Observaciones
 
                         };
 
@@ -10971,6 +11092,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
+
+
         [NonAction]
         public bool CopyOtros_Nombres(int MasterId, int referenceId, List<Otros_NombresGridModelPost> Otros_NombresItems)
         {
@@ -11047,6 +11172,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
                         //Removal Request
                         if (Otros_NombresItem.Removed)
                         {
@@ -11060,7 +11187,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Folio_otros_Nombres = MasterId
                             ,Clave = Otros_NombresItem.Clave
-                            ,Descripcion = Otros_NombresItem.Descripcion
+                            ,Nombres = Otros_NombresItem.Nombres
+                            ,Apellido_Paterno = Otros_NombresItem.Apellido_Paterno
+                            ,Apellido_Materno = Otros_NombresItem.Apellido_Materno
 
                         };
 
@@ -11078,6 +11207,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+
+
 
 
 
@@ -11511,6 +11642,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Persona_Moral = m.Persona_Moral
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(m.Expediente_MASC_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Expediente_MASC_Solicitud.Numero_de_Folio
 			,Quien_Resulte_Responsable = m.Quien_Resulte_Responsable
 			,Se_Presenta_con_Detenido = m.Se_Presenta_con_Detenido
 			,Folio_Registro_Nacional_de_Detenciones = m.Folio_Registro_Nacional_de_Detenciones
@@ -11568,6 +11700,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Bajo_el_Efecto_de_una_Droga = m.Bajo_el_Efecto_de_una_Droga
 			,Nombre_de_Droga = m.Nombre_de_Droga
 			,Inimputable = m.Inimputable
+			,Gravidez = m.Gravidez
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
@@ -11745,6 +11878,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Persona_Moral = m.Persona_Moral
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(m.Expediente_MASC_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Expediente_MASC_Solicitud.Numero_de_Folio
 			,Quien_Resulte_Responsable = m.Quien_Resulte_Responsable
 			,Se_Presenta_con_Detenido = m.Se_Presenta_con_Detenido
 			,Folio_Registro_Nacional_de_Detenciones = m.Folio_Registro_Nacional_de_Detenciones
@@ -11802,6 +11936,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Bajo_el_Efecto_de_una_Droga = m.Bajo_el_Efecto_de_una_Droga
 			,Nombre_de_Droga = m.Nombre_de_Droga
 			,Inimputable = m.Inimputable
+			,Gravidez = m.Gravidez
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
@@ -11945,6 +12080,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                                             ,Persona_Moral = varDetalle_de_Imputado.Persona_Moral
                         ,Modulo_Atencion_Inicial = varDetalle_de_Imputado.Modulo_Atencion_Inicial
                         ,Expediente_MP = varDetalle_de_Imputado.Expediente_MP
+                        ,Expediente_MASC = varDetalle_de_Imputado.Expediente_MASC
                         ,Quien_Resulte_Responsable = varDetalle_de_Imputado.Quien_Resulte_Responsable
                         ,Se_Presenta_con_Detenido = varDetalle_de_Imputado.Se_Presenta_con_Detenido
                         ,Folio_Registro_Nacional_de_Detenciones = varDetalle_de_Imputado.Folio_Registro_Nacional_de_Detenciones
@@ -12002,6 +12138,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Bajo_el_Efecto_de_una_Droga = varDetalle_de_Imputado.Bajo_el_Efecto_de_una_Droga
                         ,Nombre_de_Droga = varDetalle_de_Imputado.Nombre_de_Droga
                         ,Inimputable = varDetalle_de_Imputado.Inimputable
+                        ,Gravidez = varDetalle_de_Imputado.Gravidez
                         ,Tipo_de_Inimputabilidad = varDetalle_de_Imputado.Tipo_de_Inimputabilidad
                         ,Especifique = varDetalle_de_Imputado.Especifique
                         ,Discapacidad_Mental = varDetalle_de_Imputado.Discapacidad_Mental
@@ -12055,6 +12192,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Expediente_MP = m.Expediente_MP
                         ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        ,Expediente_MASC = m.Expediente_MASC
+                        ,Expediente_MASCNumero_de_Folio = CultureHelper.GetTraduction(m.Expediente_MASC_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Expediente_MASC_Solicitud.Numero_de_Folio
 			,Quien_Resulte_Responsable = m.Quien_Resulte_Responsable
 			,Se_Presenta_con_Detenido = m.Se_Presenta_con_Detenido
 			,Folio_Registro_Nacional_de_Detenciones = m.Folio_Registro_Nacional_de_Detenciones
@@ -12135,6 +12274,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Bajo_el_Efecto_de_una_Droga = m.Bajo_el_Efecto_de_una_Droga
 			,Nombre_de_Droga = m.Nombre_de_Droga
 			,Inimputable = m.Inimputable
+			,Gravidez = m.Gravidez
                         ,Tipo_de_Inimputabilidad = m.Tipo_de_Inimputabilidad
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique

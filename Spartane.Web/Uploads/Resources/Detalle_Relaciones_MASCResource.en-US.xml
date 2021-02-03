@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Relaciones_MASC" value="Detalle Relaciones MASC"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Requerido" value="Requerido"></resource>
+  <resource culture="en-US" name="Delito" value="Delito"></resource>
+  <resource culture="en-US" name="Solicitante" value="Solicitante"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

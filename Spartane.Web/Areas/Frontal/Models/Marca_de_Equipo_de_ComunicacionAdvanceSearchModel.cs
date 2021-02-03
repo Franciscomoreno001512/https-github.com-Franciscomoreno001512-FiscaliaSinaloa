@@ -22,6 +22,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }
 
+        public Filters Tipo_de_EquipoFilter { set; get; }
+        public string AdvanceTipo_de_Equipo { set; get; }
+        public int[] AdvanceTipo_de_EquipoMultiple { set; get; }
+
 
     }
 }

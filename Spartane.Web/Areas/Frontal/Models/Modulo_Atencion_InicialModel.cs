@@ -70,6 +70,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool Finalizar_Servicios_de_Apoyo { get; set; }
         public int? Estatus2 { get; set; }
         public string Estatus2Descripcion { get; set; }
+        public int? Unidad_canaliza { get; set; }
+        public string Unidad_canalizaDescripcion { get; set; }
         public bool Enviar_a_MP { get; set; }
         public bool Correccion_de_Estatus { get; set; }
         public bool Requiere_Servicios_de_Apoyo { get; set; }
@@ -99,8 +101,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Y_Calle { get; set; }
         public string Numero_Exrterior_de_los_Hechos { get; set; }
         public string Numero_Interior_de_los_Hechos { get; set; }
+        public string Referencia_hechos { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
+        public bool Documento_Extraviado_hechos { get; set; }
+        public int? Tipo_de_Documento_Extraviado { get; set; }
+        public string Tipo_de_Documento_ExtraviadoDescripcion { get; set; }
         public int? Tipo_de_Lugar_del_Hecho { get; set; }
         public string Tipo_de_Lugar_del_HechoDescripcion { get; set; }
         public int? Zona_de_los_Hechos { get; set; }
@@ -224,6 +230,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public int? Estatus2 { get; set; }
         public string Estatus2Descripcion { get; set; }
+        public int? Unidad_canaliza { get; set; }
+        public string Unidad_canalizaDescripcion { get; set; }
         public bool? Enviar_a_MP { get; set; }
         public bool? Correccion_de_Estatus { get; set; }
 
@@ -267,8 +275,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Y_Calle { get; set; }
         public string Numero_Exrterior_de_los_Hechos { get; set; }
         public string Numero_Interior_de_los_Hechos { get; set; }
+        public string Referencia_hechos { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
+        public bool? Documento_Extraviado_hechos { get; set; }
+        public int? Tipo_de_Documento_Extraviado { get; set; }
+        public string Tipo_de_Documento_ExtraviadoDescripcion { get; set; }
         public int? Tipo_de_Lugar_del_Hecho { get; set; }
         public string Tipo_de_Lugar_del_HechoDescripcion { get; set; }
         public int? Zona_de_los_Hechos { get; set; }

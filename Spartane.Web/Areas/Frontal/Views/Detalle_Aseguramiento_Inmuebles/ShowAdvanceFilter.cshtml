@@ -3,21 +3,24 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_InmueblesAdvanceSearchModel
 @{
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_Zona_Zona = null;
     if (ViewBag.Tipo_de_Zonas_Zona != null)
     { varTipo_de_Zona_Zona = (List<SelectListItem>)ViewBag.Tipo_de_Zonas_Zona; }
     List<SelectListItem> varTipo_de_Inmueble_Tipo = null;
     if (ViewBag.Tipo_de_Inmuebles_Tipo != null)
     { varTipo_de_Inmueble_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Inmuebles_Tipo; }
-    List<SelectListItem> varTerreno_de_Inmuebles_Terreno = null;
-    if (ViewBag.Terreno_de_Inmuebless_Terreno != null)
-    { varTerreno_de_Inmuebles_Terreno = (List<SelectListItem>)ViewBag.Terreno_de_Inmuebless_Terreno; }
  List<SelectListItem> varEstado_Estado = null;
     if (ViewBag.Estados_Estado != null)
     { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
  List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -67,6 +70,27 @@
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_InmueblesResources.Motivo_de_Registro</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Motivo_de_RegistroFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_RegistroFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMotivo_de_Registro, new { @class = "form-control", @type = "text", @id = "txtAdvanceMotivo_de_Registro" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMotivo_de_Registro_Motivo_de_Registro!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMotivo_de_RegistroMultiple, varMotivo_de_Registro_Motivo_de_Registro,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMotivo_de_Registro"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_InmueblesResources.Zona</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -109,35 +133,6 @@
                     }
                 </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Detalle_Aseguramiento_InmueblesResources.Terreno</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.TerrenoFilter, filters, new { @class = "form-control", @id = "ddlTerrenoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTerreno, new { @class = "form-control", @type = "text", @id = "txtAdvanceTerreno" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTerreno_de_Inmuebles_Terreno!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTerrenoMultiple, varTerreno_de_Inmuebles_Terreno,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTerreno"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_Aseguramiento_InmueblesResources.Especifique_Otro</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Especifique_OtroFilter, filters, new { @class = "form-control", @id = "ddlEspecifique_OtroFilter" })
-                    @Html.TextBoxFor(m => m.Especifique_Otro, new { @class = "form-control", @type = "text", @id = "txtEspecifique_Otro" })
-                </div>
-                <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_InmueblesResources.Calle</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -175,14 +170,9 @@
  List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_Aseguramiento_InmueblesResources.Colonia</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.ColoniaFilter, filters, new { @class = "form-control", @id = "ddlColoniaFilter" })
-                    @Html.TextBoxFor(m => m.Colonia, new { @class = "form-control", @type = "text", @id = "txtColonia" })
-                </div>
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_InmueblesResources.Registro_Publico_Propiedad</h3>
                 </div>
@@ -232,6 +222,21 @@
             advanceSearch.Detalle_Aseguramiento_InmueblesClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_Aseguramiento_InmueblesClaveTo = $("#txtAdvanceToClave").val();
         }
+        advanceSearch.Motivo_de_RegistroSearchType = 0;
+        if ($('#ddlAdvanceMotivo_de_Registro').val().length > 0 || $("#txtAdvanceMotivo_de_Registro").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_InmueblesTextSearch) {
+                advanceSearch.Motivo_de_RegistroName = $("#txtAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroNameSearchType = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Motivo_de_RegistroToSearch = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 2;
+            }
+        }
         advanceSearch.ZonaSearchType = 0;
         if ($('#ddlAdvanceZona').val().length > 0 || $("#txtAdvanceZona").val() == "") {
 
@@ -261,26 +266,6 @@
                 advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
                 advanceSearch.TipoSearchType = 2;
             }
-        }
-        advanceSearch.TerrenoSearchType = 0;
-        if ($('#ddlAdvanceTerreno').val().length > 0 || $("#txtAdvanceTerreno").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_InmueblesTextSearch) {
-                advanceSearch.TerrenoName = $("#txtAdvanceTerreno").val();
-                advanceSearch.TerrenoNameSearchType = $("#ddlAdvanceTerreno").val();
-                advanceSearch.TerrenoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.TerrenoToSearch = $("#ddlAdvanceTerreno").val();
-                advanceSearch.TerrenoSearchType = 2;
-            }
-        }
-        if ($("#txtAdvanceEspecifique_Otro").val() != "") {
-            hasParameter = true;
-            advanceSearch.Detalle_Aseguramiento_InmueblesEspecifique_Otro = $("#txtAdvanceEspecifique_Otro").val();
-            advanceSearch.Detalle_Aseguramiento_InmueblesEspecifique_OtroSearchType = $("#ddlAdvanceEspecifique_OtroFilter").val();
         }
         if ($("#txtAdvanceCalle").val() != "") {
             hasParameter = true;
@@ -332,10 +317,20 @@
                 advanceSearch.MunicipioSearchType = 2;
             }
         }
-        if ($("#txtAdvanceColonia").val() != "") {
-            hasParameter = true;
-            advanceSearch.Detalle_Aseguramiento_InmueblesColonia = $("#txtAdvanceColonia").val();
-            advanceSearch.Detalle_Aseguramiento_InmueblesColoniaSearchType = $("#ddlAdvanceColoniaFilter").val();
+        advanceSearch.ColoniaSearchType = 0;
+        if ($('#ddlAdvanceColonia').val().length > 0 || $("#txtAdvanceColonia").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_InmueblesTextSearch) {
+                advanceSearch.ColoniaName = $("#txtAdvanceColonia").val();
+                advanceSearch.ColoniaNameSearchType = $("#ddlAdvanceColonia").val();
+                advanceSearch.ColoniaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ColoniaToSearch = $("#ddlAdvanceColonia").val();
+                advanceSearch.ColoniaSearchType = 2;
+            }
         }
         if ($("#txtAdvanceRegistro_Publico_Propiedad").val() != "") {
             hasParameter = true;
@@ -375,6 +370,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceMotivo_de_Registro").keypress(function () {
+            isDetalle_Aseguramiento_InmueblesTextSearch = true;
+            $("#ddlAdvanceMotivo_de_Registro").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMotivo_de_Registro").change(function () {
+            isDetalle_Aseguramiento_InmueblesTextSearch = false;
+            $("#txtAdvanceMotivo_de_Registro").val('');
+        });
         $("#txtAdvanceZona").keypress(function () {
             isDetalle_Aseguramiento_InmueblesTextSearch = true;
             $("#ddlAdvanceZona").val('').trigger("chosen:updated");
@@ -393,15 +397,6 @@
             isDetalle_Aseguramiento_InmueblesTextSearch = false;
             $("#txtAdvanceTipo").val('');
         });
-        $("#txtAdvanceTerreno").keypress(function () {
-            isDetalle_Aseguramiento_InmueblesTextSearch = true;
-            $("#ddlAdvanceTerreno").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceTerreno").change(function () {
-            isDetalle_Aseguramiento_InmueblesTextSearch = false;
-            $("#txtAdvanceTerreno").val('');
-        });
         $("#txtAdvanceEstado").keypress(function () {
             isDetalle_Aseguramiento_InmueblesTextSearch = true;
             $("#ddlAdvanceEstado").val('').trigger("chosen:updated");
@@ -419,6 +414,15 @@
         $("#ddlAdvanceMunicipio").change(function () {
             isDetalle_Aseguramiento_InmueblesTextSearch = false;
             $("#txtAdvanceMunicipio").val('');
+        });
+        $("#txtAdvanceColonia").keypress(function () {
+            isDetalle_Aseguramiento_InmueblesTextSearch = true;
+            $("#ddlAdvanceColonia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColonia").change(function () {
+            isDetalle_Aseguramiento_InmueblesTextSearch = false;
+            $("#txtAdvanceColonia").val('');
         });
 
     });

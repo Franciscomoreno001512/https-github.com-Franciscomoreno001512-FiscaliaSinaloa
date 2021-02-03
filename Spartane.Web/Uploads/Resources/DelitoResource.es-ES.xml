@@ -12,6 +12,16 @@
   <resource culture="es-es" name="Activo" value="Activo"></resource>
   <resource culture="es-es" name="Configuracion_de_Planeacion" value="Configuración de Planeación"></resource>
   <resource culture="es-es" name="Robo_de_Vehiculo" value="Robo de Vehículo"></resource>
+  <resource culture="es-es" name="delitox" value="delitox"></resource>
+  <resource culture="es-es" name="ARTICULO" value="ARTICULO"></resource>
+  <resource culture="es-es" name="DETALLE" value="DETALLE"></resource>
+  <resource culture="es-es" name="TIPO_AGENCIA" value="TIPO_AGENCIA"></resource>
+  <resource culture="es-es" name="ESTADISTICO_SSP" value="ESTADISTICO_SSP"></resource>
+  <resource culture="es-es" name="VAL_VEHICULO" value="VAL_VEHICULO"></resource>
+  <resource culture="es-es" name="TIPO_DELITO" value="TIPO_DELITO"></resource>
+  <resource culture="es-es" name="circunstancia_clasif" value="circunstancia_clasif"></resource>
+  <resource culture="es-es" name="PRINCIPAL" value="PRINCIPAL"></resource>
+  <resource culture="es-es" name="orden" value="orden"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

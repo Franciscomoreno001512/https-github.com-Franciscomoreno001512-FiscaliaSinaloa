@@ -16,17 +16,15 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Detalle_Aseguramiento_Inmuebles.Clave";
+                case "Motivo_de_Registro[Descripcion]":
+                case "Motivo_de_RegistroDescripcion":
+                    return "Motivo_de_Registro.Descripcion";
                 case "Zona[Descripcion]":
                 case "ZonaDescripcion":
                     return "Tipo_de_Zona.Descripcion";
                 case "Tipo[Descripcion]":
                 case "TipoDescripcion":
                     return "Tipo_de_Inmueble.Descripcion";
-                case "Terreno[Descripcion]":
-                case "TerrenoDescripcion":
-                    return "Terreno_de_Inmuebles.Descripcion";
-                case "Especifique_Otro":
-                    return "Detalle_Aseguramiento_Inmuebles.Especifique_Otro";
                 case "Calle":
                     return "Detalle_Aseguramiento_Inmuebles.Calle";
                 case "Exterior":
@@ -41,8 +39,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Municipio[Nombre]":
                 case "MunicipioNombre":
                     return "Municipio.Nombre";
-                case "Colonia":
-                    return "Detalle_Aseguramiento_Inmuebles.Colonia";
+                case "Colonia[Nombre]":
+                case "ColoniaNombre":
+                    return "Colonia.Nombre";
                 case "Registro_Publico_Propiedad":
                     return "Detalle_Aseguramiento_Inmuebles.Registro_Publico_Propiedad";
                 case "Entrecalles":

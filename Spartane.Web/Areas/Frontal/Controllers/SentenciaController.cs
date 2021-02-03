@@ -155,6 +155,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = SentenciaData.Clave 
 	                    ,Descripcion = SentenciaData.Descripcion
+                    ,Descr = SentenciaData.Descr
+                    ,iddatos = SentenciaData.iddatos
+                    ,CveSentencia = SentenciaData.CveSentencia
 
 					};
 				}
@@ -228,6 +231,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = SentenciaData.Clave 
 	                    ,Descripcion = SentenciaData.Descripcion
+                    ,Descr = SentenciaData.Descr
+                    ,iddatos = SentenciaData.iddatos
+                    ,CveSentencia = SentenciaData.CveSentencia
 
 					};
 				}
@@ -339,6 +345,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Descr = m.Descr
+			,iddatos = m.iddatos
+			,CveSentencia = m.CveSentencia
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -454,6 +463,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Descr = m.Descr
+			,iddatos = m.iddatos
+			,CveSentencia = m.CveSentencia
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -498,6 +510,58 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                     case Models.Filters.Contains:
                         where += " AND Sentencia.Descripcion LIKE '%" + filter.Descripcion + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Descr))
+            {
+                switch (filter.DescrFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Sentencia.Descr LIKE '" + filter.Descr + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Sentencia.Descr LIKE '%" + filter.Descr + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Sentencia.Descr = '" + filter.Descr + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Sentencia.Descr LIKE '%" + filter.Descr + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromiddatos) || !string.IsNullOrEmpty(filter.Toiddatos))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromiddatos))
+                    where += " AND Sentencia.iddatos >= " + filter.Fromiddatos;
+                if (!string.IsNullOrEmpty(filter.Toiddatos))
+                    where += " AND Sentencia.iddatos <= " + filter.Toiddatos;
+            }
+
+            if (!string.IsNullOrEmpty(filter.CveSentencia))
+            {
+                switch (filter.CveSentenciaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Sentencia.CveSentencia LIKE '" + filter.CveSentencia + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Sentencia.CveSentencia LIKE '%" + filter.CveSentencia + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Sentencia.CveSentencia = '" + filter.CveSentencia + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Sentencia.CveSentencia LIKE '%" + filter.CveSentencia + "%'";
                         break;
                 }
             }
@@ -558,6 +622,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varSentencia.Clave
                         ,Descripcion = varSentencia.Descripcion
+                        ,Descr = varSentencia.Descr
+                        ,iddatos = varSentencia.iddatos
+                        ,CveSentencia = varSentencia.CveSentencia
 
                     };
 
@@ -946,6 +1013,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Descr = m.Descr
+			,iddatos = m.iddatos
+			,CveSentencia = m.CveSentencia
 
             }).ToList();
 
@@ -1020,6 +1090,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Descr = m.Descr
+			,iddatos = m.iddatos
+			,CveSentencia = m.CveSentencia
 
             }).ToList();
 
@@ -1060,6 +1133,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varSentencia.Clave
                                             ,Descripcion = varSentencia.Descripcion
+                        ,Descr = varSentencia.Descr
+                        ,iddatos = varSentencia.iddatos
+                        ,CveSentencia = varSentencia.CveSentencia
                     
                 };
 
@@ -1089,6 +1165,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Descr = m.Descr
+			,iddatos = m.iddatos
+			,CveSentencia = m.CveSentencia
 
                     
                 };

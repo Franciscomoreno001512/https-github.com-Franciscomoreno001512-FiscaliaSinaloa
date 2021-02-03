@@ -16,9 +16,12 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Detalle_Aseguramiento_Documentos.Clave";
+                case "Motivo_de_Registro[Descripcion]":
+                case "Motivo_de_RegistroDescripcion":
+                    return "Motivo_de_Registro.Descripcion";
                 case "Tipo[Descripcion]":
                 case "TipoDescripcion":
-                    return "Tipo_de_Documento.Descripcion";
+                    return "Tipo_de_Documentos.Descripcion";
                 case "Cantidad":
                     return "Detalle_Aseguramiento_Documentos.Cantidad";
                 case "Observaciones":

@@ -1,0 +1,362 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Proceso_PenalGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Folio
+            </td>
+                        <td class="column1">
+                @Resources.Proceso_PenalResources.Folio
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Expediente_MP
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Fecha_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Hora_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Usuario_que_Registra
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Imputado
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Reclasificacion_Juridica
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Plazo_Constitucional
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Fecha_Continuacion_Audiencia
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Hora_Continuacion_Audiencia
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Vinculacion
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Resultado_No_Vinculacion
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Resultado_Vinculacion
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.plazo_investigacion_complementaria
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Resultado_de_Investigacion_Complementari
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.fecha_investigacion_complementaria
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.hora_investigacion_complementaria
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Nombre_del_Juez_de_Control
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Fecha_de_Entrega_de_Escrito_de_Acusacion
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Hora_de_Entrega_de_Escrito_de_Acusacion
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Fecha_de_Audiencia_Intermedia
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Hora_de_Audiencia_Intermedia
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Acusador_Coadyudante
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.cumplio_descubrimiento_probatorio
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Fecha
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Hora
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Acuerdos_Probatorios
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.acuerdos_probatorios_cuales_fueron
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Resultado
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Tribunal_de_Enjuiciamiento
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Nombre_del_Juez
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Juez_Colegiado
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Juez_Relator
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Juez_Vocal
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Fecha_de_Audiencia_de_Juicio
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Hora_de_Audiencia_de_Juicio
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Fallo_del_Tribunal
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.pruebas_a_desahogar
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Resolucion
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Plazo_meses
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Tipo_de_Sentencia
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.cuantia_de_pena_anios
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.cuantia_de_pena_meses
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Monto_de_la_Reparacion_del_Dano
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Folio
+                    </td>
+					                    <td>
+                        @item.Folio
+                    </td>
+                    <td>
+                        @item.Expediente_MP
+                    </td>
+                    <td>
+                        @item.Fecha_de_Registro
+                    </td>
+                    <td>
+                        @item.Hora_de_Registro
+                    </td>
+                    <td>
+                        @item.Usuario_que_RegistraName
+                    </td>
+                    <td>
+                        @item.Imputado
+                    </td>
+                    <td>
+                        @item.Reclasificacion_JuridicaDescripcion
+                    </td>
+                    <td>
+                        @item.Plazo_ConstitucionalDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_Continuacion_Audiencia
+                    </td>
+                    <td>
+                        @item.Hora_Continuacion_Audiencia
+                    </td>
+                    <td>
+                        @item.VinculacionDescripcion
+                    </td>
+                    <td>
+                        @item.Resultado_No_VinculacionDescripcion
+                    </td>
+                    <td>
+                        @item.Resultado_VinculacionDescripcion
+                    </td>
+                    <td>
+                        @item.plazo_investigacion_complementaria
+                    </td>
+                    <td>
+                        @item.Resultado_de_Investigacion_ComplementariDescripcion
+                    </td>
+                    <td>
+                        @item.fecha_investigacion_complementaria
+                    </td>
+                    <td>
+                        @item.hora_investigacion_complementaria
+                    </td>
+                    <td>
+                        @item.Nombre_del_Juez_de_Control
+                    </td>
+                    <td>
+                        @item.Fecha_de_Entrega_de_Escrito_de_Acusacion
+                    </td>
+                    <td>
+                        @item.Hora_de_Entrega_de_Escrito_de_Acusacion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Audiencia_Intermedia
+                    </td>
+                    <td>
+                        @item.Hora_de_Audiencia_Intermedia
+                    </td>
+                    <td>
+                        @item.Acusador_CoadyudanteDescripcion
+                    </td>
+                    <td>
+                        @item.cumplio_descubrimiento_probatorioDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha
+                    </td>
+                    <td>
+                        @item.Hora
+                    </td>
+                    <td>
+                        @item.Acuerdos_ProbatoriosDescripcion
+                    </td>
+                    <td>
+                        @item.acuerdos_probatorios_cuales_fueron
+                    </td>
+                    <td>
+                        @item.ResultadoDescripcion
+                    </td>
+                    <td>
+                        @item.Tribunal_de_EnjuiciamientoDescripcion
+                    </td>
+                    <td>
+                        @item.Nombre_del_Juez
+                    </td>
+                    <td>
+                        @item.Juez_Colegiado
+                    </td>
+                    <td>
+                        @item.Juez_Relator
+                    </td>
+                    <td>
+                        @item.Juez_Vocal
+                    </td>
+                    <td>
+                        @item.Fecha_de_Audiencia_de_Juicio
+                    </td>
+                    <td>
+                        @item.Hora_de_Audiencia_de_Juicio
+                    </td>
+                    <td>
+                        @item.Fallo_del_TribunalDescripcion
+                    </td>
+                    <td>
+                        @item.pruebas_a_desahogar
+                    </td>
+                    <td>
+                        @item.ResolucionDescripcion
+                    </td>
+                    <td>
+                        @item.Plazo_meses
+                    </td>
+                    <td>
+                        @item.Tipo_de_SentenciaDescripcion
+                    </td>
+                    <td>
+                        @item.cuantia_de_pena_anios
+                    </td>
+                    <td>
+                        @item.cuantia_de_pena_meses
+                    </td>
+                    <td>
+                        @item.Monto_de_la_Reparacion_del_Dano
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

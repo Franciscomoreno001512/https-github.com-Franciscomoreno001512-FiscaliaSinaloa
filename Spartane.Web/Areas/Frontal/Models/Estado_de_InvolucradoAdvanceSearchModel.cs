@@ -29,6 +29,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters ObservacionesFilter { set; get; }
         public string Observaciones { set; get; }
 
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string FromJusticia { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("FromJusticia", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToJusticia { set; get; }
+
 
     }
 }

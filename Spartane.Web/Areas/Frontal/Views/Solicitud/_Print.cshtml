@@ -76,7 +76,13 @@
                 @Resources.SolicitudResources.NUAT
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Unidad
+                @Resources.SolicitudResources.NUAT_Codigo
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Expediente_MPI
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Expediente_CausaPenal
             </td>
             <td class="column1">
                 @Resources.SolicitudResources.Municipio
@@ -113,6 +119,9 @@
             </td>
             <td class="column1">
                 @Resources.SolicitudResources.Juez_de_Control
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Unidad
             </td>
             <td class="column1">
                 @Resources.SolicitudResources.Titulo_del_Hecho
@@ -169,6 +178,30 @@
                 @Resources.SolicitudResources.LatitudH
             </td>
             <td class="column1">
+                @Resources.SolicitudResources.Especialista_AsignadoA
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Motivo_cambio_facilitador
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Asignar_Especialista_Automatico
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Razone
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Fecha_de_AsignacionA
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Hora_de_AsignacionA
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Fecha_de_Atencion_del_Especialista
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Hora_de_Atencion_del_Especialista
+            </td>
+            <td class="column1">
                 @Resources.SolicitudResources.Rechazar
             </td>
             <td class="column1">
@@ -190,6 +223,18 @@
                 @Resources.SolicitudResources.Hora_de_Cierre
             </td>
             <td class="column1">
+                @Resources.SolicitudResources.Usuario_que_Resuelve_Solicitud
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Resolucion_Solicitud
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Tipo_de_Mecanismo
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Observaciones_Solicitud
+            </td>
+            <td class="column1">
                 @Resources.SolicitudResources.Fecha_Validacion
             </td>
             <td class="column1">
@@ -199,37 +244,40 @@
                 @Resources.SolicitudResources.Usuario_que_Valida
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Resultado
+                @Resources.SolicitudResources.Autoriza_Cierre_de_Expediente
             </td>
             <td class="column1">
                 @Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Especialista_AsignadoA
+                @Resources.SolicitudResources.Fecha_de_Resolucion_Procedimiento
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Motivo_cambio_facilitador
+                @Resources.SolicitudResources.Hora_de_Resolucion_Procedimiento
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Asignar_Especialista_Automatico
+                @Resources.SolicitudResources.Resolucion_de_Procedimiento
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Razone
+                @Resources.SolicitudResources.Usuario_que_Resuelve_Procedimiento
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Tipo_de_Mecanismo
+                @Resources.SolicitudResources.Observaciones_Procedimiento
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Fecha_de_AsignacionA
+                @Resources.SolicitudResources.Fecha_de_Validacion_Procedimiento
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Hora_de_AsignacionA
+                @Resources.SolicitudResources.Hora_de_Validacion_Procedimiento
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Fecha_de_Atencion_del_Especialista
+                @Resources.SolicitudResources.Usuario_que_Valida_Procedimiento
             </td>
             <td class="column1">
-                @Resources.SolicitudResources.Hora_de_Atencion_del_Especialista
+                @Resources.SolicitudResources.Resultado_Procedimiento
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Motivo_de_Rechazo_Procedimiento
             </td>
 
         </tr>
@@ -255,7 +303,7 @@
                         @item.Numero_de_Folio
                     </td>
                     <td>
-                        @item.Unidad_MASCDescripcion
+                        @item.Unidad_MASC
                     </td>
                     <td>
                         @item.Remitente
@@ -264,7 +312,13 @@
                         @item.NUAT
                     </td>
                     <td>
-                        @item.UnidadDescripcion
+                        @item.NUAT_Codigo
+                    </td>
+                    <td>
+                        @item.Expediente_MPI
+                    </td>
+                    <td>
+                        @item.Expediente_CausaPenal
                     </td>
                     <td>
                         @item.Municipio
@@ -301,6 +355,9 @@
                     </td>
                     <td>
                         @item.Juez_de_Control
+                    </td>
+                    <td>
+                        @item.Unidad
                     </td>
                     <td>
                         @item.Titulo_del_Hecho
@@ -357,6 +414,30 @@
                         @item.LatitudH
                     </td>
                     <td>
+                        @item.Especialista_AsignadoA
+                    </td>
+                    <td>
+                        @item.Motivo_cambio_facilitador
+                    </td>
+                    <td>
+                        @item.Asignar_Especialista_Automatico
+                    </td>
+                    <td>
+                        @item.Razone
+                    </td>
+                    <td>
+                        @item.Fecha_de_AsignacionA
+                    </td>
+                    <td>
+                        @item.Hora_de_AsignacionA
+                    </td>
+                    <td>
+                        @item.Fecha_de_Atencion_del_Especialista
+                    </td>
+                    <td>
+                        @item.Hora_de_Atencion_del_Especialista
+                    </td>
+                    <td>
                         @item.Rechazar
                     </td>
                     <td>
@@ -378,6 +459,18 @@
                         @item.Hora_de_Cierre
                     </td>
                     <td>
+                        @item.Usuario_que_Resuelve_Solicitud
+                    </td>
+                    <td>
+                        @item.Resolucion_SolicitudDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_MecanismoDescripcion
+                    </td>
+                    <td>
+                        @item.Observaciones_Solicitud
+                    </td>
+                    <td>
                         @item.Fecha_Validacion
                     </td>
                     <td>
@@ -387,37 +480,40 @@
                         @item.Usuario_que_Valida
                     </td>
                     <td>
-                        @item.ResultadoDescripcion
+                        @item.Autoriza_Cierre_de_ExpedienteDescripcion
                     </td>
                     <td>
                         @item.Motivo_de_Rechazo_Solicitud
                     </td>
                     <td>
-                        @item.Especialista_AsignadoA
+                        @item.Fecha_de_Resolucion_Procedimiento
                     </td>
                     <td>
-                        @item.Motivo_cambio_facilitador
+                        @item.Hora_de_Resolucion_Procedimiento
                     </td>
                     <td>
-                        @item.Asignar_Especialista_Automatico
+                        @item.Resolucion_de_ProcedimientoDescripcion
                     </td>
                     <td>
-                        @item.Razone
+                        @item.Usuario_que_Resuelve_Procedimiento
                     </td>
                     <td>
-                        @item.Tipo_de_MecanismoDescripcion
+                        @item.Observaciones_Procedimiento
                     </td>
                     <td>
-                        @item.Fecha_de_AsignacionA
+                        @item.Fecha_de_Validacion_Procedimiento
                     </td>
                     <td>
-                        @item.Hora_de_AsignacionA
+                        @item.Hora_de_Validacion_Procedimiento
                     </td>
                     <td>
-                        @item.Fecha_de_Atencion_del_Especialista
+                        @item.Usuario_que_Valida_Procedimiento
                     </td>
                     <td>
-                        @item.Hora_de_Atencion_del_Especialista
+                        @item.Resultado_ProcedimientoDescripcion
+                    </td>
+                    <td>
+                        @item.Motivo_de_Rechazo_Procedimiento
                     </td>
 
                 </tr>

@@ -9,6 +9,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Objetos_AseguradosGridModel
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
         public string Numero { get; set; }
         public short? Tipo { get; set; }
         public string TipoDescripcion { get; set; }

@@ -12,6 +12,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Detalle_de_documentosAdvanceSearchModel()
         {
             Archivo_Adjunto = RadioOptions.NoApply;
+            Lista_para_periciales = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -66,6 +67,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
         [IsNumberAfterAttribute("FromArchivo", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToArchivo { set; get; }
+
+        public RadioOptions Lista_para_periciales { set; get; }
 
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }

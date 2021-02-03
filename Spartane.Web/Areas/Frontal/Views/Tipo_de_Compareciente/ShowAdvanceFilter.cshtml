@@ -59,6 +59,14 @@
                     @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
                     @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Tipo_de_ComparecienteResources.TP_DescripcionCorta</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TP_DescripcionCortaFilter, filters, new { @class = "form-control", @id = "ddlTP_DescripcionCortaFilter" })
+                    @Html.TextBoxFor(m => m.TP_DescripcionCorta, new { @class = "form-control", @type = "text", @id = "txtTP_DescripcionCorta" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Tipo_de_Compareciente/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -80,6 +88,11 @@
             hasParameter = true;
             advanceSearch.Tipo_de_ComparecienteDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.Tipo_de_ComparecienteDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+        }
+        if ($("#txtAdvanceTP_DescripcionCorta").val() != "") {
+            hasParameter = true;
+            advanceSearch.Tipo_de_ComparecienteTP_DescripcionCorta = $("#txtAdvanceTP_DescripcionCorta").val();
+            advanceSearch.Tipo_de_ComparecienteTP_DescripcionCortaSearchType = $("#ddlAdvanceTP_DescripcionCortaFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

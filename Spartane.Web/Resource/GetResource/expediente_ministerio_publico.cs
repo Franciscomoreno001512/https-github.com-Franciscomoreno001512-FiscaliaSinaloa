@@ -366,46 +366,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Fecha_de_Canalizacion</summary>
-        public static string Fecha_de_Canalizacion
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderexpediente_ministerio_publico.GetResource("Fecha_de_Canalizacion", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Hora_de_Canalizacion</summary>
-        public static string Hora_de_Canalizacion
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderexpediente_ministerio_publico.GetResource("Hora_de_Canalizacion", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>usuario_que_canaliza</summary>
-        public static string usuario_que_canaliza
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderexpediente_ministerio_publico.GetResource("usuario_que_canaliza", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>canalizar_a</summary>
-        public static string canalizar_a
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderexpediente_ministerio_publico.GetResource("canalizar_a", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>tipo_de_acuerdo</summary>
         public static string tipo_de_acuerdo
         {
@@ -559,7 +519,6 @@ namespace Resources
 
 	/// <summary>Datos del Caso</summary>	public static string TabDatos_del_Caso 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabDatos_del_Caso", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Hechos</summary>	public static string TabHechos 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabHechos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Canalizar</summary>	public static string TabCanalizar 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabCanalizar", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Datos del Acuerdo</summary>	public static string TabDatos_del_Acuerdo 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabDatos_del_Acuerdo", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Resolución o Dictaminación</summary>	public static string TabResolucion_o_Dictaminacion 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabResolucion_o_Dictaminacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

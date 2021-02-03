@@ -46,6 +46,16 @@ namespace Resources
             }
         }
 
+        /// <summary>LLAVE</summary>
+        public static string LLAVE
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderTamano_Orejas.GetResource("LLAVE", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderTamano_Orejas.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

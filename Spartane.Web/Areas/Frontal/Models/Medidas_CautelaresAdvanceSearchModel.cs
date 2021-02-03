@@ -11,6 +11,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public Medidas_CautelaresAdvanceSearchModel()
         {
+            Aplica_para_Adolescentes = RadioOptions.NoApply;
+            Aplica_para_Adultos = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -21,6 +23,16 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }
+
+        public Filters FraccionFilter { set; get; }
+        public string Fraccion { set; get; }
+
+        public RadioOptions Aplica_para_Adolescentes { set; get; }
+
+        public RadioOptions Aplica_para_Adultos { set; get; }
+
+        public Filters TipoFilter { set; get; }
+        public string Tipo { set; get; }
 
 
     }

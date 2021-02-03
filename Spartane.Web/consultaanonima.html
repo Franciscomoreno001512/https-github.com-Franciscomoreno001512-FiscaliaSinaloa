@@ -1,0 +1,187 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+    <title>PORTAL CIUDADANO | FGE-SINALOA</title>
+    <!-- CSS Files -->
+    <link href="Content/bootstrap.css" rel="stylesheet">
+    <link href="Content/style-red.css" rel="stylesheet">
+    <link href="Content/style.css" rel="stylesheet">
+    <link href="Content/animate.css" rel="stylesheet">
+    <script src="Scripts/plugins/toastr/toastr.min.js"></script>
+    <link href="Content/plugins/toastr/toastr.min.css" rel="stylesheet" />
+
+    <!-- CSS File Portal Ciudadano -->
+    <link href="Content/portal-ciudadano.css" rel="stylesheet">
+    <link href="Content/fontello.css" rel="stylesheet">
+
+    <!-- JS Files -->
+    <script src="Scripts/jquery-2.1.1.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+</head>
+<body class="login">
+    <div class="row" style="height: 100%;">
+        <div id="galeria" class="col-xs-12 col-md-6 col-lg-5" style="padding: 0;">
+
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%;">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                    <li data-target="#myCarousel" data-slide-to="5"></li>
+                    <li data-target="#myCarousel" data-slide-to="6"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="Images/login-gallery/login-01.jpg" class="img-responsive">
+                    </div>
+
+                    <div class="item">
+                        <img src="Images/login-gallery/login-02.jpg" class="img-responsive">
+                    </div>
+
+                    <div class="item">
+                        <img src="Images/login-gallery/login-03.jpg" class="img-responsive">
+                    </div>
+
+                    <div class="item">
+                        <img src="Images/login-gallery/login-04.jpg" class="img-responsive">
+                    </div>
+
+                    <div class="item">
+                        <img src="Images/login-gallery/login-05.jpg" class="img-responsive">
+                    </div>
+
+                    <div class="item">
+                        <img src="Images/login-gallery/login-06.jpg" class="img-responsive">
+                    </div>
+
+                    <div class="item">
+                        <img src="Images/login-gallery/login-07.jpg" class="img-responsive">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-7">
+            <center>
+                <div>
+                    <label id="Errores"></label>
+                </div>
+            </center>
+            <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 align-v">
+                <div class="row">
+                    <img class="logo-fiscalia"  src="Images/logotipos/fiscalia200px.png" alt="Logotipo Fiscalia Sinaloa">
+                    <img class="logo-saproj" src="Images/logotipos/saproj200px.png" alt="Logotipo SAPROJ">                                      
+                </div>
+
+
+                <div class="row">
+                    <h1>Consultar una Denuncia Anónima</h1>                    
+                </div>
+
+                <div>
+					<form id="myform", class="form-horizontal">                                       
+                        <div class="form-group" style="margin-bottom: 0">							
+							<input type="text" id="idfolio" placeholder = "Folio de denuncia anónima.."  />                                                        
+                        </div>
+						 <div class="form-group" style="margin-bottom: 0">							
+							<input type="text" id="idcontra" placeholder = "Contraseña de denuncia anónima.."  />                                                        
+                        </div>
+                        
+                        <div class="row">
+                            <input type="button" id="btnLogin" value="Consultar" class="btn-iniciarS" />                           
+                        </div>
+
+                        <div class="row text-center">
+                            <img class="logo-tt" src="Images/logotipos/powered200px.png" alt="Logotipo Totaltech">
+                        </div>                                              
+                    </form>					
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="Scripts/jquery-2.1.1.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>    
+    <script type="text/javascript">      
+	$("#btnLogin").on("click", function() {  
+		debugger;
+		if($("#idfolio").val().length > 6 &&  $("#idcontra").val().length > 7){
+			var query = "exec usp_ValidaDenunciaAnonima '" + $("#idfolio").val() + "','" + $("#idcontra").val() + "'";
+			var result = EvaluaQuery25(query);
+			if(result=="0")
+				alert("Folio/Contraseña de denuncia anónima incorrecta.");
+			else{
+				SolicitudCiudadana(result);
+			}
+		}else{
+			alert("Folio/Contraseña de denuncia anónima incorrecta.");
+		}		
+	});
+	
+	function SolicitudCiudadana(idSC) {
+		debugger;
+		$.ajax({
+                url: 'Account/ValidateLogin3',
+                type: 'POST',
+                data: {
+                    username: '',
+                    password: ''
+                },
+                cache: false,
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    debugger;													
+                    window.location = "Frontal/Solicitud_de_Denuncia_Ciudadana/Create?Id=" + idSC;
+					return;
+                },
+                error: function (result) {
+                    showNotification("Error desconocido", "error");
+            }
+        });
+	}
+	
+	function EvaluaQuery25(query) {
+        var res = "0";
+        var data = {
+            query: query
+        }
+        debugger;
+        $.ajax({
+            url: "/MVCfiscaliasinaloa/Frontal/General/ExecuteQueryTable",
+            type: 'POST',
+            cache: false,
+            dataType: "json",
+            async: false,
+            data: data,
+            success: function (result) {
+				debugger;
+                var resp = JSON.parse(result)
+                res = resp[0].codigo;
+            },
+            error: function (result) {
+                res = "0";
+            }
+        });            
+        return res;
+    }
+	
+        $(document).ready(function () {
+
+          
+			
+			
+        });      
+    </script>    
+</body>
+</html>
+
