@@ -106,23 +106,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Solicitante</summary>
-        public static string Solicitante
+        /// <summary>Relacion</summary>
+        public static string Relacion
         {
             get
             {
                 SetPath();
-                return resourceProviderAcuerdos_MASC.GetResource("Solicitante", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Requerido</summary>
-        public static string Requerido
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderAcuerdos_MASC.GetResource("Requerido", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderAcuerdos_MASC.GetResource("Relacion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

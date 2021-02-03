@@ -60,6 +60,9 @@
     List<SelectListItem> varGrupo_al_que_Pertenece_Grupo_al_que_pertenece = null;
     if (ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece != null)
     { varGrupo_al_que_Pertenece_Grupo_al_que_pertenece = (List<SelectListItem>)ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece; }
+    List<SelectListItem> varPreferencia_Sexual_Preferencia_Sexual = null;
+    if (ViewBag.Preferencia_Sexuals_Preferencia_Sexual != null)
+    { varPreferencia_Sexual_Preferencia_Sexual = (List<SelectListItem>)ViewBag.Preferencia_Sexuals_Preferencia_Sexual; }
     List<SelectListItem> varEtnia_Etnia = null;
     if (ViewBag.Etnias_Etnia != null)
     { varEtnia_Etnia = (List<SelectListItem>)ViewBag.Etnias_Etnia; }
@@ -788,6 +791,27 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceGrupo_al_que_pertenece"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_GeneralesResources.Preferencia_Sexual</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Preferencia_SexualFilter, filters, new { @class = "form-control", @id = "ddlPreferencia_SexualFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePreferencia_Sexual, new { @class = "form-control", @type = "text", @id = "txtAdvancePreferencia_Sexual" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPreferencia_Sexual_Preferencia_Sexual!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePreferencia_SexualMultiple, varPreferencia_Sexual_Preferencia_Sexual,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePreferencia_Sexual"
                         });
                     }
                 </div>
@@ -3012,6 +3036,21 @@
                 advanceSearch.Grupo_al_que_perteneceSearchType = 2;
             }
         }
+        advanceSearch.Preferencia_SexualSearchType = 0;
+        if ($('#ddlAdvancePreferencia_Sexual').val().length > 0 || $("#txtAdvancePreferencia_Sexual").val() == "") {
+
+
+            if (isDetalle_de_Datos_GeneralesTextSearch) {
+                advanceSearch.Preferencia_SexualName = $("#txtAdvancePreferencia_Sexual").val();
+                advanceSearch.Preferencia_SexualNameSearchType = $("#ddlAdvancePreferencia_Sexual").val();
+                advanceSearch.Preferencia_SexualSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Preferencia_SexualToSearch = $("#ddlAdvancePreferencia_Sexual").val();
+                advanceSearch.Preferencia_SexualSearchType = 2;
+            }
+        }
         advanceSearch.EtniaSearchType = 0;
         if ($('#ddlAdvanceEtnia').val().length > 0 || $("#txtAdvanceEtnia").val() == "") {
 
@@ -4590,6 +4629,15 @@
         $("#ddlAdvanceGrupo_al_que_pertenece").change(function () {
             isDetalle_de_Datos_GeneralesTextSearch = false;
             $("#txtAdvanceGrupo_al_que_pertenece").val('');
+        });
+        $("#txtAdvancePreferencia_Sexual").keypress(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = true;
+            $("#ddlAdvancePreferencia_Sexual").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePreferencia_Sexual").change(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = false;
+            $("#txtAdvancePreferencia_Sexual").val('');
         });
         $("#txtAdvanceEtnia").keypress(function () {
             isDetalle_de_Datos_GeneralesTextSearch = true;

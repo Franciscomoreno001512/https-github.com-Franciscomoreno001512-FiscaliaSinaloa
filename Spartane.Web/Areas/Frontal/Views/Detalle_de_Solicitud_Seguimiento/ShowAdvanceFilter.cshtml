@@ -6,12 +6,9 @@
  List<SelectListItem> varSolicitud_Solicitud = null;
     if (ViewBag.Solicituds_Solicitud != null)
     { varSolicitud_Solicitud = (List<SelectListItem>)ViewBag.Solicituds_Solicitud; }
- List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
-    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
-    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
- List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
-    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
-    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
+ List<SelectListItem> varRelaciones_MASC_Relacion = null;
+    if (ViewBag.Relaciones_MASCs_Relacion != null)
+    { varRelaciones_MASC_Relacion = (List<SelectListItem>)ViewBag.Relaciones_MASCs_Relacion; }
     List<SelectListItem> varCumplimiento_Cumplimiento = null;
     if (ViewBag.Cumplimientos_Cumplimiento != null)
     { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
@@ -113,12 +110,6 @@
                 </span>
             </div>
         </div>
- List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
-    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
-    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
- List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
-    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
-    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
         <div class="MarginBottom ">
             <h3>@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_Requerida</h3>
         </div>
@@ -138,6 +129,9 @@
                 </span>
             </div>
         </div>
+ List<SelectListItem> varRelaciones_MASC_Relacion = null;
+    if (ViewBag.Relaciones_MASCs_Relacion != null)
+    { varRelaciones_MASC_Relacion = (List<SelectListItem>)ViewBag.Relaciones_MASCs_Relacion; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento</h3>
                 </div>
@@ -281,40 +275,25 @@
             advanceSearch.Detalle_de_Solicitud_SeguimientoHora_de_Registro = $("#txtAdvanceHora_de_Registro").val();
             advanceSearch.Detalle_de_Solicitud_SeguimientoHora_de_RegistroSearchType = $("#ddlAdvanceHora_de_RegistroFilter").val();
         }
-        advanceSearch.RequeridoSearchType = 0;
-        if ($('#ddlAdvanceRequerido').val().length > 0 || $("#txtAdvanceRequerido").val() == "") {
-
-
-            if (isDetalle_de_Solicitud_SeguimientoTextSearch) {
-                advanceSearch.RequeridoName = $("#txtAdvanceRequerido").val();
-                advanceSearch.RequeridoNameSearchType = $("#ddlAdvanceRequerido").val();
-                advanceSearch.RequeridoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.RequeridoToSearch = $("#ddlAdvanceRequerido").val();
-                advanceSearch.RequeridoSearchType = 2;
-            }
-        }
-        advanceSearch.SolicitanteSearchType = 0;
-        if ($('#ddlAdvanceSolicitante').val().length > 0 || $("#txtAdvanceSolicitante").val() == "") {
-
-
-            if (isDetalle_de_Solicitud_SeguimientoTextSearch) {
-                advanceSearch.SolicitanteName = $("#txtAdvanceSolicitante").val();
-                advanceSearch.SolicitanteNameSearchType = $("#ddlAdvanceSolicitante").val();
-                advanceSearch.SolicitanteSearchType = 1;
-            }
-            else {
-
-                advanceSearch.SolicitanteToSearch = $("#ddlAdvanceSolicitante").val();
-                advanceSearch.SolicitanteSearchType = 2;
-            }
-        }
         if ($("#txtAdvanceFromFecha_Requerida").val() != "" || $("#txtAdvanceToFecha_Requerida").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Solicitud_SeguimientoFecha_RequeridaFrom = $("#txtAdvanceFromFecha_Requerida").val();
             advanceSearch.Detalle_de_Solicitud_SeguimientoFecha_RequeridaTo = $("#txtAdvanceToFecha_Requerida").val();
+        }
+        advanceSearch.RelacionSearchType = 0;
+        if ($('#ddlAdvanceRelacion').val().length > 0 || $("#txtAdvanceRelacion").val() == "") {
+
+
+            if (isDetalle_de_Solicitud_SeguimientoTextSearch) {
+                advanceSearch.RelacionName = $("#txtAdvanceRelacion").val();
+                advanceSearch.RelacionNameSearchType = $("#ddlAdvanceRelacion").val();
+                advanceSearch.RelacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.RelacionToSearch = $("#ddlAdvanceRelacion").val();
+                advanceSearch.RelacionSearchType = 2;
+            }
         }
         advanceSearch.CumplimientoSearchType = 0;
         if ($('#ddlAdvanceCumplimiento').val().length > 0 || $("#txtAdvanceCumplimiento").val() == "") {
@@ -438,23 +417,14 @@
             isDetalle_de_Solicitud_SeguimientoTextSearch = false;
             $("#txtAdvanceSolicitud").val('');
         });
-        $("#txtAdvanceRequerido").keypress(function () {
+        $("#txtAdvanceRelacion").keypress(function () {
             isDetalle_de_Solicitud_SeguimientoTextSearch = true;
-            $("#ddlAdvanceRequerido").val('').trigger("chosen:updated");
+            $("#ddlAdvanceRelacion").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceRequerido").change(function () {
+        $("#ddlAdvanceRelacion").change(function () {
             isDetalle_de_Solicitud_SeguimientoTextSearch = false;
-            $("#txtAdvanceRequerido").val('');
-        });
-        $("#txtAdvanceSolicitante").keypress(function () {
-            isDetalle_de_Solicitud_SeguimientoTextSearch = true;
-            $("#ddlAdvanceSolicitante").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceSolicitante").change(function () {
-            isDetalle_de_Solicitud_SeguimientoTextSearch = false;
-            $("#txtAdvanceSolicitante").val('');
+            $("#txtAdvanceRelacion").val('');
         });
         $("#txtAdvanceCumplimiento").keypress(function () {
             isDetalle_de_Solicitud_SeguimientoTextSearch = true;

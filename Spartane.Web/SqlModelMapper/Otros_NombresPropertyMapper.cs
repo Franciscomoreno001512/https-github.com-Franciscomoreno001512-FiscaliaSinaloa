@@ -16,8 +16,12 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Otros_Nombres.Clave";
-                case "Descripcion":
-                    return "Otros_Nombres.Descripcion";
+                case "Nombres":
+                    return "Otros_Nombres.Nombres";
+                case "Apellido_Paterno":
+                    return "Otros_Nombres.Apellido_Paterno";
+                case "Apellido_Materno":
+                    return "Otros_Nombres.Apellido_Materno";
 
                 default:
                     return propertyName;

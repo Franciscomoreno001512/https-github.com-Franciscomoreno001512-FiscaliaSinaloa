@@ -1922,6 +1922,24 @@ using Spartane.Web.Areas.WebApiConsumer.Estatus_Servicio_Pericial;
 using Spartane.Services.Historial_Estatus_Modulo_Servicio_Pericial;
 using Spartane.Core.Domain.Historial_Estatus_Modulo_Servicio_Pericial;
 using Spartane.Web.Areas.WebApiConsumer.Historial_Estatus_Modulo_Servicio_Pericial;
+using Spartane.Services.Preferencia_Sexual;
+using Spartane.Core.Domain.Preferencia_Sexual;
+using Spartane.Web.Areas.WebApiConsumer.Preferencia_Sexual;
+using Spartane.Services.Quejas_de_MP;
+using Spartane.Core.Domain.Quejas_de_MP;
+using Spartane.Web.Areas.WebApiConsumer.Quejas_de_MP;
+using Spartane.Services.Queja_Sugerencia_Ciudadana;
+using Spartane.Core.Domain.Queja_Sugerencia_Ciudadana;
+using Spartane.Web.Areas.WebApiConsumer.Queja_Sugerencia_Ciudadana;
+using Spartane.Services.Estatus_queja_sugerencia;
+using Spartane.Core.Domain.Estatus_queja_sugerencia;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_queja_sugerencia;
+using Spartane.Services.Estatus_Quejas_MP;
+using Spartane.Core.Domain.Estatus_Quejas_MP;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_Quejas_MP;
+using Spartane.Services.Tipo_de_queja_sugerencia;
+using Spartane.Core.Domain.Tipo_de_queja_sugerencia;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_queja_sugerencia;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3326,6 +3344,18 @@ builder.RegisterType<Estatus_Servicio_PericialService>().As<IEstatus_Servicio_Pe
 builder.RegisterType<Estatus_Servicio_PericialApiConsumer>().As<IEstatus_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Historial_Estatus_Modulo_Servicio_PericialService>().As<IHistorial_Estatus_Modulo_Servicio_PericialService>().InstancePerLifetimeScope();
 builder.RegisterType<Historial_Estatus_Modulo_Servicio_PericialApiConsumer>().As<IHistorial_Estatus_Modulo_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Preferencia_SexualService>().As<IPreferencia_SexualService>().InstancePerLifetimeScope();
+builder.RegisterType<Preferencia_SexualApiConsumer>().As<IPreferencia_SexualApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Quejas_de_MPService>().As<IQuejas_de_MPService>().InstancePerLifetimeScope();
+builder.RegisterType<Quejas_de_MPApiConsumer>().As<IQuejas_de_MPApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Queja_Sugerencia_CiudadanaService>().As<IQueja_Sugerencia_CiudadanaService>().InstancePerLifetimeScope();
+builder.RegisterType<Queja_Sugerencia_CiudadanaApiConsumer>().As<IQueja_Sugerencia_CiudadanaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_queja_sugerenciaService>().As<IEstatus_queja_sugerenciaService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_queja_sugerenciaApiConsumer>().As<IEstatus_queja_sugerenciaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_Quejas_MPService>().As<IEstatus_Quejas_MPService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_Quejas_MPApiConsumer>().As<IEstatus_Quejas_MPApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_queja_sugerenciaService>().As<ITipo_de_queja_sugerenciaService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_queja_sugerenciaApiConsumer>().As<ITipo_de_queja_sugerenciaApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3506,6 +3536,50 @@ builder.RegisterType<Historial_Estatus_Modulo_Servicio_PericialApiConsumer>().As
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

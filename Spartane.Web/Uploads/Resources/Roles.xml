@@ -78,4 +78,6 @@
   <Role culture="es-es" Id="116" value="Coordinador Area Pericial SP"></Role>
   <Role culture="en-us" Id="117" value="Perito"></Role>
   <Role culture="es-es" Id="117" value="Perito"></Role>
+  <Role culture="en-us" Id="118" value="-"></Role>
+  <Role culture="es-es" Id="118" value="-"></Role>
 </Roles>

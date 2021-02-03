@@ -9,8 +9,7 @@
   <resource culture="es-es" name="Tipo_de_Acuerdo" value="Tipo de Acuerdo"></resource>
   <resource culture="es-es" name="Forma_de_Cumplimiento" value="Forma de Cumplimiento"></resource>
   <resource culture="es-es" name="Descripcion_del_Cumplimiento" value="Descripción del Cumplimiento"></resource>
-  <resource culture="es-es" name="Solicitante" value="Solicitante"></resource>
-  <resource culture="es-es" name="Requerido" value="Requerido"></resource>
+  <resource culture="es-es" name="Relacion" value="Relación"></resource>
   <resource culture="es-es" name="Lugar_Acordado" value="Lugar para el Cumplmiento del Acuerdo"></resource>
   <resource culture="es-es" name="Domicilio_Acordado" value="Domicilio para el Cumplimiento del Acuerdo"></resource>
   <resource culture="es-es" name="Hora_de_Acuerdo" value="Hora de Acuerdo"></resource>

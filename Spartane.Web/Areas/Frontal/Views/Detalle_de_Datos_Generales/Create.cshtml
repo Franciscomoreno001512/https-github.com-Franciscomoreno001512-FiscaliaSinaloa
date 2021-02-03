@@ -80,6 +80,9 @@
     List<SelectListItem> varGrupo_al_que_Pertenece_Grupo_al_que_pertenece = null;
     if (ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece != null)
     { varGrupo_al_que_Pertenece_Grupo_al_que_pertenece = (List<SelectListItem>)ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece; }
+    List<SelectListItem> varPreferencia_Sexual_Preferencia_Sexual = null;
+    if (ViewBag.Preferencia_Sexuals_Preferencia_Sexual != null)
+    { varPreferencia_Sexual_Preferencia_Sexual = (List<SelectListItem>)ViewBag.Preferencia_Sexuals_Preferencia_Sexual; }
     List<SelectListItem> varEtnia_Etnia = null;
     if (ViewBag.Etnias_Etnia != null)
     { varEtnia_Etnia = (List<SelectListItem>)ViewBag.Etnias_Etnia; }
@@ -1102,6 +1105,34 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Grupo_al_que_Pertenece', 'Grupo_al_que_pertenece');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divPreferencia_Sexual">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Preferencia_Sexual</label>
+                                <div class="col-sm-8" data-field-id="Preferencia_Sexual" data-attribute="271302" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Preferencia_Sexual">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Preferencia Sexual must be a number." data-val-required="The Preferencia Sexual field is required." id="Preferencia_Sexual" name="Preferencia_Sexual">
+                                        <option value=""></option>
+                                        @if (varPreferencia_Sexual_Preferencia_Sexual != null){ 
+                                            foreach (var itemPreferencia_Sexual in varPreferencia_Sexual_Preferencia_Sexual)
+                                            {
+                                                if (itemPreferencia_Sexual.Value == Convert.ToString(Model.Preferencia_Sexual))
+                                                {
+                                                    <option value="@itemPreferencia_Sexual.Value" selected>@itemPreferencia_Sexual.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemPreferencia_Sexual.Value">@itemPreferencia_Sexual.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Preferencia_Sexual" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 271302).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Preferencia_Sexual', 'Preferencia_Sexual');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -6974,6 +7005,7 @@
                     $('#Correo_Electronico').val(result.data.Correo_Electronico);
                     $('#Situacion_de_Vulnerabilidad').prop('checked', result.data.Situacion_de_Vulnerabilidad);
                     $('#Grupo_al_que_pertenece').val(result.data.Grupo_al_que_pertenece);
+                    $('#Preferencia_Sexual').val(result.data.Preferencia_Sexual);
                     $('#Etnia').val(result.data.Etnia);
                     $('#No_de_Hijos').val(result.data.No_de_Hijos);
                     $('#Religion').val(result.data.Religion);
@@ -7098,6 +7130,7 @@
                 data.append('Correo_Electronico', $('#Correo_Electronico').val());
                 data.append('Situacion_de_Vulnerabilidad', $('#Situacion_de_Vulnerabilidad').prop('checked'));
                 data.append('Grupo_al_que_pertenece', $('#Grupo_al_que_pertenece').val());
+                data.append('Preferencia_Sexual', $('#Preferencia_Sexual').val());
                 data.append('Etnia', $('#Etnia').val());
                 data.append('No_de_Hijos', $('#No_de_Hijos').val());
                 data.append('Religion', $('#Religion').val());

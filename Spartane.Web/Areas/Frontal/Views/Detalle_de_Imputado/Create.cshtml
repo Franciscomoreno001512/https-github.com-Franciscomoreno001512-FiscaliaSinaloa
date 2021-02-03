@@ -1872,12 +1872,24 @@
                                                 <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
 
 
-                                                <th class="DescripcionHeader"><span>
-<button type="button" data-attribute="265753" data-field-id="Otros_NombresDescripcion" data-field-name="@Resources.Otros_NombresResources.Descripcion" data-toggle="modal" data-target="#Detalle_de_ImputadoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_NombresResources.Descripcion">
+                                                <th class="NombresHeader"><span>
+<button type="button" data-attribute="265753" data-field-id="Otros_NombresNombres" data-field-name="@Resources.Otros_NombresResources.Nombres" data-toggle="modal" data-target="#Detalle_de_ImputadoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_NombresResources.Nombres">
                                                                 <i class="fa fa-cogs fa-spin"></i>
                                                             </a>
-                                                        </button>@Resources.Otros_NombresResources.Descripcion</span></th>
+                                                        </button>@Resources.Otros_NombresResources.Nombres</span></th>
+                                                <th class="Apellido_PaternoHeader"><span>
+<button type="button" data-attribute="271297" data-field-id="Otros_NombresApellido_Paterno" data-field-name="@Resources.Otros_NombresResources.Apellido_Paterno" data-toggle="modal" data-target="#Detalle_de_ImputadoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_NombresResources.Apellido_Paterno">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_NombresResources.Apellido_Paterno</span></th>
+                                                <th class="Apellido_MaternoHeader"><span>
+<button type="button" data-attribute="271298" data-field-id="Otros_NombresApellido_Materno" data-field-name="@Resources.Otros_NombresResources.Apellido_Materno" data-toggle="modal" data-target="#Detalle_de_ImputadoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_NombresResources.Apellido_Materno">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_NombresResources.Apellido_Materno</span></th>
 
                                             </tr>
                                         </thead>
@@ -3727,6 +3739,8 @@
            
               showOtros_Domicilios_Probable_ResponsableGrid(null);
               
+
+
 
            
               showOtros_NombresGrid(null);
@@ -6458,7 +6472,9 @@
             var counter = 0;
             var inputData = "<input type='text' class='fullWidth form-control' />";
 
-            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Descripcion)).addClass('Descripcion').attr('id', nameOfTable + 'Descripcion' + rowIndex).attr('data-field', 'Descripcion');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Nombres)).addClass('Nombres').attr('id', nameOfTable + 'Nombres' + rowIndex).attr('data-field', 'Nombres');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Apellido_Paterno)).addClass('Apellido_Paterno').attr('id', nameOfTable + 'Apellido_Paterno' + rowIndex).attr('data-field', 'Apellido_Paterno');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Apellido_Materno)).addClass('Apellido_Materno').attr('id', nameOfTable + 'Apellido_Materno' + rowIndex).attr('data-field', 'Apellido_Materno');
 
             return columnData;
         }
@@ -6581,10 +6597,18 @@
 			if ($('.Action' + 'Header').css('display') != 'none')
 				actionCol.appendTo(row);
 
-            if ($('.Descripcion' + 'Header').css('display') != 'none')
-                $('<td id="'+nameOfTable+'Descripcion'+rowIndex+'">').text(data.Descripcion).appendTo(row);
+            if ($('.Nombres' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Nombres'+rowIndex+'">').text(data.Nombres).appendTo(row);
             else 
-                $('<td style="display:none;" id="'+nameOfTable+'Descripcion'+rowIndex+'">').text(data.Descripcion).appendTo(row);
+                $('<td style="display:none;" id="'+nameOfTable+'Nombres'+rowIndex+'">').text(data.Nombres).appendTo(row);
+            if ($('.Apellido_Paterno' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Apellido_Paterno'+rowIndex+'">').text(data.Apellido_Paterno).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Apellido_Paterno'+rowIndex+'">').text(data.Apellido_Paterno).appendTo(row);
+            if ($('.Apellido_Materno' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Apellido_Materno'+rowIndex+'">').text(data.Apellido_Materno).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Apellido_Materno'+rowIndex+'">').text(data.Apellido_Materno).appendTo(row);
 
         }
 
@@ -6601,7 +6625,9 @@
                 "columns": [
                     { "data": null, 'visible': true, "orderable": false },
 
-                    { "data": "Descripcion", "orderable": false },
+                    { "data": "Nombres", "orderable": false },
+                    { "data": "Apellido_Paterno", "orderable": false },
+                    { "data": "Apellido_Materno", "orderable": false },
 
                 ],
                 "order": [[0, "asc"]],
@@ -6628,6 +6654,8 @@
                 $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
             });
         }
+
+
 
 
 
@@ -6895,6 +6923,8 @@
             $('.select2-search__field').val(' ');
             $('.select2-search__field').keyup();
         });
+
+
 
 
 

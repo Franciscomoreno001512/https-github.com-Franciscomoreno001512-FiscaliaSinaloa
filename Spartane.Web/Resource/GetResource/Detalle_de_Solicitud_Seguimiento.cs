@@ -66,26 +66,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Requerido</summary>
-        public static string Requerido
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Requerido", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Solicitante</summary>
-        public static string Solicitante
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Solicitante", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Fecha_Requerida</summary>
         public static string Fecha_Requerida
         {
@@ -93,6 +73,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Fecha_Requerida", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Relacion</summary>
+        public static string Relacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Solicitud_Seguimiento.GetResource("Relacion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

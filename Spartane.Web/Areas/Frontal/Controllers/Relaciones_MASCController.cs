@@ -993,14 +993,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Detalle_de_Imputado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Imputado.Nombre_Completo_del_Tutor as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Detalle_de_Imputado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Imputado.Nombre_Completo_Detenido as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDetalle_de_ImputadoApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Imputado.Nombre_Completo_del_Tutor ASC ").Resource;
+				var result = _IDetalle_de_ImputadoApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Imputado.Nombre_Completo_Detenido ASC ").Resource;
                
                 foreach (var item in result.Detalle_de_Imputados)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor");
-                    item.Nombre_Completo_del_Tutor =trans ??item.Nombre_Completo_del_Tutor;
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_Detenido");
+                    item.Nombre_Completo_Detenido =trans ??item.Nombre_Completo_Detenido;
                 }
                 return Json(result.Detalle_de_Imputados.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -1804,7 +1804,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
 
                         ,Requerido = m.Requerido
-                        ,RequeridoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Imputado.Clave.ToString(), "Nombre_Completo_del_Tutor") ??(string)m.Requerido_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                        ,RequeridoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Imputado.Clave.ToString(), "Nombre_Completo_Detenido") ??(string)m.Requerido_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Delito = m.Delito
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ??(string)m.Delito_Delito.Descripcion
                         ,Solicitante = m.Solicitante
@@ -1842,7 +1842,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         Clave = m.Clave
 
                         ,Requerido = m.Requerido
-                        ,RequeridoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Imputado.Clave.ToString(), "Nombre_Completo_del_Tutor") ??(string)m.Requerido_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                        ,RequeridoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Imputado.Clave.ToString(), "Nombre_Completo_Detenido") ??(string)m.Requerido_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Delito = m.Delito
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ??(string)m.Delito_Delito.Descripcion
                         ,Solicitante = m.Solicitante
@@ -2087,7 +2087,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var result = _IDetalle_de_ImputadoApiConsumer.SelAll(false).Resource;
                 foreach (var item in result)
                 {
-                    item.Nombre_Completo_del_Tutor= CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor");
+                    item.Nombre_Completo_Detenido= CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_Detenido");
                 }
                 return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
             }

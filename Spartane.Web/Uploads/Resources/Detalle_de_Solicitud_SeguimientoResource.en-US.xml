@@ -5,9 +5,8 @@
   <resource culture="en-US" name="Solicitud" value="Número de Expediente"></resource>
   <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
   <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
-  <resource culture="en-US" name="Requerido" value="Requerido"></resource>
-  <resource culture="en-US" name="Solicitante" value="Solicitante"></resource>
   <resource culture="en-US" name="Fecha_Requerida" value="Fecha Requerida"></resource>
+  <resource culture="en-US" name="Relacion" value="Relación"></resource>
   <resource culture="en-US" name="Cumplimiento" value="¿Cumplió?"></resource>
   <resource culture="en-US" name="Fecha_de_Cumplimiento" value="Fecha de Cumplimiento"></resource>
   <resource culture="en-US" name="Forma_de_Pago" value="Forma de Pago"></resource>

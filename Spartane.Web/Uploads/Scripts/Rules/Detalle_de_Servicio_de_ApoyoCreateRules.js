@@ -581,6 +581,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Origen' + rowIndex),nameOfTable
 }
 //BusinessRuleId:3498, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+//BusinessRuleId:3533, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Origen' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Mecanismos_Alternos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex)); $('#divModulo_de_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_de_Atencion_Inicial' + rowIndex));$('#divOrigen').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Origen' + rowIndex));$('#divModulo_Mecanismos_Alternos').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Mecanismos_Alternos' + rowIndex));$('#divModulo_Ministerio_Publico').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Ministerio_Publico' + rowIndex));
+
+}
+//BusinessRuleId:3533, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

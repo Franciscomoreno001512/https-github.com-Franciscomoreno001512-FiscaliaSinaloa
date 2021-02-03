@@ -2,8 +2,7 @@
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Detalle_de_Solicitud_Seguimiento;
 @using Spartane.Core.Domain.Solicitud;
-@using Spartane.Core.Domain.Detalle_de_Solicitud_Requerido;
-@using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
+@using Spartane.Core.Domain.Relaciones_MASC;
 @using Spartane.Core.Domain.Cumplimiento;
 @using Spartane.Core.Domain.Forma_de_Cumplimiento;
 @using Spartane.Core.Domain.A_Tiempo;
@@ -207,9 +206,8 @@
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitud</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Registro</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Hora_de_Registro</th>
-                                    <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Requerido</th>
-                                    <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitante</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_Requerida</th>
+                                    <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Relacion</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Forma_de_Pago</th>
@@ -228,9 +226,8 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -358,9 +355,8 @@
         var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Requerido =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Solicitante =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_Requerida = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Relacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
         var Forma_de_Pago =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -375,9 +371,8 @@
         + "&Solicitud=" + Solicitud
         + "&Fecha_de_Registro=" + Fecha_de_Registro
         + "&Hora_de_Registro=" + Hora_de_Registro
-        + "&Requerido=" + Requerido
-        + "&Solicitante=" + Solicitante
         + "&Fecha_Requerida=" + Fecha_Requerida
+        + "&Relacion=" + Relacion
         + "&Cumplimiento=" + Cumplimiento
         + "&Fecha_de_Cumplimiento=" + Fecha_de_Cumplimiento
         + "&Forma_de_Pago=" + Forma_de_Pago
@@ -403,9 +398,8 @@
         var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Requerido =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Solicitante =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_Requerida = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Relacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
         var Forma_de_Pago =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -420,9 +414,8 @@
         + "&Solicitud=" + Solicitud
         + "&Fecha_de_Registro=" + Fecha_de_Registro
         + "&Hora_de_Registro=" + Hora_de_Registro
-        + "&Requerido=" + Requerido
-        + "&Solicitante=" + Solicitante
         + "&Fecha_Requerida=" + Fecha_Requerida
+        + "&Relacion=" + Relacion
         + "&Cumplimiento=" + Cumplimiento
         + "&Fecha_de_Cumplimiento=" + Fecha_de_Cumplimiento
         + "&Forma_de_Pago=" + Forma_de_Pago
@@ -611,11 +604,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -682,9 +675,8 @@
                 ,{ "data": "SolicitudNumero_de_Folio", "orderable": true, "name": "SolicitudNumero_de_Folio"}
                 ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
                 ,{ "data": "Hora_de_Registro", "orderable": true, "name": "Hora_de_Registro" }
-                ,{ "data": "RequeridoNombre", "orderable": true, "name": "RequeridoNombre"}
-                ,{ "data": "SolicitanteNombre", "orderable": true, "name": "SolicitanteNombre"}
                 ,{ "data": "Fecha_Requerida", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Requerida" }
+                ,{ "data": "RelacionDescripcion", "orderable": true, "name": "RelacionDescripcion"}
                 ,{ "data": "CumplimientoDescripcion", "orderable": true, "name": "CumplimientoDescripcion" }
                 ,{ "data": "Fecha_de_Cumplimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cumplimiento" }
                 ,{ "data": "Forma_de_PagoDescripcion", "orderable": true, "name": "Forma_de_PagoDescripcion" }

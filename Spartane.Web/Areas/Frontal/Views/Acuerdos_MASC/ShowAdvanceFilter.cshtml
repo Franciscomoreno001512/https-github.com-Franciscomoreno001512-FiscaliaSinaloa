@@ -15,12 +15,9 @@
     List<SelectListItem> varForma_de_Cumplimiento_Forma_de_Cumplimiento = null;
     if (ViewBag.Forma_de_Cumplimientos_Forma_de_Cumplimiento != null)
     { varForma_de_Cumplimiento_Forma_de_Cumplimiento = (List<SelectListItem>)ViewBag.Forma_de_Cumplimientos_Forma_de_Cumplimiento; }
- List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
-    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
-    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
- List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
-    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
-    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
+ List<SelectListItem> varRelaciones_MASC_Relacion = null;
+    if (ViewBag.Relaciones_MASCs_Relacion != null)
+    { varRelaciones_MASC_Relacion = (List<SelectListItem>)ViewBag.Relaciones_MASCs_Relacion; }
     List<SelectListItem> varPeriodicidad_Periodicidad = null;
     if (ViewBag.Periodicidads_Periodicidad != null)
     { varPeriodicidad_Periodicidad = (List<SelectListItem>)ViewBag.Periodicidads_Periodicidad; }
@@ -181,12 +178,9 @@
                     @Html.DropDownListFor(m => m.Descripcion_del_CumplimientoFilter, filters, new { @class = "form-control", @id = "ddlDescripcion_del_CumplimientoFilter" })
                     @Html.TextBoxFor(m => m.Descripcion_del_Cumplimiento, new { @class = "form-control", @type = "text", @id = "txtDescripcion_del_Cumplimiento" })
                 </div>
- List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
-    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
-    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
- List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
-    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
-    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
+ List<SelectListItem> varRelaciones_MASC_Relacion = null;
+    if (ViewBag.Relaciones_MASCs_Relacion != null)
+    { varRelaciones_MASC_Relacion = (List<SelectListItem>)ViewBag.Relaciones_MASCs_Relacion; }
                 <div class="MarginBottom">
                     <h3>@Resources.Acuerdos_MASCResources.Lugar_Acordado</h3>
                 </div>
@@ -507,34 +501,19 @@
             advanceSearch.Acuerdos_MASCDescripcion_del_Cumplimiento = $("#txtAdvanceDescripcion_del_Cumplimiento").val();
             advanceSearch.Acuerdos_MASCDescripcion_del_CumplimientoSearchType = $("#ddlAdvanceDescripcion_del_CumplimientoFilter").val();
         }
-        advanceSearch.SolicitanteSearchType = 0;
-        if ($('#ddlAdvanceSolicitante').val().length > 0 || $("#txtAdvanceSolicitante").val() == "") {
+        advanceSearch.RelacionSearchType = 0;
+        if ($('#ddlAdvanceRelacion').val().length > 0 || $("#txtAdvanceRelacion").val() == "") {
 
 
             if (isAcuerdos_MASCTextSearch) {
-                advanceSearch.SolicitanteName = $("#txtAdvanceSolicitante").val();
-                advanceSearch.SolicitanteNameSearchType = $("#ddlAdvanceSolicitante").val();
-                advanceSearch.SolicitanteSearchType = 1;
+                advanceSearch.RelacionName = $("#txtAdvanceRelacion").val();
+                advanceSearch.RelacionNameSearchType = $("#ddlAdvanceRelacion").val();
+                advanceSearch.RelacionSearchType = 1;
             }
             else {
 
-                advanceSearch.SolicitanteToSearch = $("#ddlAdvanceSolicitante").val();
-                advanceSearch.SolicitanteSearchType = 2;
-            }
-        }
-        advanceSearch.RequeridoSearchType = 0;
-        if ($('#ddlAdvanceRequerido').val().length > 0 || $("#txtAdvanceRequerido").val() == "") {
-
-
-            if (isAcuerdos_MASCTextSearch) {
-                advanceSearch.RequeridoName = $("#txtAdvanceRequerido").val();
-                advanceSearch.RequeridoNameSearchType = $("#ddlAdvanceRequerido").val();
-                advanceSearch.RequeridoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.RequeridoToSearch = $("#ddlAdvanceRequerido").val();
-                advanceSearch.RequeridoSearchType = 2;
+                advanceSearch.RelacionToSearch = $("#ddlAdvanceRelacion").val();
+                advanceSearch.RelacionSearchType = 2;
             }
         }
         if ($("#txtAdvanceLugar_Acordado").val() != "") {
@@ -756,23 +735,14 @@
             isAcuerdos_MASCTextSearch = false;
             $("#txtAdvanceForma_de_Cumplimiento").val('');
         });
-        $("#txtAdvanceSolicitante").keypress(function () {
+        $("#txtAdvanceRelacion").keypress(function () {
             isAcuerdos_MASCTextSearch = true;
-            $("#ddlAdvanceSolicitante").val('').trigger("chosen:updated");
+            $("#ddlAdvanceRelacion").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceSolicitante").change(function () {
+        $("#ddlAdvanceRelacion").change(function () {
             isAcuerdos_MASCTextSearch = false;
-            $("#txtAdvanceSolicitante").val('');
-        });
-        $("#txtAdvanceRequerido").keypress(function () {
-            isAcuerdos_MASCTextSearch = true;
-            $("#ddlAdvanceRequerido").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceRequerido").change(function () {
-            isAcuerdos_MASCTextSearch = false;
-            $("#txtAdvanceRequerido").val('');
+            $("#txtAdvanceRelacion").val('');
         });
         $("#txtAdvancePeriodicidad").keypress(function () {
             isAcuerdos_MASCTextSearch = true;

@@ -1290,8 +1290,64 @@
 <Object Id="45742" culture="es-es" value="Estatus Servicio Pericial" />
 <Object Id="45750" culture="en-us" value="Historial Estatus Modulo Servicio Pericial" />
 <Object Id="45750" culture="es-es" value="Historial Estatus Modulo Servicio Pericial" />
+<Object Id="45981" culture="en-us" value="Preferencia Sexual" />
+<Object Id="45981" culture="es-es" value="Preferencia Sexual" />
+<Object Id="45738" culture="en-us" value="Queja de Servidor Público" />
+<Object Id="45738" culture="es-es" value="Queja de Servidor Público" />
+<Object Id="45729" culture="en-us" value="Queja/Sugerencia Ciudadana" />
+<Object Id="45729" culture="es-es" value="Queja/Sugerencia Ciudadana" />
+<Object Id="45731" culture="en-us" value="Estatus queja/sugerencia" />
+<Object Id="45731" culture="es-es" value="Estatus queja/sugerencia" />
+<Object Id="45739" culture="en-us" value="Estatus Quejas MP" />
+<Object Id="45739" culture="es-es" value="Estatus Quejas MP" />
+<Object Id="45730" culture="en-us" value="Tipo de queja/sugerencia" />
+<Object Id="45730" culture="es-es" value="Tipo de queja/sugerencia" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
