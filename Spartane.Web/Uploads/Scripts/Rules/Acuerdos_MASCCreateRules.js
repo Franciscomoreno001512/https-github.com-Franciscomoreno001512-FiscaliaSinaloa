@@ -460,6 +460,27 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:3602, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ var valor = $('#' + nameOfTable + 'Relacion' + rowIndex).val();   $('#' + nameOfTable + 'Relacion' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Relacion' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Relacion' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Descripcion from Relaciones_MASC where Numero_de_expediente = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Relacion' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Descripcion from Relaciones_MASC where Numero_de_expediente = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Relacion' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Relacion' + rowIndex).val(valor).trigger('change');
+
+}
+//BusinessRuleId:3602, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3602, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ var valor = $('#' + nameOfTable + 'Relacion' + rowIndex).val();   $('#' + nameOfTable + 'Relacion' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Relacion' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Relacion' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Descripcion from Relaciones_MASC where Numero_de_expediente = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Relacion' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Descripcion from Relaciones_MASC where Numero_de_expediente = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Relacion' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Relacion' + rowIndex).val(valor).trigger('change');
+
+}
+//BusinessRuleId:3602, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3602, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ var valor = $('#' + nameOfTable + 'Relacion' + rowIndex).val();   $('#' + nameOfTable + 'Relacion' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Relacion' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Relacion' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Descripcion from Relaciones_MASC where Numero_de_expediente = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Relacion' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Descripcion from Relaciones_MASC where Numero_de_expediente = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Relacion' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Relacion' + rowIndex).val(valor).trigger('change');
+
+}
+//BusinessRuleId:3602, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -524,6 +545,13 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2018, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:3606, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" update Acuerdo_MASC set Solicitud = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]	", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:3606, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

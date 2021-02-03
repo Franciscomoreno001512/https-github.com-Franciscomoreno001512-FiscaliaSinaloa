@@ -109,7 +109,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varOtros_Nombres = new Otros_NombresModel
                 {
                     Clave = (int)Otros_NombresData.Clave
-                    ,Descripcion = Otros_NombresData.Descripcion
+                    ,Nombres = Otros_NombresData.Nombres
+                    ,Apellido_Paterno = Otros_NombresData.Apellido_Paterno
+                    ,Apellido_Materno = Otros_NombresData.Apellido_Materno
 
                 };
 
@@ -150,7 +152,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varOtros_Nombres= new Otros_NombresModel
 					{
 						Clave  = Otros_NombresData.Clave 
-	                    ,Descripcion = Otros_NombresData.Descripcion
+	                    ,Nombres = Otros_NombresData.Nombres
+                    ,Apellido_Paterno = Otros_NombresData.Apellido_Paterno
+                    ,Apellido_Materno = Otros_NombresData.Apellido_Materno
 
 					};
 				}
@@ -200,7 +204,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Otros_Nombress.Select(m => new Otros_NombresGridModel
                     {
                     Clave = m.Clave
-			,Descripcion = m.Descripcion
+			,Nombres = m.Nombres
+			,Apellido_Paterno = m.Apellido_Paterno
+			,Apellido_Materno = m.Apellido_Materno
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -265,7 +271,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Otros_NombresInfo = new Otros_Nombres
                     {
                         Clave = varOtros_Nombres.Clave
-                        ,Descripcion = varOtros_Nombres.Descripcion
+                        ,Nombres = varOtros_Nombres.Nombres
+                        ,Apellido_Paterno = varOtros_Nombres.Apellido_Paterno
+                        ,Apellido_Materno = varOtros_Nombres.Apellido_Materno
 
                     };
 
@@ -493,7 +501,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Otros_Nombress.Select(m => new Otros_NombresGridModel
             {
                 Clave = m.Clave
-                ,Descripcion = m.Descripcion
+                ,Nombres = m.Nombres
+                ,Apellido_Paterno = m.Apellido_Paterno
+                ,Apellido_Materno = m.Apellido_Materno
 
             }).ToList();
 
@@ -540,7 +550,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Otros_Nombress.Select(m => new Otros_NombresGridModel
             {
                 Clave = m.Clave
-                ,Descripcion = m.Descripcion
+                ,Nombres = m.Nombres
+                ,Apellido_Paterno = m.Apellido_Paterno
+                ,Apellido_Materno = m.Apellido_Materno
 
             }).ToList();
 

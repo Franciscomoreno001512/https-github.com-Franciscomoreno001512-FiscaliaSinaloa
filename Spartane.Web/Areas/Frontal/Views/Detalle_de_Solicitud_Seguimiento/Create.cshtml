@@ -23,12 +23,9 @@
  List<SelectListItem> varSolicitud_Solicitud = null;
     if (ViewBag.Solicituds_Solicitud != null)
     { varSolicitud_Solicitud = (List<SelectListItem>)ViewBag.Solicituds_Solicitud; }
- List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
-    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
-    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
- List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
-    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
-    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
+ List<SelectListItem> varRelaciones_MASC_Relacion = null;
+    if (ViewBag.Relaciones_MASCs_Relacion != null)
+    { varRelaciones_MASC_Relacion = (List<SelectListItem>)ViewBag.Relaciones_MASCs_Relacion; }
     List<SelectListItem> varCumplimiento_Cumplimiento = null;
     if (ViewBag.Cumplimientos_Cumplimiento != null)
     { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
@@ -222,34 +219,6 @@
                                     </div>
                                 </div>
                             </div>
-				<div class="form-group" id="divRequerido">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Requerido</label>
-                                <div class="col-sm-8" data-field-id="Requerido" data-attribute="263549" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Requerido">
-                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Seguimiento_Requerido form-control select2-dropdown Datos_Generales' data-val="true" id="Requerido" name="Requerido">
-                                        <option value="@Model.Requerido">@(Model.RequeridoNombre??Model.RequeridoNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263549).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Requerido', 'Requerido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divSolicitante">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitante</label>
-                                <div class="col-sm-8" data-field-id="Solicitante" data-attribute="263548" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitante">
-                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitante form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitante" name="Solicitante">
-                                        <option value="@Model.Solicitante">@(Model.SolicitanteNombre??Model.SolicitanteNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263548).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Solicitante', 'Solicitante');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
                             <div class="form-group" id="divFecha_Requerida">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_Requerida</label>
                                 <div class="col-sm-8" data-field-id="Fecha_Requerida" data-attribute="263541" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_Requerida">
@@ -260,6 +229,20 @@
                                         </span>
                                     </div>
                                 </div>
+                            </div>
+				<div class="form-group" id="divRelacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Relacion</label>
+                                <div class="col-sm-8" data-field-id="Relacion" data-attribute="271304" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Relacion">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Seguimiento_Relacion form-control select2-dropdown Datos_Generales' data-val="true" id="Relacion" name="Relacion">
+                                        <option value="@Model.Relacion">@(Model.RelacionDescripcion??Model.RelacionDescripcion)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 271304).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Relaciones_MASC', 'Relacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             <div class="form-group" id="divCumplimiento">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento</label>
@@ -631,11 +614,11 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
-       var AutoCompleteRequeridoData =[];
-       $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Requerido").select2({
+       var AutoCompleteRelacionData =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Relacion").select2({
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/GetDetalle_de_Solicitud_Seguimiento_Requerido_Detalle_de_Solicitud_Requerido")",
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/GetDetalle_de_Solicitud_Seguimiento_Relacion_Relaciones_MASC")",
 		cache: false,
                 dataType: 'json',
                 async: true,
@@ -649,7 +632,7 @@
                     params.page = params.page || 1;
 
                     return {
-                        results: GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Requerido_Detalle_de_Solicitud_RequeridoData(data),
+                        results: GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Relacion_Relaciones_MASCData(data),
                         pagination: {
                             more: false 
                         }
@@ -659,40 +642,7 @@
             escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
-        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Requerido");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
-       var AutoCompleteSolicitanteData =[];
-       $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitante").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/GetDetalle_de_Solicitud_Seguimiento_Solicitante_Detalle_de_Solicitud_Solicitante")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitante_Detalle_de_Solicitud_SolicitanteData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitante");
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Relacion");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -1022,25 +972,16 @@
                     }, 3000);
                     $('#Fecha_de_Registro').val(result.data.Fecha_de_Registro);
                     $('#Hora_de_Registro').val(result.data.Hora_de_Registro);
-                    var control = $('#Requerido');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Requerido).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Requerido).trigger('change');
-                    }, 3000);
-                    var control = $('#Solicitante');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Solicitante).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Solicitante).trigger('change');
-                    }, 3000);
                     $('#Fecha_Requerida').val(result.data.Fecha_Requerida);
+                    var control = $('#Relacion');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Relacion).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Relacion).trigger('change');
+                    }, 3000);
                     $('#Cumplimiento').val(result.data.Cumplimiento);
                     $('#Fecha_de_Cumplimiento').val(result.data.Fecha_de_Cumplimiento);
                     $('#Forma_de_Pago').val(result.data.Forma_de_Pago);
@@ -1072,9 +1013,8 @@
 			                data.append('Solicitud', $('#Solicitud').val());
                 data.append('Fecha_de_Registro', $('#Fecha_de_Registro').val());
                 data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
-                data.append('Requerido', $('#Requerido').val());
-                data.append('Solicitante', $('#Solicitante').val());
                 data.append('Fecha_Requerida', $('#Fecha_Requerida').val());
+                data.append('Relacion', $('#Relacion').val());
                 data.append('Cumplimiento', $('#Cumplimiento').val());
                 data.append('Fecha_de_Cumplimiento', $('#Fecha_de_Cumplimiento').val());
                 data.append('Forma_de_Pago', $('#Forma_de_Pago').val());

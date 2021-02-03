@@ -1736,11 +1736,15 @@ var Otros_NombrescountRowsChecked = 0;
 
 
 
+
+
 function GetInsertOtros_NombresRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $($.parseHTML(inputData)).addClass('Otros_Nombres_Descripcion Descripcion').attr('id', 'Otros_Nombres_Descripcion_' + index).attr('data-field', 'Descripcion');
+    columnData[0] = $($.parseHTML(inputData)).addClass('Otros_Nombres_Nombres Nombres').attr('id', 'Otros_Nombres_Nombres_' + index).attr('data-field', 'Nombres');
+    columnData[1] = $($.parseHTML(inputData)).addClass('Otros_Nombres_Apellido_Paterno Apellido_Paterno').attr('id', 'Otros_Nombres_Apellido_Paterno_' + index).attr('data-field', 'Apellido_Paterno');
+    columnData[2] = $($.parseHTML(inputData)).addClass('Otros_Nombres_Apellido_Materno Apellido_Materno').attr('id', 'Otros_Nombres_Apellido_Materno_' + index).attr('data-field', 'Apellido_Materno');
 
 
     initiateUIControls();
@@ -1758,7 +1762,9 @@ if (EjecutarValidacionesAntesDeGuardarMROtros_Nombres("Otros_Nombres_", "_" + ro
         Clave: prevData.Clave,
         IsInsertRow: false
 
-        ,Descripcion:  data.childNodes[counter++].childNodes[0].value
+        ,Nombres:  data.childNodes[counter++].childNodes[0].value
+        ,Apellido_Paterno:  data.childNodes[counter++].childNodes[0].value
+        ,Apellido_Materno:  data.childNodes[counter++].childNodes[0].value
 
     }
     Otros_NombresTable.fnUpdate(newData, rowIndex, null, true);
@@ -1794,7 +1800,9 @@ function GetOtros_NombresFromDataTable() {
             Otros_NombresData.push({
                 Clave: gridData[i].Clave
 
-                ,Descripcion: gridData[i].Descripcion
+                ,Nombres: gridData[i].Nombres
+                ,Apellido_Paterno: gridData[i].Apellido_Paterno
+                ,Apellido_Materno: gridData[i].Apellido_Materno
 
                 ,Removed: false
             });
@@ -1805,7 +1813,9 @@ function GetOtros_NombresFromDataTable() {
             Otros_NombresData.push({
                 Clave: removedOtros_NombresData[i].Clave
 
-                ,Descripcion: removedOtros_NombresData[i].Descripcion
+                ,Nombres: removedOtros_NombresData[i].Nombres
+                ,Apellido_Paterno: removedOtros_NombresData[i].Apellido_Paterno
+                ,Apellido_Materno: removedOtros_NombresData[i].Apellido_Materno
 
                 , Removed: true
             });
@@ -1869,9 +1879,13 @@ function Otros_NombresEditRowPopup(rowIndex, currentRow) {
     var prevData = Otros_NombresTable.fnGetData(rowIndexTable);
     GetAddOtros_NombresPopup(rowIndex, 1, prevData.Clave);
 
-    $('#Otros_NombresDescripcion').val(prevData.Descripcion);
+    $('#Otros_NombresNombres').val(prevData.Nombres);
+    $('#Otros_NombresApellido_Paterno').val(prevData.Apellido_Paterno);
+    $('#Otros_NombresApellido_Materno').val(prevData.Apellido_Materno);
 
     initiateUIControls();
+
+
 
 
 
@@ -1886,7 +1900,9 @@ function Otros_NombresAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
-        ,Descripcion: ""
+        ,Nombres: ""
+        ,Apellido_Paterno: ""
+        ,Apellido_Materno: ""
 
     }
 }
@@ -1918,7 +1934,9 @@ function GetOtros_Nombres() {
     for (var i = 0; i < Otros_NombresData.length; i++) {
         form_data.append('[' + i + '].Clave', Otros_NombresData[i].Clave);
 
-        form_data.append('[' + i + '].Descripcion', Otros_NombresData[i].Descripcion);
+        form_data.append('[' + i + '].Nombres', Otros_NombresData[i].Nombres);
+        form_data.append('[' + i + '].Apellido_Paterno', Otros_NombresData[i].Apellido_Paterno);
+        form_data.append('[' + i + '].Apellido_Materno', Otros_NombresData[i].Apellido_Materno);
 
         form_data.append('[' + i + '].Removed', Otros_NombresData[i].Removed);
     }
@@ -1932,7 +1950,9 @@ function Otros_NombresInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
-        ,Descripcion: $('#Otros_NombresDescripcion').val()
+        ,Nombres: $('#Otros_NombresNombres').val()
+        ,Apellido_Paterno: $('#Otros_NombresApellido_Paterno').val()
+        ,Apellido_Materno: $('#Otros_NombresApellido_Materno').val()
 
     }
 

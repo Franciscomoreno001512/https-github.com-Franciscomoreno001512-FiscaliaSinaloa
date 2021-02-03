@@ -34,12 +34,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Forma_de_Cumplimiento.Descripcion";
                 case "Descripcion_del_Cumplimiento":
                     return "Acuerdos_MASC.Descripcion_del_Cumplimiento";
-                case "Solicitante[Nombre_Completo]":
-                case "SolicitanteNombre_Completo":
-                    return "Detalle_de_Solicitud_Solicitante.Nombre_Completo";
-                case "Requerido[Nombre_Completo]":
-                case "RequeridoNombre_Completo":
-                    return "Detalle_de_Solicitud_Requerido.Nombre_Completo";
+                case "Relacion[Descripcion]":
+                case "RelacionDescripcion":
+                    return "Relaciones_MASC.Descripcion";
                 case "Lugar_Acordado":
                     return "Acuerdos_MASC.Lugar_Acordado";
                 case "Domicilio_Acordado":

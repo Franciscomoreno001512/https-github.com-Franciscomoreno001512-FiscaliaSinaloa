@@ -566,6 +566,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Preferencia_Sexual</summary>
+        public static string Preferencia_Sexual
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Preferencia_Sexual", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Etnia</summary>
         public static string Etnia
         {

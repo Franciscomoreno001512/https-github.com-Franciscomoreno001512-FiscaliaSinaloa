@@ -12,7 +12,7 @@ function GetAutoCompleteDetalle_Relaciones_MASC_Requerido_Detalle_de_ImputadoDat
     for (var i = 0; i < data.length; i++) {
         AutoCompleteRequeridoData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo_del_Tutor
+            text: data[i].Nombre_Completo_Detenido
         });
     }
     return AutoCompleteRequeridoData;

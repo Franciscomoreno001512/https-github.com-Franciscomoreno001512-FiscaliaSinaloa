@@ -81,6 +81,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Situacion_de_Vulnerabilidad { get; set; }
         public int? Grupo_al_que_pertenece { get; set; }
         public string Grupo_al_que_perteneceDescripcion { get; set; }
+        public int? Preferencia_Sexual { get; set; }
+        public string Preferencia_SexualDescripcion { get; set; }
         public int? Etnia { get; set; }
         public string EtniaDescripcion { get; set; }
         public short? No_de_Hijos { get; set; }

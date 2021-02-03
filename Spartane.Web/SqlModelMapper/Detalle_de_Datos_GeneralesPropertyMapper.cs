@@ -141,6 +141,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Grupo_al_que_pertenece[Descripcion]":
                 case "Grupo_al_que_perteneceDescripcion":
                     return "Grupo_al_que_Pertenece.Descripcion";
+                case "Preferencia_Sexual[Descripcion]":
+                case "Preferencia_SexualDescripcion":
+                    return "Preferencia_Sexual.Descripcion";
                 case "Etnia[Descripcion]":
                 case "EtniaDescripcion":
                     return "Etnia.Descripcion";

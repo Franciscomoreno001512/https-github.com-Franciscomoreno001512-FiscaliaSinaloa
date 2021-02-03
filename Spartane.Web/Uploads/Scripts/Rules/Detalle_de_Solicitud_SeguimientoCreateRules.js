@@ -149,6 +149,27 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:1705, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:3603, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ DisabledControl($("#" + nameOfTable + "Relacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Relacion' + rowIndex));}
+
+}
+//BusinessRuleId:3603, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3603, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Relacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Relacion' + rowIndex));}
+
+}
+//BusinessRuleId:3603, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3603, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ DisabledControl($("#" + nameOfTable + "Relacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Relacion' + rowIndex));}
+
+}
+//BusinessRuleId:3603, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -165,6 +186,13 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:1707, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:3588, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Concluir_Acuerdo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { EvaluaQuery(" update Solicitud set Estatus = 101 where Clave = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable); EvaluaQuery(" exec usp_AsignarResolucionProcedimiento_DependiendoTipoDeAcuerdo GLOBAL[SpartanOperationId], FLDD[lblClave]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:3588, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

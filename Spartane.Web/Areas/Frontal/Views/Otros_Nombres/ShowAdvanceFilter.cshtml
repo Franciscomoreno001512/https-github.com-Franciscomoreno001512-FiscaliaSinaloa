@@ -52,12 +52,28 @@
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Otros_NombresResources.Descripcion</h3>
+                    <h3>@Resources.Otros_NombresResources.Nombres</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
-                    @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
+                    @Html.DropDownListFor(m => m.NombresFilter, filters, new { @class = "form-control", @id = "ddlNombresFilter" })
+                    @Html.TextBoxFor(m => m.Nombres, new { @class = "form-control", @type = "text", @id = "txtNombres" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Otros_NombresResources.Apellido_Paterno</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_PaternoFilter, filters, new { @class = "form-control", @id = "ddlApellido_PaternoFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Paterno, new { @class = "form-control", @type = "text", @id = "txtApellido_Paterno" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Otros_NombresResources.Apellido_Materno</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_MaternoFilter, filters, new { @class = "form-control", @id = "ddlApellido_MaternoFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Materno, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno" })
                 </div>
 
                 <div class="MarginBottom form-inline">
@@ -76,10 +92,20 @@
             advanceSearch.Otros_NombresClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Otros_NombresClaveTo = $("#txtAdvanceToClave").val();
         }
-        if ($("#txtAdvanceDescripcion").val() != "") {
+        if ($("#txtAdvanceNombres").val() != "") {
             hasParameter = true;
-            advanceSearch.Otros_NombresDescripcion = $("#txtAdvanceDescripcion").val();
-            advanceSearch.Otros_NombresDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+            advanceSearch.Otros_NombresNombres = $("#txtAdvanceNombres").val();
+            advanceSearch.Otros_NombresNombresSearchType = $("#ddlAdvanceNombresFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Paterno").val() != "") {
+            hasParameter = true;
+            advanceSearch.Otros_NombresApellido_Paterno = $("#txtAdvanceApellido_Paterno").val();
+            advanceSearch.Otros_NombresApellido_PaternoSearchType = $("#ddlAdvanceApellido_PaternoFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Materno").val() != "") {
+            hasParameter = true;
+            advanceSearch.Otros_NombresApellido_Materno = $("#txtAdvanceApellido_Materno").val();
+            advanceSearch.Otros_NombresApellido_MaternoSearchType = $("#ddlAdvanceApellido_MaternoFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

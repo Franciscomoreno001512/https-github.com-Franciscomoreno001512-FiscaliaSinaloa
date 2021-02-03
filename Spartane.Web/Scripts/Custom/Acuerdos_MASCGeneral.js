@@ -32,27 +32,16 @@ function GetAutoCompleteAcuerdos_MASC_Usuario_que_Registra_Spartan_UserData(data
     }
     return AutoCompleteUsuario_que_RegistraData;
 }
-var AutoCompleteSolicitanteData = [];
-function GetAutoCompleteAcuerdos_MASC_Solicitante_Detalle_de_Solicitud_SolicitanteData(data) {
-	AutoCompleteSolicitanteData = [];
+var AutoCompleteRelacionData = [];
+function GetAutoCompleteAcuerdos_MASC_Relacion_Relaciones_MASCData(data) {
+	AutoCompleteRelacionData = [];
     for (var i = 0; i < data.length; i++) {
-        AutoCompleteSolicitanteData.push({
+        AutoCompleteRelacionData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo
+            text: data[i].Descripcion
         });
     }
-    return AutoCompleteSolicitanteData;
-}
-var AutoCompleteRequeridoData = [];
-function GetAutoCompleteAcuerdos_MASC_Requerido_Detalle_de_Solicitud_RequeridoData(data) {
-	AutoCompleteRequeridoData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteRequeridoData.push({
-            id: data[i].Clave,
-            text: data[i].Nombre_Completo
-        });
-    }
-    return AutoCompleteRequeridoData;
+    return AutoCompleteRelacionData;
 }
 var AutoCompletePersonal_de_Seguimiento_AsignadoData = [];
 function GetAutoCompleteAcuerdos_MASC_Personal_de_Seguimiento_Asignado_Spartan_UserData(data) {
@@ -119,12 +108,9 @@ function ClearControls() {
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
-    $('#Solicitante').empty();
-    $("#Solicitante").append('<option value=""></option>');
-    $('#Solicitante').val('0').trigger('change');
-    $('#Requerido').empty();
-    $("#Requerido").append('<option value=""></option>');
-    $('#Requerido').val('0').trigger('change');
+    $('#Relacion').empty();
+    $("#Relacion").append('<option value=""></option>');
+    $('#Relacion').val('0').trigger('change');
     $('#Personal_de_Seguimiento_Asignado').empty();
     $("#Personal_de_Seguimiento_Asignado").append('<option value=""></option>');
     $('#Personal_de_Seguimiento_Asignado').val('0').trigger('change');
@@ -266,12 +252,9 @@ $(document).ready(function () {
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
-    $('#Solicitante').empty();
-    $("#Solicitante").append('<option value=""></option>');
-    $('#Solicitante').val('0').trigger('change');
-    $('#Requerido').empty();
-    $("#Requerido").append('<option value=""></option>');
-    $('#Requerido').val('0').trigger('change');
+    $('#Relacion').empty();
+    $("#Relacion").append('<option value=""></option>');
+    $('#Relacion').val('0').trigger('change');
     $('#Personal_de_Seguimiento_Asignado').empty();
     $("#Personal_de_Seguimiento_Asignado").append('<option value=""></option>');
     $('#Personal_de_Seguimiento_Asignado').val('0').trigger('change');

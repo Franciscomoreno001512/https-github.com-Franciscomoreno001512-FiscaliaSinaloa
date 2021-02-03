@@ -218,6 +218,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceGrupo_al_que_pertenece { set; get; }
         public int[] AdvanceGrupo_al_que_perteneceMultiple { set; get; }
 
+        public Filters Preferencia_SexualFilter { set; get; }
+        public string AdvancePreferencia_Sexual { set; get; }
+        public int[] AdvancePreferencia_SexualMultiple { set; get; }
+
         public Filters EtniaFilter { set; get; }
         public string AdvanceEtnia { set; get; }
         public int[] AdvanceEtniaMultiple { set; get; }

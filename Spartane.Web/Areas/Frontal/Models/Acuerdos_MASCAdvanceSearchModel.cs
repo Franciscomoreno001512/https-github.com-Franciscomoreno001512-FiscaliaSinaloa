@@ -48,13 +48,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Descripcion_del_CumplimientoFilter { set; get; }
         public string Descripcion_del_Cumplimiento { set; get; }
 
-        public Filters SolicitanteFilter { set; get; }
-        public string AdvanceSolicitante { set; get; }
-        public int[] AdvanceSolicitanteMultiple { set; get; }
-
-        public Filters RequeridoFilter { set; get; }
-        public string AdvanceRequerido { set; get; }
-        public int[] AdvanceRequeridoMultiple { set; get; }
+        public Filters RelacionFilter { set; get; }
+        public string AdvanceRelacion { set; get; }
+        public int[] AdvanceRelacionMultiple { set; get; }
 
         public Filters Lugar_AcordadoFilter { set; get; }
         public string Lugar_Acordado { set; get; }

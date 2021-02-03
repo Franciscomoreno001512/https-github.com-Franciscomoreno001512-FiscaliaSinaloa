@@ -871,7 +871,7 @@
                 url: "@Url.Content("~/Frontal/Relaciones_MASC/GetRelaciones_MASC_Numero_de_Expediente_Solicitud")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -904,7 +904,7 @@
                 url: "@Url.Content("~/Frontal/Relaciones_MASC/GetRelaciones_MASC_Usuario_que_Resuelve_solicitud_Spartan_User")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -937,7 +937,7 @@
                 url: "@Url.Content("~/Frontal/Relaciones_MASC/GetRelaciones_MASC_Usuario_que_Valida_solicitud_Spartan_User")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -970,7 +970,7 @@
                 url: "@Url.Content("~/Frontal/Relaciones_MASC/GetRelaciones_MASC_usuario_resuelve_proc_Spartan_User")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1003,7 +1003,7 @@
                 url: "@Url.Content("~/Frontal/Relaciones_MASC/GetRelaciones_MASC_Usuario_que_Valida_proc_Spartan_User")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1079,7 +1079,7 @@
             var counter = 0;
             var inputData = "<input type='text' class='fullWidth form-control' />";
 
-            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.RequeridoNombre_Completo_del_Tutor != undefined ? data.RequeridoNombre_Completo_del_Tutor : null, 'AutoComplete' + nameOfTable + 'Requerido', data.Requerido)))).addClass('Requerido').attr('id', nameOfTable + 'Requerido' + rowIndex).attr('data-field', 'Requerido').after($.parseHTML(addNew('Detalle_Relaciones_MASC', 'Detalle_de_Imputado','Requerido', 269182)));
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.RequeridoNombre_Completo_Detenido != undefined ? data.RequeridoNombre_Completo_Detenido : null, 'AutoComplete' + nameOfTable + 'Requerido', data.Requerido)))).addClass('Requerido').attr('id', nameOfTable + 'Requerido' + rowIndex).attr('data-field', 'Requerido').after($.parseHTML(addNew('Detalle_Relaciones_MASC', 'Detalle_de_Imputado','Requerido', 269182)));
             columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.DelitoDescripcion != undefined ? data.DelitoDescripcion : null, 'AutoComplete' + nameOfTable + 'Delito', data.Delito)))).addClass('Delito').attr('id', nameOfTable + 'Delito' + rowIndex).attr('data-field', 'Delito').after($.parseHTML(addNew('Detalle_Relaciones_MASC', 'Delito','Delito', 269183)));
             columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.SolicitanteNombre_Completo != undefined ? data.SolicitanteNombre_Completo : null, 'AutoComplete' + nameOfTable + 'Solicitante', data.Solicitante)))).addClass('Solicitante').attr('id', nameOfTable + 'Solicitante' + rowIndex).attr('data-field', 'Solicitante').after($.parseHTML(addNew('Detalle_Relaciones_MASC', 'Detalle_de_Datos_Generales','Solicitante', 269184)));
 
@@ -1205,10 +1205,10 @@
 				actionCol.appendTo(row);
 
             if ($('.Requerido' + 'Header').css('display') != 'none'){
-                if (data.RequeridoNombre_Completo_del_Tutor == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Requerido'+rowIndex+'">').text(data.Requerido).appendTo(row);}else{$('<td>').text(data.RequeridoNombre_Completo_del_Tutor).appendTo(row);}
+                if (data.RequeridoNombre_Completo_Detenido == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Requerido'+rowIndex+'">').text(data.Requerido).appendTo(row);}else{$('<td>').text(data.RequeridoNombre_Completo_Detenido).appendTo(row);}
 }
              else {
-                if (data.RequeridoNombre_Completo_del_Tutor == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Requerido'+rowIndex+'">').text(data.Requerido).appendTo(row);}else{$('<td style:display:none;>').text(data.RequeridoNombre_Completo_del_Tutor).appendTo(row);}
+                if (data.RequeridoNombre_Completo_Detenido == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Requerido'+rowIndex+'">').text(data.Requerido).appendTo(row);}else{$('<td style:display:none;>').text(data.RequeridoNombre_Completo_Detenido).appendTo(row);}
 }
 
             if ($('.Delito' + 'Header').css('display') != 'none'){
@@ -1347,7 +1347,7 @@
                     url: '@Url.Content("~/Frontal/Relaciones_MASC/PostDetalle_Relaciones_MASC?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
                     type: 'POST',
                     data: GetDetalle_Relaciones_MASC(),
-                    async: true,
+                    async: false,
                     success: function (result) {
 
                     },
@@ -1413,7 +1413,7 @@
                 url: "@Url.Content("~/Frontal/Relaciones_MASC/GetDetalle_Relaciones_MASC_Requerido_Detalle_de_Imputado")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1445,7 +1445,7 @@
                 url: "@Url.Content("~/Frontal/Relaciones_MASC/GetDetalle_Relaciones_MASC_Delito_Delito")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1477,7 +1477,7 @@
                 url: "@Url.Content("~/Frontal/Relaciones_MASC/GetDetalle_Relaciones_MASC_Solicitante_Detalle_de_Datos_Generales")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1537,7 +1537,7 @@
 
 			$.ajax({
 				url: url,
-				async: true,
+				async: false,
 				success:function(result)
 				{
 					addItemsToSelect($('#' + control), result);

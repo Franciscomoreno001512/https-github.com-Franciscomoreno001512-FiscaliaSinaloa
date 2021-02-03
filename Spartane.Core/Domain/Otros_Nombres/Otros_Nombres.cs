@@ -18,7 +18,9 @@ namespace Spartane.Core.Domain.Otros_Nombres
     {
         public int Clave { get; set; }
         public int? Folio_otros_Nombres { get; set; }
-        public string Descripcion { get; set; }
+        public string Nombres { get; set; }
+        public string Apellido_Paterno { get; set; }
+        public string Apellido_Materno { get; set; }
 
         [ForeignKey("Folio_otros_Nombres")]
         public virtual Spartane.Core.Domain.Detalle_de_Imputado.Detalle_de_Imputado Folio_otros_Nombres_Detalle_de_Imputado { get; set; }
@@ -29,7 +31,9 @@ namespace Spartane.Core.Domain.Otros_Nombres
     {
                 public int Clave { get; set; }
         public int? Folio_otros_Nombres { get; set; }
-        public string Descripcion { get; set; }
+        public string Nombres { get; set; }
+        public string Apellido_Paterno { get; set; }
+        public string Apellido_Materno { get; set; }
 
 		        [ForeignKey("Folio_otros_Nombres")]
         public virtual Spartane.Core.Domain.Detalle_de_Imputado.Detalle_de_Imputado Folio_otros_Nombres_Detalle_de_Imputado { get; set; }

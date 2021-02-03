@@ -6,7 +6,7 @@ var Detalle_Relaciones_MASCcountRowsChecked = 0;
 function GetDetalle_Relaciones_MASC_Detalle_de_ImputadoName(Id) {
     for (var i = 0; i < Detalle_Relaciones_MASC_Detalle_de_ImputadoItems.length; i++) {
         if (Detalle_Relaciones_MASC_Detalle_de_ImputadoItems[i].Clave == Id) {
-            return Detalle_Relaciones_MASC_Detalle_de_ImputadoItems[i].Nombre_Completo_del_Tutor;
+            return Detalle_Relaciones_MASC_Detalle_de_ImputadoItems[i].Nombre_Completo_Detenido;
         }
     }
     return "";
@@ -18,7 +18,7 @@ function GetDetalle_Relaciones_MASC_Detalle_de_ImputadoDropDown() {
     $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Relaciones_MASC_Detalle_de_ImputadoDropdown);
 
     for (var i = 0; i < Detalle_Relaciones_MASC_Detalle_de_ImputadoItems.length; i++) {
-        $('<option />', { value: Detalle_Relaciones_MASC_Detalle_de_ImputadoItems[i].Clave, text: Detalle_Relaciones_MASC_Detalle_de_ImputadoItems[i].Nombre_Completo_del_Tutor }).appendTo(Detalle_Relaciones_MASC_Detalle_de_ImputadoDropdown);
+        $('<option />', { value: Detalle_Relaciones_MASC_Detalle_de_ImputadoItems[i].Clave, text: Detalle_Relaciones_MASC_Detalle_de_ImputadoItems[i].Nombre_Completo_Detenido }).appendTo(Detalle_Relaciones_MASC_Detalle_de_ImputadoDropdown);
     }
     return Detalle_Relaciones_MASC_Detalle_de_ImputadoDropdown;
 }
@@ -86,7 +86,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Relaciones_MASC("Detalle_Relacio
         Clave: prevData.Clave,
         IsInsertRow: false
 
-        , RequeridoNombre_Completo_del_Tutor:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
+        , RequeridoNombre_Completo_Detenido:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Requerido:  data.childNodes[counter++].childNodes[0].value 	
         , DelitoDescripcion:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Delito:  data.childNodes[counter++].childNodes[0].value 	
@@ -363,7 +363,7 @@ function GetAutoCompleteDetalle_Relaciones_MASC_Requerido_Detalle_de_ImputadoDat
     for (var i = 0; i < data.length; i++) {
         AutoCompleteRequeridoData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo_del_Tutor
+            text: data[i].Nombre_Completo_Detenido
         });
     }
     return AutoCompleteRequeridoData;

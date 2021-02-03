@@ -82,6 +82,8 @@ using Spartane.Core.Domain.Otros_Nombres;
 
 
 
+
+
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Nacionalidad;
 using Spartane.Core.Domain.Escolaridad;
@@ -9764,7 +9766,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
-			,Descripcion = m.Descripcion
+			,Nombres = m.Nombres
+			,Apellido_Paterno = m.Apellido_Paterno
+			,Apellido_Materno = m.Apellido_Materno
 
                 }).ToList(),
                 recordsTotal = result.RowCount,
@@ -9797,7 +9801,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
-			,Descripcion = m.Descripcion
+			,Nombres = m.Nombres
+			,Apellido_Paterno = m.Apellido_Paterno
+			,Apellido_Materno = m.Apellido_Materno
 
 
                     }).ToList();
@@ -11166,6 +11172,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
                         //Removal Request
                         if (Otros_NombresItem.Removed)
                         {
@@ -11179,7 +11187,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Folio_otros_Nombres = MasterId
                             ,Clave = Otros_NombresItem.Clave
-                            ,Descripcion = Otros_NombresItem.Descripcion
+                            ,Nombres = Otros_NombresItem.Nombres
+                            ,Apellido_Paterno = Otros_NombresItem.Apellido_Paterno
+                            ,Apellido_Materno = Otros_NombresItem.Apellido_Materno
 
                         };
 
@@ -11197,6 +11207,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+
+
 
 
 

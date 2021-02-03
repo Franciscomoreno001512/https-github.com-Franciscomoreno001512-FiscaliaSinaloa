@@ -1582,6 +1582,18 @@
 <Compile Include="Domain\Estatus_Servicio_Pericial\Estatus_Servicio_PericialPagingModel.cs" />
 <Compile Include="Domain\Historial_Estatus_Modulo_Servicio_Pericial\Historial_Estatus_Modulo_Servicio_Pericial.cs" />
 <Compile Include="Domain\Historial_Estatus_Modulo_Servicio_Pericial\Historial_Estatus_Modulo_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Preferencia_Sexual\Preferencia_Sexual.cs" />
+<Compile Include="Domain\Preferencia_Sexual\Preferencia_SexualPagingModel.cs" />
+<Compile Include="Domain\Quejas_de_MP\Quejas_de_MP.cs" />
+<Compile Include="Domain\Quejas_de_MP\Quejas_de_MPPagingModel.cs" />
+<Compile Include="Domain\Queja_Sugerencia_Ciudadana\Queja_Sugerencia_Ciudadana.cs" />
+<Compile Include="Domain\Queja_Sugerencia_Ciudadana\Queja_Sugerencia_CiudadanaPagingModel.cs" />
+<Compile Include="Domain\Estatus_queja_sugerencia\Estatus_queja_sugerencia.cs" />
+<Compile Include="Domain\Estatus_queja_sugerencia\Estatus_queja_sugerenciaPagingModel.cs" />
+<Compile Include="Domain\Estatus_Quejas_MP\Estatus_Quejas_MP.cs" />
+<Compile Include="Domain\Estatus_Quejas_MP\Estatus_Quejas_MPPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_queja_sugerencia\Tipo_de_queja_sugerencia.cs" />
+<Compile Include="Domain\Tipo_de_queja_sugerencia\Tipo_de_queja_sugerenciaPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1602,6 +1614,18 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

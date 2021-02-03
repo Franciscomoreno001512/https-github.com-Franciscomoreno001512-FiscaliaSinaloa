@@ -1473,6 +1473,18 @@
 <Compile Include="Estatus_Servicio_Pericial\Estatus_Servicio_PericialService.cs" />
 <Compile Include="Historial_Estatus_Modulo_Servicio_Pericial\IHistorial_Estatus_Modulo_Servicio_PericialService.cs" />
 <Compile Include="Historial_Estatus_Modulo_Servicio_Pericial\Historial_Estatus_Modulo_Servicio_PericialService.cs" />
+<Compile Include="Preferencia_Sexual\IPreferencia_SexualService.cs" />
+<Compile Include="Preferencia_Sexual\Preferencia_SexualService.cs" />
+<Compile Include="Quejas_de_MP\IQuejas_de_MPService.cs" />
+<Compile Include="Quejas_de_MP\Quejas_de_MPService.cs" />
+<Compile Include="Queja_Sugerencia_Ciudadana\IQueja_Sugerencia_CiudadanaService.cs" />
+<Compile Include="Queja_Sugerencia_Ciudadana\Queja_Sugerencia_CiudadanaService.cs" />
+<Compile Include="Estatus_queja_sugerencia\IEstatus_queja_sugerenciaService.cs" />
+<Compile Include="Estatus_queja_sugerencia\Estatus_queja_sugerenciaService.cs" />
+<Compile Include="Estatus_Quejas_MP\IEstatus_Quejas_MPService.cs" />
+<Compile Include="Estatus_Quejas_MP\Estatus_Quejas_MPService.cs" />
+<Compile Include="Tipo_de_queja_sugerencia\ITipo_de_queja_sugerenciaService.cs" />
+<Compile Include="Tipo_de_queja_sugerencia\Tipo_de_queja_sugerenciaService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1572,6 +1584,18 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
