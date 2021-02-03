@@ -35,12 +35,9 @@
     List<SelectListItem> varForma_de_Cumplimiento_Forma_de_Cumplimiento = null;
     if (ViewBag.Forma_de_Cumplimientos_Forma_de_Cumplimiento != null)
     { varForma_de_Cumplimiento_Forma_de_Cumplimiento = (List<SelectListItem>)ViewBag.Forma_de_Cumplimientos_Forma_de_Cumplimiento; }
- List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
-    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
-    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
- List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
-    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
-    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
+ List<SelectListItem> varRelaciones_MASC_Relacion = null;
+    if (ViewBag.Relaciones_MASCs_Relacion != null)
+    { varRelaciones_MASC_Relacion = (List<SelectListItem>)ViewBag.Relaciones_MASCs_Relacion; }
     List<SelectListItem> varPeriodicidad_Periodicidad = null;
     if (ViewBag.Periodicidads_Periodicidad != null)
     { varPeriodicidad_Periodicidad = (List<SelectListItem>)ViewBag.Periodicidads_Periodicidad; }
@@ -318,31 +315,17 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion_del_Cumplimiento" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-				<div class="form-group" id="divSolicitante">
-                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Solicitante</label>
-                                <div class="col-sm-8" data-field-id="Solicitante" data-attribute="266686" data-field-name="@Resources.Acuerdos_MASCResources.Solicitante">
-                                    <select class='fullWidth AutoComplete AutoCompleteAcuerdos_MASC_Solicitante form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitante" name="Solicitante">
-                                        <option value="@Model.Solicitante">@(Model.SolicitanteNombre_Completo??Model.SolicitanteNombre_Completo)</option>
+				<div class="form-group" id="divRelacion">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Relacion</label>
+                                <div class="col-sm-8" data-field-id="Relacion" data-attribute="271303" data-field-name="@Resources.Acuerdos_MASCResources.Relacion">
+                                    <select class='fullWidth AutoComplete AutoCompleteAcuerdos_MASC_Relacion form-control select2-dropdown Datos_Generales' data-val="true" id="Relacion" name="Relacion">
+                                        <option value="@Model.Relacion">@(Model.RelacionDescripcion??Model.RelacionDescripcion)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266686).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 271303).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Solicitante', 'Solicitante');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divRequerido">
-                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Requerido</label>
-                                <div class="col-sm-8" data-field-id="Requerido" data-attribute="266687" data-field-name="@Resources.Acuerdos_MASCResources.Requerido">
-                                    <select class='fullWidth AutoComplete AutoCompleteAcuerdos_MASC_Requerido form-control select2-dropdown Datos_Generales' data-val="true" id="Requerido" name="Requerido">
-                                        <option value="@Model.Requerido">@(Model.RequeridoNombre_Completo??Model.RequeridoNombre_Completo)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266687).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Requerido', 'Requerido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Relaciones_MASC', 'Relacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -890,11 +873,11 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
-       var AutoCompleteSolicitanteData =[];
-       $(".AutoCompleteAcuerdos_MASC_Solicitante").select2({
+       var AutoCompleteRelacionData =[];
+       $(".AutoCompleteAcuerdos_MASC_Relacion").select2({
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
-                url: "@Url.Content("~/Frontal/Acuerdos_MASC/GetAcuerdos_MASC_Solicitante_Detalle_de_Solicitud_Solicitante")",
+                url: "@Url.Content("~/Frontal/Acuerdos_MASC/GetAcuerdos_MASC_Relacion_Relaciones_MASC")",
 		cache: false,
                 dataType: 'json',
                 async: true,
@@ -908,7 +891,7 @@
                     params.page = params.page || 1;
 
                     return {
-                        results: GetAutoCompleteAcuerdos_MASC_Solicitante_Detalle_de_Solicitud_SolicitanteData(data),
+                        results: GetAutoCompleteAcuerdos_MASC_Relacion_Relaciones_MASCData(data),
                         pagination: {
                             more: false 
                         }
@@ -918,40 +901,7 @@
             escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
-        var $eventExternal = $(".AutoCompleteAcuerdos_MASC_Solicitante");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
-       var AutoCompleteRequeridoData =[];
-       $(".AutoCompleteAcuerdos_MASC_Requerido").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Acuerdos_MASC/GetAcuerdos_MASC_Requerido_Detalle_de_Solicitud_Requerido")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteAcuerdos_MASC_Requerido_Detalle_de_Solicitud_RequeridoData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteAcuerdos_MASC_Requerido");
+        var $eventExternal = $(".AutoCompleteAcuerdos_MASC_Relacion");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -1336,23 +1286,14 @@
                     $('#Tipo_de_Acuerdo').val(result.data.Tipo_de_Acuerdo);
                     $('#Forma_de_Cumplimiento').val(result.data.Forma_de_Cumplimiento);
                     $('#Descripcion_del_Cumplimiento').val(result.data.Descripcion_del_Cumplimiento);
-                    var control = $('#Solicitante');
+                    var control = $('#Relacion');
                     control.select2('open');
-                    $('.select2-search__field').val(result.data.Solicitante).trigger('keyup');
+                    $('.select2-search__field').val(result.data.Relacion).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
 	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
 	                    control.select2({ data: data });
-	                    control.val(result.data.Solicitante).trigger('change');
-                    }, 3000);
-                    var control = $('#Requerido');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Requerido).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Requerido).trigger('change');
+	                    control.val(result.data.Relacion).trigger('change');
                     }, 3000);
                     $('#Lugar_Acordado').val(result.data.Lugar_Acordado);
                     $('#Domicilio_Acordado').val(result.data.Domicilio_Acordado);
@@ -1394,8 +1335,7 @@
                 data.append('Tipo_de_Acuerdo', $('#Tipo_de_Acuerdo').val());
                 data.append('Forma_de_Cumplimiento', $('#Forma_de_Cumplimiento').val());
                 data.append('Descripcion_del_Cumplimiento', $('#Descripcion_del_Cumplimiento').val());
-                data.append('Solicitante', $('#Solicitante').val());
-                data.append('Requerido', $('#Requerido').val());
+                data.append('Relacion', $('#Relacion').val());
                 data.append('Lugar_Acordado', $('#Lugar_Acordado').val());
                 data.append('Domicilio_Acordado', $('#Domicilio_Acordado').val());
                 data.append('Hora_de_Acuerdo', $('#Hora_de_Acuerdo').val());

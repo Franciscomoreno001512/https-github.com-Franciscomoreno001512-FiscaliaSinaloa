@@ -16,11 +16,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string SolicitudNumero_de_Folio { get; set; }
         public string Fecha_de_Registro { get; set; }
         public string Hora_de_Registro { get; set; }
-        public int? Requerido { get; set; }
-        public string RequeridoNombre { get; set; }
-        public int? Solicitante { get; set; }
-        public string SolicitanteNombre { get; set; }
         public string Fecha_Requerida { get; set; }
+        public int? Relacion { get; set; }
+        public string RelacionDescripcion { get; set; }
         public int? Cumplimiento { get; set; }
         public string CumplimientoDescripcion { get; set; }
         public string Fecha_de_Cumplimiento { get; set; }
@@ -48,11 +46,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string SolicitudNumero_de_Folio { get; set; }
         public string Fecha_de_Registro { get; set; }
         public string Hora_de_Registro { get; set; }
-        public int? Requerido { get; set; }
-        public string RequeridoNombre { get; set; }
-        public int? Solicitante { get; set; }
-        public string SolicitanteNombre { get; set; }
         public string Fecha_Requerida { get; set; }
+        public int? Relacion { get; set; }
+        public string RelacionDescripcion { get; set; }
         public int? Cumplimiento { get; set; }
         public string CumplimientoDescripcion { get; set; }
         public string Fecha_de_Cumplimiento { get; set; }

@@ -3,8 +3,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_de_Solicitud_Seguimiento;
 using Spartane.Core.Domain.Solicitud;
-using Spartane.Core.Domain.Detalle_de_Solicitud_Requerido;
-using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
+using Spartane.Core.Domain.Relaciones_MASC;
 using Spartane.Core.Domain.Cumplimiento;
 using Spartane.Core.Domain.Forma_de_Cumplimiento;
 using Spartane.Core.Domain.A_Tiempo;
@@ -20,8 +19,7 @@ using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitud_Seguimiento;
 using Spartane.Web.Areas.WebApiConsumer.Solicitud;
-using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitud_Requerido;
-using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitud_Solicitante;
+using Spartane.Web.Areas.WebApiConsumer.Relaciones_MASC;
 using Spartane.Web.Areas.WebApiConsumer.Cumplimiento;
 using Spartane.Web.Areas.WebApiConsumer.Forma_de_Cumplimiento;
 using Spartane.Web.Areas.WebApiConsumer.A_Tiempo;
@@ -63,8 +61,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_de_Solicitud_SeguimientoService service = null;
         private IDetalle_de_Solicitud_SeguimientoApiConsumer _IDetalle_de_Solicitud_SeguimientoApiConsumer;
         private ISolicitudApiConsumer _ISolicitudApiConsumer;
-        private IDetalle_de_Solicitud_RequeridoApiConsumer _IDetalle_de_Solicitud_RequeridoApiConsumer;
-        private IDetalle_de_Solicitud_SolicitanteApiConsumer _IDetalle_de_Solicitud_SolicitanteApiConsumer;
+        private IRelaciones_MASCApiConsumer _IRelaciones_MASCApiConsumer;
         private ICumplimientoApiConsumer _ICumplimientoApiConsumer;
         private IForma_de_CumplimientoApiConsumer _IForma_de_CumplimientoApiConsumer;
         private IA_TiempoApiConsumer _IA_TiempoApiConsumer;
@@ -86,7 +83,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Solicitud_SeguimientoController(IDetalle_de_Solicitud_SeguimientoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Solicitud_SeguimientoApiConsumer Detalle_de_Solicitud_SeguimientoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , IDetalle_de_Solicitud_RequeridoApiConsumer Detalle_de_Solicitud_RequeridoApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer , ICumplimientoApiConsumer CumplimientoApiConsumer , IForma_de_CumplimientoApiConsumer Forma_de_CumplimientoApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer )
+        public Detalle_de_Solicitud_SeguimientoController(IDetalle_de_Solicitud_SeguimientoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Solicitud_SeguimientoApiConsumer Detalle_de_Solicitud_SeguimientoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , IRelaciones_MASCApiConsumer Relaciones_MASCApiConsumer , ICumplimientoApiConsumer CumplimientoApiConsumer , IForma_de_CumplimientoApiConsumer Forma_de_CumplimientoApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -101,8 +98,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._ISolicitudApiConsumer = SolicitudApiConsumer;
-            this._IDetalle_de_Solicitud_RequeridoApiConsumer = Detalle_de_Solicitud_RequeridoApiConsumer;
-            this._IDetalle_de_Solicitud_SolicitanteApiConsumer = Detalle_de_Solicitud_SolicitanteApiConsumer;
+            this._IRelaciones_MASCApiConsumer = Relaciones_MASCApiConsumer;
             this._ICumplimientoApiConsumer = CumplimientoApiConsumer;
             this._IForma_de_CumplimientoApiConsumer = Forma_de_CumplimientoApiConsumer;
             this._IA_TiempoApiConsumer = A_TiempoApiConsumer;
@@ -186,11 +182,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_SeguimientoData.Solicitud), "Solicitud") ??  (string)Detalle_de_Solicitud_SeguimientoData.Solicitud_Solicitud.Numero_de_Folio
                     ,Fecha_de_Registro = (Detalle_de_Solicitud_SeguimientoData.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitud_SeguimientoData.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_Registro = Detalle_de_Solicitud_SeguimientoData.Hora_de_Registro
-                    ,Requerido = Detalle_de_Solicitud_SeguimientoData.Requerido
-                    ,RequeridoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_SeguimientoData.Requerido), "Detalle_de_Solicitud_Requerido") ??  (string)Detalle_de_Solicitud_SeguimientoData.Requerido_Detalle_de_Solicitud_Requerido.Nombre
-                    ,Solicitante = Detalle_de_Solicitud_SeguimientoData.Solicitante
-                    ,SolicitanteNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_SeguimientoData.Solicitante), "Detalle_de_Solicitud_Solicitante") ??  (string)Detalle_de_Solicitud_SeguimientoData.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre
                     ,Fecha_Requerida = (Detalle_de_Solicitud_SeguimientoData.Fecha_Requerida == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitud_SeguimientoData.Fecha_Requerida).ToString(ConfigurationProperty.DateFormat))
+                    ,Relacion = Detalle_de_Solicitud_SeguimientoData.Relacion
+                    ,RelacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_SeguimientoData.Relacion), "Relaciones_MASC") ??  (string)Detalle_de_Solicitud_SeguimientoData.Relacion_Relaciones_MASC.Descripcion
                     ,Cumplimiento = Detalle_de_Solicitud_SeguimientoData.Cumplimiento
                     ,CumplimientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_SeguimientoData.Cumplimiento), "Cumplimiento") ??  (string)Detalle_de_Solicitud_SeguimientoData.Cumplimiento_Cumplimiento.Descripcion
                     ,Fecha_de_Cumplimiento = (Detalle_de_Solicitud_SeguimientoData.Fecha_de_Cumplimiento == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitud_SeguimientoData.Fecha_de_Cumplimiento).ToString(ConfigurationProperty.DateFormat))
@@ -303,11 +297,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_SeguimientoData.Solicitud), "Solicitud") ??  (string)Detalle_de_Solicitud_SeguimientoData.Solicitud_Solicitud.Numero_de_Folio
                     ,Fecha_de_Registro = (Detalle_de_Solicitud_SeguimientoData.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitud_SeguimientoData.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_Registro = Detalle_de_Solicitud_SeguimientoData.Hora_de_Registro
-                    ,Requerido = Detalle_de_Solicitud_SeguimientoData.Requerido
-                    ,RequeridoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_SeguimientoData.Requerido), "Detalle_de_Solicitud_Requerido") ??  (string)Detalle_de_Solicitud_SeguimientoData.Requerido_Detalle_de_Solicitud_Requerido.Nombre
-                    ,Solicitante = Detalle_de_Solicitud_SeguimientoData.Solicitante
-                    ,SolicitanteNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_SeguimientoData.Solicitante), "Detalle_de_Solicitud_Solicitante") ??  (string)Detalle_de_Solicitud_SeguimientoData.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre
                     ,Fecha_Requerida = (Detalle_de_Solicitud_SeguimientoData.Fecha_Requerida == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitud_SeguimientoData.Fecha_Requerida).ToString(ConfigurationProperty.DateFormat))
+                    ,Relacion = Detalle_de_Solicitud_SeguimientoData.Relacion
+                    ,RelacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_SeguimientoData.Relacion), "Relaciones_MASC") ??  (string)Detalle_de_Solicitud_SeguimientoData.Relacion_Relaciones_MASC.Descripcion
                     ,Cumplimiento = Detalle_de_Solicitud_SeguimientoData.Cumplimiento
                     ,CumplimientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_SeguimientoData.Cumplimiento), "Cumplimiento") ??  (string)Detalle_de_Solicitud_SeguimientoData.Cumplimiento_Cumplimiento.Descripcion
                     ,Fecha_de_Cumplimiento = (Detalle_de_Solicitud_SeguimientoData.Fecha_de_Cumplimiento == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitud_SeguimientoData.Fecha_de_Cumplimiento).ToString(ConfigurationProperty.DateFormat))
@@ -394,39 +386,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 		[HttpGet]
-        public ActionResult GetDetalle_de_Solicitud_RequeridoAll()
+        public ActionResult GetRelaciones_MASCAll()
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IDetalle_de_Solicitud_RequeridoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IDetalle_de_Solicitud_RequeridoApiConsumer.SelAll(false).Resource;
+                _IRelaciones_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IRelaciones_MASCApiConsumer.SelAll(false).Resource;
 				
-                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Solicitud_Requerido", "Nombre")?? m.Nombre,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-		[HttpGet]
-        public ActionResult GetDetalle_de_Solicitud_SolicitanteAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IDetalle_de_Solicitud_SolicitanteApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IDetalle_de_Solicitud_SolicitanteApiConsumer.SelAll(false).Resource;
-				
-                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Solicitud_Solicitante", "Nombre")?? m.Nombre,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Relaciones_MASC", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -646,9 +617,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
                         ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Registro = m.Hora_de_Registro
-                        ,RequeridoNombre = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre
-                        ,SolicitanteNombre = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre
                         ,Fecha_Requerida = (m.Fecha_Requerida == null ? string.Empty : Convert.ToDateTime(m.Fecha_Requerida).ToString(ConfigurationProperty.DateFormat))
+                        ,RelacionDescripcion = CultureHelper.GetTraduction(m.Relacion_Relaciones_MASC.Clave.ToString(), "Relaciones_MASC") ?? (string)m.Relacion_Relaciones_MASC.Descripcion
                         ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
                         ,Fecha_de_Cumplimiento = (m.Fecha_de_Cumplimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Cumplimiento).ToString(ConfigurationProperty.DateFormat))
                         ,Forma_de_PagoDescripcion = CultureHelper.GetTraduction(m.Forma_de_Pago_Forma_de_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Pago_Forma_de_Cumplimiento.Descripcion
@@ -775,9 +745,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
                         ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Registro = m.Hora_de_Registro
-                        ,RequeridoNombre = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre
-                        ,SolicitanteNombre = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre
                         ,Fecha_Requerida = (m.Fecha_Requerida == null ? string.Empty : Convert.ToDateTime(m.Fecha_Requerida).ToString(ConfigurationProperty.DateFormat))
+                        ,RelacionDescripcion = CultureHelper.GetTraduction(m.Relacion_Relaciones_MASC.Clave.ToString(), "Relaciones_MASC") ?? (string)m.Relacion_Relaciones_MASC.Descripcion
                         ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
                         ,Fecha_de_Cumplimiento = (m.Fecha_de_Cumplimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Cumplimiento).ToString(ConfigurationProperty.DateFormat))
                         ,Forma_de_PagoDescripcion = CultureHelper.GetTraduction(m.Forma_de_Pago_Forma_de_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Pago_Forma_de_Cumplimiento.Descripcion
@@ -824,7 +793,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public JsonResult GetDetalle_de_Solicitud_Seguimiento_Requerido_Detalle_de_Solicitud_Requerido(string query, string where)
+        public JsonResult GetDetalle_de_Solicitud_Seguimiento_Relacion_Relaciones_MASC(string query, string where)
         {
             try
             {
@@ -832,45 +801,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where = "";
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IDetalle_de_Solicitud_RequeridoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                _IRelaciones_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Detalle_de_Solicitud_Requerido.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Solicitud_Requerido.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Relaciones_MASC.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Relaciones_MASC.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDetalle_de_Solicitud_RequeridoApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Solicitud_Requerido.Nombre ASC ").Resource;
+				var result = _IRelaciones_MASCApiConsumer.ListaSelAll(1, 20,elWhere , " Relaciones_MASC.Descripcion ASC ").Resource;
                
-                foreach (var item in result.Detalle_de_Solicitud_Requeridos)
+                foreach (var item in result.Relaciones_MASCs)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Solicitud_Requerido", "Nombre");
-                    item.Nombre =trans ??item.Nombre;
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Relaciones_MASC", "Descripcion");
+                    item.Descripcion =trans ??item.Descripcion;
                 }
-                return Json(result.Detalle_de_Solicitud_Requeridos.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public JsonResult GetDetalle_de_Solicitud_Seguimiento_Solicitante_Detalle_de_Solicitud_Solicitante(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IDetalle_de_Solicitud_SolicitanteApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Detalle_de_Solicitud_Solicitante.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Solicitud_Solicitante.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDetalle_de_Solicitud_SolicitanteApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Solicitud_Solicitante.Nombre ASC ").Resource;
-               
-                foreach (var item in result.Detalle_de_Solicitud_Solicitantes)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Solicitud_Solicitante", "Nombre");
-                    item.Nombre =trans ??item.Nombre;
-                }
-                return Json(result.Detalle_de_Solicitud_Solicitantes.ToArray(), JsonRequestBehavior.AllowGet);
+                return Json(result.Relaciones_MASCs.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -970,62 +912,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Convert(TIME,Detalle_de_Solicitud_Seguimiento.Hora_de_Registro) <='" + filter.ToHora_de_Registro + "'";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceRequerido))
-            {
-                switch (filter.RequeridoFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Detalle_de_Solicitud_Requerido.Nombre LIKE '" + filter.AdvanceRequerido + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Detalle_de_Solicitud_Requerido.Nombre LIKE '%" + filter.AdvanceRequerido + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Detalle_de_Solicitud_Requerido.Nombre = '" + filter.AdvanceRequerido + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Detalle_de_Solicitud_Requerido.Nombre LIKE '%" + filter.AdvanceRequerido + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceRequeridoMultiple != null && filter.AdvanceRequeridoMultiple.Count() > 0)
-            {
-                var RequeridoIds = string.Join(",", filter.AdvanceRequeridoMultiple);
-
-                where += " AND Detalle_de_Solicitud_Seguimiento.Requerido In (" + RequeridoIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceSolicitante))
-            {
-                switch (filter.SolicitanteFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Detalle_de_Solicitud_Solicitante.Nombre LIKE '" + filter.AdvanceSolicitante + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Detalle_de_Solicitud_Solicitante.Nombre LIKE '%" + filter.AdvanceSolicitante + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Detalle_de_Solicitud_Solicitante.Nombre = '" + filter.AdvanceSolicitante + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Detalle_de_Solicitud_Solicitante.Nombre LIKE '%" + filter.AdvanceSolicitante + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceSolicitanteMultiple != null && filter.AdvanceSolicitanteMultiple.Count() > 0)
-            {
-                var SolicitanteIds = string.Join(",", filter.AdvanceSolicitanteMultiple);
-
-                where += " AND Detalle_de_Solicitud_Seguimiento.Solicitante In (" + SolicitanteIds + ")";
-            }
-
             if (!string.IsNullOrEmpty(filter.FromFecha_Requerida) || !string.IsNullOrEmpty(filter.ToFecha_Requerida))
             {
                 var Fecha_RequeridaFrom = DateTime.ParseExact(filter.FromFecha_Requerida, ConfigurationProperty.DateFormat,
@@ -1037,6 +923,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Detalle_de_Solicitud_Seguimiento.Fecha_Requerida >= '" + Fecha_RequeridaFrom.ToString("MM-dd-yyyy") + "'";
                 if (!string.IsNullOrEmpty(filter.ToFecha_Requerida))
                     where += " AND Detalle_de_Solicitud_Seguimiento.Fecha_Requerida <= '" + Fecha_RequeridaTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceRelacion))
+            {
+                switch (filter.RelacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Relaciones_MASC.Descripcion LIKE '" + filter.AdvanceRelacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Relaciones_MASC.Descripcion LIKE '%" + filter.AdvanceRelacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Relaciones_MASC.Descripcion = '" + filter.AdvanceRelacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Relaciones_MASC.Descripcion LIKE '%" + filter.AdvanceRelacion + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceRelacionMultiple != null && filter.AdvanceRelacionMultiple.Count() > 0)
+            {
+                var RelacionIds = string.Join(",", filter.AdvanceRelacionMultiple);
+
+                where += " AND Detalle_de_Solicitud_Seguimiento.Relacion In (" + RelacionIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceCumplimiento))
@@ -1293,9 +1207,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Solicitud = varDetalle_de_Solicitud_Seguimiento.Solicitud
                         ,Fecha_de_Registro = (!String.IsNullOrEmpty(varDetalle_de_Solicitud_Seguimiento.Fecha_de_Registro)) ? DateTime.ParseExact(varDetalle_de_Solicitud_Seguimiento.Fecha_de_Registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_Registro = varDetalle_de_Solicitud_Seguimiento.Hora_de_Registro
-                        ,Requerido = varDetalle_de_Solicitud_Seguimiento.Requerido
-                        ,Solicitante = varDetalle_de_Solicitud_Seguimiento.Solicitante
                         ,Fecha_Requerida = (!String.IsNullOrEmpty(varDetalle_de_Solicitud_Seguimiento.Fecha_Requerida)) ? DateTime.ParseExact(varDetalle_de_Solicitud_Seguimiento.Fecha_Requerida, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Relacion = varDetalle_de_Solicitud_Seguimiento.Relacion
                         ,Cumplimiento = varDetalle_de_Solicitud_Seguimiento.Cumplimiento
                         ,Fecha_de_Cumplimiento = (!String.IsNullOrEmpty(varDetalle_de_Solicitud_Seguimiento.Fecha_de_Cumplimiento)) ? DateTime.ParseExact(varDetalle_de_Solicitud_Seguimiento.Fecha_de_Cumplimiento, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Forma_de_Pago = varDetalle_de_Solicitud_Seguimiento.Forma_de_Pago
@@ -1696,9 +1609,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
                         ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Registro = m.Hora_de_Registro
-                        ,RequeridoNombre = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre
-                        ,SolicitanteNombre = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre
                         ,Fecha_Requerida = (m.Fecha_Requerida == null ? string.Empty : Convert.ToDateTime(m.Fecha_Requerida).ToString(ConfigurationProperty.DateFormat))
+                        ,RelacionDescripcion = CultureHelper.GetTraduction(m.Relacion_Relaciones_MASC.Clave.ToString(), "Relaciones_MASC") ?? (string)m.Relacion_Relaciones_MASC.Descripcion
                         ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
                         ,Fecha_de_Cumplimiento = (m.Fecha_de_Cumplimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Cumplimiento).ToString(ConfigurationProperty.DateFormat))
                         ,Forma_de_PagoDescripcion = CultureHelper.GetTraduction(m.Forma_de_Pago_Forma_de_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Pago_Forma_de_Cumplimiento.Descripcion
@@ -1784,9 +1696,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
                         ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Registro = m.Hora_de_Registro
-                        ,RequeridoNombre = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre
-                        ,SolicitanteNombre = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre
                         ,Fecha_Requerida = (m.Fecha_Requerida == null ? string.Empty : Convert.ToDateTime(m.Fecha_Requerida).ToString(ConfigurationProperty.DateFormat))
+                        ,RelacionDescripcion = CultureHelper.GetTraduction(m.Relacion_Relaciones_MASC.Clave.ToString(), "Relaciones_MASC") ?? (string)m.Relacion_Relaciones_MASC.Descripcion
                         ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
                         ,Fecha_de_Cumplimiento = (m.Fecha_de_Cumplimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Cumplimiento).ToString(ConfigurationProperty.DateFormat))
                         ,Forma_de_PagoDescripcion = CultureHelper.GetTraduction(m.Forma_de_Pago_Forma_de_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Pago_Forma_de_Cumplimiento.Descripcion
@@ -1854,9 +1765,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                                             ,Solicitud = varDetalle_de_Solicitud_Seguimiento.Solicitud
                         ,Fecha_de_Registro = (!String.IsNullOrEmpty(varDetalle_de_Solicitud_Seguimiento.Fecha_de_Registro)) ? DateTime.ParseExact(varDetalle_de_Solicitud_Seguimiento.Fecha_de_Registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_Registro = varDetalle_de_Solicitud_Seguimiento.Hora_de_Registro
-                        ,Requerido = varDetalle_de_Solicitud_Seguimiento.Requerido
-                        ,Solicitante = varDetalle_de_Solicitud_Seguimiento.Solicitante
                         ,Fecha_Requerida = (!String.IsNullOrEmpty(varDetalle_de_Solicitud_Seguimiento.Fecha_Requerida)) ? DateTime.ParseExact(varDetalle_de_Solicitud_Seguimiento.Fecha_Requerida, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Relacion = varDetalle_de_Solicitud_Seguimiento.Relacion
                         ,Cumplimiento = varDetalle_de_Solicitud_Seguimiento.Cumplimiento
                         ,Fecha_de_Cumplimiento = (!String.IsNullOrEmpty(varDetalle_de_Solicitud_Seguimiento.Fecha_de_Cumplimiento)) ? DateTime.ParseExact(varDetalle_de_Solicitud_Seguimiento.Fecha_de_Cumplimiento, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Forma_de_Pago = varDetalle_de_Solicitud_Seguimiento.Forma_de_Pago
@@ -1899,11 +1809,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
                         ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Requerido = m.Requerido
-                        ,RequeridoNombre = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre
-                        ,Solicitante = m.Solicitante
-                        ,SolicitanteNombre = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre
                         ,Fecha_Requerida = (m.Fecha_Requerida == null ? string.Empty : Convert.ToDateTime(m.Fecha_Requerida).ToString(ConfigurationProperty.DateFormat))
+                        ,Relacion = m.Relacion
+                        ,RelacionDescripcion = CultureHelper.GetTraduction(m.Relacion_Relaciones_MASC.Clave.ToString(), "Relaciones_MASC") ?? (string)m.Relacion_Relaciones_MASC.Descripcion
                         ,Cumplimiento = m.Cumplimiento
                         ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
                         ,Fecha_de_Cumplimiento = (m.Fecha_de_Cumplimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Cumplimiento).ToString(ConfigurationProperty.DateFormat))

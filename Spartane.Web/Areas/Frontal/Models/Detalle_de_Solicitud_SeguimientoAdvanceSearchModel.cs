@@ -33,19 +33,15 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string ToHora_de_Registro { set; get; }
         public string FromHora_de_Registro { set; get; }
 
-        public Filters RequeridoFilter { set; get; }
-        public string AdvanceRequerido { set; get; }
-        public int[] AdvanceRequeridoMultiple { set; get; }
-
-        public Filters SolicitanteFilter { set; get; }
-        public string AdvanceSolicitante { set; get; }
-        public int[] AdvanceSolicitanteMultiple { set; get; }
-
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string FromFecha_Requerida { set; get; }
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         [IsDateAfter("FromFecha_Requerida", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToFecha_Requerida { set; get; }
+
+        public Filters RelacionFilter { set; get; }
+        public string AdvanceRelacion { set; get; }
+        public int[] AdvanceRelacionMultiple { set; get; }
 
         public Filters CumplimientoFilter { set; get; }
         public string AdvanceCumplimiento { set; get; }

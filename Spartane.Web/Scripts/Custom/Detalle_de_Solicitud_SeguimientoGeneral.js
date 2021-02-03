@@ -21,27 +21,16 @@ function GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitud_SolicitudData
     }
     return AutoCompleteSolicitudData;
 }
-var AutoCompleteRequeridoData = [];
-function GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Requerido_Detalle_de_Solicitud_RequeridoData(data) {
-	AutoCompleteRequeridoData = [];
+var AutoCompleteRelacionData = [];
+function GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Relacion_Relaciones_MASCData(data) {
+	AutoCompleteRelacionData = [];
     for (var i = 0; i < data.length; i++) {
-        AutoCompleteRequeridoData.push({
+        AutoCompleteRelacionData.push({
             id: data[i].Clave,
-            text: data[i].Nombre
+            text: data[i].Descripcion
         });
     }
-    return AutoCompleteRequeridoData;
-}
-var AutoCompleteSolicitanteData = [];
-function GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitante_Detalle_de_Solicitud_SolicitanteData(data) {
-	AutoCompleteSolicitanteData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteSolicitanteData.push({
-            id: data[i].Clave,
-            text: data[i].Nombre
-        });
-    }
-    return AutoCompleteSolicitanteData;
+    return AutoCompleteRelacionData;
 }
 var AutoCompleteEspecialistaData = [];
 function GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Especialista_Spartan_UserData(data) {
@@ -94,12 +83,9 @@ function ClearControls() {
     $('#Solicitud').empty();
     $("#Solicitud").append('<option value=""></option>');
     $('#Solicitud').val('0').trigger('change');
-    $('#Requerido').empty();
-    $("#Requerido").append('<option value=""></option>');
-    $('#Requerido').val('0').trigger('change');
-    $('#Solicitante').empty();
-    $("#Solicitante").append('<option value=""></option>');
-    $('#Solicitante').val('0').trigger('change');
+    $('#Relacion').empty();
+    $("#Relacion").append('<option value=""></option>');
+    $('#Relacion').val('0').trigger('change');
     $('#Especialista').empty();
     $("#Especialista").append('<option value=""></option>');
     $('#Especialista').val('0').trigger('change');
@@ -235,12 +221,9 @@ $(document).ready(function () {
 	    $('#Solicitud').empty();
     $("#Solicitud").append('<option value=""></option>');
     $('#Solicitud').val('0').trigger('change');
-    $('#Requerido').empty();
-    $("#Requerido").append('<option value=""></option>');
-    $('#Requerido').val('0').trigger('change');
-    $('#Solicitante').empty();
-    $("#Solicitante").append('<option value=""></option>');
-    $('#Solicitante').val('0').trigger('change');
+    $('#Relacion').empty();
+    $("#Relacion").append('<option value=""></option>');
+    $('#Relacion').val('0').trigger('change');
     $('#Especialista').empty();
     $("#Especialista").append('<option value=""></option>');
     $('#Especialista').val('0').trigger('change');

@@ -23,10 +23,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Forma_de_Cumplimiento { get; set; }
         public string Forma_de_CumplimientoDescripcion { get; set; }
         public string Descripcion_del_Cumplimiento { get; set; }
-        public int? Solicitante { get; set; }
-        public string SolicitanteNombre_Completo { get; set; }
-        public int? Requerido { get; set; }
-        public string RequeridoNombre_Completo { get; set; }
+        public int? Relacion { get; set; }
+        public string RelacionDescripcion { get; set; }
         public string Lugar_Acordado { get; set; }
         public string Domicilio_Acordado { get; set; }
         public string Hora_de_Acuerdo { get; set; }
@@ -75,10 +73,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Forma_de_Cumplimiento { get; set; }
         public string Forma_de_CumplimientoDescripcion { get; set; }
         public string Descripcion_del_Cumplimiento { get; set; }
-        public int? Solicitante { get; set; }
-        public string SolicitanteNombre_Completo { get; set; }
-        public int? Requerido { get; set; }
-        public string RequeridoNombre_Completo { get; set; }
+        public int? Relacion { get; set; }
+        public string RelacionDescripcion { get; set; }
         public string Lugar_Acordado { get; set; }
         public string Domicilio_Acordado { get; set; }
         public string Hora_de_Acuerdo { get; set; }

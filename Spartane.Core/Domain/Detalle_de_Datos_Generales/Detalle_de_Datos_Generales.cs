@@ -22,6 +22,7 @@ using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Grupo_al_que_Pertenece;
+using Spartane.Core.Domain.Preferencia_Sexual;
 using Spartane.Core.Domain.Etnia;
 using Spartane.Core.Domain.Religion;
 using Spartane.Core.Domain.Servicio_Medico;
@@ -164,6 +165,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public string Correo_Electronico { get; set; }
         public bool? Situacion_de_Vulnerabilidad { get; set; }
         public int? Grupo_al_que_pertenece { get; set; }
+        public int? Preferencia_Sexual { get; set; }
         public int? Etnia { get; set; }
         public short? No_de_Hijos { get; set; }
         public short? Religion { get; set; }
@@ -331,6 +333,8 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_Colonia { get; set; }
         [ForeignKey("Grupo_al_que_pertenece")]
         public virtual Spartane.Core.Domain.Grupo_al_que_Pertenece.Grupo_al_que_Pertenece Grupo_al_que_pertenece_Grupo_al_que_Pertenece { get; set; }
+        [ForeignKey("Preferencia_Sexual")]
+        public virtual Spartane.Core.Domain.Preferencia_Sexual.Preferencia_Sexual Preferencia_Sexual_Preferencia_Sexual { get; set; }
         [ForeignKey("Etnia")]
         public virtual Spartane.Core.Domain.Etnia.Etnia Etnia_Etnia { get; set; }
         [ForeignKey("Religion")]
@@ -542,6 +546,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public string Correo_Electronico { get; set; }
         public bool? Situacion_de_Vulnerabilidad { get; set; }
         public int? Grupo_al_que_pertenece { get; set; }
+        public int? Preferencia_Sexual { get; set; }
         public int? Etnia { get; set; }
         public short? No_de_Hijos { get; set; }
         public short? Religion { get; set; }
@@ -605,6 +610,8 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_Colonia { get; set; }
         [ForeignKey("Grupo_al_que_pertenece")]
         public virtual Spartane.Core.Domain.Grupo_al_que_Pertenece.Grupo_al_que_Pertenece Grupo_al_que_pertenece_Grupo_al_que_Pertenece { get; set; }
+        [ForeignKey("Preferencia_Sexual")]
+        public virtual Spartane.Core.Domain.Preferencia_Sexual.Preferencia_Sexual Preferencia_Sexual_Preferencia_Sexual { get; set; }
         [ForeignKey("Etnia")]
         public virtual Spartane.Core.Domain.Etnia.Etnia Etnia_Etnia { get; set; }
         [ForeignKey("Religion")]

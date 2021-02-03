@@ -21,6 +21,7 @@ using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Grupo_al_que_Pertenece;
+using Spartane.Core.Domain.Preferencia_Sexual;
 using Spartane.Core.Domain.Etnia;
 using Spartane.Core.Domain.Religion;
 using Spartane.Core.Domain.Servicio_Medico;
@@ -162,6 +163,7 @@ using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Grupo_al_que_Pertenece;
+using Spartane.Web.Areas.WebApiConsumer.Preferencia_Sexual;
 using Spartane.Web.Areas.WebApiConsumer.Etnia;
 using Spartane.Web.Areas.WebApiConsumer.Religion;
 using Spartane.Web.Areas.WebApiConsumer.Servicio_Medico;
@@ -312,6 +314,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IEstadoApiConsumer _IEstadoApiConsumer;
         private IColoniaApiConsumer _IColoniaApiConsumer;
         private IGrupo_al_que_PerteneceApiConsumer _IGrupo_al_que_PerteneceApiConsumer;
+        private IPreferencia_SexualApiConsumer _IPreferencia_SexualApiConsumer;
         private IEtniaApiConsumer _IEtniaApiConsumer;
         private IReligionApiConsumer _IReligionApiConsumer;
         private IServicio_MedicoApiConsumer _IServicio_MedicoApiConsumer;
@@ -397,7 +400,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Datos_GeneralesController(IDetalle_de_Datos_GeneralesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ITipo_de_ComparecienteApiConsumer Tipo_de_ComparecienteApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IOcupacionApiConsumer OcupacionApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , ICorporacionApiConsumer CorporacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IGrupo_al_que_PerteneceApiConsumer Grupo_al_que_PerteneceApiConsumer , IEtniaApiConsumer EtniaApiConsumer , IReligionApiConsumer ReligionApiConsumer , IServicio_MedicoApiConsumer Servicio_MedicoApiConsumer , IEscolaridadApiConsumer EscolaridadApiConsumer , IEspecialidadApiConsumer EspecialidadApiConsumer , IEstudios_SuperioresApiConsumer Estudios_SuperioresApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , ICalidad_MigratoriaApiConsumer Calidad_MigratoriaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IEstado_de_InvolucradoApiConsumer Estado_de_InvolucradoApiConsumer , ITipo_de_InimputabilidadApiConsumer Tipo_de_InimputabilidadApiConsumer , IAdicciones_de_InvolucradoApiConsumer Adicciones_de_InvolucradoApiConsumer , IAdiccionesApiConsumer AdiccionesApiConsumer  , ILugares_Frecuentes_InvolucradoApiConsumer Lugares_Frecuentes_InvolucradoApiConsumer , ILugaresApiConsumer LugaresApiConsumer  , IDatos_Personales_Adicionales_InvolucradoApiConsumer Datos_Personales_Adicionales_InvolucradoApiConsumer , IRedes_SocialesApiConsumer Redes_SocialesApiConsumer  , IOtras_Identificaciones_InvolucradoApiConsumer Otras_Identificaciones_InvolucradoApiConsumer  , IDiscapacidades_MentalesApiConsumer Discapacidades_MentalesApiConsumer , IDiscapacidades_FisicasApiConsumer Discapacidades_FisicasApiConsumer , IDiscapacidades_SensorialesApiConsumer Discapacidades_SensorialesApiConsumer , IDiscapacidades_PsicosocialesApiConsumer Discapacidades_PsicosocialesApiConsumer , IOtros_Domicilios_InvolucradoApiConsumer Otros_Domicilios_InvolucradoApiConsumer  , ILocalidadApiConsumer LocalidadApiConsumer , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , IDocumento_ExtraviadoApiConsumer Documento_ExtraviadoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IFroma_OjosApiConsumer Froma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , ITamano_de_NarizApiConsumer Tamano_de_NarizApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , ICausas_de_InterrupcionApiConsumer Causas_de_InterrupcionApiConsumer )
+        public Detalle_de_Datos_GeneralesController(IDetalle_de_Datos_GeneralesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ITipo_de_ComparecienteApiConsumer Tipo_de_ComparecienteApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IOcupacionApiConsumer OcupacionApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , ICorporacionApiConsumer CorporacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IGrupo_al_que_PerteneceApiConsumer Grupo_al_que_PerteneceApiConsumer , IPreferencia_SexualApiConsumer Preferencia_SexualApiConsumer , IEtniaApiConsumer EtniaApiConsumer , IReligionApiConsumer ReligionApiConsumer , IServicio_MedicoApiConsumer Servicio_MedicoApiConsumer , IEscolaridadApiConsumer EscolaridadApiConsumer , IEspecialidadApiConsumer EspecialidadApiConsumer , IEstudios_SuperioresApiConsumer Estudios_SuperioresApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , ICalidad_MigratoriaApiConsumer Calidad_MigratoriaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IEstado_de_InvolucradoApiConsumer Estado_de_InvolucradoApiConsumer , ITipo_de_InimputabilidadApiConsumer Tipo_de_InimputabilidadApiConsumer , IAdicciones_de_InvolucradoApiConsumer Adicciones_de_InvolucradoApiConsumer , IAdiccionesApiConsumer AdiccionesApiConsumer  , ILugares_Frecuentes_InvolucradoApiConsumer Lugares_Frecuentes_InvolucradoApiConsumer , ILugaresApiConsumer LugaresApiConsumer  , IDatos_Personales_Adicionales_InvolucradoApiConsumer Datos_Personales_Adicionales_InvolucradoApiConsumer , IRedes_SocialesApiConsumer Redes_SocialesApiConsumer  , IOtras_Identificaciones_InvolucradoApiConsumer Otras_Identificaciones_InvolucradoApiConsumer  , IDiscapacidades_MentalesApiConsumer Discapacidades_MentalesApiConsumer , IDiscapacidades_FisicasApiConsumer Discapacidades_FisicasApiConsumer , IDiscapacidades_SensorialesApiConsumer Discapacidades_SensorialesApiConsumer , IDiscapacidades_PsicosocialesApiConsumer Discapacidades_PsicosocialesApiConsumer , IOtros_Domicilios_InvolucradoApiConsumer Otros_Domicilios_InvolucradoApiConsumer  , ILocalidadApiConsumer LocalidadApiConsumer , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , IDocumento_ExtraviadoApiConsumer Documento_ExtraviadoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IFroma_OjosApiConsumer Froma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , ITamano_de_NarizApiConsumer Tamano_de_NarizApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , ICausas_de_InterrupcionApiConsumer Causas_de_InterrupcionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -430,6 +433,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IGrupo_al_que_PerteneceApiConsumer = Grupo_al_que_PerteneceApiConsumer;
+            this._IPreferencia_SexualApiConsumer = Preferencia_SexualApiConsumer;
             this._IEtniaApiConsumer = EtniaApiConsumer;
             this._IReligionApiConsumer = ReligionApiConsumer;
             this._IServicio_MedicoApiConsumer = Servicio_MedicoApiConsumer;
@@ -685,6 +689,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Situacion_de_Vulnerabilidad = Detalle_de_Datos_GeneralesData.Situacion_de_Vulnerabilidad.GetValueOrDefault()
                     ,Grupo_al_que_pertenece = Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece
                     ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece), "Grupo_al_que_Pertenece") ??  (string)Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                    ,Preferencia_Sexual = Detalle_de_Datos_GeneralesData.Preferencia_Sexual
+                    ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Preferencia_Sexual), "Preferencia_Sexual") ??  (string)Detalle_de_Datos_GeneralesData.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                     ,Etnia = Detalle_de_Datos_GeneralesData.Etnia
                     ,EtniaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Etnia), "Etnia") ??  (string)Detalle_de_Datos_GeneralesData.Etnia_Etnia.Descripcion
                     ,No_de_Hijos = Detalle_de_Datos_GeneralesData.No_de_Hijos
@@ -961,6 +967,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece = Grupo_al_que_Perteneces_Grupo_al_que_pertenece.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_al_que_Pertenece", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPreferencia_SexualApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Preferencia_Sexuals_Preferencia_Sexual = _IPreferencia_SexualApiConsumer.SelAll(true);
+            if (Preferencia_Sexuals_Preferencia_Sexual != null && Preferencia_Sexuals_Preferencia_Sexual.Resource != null)
+                ViewBag.Preferencia_Sexuals_Preferencia_Sexual = Preferencia_Sexuals_Preferencia_Sexual.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Preferencia_Sexual", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IEtniaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Etnias_Etnia = _IEtniaApiConsumer.SelAll(true);
@@ -1540,6 +1553,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Situacion_de_Vulnerabilidad = Detalle_de_Datos_GeneralesData.Situacion_de_Vulnerabilidad.GetValueOrDefault()
                     ,Grupo_al_que_pertenece = Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece
                     ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece), "Grupo_al_que_Pertenece") ??  (string)Detalle_de_Datos_GeneralesData.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                    ,Preferencia_Sexual = Detalle_de_Datos_GeneralesData.Preferencia_Sexual
+                    ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Preferencia_Sexual), "Preferencia_Sexual") ??  (string)Detalle_de_Datos_GeneralesData.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                     ,Etnia = Detalle_de_Datos_GeneralesData.Etnia
                     ,EtniaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Etnia), "Etnia") ??  (string)Detalle_de_Datos_GeneralesData.Etnia_Etnia.Descripcion
                     ,No_de_Hijos = Detalle_de_Datos_GeneralesData.No_de_Hijos
@@ -1814,6 +1829,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece = Grupo_al_que_Perteneces_Grupo_al_que_pertenece.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_al_que_Pertenece", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPreferencia_SexualApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Preferencia_Sexuals_Preferencia_Sexual = _IPreferencia_SexualApiConsumer.SelAll(true);
+            if (Preferencia_Sexuals_Preferencia_Sexual != null && Preferencia_Sexuals_Preferencia_Sexual.Resource != null)
+                ViewBag.Preferencia_Sexuals_Preferencia_Sexual = Preferencia_Sexuals_Preferencia_Sexual.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Preferencia_Sexual", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IEtniaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Etnias_Etnia = _IEtniaApiConsumer.SelAll(true);
@@ -2563,7 +2585,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		
 		[HttpGet]
         public ActionResult GetColoniaAll()
         {
@@ -2598,6 +2619,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_al_que_Pertenece", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetPreferencia_SexualAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IPreferencia_SexualApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IPreferencia_SexualApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Preferencia_Sexual", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -2921,7 +2963,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-       
         [HttpGet]
         public ActionResult GetLocalidadAll()
         {
@@ -3753,6 +3794,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_al_que_Pertenece", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IPreferencia_SexualApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Preferencia_Sexuals_Preferencia_Sexual = _IPreferencia_SexualApiConsumer.SelAll(true);
+            if (Preferencia_Sexuals_Preferencia_Sexual != null && Preferencia_Sexuals_Preferencia_Sexual.Resource != null)
+                ViewBag.Preferencia_Sexuals_Preferencia_Sexual = Preferencia_Sexuals_Preferencia_Sexual.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Preferencia_Sexual", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IEtniaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Etnias_Etnia = _IEtniaApiConsumer.SelAll(true);
             if (Etnias_Etnia != null && Etnias_Etnia.Resource != null)
@@ -4260,6 +4308,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Grupo_al_que_Perteneces_Grupo_al_que_pertenece = Grupo_al_que_Perteneces_Grupo_al_que_pertenece.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_al_que_Pertenece", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPreferencia_SexualApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Preferencia_Sexuals_Preferencia_Sexual = _IPreferencia_SexualApiConsumer.SelAll(true);
+            if (Preferencia_Sexuals_Preferencia_Sexual != null && Preferencia_Sexuals_Preferencia_Sexual.Resource != null)
+                ViewBag.Preferencia_Sexuals_Preferencia_Sexual = Preferencia_Sexuals_Preferencia_Sexual.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Preferencia_Sexual", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IEtniaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Etnias_Etnia = _IEtniaApiConsumer.SelAll(true);
@@ -4786,6 +4841,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Electronico = m.Correo_Electronico
 			,Situacion_de_Vulnerabilidad = m.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                        ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(m.Preferencia_Sexual_Preferencia_Sexual.Clave.ToString(), "Descripcion") ?? (string)m.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                         ,EtniaDescripcion = CultureHelper.GetTraduction(m.Etnia_Etnia.Clave.ToString(), "Descripcion") ?? (string)m.Etnia_Etnia.Descripcion
 			,No_de_Hijos = m.No_de_Hijos
                         ,ReligionDescripcion = CultureHelper.GetTraduction(m.Religion_Religion.Clave.ToString(), "Descripcion") ?? (string)m.Religion_Religion.Descripcion
@@ -5080,6 +5136,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Electronico = m.Correo_Electronico
 			,Situacion_de_Vulnerabilidad = m.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                        ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(m.Preferencia_Sexual_Preferencia_Sexual.Clave.ToString(), "Descripcion") ?? (string)m.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                         ,EtniaDescripcion = CultureHelper.GetTraduction(m.Etnia_Etnia.Clave.ToString(), "Descripcion") ?? (string)m.Etnia_Etnia.Descripcion
 			,No_de_Hijos = m.No_de_Hijos
                         ,ReligionDescripcion = CultureHelper.GetTraduction(m.Religion_Religion.Clave.ToString(), "Descripcion") ?? (string)m.Religion_Religion.Descripcion
@@ -7038,6 +7095,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Grupo_al_que_perteneceIds = string.Join(",", filter.AdvanceGrupo_al_que_perteneceMultiple);
 
                 where += " AND Detalle_de_Datos_Generales.Grupo_al_que_pertenece In (" + Grupo_al_que_perteneceIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvancePreferencia_Sexual))
+            {
+                switch (filter.Preferencia_SexualFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Preferencia_Sexual.Descripcion LIKE '" + filter.AdvancePreferencia_Sexual + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Preferencia_Sexual.Descripcion LIKE '%" + filter.AdvancePreferencia_Sexual + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Preferencia_Sexual.Descripcion = '" + filter.AdvancePreferencia_Sexual + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Preferencia_Sexual.Descripcion LIKE '%" + filter.AdvancePreferencia_Sexual + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvancePreferencia_SexualMultiple != null && filter.AdvancePreferencia_SexualMultiple.Count() > 0)
+            {
+                var Preferencia_SexualIds = string.Join(",", filter.AdvancePreferencia_SexualMultiple);
+
+                where += " AND Detalle_de_Datos_Generales.Preferencia_Sexual In (" + Preferencia_SexualIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceEtnia))
@@ -10707,6 +10792,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Correo_Electronico = varDetalle_de_Datos_Generales.Correo_Electronico
                         ,Situacion_de_Vulnerabilidad = varDetalle_de_Datos_Generales.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_pertenece = varDetalle_de_Datos_Generales.Grupo_al_que_pertenece
+                        ,Preferencia_Sexual = varDetalle_de_Datos_Generales.Preferencia_Sexual
                         ,Etnia = varDetalle_de_Datos_Generales.Etnia
                         ,No_de_Hijos = varDetalle_de_Datos_Generales.No_de_Hijos
                         ,Religion = varDetalle_de_Datos_Generales.Religion
@@ -12057,6 +12143,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Electronico = m.Correo_Electronico
 			,Situacion_de_Vulnerabilidad = m.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                        ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(m.Preferencia_Sexual_Preferencia_Sexual.Clave.ToString(), "Descripcion") ?? (string)m.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                         ,EtniaDescripcion = CultureHelper.GetTraduction(m.Etnia_Etnia.Clave.ToString(), "Descripcion") ?? (string)m.Etnia_Etnia.Descripcion
 			,No_de_Hijos = m.No_de_Hijos
                         ,ReligionDescripcion = CultureHelper.GetTraduction(m.Religion_Religion.Clave.ToString(), "Descripcion") ?? (string)m.Religion_Religion.Descripcion
@@ -12310,6 +12397,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Electronico = m.Correo_Electronico
 			,Situacion_de_Vulnerabilidad = m.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                        ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(m.Preferencia_Sexual_Preferencia_Sexual.Clave.ToString(), "Descripcion") ?? (string)m.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                         ,EtniaDescripcion = CultureHelper.GetTraduction(m.Etnia_Etnia.Clave.ToString(), "Descripcion") ?? (string)m.Etnia_Etnia.Descripcion
 			,No_de_Hijos = m.No_de_Hijos
                         ,ReligionDescripcion = CultureHelper.GetTraduction(m.Religion_Religion.Clave.ToString(), "Descripcion") ?? (string)m.Religion_Religion.Descripcion
@@ -12529,6 +12617,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Correo_Electronico = varDetalle_de_Datos_Generales.Correo_Electronico
                         ,Situacion_de_Vulnerabilidad = varDetalle_de_Datos_Generales.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_pertenece = varDetalle_de_Datos_Generales.Grupo_al_que_pertenece
+                        ,Preferencia_Sexual = varDetalle_de_Datos_Generales.Preferencia_Sexual
                         ,Etnia = varDetalle_de_Datos_Generales.Etnia
                         ,No_de_Hijos = varDetalle_de_Datos_Generales.No_de_Hijos
                         ,Religion = varDetalle_de_Datos_Generales.Religion
@@ -12663,6 +12752,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Situacion_de_Vulnerabilidad = m.Situacion_de_Vulnerabilidad
                         ,Grupo_al_que_pertenece = m.Grupo_al_que_pertenece
                         ,Grupo_al_que_perteneceDescripcion = CultureHelper.GetTraduction(m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_al_que_pertenece_Grupo_al_que_Pertenece.Descripcion
+                        ,Preferencia_Sexual = m.Preferencia_Sexual
+                        ,Preferencia_SexualDescripcion = CultureHelper.GetTraduction(m.Preferencia_Sexual_Preferencia_Sexual.Clave.ToString(), "Descripcion") ?? (string)m.Preferencia_Sexual_Preferencia_Sexual.Descripcion
                         ,Etnia = m.Etnia
                         ,EtniaDescripcion = CultureHelper.GetTraduction(m.Etnia_Etnia.Clave.ToString(), "Descripcion") ?? (string)m.Etnia_Etnia.Descripcion
 			,No_de_Hijos = m.No_de_Hijos

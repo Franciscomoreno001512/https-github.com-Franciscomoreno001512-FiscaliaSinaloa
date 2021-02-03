@@ -36,13 +36,33 @@ namespace Resources
             }
         }
 
-        /// <summary>Descripcion</summary>
-        public static string Descripcion
+        /// <summary>Nombres</summary>
+        public static string Nombres
         {
             get
             {
                 SetPath();
-                return resourceProviderOtros_Nombres.GetResource("Descripcion", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderOtros_Nombres.GetResource("Nombres", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Apellido_Paterno</summary>
+        public static string Apellido_Paterno
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderOtros_Nombres.GetResource("Apellido_Paterno", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Apellido_Materno</summary>
+        public static string Apellido_Materno
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderOtros_Nombres.GetResource("Apellido_Materno", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

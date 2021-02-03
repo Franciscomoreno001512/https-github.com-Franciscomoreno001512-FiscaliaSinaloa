@@ -23,14 +23,11 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_Solicitud_Seguimiento.Fecha_de_Registro";
                 case "Hora_de_Registro":
                     return "Detalle_de_Solicitud_Seguimiento.Hora_de_Registro";
-                case "Requerido[Nombre]":
-                case "RequeridoNombre":
-                    return "Detalle_de_Solicitud_Requerido.Nombre";
-                case "Solicitante[Nombre]":
-                case "SolicitanteNombre":
-                    return "Detalle_de_Solicitud_Solicitante.Nombre";
                 case "Fecha_Requerida":
                     return "Detalle_de_Solicitud_Seguimiento.Fecha_Requerida";
+                case "Relacion[Descripcion]":
+                case "RelacionDescripcion":
+                    return "Relaciones_MASC.Descripcion";
                 case "Cumplimiento[Descripcion]":
                 case "CumplimientoDescripcion":
                     return "Cumplimiento.Descripcion";

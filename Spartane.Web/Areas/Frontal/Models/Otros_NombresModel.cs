@@ -12,7 +12,9 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
-        public string Descripcion { get; set; }
+        public string Nombres { get; set; }
+        public string Apellido_Paterno { get; set; }
+        public string Apellido_Materno { get; set; }
 
     }
 	
@@ -20,7 +22,9 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
-        public string Descripcion { get; set; }
+        public string Nombres { get; set; }
+        public string Apellido_Paterno { get; set; }
+        public string Apellido_Materno { get; set; }
 
     }
 

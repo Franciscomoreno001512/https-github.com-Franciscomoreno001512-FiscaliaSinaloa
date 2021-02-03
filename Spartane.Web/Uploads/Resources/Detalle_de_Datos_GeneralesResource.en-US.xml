@@ -55,6 +55,7 @@
   <resource culture="en-US" name="Correo_Electronico" value="Correo Electrónico "></resource>
   <resource culture="en-US" name="Situacion_de_Vulnerabilidad" value="¿Grupo en Situación de Vulnerabilidad?"></resource>
   <resource culture="en-US" name="Grupo_al_que_pertenece" value="Grupo al que pertenece"></resource>
+  <resource culture="en-US" name="Preferencia_Sexual" value="Preferencia Sexual"></resource>
   <resource culture="en-US" name="Etnia" value="Etnia"></resource>
   <resource culture="en-US" name="No_de_Hijos" value="No. de Hijos"></resource>
   <resource culture="en-US" name="Religion" value="Religión"></resource>
