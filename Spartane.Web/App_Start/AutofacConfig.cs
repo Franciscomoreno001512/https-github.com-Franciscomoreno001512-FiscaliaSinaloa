@@ -9274,3 +9274,13 @@ builder.RegisterType<Tipo_de_queja_sugerenciaApiConsumer>().As<ITipo_de_queja_su
 
 
 
+
+
+
+
+
+
+
+
+
+

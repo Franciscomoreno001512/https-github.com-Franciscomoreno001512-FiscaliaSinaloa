@@ -239,11 +239,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,ResultadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Resultado), "Resultado_de_Notificacion") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Resultado_Resultado_de_Notificacion.Descripcion
                     ,Incidente_en_la_Recepcion = Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion
                     ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion), "Incidente_con_Invitacion") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
+                    ,Documento = Detalle_de_Solicitudes_de_InvitacionesData.Documento
 
 					};
 				}
 				
-				
+				                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                ViewBag.DocumentoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varDetalle_de_Solicitudes_de_Invitaciones.Documento).Resource;
+
 				
             }
             if (!_tokenManager.GenerateToken())
@@ -372,9 +375,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,ResultadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Resultado), "Resultado_de_Notificacion") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Resultado_Resultado_de_Notificacion.Descripcion
                     ,Incidente_en_la_Recepcion = Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion
                     ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion), "Incidente_con_Invitacion") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
+                    ,Documento = Detalle_de_Solicitudes_de_InvitacionesData.Documento
 
 					};
 				}
+                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                ViewBag.DocumentoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varDetalle_de_Solicitudes_de_Invitaciones.Documento).Resource;
 
             }
             if (!_tokenManager.GenerateToken())
@@ -456,27 +462,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		[HttpGet]
-        public ActionResult GetSpartan_UserAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
-				
-                return Json(result.OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
-                    Value = Convert.ToString(m.Id_User)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
         [HttpGet]
         public ActionResult GetTipo_de_InvitacionAll()
         {
@@ -519,7 +504,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        
+        [HttpGet]
+        public ActionResult GetSpartan_UserAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Name).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
+                    Value = Convert.ToString(m.Id_User)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetResultado_de_NotificacionAll()
         {
@@ -729,6 +734,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Notificador_Spartan_User.Name
                         ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
                         ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
+			,Documento = m.Documento
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -858,6 +864,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Notificador_Spartan_User.Name
                         ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
                         ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
+			,Documento = m.Documento
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -1313,6 +1320,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Detalle_de_Solicitudes_de_Invitaciones.Incidente_en_la_Recepcion In (" + Incidente_en_la_RecepcionIds + ")";
             }
 
+            if (filter.Documento != RadioOptions.NoApply)
+                where += " AND Detalle_de_Solicitudes_de_Invitaciones.Documento " + (filter.Documento == RadioOptions.Yes ? ">" : "==") + " 0";
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -1552,6 +1562,22 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     _IDetalle_de_Solicitudes_de_InvitacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
 
 
+                    if (varDetalle_de_Solicitudes_de_Invitaciones.DocumentoRemoveAttachment != 0 && varDetalle_de_Solicitudes_de_Invitaciones.DocumentoFile == null)
+                    {
+                        varDetalle_de_Solicitudes_de_Invitaciones.Documento = 0;
+                    }
+
+                    if (varDetalle_de_Solicitudes_de_Invitaciones.DocumentoFile != null)
+                    {
+                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_Solicitudes_de_Invitaciones.DocumentoFile);
+                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                        varDetalle_de_Solicitudes_de_Invitaciones.Documento = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
+                        {
+                            File = fileAsBytes,
+                            Description = varDetalle_de_Solicitudes_de_Invitaciones.DocumentoFile.FileName,
+                            File_Size = fileAsBytes.Length
+                        }).Resource;
+                    }
 
                     
                     var result = "";
@@ -1573,6 +1599,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Notificador = varDetalle_de_Solicitudes_de_Invitaciones.Notificador
                         ,Resultado = varDetalle_de_Solicitudes_de_Invitaciones.Resultado
                         ,Incidente_en_la_Recepcion = varDetalle_de_Solicitudes_de_Invitaciones.Incidente_en_la_Recepcion
+                        ,Documento = (varDetalle_de_Solicitudes_de_Invitaciones.Documento.HasValue && varDetalle_de_Solicitudes_de_Invitaciones.Documento != 0) ? ((int?)Convert.ToInt32(varDetalle_de_Solicitudes_de_Invitaciones.Documento.Value)) : null
+
 
                     };
 
@@ -2191,7 +2219,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = null;
+			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -2251,6 +2279,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Notificador_Spartan_User.Name
                         ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
                         ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
+			,Documento = m.Documento
 
             }).ToList();
 
@@ -2339,6 +2368,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Notificador_Spartan_User.Name
                         ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
                         ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
+			,Documento = m.Documento
 
             }).ToList();
 
@@ -2457,7 +2487,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Solicitudes_de_InvitacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+				                    if (varDetalle_de_Solicitudes_de_Invitaciones.DocumentoRemoveAttachment != 0 && varDetalle_de_Solicitudes_de_Invitaciones.DocumentoFile == null)
+                    {
+                        varDetalle_de_Solicitudes_de_Invitaciones.Documento = 0;
+                    }
+
+                    if (varDetalle_de_Solicitudes_de_Invitaciones.DocumentoFile != null)
+                    {
+                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_Solicitudes_de_Invitaciones.DocumentoFile);
+                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                        varDetalle_de_Solicitudes_de_Invitaciones.Documento = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
+                        {
+                            File = fileAsBytes,
+                            Description = varDetalle_de_Solicitudes_de_Invitaciones.DocumentoFile.FileName,
+                            File_Size = fileAsBytes.Length
+                        }).Resource;
+                    }
+
                 var result = "";
                 var Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_NotificacionInfo = new Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_Notificacion
                 {
@@ -2467,6 +2513,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Notificador = varDetalle_de_Solicitudes_de_Invitaciones.Notificador
                         ,Resultado = varDetalle_de_Solicitudes_de_Invitaciones.Resultado
                         ,Incidente_en_la_Recepcion = varDetalle_de_Solicitudes_de_Invitaciones.Incidente_en_la_Recepcion
+                        ,Documento = (varDetalle_de_Solicitudes_de_Invitaciones.Documento.HasValue && varDetalle_de_Solicitudes_de_Invitaciones.Documento != 0) ? ((int?)Convert.ToInt32(varDetalle_de_Solicitudes_de_Invitaciones.Documento.Value)) : null
+
                     
                 };
 
@@ -2507,6 +2555,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
                         ,Incidente_en_la_Recepcion = m.Incidente_en_la_Recepcion
                         ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
+			,Documento = m.Documento
 
                     
                 };

@@ -47,6 +47,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Tipo_de_Identificacion[Nombre]":
                 case "Tipo_de_IdentificacionNombre":
                     return "Tipo_de_Identificacion.Nombre";
+                case "Otra_Identificacion":
+                    return "Asignacion_de_Turnos.Otra_Identificacion";
                 case "Numero_de_Identificacion":
                     return "Asignacion_de_Turnos.Numero_de_Identificacion";
                 case "Urgencia":

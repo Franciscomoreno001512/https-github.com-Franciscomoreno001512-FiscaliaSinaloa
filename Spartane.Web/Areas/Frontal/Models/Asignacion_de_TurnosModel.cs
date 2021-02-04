@@ -31,6 +31,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_AtencionDescripcion { get; set; }
         public int? Tipo_de_Identificacion { get; set; }
         public string Tipo_de_IdentificacionNombre { get; set; }
+        public string Otra_Identificacion { get; set; }
         public string Numero_de_Identificacion { get; set; }
         public bool Urgencia { get; set; }
         public int? Tipo_de_Urgencia { get; set; }
@@ -74,6 +75,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_AtencionDescripcion { get; set; }
         public int? Tipo_de_Identificacion { get; set; }
         public string Tipo_de_IdentificacionNombre { get; set; }
+        public string Otra_Identificacion { get; set; }
         public string Numero_de_Identificacion { get; set; }
         public bool? Urgencia { get; set; }
         public int? Tipo_de_Urgencia { get; set; }

@@ -10,6 +10,7 @@ using Spartane.Core.Domain.Tipo_de_Funcion;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Resultado_de_Notificacion;
 using Spartane.Core.Domain.Incidente_con_Invitacion;
+using Spartane.Core.Domain.Spartane_File;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -38,6 +39,8 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones
         public int? Notificador { get; set; }
         public int? Resultado { get; set; }
         public int? Incidente_en_la_Recepcion { get; set; }
+        public int? Documento { get; set; }
+        public string Documento_URL { get; set; }
 
         [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Solicitud_Solicitud { get; set; }
@@ -53,6 +56,8 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones
         public virtual Spartane.Core.Domain.Resultado_de_Notificacion.Resultado_de_Notificacion Resultado_Resultado_de_Notificacion { get; set; }
         [ForeignKey("Incidente_en_la_Recepcion")]
         public virtual Spartane.Core.Domain.Incidente_con_Invitacion.Incidente_con_Invitacion Incidente_en_la_Recepcion_Incidente_con_Invitacion { get; set; }
+        [ForeignKey("Documento")]
+        public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Documento_Spartane_File { get; set; }
 
     }
 	
@@ -89,6 +94,8 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones
         public int? Notificador { get; set; }
         public int? Resultado { get; set; }
         public int? Incidente_en_la_Recepcion { get; set; }
+        public int? Documento { get; set; }
+        public string Documento_URL { get; set; }
 
 		        [ForeignKey("Notificador")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Notificador_Spartan_User { get; set; }
@@ -96,6 +103,8 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones
         public virtual Spartane.Core.Domain.Resultado_de_Notificacion.Resultado_de_Notificacion Resultado_Resultado_de_Notificacion { get; set; }
         [ForeignKey("Incidente_en_la_Recepcion")]
         public virtual Spartane.Core.Domain.Incidente_con_Invitacion.Incidente_con_Invitacion Incidente_en_la_Recepcion_Incidente_con_Invitacion { get; set; }
+        [ForeignKey("Documento")]
+        public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Documento_Spartane_File { get; set; }
 
     }
 

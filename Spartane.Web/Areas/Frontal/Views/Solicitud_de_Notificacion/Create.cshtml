@@ -2048,22 +2048,38 @@
 
         function EditarDocto() {
 
-            debugger;
-            var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
-            var folioControlDocumentos = $("#Archivo").val();
-            $('.loading').css('display', 'none');
-            var formaid = GetIdFormatoFromDocumento();
-            if (isedit) {
-                OpenPrintFormats(folioControlDocumentos, @Spartane.Web.SessionHelper.Role, "", true, "45018", formaid);
-            }
-            else {
-                GuardarRegistro(formaid);
-
-            }
+                    debugger;
 
 
+                    var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
+                    controlDocumentoDynamiSeach = false; 
+                    if (_controlDocumentoDynamiSeach == "true" ) {
+                        controlDocumentoDynamiSeach = true; 
+                
+                    }
 
-        }
+                    if ( controlDocumentoDynamiSeach == true ) {
+                        alert('Existe una ventana abierta');
+                    }
+			        else {
+				        debugger;
+                        permitirCerrar = false;
+                        controlDocumentoDynamiSeach = true; 
+                        localStorage.setItem('controlDocumentoDynamiSeach',"true");
+                        var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
+                        var folioControlDocumentos = $("#Archivo").val();
+                        $('.loading').css('display', 'none');
+                        var formaid = GetIdFormatoFromDocumento();
+                        if (isedit) {
+                            OpenPrintFormats(folioControlDocumentos, @Spartane.Web.SessionHelper.Role, "", true, "45018", formaid);
+                        }
+                        else {
+                            GuardarRegistro(formaid);
+
+                        }
+                    }
+
+                }
 
 
     function GuardarRegistro(formaid) {
@@ -2084,11 +2100,8 @@
 
                     OpenPrintFormats(idvalor, @Spartane.Web.SessionHelper.Role, "", false, "45018", formaid);
 
-
-
-
-
                 }, false)) {
+                    localStorage.setItem("controlDocumentoDynamiSeach", "False");
 
                 }
             }

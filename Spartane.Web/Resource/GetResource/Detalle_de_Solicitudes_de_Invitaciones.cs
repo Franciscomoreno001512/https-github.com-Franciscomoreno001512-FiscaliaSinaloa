@@ -206,6 +206,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Documento</summary>
+        public static string Documento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Documento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Resultado de Notificación</summary>	public static string TabResultado_de_Notificacion 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("TabResultado_de_Notificacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
