@@ -313,6 +313,27 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2492, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:3613, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Documento' + rowIndex));
+
+}
+//BusinessRuleId:3613, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3613, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Documento' + rowIndex));
+
+}
+//BusinessRuleId:3613, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3613, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Documento' + rowIndex));
+
+}
+//BusinessRuleId:3613, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

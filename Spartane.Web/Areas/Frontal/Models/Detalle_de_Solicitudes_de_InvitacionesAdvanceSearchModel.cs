@@ -11,6 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public Detalle_de_Solicitudes_de_InvitacionesAdvanceSearchModel()
         {
+            Documento = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -79,6 +80,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Incidente_en_la_RecepcionFilter { set; get; }
         public string AdvanceIncidente_en_la_Recepcion { set; get; }
         public int[] AdvanceIncidente_en_la_RecepcionMultiple { set; get; }
+
+        public RadioOptions Documento { set; get; }
 
 
     }

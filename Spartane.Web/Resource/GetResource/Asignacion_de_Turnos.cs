@@ -166,6 +166,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Otra_Identificacion</summary>
+        public static string Otra_Identificacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAsignacion_de_Turnos.GetResource("Otra_Identificacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Numero_de_Identificacion</summary>
         public static string Numero_de_Identificacion
         {

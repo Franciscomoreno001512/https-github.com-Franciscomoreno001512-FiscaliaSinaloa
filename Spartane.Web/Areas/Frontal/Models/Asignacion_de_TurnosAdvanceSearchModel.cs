@@ -70,6 +70,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceTipo_de_Identificacion { set; get; }
         public int[] AdvanceTipo_de_IdentificacionMultiple { set; get; }
 
+        public Filters Otra_IdentificacionFilter { set; get; }
+        public string Otra_Identificacion { set; get; }
+
         public Filters Numero_de_IdentificacionFilter { set; get; }
         public string Numero_de_Identificacion { set; get; }
 

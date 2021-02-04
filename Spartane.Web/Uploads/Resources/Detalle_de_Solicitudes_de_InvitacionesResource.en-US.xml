@@ -19,6 +19,7 @@
   <resource culture="en-US" name="Notificador" value="Notificador"></resource>
   <resource culture="en-US" name="Resultado" value="Resultado"></resource>
   <resource culture="en-US" name="Incidente_en_la_Recepcion" value="Incidente en la Recepción"></resource>
+  <resource culture="en-US" name="Documento" value="Documento"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 <resource culture="en-US" name="TabResultado_de_Notificacion" value="Resultado de Notificación"></resource>

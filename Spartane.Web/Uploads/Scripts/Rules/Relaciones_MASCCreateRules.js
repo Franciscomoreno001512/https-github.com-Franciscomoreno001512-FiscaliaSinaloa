@@ -423,6 +423,13 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:3073, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:3609, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( TryParseInt('2', '2')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) && GetValueByControlType($('#' + nameOfTable + 'Resolucion' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('', '') && GetValueByControlType($('#' + nameOfTable + 'Resolucion_proc' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('', '') ) { $('#divFecha_de_Validacion_solicitud').css('display', 'block');$('#divHora_de_Validacion_solicitud').css('display', 'block');$('#divUsuario_que_Valida_solicitud').css('display', 'block');$('#divresultado_solicitud').css('display', 'block');$('#divmotivo_rechazo_solicitud').css('display', 'block'); DisabledControl($("#" + nameOfTable + "Fecha_de_Validacion_solicitud" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Validacion_solicitud' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_de_Validacion_solicitud" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Validacion_solicitud' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Valida_solicitud" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Valida_solicitud' + rowIndex));}DisabledControl($("#" + nameOfTable + "resultado_solicitud" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'resultado_solicitud' + rowIndex));}DisabledControl($("#" + nameOfTable + "motivo_rechazo_solicitud" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'motivo_rechazo_solicitud' + rowIndex));}} else {}
+
+}
+//BusinessRuleId:3609, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -488,12 +495,7 @@ if( TryParseInt('3', '3')==EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nam
 }
 //BusinessRuleId:3549, Attribute:2, Operation:Object, Event:AFTERSAVING
 
-//BusinessRuleId:3539, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'Update'){
-if( TryParseInt('2', '2')==EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable) && GetValueByControlType($('#' + nameOfTable + 'Resolucion_proc' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && GetValueByControlType($('#' + nameOfTable + 'Resultado_proc' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { EvaluaQuery(" update Solicitud set Estatus = 99 where Clave = FLD[Numero_de_Expediente]", rowIndex, nameOfTable);} else {}
 
-}
-//BusinessRuleId:3539, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:3537, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
@@ -522,6 +524,13 @@ if( TryParseInt('3', '3')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nam
 
 }
 //BusinessRuleId:3608, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:3539, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if( TryParseInt('2', '2')==EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable) && GetValueByControlType($('#' + nameOfTable + 'Resolucion_proc' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && GetValueByControlType($('#' + nameOfTable + 'Resultado_proc' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { EvaluaQuery(" update Solicitud set Estatus = 99 where Clave = FLD[Numero_de_Expediente]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:3539, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

@@ -209,7 +209,7 @@
                                     <th>@Resources.Asignacion_de_TurnosResources.Folio</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Fecha_de_Turno</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Hora_de_Turno</th>
-                                    <th>Turno</th>
+                                    <th>@Resources.Asignacion_de_TurnosResources.Numero_de_Turno</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Unidad_de_Atencion</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Recepcion</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Nombres</th>
@@ -220,6 +220,7 @@
                                     <th>@Resources.Asignacion_de_TurnosResources.Edad</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Tipo_de_Atencion</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Tipo_de_Identificacion</th>
+                                    <th>@Resources.Asignacion_de_TurnosResources.Otra_Identificacion</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Numero_de_Identificacion</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Urgencia</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Tipo_de_Urgencia</th>
@@ -250,6 +251,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -453,7 +455,7 @@ var Folio = "";
 
         var queryString = GetQueryString();
 
-        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+	    var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Turno = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Turno = $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -467,6 +469,7 @@ var Folio = "";
         var Edad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Otra_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Urgencia = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Urgencia =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -495,6 +498,7 @@ var Folio = "";
         + "&Edad=" + Edad
         + "&Tipo_de_Atencion=" + Tipo_de_Atencion
         + "&Tipo_de_Identificacion=" + Tipo_de_Identificacion
+        + "&Otra_Identificacion=" + Otra_Identificacion
         + "&Numero_de_Identificacion=" + Numero_de_Identificacion
         + "&Urgencia=" + Urgencia
         + "&Tipo_de_Urgencia=" + Tipo_de_Urgencia
@@ -534,6 +538,7 @@ var Folio = "";
         var Edad =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Identificacion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+		var Otra_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Identificacion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Urgencia = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Urgencia =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -569,6 +574,7 @@ var Folio = "";
         + "&Edad=" + Edad
         + "&Tipo_de_Atencion=" + Tipo_de_Atencion
         + "&Tipo_de_Identificacion=" + Tipo_de_Identificacion
+        + "&Otra_Identificacion=" + Otra_Identificacion
         + "&Numero_de_Identificacion=" + Numero_de_Identificacion
         + "&Urgencia=" + Urgencia
         + "&Tipo_de_Urgencia=" + Tipo_de_Urgencia
@@ -761,11 +767,11 @@ var Folio = "";
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -825,8 +831,7 @@ var Folio = "";
                         var del = '<a title="@Resources.Resources.Delete" onclick="DeleteAsignacion_de_Turnos(\'' + data.Folio + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
                         if (!permission.Delete)
                             del = '';
-                            
-                        var asignar = "";
+					    var asignar = "";
                         if (data.Estatus_de_TurnoDescripcion == "Por Asignar" &&  Role_ == "4" ) {
                             asignar = '<a title="Asignar" onclick="ToAssign(\'' + data.Folio + '\')"  class="editor_remove eliminar-MR"><img src="/MVCfiscaliasinaloa/Images/autorizar.png" width="16" height="16" /></a>';
                         }
@@ -852,6 +857,7 @@ var Folio = "";
                 ,{ "data": "Edad","className": "dt-right", "orderable": true, "name": "Edad" }
                 ,{ "data": "Tipo_de_AtencionDescripcion", "orderable": true, "name": "Tipo_de_AtencionDescripcion" }
                 ,{ "data": "Tipo_de_IdentificacionNombre", "orderable": true, "name": "Tipo_de_IdentificacionNombre" }
+                ,{ "data": "Otra_Identificacion", "orderable": true, "name": "Otra_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Numero_de_Identificacion", "orderable": true, "name": "Numero_de_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Urgencia", "orderable": true, "name": "Urgencia","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Tipo_de_UrgenciaDescripcion", "orderable": true, "name": "Tipo_de_UrgenciaDescripcion" }

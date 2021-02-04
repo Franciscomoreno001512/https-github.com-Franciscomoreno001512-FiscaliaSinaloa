@@ -276,6 +276,14 @@
                     }
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Asignacion_de_TurnosResources.Otra_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Otra_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlOtra_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.Otra_Identificacion, new { @class = "form-control", @type = "text", @id = "txtOtra_Identificacion" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Asignacion_de_TurnosResources.Numero_de_Identificacion</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -603,6 +611,11 @@
                 advanceSearch.Tipo_de_IdentificacionToSearch = $("#ddlAdvanceTipo_de_Identificacion").val();
                 advanceSearch.Tipo_de_IdentificacionSearchType = 2;
             }
+        }
+        if ($("#txtAdvanceOtra_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Asignacion_de_TurnosOtra_Identificacion = $("#txtAdvanceOtra_Identificacion").val();
+            advanceSearch.Asignacion_de_TurnosOtra_IdentificacionSearchType = $("#ddlAdvanceOtra_IdentificacionFilter").val();
         }
         if ($("#txtAdvanceNumero_de_Identificacion").val() != "") {
             hasParameter = true;
