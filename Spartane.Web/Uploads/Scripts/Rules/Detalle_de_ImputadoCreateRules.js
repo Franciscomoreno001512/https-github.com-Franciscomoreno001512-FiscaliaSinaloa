@@ -3,6 +3,16 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function() {
+    if( 
+        EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('101', '101') ||
+        EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('2', '2') ||
+        EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('103', '103') 
+      ) {
+        //$("#Detalle_de_ImputadoGuardar").remove();
+        $("#Detalle_de_ImputadoGuardarYNuevo").remove();
+        $("#Detalle_de_ImputadoGuardarYCopia").remove();
+    }
+
     //CONVERTIR A MAYUSCULAS AL BLUR
     $('input[type="text"],textarea').blur(function() {
         this.value = this.value.toUpperCase();
@@ -2992,7 +3002,7 @@ if(operation == 'New'){
 //BusinessRuleId:3605, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
  EvaluaQuery("  EXEC ActualizarNombresProbableResponsable FLDD[lblClave]", rowIndex, nameOfTable);
-
+
 }
 //BusinessRuleId:3605, Attribute:2, Operation:Object, Event:AFTERSAVING
 

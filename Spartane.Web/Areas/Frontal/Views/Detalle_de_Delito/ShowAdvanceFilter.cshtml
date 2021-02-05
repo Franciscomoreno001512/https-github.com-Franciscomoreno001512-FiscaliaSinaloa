@@ -99,6 +99,9 @@
     List<SelectListItem> varTipo_de_Lugar_del_Robo_Lugar_del_Robo = null;
     if (ViewBag.Tipo_de_Lugar_del_Robos_Lugar_del_Robo != null)
     { varTipo_de_Lugar_del_Robo_Lugar_del_Robo = (List<SelectListItem>)ViewBag.Tipo_de_Lugar_del_Robos_Lugar_del_Robo; }
+    List<SelectListItem> varZona_de_Robo_Zona_de_Robo = null;
+    if (ViewBag.Zona_de_Robos_Zona_de_Robo != null)
+    { varZona_de_Robo_Zona_de_Robo = (List<SelectListItem>)ViewBag.Zona_de_Robos_Zona_de_Robo; }
     List<SelectListItem> varAseguradora_de_Vehiculo_Nombre_de_la_Aseguradora = null;
     if (ViewBag.Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora != null)
     { varAseguradora_de_Vehiculo_Nombre_de_la_Aseguradora = (List<SelectListItem>)ViewBag.Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora; }
@@ -926,6 +929,27 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceLugar_del_Robo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_DelitoResources.Zona_de_Robo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Zona_de_RoboFilter, filters, new { @class = "form-control", @id = "ddlZona_de_RoboFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceZona_de_Robo, new { @class = "form-control", @type = "text", @id = "txtAdvanceZona_de_Robo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varZona_de_Robo_Zona_de_Robo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceZona_de_RoboMultiple, varZona_de_Robo_Zona_de_Robo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceZona_de_Robo"
                         });
                     }
                 </div>
@@ -2031,6 +2055,21 @@
                 advanceSearch.Lugar_del_RoboSearchType = 2;
             }
         }
+        advanceSearch.Zona_de_RoboSearchType = 0;
+        if ($('#ddlAdvanceZona_de_Robo').val().length > 0 || $("#txtAdvanceZona_de_Robo").val() == "") {
+
+
+            if (isDetalle_de_DelitoTextSearch) {
+                advanceSearch.Zona_de_RoboName = $("#txtAdvanceZona_de_Robo").val();
+                advanceSearch.Zona_de_RoboNameSearchType = $("#ddlAdvanceZona_de_Robo").val();
+                advanceSearch.Zona_de_RoboSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Zona_de_RoboToSearch = $("#ddlAdvanceZona_de_Robo").val();
+                advanceSearch.Zona_de_RoboSearchType = 2;
+            }
+        }
         if ($("#ddlAdvanceEl_Vehiculo_esta_Asegurado").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_DelitoEl_Vehiculo_esta_Asegurado = $("#ddlAdvanceEl_Vehiculo_esta_Asegurado").val();
@@ -2694,6 +2733,15 @@
         $("#ddlAdvanceLugar_del_Robo").change(function () {
             isDetalle_de_DelitoTextSearch = false;
             $("#txtAdvanceLugar_del_Robo").val('');
+        });
+        $("#txtAdvanceZona_de_Robo").keypress(function () {
+            isDetalle_de_DelitoTextSearch = true;
+            $("#ddlAdvanceZona_de_Robo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceZona_de_Robo").change(function () {
+            isDetalle_de_DelitoTextSearch = false;
+            $("#txtAdvanceZona_de_Robo").val('');
         });
         $("#txtAdvanceNombre_de_la_Aseguradora").keypress(function () {
             isDetalle_de_DelitoTextSearch = true;

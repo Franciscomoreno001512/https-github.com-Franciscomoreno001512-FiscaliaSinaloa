@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Estatus</summary>
+        public static string Estatus
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderRelaciones_MASC.GetResource("Estatus", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Numero_de_Expediente</summary>
         public static string Numero_de_Expediente
         {

@@ -168,6 +168,8 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public int? Discapacidad_Fisica { get; set; }
         public int? Discapacidad_Sensorial { get; set; }
         public int? Discapacidad_Psicosocial { get; set; }
+        public bool? Se_Informaron_sus_Derechos { get; set; }
+        public bool? Se_Informo_el_Procedimiento { get; set; }
         public string Nombres2 { get; set; }
         public string Apellido_Paterno2 { get; set; }
         public string Apellido_Materno2 { get; set; }
@@ -507,6 +509,8 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public int? Discapacidad_Fisica { get; set; }
         public int? Discapacidad_Sensorial { get; set; }
         public int? Discapacidad_Psicosocial { get; set; }
+        public bool? Se_Informaron_sus_Derechos { get; set; }
+        public bool? Se_Informo_el_Procedimiento { get; set; }
 
 		        [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }

@@ -42,6 +42,7 @@ using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Tipo_de_Lugar_del_Robo;
+using Spartane.Core.Domain.Zona_de_Robo;
 using Spartane.Core.Domain.Aseguradora_de_Vehiculo;
 using Spartane.Core.Domain.Servicio_del_Vehiculo;
 using Spartane.Core.Domain.Procedencia_del_Vehiculo;
@@ -109,6 +110,7 @@ using Spartane.Web.Areas.WebApiConsumer.Estado;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Lugar_del_Robo;
+using Spartane.Web.Areas.WebApiConsumer.Zona_de_Robo;
 using Spartane.Web.Areas.WebApiConsumer.Aseguradora_de_Vehiculo;
 using Spartane.Web.Areas.WebApiConsumer.Servicio_del_Vehiculo;
 using Spartane.Web.Areas.WebApiConsumer.Procedencia_del_Vehiculo;
@@ -197,6 +199,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ISub_Marca_del_VehiculoApiConsumer _ISub_Marca_del_VehiculoApiConsumer;
         private ITipo_de_VehiculoApiConsumer _ITipo_de_VehiculoApiConsumer;
         private IColor_VehiculoApiConsumer _IColor_VehiculoApiConsumer;
+        private IZona_de_RoboApiConsumer _IZona_de_RoboApiConsumer;
         private IAseguradora_de_VehiculoApiConsumer _IAseguradora_de_VehiculoApiConsumer;
         private IServicio_del_VehiculoApiConsumer _IServicio_del_VehiculoApiConsumer;
         private IProcedencia_del_VehiculoApiConsumer _IProcedencia_del_VehiculoApiConsumer;
@@ -226,7 +229,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_DelitoController(IDetalle_de_DelitoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_DelitoApiConsumer Detalle_de_DelitoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , IFormato_de_DenunciaApiConsumer Formato_de_DenunciaApiConsumer , IDelitos_Violencia_GeneroApiConsumer Delitos_Violencia_GeneroApiConsumer , ITitulo_del_DelitoApiConsumer Titulo_del_DelitoApiConsumer , IGrupo_del_DelitoApiConsumer Grupo_del_DelitoApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IAgravantes_del_DelitoApiConsumer Agravantes_del_DelitoApiConsumer , IAgravantesApiConsumer AgravantesApiConsumer  , ICircunstancias_del_DelitoApiConsumer Circunstancias_del_DelitoApiConsumer , ITipo_de_Lugar_del_RoboApiConsumer Tipo_de_Lugar_del_RoboApiConsumer  , ICircunstancia_del_DelitoApiConsumer Circunstancia_del_DelitoApiConsumer , IForma_Comision_DelitoApiConsumer Forma_Comision_DelitoApiConsumer , IForma_Accion_DelitoApiConsumer Forma_Accion_DelitoApiConsumer , IModalidad_DelitoApiConsumer Modalidad_DelitoApiConsumer , IElementos_Comision_DelitoApiConsumer Elementos_Comision_DelitoApiConsumer , IClasificacion_en_Orden_de_ResultadoApiConsumer Clasificacion_en_Orden_de_ResultadoApiConsumer , IConcursoApiConsumer ConcursoApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IMotivo_de_No_CanalizacionApiConsumer Motivo_de_No_CanalizacionApiConsumer , IElemento_RobadoApiConsumer Elemento_RobadoApiConsumer , ICircunstancia_VehiculoApiConsumer Circunstancia_VehiculoApiConsumer , IEspecifica_VehiculoApiConsumer Especifica_VehiculoApiConsumer , IMarca_del_VehiculoApiConsumer Marca_del_VehiculoApiConsumer , ISub_Marca_del_VehiculoApiConsumer Sub_Marca_del_VehiculoApiConsumer , ITipo_de_VehiculoApiConsumer Tipo_de_VehiculoApiConsumer , IColor_VehiculoApiConsumer Color_VehiculoApiConsumer , IAseguradora_de_VehiculoApiConsumer Aseguradora_de_VehiculoApiConsumer , IServicio_del_VehiculoApiConsumer Servicio_del_VehiculoApiConsumer , IProcedencia_del_VehiculoApiConsumer Procedencia_del_VehiculoApiConsumer , ITipo_de_RoboApiConsumer Tipo_de_RoboApiConsumer , ITipo_de_CarreteraApiConsumer Tipo_de_CarreteraApiConsumer , IModalidad_de_Robo_de_VehiculoApiConsumer Modalidad_de_Robo_de_VehiculoApiConsumer , ICircunstancia_DefuncionApiConsumer Circunstancia_DefuncionApiConsumer , IConsecuencia_DefuncionApiConsumer Consecuencia_DefuncionApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IDetalle_de_Persona_MoralApiConsumer Detalle_de_Persona_MoralApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer )
+        public Detalle_de_DelitoController(IDetalle_de_DelitoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_DelitoApiConsumer Detalle_de_DelitoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , IFormato_de_DenunciaApiConsumer Formato_de_DenunciaApiConsumer , IDelitos_Violencia_GeneroApiConsumer Delitos_Violencia_GeneroApiConsumer , ITitulo_del_DelitoApiConsumer Titulo_del_DelitoApiConsumer , IGrupo_del_DelitoApiConsumer Grupo_del_DelitoApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IAgravantes_del_DelitoApiConsumer Agravantes_del_DelitoApiConsumer , IAgravantesApiConsumer AgravantesApiConsumer  , ICircunstancias_del_DelitoApiConsumer Circunstancias_del_DelitoApiConsumer , ITipo_de_Lugar_del_RoboApiConsumer Tipo_de_Lugar_del_RoboApiConsumer  , ICircunstancia_del_DelitoApiConsumer Circunstancia_del_DelitoApiConsumer , IForma_Comision_DelitoApiConsumer Forma_Comision_DelitoApiConsumer , IForma_Accion_DelitoApiConsumer Forma_Accion_DelitoApiConsumer , IModalidad_DelitoApiConsumer Modalidad_DelitoApiConsumer , IElementos_Comision_DelitoApiConsumer Elementos_Comision_DelitoApiConsumer , IClasificacion_en_Orden_de_ResultadoApiConsumer Clasificacion_en_Orden_de_ResultadoApiConsumer , IConcursoApiConsumer ConcursoApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IMotivo_de_No_CanalizacionApiConsumer Motivo_de_No_CanalizacionApiConsumer , IElemento_RobadoApiConsumer Elemento_RobadoApiConsumer , ICircunstancia_VehiculoApiConsumer Circunstancia_VehiculoApiConsumer , IEspecifica_VehiculoApiConsumer Especifica_VehiculoApiConsumer , IMarca_del_VehiculoApiConsumer Marca_del_VehiculoApiConsumer , ISub_Marca_del_VehiculoApiConsumer Sub_Marca_del_VehiculoApiConsumer , ITipo_de_VehiculoApiConsumer Tipo_de_VehiculoApiConsumer , IColor_VehiculoApiConsumer Color_VehiculoApiConsumer , IZona_de_RoboApiConsumer Zona_de_RoboApiConsumer , IAseguradora_de_VehiculoApiConsumer Aseguradora_de_VehiculoApiConsumer , IServicio_del_VehiculoApiConsumer Servicio_del_VehiculoApiConsumer , IProcedencia_del_VehiculoApiConsumer Procedencia_del_VehiculoApiConsumer , ITipo_de_RoboApiConsumer Tipo_de_RoboApiConsumer , ITipo_de_CarreteraApiConsumer Tipo_de_CarreteraApiConsumer , IModalidad_de_Robo_de_VehiculoApiConsumer Modalidad_de_Robo_de_VehiculoApiConsumer , ICircunstancia_DefuncionApiConsumer Circunstancia_DefuncionApiConsumer , IConsecuencia_DefuncionApiConsumer Consecuencia_DefuncionApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IDetalle_de_Persona_MoralApiConsumer Detalle_de_Persona_MoralApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -280,6 +283,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._ITipo_de_Lugar_del_RoboApiConsumer = Tipo_de_Lugar_del_RoboApiConsumer;
+            this._IZona_de_RoboApiConsumer = Zona_de_RoboApiConsumer;
             this._IAseguradora_de_VehiculoApiConsumer = Aseguradora_de_VehiculoApiConsumer;
             this._IServicio_del_VehiculoApiConsumer = Servicio_del_VehiculoApiConsumer;
             this._IProcedencia_del_VehiculoApiConsumer = Procedencia_del_VehiculoApiConsumer;
@@ -478,6 +482,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Longitud_Robo = Detalle_de_DelitoData.Longitud_Robo
                     ,Lugar_del_Robo = Detalle_de_DelitoData.Lugar_del_Robo
                     ,Lugar_del_RoboDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Lugar_del_Robo), "Tipo_de_Lugar_del_Robo") ??  (string)Detalle_de_DelitoData.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Descripcion
+                    ,Zona_de_Robo = Detalle_de_DelitoData.Zona_de_Robo
+                    ,Zona_de_RoboDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Zona_de_Robo), "Zona_de_Robo") ??  (string)Detalle_de_DelitoData.Zona_de_Robo_Zona_de_Robo.Descripcion
                     ,El_Vehiculo_esta_Asegurado = Detalle_de_DelitoData.El_Vehiculo_esta_Asegurado.GetValueOrDefault()
                     ,Nombre_de_la_Aseguradora = Detalle_de_DelitoData.Nombre_de_la_Aseguradora
                     ,Nombre_de_la_AseguradoraDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Nombre_de_la_Aseguradora), "Aseguradora_de_Vehiculo") ??  (string)Detalle_de_DelitoData.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Descripcion
@@ -676,6 +682,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Lugar_del_Robos_Lugar_del_Robo = Tipo_de_Lugar_del_Robos_Lugar_del_Robo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Lugar_del_Robo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IZona_de_RoboApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Zona_de_Robos_Zona_de_Robo = _IZona_de_RoboApiConsumer.SelAll(true);
+            if (Zona_de_Robos_Zona_de_Robo != null && Zona_de_Robos_Zona_de_Robo.Resource != null)
+                ViewBag.Zona_de_Robos_Zona_de_Robo = Zona_de_Robos_Zona_de_Robo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Zona_de_Robo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IAseguradora_de_VehiculoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora = _IAseguradora_de_VehiculoApiConsumer.SelAll(true);
@@ -936,6 +949,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Longitud_Robo = Detalle_de_DelitoData.Longitud_Robo
                     ,Lugar_del_Robo = Detalle_de_DelitoData.Lugar_del_Robo
                     ,Lugar_del_RoboDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Lugar_del_Robo), "Tipo_de_Lugar_del_Robo") ??  (string)Detalle_de_DelitoData.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Descripcion
+                    ,Zona_de_Robo = Detalle_de_DelitoData.Zona_de_Robo
+                    ,Zona_de_RoboDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Zona_de_Robo), "Zona_de_Robo") ??  (string)Detalle_de_DelitoData.Zona_de_Robo_Zona_de_Robo.Descripcion
                     ,El_Vehiculo_esta_Asegurado = Detalle_de_DelitoData.El_Vehiculo_esta_Asegurado.GetValueOrDefault()
                     ,Nombre_de_la_Aseguradora = Detalle_de_DelitoData.Nombre_de_la_Aseguradora
                     ,Nombre_de_la_AseguradoraDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Nombre_de_la_Aseguradora), "Aseguradora_de_Vehiculo") ??  (string)Detalle_de_DelitoData.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Descripcion
@@ -1132,6 +1147,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Lugar_del_Robos_Lugar_del_Robo = Tipo_de_Lugar_del_Robos_Lugar_del_Robo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Lugar_del_Robo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IZona_de_RoboApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Zona_de_Robos_Zona_de_Robo = _IZona_de_RoboApiConsumer.SelAll(true);
+            if (Zona_de_Robos_Zona_de_Robo != null && Zona_de_Robos_Zona_de_Robo.Resource != null)
+                ViewBag.Zona_de_Robos_Zona_de_Robo = Zona_de_Robos_Zona_de_Robo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Zona_de_Robo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IAseguradora_de_VehiculoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora = _IAseguradora_de_VehiculoApiConsumer.SelAll(true);
@@ -1833,6 +1855,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
+        public ActionResult GetZona_de_RoboAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IZona_de_RoboApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IZona_de_RoboApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Zona_de_Robo", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public ActionResult GetAseguradora_de_VehiculoAll()
         {
             try
@@ -2250,6 +2293,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Lugar_del_Robo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IZona_de_RoboApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Zona_de_Robos_Zona_de_Robo = _IZona_de_RoboApiConsumer.SelAll(true);
+            if (Zona_de_Robos_Zona_de_Robo != null && Zona_de_Robos_Zona_de_Robo.Resource != null)
+                ViewBag.Zona_de_Robos_Zona_de_Robo = Zona_de_Robos_Zona_de_Robo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Zona_de_Robo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IAseguradora_de_VehiculoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora = _IAseguradora_de_VehiculoApiConsumer.SelAll(true);
             if (Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora != null && Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora.Resource != null)
@@ -2485,6 +2535,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Lugar_del_Robo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IZona_de_RoboApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Zona_de_Robos_Zona_de_Robo = _IZona_de_RoboApiConsumer.SelAll(true);
+            if (Zona_de_Robos_Zona_de_Robo != null && Zona_de_Robos_Zona_de_Robo.Resource != null)
+                ViewBag.Zona_de_Robos_Zona_de_Robo = Zona_de_Robos_Zona_de_Robo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Zona_de_Robo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IAseguradora_de_VehiculoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora = _IAseguradora_de_VehiculoApiConsumer.SelAll(true);
             if (Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora != null && Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora.Resource != null)
@@ -2684,6 +2741,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Latitud_Robo = m.Latitud_Robo
 			,Longitud_Robo = m.Longitud_Robo
                         ,Lugar_del_RoboDescripcion = CultureHelper.GetTraduction(m.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Clave.ToString(), "Descripcion") ?? (string)m.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Descripcion
+                        ,Zona_de_RoboDescripcion = CultureHelper.GetTraduction(m.Zona_de_Robo_Zona_de_Robo.Clave.ToString(), "Descripcion") ?? (string)m.Zona_de_Robo_Zona_de_Robo.Descripcion
 			,El_Vehiculo_esta_Asegurado = m.El_Vehiculo_esta_Asegurado
                         ,Nombre_de_la_AseguradoraDescripcion = CultureHelper.GetTraduction(m.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Clave.ToString(), "Descripcion") ?? (string)m.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Descripcion
 			,Motor = m.Motor
@@ -2907,6 +2965,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Latitud_Robo = m.Latitud_Robo
 			,Longitud_Robo = m.Longitud_Robo
                         ,Lugar_del_RoboDescripcion = CultureHelper.GetTraduction(m.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Clave.ToString(), "Descripcion") ?? (string)m.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Descripcion
+                        ,Zona_de_RoboDescripcion = CultureHelper.GetTraduction(m.Zona_de_Robo_Zona_de_Robo.Clave.ToString(), "Descripcion") ?? (string)m.Zona_de_Robo_Zona_de_Robo.Descripcion
 			,El_Vehiculo_esta_Asegurado = m.El_Vehiculo_esta_Asegurado
                         ,Nombre_de_la_AseguradoraDescripcion = CultureHelper.GetTraduction(m.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Clave.ToString(), "Descripcion") ?? (string)m.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Descripcion
 			,Motor = m.Motor
@@ -4932,6 +4991,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Detalle_de_Delito.Lugar_del_Robo In (" + Lugar_del_RoboIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceZona_de_Robo))
+            {
+                switch (filter.Zona_de_RoboFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Zona_de_Robo.Descripcion LIKE '" + filter.AdvanceZona_de_Robo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Zona_de_Robo.Descripcion LIKE '%" + filter.AdvanceZona_de_Robo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Zona_de_Robo.Descripcion = '" + filter.AdvanceZona_de_Robo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Zona_de_Robo.Descripcion LIKE '%" + filter.AdvanceZona_de_Robo + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceZona_de_RoboMultiple != null && filter.AdvanceZona_de_RoboMultiple.Count() > 0)
+            {
+                var Zona_de_RoboIds = string.Join(",", filter.AdvanceZona_de_RoboMultiple);
+
+                where += " AND Detalle_de_Delito.Zona_de_Robo In (" + Zona_de_RoboIds + ")";
+            }
+
             if (filter.El_Vehiculo_esta_Asegurado != RadioOptions.NoApply)
                 where += " AND Detalle_de_Delito.El_Vehiculo_esta_Asegurado = " + Convert.ToInt32(filter.El_Vehiculo_esta_Asegurado);
 
@@ -6023,6 +6110,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Latitud_Robo = varDetalle_de_Delito.Latitud_Robo
                         ,Longitud_Robo = varDetalle_de_Delito.Longitud_Robo
                         ,Lugar_del_Robo = varDetalle_de_Delito.Lugar_del_Robo
+                        ,Zona_de_Robo = varDetalle_de_Delito.Zona_de_Robo
                         ,El_Vehiculo_esta_Asegurado = varDetalle_de_Delito.El_Vehiculo_esta_Asegurado
                         ,Nombre_de_la_Aseguradora = varDetalle_de_Delito.Nombre_de_la_Aseguradora
                         ,Motor = varDetalle_de_Delito.Motor
@@ -6797,6 +6885,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Latitud_Robo = m.Latitud_Robo
 			,Longitud_Robo = m.Longitud_Robo
                         ,Lugar_del_RoboDescripcion = CultureHelper.GetTraduction(m.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Clave.ToString(), "Descripcion") ?? (string)m.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Descripcion
+                        ,Zona_de_RoboDescripcion = CultureHelper.GetTraduction(m.Zona_de_Robo_Zona_de_Robo.Clave.ToString(), "Descripcion") ?? (string)m.Zona_de_Robo_Zona_de_Robo.Descripcion
 			,El_Vehiculo_esta_Asegurado = m.El_Vehiculo_esta_Asegurado
                         ,Nombre_de_la_AseguradoraDescripcion = CultureHelper.GetTraduction(m.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Clave.ToString(), "Descripcion") ?? (string)m.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Descripcion
 			,Motor = m.Motor
@@ -6979,6 +7068,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Latitud_Robo = m.Latitud_Robo
 			,Longitud_Robo = m.Longitud_Robo
                         ,Lugar_del_RoboDescripcion = CultureHelper.GetTraduction(m.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Clave.ToString(), "Descripcion") ?? (string)m.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Descripcion
+                        ,Zona_de_RoboDescripcion = CultureHelper.GetTraduction(m.Zona_de_Robo_Zona_de_Robo.Clave.ToString(), "Descripcion") ?? (string)m.Zona_de_Robo_Zona_de_Robo.Descripcion
 			,El_Vehiculo_esta_Asegurado = m.El_Vehiculo_esta_Asegurado
                         ,Nombre_de_la_AseguradoraDescripcion = CultureHelper.GetTraduction(m.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Clave.ToString(), "Descripcion") ?? (string)m.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Descripcion
 			,Motor = m.Motor
@@ -7247,6 +7337,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Latitud_Robo = varDetalle_de_Delito.Latitud_Robo
                         ,Longitud_Robo = varDetalle_de_Delito.Longitud_Robo
                         ,Lugar_del_Robo = varDetalle_de_Delito.Lugar_del_Robo
+                        ,Zona_de_Robo = varDetalle_de_Delito.Zona_de_Robo
                         ,El_Vehiculo_esta_Asegurado = varDetalle_de_Delito.El_Vehiculo_esta_Asegurado
                         ,Nombre_de_la_Aseguradora = varDetalle_de_Delito.Nombre_de_la_Aseguradora
                         ,Motor = varDetalle_de_Delito.Motor
@@ -7337,6 +7428,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Longitud_Robo = m.Longitud_Robo
                         ,Lugar_del_Robo = m.Lugar_del_Robo
                         ,Lugar_del_RoboDescripcion = CultureHelper.GetTraduction(m.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Clave.ToString(), "Descripcion") ?? (string)m.Lugar_del_Robo_Tipo_de_Lugar_del_Robo.Descripcion
+                        ,Zona_de_Robo = m.Zona_de_Robo
+                        ,Zona_de_RoboDescripcion = CultureHelper.GetTraduction(m.Zona_de_Robo_Zona_de_Robo.Clave.ToString(), "Descripcion") ?? (string)m.Zona_de_Robo_Zona_de_Robo.Descripcion
 			,El_Vehiculo_esta_Asegurado = m.El_Vehiculo_esta_Asegurado
                         ,Nombre_de_la_Aseguradora = m.Nombre_de_la_Aseguradora
                         ,Nombre_de_la_AseguradoraDescripcion = CultureHelper.GetTraduction(m.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Clave.ToString(), "Descripcion") ?? (string)m.Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo.Descripcion

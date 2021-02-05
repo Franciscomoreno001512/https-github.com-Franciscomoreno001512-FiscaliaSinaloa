@@ -1897,6 +1897,18 @@
                                 </div>
                             </div>
                             </div>
+                            <div class="form-group" id="divSe_Informaron_sus_Derechos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ImputadoResources.Se_Informaron_sus_Derechos</label>
+                                <div class="col-sm-8" data-field-id="Se_Informaron_sus_Derechos" data-attribute="271593" data-field-name="@Resources.Detalle_de_ImputadoResources.Se_Informaron_sus_Derechos">
+                                    @Html.CheckBoxFor(m => m.Se_Informaron_sus_Derechos, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divSe_Informo_el_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ImputadoResources.Se_Informo_el_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Se_Informo_el_Procedimiento" data-attribute="271594" data-field-name="@Resources.Detalle_de_ImputadoResources.Se_Informo_el_Procedimiento">
+                                    @Html.CheckBoxFor(m => m.Se_Informo_el_Procedimiento, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -7396,6 +7408,8 @@
                     showOtros_NombresGrid(result.Otros_Nombres);
                     $('#Otros_NombresGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
                     $('#Otros_NombresGrid .gridDatePicker').attr("readonly", "");
+                    $('#Se_Informaron_sus_Derechos').prop('checked', result.data.Se_Informaron_sus_Derechos);
+                    $('#Se_Informo_el_Procedimiento').prop('checked', result.data.Se_Informo_el_Procedimiento);
 
                 },
                 error: function (result) {
@@ -7475,6 +7489,8 @@
                 data.append('Discapacidad_Fisica', $('#Discapacidad_Fisica').val());
                 data.append('Discapacidad_Sensorial', $('#Discapacidad_Sensorial').val());
                 data.append('Discapacidad_Psicosocial', $('#Discapacidad_Psicosocial').val());
+                data.append('Se_Informaron_sus_Derechos', $('#Se_Informaron_sus_Derechos').prop('checked'));
+                data.append('Se_Informo_el_Procedimiento', $('#Se_Informo_el_Procedimiento').prop('checked'));
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Detalle_de_Imputado/Post_Datos_Generales")',

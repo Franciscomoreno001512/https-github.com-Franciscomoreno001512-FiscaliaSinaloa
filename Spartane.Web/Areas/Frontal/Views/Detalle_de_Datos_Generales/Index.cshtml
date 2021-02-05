@@ -17,6 +17,8 @@
 @using Spartane.Core.Domain.Pais;
 @using Spartane.Core.Domain.Estado;
 @using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Grupo_al_que_Pertenece;
@@ -30,8 +32,6 @@
 @using Spartane.Core.Domain.Estudios_Superiores;
 @using Spartane.Core.Domain.Idioma;
 @using Spartane.Core.Domain.Calidad_Migratoria;
-@using Spartane.Core.Domain.Estado;
-@using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Dialecto;
 @using Spartane.Core.Domain.Estado_de_Involucrado;
 @using Spartane.Core.Domain.Tipo_de_Inimputabilidad;
@@ -328,6 +328,8 @@
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Pais</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Estado</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Municipio</th>
+                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Estado_de_Nacimiento</th>
+                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Municipio_de_Nacimiento</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Poblacion</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Colonia</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Codigo_Postal</th>
@@ -357,8 +359,6 @@
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Incompleto</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Idioma</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Calidad_Migratoria</th>
-                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Estado_de_Nacimiento</th>
-                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Municipio_de_Nacimiento</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Dialecto</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Estado_de_Involucrado</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Incapaz</th>
@@ -517,6 +517,8 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -542,8 +544,6 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -811,6 +811,8 @@
         var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -840,8 +842,6 @@
         var Incompleto = $($('table td .filterData.form-control:input')[counter++]).val();
         var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Calidad_Migratoria =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Dialecto =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado_de_Involucrado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Incapaz = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -994,6 +994,8 @@
         + "&Pais=" + Pais
         + "&Estado=" + Estado
         + "&Municipio=" + Municipio
+        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
+        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Poblacion=" + Poblacion
         + "&Colonia=" + Colonia
         + "&Codigo_Postal=" + Codigo_Postal
@@ -1023,8 +1025,6 @@
         + "&Incompleto=" + Incompleto
         + "&Idioma=" + Idioma
         + "&Calidad_Migratoria=" + Calidad_Migratoria
-        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
-        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Dialecto=" + Dialecto
         + "&Estado_de_Involucrado=" + Estado_de_Involucrado
         + "&Incapaz=" + Incapaz
@@ -1188,6 +1188,8 @@
         var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -1217,8 +1219,6 @@
         var Incompleto = $($('table td .filterData.form-control:input')[counter++]).val();
         var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Calidad_Migratoria =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Dialecto =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado_de_Involucrado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Incapaz = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -1371,6 +1371,8 @@
         + "&Pais=" + Pais
         + "&Estado=" + Estado
         + "&Municipio=" + Municipio
+        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
+        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Poblacion=" + Poblacion
         + "&Colonia=" + Colonia
         + "&Codigo_Postal=" + Codigo_Postal
@@ -1400,8 +1402,6 @@
         + "&Incompleto=" + Incompleto
         + "&Idioma=" + Idioma
         + "&Calidad_Migratoria=" + Calidad_Migratoria
-        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
-        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Dialecto=" + Dialecto
         + "&Estado_de_Involucrado=" + Estado_de_Involucrado
         + "&Incapaz=" + Incapaz
@@ -1799,6 +1799,8 @@
                 ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre"}
                 ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
                 ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
+                ,{ "data": "Estado_de_NacimientoNombre", "orderable": true, "name": "Estado_de_NacimientoNombre"}
+                ,{ "data": "Municipio_de_NacimientoNombre", "orderable": true, "name": "Municipio_de_NacimientoNombre"}
                 ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre"}
                 ,{ "data": "ColoniaNombre", "orderable": true, "name": "ColoniaNombre"}
                 ,{ "data": "Codigo_Postal","className": "dt-right", "orderable": true, "name": "Codigo_Postal" }
@@ -1828,8 +1830,6 @@
                 ,{ "data": "Incompleto", "orderable": true, "name": "Incompleto","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "IdiomaDescripcion", "orderable": true, "name": "IdiomaDescripcion" }
                 ,{ "data": "Calidad_MigratoriaDescripcion", "orderable": true, "name": "Calidad_MigratoriaDescripcion" }
-                ,{ "data": "Estado_de_NacimientoNombre", "orderable": true, "name": "Estado_de_NacimientoNombre"}
-                ,{ "data": "Municipio_de_NacimientoNombre", "orderable": true, "name": "Municipio_de_NacimientoNombre"}
                 ,{ "data": "DialectoDescripcion", "orderable": true, "name": "DialectoDescripcion" }
                 ,{ "data": "Estado_de_InvolucradoDescripcion", "orderable": true, "name": "Estado_de_InvolucradoDescripcion" }
                 ,{ "data": "Incapaz", "orderable": true, "name": "Incapaz","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}

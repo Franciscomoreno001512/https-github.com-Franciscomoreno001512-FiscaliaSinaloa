@@ -35,6 +35,7 @@ using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Tipo_de_Lugar_del_Robo;
+using Spartane.Core.Domain.Zona_de_Robo;
 using Spartane.Core.Domain.Aseguradora_de_Vehiculo;
 using Spartane.Core.Domain.Servicio_del_Vehiculo;
 using Spartane.Core.Domain.Procedencia_del_Vehiculo;
@@ -135,6 +136,7 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public string Latitud_Robo { get; set; }
         public string Longitud_Robo { get; set; }
         public int? Lugar_del_Robo { get; set; }
+        public int? Zona_de_Robo { get; set; }
         public bool? El_Vehiculo_esta_Asegurado { get; set; }
         public int? Nombre_de_la_Aseguradora { get; set; }
         public string Motor { get; set; }
@@ -239,6 +241,8 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_del_Robo_Colonia { get; set; }
         [ForeignKey("Lugar_del_Robo")]
         public virtual Spartane.Core.Domain.Tipo_de_Lugar_del_Robo.Tipo_de_Lugar_del_Robo Lugar_del_Robo_Tipo_de_Lugar_del_Robo { get; set; }
+        [ForeignKey("Zona_de_Robo")]
+        public virtual Spartane.Core.Domain.Zona_de_Robo.Zona_de_Robo Zona_de_Robo_Zona_de_Robo { get; set; }
         [ForeignKey("Nombre_de_la_Aseguradora")]
         public virtual Spartane.Core.Domain.Aseguradora_de_Vehiculo.Aseguradora_de_Vehiculo Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo { get; set; }
         [ForeignKey("Tipo_de_Servicio")]
@@ -396,6 +400,7 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public string Latitud_Robo { get; set; }
         public string Longitud_Robo { get; set; }
         public int? Lugar_del_Robo { get; set; }
+        public int? Zona_de_Robo { get; set; }
         public bool? El_Vehiculo_esta_Asegurado { get; set; }
         public int? Nombre_de_la_Aseguradora { get; set; }
         public string Motor { get; set; }
@@ -437,6 +442,8 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_del_Robo_Colonia { get; set; }
         [ForeignKey("Lugar_del_Robo")]
         public virtual Spartane.Core.Domain.Tipo_de_Lugar_del_Robo.Tipo_de_Lugar_del_Robo Lugar_del_Robo_Tipo_de_Lugar_del_Robo { get; set; }
+        [ForeignKey("Zona_de_Robo")]
+        public virtual Spartane.Core.Domain.Zona_de_Robo.Zona_de_Robo Zona_de_Robo_Zona_de_Robo { get; set; }
         [ForeignKey("Nombre_de_la_Aseguradora")]
         public virtual Spartane.Core.Domain.Aseguradora_de_Vehiculo.Aseguradora_de_Vehiculo Nombre_de_la_Aseguradora_Aseguradora_de_Vehiculo { get; set; }
         [ForeignKey("Tipo_de_Servicio")]

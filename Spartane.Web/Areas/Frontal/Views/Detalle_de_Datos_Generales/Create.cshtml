@@ -71,6 +71,12 @@
  List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varEstado_Estado_de_Nacimiento = null;
+    if (ViewBag.Estados_Estado_de_Nacimiento != null)
+    { varEstado_Estado_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Estado_de_Nacimiento; }
+ List<SelectListItem> varMunicipio_Municipio_de_Nacimiento = null;
+    if (ViewBag.Municipios_Municipio_de_Nacimiento != null)
+    { varMunicipio_Municipio_de_Nacimiento = (List<SelectListItem>)ViewBag.Municipios_Municipio_de_Nacimiento; }
  List<SelectListItem> varColonia_Poblacion = null;
     if (ViewBag.Colonias_Poblacion != null)
     { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
@@ -110,12 +116,6 @@
     List<SelectListItem> varCalidad_Migratoria_Calidad_Migratoria = null;
     if (ViewBag.Calidad_Migratorias_Calidad_Migratoria != null)
     { varCalidad_Migratoria_Calidad_Migratoria = (List<SelectListItem>)ViewBag.Calidad_Migratorias_Calidad_Migratoria; }
- List<SelectListItem> varEstado_Estado_de_Nacimiento = null;
-    if (ViewBag.Estados_Estado_de_Nacimiento != null)
-    { varEstado_Estado_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Estado_de_Nacimiento; }
- List<SelectListItem> varMunicipio_Municipio_de_Nacimiento = null;
-    if (ViewBag.Municipios_Municipio_de_Nacimiento != null)
-    { varMunicipio_Municipio_de_Nacimiento = (List<SelectListItem>)ViewBag.Municipios_Municipio_de_Nacimiento; }
     List<SelectListItem> varDialecto_Dialecto = null;
     if (ViewBag.Dialectos_Dialecto != null)
     { varDialecto_Dialecto = (List<SelectListItem>)ViewBag.Dialectos_Dialecto; }
@@ -955,6 +955,34 @@
                                 </div>
                                 }
                             </div>
+				<div class="form-group" id="divEstado_de_Nacimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Estado_de_Nacimiento</label>
+                                <div class="col-sm-8" data-field-id="Estado_de_Nacimiento" data-attribute="265596" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Estado_de_Nacimiento">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Datos_Generales_Estado_de_Nacimiento form-control select2-dropdown Datos_Generales' data-val="true" id="Estado_de_Nacimiento" name="Estado_de_Nacimiento">
+                                        <option value="@Model.Estado_de_Nacimiento">@(Model.Estado_de_NacimientoNombre??Model.Estado_de_NacimientoNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265596).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Estado_de_Nacimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divMunicipio_de_Nacimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Municipio_de_Nacimiento</label>
+                                <div class="col-sm-8" data-field-id="Municipio_de_Nacimiento" data-attribute="265597" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Municipio_de_Nacimiento">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Datos_Generales_Municipio_de_Nacimiento form-control select2-dropdown Datos_Generales' data-val="true" id="Municipio_de_Nacimiento" name="Municipio_de_Nacimiento">
+                                        <option value="@Model.Municipio_de_Nacimiento">@(Model.Municipio_de_NacimientoNombre??Model.Municipio_de_NacimientoNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265597).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio_de_Nacimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
 				<div class="form-group" id="divPoblacion">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Poblacion</label>
                                 <div class="col-sm-8" data-field-id="Poblacion" data-attribute="265581" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Poblacion">
@@ -1398,34 +1426,6 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Calidad_Migratoria', 'Calidad_Migratoria');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divEstado_de_Nacimiento">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Estado_de_Nacimiento</label>
-                                <div class="col-sm-8" data-field-id="Estado_de_Nacimiento" data-attribute="265596" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Estado_de_Nacimiento">
-                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Datos_Generales_Estado_de_Nacimiento form-control select2-dropdown Datos_Generales' data-val="true" id="Estado_de_Nacimiento" name="Estado_de_Nacimiento">
-                                        <option value="@Model.Estado_de_Nacimiento">@(Model.Estado_de_NacimientoNombre??Model.Estado_de_NacimientoNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265596).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Estado_de_Nacimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divMunicipio_de_Nacimiento">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Municipio_de_Nacimiento</label>
-                                <div class="col-sm-8" data-field-id="Municipio_de_Nacimiento" data-attribute="265597" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Municipio_de_Nacimiento">
-                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Datos_Generales_Municipio_de_Nacimiento form-control select2-dropdown Datos_Generales' data-val="true" id="Municipio_de_Nacimiento" name="Municipio_de_Nacimiento">
-                                        <option value="@Model.Municipio_de_Nacimiento">@(Model.Municipio_de_NacimientoNombre??Model.Municipio_de_NacimientoNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265597).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio_de_Nacimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -4313,72 +4313,6 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
-       var AutoCompletePoblacionData =[];
-       $(".AutoCompleteDetalle_de_Datos_Generales_Poblacion").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_de_Datos_Generales/GetDetalle_de_Datos_Generales_Poblacion_Colonia")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteDetalle_de_Datos_Generales_Poblacion_ColoniaData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteDetalle_de_Datos_Generales_Poblacion");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
-       var AutoCompleteColoniaData =[];
-       $(".AutoCompleteDetalle_de_Datos_Generales_Colonia").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_de_Datos_Generales/GetDetalle_de_Datos_Generales_Colonia_Colonia")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteDetalle_de_Datos_Generales_Colonia_ColoniaData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteDetalle_de_Datos_Generales_Colonia");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
        var AutoCompleteEstado_de_NacimientoData =[];
        $(".AutoCompleteDetalle_de_Datos_Generales_Estado_de_Nacimiento").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -4441,6 +4375,72 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_de_Datos_Generales_Municipio_de_Nacimiento");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompletePoblacionData =[];
+       $(".AutoCompleteDetalle_de_Datos_Generales_Poblacion").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Datos_Generales/GetDetalle_de_Datos_Generales_Poblacion_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Datos_Generales_Poblacion_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Datos_Generales_Poblacion");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteColoniaData =[];
+       $(".AutoCompleteDetalle_de_Datos_Generales_Colonia").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Datos_Generales/GetDetalle_de_Datos_Generales_Colonia_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Datos_Generales_Colonia_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Datos_Generales_Colonia");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -6972,6 +6972,24 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Municipio).trigger('change');
                     }, 3000);
+                    var control = $('#Estado_de_Nacimiento');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Estado_de_Nacimiento).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Estado_de_Nacimiento).trigger('change');
+                    }, 3000);
+                    var control = $('#Municipio_de_Nacimiento');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Municipio_de_Nacimiento).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Municipio_de_Nacimiento).trigger('change');
+                    }, 3000);
                     var control = $('#Poblacion');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Poblacion).trigger('keyup');
@@ -7017,24 +7035,6 @@
                     $('#Incompleto').prop('checked', result.data.Incompleto);
                     $('#Idioma').val(result.data.Idioma);
                     $('#Calidad_Migratoria').val(result.data.Calidad_Migratoria);
-                    var control = $('#Estado_de_Nacimiento');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Estado_de_Nacimiento).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Estado_de_Nacimiento).trigger('change');
-                    }, 3000);
-                    var control = $('#Municipio_de_Nacimiento');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Municipio_de_Nacimiento).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Municipio_de_Nacimiento).trigger('change');
-                    }, 3000);
                     $('#Dialecto').val(result.data.Dialecto);
                     $('#Estado_de_Involucrado').val(result.data.Estado_de_Involucrado);
                     $('#Incapaz').prop('checked', result.data.Incapaz);
@@ -7113,6 +7113,8 @@
                 data.append('Pais', $('#Pais').val());
                 data.append('Estado', $('#Estado').val());
                 data.append('Municipio', $('#Municipio').val());
+                data.append('Estado_de_Nacimiento', $('#Estado_de_Nacimiento').val());
+                data.append('Municipio_de_Nacimiento', $('#Municipio_de_Nacimiento').val());
                 data.append('Poblacion', $('#Poblacion').val());
                 data.append('Colonia', $('#Colonia').val());
                 data.append('Codigo_Postal', $('#Codigo_Postal').val());
@@ -7142,8 +7144,6 @@
                 data.append('Incompleto', $('#Incompleto').prop('checked'));
                 data.append('Idioma', $('#Idioma').val());
                 data.append('Calidad_Migratoria', $('#Calidad_Migratoria').val());
-                data.append('Estado_de_Nacimiento', $('#Estado_de_Nacimiento').val());
-                data.append('Municipio_de_Nacimiento', $('#Municipio_de_Nacimiento').val());
                 data.append('Dialecto', $('#Dialecto').val());
                 data.append('Estado_de_Involucrado', $('#Estado_de_Involucrado').val());
                 data.append('Incapaz', $('#Incapaz').prop('checked'));

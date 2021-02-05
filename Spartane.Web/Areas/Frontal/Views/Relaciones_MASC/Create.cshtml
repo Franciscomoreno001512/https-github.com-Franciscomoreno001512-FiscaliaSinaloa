@@ -22,6 +22,9 @@
     { Model.Fecha_de_Validacion_proc = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
 */
+    List<SelectListItem> varEstatus_Solicitud_Estatus = null;
+    if (ViewBag.Estatus_Solicituds_Estatus != null)
+    { varEstatus_Solicitud_Estatus = (List<SelectListItem>)ViewBag.Estatus_Solicituds_Estatus; }
  List<SelectListItem> varSolicitud_Numero_de_Expediente = null;
     if (ViewBag.Solicituds_Numero_de_Expediente != null)
     { varSolicitud_Numero_de_Expediente = (List<SelectListItem>)ViewBag.Solicituds_Numero_de_Expediente; }
@@ -205,6 +208,34 @@
                                         }
                                     </label>
                                 </div>
+                            </div>
+                            <div class="form-group" id="divEstatus">
+                                <label class="col-sm-2 control-label">@Resources.Relaciones_MASCResources.Estatus</label>
+                                <div class="col-sm-8" data-field-id="Estatus" data-attribute="271590" data-field-name="@Resources.Relaciones_MASCResources.Estatus">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Estatus must be a number." data-val-required="The Estatus field is required." id="Estatus" name="Estatus">
+                                        <option value=""></option>
+                                        @if (varEstatus_Solicitud_Estatus != null){ 
+                                            foreach (var itemEstatus in varEstatus_Solicitud_Estatus)
+                                            {
+                                                if (itemEstatus.Value == Convert.ToString(Model.Estatus))
+                                                {
+                                                    <option value="@itemEstatus.Value" selected>@itemEstatus.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemEstatus.Value">@itemEstatus.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Estatus" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 271590).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Estatus_Solicitud', 'Estatus');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
 				<div class="form-group" id="divNumero_de_Expediente">
                                 <label class="col-sm-2 control-label">@Resources.Relaciones_MASCResources.Numero_de_Expediente</label>
@@ -1764,6 +1795,7 @@
                 async: false,
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
+                    $('#Estatus').val(result.data.Estatus);
                     var control = $('#Numero_de_Expediente');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Numero_de_Expediente).trigger('keyup');
@@ -1794,7 +1826,8 @@
 		function Save_Datos_Generales(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
-			                data.append('Numero_de_Expediente', $('#Numero_de_Expediente').val());
+			                data.append('Estatus', $('#Estatus').val());
+                data.append('Numero_de_Expediente', $('#Numero_de_Expediente').val());
                 data.append('Numero_de_Procedimiento', $('#Numero_de_Procedimiento').val());
                 data.append('idRelacionOrigen', $('#idRelacionOrigen').val());
                 data.append('Requiere_cambiar_la_relacion', $('#Requiere_cambiar_la_relacion').prop('checked'));

@@ -77,6 +77,8 @@
   <resource culture="en-US" name="Discapacidad_Psicosocial" value="Discapacidad Psicosocial"></resource>
   <resource culture="en-US" name="Otros_Domicilios" value="Otros Domicilios"></resource>
   <resource culture="en-US" name="Otros_Nombres" value="Otros Nombres"></resource>
+  <resource culture="en-US" name="Se_Informaron_sus_Derechos" value="Se Informaron sus Derechos"></resource>
+  <resource culture="en-US" name="Se_Informo_el_Procedimiento" value="Se Informó el Procedimiento"></resource>
   <resource culture="en-US" name="Nombres2" value="Nombre(s)"></resource>
   <resource culture="en-US" name="Apellido_Paterno2" value="Apellido Paterno"></resource>
   <resource culture="en-US" name="Apellido_Materno2" value="Apellido Materno"></resource>

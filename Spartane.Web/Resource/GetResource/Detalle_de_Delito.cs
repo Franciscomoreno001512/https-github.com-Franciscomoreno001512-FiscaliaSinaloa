@@ -756,6 +756,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Zona_de_Robo</summary>
+        public static string Zona_de_Robo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Delito.GetResource("Zona_de_Robo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>El_Vehiculo_esta_Asegurado</summary>
         public static string El_Vehiculo_esta_Asegurado
         {

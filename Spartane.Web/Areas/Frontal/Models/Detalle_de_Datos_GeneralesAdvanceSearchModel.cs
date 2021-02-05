@@ -159,6 +159,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceMunicipio { set; get; }
         public int[] AdvanceMunicipioMultiple { set; get; }
 
+        public Filters Estado_de_NacimientoFilter { set; get; }
+        public string AdvanceEstado_de_Nacimiento { set; get; }
+        public int[] AdvanceEstado_de_NacimientoMultiple { set; get; }
+
+        public Filters Municipio_de_NacimientoFilter { set; get; }
+        public string AdvanceMunicipio_de_Nacimiento { set; get; }
+        public int[] AdvanceMunicipio_de_NacimientoMultiple { set; get; }
+
         public Filters PoblacionFilter { set; get; }
         public string AdvancePoblacion { set; get; }
         public int[] AdvancePoblacionMultiple { set; get; }
@@ -265,14 +273,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Calidad_MigratoriaFilter { set; get; }
         public string AdvanceCalidad_Migratoria { set; get; }
         public int[] AdvanceCalidad_MigratoriaMultiple { set; get; }
-
-        public Filters Estado_de_NacimientoFilter { set; get; }
-        public string AdvanceEstado_de_Nacimiento { set; get; }
-        public int[] AdvanceEstado_de_NacimientoMultiple { set; get; }
-
-        public Filters Municipio_de_NacimientoFilter { set; get; }
-        public string AdvanceMunicipio_de_Nacimiento { set; get; }
-        public int[] AdvanceMunicipio_de_NacimientoMultiple { set; get; }
 
         public Filters DialectoFilter { set; get; }
         public string AdvanceDialecto { set; get; }

@@ -9,6 +9,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Relaciones_MASCGridModel
     {
         public int Clave { get; set; }
+        public int? Estatus { get; set; }
+        public string EstatusDescripcion { get; set; }
         public int? Numero_de_Expediente { get; set; }
         public string Numero_de_ExpedienteNumero_de_Expediente { get; set; }
         public string Numero_de_Procedimiento { get; set; }

@@ -15553,6 +15553,26 @@
 <Content Include="Uploads\Scripts\Rules\Tipo_de_queja_sugerenciaCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Tipo_de_queja_sugerenciaIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Tipo_de_queja_sugerencia\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Zona_de_Robo\Zona_de_RoboApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Zona_de_Robo\IZona_de_RoboApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Zona_de_RoboModel.cs" />
+<Compile Include="Areas\Frontal\Models\Zona_de_RoboGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Zona_de_RoboMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Zona_de_RoboController.cs" />
+<Content Include="Areas\Frontal\Views\Zona_de_Robo\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Zona_de_Robo\Create.cshtml" />
+<Compile Include="Resource\GetResource\Zona_de_Robo.cs" />
+<Content Include="Uploads\Resources\Zona_de_RoboResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Zona_de_RoboPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Zona_de_RoboResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Zona_de_Robo.js" />
+<Content Include="Scripts\Custom\Zona_de_RoboGeneral.js" />
+<Content Include="Areas\Frontal\Views\Zona_de_Robo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Zona_de_RoboAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Zona_de_RoboBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Zona_de_RoboCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Zona_de_RoboIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Zona_de_Robo\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -16557,6 +16577,26 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

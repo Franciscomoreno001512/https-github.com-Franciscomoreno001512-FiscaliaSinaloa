@@ -721,6 +721,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Discapacidad_Sensorial), "Discapacidades_Sensoriales") ??  (string)Detalle_de_ImputadoData.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
                     ,Discapacidad_Psicosocial = Detalle_de_ImputadoData.Discapacidad_Psicosocial
                     ,Discapacidad_PsicosocialDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Discapacidad_Psicosocial), "Discapacidades_Psicosociales") ??  (string)Detalle_de_ImputadoData.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Descripcion
+                    ,Se_Informaron_sus_Derechos = Detalle_de_ImputadoData.Se_Informaron_sus_Derechos.GetValueOrDefault()
+                    ,Se_Informo_el_Procedimiento = Detalle_de_ImputadoData.Se_Informo_el_Procedimiento.GetValueOrDefault()
                     ,Nombres2 = Detalle_de_ImputadoData.Nombres2
                     ,Apellido_Paterno2 = Detalle_de_ImputadoData.Apellido_Paterno2
                     ,Apellido_Materno2 = Detalle_de_ImputadoData.Apellido_Materno2
@@ -1482,6 +1484,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Discapacidad_Sensorial), "Discapacidades_Sensoriales") ??  (string)Detalle_de_ImputadoData.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
                     ,Discapacidad_Psicosocial = Detalle_de_ImputadoData.Discapacidad_Psicosocial
                     ,Discapacidad_PsicosocialDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Discapacidad_Psicosocial), "Discapacidades_Psicosociales") ??  (string)Detalle_de_ImputadoData.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Descripcion
+                    ,Se_Informaron_sus_Derechos = Detalle_de_ImputadoData.Se_Informaron_sus_Derechos.GetValueOrDefault()
+                    ,Se_Informo_el_Procedimiento = Detalle_de_ImputadoData.Se_Informo_el_Procedimiento.GetValueOrDefault()
                     ,Nombres2 = Detalle_de_ImputadoData.Nombres2
                     ,Apellido_Paterno2 = Detalle_de_ImputadoData.Apellido_Paterno2
                     ,Apellido_Materno2 = Detalle_de_ImputadoData.Apellido_Materno2
@@ -4308,6 +4312,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Discapacidad_FisicaDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Fisica_Discapacidades_Fisicas.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Fisica_Discapacidades_Fisicas.Descripcion
                         ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
                         ,Discapacidad_PsicosocialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Descripcion
+			,Se_Informaron_sus_Derechos = m.Se_Informaron_sus_Derechos
+			,Se_Informo_el_Procedimiento = m.Se_Informo_el_Procedimiento
 			,Nombres2 = m.Nombres2
 			,Apellido_Paterno2 = m.Apellido_Paterno2
 			,Apellido_Materno2 = m.Apellido_Materno2
@@ -4585,6 +4591,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Discapacidad_FisicaDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Fisica_Discapacidades_Fisicas.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Fisica_Discapacidades_Fisicas.Descripcion
                         ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
                         ,Discapacidad_PsicosocialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Descripcion
+			,Se_Informaron_sus_Derechos = m.Se_Informaron_sus_Derechos
+			,Se_Informo_el_Procedimiento = m.Se_Informo_el_Procedimiento
 			,Nombres2 = m.Nombres2
 			,Apellido_Paterno2 = m.Apellido_Paterno2
 			,Apellido_Materno2 = m.Apellido_Materno2
@@ -6913,6 +6921,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                 where += " AND Detalle_de_Imputado.Discapacidad_Psicosocial In (" + Discapacidad_PsicosocialIds + ")";
             }
+
+            if (filter.Se_Informaron_sus_Derechos != RadioOptions.NoApply)
+                where += " AND Detalle_de_Imputado.Se_Informaron_sus_Derechos = " + Convert.ToInt32(filter.Se_Informaron_sus_Derechos);
+
+            if (filter.Se_Informo_el_Procedimiento != RadioOptions.NoApply)
+                where += " AND Detalle_de_Imputado.Se_Informo_el_Procedimiento = " + Convert.ToInt32(filter.Se_Informo_el_Procedimiento);
 
             if (!string.IsNullOrEmpty(filter.Nombres2))
             {
@@ -10079,6 +10093,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Discapacidad_Fisica = varDetalle_de_Imputado.Discapacidad_Fisica
                         ,Discapacidad_Sensorial = varDetalle_de_Imputado.Discapacidad_Sensorial
                         ,Discapacidad_Psicosocial = varDetalle_de_Imputado.Discapacidad_Psicosocial
+                        ,Se_Informaron_sus_Derechos = varDetalle_de_Imputado.Se_Informaron_sus_Derechos
+                        ,Se_Informo_el_Procedimiento = varDetalle_de_Imputado.Se_Informo_el_Procedimiento
                         ,Nombres2 = varDetalle_de_Imputado.Nombres2
                         ,Apellido_Paterno2 = varDetalle_de_Imputado.Apellido_Paterno2
                         ,Apellido_Materno2 = varDetalle_de_Imputado.Apellido_Materno2
@@ -11707,6 +11723,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Discapacidad_FisicaDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Fisica_Discapacidades_Fisicas.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Fisica_Discapacidades_Fisicas.Descripcion
                         ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
                         ,Discapacidad_PsicosocialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Descripcion
+			,Se_Informaron_sus_Derechos = m.Se_Informaron_sus_Derechos
+			,Se_Informo_el_Procedimiento = m.Se_Informo_el_Procedimiento
 			,Nombres2 = m.Nombres2
 			,Apellido_Paterno2 = m.Apellido_Paterno2
 			,Apellido_Materno2 = m.Apellido_Materno2
@@ -11943,6 +11961,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Discapacidad_FisicaDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Fisica_Discapacidades_Fisicas.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Fisica_Discapacidades_Fisicas.Descripcion
                         ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
                         ,Discapacidad_PsicosocialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Descripcion
+			,Se_Informaron_sus_Derechos = m.Se_Informaron_sus_Derechos
+			,Se_Informo_el_Procedimiento = m.Se_Informo_el_Procedimiento
 			,Nombres2 = m.Nombres2
 			,Apellido_Paterno2 = m.Apellido_Paterno2
 			,Apellido_Materno2 = m.Apellido_Materno2
@@ -12145,6 +12165,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Discapacidad_Fisica = varDetalle_de_Imputado.Discapacidad_Fisica
                         ,Discapacidad_Sensorial = varDetalle_de_Imputado.Discapacidad_Sensorial
                         ,Discapacidad_Psicosocial = varDetalle_de_Imputado.Discapacidad_Psicosocial
+                        ,Se_Informaron_sus_Derechos = varDetalle_de_Imputado.Se_Informaron_sus_Derechos
+                        ,Se_Informo_el_Procedimiento = varDetalle_de_Imputado.Se_Informo_el_Procedimiento
                     
                 };
 
@@ -12286,6 +12308,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Discapacidad_SensorialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Sensorial_Discapacidades_Sensoriales.Descripcion
                         ,Discapacidad_Psicosocial = m.Discapacidad_Psicosocial
                         ,Discapacidad_PsicosocialDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Psicosocial_Discapacidades_Psicosociales.Descripcion
+			,Se_Informaron_sus_Derechos = m.Se_Informaron_sus_Derechos
+			,Se_Informo_el_Procedimiento = m.Se_Informo_el_Procedimiento
 
                     
                 };

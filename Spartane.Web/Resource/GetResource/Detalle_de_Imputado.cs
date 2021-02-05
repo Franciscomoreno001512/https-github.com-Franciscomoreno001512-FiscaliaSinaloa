@@ -786,6 +786,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Se_Informaron_sus_Derechos</summary>
+        public static string Se_Informaron_sus_Derechos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Imputado.GetResource("Se_Informaron_sus_Derechos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Se_Informo_el_Procedimiento</summary>
+        public static string Se_Informo_el_Procedimiento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Imputado.GetResource("Se_Informo_el_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Nombres2</summary>
         public static string Nombres2
         {

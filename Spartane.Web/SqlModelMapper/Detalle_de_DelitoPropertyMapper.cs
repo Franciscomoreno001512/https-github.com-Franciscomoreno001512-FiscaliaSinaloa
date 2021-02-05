@@ -188,6 +188,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Lugar_del_Robo[Descripcion]":
                 case "Lugar_del_RoboDescripcion":
                     return "Tipo_de_Lugar_del_Robo.Descripcion";
+                case "Zona_de_Robo[Descripcion]":
+                case "Zona_de_RoboDescripcion":
+                    return "Zona_de_Robo.Descripcion";
                 case "El_Vehiculo_esta_Asegurado":
                     return "Detalle_de_Delito.El_Vehiculo_esta_Asegurado";
                 case "Nombre_de_la_Aseguradora[Descripcion]":
