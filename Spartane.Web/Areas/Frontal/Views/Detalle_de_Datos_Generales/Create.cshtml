@@ -3999,6 +3999,7 @@
     <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
     <!-- Trigger the modal with a button -->
     <button style="display: none" type="button" class="btn btn-info btn-lg" data-toggle="modal" id="modalMapa" data-target="#myModal">Ver Mapa</button>
+    <button style="display: none" type="button" class="btn btn-info btn-lg" data-toggle="modal" id="modalMapa2" data-target="#myModal2">Ver Mapa</button>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
@@ -4029,6 +4030,47 @@
                             <div class="col-md-12">
                                 <!-- <div id="gmap" style="height:100%; width:100%;"></div> -->
                                 <div id="gmap" style="height: 400px"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="myModal2" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
+        <div class="modal-dialog" style="width: 90%;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Seleccionar Dirección</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <label>Escriba la dirección</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" style="width:100%" id="address2" name="address2" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="button" id="BucarDireccion2" value="Buscar">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:12px;">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <!-- <div id="gmap" style="height:100%; width:100%;"></div> -->
+                                <div id="gmap2" style="height: 400px"></div>
                             </div>
                         </div>
                     </div>
@@ -6302,6 +6344,8 @@
                 var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
                 $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
 				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Otros_Domicilios_InvolucradoCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                $('<i class="fa fa-map-marker">').appendTo($("<a data-toggle='tooltip' title='Asignar Coordenadas' onclick='Otros_Domicilios_InvolucradoMapaRow(" + index + ")'>").appendTo(actionColInsert));
+
                 actionColInsert.appendTo(row);
 
                 for (i = 0; i < controls.length; i++) {
@@ -7912,6 +7956,31 @@
             });
 
 
+            $('#myModal2').on('shown.bs.modal', function () {
+                debugger;
+                console.log("Entro aqui");
+
+                var RowSelected = $("#RowSelected").val();
+
+
+                var lat = $('#Otros_Domicilios_Involucrado_Coordenada_X_' + RowSelected + '').val();
+                var long = $('#Otros_Domicilios_Involucrado_Coordenada_Y_' + RowSelected + '').val();
+                if (lat != "" && long != "") {
+                    $("#address2").val(lat + "," + long);
+                }
+                CargaGoogleMapsOtrosDomicilios();
+            });
+
+            //$('#myModal2').on('hidden.bs.modal', function () {
+
+            //});
+            $("body").on("click", "#BucarDireccion2", function () {
+                debugger;
+
+                CargaGoogleMapsOtrosDomicilios();
+            });
+
+
         </script>
     }
     <input type="hidden" id="FieldId" name="FieldId" value="" />
@@ -7920,6 +7989,7 @@
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
     <input type="hidden" id="Detalle_de_Datos_Generales_cmbLabelSelect" name="Detalle_de_Datos_Generales_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl6FOVgpwFjFmSSdVREMUzCQKSq7JQLdA" type="text/javascript"></script>
+    <input type="hidden" id="RowSelected" name="RowSelected" value="0" />
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl6FOVgpwFjFmSSdVREMUzCQKSq7JQLdA" type="text/javascript"></script>
 

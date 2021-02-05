@@ -6392,10 +6392,12 @@
                 var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
                 $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
 				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Otros_Domicilios_Probable_ResponsableCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                $('<i class="fa fa-map-marker">').appendTo($("<a data-toggle='tooltip' title='Asignar Coordenadas' onclick='Otros_Domicilios_Probable_ResponsableMapaRow(" + index + ")'>").appendTo(actionColInsert));
+
                 actionColInsert.appendTo(row);
 
                 for (i = 0; i < controls.length; i++) {
-					var idHeader = $(controls[i]).data('field') + 'Header';
+                    var idHeader = $(controls[i]).data('field') + 'Header';
 					if($(controls[i]).length > 1){
 						idHeader = $($(controls[i])[1]).data('field') + 'Header';
 					}
