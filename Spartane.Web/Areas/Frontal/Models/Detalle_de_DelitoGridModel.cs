@@ -111,6 +111,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Longitud_Robo { get; set; }
         public int? Lugar_del_Robo { get; set; }
         public string Lugar_del_RoboDescripcion { get; set; }
+        public int? Zona_de_Robo { get; set; }
+        public string Zona_de_RoboDescripcion { get; set; }
         public bool? El_Vehiculo_esta_Asegurado { get; set; }
         public int? Nombre_de_la_Aseguradora { get; set; }
         public string Nombre_de_la_AseguradoraDescripcion { get; set; }

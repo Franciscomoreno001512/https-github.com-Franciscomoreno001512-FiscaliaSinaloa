@@ -38,6 +38,8 @@
   <resource culture="es-es" name="Pais" value="País"></resource>
   <resource culture="es-es" name="Estado" value="Estado"></resource>
   <resource culture="es-es" name="Municipio" value="Municipio"></resource>
+  <resource culture="es-es" name="Estado_de_Nacimiento" value="Estado de Nacimiento"></resource>
+  <resource culture="es-es" name="Municipio_de_Nacimiento" value="Municipio de Nacimiento"></resource>
   <resource culture="es-es" name="Poblacion" value="Población"></resource>
   <resource culture="es-es" name="Colonia" value="Colonia"></resource>
   <resource culture="es-es" name="Codigo_Postal" value="Código Postal"></resource>
@@ -67,8 +69,6 @@
   <resource culture="es-es" name="Incompleto" value="Incompleto"></resource>
   <resource culture="es-es" name="Idioma" value="Idioma"></resource>
   <resource culture="es-es" name="Calidad_Migratoria" value="Calidad Migratoria"></resource>
-  <resource culture="es-es" name="Estado_de_Nacimiento" value="Estado de Nacimiento"></resource>
-  <resource culture="es-es" name="Municipio_de_Nacimiento" value="Municipio de Nacimiento"></resource>
   <resource culture="es-es" name="Dialecto" value="Dialecto"></resource>
   <resource culture="es-es" name="Estado_de_Involucrado" value="Estado de Involucrado"></resource>
   <resource culture="es-es" name="Incapaz" value="Inimputable"></resource>

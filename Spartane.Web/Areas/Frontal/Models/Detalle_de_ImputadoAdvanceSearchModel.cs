@@ -19,6 +19,8 @@ namespace Spartane.Web.Areas.Frontal.Models
             Bajo_el_Efecto_de_una_Droga = RadioOptions.NoApply;
             Inimputable = RadioOptions.NoApply;
             Gravidez = RadioOptions.NoApply;
+            Se_Informaron_sus_Derechos = RadioOptions.NoApply;
+            Se_Informo_el_Procedimiento = RadioOptions.NoApply;
             Imagen_Tatuaje = RadioOptions.NoApply;
 
         }
@@ -269,6 +271,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Discapacidad_PsicosocialFilter { set; get; }
         public string AdvanceDiscapacidad_Psicosocial { set; get; }
         public int[] AdvanceDiscapacidad_PsicosocialMultiple { set; get; }
+
+        public RadioOptions Se_Informaron_sus_Derechos { set; get; }
+
+        public RadioOptions Se_Informo_el_Procedimiento { set; get; }
 
         public Filters Nombres2Filter { set; get; }
         public string Nombres2 { set; get; }

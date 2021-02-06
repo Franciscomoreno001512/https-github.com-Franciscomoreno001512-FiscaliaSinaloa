@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Relaciones_MASC;
+using Spartane.Core.Domain.Estatus_Solicitud;
 using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Detalle_Relaciones_MASC;
 
@@ -29,6 +30,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Relaciones_MASC;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Relaciones_MASC;
 
@@ -82,6 +84,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IRelaciones_MASCService service = null;
         private IRelaciones_MASCApiConsumer _IRelaciones_MASCApiConsumer;
+        private IEstatus_SolicitudApiConsumer _IEstatus_SolicitudApiConsumer;
         private ISolicitudApiConsumer _ISolicitudApiConsumer;
         private IDetalle_Relaciones_MASCApiConsumer _IDetalle_Relaciones_MASCApiConsumer;
 
@@ -111,7 +114,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Relaciones_MASCController(IRelaciones_MASCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IRelaciones_MASCApiConsumer Relaciones_MASCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , IDetalle_Relaciones_MASCApiConsumer Detalle_Relaciones_MASCApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer  , IDetalle_de_RelacionesApiConsumer Detalle_de_RelacionesApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IResolucion_MASCApiConsumer Resolucion_MASCApiConsumer , ITipo_de_Mecanismo_AlternoApiConsumer Tipo_de_Mecanismo_AlternoApiConsumer , IResultado_de_RevisionApiConsumer Resultado_de_RevisionApiConsumer )
+        public Relaciones_MASCController(IRelaciones_MASCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IRelaciones_MASCApiConsumer Relaciones_MASCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IEstatus_SolicitudApiConsumer Estatus_SolicitudApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , IDetalle_Relaciones_MASCApiConsumer Detalle_Relaciones_MASCApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer  , IDetalle_de_RelacionesApiConsumer Detalle_de_RelacionesApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IResolucion_MASCApiConsumer Resolucion_MASCApiConsumer , ITipo_de_Mecanismo_AlternoApiConsumer Tipo_de_Mecanismo_AlternoApiConsumer , IResultado_de_RevisionApiConsumer Resultado_de_RevisionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -125,6 +128,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
+            this._IEstatus_SolicitudApiConsumer = Estatus_SolicitudApiConsumer;
             this._ISolicitudApiConsumer = SolicitudApiConsumer;
             this._IDetalle_Relaciones_MASCApiConsumer = Detalle_Relaciones_MASCApiConsumer;
 
@@ -219,7 +223,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varRelaciones_MASC= new Relaciones_MASCModel
 					{
 						Clave  = Relaciones_MASCData.Clave 
-	                    ,Numero_de_Expediente = Relaciones_MASCData.Numero_de_Expediente
+	                    ,Estatus = Relaciones_MASCData.Estatus
+                    ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(Relaciones_MASCData.Estatus), "Estatus_Solicitud") ??  (string)Relaciones_MASCData.Estatus_Estatus_Solicitud.Descripcion
+                    ,Numero_de_Expediente = Relaciones_MASCData.Numero_de_Expediente
                     ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(Convert.ToString(Relaciones_MASCData.Numero_de_Expediente), "Solicitud") ??  (string)Relaciones_MASCData.Numero_de_Expediente_Solicitud.Numero_de_Expediente
                     ,Numero_de_Procedimiento = Relaciones_MASCData.Numero_de_Procedimiento
                     ,idRelacionOrigen = Relaciones_MASCData.idRelacionOrigen
@@ -268,6 +274,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IEstatus_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Solicituds_Estatus = _IEstatus_SolicitudApiConsumer.SelAll(true);
+            if (Estatus_Solicituds_Estatus != null && Estatus_Solicituds_Estatus.Resource != null)
+                ViewBag.Estatus_Solicituds_Estatus = Estatus_Solicituds_Estatus.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IDetalle_de_RelacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Detalle_de_Relacioness_idRelacionOrigen = _IDetalle_de_RelacionesApiConsumer.SelAll(true);
             if (Detalle_de_Relacioness_idRelacionOrigen != null && Detalle_de_Relacioness_idRelacionOrigen.Resource != null)
@@ -374,7 +387,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varRelaciones_MASC= new Relaciones_MASCModel
 					{
 						Clave  = Relaciones_MASCData.Clave 
-	                    ,Numero_de_Expediente = Relaciones_MASCData.Numero_de_Expediente
+	                    ,Estatus = Relaciones_MASCData.Estatus
+                    ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(Relaciones_MASCData.Estatus), "Estatus_Solicitud") ??  (string)Relaciones_MASCData.Estatus_Estatus_Solicitud.Descripcion
+                    ,Numero_de_Expediente = Relaciones_MASCData.Numero_de_Expediente
                     ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(Convert.ToString(Relaciones_MASCData.Numero_de_Expediente), "Solicitud") ??  (string)Relaciones_MASCData.Numero_de_Expediente_Solicitud.Numero_de_Expediente
                     ,Numero_de_Procedimiento = Relaciones_MASCData.Numero_de_Procedimiento
                     ,idRelacionOrigen = Relaciones_MASCData.idRelacionOrigen
@@ -421,6 +436,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IEstatus_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Solicituds_Estatus = _IEstatus_SolicitudApiConsumer.SelAll(true);
+            if (Estatus_Solicituds_Estatus != null && Estatus_Solicituds_Estatus.Resource != null)
+                ViewBag.Estatus_Solicituds_Estatus = Estatus_Solicituds_Estatus.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IDetalle_de_RelacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Detalle_de_Relacioness_idRelacionOrigen = _IDetalle_de_RelacionesApiConsumer.SelAll(true);
             if (Detalle_de_Relacioness_idRelacionOrigen != null && Detalle_de_Relacioness_idRelacionOrigen.Resource != null)
@@ -483,6 +505,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetEstatus_SolicitudAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IEstatus_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IEstatus_SolicitudApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Solicitud", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 		[HttpGet]
         public ActionResult GetSolicitudAll()
         {
@@ -642,6 +685,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IEstatus_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Solicituds_Estatus = _IEstatus_SolicitudApiConsumer.SelAll(true);
+            if (Estatus_Solicituds_Estatus != null && Estatus_Solicituds_Estatus.Resource != null)
+                ViewBag.Estatus_Solicituds_Estatus = Estatus_Solicituds_Estatus.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IDetalle_de_RelacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Detalle_de_Relacioness_idRelacionOrigen = _IDetalle_de_RelacionesApiConsumer.SelAll(true);
             if (Detalle_de_Relacioness_idRelacionOrigen != null && Detalle_de_Relacioness_idRelacionOrigen.Resource != null)
@@ -695,6 +745,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IEstatus_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Solicituds_Estatus = _IEstatus_SolicitudApiConsumer.SelAll(true);
+            if (Estatus_Solicituds_Estatus != null && Estatus_Solicituds_Estatus.Resource != null)
+                ViewBag.Estatus_Solicituds_Estatus = Estatus_Solicituds_Estatus.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IDetalle_de_RelacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Detalle_de_Relacioness_idRelacionOrigen = _IDetalle_de_RelacionesApiConsumer.SelAll(true);
             if (Detalle_de_Relacioness_idRelacionOrigen != null && Detalle_de_Relacioness_idRelacionOrigen.Resource != null)
@@ -775,6 +832,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Relaciones_MASCs.Select(m => new Relaciones_MASCGridModel
                     {
                     Clave = m.Clave
+                        ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Solicitud.Descripcion
                         ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Expediente
 			,Numero_de_Procedimiento = m.Numero_de_Procedimiento
                         ,idRelacionOrigenDescripcion = CultureHelper.GetTraduction(m.idRelacionOrigen_Detalle_de_Relaciones.Clave.ToString(), "Descripcion") ?? (string)m.idRelacionOrigen_Detalle_de_Relaciones.Descripcion
@@ -917,6 +975,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 aaData = result.Relaciones_MASCs.Select(m => new Relaciones_MASCGridModel
             {
                     Clave = m.Clave
+                        ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Solicitud.Descripcion
                         ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Expediente
 			,Numero_de_Procedimiento = m.Numero_de_Procedimiento
                         ,idRelacionOrigenDescripcion = CultureHelper.GetTraduction(m.idRelacionOrigen_Detalle_de_Relaciones.Clave.ToString(), "Descripcion") ?? (string)m.idRelacionOrigen_Detalle_de_Relaciones.Descripcion
@@ -1187,6 +1246,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Relaciones_MASC.Clave >= " + filter.FromClave;
                 if (!string.IsNullOrEmpty(filter.ToClave))
                     where += " AND Relaciones_MASC.Clave <= " + filter.ToClave;
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceEstatus))
+            {
+                switch (filter.EstatusFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Estatus_Solicitud.Descripcion LIKE '" + filter.AdvanceEstatus + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Estatus_Solicitud.Descripcion LIKE '%" + filter.AdvanceEstatus + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Estatus_Solicitud.Descripcion = '" + filter.AdvanceEstatus + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Estatus_Solicitud.Descripcion LIKE '%" + filter.AdvanceEstatus + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceEstatusMultiple != null && filter.AdvanceEstatusMultiple.Count() > 0)
+            {
+                var EstatusIds = string.Join(",", filter.AdvanceEstatusMultiple);
+
+                where += " AND Relaciones_MASC.Estatus In (" + EstatusIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceNumero_de_Expediente))
@@ -1918,6 +2005,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Relaciones_MASCInfo = new Relaciones_MASC
                     {
                         Clave = varRelaciones_MASC.Clave
+                        ,Estatus = varRelaciones_MASC.Estatus
                         ,Numero_de_Expediente = varRelaciones_MASC.Numero_de_Expediente
                         ,Numero_de_Procedimiento = varRelaciones_MASC.Numero_de_Procedimiento
                         ,idRelacionOrigen = varRelaciones_MASC.idRelacionOrigen
@@ -2515,6 +2603,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Relaciones_MASCs.Select(m => new Relaciones_MASCGridModel
             {
                 Clave = m.Clave
+                        ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Solicitud.Descripcion
                         ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Expediente
 			,Numero_de_Procedimiento = m.Numero_de_Procedimiento
                         ,idRelacionOrigenDescripcion = CultureHelper.GetTraduction(m.idRelacionOrigen_Detalle_de_Relaciones.Clave.ToString(), "Descripcion") ?? (string)m.idRelacionOrigen_Detalle_de_Relaciones.Descripcion
@@ -2616,6 +2705,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Relaciones_MASCs.Select(m => new Relaciones_MASCGridModel
             {
                 Clave = m.Clave
+                        ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Solicitud.Descripcion
                         ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Expediente
 			,Numero_de_Procedimiento = m.Numero_de_Procedimiento
                         ,idRelacionOrigenDescripcion = CultureHelper.GetTraduction(m.idRelacionOrigen_Detalle_de_Relaciones.Clave.ToString(), "Descripcion") ?? (string)m.idRelacionOrigen_Detalle_de_Relaciones.Descripcion
@@ -2683,7 +2773,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Relaciones_MASC_Datos_GeneralesInfo = new Relaciones_MASC_Datos_Generales
                 {
                     Clave = varRelaciones_MASC.Clave
-                                            ,Numero_de_Expediente = varRelaciones_MASC.Numero_de_Expediente
+                                            ,Estatus = varRelaciones_MASC.Estatus
+                        ,Numero_de_Expediente = varRelaciones_MASC.Numero_de_Expediente
                         ,Numero_de_Procedimiento = varRelaciones_MASC.Numero_de_Procedimiento
                         ,idRelacionOrigen = varRelaciones_MASC.idRelacionOrigen
                         ,Requiere_cambiar_la_relacion = varRelaciones_MASC.Requiere_cambiar_la_relacion
@@ -2720,6 +2811,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var result = new Relaciones_MASC_Datos_GeneralesModel
                 {
                     Clave = m.Clave
+                        ,Estatus = m.Estatus
+                        ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Solicitud.Descripcion
                         ,Numero_de_Expediente = m.Numero_de_Expediente
                         ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Expediente
 			,Numero_de_Procedimiento = m.Numero_de_Procedimiento

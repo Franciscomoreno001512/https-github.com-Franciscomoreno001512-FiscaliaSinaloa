@@ -2,6 +2,7 @@
 <resources>
   <resource culture="es-es" name="Relaciones_MASC" value="Relaciones MASC"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
   <resource culture="es-es" name="Numero_de_Expediente" value="Número de Expediente"></resource>
   <resource culture="es-es" name="Numero_de_Procedimiento" value="Número de Procedimiento"></resource>
   <resource culture="es-es" name="Relacion" value="Relación"></resource>

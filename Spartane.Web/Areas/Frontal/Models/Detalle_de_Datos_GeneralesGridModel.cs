@@ -61,6 +61,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string EstadoNombre { get; set; }
         public int? Municipio { get; set; }
         public string MunicipioNombre { get; set; }
+        public int? Estado_de_Nacimiento { get; set; }
+        public string Estado_de_NacimientoNombre { get; set; }
+        public int? Municipio_de_Nacimiento { get; set; }
+        public string Municipio_de_NacimientoNombre { get; set; }
         public int? Poblacion { get; set; }
         public string PoblacionNombre { get; set; }
         public int? Colonia { get; set; }
@@ -103,10 +107,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string IdiomaDescripcion { get; set; }
         public int? Calidad_Migratoria { get; set; }
         public string Calidad_MigratoriaDescripcion { get; set; }
-        public int? Estado_de_Nacimiento { get; set; }
-        public string Estado_de_NacimientoNombre { get; set; }
-        public int? Municipio_de_Nacimiento { get; set; }
-        public string Municipio_de_NacimientoNombre { get; set; }
         public int? Dialecto { get; set; }
         public string DialectoDescripcion { get; set; }
         public int? Estado_de_Involucrado { get; set; }

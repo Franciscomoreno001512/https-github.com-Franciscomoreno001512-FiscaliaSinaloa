@@ -20,6 +20,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         [IsNumberAfterAttribute("FromClave", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToClave { set; get; }
 
+        public Filters EstatusFilter { set; get; }
+        public string AdvanceEstatus { set; get; }
+        public int[] AdvanceEstatusMultiple { set; get; }
+
         public Filters Numero_de_ExpedienteFilter { set; get; }
         public string AdvanceNumero_de_Expediente { set; get; }
         public int[] AdvanceNumero_de_ExpedienteMultiple { set; get; }

@@ -1480,6 +1480,14 @@ function Otros_Domicilios_Probable_ResponsableCancelRow(rowIndex) {
 	initiateUIControls();
 }
 
+function Otros_Domicilios_Probable_ResponsableMapaRow(rowIndex) {
+    debugger;
+    $("#RowSelected").val(rowIndex);
+    $("#RowSelected").text(rowIndex);
+    $("#modalMapa2").click();
+
+}
+
 function GetOtros_Domicilios_Probable_ResponsableFromDataTable() {
     var Otros_Domicilios_Probable_ResponsableData = [];
     var gridData = Otros_Domicilios_Probable_ResponsableTable.fnGetData();

@@ -1,6 +1,7 @@
 ﻿@using System.Collections.Generic
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Relaciones_MASC;
+@using Spartane.Core.Domain.Estatus_Solicitud;
 @using Spartane.Core.Domain.Solicitud;
 @using Spartane.Core.Domain.Detalle_de_Relaciones;
 @using Spartane.Core.Domain.Spartan_User;
@@ -208,6 +209,7 @@
                                 <tr>
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Relaciones_MASCResources.Clave</th>
+                                    <th>@Resources.Relaciones_MASCResources.Estatus</th>
                                     <th>@Resources.Relaciones_MASCResources.Numero_de_Expediente</th>
                                     <th>@Resources.Relaciones_MASCResources.Numero_de_Procedimiento</th>
                                     <th>@Resources.Relaciones_MASCResources.idRelacionOrigen</th>
@@ -243,6 +245,7 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -387,6 +390,7 @@
         var queryString = GetQueryString();
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Expediente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var idRelacionOrigen =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -418,6 +422,7 @@
 
 
         var queryString = "&Clave=" + Clave 
+        + "&Estatus=" + Estatus
         + "&Numero_de_Expediente=" + Numero_de_Expediente
         + "&Numero_de_Procedimiento=" + Numero_de_Procedimiento
         + "&idRelacionOrigen=" + idRelacionOrigen
@@ -460,6 +465,7 @@
 	
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Expediente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var idRelacionOrigen =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -491,6 +497,7 @@
 
 
         return "&Clave=" + Clave 
+        + "&Estatus=" + Estatus
         + "&Numero_de_Expediente=" + Numero_de_Expediente
         + "&Numero_de_Procedimiento=" + Numero_de_Procedimiento
         + "&idRelacionOrigen=" + idRelacionOrigen
@@ -699,11 +706,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -767,6 +774,7 @@
                     }
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "EstatusDescripcion", "orderable": true, "name": "EstatusDescripcion" }
                 ,{ "data": "Numero_de_ExpedienteNumero_de_Expediente", "orderable": true, "name": "Numero_de_ExpedienteNumero_de_Expediente"}
                 ,{ "data": "Numero_de_Procedimiento", "orderable": true, "name": "Numero_de_Procedimiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "idRelacionOrigenDescripcion", "orderable": true, "name": "idRelacionOrigenDescripcion" }

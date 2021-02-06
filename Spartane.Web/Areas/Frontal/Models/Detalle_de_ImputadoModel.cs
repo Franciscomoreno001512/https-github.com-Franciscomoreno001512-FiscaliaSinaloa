@@ -115,6 +115,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Discapacidad_SensorialDescripcion { get; set; }
         public int? Discapacidad_Psicosocial { get; set; }
         public string Discapacidad_PsicosocialDescripcion { get; set; }
+        public bool Se_Informaron_sus_Derechos { get; set; }
+        public bool Se_Informo_el_Procedimiento { get; set; }
         public string Nombres2 { get; set; }
         public string Apellido_Paterno2 { get; set; }
         public string Apellido_Materno2 { get; set; }
@@ -377,6 +379,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Discapacidad_SensorialDescripcion { get; set; }
         public int? Discapacidad_Psicosocial { get; set; }
         public string Discapacidad_PsicosocialDescripcion { get; set; }
+        public bool? Se_Informaron_sus_Derechos { get; set; }
+        public bool? Se_Informo_el_Procedimiento { get; set; }
 
     }
 

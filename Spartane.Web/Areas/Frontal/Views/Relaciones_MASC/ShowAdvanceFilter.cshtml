@@ -3,6 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Relaciones_MASCAdvanceSearchModel
 @{
+    List<SelectListItem> varEstatus_Solicitud_Estatus = null;
+    if (ViewBag.Estatus_Solicituds_Estatus != null)
+    { varEstatus_Solicitud_Estatus = (List<SelectListItem>)ViewBag.Estatus_Solicituds_Estatus; }
  List<SelectListItem> varSolicitud_Numero_de_Expediente = null;
     if (ViewBag.Solicituds_Numero_de_Expediente != null)
     { varSolicitud_Numero_de_Expediente = (List<SelectListItem>)ViewBag.Solicituds_Numero_de_Expediente; }
@@ -83,6 +86,27 @@
                     <label class="">@Resources.Resources.To: </label>
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Relaciones_MASCResources.Estatus</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EstatusFilter, filters, new { @class = "form-control", @id = "ddlEstatusFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstatus, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstatus" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstatus_Solicitud_Estatus!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstatusMultiple, varEstatus_Solicitud_Estatus,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstatus"
+                        });
+                    }
                 </div>
  List<SelectListItem> varSolicitud_Numero_de_Expediente = null;
     if (ViewBag.Solicituds_Numero_de_Expediente != null)
@@ -458,6 +482,21 @@
             advanceSearch.Relaciones_MASCClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Relaciones_MASCClaveTo = $("#txtAdvanceToClave").val();
         }
+        advanceSearch.EstatusSearchType = 0;
+        if ($('#ddlAdvanceEstatus').val().length > 0 || $("#txtAdvanceEstatus").val() == "") {
+
+
+            if (isRelaciones_MASCTextSearch) {
+                advanceSearch.EstatusName = $("#txtAdvanceEstatus").val();
+                advanceSearch.EstatusNameSearchType = $("#ddlAdvanceEstatus").val();
+                advanceSearch.EstatusSearchType = 1;
+            }
+            else {
+
+                advanceSearch.EstatusToSearch = $("#ddlAdvanceEstatus").val();
+                advanceSearch.EstatusSearchType = 2;
+            }
+        }
         advanceSearch.Numero_de_ExpedienteSearchType = 0;
         if ($('#ddlAdvanceNumero_de_Expediente').val().length > 0 || $("#txtAdvanceNumero_de_Expediente").val() == "") {
 
@@ -725,6 +764,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceEstatus").keypress(function () {
+            isRelaciones_MASCTextSearch = true;
+            $("#ddlAdvanceEstatus").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstatus").change(function () {
+            isRelaciones_MASCTextSearch = false;
+            $("#txtAdvanceEstatus").val('');
+        });
         $("#txtAdvanceNumero_de_Expediente").keypress(function () {
             isRelaciones_MASCTextSearch = true;
             $("#ddlAdvanceNumero_de_Expediente").val('').trigger("chosen:updated");

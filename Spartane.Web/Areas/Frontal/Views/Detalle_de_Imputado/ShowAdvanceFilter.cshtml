@@ -2939,6 +2939,14 @@
                 advanceSearch.Discapacidad_PsicosocialSearchType = 2;
             }
         }
+        if ($("#ddlAdvanceSe_Informaron_sus_Derechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ImputadoSe_Informaron_sus_Derechos = $("#ddlAdvanceSe_Informaron_sus_Derechos").val();
+        }
+        if ($("#ddlAdvanceSe_Informo_el_Procedimiento").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ImputadoSe_Informo_el_Procedimiento = $("#ddlAdvanceSe_Informo_el_Procedimiento").val();
+        }
         if ($("#txtAdvanceNombres2").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_ImputadoNombres2 = $("#txtAdvanceNombres2").val();
