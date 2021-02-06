@@ -1,4 +1,8 @@
-﻿
+﻿        function RemoveAttachmentMainDocumento () {
+            $("#hdnRemoveDocumento").val("1");
+            $("#divAttachmentDocumento").hide();
+        }
+
 
 //Begin Declarations for Foreigns fields for Detalle_de_Solicitante_en_Invitaciones MultiRow
 var Detalle_de_Solicitante_en_InvitacionescountRowsChecked = 0;
@@ -757,10 +761,7 @@ $(document).ready(function () {
 									control.html(eval('window.opener.Get' + nameMR + '_Detalle_de_Solicitudes_de_InvitacionesDropDown().get(0)').innerHTML);  
 								}								
 							}
-                        }
-
-                        RedireccionaX();
-
+						}
 						window.close();						
 						}
 				})) {

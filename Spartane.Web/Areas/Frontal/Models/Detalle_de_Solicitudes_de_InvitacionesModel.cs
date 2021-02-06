@@ -34,6 +34,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string ResultadoDescripcion { get; set; }
         public int? Incidente_en_la_Recepcion { get; set; }
         public string Incidente_en_la_RecepcionDescripcion { get; set; }
+        public int? Documento { get; set; }
+        public HttpPostedFileBase DocumentoFile { set; get; }
+        public int DocumentoRemoveAttachment { set; get; }
 
     }
 	
@@ -70,6 +73,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string ResultadoDescripcion { get; set; }
         public int? Incidente_en_la_Recepcion { get; set; }
         public string Incidente_en_la_RecepcionDescripcion { get; set; }
+        public int? Documento { get; set; }
+        public HttpPostedFileBase DocumentoFile { set; get; }
+        public int DocumentoRemoveAttachment { set; get; }
 
     }
 

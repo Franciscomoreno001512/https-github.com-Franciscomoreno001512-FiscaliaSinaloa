@@ -158,7 +158,16 @@ $(document).ready(function() {
 
     //BusinessRuleId:3343, Attribute:265554, Operation:Field, Event:None
 
-    //NEWBUSINESSRULE_NONE//
+    //BusinessRuleId:3612, Attribute:265555, Operation:Field, Event:None
+$("form#CreateAsignacion_de_Turnos").on('change', '#Tipo_de_Identificacion', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Identificacion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('8', '8') ) { $('#divOtra_Identificacion').css('display', 'block');} else { $('#divOtra_Identificacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Otra_Identificacion' + rowIndex));}
+});
+
+//BusinessRuleId:3612, Attribute:265555, Operation:Field, Event:None
+
+//NEWBUSINESSRULE_NONE//
 });
 
 function EjecutarValidacionesAlComienzo() {
@@ -790,6 +799,54 @@ if(operation == 'Consult'){
 
 }
 //BusinessRuleId:3607, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3611, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Otra_Identificacion' + rowIndex));
+
+}
+//BusinessRuleId:3611, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3611, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Otra_Identificacion' + rowIndex));
+
+}
+//BusinessRuleId:3611, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3611, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Otra_Identificacion' + rowIndex));
+
+}
+//BusinessRuleId:3611, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:3610, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Identificacion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('8', '8') ) { $('#divOtra_Identificacion').css('display', 'block');} else { $('#divOtra_Identificacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Otra_Identificacion' + rowIndex));}
+
+}
+//BusinessRuleId:3610, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3610, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Identificacion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('8', '8') ) { $('#divOtra_Identificacion').css('display', 'block');} else { $('#divOtra_Identificacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Otra_Identificacion' + rowIndex));}
+
+}
+//BusinessRuleId:3610, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3610, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Identificacion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('8', '8') ) { $('#divOtra_Identificacion').css('display', 'block');} else { $('#divOtra_Identificacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Otra_Identificacion' + rowIndex));}
+
+}
+//BusinessRuleId:3610, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

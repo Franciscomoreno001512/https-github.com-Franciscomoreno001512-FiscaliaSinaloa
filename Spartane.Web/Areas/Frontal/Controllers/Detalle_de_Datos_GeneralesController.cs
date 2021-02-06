@@ -18,6 +18,8 @@ using Spartane.Core.Domain.Pais;
 using Spartane.Core.Domain.Pais;
 using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
+using Spartane.Core.Domain.Estado;
+using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Grupo_al_que_Pertenece;
@@ -31,8 +33,6 @@ using Spartane.Core.Domain.Especialidad;
 using Spartane.Core.Domain.Estudios_Superiores;
 using Spartane.Core.Domain.Idioma;
 using Spartane.Core.Domain.Calidad_Migratoria;
-using Spartane.Core.Domain.Estado;
-using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Dialecto;
 using Spartane.Core.Domain.Estado_de_Involucrado;
 using Spartane.Core.Domain.Tipo_de_Inimputabilidad;
@@ -160,6 +160,8 @@ using Spartane.Web.Areas.WebApiConsumer.Pais;
 using Spartane.Web.Areas.WebApiConsumer.Pais;
 using Spartane.Web.Areas.WebApiConsumer.Estado;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
+using Spartane.Web.Areas.WebApiConsumer.Estado;
+using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Grupo_al_que_Pertenece;
@@ -173,8 +175,6 @@ using Spartane.Web.Areas.WebApiConsumer.Especialidad;
 using Spartane.Web.Areas.WebApiConsumer.Estudios_Superiores;
 using Spartane.Web.Areas.WebApiConsumer.Idioma;
 using Spartane.Web.Areas.WebApiConsumer.Calidad_Migratoria;
-using Spartane.Web.Areas.WebApiConsumer.Estado;
-using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Dialecto;
 using Spartane.Web.Areas.WebApiConsumer.Estado_de_Involucrado;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Inimputabilidad;
@@ -430,6 +430,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IPaisApiConsumer = PaisApiConsumer;
             this._IEstadoApiConsumer = EstadoApiConsumer;
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
+            this._IEstadoApiConsumer = EstadoApiConsumer;
+            this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IGrupo_al_que_PerteneceApiConsumer = Grupo_al_que_PerteneceApiConsumer;
@@ -443,8 +445,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IEstudios_SuperioresApiConsumer = Estudios_SuperioresApiConsumer;
             this._IIdiomaApiConsumer = IdiomaApiConsumer;
             this._ICalidad_MigratoriaApiConsumer = Calidad_MigratoriaApiConsumer;
-            this._IEstadoApiConsumer = EstadoApiConsumer;
-            this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._IDialectoApiConsumer = DialectoApiConsumer;
             this._IEstado_de_InvolucradoApiConsumer = Estado_de_InvolucradoApiConsumer;
             this._ITipo_de_InimputabilidadApiConsumer = Tipo_de_InimputabilidadApiConsumer;
@@ -669,6 +669,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,EstadoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Estado), "Estado") ??  (string)Detalle_de_Datos_GeneralesData.Estado_Estado.Nombre
                     ,Municipio = Detalle_de_Datos_GeneralesData.Municipio
                     ,MunicipioNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Municipio), "Municipio") ??  (string)Detalle_de_Datos_GeneralesData.Municipio_Municipio.Nombre
+                    ,Estado_de_Nacimiento = Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento
+                    ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento), "Estado") ??  (string)Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento_Estado.Nombre
+                    ,Municipio_de_Nacimiento = Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento
+                    ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento), "Municipio") ??  (string)Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento_Municipio.Nombre
                     ,Poblacion = Detalle_de_Datos_GeneralesData.Poblacion
                     ,PoblacionNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Poblacion), "Colonia") ??  (string)Detalle_de_Datos_GeneralesData.Poblacion_Colonia.Nombre
                     ,Colonia = Detalle_de_Datos_GeneralesData.Colonia
@@ -711,10 +715,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,IdiomaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Idioma), "Idioma") ??  (string)Detalle_de_Datos_GeneralesData.Idioma_Idioma.Descripcion
                     ,Calidad_Migratoria = Detalle_de_Datos_GeneralesData.Calidad_Migratoria
                     ,Calidad_MigratoriaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Calidad_Migratoria), "Calidad_Migratoria") ??  (string)Detalle_de_Datos_GeneralesData.Calidad_Migratoria_Calidad_Migratoria.Descripcion
-                    ,Estado_de_Nacimiento = Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento
-                    ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento), "Estado") ??  (string)Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento_Estado.Nombre
-                    ,Municipio_de_Nacimiento = Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento
-                    ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento), "Municipio") ??  (string)Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento_Municipio.Nombre
                     ,Dialecto = Detalle_de_Datos_GeneralesData.Dialecto
                     ,DialectoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Dialecto), "Dialecto") ??  (string)Detalle_de_Datos_GeneralesData.Dialecto_Dialecto.Descripcion
                     ,Estado_de_Involucrado = Detalle_de_Datos_GeneralesData.Estado_de_Involucrado
@@ -1533,6 +1533,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,EstadoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Estado), "Estado") ??  (string)Detalle_de_Datos_GeneralesData.Estado_Estado.Nombre
                     ,Municipio = Detalle_de_Datos_GeneralesData.Municipio
                     ,MunicipioNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Municipio), "Municipio") ??  (string)Detalle_de_Datos_GeneralesData.Municipio_Municipio.Nombre
+                    ,Estado_de_Nacimiento = Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento
+                    ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento), "Estado") ??  (string)Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento_Estado.Nombre
+                    ,Municipio_de_Nacimiento = Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento
+                    ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento), "Municipio") ??  (string)Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento_Municipio.Nombre
                     ,Poblacion = Detalle_de_Datos_GeneralesData.Poblacion
                     ,PoblacionNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Poblacion), "Colonia") ??  (string)Detalle_de_Datos_GeneralesData.Poblacion_Colonia.Nombre
                     ,Colonia = Detalle_de_Datos_GeneralesData.Colonia
@@ -1575,10 +1579,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,IdiomaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Idioma), "Idioma") ??  (string)Detalle_de_Datos_GeneralesData.Idioma_Idioma.Descripcion
                     ,Calidad_Migratoria = Detalle_de_Datos_GeneralesData.Calidad_Migratoria
                     ,Calidad_MigratoriaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Calidad_Migratoria), "Calidad_Migratoria") ??  (string)Detalle_de_Datos_GeneralesData.Calidad_Migratoria_Calidad_Migratoria.Descripcion
-                    ,Estado_de_Nacimiento = Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento
-                    ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento), "Estado") ??  (string)Detalle_de_Datos_GeneralesData.Estado_de_Nacimiento_Estado.Nombre
-                    ,Municipio_de_Nacimiento = Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento
-                    ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento), "Municipio") ??  (string)Detalle_de_Datos_GeneralesData.Municipio_de_Nacimiento_Municipio.Nombre
                     ,Dialecto = Detalle_de_Datos_GeneralesData.Dialecto
                     ,DialectoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Dialecto), "Dialecto") ??  (string)Detalle_de_Datos_GeneralesData.Dialecto_Dialecto.Descripcion
                     ,Estado_de_Involucrado = Detalle_de_Datos_GeneralesData.Estado_de_Involucrado
@@ -2585,6 +2585,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+		
 		[HttpGet]
         public ActionResult GetColoniaAll()
         {
@@ -2963,6 +2964,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        
         [HttpGet]
         public ActionResult GetLocalidadAll()
         {
@@ -4824,6 +4826,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(m.Estado_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_de_Nacimiento_Estado.Nombre
+                        ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(m.Municipio_de_Nacimiento_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_de_Nacimiento_Municipio.Nombre
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_Colonia.Nombre
 			,Codigo_Postal = m.Codigo_Postal
@@ -4853,8 +4857,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Incompleto = m.Incompleto
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Calidad_MigratoriaDescripcion = CultureHelper.GetTraduction(m.Calidad_Migratoria_Calidad_Migratoria.Clave.ToString(), "Descripcion") ?? (string)m.Calidad_Migratoria_Calidad_Migratoria.Descripcion
-                        ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(m.Estado_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_de_Nacimiento_Estado.Nombre
-                        ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(m.Municipio_de_Nacimiento_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_de_Nacimiento_Municipio.Nombre
                         ,DialectoDescripcion = CultureHelper.GetTraduction(m.Dialecto_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Dialecto_Dialecto.Descripcion
                         ,Estado_de_InvolucradoDescripcion = CultureHelper.GetTraduction(m.Estado_de_Involucrado_Estado_de_Involucrado.Clave.ToString(), "Descripcion") ?? (string)m.Estado_de_Involucrado_Estado_de_Involucrado.Descripcion
 			,Incapaz = m.Incapaz
@@ -5119,6 +5121,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(m.Estado_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_de_Nacimiento_Estado.Nombre
+                        ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(m.Municipio_de_Nacimiento_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_de_Nacimiento_Municipio.Nombre
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_Colonia.Nombre
 			,Codigo_Postal = m.Codigo_Postal
@@ -5148,8 +5152,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Incompleto = m.Incompleto
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Calidad_MigratoriaDescripcion = CultureHelper.GetTraduction(m.Calidad_Migratoria_Calidad_Migratoria.Clave.ToString(), "Descripcion") ?? (string)m.Calidad_Migratoria_Calidad_Migratoria.Descripcion
-                        ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(m.Estado_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_de_Nacimiento_Estado.Nombre
-                        ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(m.Municipio_de_Nacimiento_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_de_Nacimiento_Municipio.Nombre
                         ,DialectoDescripcion = CultureHelper.GetTraduction(m.Dialecto_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Dialecto_Dialecto.Descripcion
                         ,Estado_de_InvolucradoDescripcion = CultureHelper.GetTraduction(m.Estado_de_Involucrado_Estado_de_Involucrado.Clave.ToString(), "Descripcion") ?? (string)m.Estado_de_Involucrado_Estado_de_Involucrado.Descripcion
 			,Incapaz = m.Incapaz
@@ -5490,60 +5492,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public JsonResult GetDetalle_de_Datos_Generales_Poblacion_Colonia(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
-               
-                foreach (var item in result.Colonias)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Colonia", "Nombre");
-                    item.Nombre =trans ??item.Nombre;
-                }
-                return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public JsonResult GetDetalle_de_Datos_Generales_Colonia_Colonia(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
-               
-                foreach (var item in result.Colonias)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Colonia", "Nombre");
-                    item.Nombre =trans ??item.Nombre;
-                }
-                return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
         public JsonResult GetDetalle_de_Datos_Generales_Estado_de_Nacimiento_Estado(string query, string where)
         {
             try
@@ -5591,6 +5539,60 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.Nombre =trans ??item.Nombre;
                 }
                 return Json(result.Municipios.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Datos_Generales_Poblacion_Colonia(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
+               
+                foreach (var item in result.Colonias)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Colonia", "Nombre");
+                    item.Nombre =trans ??item.Nombre;
+                }
+                return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Datos_Generales_Colonia_Colonia(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
+               
+                foreach (var item in result.Colonias)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Colonia", "Nombre");
+                    item.Nombre =trans ??item.Nombre;
+                }
+                return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -6752,6 +6754,62 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Detalle_de_Datos_Generales.Municipio In (" + MunicipioIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceEstado_de_Nacimiento))
+            {
+                switch (filter.Estado_de_NacimientoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Estado.Nombre LIKE '" + filter.AdvanceEstado_de_Nacimiento + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEstado_de_Nacimiento + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Estado.Nombre = '" + filter.AdvanceEstado_de_Nacimiento + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEstado_de_Nacimiento + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceEstado_de_NacimientoMultiple != null && filter.AdvanceEstado_de_NacimientoMultiple.Count() > 0)
+            {
+                var Estado_de_NacimientoIds = string.Join(",", filter.AdvanceEstado_de_NacimientoMultiple);
+
+                where += " AND Detalle_de_Datos_Generales.Estado_de_Nacimiento In (" + Estado_de_NacimientoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceMunicipio_de_Nacimiento))
+            {
+                switch (filter.Municipio_de_NacimientoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Municipio.Nombre LIKE '" + filter.AdvanceMunicipio_de_Nacimiento + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Municipio.Nombre LIKE '%" + filter.AdvanceMunicipio_de_Nacimiento + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Municipio.Nombre = '" + filter.AdvanceMunicipio_de_Nacimiento + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Municipio.Nombre LIKE '%" + filter.AdvanceMunicipio_de_Nacimiento + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceMunicipio_de_NacimientoMultiple != null && filter.AdvanceMunicipio_de_NacimientoMultiple.Count() > 0)
+            {
+                var Municipio_de_NacimientoIds = string.Join(",", filter.AdvanceMunicipio_de_NacimientoMultiple);
+
+                where += " AND Detalle_de_Datos_Generales.Municipio_de_Nacimiento In (" + Municipio_de_NacimientoIds + ")";
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvancePoblacion))
             {
                 switch (filter.PoblacionFilter)
@@ -7386,62 +7444,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Calidad_MigratoriaIds = string.Join(",", filter.AdvanceCalidad_MigratoriaMultiple);
 
                 where += " AND Detalle_de_Datos_Generales.Calidad_Migratoria In (" + Calidad_MigratoriaIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceEstado_de_Nacimiento))
-            {
-                switch (filter.Estado_de_NacimientoFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Estado.Nombre LIKE '" + filter.AdvanceEstado_de_Nacimiento + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEstado_de_Nacimiento + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Estado.Nombre = '" + filter.AdvanceEstado_de_Nacimiento + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEstado_de_Nacimiento + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceEstado_de_NacimientoMultiple != null && filter.AdvanceEstado_de_NacimientoMultiple.Count() > 0)
-            {
-                var Estado_de_NacimientoIds = string.Join(",", filter.AdvanceEstado_de_NacimientoMultiple);
-
-                where += " AND Detalle_de_Datos_Generales.Estado_de_Nacimiento In (" + Estado_de_NacimientoIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceMunicipio_de_Nacimiento))
-            {
-                switch (filter.Municipio_de_NacimientoFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Municipio.Nombre LIKE '" + filter.AdvanceMunicipio_de_Nacimiento + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Municipio.Nombre LIKE '%" + filter.AdvanceMunicipio_de_Nacimiento + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Municipio.Nombre = '" + filter.AdvanceMunicipio_de_Nacimiento + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Municipio.Nombre LIKE '%" + filter.AdvanceMunicipio_de_Nacimiento + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceMunicipio_de_NacimientoMultiple != null && filter.AdvanceMunicipio_de_NacimientoMultiple.Count() > 0)
-            {
-                var Municipio_de_NacimientoIds = string.Join(",", filter.AdvanceMunicipio_de_NacimientoMultiple);
-
-                where += " AND Detalle_de_Datos_Generales.Municipio_de_Nacimiento In (" + Municipio_de_NacimientoIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceDialecto))
@@ -10775,6 +10777,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Pais = varDetalle_de_Datos_Generales.Pais
                         ,Estado = varDetalle_de_Datos_Generales.Estado
                         ,Municipio = varDetalle_de_Datos_Generales.Municipio
+                        ,Estado_de_Nacimiento = varDetalle_de_Datos_Generales.Estado_de_Nacimiento
+                        ,Municipio_de_Nacimiento = varDetalle_de_Datos_Generales.Municipio_de_Nacimiento
                         ,Poblacion = varDetalle_de_Datos_Generales.Poblacion
                         ,Colonia = varDetalle_de_Datos_Generales.Colonia
                         ,Codigo_Postal = varDetalle_de_Datos_Generales.Codigo_Postal
@@ -10804,8 +10808,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Incompleto = varDetalle_de_Datos_Generales.Incompleto
                         ,Idioma = varDetalle_de_Datos_Generales.Idioma
                         ,Calidad_Migratoria = varDetalle_de_Datos_Generales.Calidad_Migratoria
-                        ,Estado_de_Nacimiento = varDetalle_de_Datos_Generales.Estado_de_Nacimiento
-                        ,Municipio_de_Nacimiento = varDetalle_de_Datos_Generales.Municipio_de_Nacimiento
                         ,Dialecto = varDetalle_de_Datos_Generales.Dialecto
                         ,Estado_de_Involucrado = varDetalle_de_Datos_Generales.Estado_de_Involucrado
                         ,Incapaz = varDetalle_de_Datos_Generales.Incapaz
@@ -12126,6 +12128,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(m.Estado_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_de_Nacimiento_Estado.Nombre
+                        ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(m.Municipio_de_Nacimiento_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_de_Nacimiento_Municipio.Nombre
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_Colonia.Nombre
 			,Codigo_Postal = m.Codigo_Postal
@@ -12155,8 +12159,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Incompleto = m.Incompleto
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Calidad_MigratoriaDescripcion = CultureHelper.GetTraduction(m.Calidad_Migratoria_Calidad_Migratoria.Clave.ToString(), "Descripcion") ?? (string)m.Calidad_Migratoria_Calidad_Migratoria.Descripcion
-                        ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(m.Estado_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_de_Nacimiento_Estado.Nombre
-                        ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(m.Municipio_de_Nacimiento_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_de_Nacimiento_Municipio.Nombre
                         ,DialectoDescripcion = CultureHelper.GetTraduction(m.Dialecto_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Dialecto_Dialecto.Descripcion
                         ,Estado_de_InvolucradoDescripcion = CultureHelper.GetTraduction(m.Estado_de_Involucrado_Estado_de_Involucrado.Clave.ToString(), "Descripcion") ?? (string)m.Estado_de_Involucrado_Estado_de_Involucrado.Descripcion
 			,Incapaz = m.Incapaz
@@ -12380,6 +12382,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(m.Estado_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_de_Nacimiento_Estado.Nombre
+                        ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(m.Municipio_de_Nacimiento_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_de_Nacimiento_Municipio.Nombre
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_Colonia.Nombre
 			,Codigo_Postal = m.Codigo_Postal
@@ -12409,8 +12413,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Incompleto = m.Incompleto
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Calidad_MigratoriaDescripcion = CultureHelper.GetTraduction(m.Calidad_Migratoria_Calidad_Migratoria.Clave.ToString(), "Descripcion") ?? (string)m.Calidad_Migratoria_Calidad_Migratoria.Descripcion
-                        ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(m.Estado_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_de_Nacimiento_Estado.Nombre
-                        ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(m.Municipio_de_Nacimiento_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_de_Nacimiento_Municipio.Nombre
                         ,DialectoDescripcion = CultureHelper.GetTraduction(m.Dialecto_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Dialecto_Dialecto.Descripcion
                         ,Estado_de_InvolucradoDescripcion = CultureHelper.GetTraduction(m.Estado_de_Involucrado_Estado_de_Involucrado.Clave.ToString(), "Descripcion") ?? (string)m.Estado_de_Involucrado_Estado_de_Involucrado.Descripcion
 			,Incapaz = m.Incapaz
@@ -12600,6 +12602,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Pais = varDetalle_de_Datos_Generales.Pais
                         ,Estado = varDetalle_de_Datos_Generales.Estado
                         ,Municipio = varDetalle_de_Datos_Generales.Municipio
+                        ,Estado_de_Nacimiento = varDetalle_de_Datos_Generales.Estado_de_Nacimiento
+                        ,Municipio_de_Nacimiento = varDetalle_de_Datos_Generales.Municipio_de_Nacimiento
                         ,Poblacion = varDetalle_de_Datos_Generales.Poblacion
                         ,Colonia = varDetalle_de_Datos_Generales.Colonia
                         ,Codigo_Postal = varDetalle_de_Datos_Generales.Codigo_Postal
@@ -12629,8 +12633,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Incompleto = varDetalle_de_Datos_Generales.Incompleto
                         ,Idioma = varDetalle_de_Datos_Generales.Idioma
                         ,Calidad_Migratoria = varDetalle_de_Datos_Generales.Calidad_Migratoria
-                        ,Estado_de_Nacimiento = varDetalle_de_Datos_Generales.Estado_de_Nacimiento
-                        ,Municipio_de_Nacimiento = varDetalle_de_Datos_Generales.Municipio_de_Nacimiento
                         ,Dialecto = varDetalle_de_Datos_Generales.Dialecto
                         ,Estado_de_Involucrado = varDetalle_de_Datos_Generales.Estado_de_Involucrado
                         ,Incapaz = varDetalle_de_Datos_Generales.Incapaz
@@ -12732,6 +12734,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,Municipio = m.Municipio
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,Estado_de_Nacimiento = m.Estado_de_Nacimiento
+                        ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(m.Estado_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_de_Nacimiento_Estado.Nombre
+                        ,Municipio_de_Nacimiento = m.Municipio_de_Nacimiento
+                        ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(m.Municipio_de_Nacimiento_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_de_Nacimiento_Municipio.Nombre
                         ,Poblacion = m.Poblacion
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,Colonia = m.Colonia
@@ -12774,10 +12780,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Calidad_Migratoria = m.Calidad_Migratoria
                         ,Calidad_MigratoriaDescripcion = CultureHelper.GetTraduction(m.Calidad_Migratoria_Calidad_Migratoria.Clave.ToString(), "Descripcion") ?? (string)m.Calidad_Migratoria_Calidad_Migratoria.Descripcion
-                        ,Estado_de_Nacimiento = m.Estado_de_Nacimiento
-                        ,Estado_de_NacimientoNombre = CultureHelper.GetTraduction(m.Estado_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_de_Nacimiento_Estado.Nombre
-                        ,Municipio_de_Nacimiento = m.Municipio_de_Nacimiento
-                        ,Municipio_de_NacimientoNombre = CultureHelper.GetTraduction(m.Municipio_de_Nacimiento_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_de_Nacimiento_Municipio.Nombre
                         ,Dialecto = m.Dialecto
                         ,DialectoDescripcion = CultureHelper.GetTraduction(m.Dialecto_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Dialecto_Dialecto.Descripcion
                         ,Estado_de_Involucrado = m.Estado_de_Involucrado

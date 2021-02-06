@@ -286,6 +286,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceLugar_del_Robo { set; get; }
         public int[] AdvanceLugar_del_RoboMultiple { set; get; }
 
+        public Filters Zona_de_RoboFilter { set; get; }
+        public string AdvanceZona_de_Robo { set; get; }
+        public int[] AdvanceZona_de_RoboMultiple { set; get; }
+
         public RadioOptions El_Vehiculo_esta_Asegurado { set; get; }
 
         public Filters Nombre_de_la_AseguradoraFilter { set; get; }

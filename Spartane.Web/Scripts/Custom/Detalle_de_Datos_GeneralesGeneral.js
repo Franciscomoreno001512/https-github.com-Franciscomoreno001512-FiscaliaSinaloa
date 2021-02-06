@@ -1181,6 +1181,14 @@ function Otros_Domicilios_InvolucradoCancelRow(rowIndex) {
 	initiateUIControls();
 }
 
+function Otros_Domicilios_InvolucradoMapaRow(rowIndex) {
+    debugger;
+    $("#RowSelected").val(rowIndex);
+    $("#RowSelected").text(rowIndex);
+    $("#modalMapa2").click();
+
+}
+
 function GetOtros_Domicilios_InvolucradoFromDataTable() {
     var Otros_Domicilios_InvolucradoData = [];
     var gridData = Otros_Domicilios_InvolucradoTable.fnGetData();
@@ -1735,28 +1743,6 @@ function GetAutoCompleteDetalle_de_Datos_Generales_Municipio_MunicipioData(data)
     }
     return AutoCompleteMunicipioData;
 }
-var AutoCompletePoblacionData = [];
-function GetAutoCompleteDetalle_de_Datos_Generales_Poblacion_ColoniaData(data) {
-	AutoCompletePoblacionData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompletePoblacionData.push({
-            id: data[i].Clave,
-            text: data[i].Nombre
-        });
-    }
-    return AutoCompletePoblacionData;
-}
-var AutoCompleteColoniaData = [];
-function GetAutoCompleteDetalle_de_Datos_Generales_Colonia_ColoniaData(data) {
-	AutoCompleteColoniaData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteColoniaData.push({
-            id: data[i].Clave,
-            text: data[i].Nombre
-        });
-    }
-    return AutoCompleteColoniaData;
-}
 var AutoCompleteEstado_de_NacimientoData = [];
 function GetAutoCompleteDetalle_de_Datos_Generales_Estado_de_Nacimiento_EstadoData(data) {
 	AutoCompleteEstado_de_NacimientoData = [];
@@ -1778,6 +1764,28 @@ function GetAutoCompleteDetalle_de_Datos_Generales_Municipio_de_Nacimiento_Munic
         });
     }
     return AutoCompleteMunicipio_de_NacimientoData;
+}
+var AutoCompletePoblacionData = [];
+function GetAutoCompleteDetalle_de_Datos_Generales_Poblacion_ColoniaData(data) {
+	AutoCompletePoblacionData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompletePoblacionData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompletePoblacionData;
+}
+var AutoCompleteColoniaData = [];
+function GetAutoCompleteDetalle_de_Datos_Generales_Colonia_ColoniaData(data) {
+	AutoCompleteColoniaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteColoniaData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteColoniaData;
 }
 //Grid GetAutocomplete
 
@@ -2015,18 +2023,18 @@ function ClearControls() {
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
-    $('#Poblacion').empty();
-    $("#Poblacion").append('<option value=""></option>');
-    $('#Poblacion').val('0').trigger('change');
-    $('#Colonia').empty();
-    $("#Colonia").append('<option value=""></option>');
-    $('#Colonia').val('0').trigger('change');
     $('#Estado_de_Nacimiento').empty();
     $("#Estado_de_Nacimiento").append('<option value=""></option>');
     $('#Estado_de_Nacimiento').val('0').trigger('change');
     $('#Municipio_de_Nacimiento').empty();
     $("#Municipio_de_Nacimiento").append('<option value=""></option>');
     $('#Municipio_de_Nacimiento').val('0').trigger('change');
+    $('#Poblacion').empty();
+    $("#Poblacion").append('<option value=""></option>');
+    $('#Poblacion').val('0').trigger('change');
+    $('#Colonia').empty();
+    $("#Colonia").append('<option value=""></option>');
+    $('#Colonia').val('0').trigger('change');
                 Adicciones_de_InvolucradoClearGridData();
                 Lugares_Frecuentes_InvolucradoClearGridData();
                 Datos_Personales_Adicionales_InvolucradoClearGridData();
@@ -2248,18 +2256,18 @@ $(document).ready(function () {
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
-    $('#Poblacion').empty();
-    $("#Poblacion").append('<option value=""></option>');
-    $('#Poblacion').val('0').trigger('change');
-    $('#Colonia').empty();
-    $("#Colonia").append('<option value=""></option>');
-    $('#Colonia').val('0').trigger('change');
     $('#Estado_de_Nacimiento').empty();
     $("#Estado_de_Nacimiento").append('<option value=""></option>');
     $('#Estado_de_Nacimiento').val('0').trigger('change');
     $('#Municipio_de_Nacimiento').empty();
     $("#Municipio_de_Nacimiento").append('<option value=""></option>');
     $('#Municipio_de_Nacimiento').val('0').trigger('change');
+    $('#Poblacion').empty();
+    $("#Poblacion").append('<option value=""></option>');
+    $('#Poblacion').val('0').trigger('change');
+    $('#Colonia').empty();
+    $("#Colonia").append('<option value=""></option>');
+    $('#Colonia').val('0').trigger('change');
                 Adicciones_de_InvolucradoClearGridData();
                 Lugares_Frecuentes_InvolucradoClearGridData();
                 Datos_Personales_Adicionales_InvolucradoClearGridData();

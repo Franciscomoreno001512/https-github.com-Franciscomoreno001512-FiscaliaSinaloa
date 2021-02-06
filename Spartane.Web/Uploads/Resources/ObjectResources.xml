@@ -1302,8 +1302,40 @@
 <Object Id="45739" culture="es-es" value="Estatus Quejas MP" />
 <Object Id="45730" culture="en-us" value="Tipo de queja/sugerencia" />
 <Object Id="45730" culture="es-es" value="Tipo de queja/sugerencia" />
+<Object Id="46018" culture="en-us" value="Zona de Robo" />
+<Object Id="46018" culture="es-es" value="Zona de Robo" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

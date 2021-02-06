@@ -183,6 +183,10 @@ namespace Spartane.Web.SqlModelMapper
                 case "Discapacidad_Psicosocial[Descripcion]":
                 case "Discapacidad_PsicosocialDescripcion":
                     return "Discapacidades_Psicosociales.Descripcion";
+                case "Se_Informaron_sus_Derechos":
+                    return "Detalle_de_Imputado.Se_Informaron_sus_Derechos";
+                case "Se_Informo_el_Procedimiento":
+                    return "Detalle_de_Imputado.Se_Informo_el_Procedimiento";
                 case "Nombres2":
                     return "Detalle_de_Imputado.Nombres2";
                 case "Apellido_Paterno2":
@@ -480,6 +484,14 @@ namespace Spartane.Web.SqlModelMapper
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "Gravidez")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Se_Informaron_sus_Derechos")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Se_Informo_el_Procedimiento")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

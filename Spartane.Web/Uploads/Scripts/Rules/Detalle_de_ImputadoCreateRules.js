@@ -3,6 +3,16 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function() {
+    if( 
+        EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('101', '101') ||
+        EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('2', '2') ||
+        EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('103', '103') 
+      ) {
+        //$("#Detalle_de_ImputadoGuardar").remove();
+        $("#Detalle_de_ImputadoGuardarYNuevo").remove();
+        $("#Detalle_de_ImputadoGuardarYCopia").remove();
+    }
+
     //CONVERTIR A MAYUSCULAS AL BLUR
     $('input[type="text"],textarea').blur(function() {
         this.value = this.value.toUpperCase();
@@ -2992,7 +3002,7 @@ if(operation == 'New'){
 //BusinessRuleId:3605, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
  EvaluaQuery("  EXEC ActualizarNombresProbableResponsable FLDD[lblClave]", rowIndex, nameOfTable);
-
+
 }
 //BusinessRuleId:3605, Attribute:2, Operation:Object, Event:AFTERSAVING
 
@@ -3607,3 +3617,625 @@ $("#Estatura").keyup(function() {
         }
     }
 });
+
+
+
+
+function CargaGoogleMaps() {
+
+    debugger;
+
+    debugger;
+    $("#Codigo_Postal").val((""));
+    $('#Pais').val(null).trigger('change');
+    $('#Estado').val(null).trigger('change');
+    $('#Municipio').val(null).trigger('change');
+    $('#Colonia').val(null).trigger('change');
+    $('#Poblacion').val(null).trigger('change');
+    $("#Calle").val((""));
+    $("#Numero_Exterior").val((""));
+    $('#Latitud').val("");
+    $('#Longitud').val("");
+
+
+    var map; // el mapa
+    var marker; //el marcador
+    var myLatlng; //el objeto latitud y longitud
+    var geocoder = new google.maps.Geocoder();
+    var infowindow = new google.maps.InfoWindow();
+    initialize();
+    function initialize() {
+        var mapOptions = {
+            zoom: jQuery('input[name=address]').val() == "" ? 8 : 18,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(document.getElementById("gmap"), mapOptions); //gmap es el DIV que contendrá el Mapa
+        marker = new google.maps.Marker({
+            map: map,
+            position: myLatlng,
+            draggable: true // se refiere a que se puede navagar por el mapa
+        });
+
+        // Se dispara despúes de que se mueve el marcador
+        geocoder.geocode({ 'latLng': myLatlng }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    $('#Latitud').val(marker.getPosition().lat());
+                    $('#Longitud').val(marker.getPosition().lng());
+                    infowindow.setContent(results[0].formatted_address); //presenta la direccion completa sobre el marquer donde estamos posicionados es como una especie de ToolTip
+                    infowindow.open(map, marker);
+                }
+            }
+        });
+
+        // Evento que se dispara cuando se mueve el marcador en en el mapa (es el Marcador de posicion de color Rojo)
+        // cada pixel que se mueve o se arrastra se recalcula la latitud y la longitud
+        google.maps.event.addListener(marker, 'dragend', function () {
+            geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        debugger;
+                        //  for (var i = results[0].address_components.length; i < 0 ; i--) {
+                        for (var i = results[0].address_components.length - 1; i >= 0; i--) {
+
+                            if (results[0].address_components[i].types[0] == "postal_code") {
+                                $("#Codigo_Postal").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "country") {
+                                debugger;
+                                CambiaPais(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Pais' + rowIndex), results[0].address_components[i].long_name);
+
+
+                            }
+
+                            if (results[0].address_components[i].types[0] == "administrative_area_level_1") {
+                                CambiaEstado(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Estado' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+                            if (results[0].address_components[i].types[0] == "locality") {
+                                CambiaMunicipio(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+
+                            if (results[0].address_components[i].types[0] == "political") { // segun spartanMetadata poblacion es igual a colonia
+
+                                CambiaPoblacion(results[0].address_components[i].long_name);
+                                CambiaColonia(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Colonia' + rowIndex), results[0].address_components[i].long_name);
+                                //AsignarValor($('#' + nameOfTable + 'Poblacion' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+
+
+                            if (results[0].address_components[i].types[0] == "route") {
+                                $("#Calle").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "street_number") {
+                                $("#Numero_Exterior").val((results[0].address_components[i].long_name));
+                            }
+
+
+
+                        }
+                        $('#Latitud').val(marker.getPosition().lat());
+                        $('#Longitud').val(marker.getPosition().lng());
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    }
+                }
+            });
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    // Buscamos la direccion escrita (solo busca todavia no asigna) y no posicionamos sobre ella, se dispara cuando se le da click al boton buscar dentro de la modal que contiene al mapa
+    // var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        address: jQuery('input[name=address]').val() == "" ? "Badiraguto Sinaloa,Mexico" : $('input[name=address]').val(),
+        region: 'no'
+    },
+        function (results, status) {
+            if (status.toLowerCase() == 'ok') {
+                var coords = new google.maps.LatLng(
+                    results[0]['geometry']['location'].lat(), //asignamos Latitud de la dirección buscada
+                    results[0]['geometry']['location'].lng() //asignamos Longitud de la dirección buscada
+                );
+                map.setCenter(coords); //para que la direción buscada se muestre centrada en nel mapa
+
+                //map.setZoom(10) //zoom
+                marker = new google.maps.Marker({
+                    position: coords,
+                    map: map,
+                    title: jQuery('input[name=address]').val(),
+                });
+                myLatlng = coords;
+                initialize();
+            } else {
+                alert(status);
+                return;
+            }
+        });
+}
+
+function CambiaPais(deesc) {
+    debugger;
+    $('#Pais').val(null).trigger('change');
+    var control = $('#Pais');
+    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+    var query = "select top 1 clave from pais where dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    control.select2({ data: data });
+    control.val(valorPaisId).trigger('change');
+
+}
+function CambiaEstado(deesc) {
+    debugger;
+    $('#Estado').val(null).trigger('change');
+    var control = $('#Estado');
+    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+    var query = "select top 1 clave from Estado where pais = '" + $('#Pais').val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    control.select2({ data: data });
+    control.val(valorPaisId).trigger('change');
+
+}
+
+
+
+
+function CambiaMunicipio(deesc) {
+    debugger;
+    $('#Municipio').val(null).trigger('change');
+    var control = $('#Municipio');
+    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+    var query = "select top 1 clave from Municipio where estado = '" + $('#Estado').val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    control.select2({ data: data });
+    control.val(valorPaisId).trigger('change');
+}
+
+function CambiaPoblacion(deesc) {
+    debugger;
+    $('#Poblacion').val(null).trigger('change');
+    var control = $('#Poblacion');
+    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+    var query = "select top 1 clave from Colonia where Municipio = '" + $('#Municipio').val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    control.select2({ data: data });
+    control.val(valorPaisId).trigger('change');
+}
+function CambiaColonia(deesc) {
+    debugger;
+    $('#Colonia').val(null).trigger('change');
+    var control = $('#Colonia');
+    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+    var query = "select top 1 clave from Colonia where Municipio = '" + $('#Municipio').val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    control.select2({ data: data });
+    control.val(valorPaisId).trigger('change');
+}
+
+function CargaGoogleMapsOtrosDomicilios() {
+
+    debugger;
+
+    debugger;
+    //$("#Codigo_Postal").val((""));
+    //$('#Pais').val(null).trigger('change');
+    //$('#Estado').val(null).trigger('change');
+    //$('#Municipio').val(null).trigger('change');
+    //$('#Colonia').val(null).trigger('change');
+    //$('#Poblacion').val(null).trigger('change');
+    //$("#Calle").val((""));
+    //$("#Numero_Exterior").val((""));
+    //$('#Latitud').val("");
+    //$('#Longitud').val("");
+
+    var RowSelected = $("#RowSelected").val();
+    var lat = $('#Otros_Domicilios_Probable_Responsable_Coordenada_X_' + RowSelected + '').val();
+    var long = $('#Otros_Domicilios_Probable_Responsable_Coordenada_Y_' + RowSelected + '').val();
+
+    var map; // el mapa
+    var marker; //el marcador
+    var myLatlng; //el objeto latitud y longitud
+    var geocoder = new google.maps.Geocoder();
+    var infowindow = new google.maps.InfoWindow();
+    initialize();
+    function initialize() {
+        var mapOptions = {
+            zoom: jQuery('input[name=address2]').val() == "" ? 8 : 18,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(document.getElementById("gmap2"), mapOptions); //gmap es el DIV que contendrá el Mapa
+        marker = new google.maps.Marker({
+            map: map,
+            position: myLatlng,
+            draggable: true // se refiere a que se puede navagar por el mapa
+        });
+
+        // Se dispara despúes de que se mueve el marcador
+        geocoder.geocode({ 'latLng': myLatlng }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    $('#Otros_Domicilios_Probable_Responsable_Coordenada_X_' + RowSelected + '').val(marker.getPosition().lat());
+                    $('#Otros_Domicilios_Probable_Responsable_Coordenada_Y_' + RowSelected + '').val(marker.getPosition().lng());
+                    infowindow.setContent(results[0].formatted_address); //presenta la direccion completa sobre el marquer donde estamos posicionados es como una especie de ToolTip
+                    infowindow.open(map, marker);
+                }
+            }
+        });
+
+        // Evento que se dispara cuando se mueve el marcador en en el mapa (es el Marcador de posicion de color Rojo)
+        // cada pixel que se mueve o se arrastra se recalcula la latitud y la longitud
+        google.maps.event.addListener(marker, 'dragend', function () {
+            geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        debugger;
+                        //  for (var i = results[0].address_components.length; i < 0 ; i--) {
+                        for (var i = results[0].address_components.length - 1; i >= 0; i--) {
+
+                            if (results[0].address_components[i].types[0] == "postal_code") {
+                                $("#Codigo_Postal").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "country") {
+                                debugger;
+                                CambiaPais(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Pais' + rowIndex), results[0].address_components[i].long_name);
+
+
+                            }
+
+                            if (results[0].address_components[i].types[0] == "administrative_area_level_1") {
+                                CambiaEstado(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Estado' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+                            if (results[0].address_components[i].types[0] == "locality") {
+                                CambiaMunicipio(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+
+                            if (results[0].address_components[i].types[0] == "political") { // segun spartanMetadata poblacion es igual a colonia
+
+                                CambiaPoblacion(results[0].address_components[i].long_name);
+                                CambiaColonia(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Colonia' + rowIndex), results[0].address_components[i].long_name);
+                                //AsignarValor($('#' + nameOfTable + 'Poblacion' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+
+
+                            if (results[0].address_components[i].types[0] == "route") {
+                                $("#Calle").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "street_number") {
+                                $("#Numero_Exterior").val((results[0].address_components[i].long_name));
+                            }
+
+
+
+                        }
+                        $('#Otros_Domicilios_Probable_Responsable_Coordenada_X_' + RowSelected + '').val(marker.getPosition().lat());
+                        $('#Otros_Domicilios_Probable_Responsable_Coordenada_Y_' + RowSelected + '').val(marker.getPosition().lng());
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    }
+                }
+            });
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    // Buscamos la direccion escrita (solo busca todavia no asigna) y no posicionamos sobre ella, se dispara cuando se le da click al boton buscar dentro de la modal que contiene al mapa
+    // var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        address: jQuery('input[name=address2]').val() == "" ? "Badiraguto Sinaloa,Mexico" : $('input[name=address2]').val(),
+        region: 'no'
+    },
+        function (results, status) {
+            if (status.toLowerCase() == 'ok') {
+                var coords = new google.maps.LatLng(
+                    results[0]['geometry']['location'].lat(), //asignamos Latitud de la dirección buscada
+                    results[0]['geometry']['location'].lng() //asignamos Longitud de la dirección buscada
+                );
+                map.setCenter(coords); //para que la direción buscada se muestre centrada en nel mapa
+
+                //map.setZoom(10) //zoom
+                marker = new google.maps.Marker({
+                    position: coords,
+                    map: map,
+                    title: jQuery('input[name=address2]').val(),
+                });
+                myLatlng = coords;
+                initialize();
+            } else {
+                alert(status);
+                return;
+            }
+        });
+}
+
+function CambiaPaisRow(deesc) {
+    debugger;
+    var RowSelected = $("#RowSelected").val();
+    $("#Otros_Domicilios_Probable_Responsable_Pais_" + RowSelected + "").val(null).trigger('change');
+    var control = $("#Otros_Domicilios_Probable_Responsable_Pais_" + RowSelected + "");
+    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+    var query = "select top 1 clave from pais where dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    //control.select2('open');
+    //$('.select2-search__field').val(valorPaisId).trigger('keyup');
+    //control.select2('close');
+    //var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    //control.select2({ data: data });
+    control.val(valorPaisId).trigger('change');
+
+}
+function CambiaEstadoRow(deesc) {
+    debugger;
+
+    var rdescp = EvaluaQuery("select dbo.RemoveAccentMarks ('México')");
+    var queryp = "select top 1 clave from pais where dbo.RemoveAccentMarks(nombre) like '%" + rdescp + "%'";
+    var valorPaisId = EvaluaQuery(queryp)
+
+
+    var RowSelected = $("#RowSelected").val();
+    $("#Otros_Domicilios_Probable_Responsable_Estado_" + RowSelected + "").val(null).trigger('change');
+    var control = $("#Otros_Domicilios_Probable_Responsable_Estado_" + RowSelected + "");
+    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+    var query = "select top 1 clave from Estado where pais = '" + valorPaisId + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    var data = eval('AutoCompleteEstadoData');
+    control.select2({ data: data });
+    control.val(valorPaisId).trigger('change');
+
+}
+
+function CambiaMunicipioRow(deesc) {
+    debugger;
+
+    var RowSelected = $("#RowSelected").val();
+    $("#Otros_Domicilios_Probable_Responsable_Municipio_" + RowSelected + "").val(null).trigger('change');
+    var control = $("#Otros_Domicilios_Probable_Responsable_Municipio_" + RowSelected + "");
+    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+    var query = "select top 1 clave from Municipio where estado = '" + $("#Otros_Domicilios_Probable_Responsable_Estado_" + RowSelected + "").val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    var data = eval('AutoCompleteMunicipioData');
+    control.select2({ data: data });
+    control.val(valorPaisId).trigger('change');
+}
+
+function CambiaPoblacionRow(deesc) {
+    debugger;
+
+    var RowSelected = $("#RowSelected").val();
+    $("#Otros_Domicilios_Probable_Responsable_Poblacion_" + RowSelected + "").val(null).trigger('change');
+    var control = $("#Otros_Domicilios_Probable_Responsable_Poblacion_" + RowSelected + "");
+    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+    var query = "select top 1 clave from Colonia where Municipio = '" + $("#Otros_Domicilios_Probable_Responsable_Municipio_" + RowSelected + "").val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    var data = eval('AutoCompletePoblacionData');
+    control.select2({ data: data });
+    control.val(valorPaisId).trigger('change');
+}
+function CambiaColoniaRow(deesc) {
+    debugger;
+
+    var RowSelected = $("#RowSelected").val();
+    $("#Otros_Domicilios_Probable_Responsable_Colonia_" + RowSelected + "").val(null).trigger('change');
+    var control = $("#Otros_Domicilios_Probable_Responsable_Colonia_" + RowSelected + "");
+    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+    var query = "select top 1 clave from Colonia where Municipio = '" + $("#Otros_Domicilios_Probable_Responsable_Municipio_" + RowSelected + "").val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    var data = eval('AutoCompleteColoniaData');
+    control.select2({ data: data });
+    control.val(valorPaisId).trigger('change');
+}
+
+
+function CargaGoogleMapsOtrosDomicilios() {
+
+    debugger;
+
+    var RowSelected = $("#RowSelected").val();
+    $("#Otros_Domicilios_Probable_Responsable_Codigo_Postal_" + RowSelected + "").val((""));
+    $('#Otros_Domicilios_Probable_Responsable_Estado_' + RowSelected + '').val(null).trigger('change');
+    $('#Otros_Domicilios_Probable_Responsable_Municipio_' + RowSelected + '').val(null).trigger('change');
+    $('#Otros_Domicilios_Probable_Responsable_Estado_' + RowSelected + '').val(null).trigger('change');
+    $('#Otros_Domicilios_Probable_Responsable_Municipio_' + RowSelected + '').val(null).trigger('change');
+    $('#Otros_Domicilios_Probable_Responsable_Colonia_' + RowSelected + '').val(null).trigger('change');
+    $('#Otros_Domicilios_Probable_Responsable_Poblacion_' + RowSelected + '').val(null).trigger('change');
+    $('#Otros_Domicilios_Probable_Responsable_Calle_' + RowSelected + '').val((""));
+    $('#Otros_Domicilios_Probable_Responsable_Numero_Exterior_' + RowSelected + '').val((""));
+    $('#Otros_Domicilios_Probable_Responsable_Numero_Interior_' + RowSelected + '').val((""));
+    $('#Otros_Domicilios_Probable_Responsable_Coordenada_X_' + RowSelected + '').val((""));
+    $('#Otros_Domicilios_Probable_Responsable_Coordenada_Y_' + RowSelected + '').val((""));
+
+
+    var map; // el mapa
+    var marker; //el marcador
+    var myLatlng; //el objeto latitud y longitud
+    var geocoder = new google.maps.Geocoder();
+    var infowindow = new google.maps.InfoWindow();
+    initialize();
+    function initialize() {
+        var mapOptions = {
+            zoom: jQuery('input[name=address2]').val() == "" ? 8 : 18,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(document.getElementById("gmap2"), mapOptions); //gmap es el DIV que contendrá el Mapa
+        marker = new google.maps.Marker({
+            map: map,
+            position: myLatlng,
+            draggable: true // se refiere a que se puede navagar por el mapa
+        });
+
+        // Se dispara despúes de que se mueve el marcador
+        geocoder.geocode({ 'latLng': myLatlng }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    $('#Otros_Domicilios_Probable_Responsable_Coordenada_X_' + RowSelected + '').val(marker.getPosition().lat());
+                    $('#Otros_Domicilios_Probable_Responsable_Coordenada_Y_' + RowSelected + '').val(marker.getPosition().lng());
+                    infowindow.setContent(results[0].formatted_address); //presenta la direccion completa sobre el marquer donde estamos posicionados es como una especie de ToolTip
+                    infowindow.open(map, marker);
+                }
+            }
+        });
+
+        // Evento que se dispara cuando se mueve el marcador en en el mapa (es el Marcador de posicion de color Rojo)
+        // cada pixel que se mueve o se arrastra se recalcula la latitud y la longitud
+        google.maps.event.addListener(marker, 'dragend', function () {
+            geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        debugger;
+                        //  for (var i = results[0].address_components.length; i < 0 ; i--) {
+                        for (var i = results[0].address_components.length - 1; i >= 0; i--) {
+
+                            if (results[0].address_components[i].types[0] == "postal_code") {
+                                $("#Otros_Domicilios_Probable_Responsable_Codigo_Postal_" + RowSelected + "").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "country") {
+                                debugger;
+                                CambiaPaisRow(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Pais' + rowIndex), results[0].address_components[i].long_name);
+
+
+                            }
+
+                            if (results[0].address_components[i].types[0] == "administrative_area_level_1") {
+                                CambiaEstadoRow(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Estado' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+                            if (results[0].address_components[i].types[0] == "locality") {
+                                CambiaMunicipioRow(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+
+                            if (results[0].address_components[i].types[0] == "political") { // segun spartanMetadata poblacion es igual a colonia
+
+                                CambiaPoblacionRow(results[0].address_components[i].long_name);
+                                CambiaColoniaRow(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Colonia' + rowIndex), results[0].address_components[i].long_name);
+                                //AsignarValor($('#' + nameOfTable + 'Poblacion' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+
+
+                            if (results[0].address_components[i].types[0] == "route") {
+                                $("#Otros_Domicilios_Probable_Responsable_Calle_" + RowSelected + "").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "street_number") {
+                                $("#Otros_Domicilios_Probable_Responsable_Numero_Exterior_" + RowSelected + "").val((results[0].address_components[i].long_name));
+                            }
+
+
+
+                        }
+                        $('#Otros_Domicilios_Probable_Responsable_Coordenada_X_' + RowSelected + '').val(marker.getPosition().lat());
+                        $('#Otros_Domicilios_Probable_Responsable_Coordenada_Y_' + RowSelected + '').val(marker.getPosition().lng());
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    }
+                }
+            });
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    // Buscamos la direccion escrita (solo busca todavia no asigna) y no posicionamos sobre ella, se dispara cuando se le da click al boton buscar dentro de la modal que contiene al mapa
+    // var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        address: jQuery('input[name=address2]').val() == "" ? "Badiraguto Sinaloa,Mexico" : $('input[name=address2]').val(),
+        region: 'no'
+    },
+        function (results, status) {
+            if (status.toLowerCase() == 'ok') {
+                var coords = new google.maps.LatLng(
+                    results[0]['geometry']['location'].lat(), //asignamos Latitud de la dirección buscada
+                    results[0]['geometry']['location'].lng() //asignamos Longitud de la dirección buscada
+                );
+                map.setCenter(coords); //para que la direción buscada se muestre centrada en nel mapa
+
+                //map.setZoom(10) //zoom
+                marker = new google.maps.Marker({
+                    position: coords,
+                    map: map,
+                    title: jQuery('input[name=address2]').val(),
+                });
+                myLatlng = coords;
+                initialize();
+            } else {
+                alert(status);
+                return;
+            }
+        });
+}
+
+
+
+
+
+
+$("#Codigo_Postal").keyup(function () {
+    var str = $('#' + nameOfTable + 'Codigo_Postal' + rowIndex).val();
+    if (str != "") {
+        var regNUM = /^[0-9]{1,5}$/
+        var validacionnum = regNUM.test(str)
+        if (validacionnum == false) {
+            $('#' + nameOfTable + 'Codigo_Postal' + rowIndex).val($('#' + nameOfTable + 'Codigo_Postal' + rowIndex).val().slice(0, -1));
+        }
+    }
+});
+

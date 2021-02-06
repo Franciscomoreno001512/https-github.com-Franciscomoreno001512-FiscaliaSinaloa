@@ -115,6 +115,9 @@
     List<SelectListItem> varTipo_de_Lugar_del_Robo_Lugar_del_Robo = null;
     if (ViewBag.Tipo_de_Lugar_del_Robos_Lugar_del_Robo != null)
     { varTipo_de_Lugar_del_Robo_Lugar_del_Robo = (List<SelectListItem>)ViewBag.Tipo_de_Lugar_del_Robos_Lugar_del_Robo; }
+    List<SelectListItem> varZona_de_Robo_Zona_de_Robo = null;
+    if (ViewBag.Zona_de_Robos_Zona_de_Robo != null)
+    { varZona_de_Robo_Zona_de_Robo = (List<SelectListItem>)ViewBag.Zona_de_Robos_Zona_de_Robo; }
     List<SelectListItem> varAseguradora_de_Vehiculo_Nombre_de_la_Aseguradora = null;
     if (ViewBag.Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora != null)
     { varAseguradora_de_Vehiculo_Nombre_de_la_Aseguradora = (List<SelectListItem>)ViewBag.Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora; }
@@ -1421,6 +1424,34 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Lugar_del_Robo', 'Lugar_del_Robo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divZona_de_Robo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_DelitoResources.Zona_de_Robo</label>
+                                <div class="col-sm-8" data-field-id="Zona_de_Robo" data-attribute="271591" data-field-name="@Resources.Detalle_de_DelitoResources.Zona_de_Robo">
+                                    <select class="form-control Datos_de_Robo_de_Vehiculo" data-val="true" data-val-number="The field Zona de Robo must be a number." data-val-required="The Zona de Robo field is required." id="Zona_de_Robo" name="Zona_de_Robo">
+                                        <option value=""></option>
+                                        @if (varZona_de_Robo_Zona_de_Robo != null){ 
+                                            foreach (var itemZona_de_Robo in varZona_de_Robo_Zona_de_Robo)
+                                            {
+                                                if (itemZona_de_Robo.Value == Convert.ToString(Model.Zona_de_Robo))
+                                                {
+                                                    <option value="@itemZona_de_Robo.Value" selected>@itemZona_de_Robo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemZona_de_Robo.Value">@itemZona_de_Robo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Zona_de_Robo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 271591).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Zona_de_Robo', 'Zona_de_Robo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -3917,6 +3948,7 @@
                     $('#Latitud_Robo').val(result.data.Latitud_Robo);
                     $('#Longitud_Robo').val(result.data.Longitud_Robo);
                     $('#Lugar_del_Robo').val(result.data.Lugar_del_Robo);
+                    $('#Zona_de_Robo').val(result.data.Zona_de_Robo);
                     $('#El_Vehiculo_esta_Asegurado').prop('checked', result.data.El_Vehiculo_esta_Asegurado);
                     $('#Nombre_de_la_Aseguradora').val(result.data.Nombre_de_la_Aseguradora);
                     $('#Motor').val(result.data.Motor);
@@ -3974,6 +4006,7 @@
                 data.append('Latitud_Robo', $('#Latitud_Robo').val());
                 data.append('Longitud_Robo', $('#Longitud_Robo').val());
                 data.append('Lugar_del_Robo', $('#Lugar_del_Robo').val());
+                data.append('Zona_de_Robo', $('#Zona_de_Robo').val());
                 data.append('El_Vehiculo_esta_Asegurado', $('#El_Vehiculo_esta_Asegurado').prop('checked'));
                 data.append('Nombre_de_la_Aseguradora', $('#Nombre_de_la_Aseguradora').val());
                 data.append('Motor', $('#Motor').val());

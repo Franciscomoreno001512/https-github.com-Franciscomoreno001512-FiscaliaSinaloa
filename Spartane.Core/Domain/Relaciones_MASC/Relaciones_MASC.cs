@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Spartane.Core.Domain.Estatus_Solicitud;
 using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Detalle_de_Relaciones;
 using Spartane.Core.Domain.Spartan_User;
@@ -27,6 +28,7 @@ namespace Spartane.Core.Domain.Relaciones_MASC
     public class Relaciones_MASC: BaseEntity
     {
         public int Clave { get; set; }
+        public int? Estatus { get; set; }
         public int? Numero_de_Expediente { get; set; }
         public string Numero_de_Procedimiento { get; set; }
         public int? idRelacionOrigen { get; set; }
@@ -56,6 +58,8 @@ namespace Spartane.Core.Domain.Relaciones_MASC
         public short? Resultado_proc { get; set; }
         public string Motivo_de_Rechazo_proc { get; set; }
 
+        [ForeignKey("Estatus")]
+        public virtual Spartane.Core.Domain.Estatus_Solicitud.Estatus_Solicitud Estatus_Estatus_Solicitud { get; set; }
         [ForeignKey("Numero_de_Expediente")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Numero_de_Expediente_Solicitud { get; set; }
         [ForeignKey("idRelacionOrigen")]
@@ -84,6 +88,7 @@ namespace Spartane.Core.Domain.Relaciones_MASC
 	public class Relaciones_MASC_Datos_Generales
     {
                 public int Clave { get; set; }
+        public int? Estatus { get; set; }
         public int? Numero_de_Expediente { get; set; }
         public string Numero_de_Procedimiento { get; set; }
         public int? idRelacionOrigen { get; set; }
@@ -92,7 +97,9 @@ namespace Spartane.Core.Domain.Relaciones_MASC
         public string Observaciones { get; set; }
         public string Descripcion { get; set; }
 
-		        [ForeignKey("Numero_de_Expediente")]
+		        [ForeignKey("Estatus")]
+        public virtual Spartane.Core.Domain.Estatus_Solicitud.Estatus_Solicitud Estatus_Estatus_Solicitud { get; set; }
+        [ForeignKey("Numero_de_Expediente")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Numero_de_Expediente_Solicitud { get; set; }
         [ForeignKey("idRelacionOrigen")]
         public virtual Spartane.Core.Domain.Detalle_de_Relaciones.Detalle_de_Relaciones idRelacionOrigen_Detalle_de_Relaciones { get; set; }

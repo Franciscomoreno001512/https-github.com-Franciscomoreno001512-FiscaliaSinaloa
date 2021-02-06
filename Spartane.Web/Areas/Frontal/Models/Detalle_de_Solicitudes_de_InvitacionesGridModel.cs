@@ -31,6 +31,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string ResultadoDescripcion { get; set; }
         public int? Incidente_en_la_Recepcion { get; set; }
         public string Incidente_en_la_RecepcionDescripcion { get; set; }
+        public int? Documento { get; set; }
+        public Grid_File DocumentoFileInfo { set; get; }
         
     }
 }

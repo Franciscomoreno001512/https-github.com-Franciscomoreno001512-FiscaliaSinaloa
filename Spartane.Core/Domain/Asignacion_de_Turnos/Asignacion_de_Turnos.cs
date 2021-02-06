@@ -39,6 +39,7 @@ namespace Spartane.Core.Domain.Asignacion_de_Turnos
         public short? Edad { get; set; }
         public int? Tipo_de_Atencion { get; set; }
         public int? Tipo_de_Identificacion { get; set; }
+        public string Otra_Identificacion { get; set; }
         public string Numero_de_Identificacion { get; set; }
         public bool? Urgencia { get; set; }
         public int? Tipo_de_Urgencia { get; set; }
@@ -91,6 +92,7 @@ namespace Spartane.Core.Domain.Asignacion_de_Turnos
         public short? Edad { get; set; }
         public int? Tipo_de_Atencion { get; set; }
         public int? Tipo_de_Identificacion { get; set; }
+        public string Otra_Identificacion { get; set; }
         public string Numero_de_Identificacion { get; set; }
         public bool? Urgencia { get; set; }
         public int? Tipo_de_Urgencia { get; set; }

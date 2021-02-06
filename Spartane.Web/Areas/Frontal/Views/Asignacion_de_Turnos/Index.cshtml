@@ -23,6 +23,7 @@
 
 }
 <style>
+
     .MarginBottom {
         margin-bottom: 1%;
     }
@@ -47,11 +48,11 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>@Resources.Asignacion_de_TurnosResources.Asignacion_de_Turnos</h2>
-        
+
         <ol class="breadcrumb">
             <li>
                 <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
-                
+
             </li>
             <li class="active">
                 @if (Session["PhaseName"] != null)
@@ -62,12 +63,12 @@
                 {
                     <strong>@Resources.Asignacion_de_TurnosResources.Asignacion_de_Turnos</strong>
                 }
-                
+
             </li>
         </ol>
     </div>
     <div class="col-lg-2">
-		@{
+        @{
             if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
             {
                 <h2>&nbsp;</h2>
@@ -107,33 +108,26 @@
                 <div aria-hidden="true" data-backdrop="static" class="modal fade in Asignacion_de_TurnosAddBusinessRuleModal" id="Asignacion_de_TurnosAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                 </div>
             }
-		}
+        }
     </div>
 </div>
-
 <input type="hidden" value="List" name="Operation" id="Operation" />
-
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
-
 <span id="popupNotification"></span>
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-
                     <div id="jsGrid">
                     </div>
-
                     @* Model Start Here *@
-
-                    @using (Ajax.BeginForm("", "", new AjaxOptions { OnSuccess="" }))
+                    @using (Ajax.BeginForm("", "", new AjaxOptions { OnSuccess = "" }))
                     {
-                        
+
                     }
-                    
-                     @* Model Print Start*@
+
+                    @* Model Print Start*@
                     <div id="exportModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -154,8 +148,8 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                            </div>
-                                        </div>
+                                    </div>
+                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
                                     <button type="button" id="btnPrint" class="btn btn-primary" onclick="return PrintDocument(3);">@Resources.Resources.Print</button>
@@ -167,7 +161,7 @@
                             <!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div>
-					@* Model Print Format Start*@
+                    @* Model Print Format Start*@
                     <div id="printFormatModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -178,30 +172,29 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div id="spartan_formats" class="col-md-6 col-md-offset-0">
-                                                                                                                   
+
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
-                                        <button type="button" id="btnPrint" class="btn btn-primary" onclick="return ExportToPdfFormats();">@Resources.Resources.Print @Resources.Resources.PDF</button>         
+                                        <button type="button" id="btnPrint" class="btn btn-primary" onclick="return ExportToPdfFormats();">@Resources.Resources.Print @Resources.Resources.PDF</button>
                                     </div>
                                     <div class="row">
                                     </div>
-                                </div>                              
+                                </div>
                             </div>
                             <!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div>
                     <div id="botonera">
-						@if (permission.New)
-                        { 
+                        @if (permission.New)
+                        {
                             @Html.ActionLink(Resources.Resources.Create, "Create", "Asignacion_de_Turnos", new { @class = "btn btn-primary" })
                         }
                         @Html.ActionLink(@Resources.Resources.AdvanceSearch, "ShowAdvanceFilter", "Asignacion_de_Turnos", new { previousFilters = advanceSearch }, new { @class = ("btn btn-primary") })
                         <button onclick="ClearFilter()" class=" btn btn-primary">@Resources.Resources.ClearFilter</button>
-                                </div>
+                    </div>
                     <div class="table-responsive">
-
                         <table id="tblAsignacion_de_Turnos" class="table table-striped table-bordered table-hover dataTables-example scroll_content" style="overflow-x:scroll;" cellspacing="0">
                             <thead>
                                 <tr>
@@ -209,7 +202,7 @@
                                     <th>@Resources.Asignacion_de_TurnosResources.Folio</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Fecha_de_Turno</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Hora_de_Turno</th>
-                                    <th>Turno</th>
+                                    <th>@Resources.Asignacion_de_TurnosResources.Numero_de_Turno</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Unidad_de_Atencion</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Recepcion</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Nombres</th>
@@ -220,6 +213,7 @@
                                     <th>@Resources.Asignacion_de_TurnosResources.Edad</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Tipo_de_Atencion</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Tipo_de_Identificacion</th>
+                                    <th>@Resources.Asignacion_de_TurnosResources.Otra_Identificacion</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Numero_de_Identificacion</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Urgencia</th>
                                     <th>@Resources.Asignacion_de_TurnosResources.Tipo_de_Urgencia</th>
@@ -253,6 +247,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -274,20 +269,18 @@
         </div>
     </div>
 </div>
-
 @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
 @Styles.Render("~/plugins/dataPickerStyles")
 @Styles.Render("~/plugins/clockpickerStyles")
 @Styles.Render("~/plugins/awesomeCheckboxStyles")
-
 @Scripts.Render("~/plugins/dataTables")
 @Scripts.Render("~/plugins/dataPicker")
 @Scripts.Render("~/plugins/clockpicker")
 @*@Scripts.Render("~/plugins/slimScroll")*@
-
 <script type="text/javascript" src="~/Scripts/Custom/tablePlugin.js"></script>
 <script type="text/javascript" src="~/Uploads/Scripts/Rules/Asignacion_de_TurnosIndexRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
 <style>
+
     .dataTables_filter {
         display: none;
     }
@@ -297,7 +290,6 @@
         float: left;
     }
 </style>
-
 <script type="text/javascript">
 	var MRWhere = '';
     var MROrder = '';
@@ -314,7 +306,7 @@
         Configure: '@permission.Configure.ToString()' == 'True',
     };
 
-    $(document).ready(function () {	
+    $(document).ready(function () {
 	$('.loading').show();
         $("#frmAdvanceSearch").submit(function (e) {
             e.preventDefault();
@@ -409,7 +401,7 @@ var Folio = "";
         var Hora_de_Finalizacion = "";
 
 
-        var queryString = "&Folio=" + Folio 
+        var queryString = "&Folio=" + Folio
         + "&Fecha_de_Turno=" + Fecha_de_Turno
         + "&Hora_de_Turno=" + Hora_de_Turno
         + "&Numero_de_Turno=" + Numero_de_Turno
@@ -440,7 +432,7 @@ var Folio = "";
         var url = "@Url.Content("~/Frontal/Asignacion_de_Turnos/Export?format=")" + format
             + "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
             + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
-		    + "&where=" + where + "&order=" + order + 
+		    + "&where=" + where + "&order=" + order +
 			+ "&columnsVisible=" + table.columns().visible().join(",") + queryString;
         window.open(url, '_blank');
     };
@@ -453,7 +445,7 @@ var Folio = "";
 
         var queryString = GetQueryString();
 
-        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+	    var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Turno = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Turno = $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -467,6 +459,7 @@ var Folio = "";
         var Edad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Otra_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Urgencia = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Urgencia =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -481,7 +474,7 @@ var Folio = "";
         var Hora_de_Finalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
-        var queryString = "&Folio=" + Folio 
+        var queryString = "&Folio=" + Folio
         + "&Fecha_de_Turno=" + Fecha_de_Turno
         + "&Hora_de_Turno=" + Hora_de_Turno
         + "&Numero_de_Turno=" + Numero_de_Turno
@@ -495,6 +488,7 @@ var Folio = "";
         + "&Edad=" + Edad
         + "&Tipo_de_Atencion=" + Tipo_de_Atencion
         + "&Tipo_de_Identificacion=" + Tipo_de_Identificacion
+        + "&Otra_Identificacion=" + Otra_Identificacion
         + "&Numero_de_Identificacion=" + Numero_de_Identificacion
         + "&Urgencia=" + Urgencia
         + "&Tipo_de_Urgencia=" + Tipo_de_Urgencia
@@ -512,13 +506,13 @@ var Folio = "";
         var url = "@Url.Content("~/Frontal/Asignacion_de_Turnos/Export?format=")" + format
             + "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
             + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
-		    + "&where=" + where + "&order=" + order + 
+		    + "&where=" + where + "&order=" + order +
 			+ "&columnsVisible=" + table.columns().visible().join(",") + queryString;
         window.open(url, '_blank');
     };
 
     function GetQueryString() {
-	
+
 	 var counter = 0;
         var Folio =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Turno = "";//$($('table td .filterData.form-control:input')[counter++]).val();
@@ -534,6 +528,7 @@ var Folio = "";
         var Edad =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Identificacion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+		var Otra_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Identificacion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Urgencia = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Urgencia =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -547,6 +542,20 @@ var Folio = "";
         var Fecha_de_Finalizacion = "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Finalizacion = "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var filtro_urgencia = $('.checkbox:checkbox:checked').val();
+
+
+
+        var LoadTable = $('#LoadTable').val();
+        if (LoadTable == "True") {
+
+            filtro_urgencia = 'undefined';
+            $('.checkbox').trigger('click');
+            $('#LoadTable').val("False");
+
+        }
+
+
+
         if (filtro_urgencia == "on")
 		{
 		Urgencia = "true"
@@ -555,7 +564,7 @@ var Folio = "";
 
 		}
 
-        return "&Folio=" + Folio 
+        return "&Folio=" + Folio
         + "&Fecha_de_Turno=" + Fecha_de_Turno
         + "&Hora_de_Turno=" + Hora_de_Turno
         + "&Numero_de_Turno=" + Numero_de_Turno
@@ -569,6 +578,7 @@ var Folio = "";
         + "&Edad=" + Edad
         + "&Tipo_de_Atencion=" + Tipo_de_Atencion
         + "&Tipo_de_Identificacion=" + Tipo_de_Identificacion
+        + "&Otra_Identificacion=" + Otra_Identificacion
         + "&Numero_de_Identificacion=" + Numero_de_Identificacion
         + "&Urgencia=" + Urgencia
         + "&Tipo_de_Urgencia=" + Tipo_de_Urgencia
@@ -584,14 +594,14 @@ var Folio = "";
 ;
 
     }
-	
-	
+
+
 	$(document).on("click", ".editor_print", function () {
 		var idRecord = $(this).data('idrecord');
         GetFormats(idRecord);
         $("#printFormatModal").data('idrecord', idRecord);
     });
-	
+
 	function GetFormats(idRecord) {
 
         $('#spartan_formats').empty();
@@ -640,17 +650,17 @@ var Folio = "";
             }
         });
     }
-	
+
     function PrintDocument(format) {
 
         var counter = 1;
         currentFilter = table.page.info();
-		
+
 		   var where = MRWhere;
         var order = MROrder;
 
 		var queryString = GetQueryString();
-		
+
 		var url = "@Url.Content("~/Frontal/Asignacion_de_Turnos/Print")?format=3"
 				+ "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
 				+ "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
@@ -753,7 +763,7 @@ var Folio = "";
         });
 
 		setFilterNew('tblAsignacion_de_Turnos');
-		
+
 		var oDatatableStateData;
         // initialize datatable variable
         table = $('#tblAsignacion_de_Turnos').DataTable({
@@ -761,11 +771,11 @@ var Folio = "";
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -784,10 +794,10 @@ var Folio = "";
             "processing": true,
             "serverSide": true,
             "info": true,
-            "lengthMenu": [[-1,10, 20, 50], ["@Resources.Resources.All", 10, 20, 50]],            
+            "lengthMenu": [[-1,10, 20, 50], ["@Resources.Resources.All", 10, 20, 50]],
 			 "ajax": function (data, callback, settings, aoData) {
                 $.ajax({
-                    url: "@Url.Content("~/Frontal/Asignacion_de_Turnos/GetAsignacion_de_TurnosList")", 
+                    url: "@Url.Content("~/Frontal/Asignacion_de_Turnos/GetAsignacion_de_TurnosList")",
                     method: 'Post',
                     data: { "sEcho": data.draw, "iDisplayStart": data.start, "iDisplayLength": data.length, "sortDirection": data.order[0].dir, "sortColumn": data.order[0].column, "columns": data.columns, "where": MRWhere, "order": MROrder, "filters": GetQueryString(), "AdvanceSearch": GetAdvanceSearchQuery() }
                 }).done(callback);
@@ -804,14 +814,14 @@ var Folio = "";
                 return JSON.parse(data);
             },
             "fnStateLoaded": function (oSettings, oData) {
-                oDatatableStateData = oData;              
-                setFilterState('tblAsignacion_de_Turnos', oDatatableStateData); 
+                oDatatableStateData = oData;
+                setFilterState('tblAsignacion_de_Turnos', oDatatableStateData);
             },
             "aoColumns": [
                 {
                     "data": null,
                     "className": "center actionColumn text-nowrap",
-					"orderable": false, 					
+					"orderable": false,
 					"render": function (data, type, full, meta) {
                         var edit = '<a title="@Resources.Resources.Edit" href="@Url.Action("Create", "Asignacion_de_Turnos")?Id=' + data.Folio + '" class="editor_edit edit-MR"><i class="fa fa-edit"></i></a>';
                         if (!permission.Edit)
@@ -825,8 +835,7 @@ var Folio = "";
                         var del = '<a title="@Resources.Resources.Delete" onclick="DeleteAsignacion_de_Turnos(\'' + data.Folio + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
                         if (!permission.Delete)
                             del = '';
-                            
-                        var asignar = "";
+					    var asignar = "";
                         if (data.Estatus_de_TurnoDescripcion == "Por Asignar" &&  Role_ == "4" ) {
                             asignar = '<a title="Asignar" onclick="ToAssign(\'' + data.Folio + '\')"  class="editor_remove eliminar-MR"><img src="/MVCfiscaliasinaloa/Images/autorizar.png" width="16" height="16" /></a>';
                         }
@@ -834,10 +843,10 @@ var Folio = "";
                         if (data.Estatus_de_TurnoDescripcion == "Asignado" && Role_ == "4") {
                             finalizar = '<a title="Finalizar" href="@Url.Action("Create", "Asignacion_de_Turnos")?Id=' + data.Folio + '&finalizaTurno=1" class="editor_remove eliminar-MR"><img src="/MVCfiscaliasinaloa/Images/Terminar.PNG" width="16" height="16" /></a>';
                         }
-                        
+
                         return edit + del + consult + print +  asignar + finalizar;
                     }
-                }, 
+                },
                 { "data": "Folio", "orderable": true, "name": "Folio" }
                 ,{ "data": "Fecha_de_Turno", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Turno" }
                 ,{ "data": "Hora_de_Turno", "orderable": true, "name": "Hora_de_Turno" }
@@ -852,6 +861,7 @@ var Folio = "";
                 ,{ "data": "Edad","className": "dt-right", "orderable": true, "name": "Edad" }
                 ,{ "data": "Tipo_de_AtencionDescripcion", "orderable": true, "name": "Tipo_de_AtencionDescripcion" }
                 ,{ "data": "Tipo_de_IdentificacionNombre", "orderable": true, "name": "Tipo_de_IdentificacionNombre" }
+                ,{ "data": "Otra_Identificacion", "orderable": true, "name": "Otra_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Numero_de_Identificacion", "orderable": true, "name": "Numero_de_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Urgencia", "orderable": true, "name": "Urgencia","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Tipo_de_UrgenciaDescripcion", "orderable": true, "name": "Tipo_de_UrgenciaDescripcion" }
@@ -906,7 +916,7 @@ var Folio = "";
         $('.' + classNameCSV[0]).unbind();
         $('a').tooltip();
         EjecutarValidacionesDespuesDeCrearLista();
-		
+
 		$('#tblAsignacion_de_Turnos').show().css({
             "width": "auto",
             "min-width": "100%"
@@ -918,7 +928,7 @@ var Folio = "";
 
 		ApplySearch(table);
 		$('tfoot tr').insertAfter($('thead tr'));
-		
+
 
         $('.clockpicker').clockpicker();
 
@@ -950,12 +960,11 @@ var Folio = "";
         }
     }
 </script>
-
 <script type="text/javascript">
 	function OpenRules() {
         $.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
             $(".Asignacion_de_TurnosBusinessRuleModal").html(data);
-            $(".Asignacion_de_TurnosBusinessRuleModal").modal('show');           
+            $(".Asignacion_de_TurnosBusinessRuleModal").modal('show');
         });
     }
     function Asignacion_de_TurnosGetBusinessRule() {
@@ -986,8 +995,8 @@ var Folio = "";
                 }
             });
     }
-    
-    
+
+
     function ToAssign(Folio) {
         debugger;
         var orientador = @Convert.ToInt32(Spartane.Web.SessionHelper.UserEntity.Id_User.ToString());
@@ -1026,8 +1035,8 @@ var Folio = "";
                 },
                 error:function(w,r,t){
                     var un =w;
-                    var uu = r; 
-                    var jyj = t; 
+                    var uu = r;
+                    var jyj = t;
 
                 }
 
@@ -1041,13 +1050,13 @@ var Folio = "";
 <input type="hidden" id="ObjectId" name="ObjectId" value="" />
 <input type="hidden" id="Attribute" name="Attribute" value="" />
 <input type="hidden" id="Screen" name="Screen" value="" />
+<input type="hidden" id="LoadTable" name="LoadTable" value="True" />
+
 @section Styles {
-    
+
     @Styles.Render("~/plugins/dateRangeStyles")
     @Styles.Render("~/plugins/dataPickerStyles")
-
 }
-
 @section Scripts {
     @Scripts.Render("~/plugins/dataPicker")
 }

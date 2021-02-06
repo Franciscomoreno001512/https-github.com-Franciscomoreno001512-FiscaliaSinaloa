@@ -15,6 +15,7 @@
   <resource culture="en-US" name="Edad" value="Edad"></resource>
   <resource culture="en-US" name="Tipo_de_Atencion" value="Tipo de Atención"></resource>
   <resource culture="en-US" name="Tipo_de_Identificacion" value="Tipo de Identificación"></resource>
+  <resource culture="en-US" name="Otra_Identificacion" value="Otra Identificación"></resource>
   <resource culture="en-US" name="Numero_de_Identificacion" value="Número de Identificación"></resource>
   <resource culture="en-US" name="Urgencia" value="Urgencia"></resource>
   <resource culture="en-US" name="Tipo_de_Urgencia" value="Tipo de Urgencia"></resource>

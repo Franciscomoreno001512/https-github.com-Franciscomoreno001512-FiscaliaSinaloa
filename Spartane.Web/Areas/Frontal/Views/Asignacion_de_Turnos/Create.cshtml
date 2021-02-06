@@ -398,6 +398,13 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divOtra_Identificacion">
+                                <label class="col-sm-2 control-label">@Resources.Asignacion_de_TurnosResources.Otra_Identificacion</label>
+                                <div class="col-sm-8" data-field-id="Otra_Identificacion" data-attribute="271583" data-field-name="@Resources.Asignacion_de_TurnosResources.Otra_Identificacion">
+                                    <input class="form-control Datos_Generales" id="Otra_Identificacion" name="Otra_Identificacion" type="text" value="@Model.Otra_Identificacion">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Otra_Identificacion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             <div class="form-group" id="divNumero_de_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Asignacion_de_TurnosResources.Numero_de_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Numero_de_Identificacion" data-attribute="265556" data-field-name="@Resources.Asignacion_de_TurnosResources.Numero_de_Identificacion">
@@ -737,8 +744,7 @@
         $(document).ready(function () {
             $('#ObjectId').val('45297');
 		    
-		    
-		    function getParameterByName(name) //courtesy Artem
+		   function getParameterByName(name) //courtesy Artem
             {
                 name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
                 var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -749,7 +755,6 @@
                 else
                     return decodeURIComponent(results[1].replace(/\+/g, " "));
             } 
-	   
                         $('#Fecha_de_Turno').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -808,8 +813,7 @@
                 </text>
             }
             EjecutarValidacionesAlComienzo(); 
-            
-            finalizaTurno = getParameterByName('finalizaTurno');
+			finalizaTurno = getParameterByName('finalizaTurno');
 
             if (finalizaTurno == 1) {
                 $("#Numero_de_Turno").prop('disabled', true);
@@ -831,7 +835,8 @@
                 $("#Asignacion_de_TurnosGuardar").val('FInalizar');
                 $("#Asignacion_de_TurnosGuardarYNuevo").hide();
                 $("#Asignacion_de_TurnosGuardarYCopia").hide();
-            }			
+            }	
+			
         });
 
 
@@ -1109,6 +1114,7 @@
                     $('#Edad').val(result.data.Edad);
                     $('#Tipo_de_Atencion').val(result.data.Tipo_de_Atencion);
                     $('#Tipo_de_Identificacion').val(result.data.Tipo_de_Identificacion);
+                    $('#Otra_Identificacion').val(result.data.Otra_Identificacion);
                     $('#Numero_de_Identificacion').val(result.data.Numero_de_Identificacion);
                     $('#Urgencia').prop('checked', result.data.Urgencia);
                     $('#Tipo_de_Urgencia').val(result.data.Tipo_de_Urgencia);
@@ -1129,7 +1135,6 @@
             });
         }
 		
-
 		function ActualizrFechasFinalizar(Folio) {
                         $.ajax({
                 url: '@Url.Content("~/Frontal/Asignacion_de_Turnos/FinalizarTurno")',
@@ -1140,16 +1145,14 @@
             });
 
         }
-        
-        function Save_Datos_Generales(newId) {
+		function Save_Datos_Generales(newId) {
 			var data = new FormData();
-            var estatus = $('#Estatus_de_Turno').val();
+			var estatus = $('#Estatus_de_Turno').val();
             if (finalizaTurno == 1) { estatus = 3; }
-            
-            var data = new FormData();
-             data.append('Folio', newId);
-            data.append('Fecha_de_Turno', $('#Fecha_de_Turno').val());
-			                data.append('Fecha_de_Turno', $('#Fecha_de_Turno').val());
+			var data = new FormData();
+			data.append('Folio', newId);
+			data.append('Fecha_de_Turno', $('#Fecha_de_Turno').val());
+			data.append('Fecha_de_Turno', $('#Fecha_de_Turno').val());
                 data.append('Hora_de_Turno', $('#Hora_de_Turno').val());
                 data.append('Numero_de_Turno', $('#Numero_de_Turno').val());
                 data.append('Unidad_de_Atencion', $('#Unidad_de_Atencion').val());
@@ -1162,6 +1165,7 @@
                 data.append('Edad', $('#Edad').val());
                 data.append('Tipo_de_Atencion', $('#Tipo_de_Atencion').val());
                 data.append('Tipo_de_Identificacion', $('#Tipo_de_Identificacion').val());
+                data.append('Otra_Identificacion', $('#Otra_Identificacion').val());
                 data.append('Numero_de_Identificacion', $('#Numero_de_Identificacion').val());
                 data.append('Urgencia', $('#Urgencia').prop('checked'));
                 data.append('Tipo_de_Urgencia', $('#Tipo_de_Urgencia').val());
@@ -1190,8 +1194,8 @@
 						newId = result;
 						if (finalizaTurno == 1) {
                             ActualizrFechasFinalizar(newId);
-                        }
-                    }
+                        }                    
+					}
 				},
 				error: function (result) {
 					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");

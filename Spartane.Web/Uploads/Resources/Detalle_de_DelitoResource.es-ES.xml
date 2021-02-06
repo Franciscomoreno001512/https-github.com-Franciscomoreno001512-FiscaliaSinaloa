@@ -74,6 +74,7 @@
   <resource culture="es-es" name="Latitud_Robo" value="Latitud"></resource>
   <resource culture="es-es" name="Longitud_Robo" value="Longitud"></resource>
   <resource culture="es-es" name="Lugar_del_Robo" value="Lugar del Robo"></resource>
+  <resource culture="es-es" name="Zona_de_Robo" value="Zona de Robo"></resource>
   <resource culture="es-es" name="El_Vehiculo_esta_Asegurado" value="¿El Vehículo está Asegurado? "></resource>
   <resource culture="es-es" name="Nombre_de_la_Aseguradora" value="Nombre de la Aseguradora"></resource>
   <resource culture="es-es" name="Motor" value="Motor"></resource>
