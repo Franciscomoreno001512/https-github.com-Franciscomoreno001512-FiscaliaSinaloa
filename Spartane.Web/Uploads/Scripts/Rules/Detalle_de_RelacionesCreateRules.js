@@ -420,16 +420,60 @@ if( EvaluaQuery("SELECT COUNT(Clave) FROM Detalle_de_Datos_Generales WHERE Modul
 
 
 
+
+
+
+
+
+
+
+
 //BusinessRuleId:2951, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
-if( EvaluaQuery("SELECT COUNT(Clave) FROM Detalle_de_Imputado WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]",rowIndex, nameOfTable)!=TryParseInt('0', '0') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { var valor = $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val();   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Probable_Responsable' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT clave, CASE WHEN Quien_Resulte_Responsable = 1 THEN ISNULL(nombre_completo_detenido,'QUIEN O QUIENES RESULTEN RESPONSABLES') ELSE (ISNULL(Nombre_Completo_Detenido, Nombres2 + ' ' + Apellido_Paterno2)) END from Detalle_de_Imputado WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT clave, CASE WHEN Quien_Resulte_Responsable = 1 THEN ISNULL(nombre_completo_detenido,'QUIEN O QUIENES RESULTEN RESPONSABLES') ELSE (ISNULL(Nombre_Completo_Detenido, Nombres2 + ' ' + Apellido_Paterno2)) END from Detalle_de_Imputado WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val(valor).trigger('change'); $('#divProbable_Responsable').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));} else {}
+if( EvaluaQuery("SELECT COUNT(Clave) FROM Detalle_de_Imputado WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]",rowIndex, nameOfTable)!=TryParseInt('0', '0') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { var valor = $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val();   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Probable_Responsable' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT"
++"   Clave ,"
++"   CASE WHEN Quien_Resulte_Responsable = 1 THEN 'QUIEN O QUIENES RESULTEN RESPONSABLES'"
++"        ELSE ( ISNULL(Nombre_Completo_Detenido,"
++"                      Nombre + ' ' + Apellido_Paterno) )"
++"   END"
++" FROM"
++"   Detalle_de_Imputado"
++" WHERE"
++"   Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT"
++"   Clave ,"
++"   CASE WHEN Quien_Resulte_Responsable = 1 THEN 'QUIEN O QUIENES RESULTEN RESPONSABLES'"
++"        ELSE ( ISNULL(Nombre_Completo_Detenido,"
++"                      Nombre + ' ' + Apellido_Paterno) )"
++"   END"
++" FROM"
++"   Detalle_de_Imputado"
++" WHERE"
++"   Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val(valor).trigger('change'); $('#divProbable_Responsable').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));} else {}
 
 }
 //BusinessRuleId:2951, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2951, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
-if( EvaluaQuery("SELECT COUNT(Clave) FROM Detalle_de_Imputado WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]",rowIndex, nameOfTable)!=TryParseInt('0', '0') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { var valor = $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val();   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Probable_Responsable' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT clave, CASE WHEN Quien_Resulte_Responsable = 1 THEN ISNULL(nombre_completo_detenido,'QUIEN O QUIENES RESULTEN RESPONSABLES') ELSE (ISNULL(Nombre_Completo_Detenido, Nombres2 + ' ' + Apellido_Paterno2)) END from Detalle_de_Imputado WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT clave, CASE WHEN Quien_Resulte_Responsable = 1 THEN ISNULL(nombre_completo_detenido,'QUIEN O QUIENES RESULTEN RESPONSABLES') ELSE (ISNULL(Nombre_Completo_Detenido, Nombres2 + ' ' + Apellido_Paterno2)) END from Detalle_de_Imputado WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val(valor).trigger('change'); $('#divProbable_Responsable').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));} else {}
+if( EvaluaQuery("SELECT COUNT(Clave) FROM Detalle_de_Imputado WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]",rowIndex, nameOfTable)!=TryParseInt('0', '0') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { var valor = $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val();   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Probable_Responsable' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT"
++"   Clave ,"
++"   CASE WHEN Quien_Resulte_Responsable = 1 THEN 'QUIEN O QUIENES RESULTEN RESPONSABLES'"
++"        ELSE ( ISNULL(Nombre_Completo_Detenido,"
++"                      Nombre + ' ' + Apellido_Paterno) )"
++"   END"
++" FROM"
++"   Detalle_de_Imputado"
++" WHERE"
++"   Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT"
++"   Clave ,"
++"   CASE WHEN Quien_Resulte_Responsable = 1 THEN 'QUIEN O QUIENES RESULTEN RESPONSABLES'"
++"        ELSE ( ISNULL(Nombre_Completo_Detenido,"
++"                      Nombre + ' ' + Apellido_Paterno) )"
++"   END"
++" FROM"
++"   Detalle_de_Imputado"
++" WHERE"
++"   Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val(valor).trigger('change'); $('#divProbable_Responsable').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));} else {}
 
 }
 //BusinessRuleId:2951, Attribute:0, Operation:Object, Event:SCREENOPENING

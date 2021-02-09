@@ -373,7 +373,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     aux = new ResultGeneralDetail();
                     aux.ObjectId = item.Object_Name.Value;
-                    var counter = _ISpartaneQueryApiConsumer.ExecuteQuery(item.Count_Query.Replace("@@LLAVE@@", id)).Resource;
+					string fase="";
+					if (Session["Phase"]!=null)
+					{
+						if (Session["Phase"].ToString() !="")
+								fase = "," + Session["Phase"].ToString();
+					}
+                    var counter = _ISpartaneQueryApiConsumer.ExecuteQuery(item.Count_Query.Replace("@@LLAVE@@", id).Replace(",@@FASE@@", fase).Replace(", @@FASE@@", fase)).Resource;
                     aux.Counter = Convert.ToInt32(counter);
                     aux.Label = item.Object_Label;
 

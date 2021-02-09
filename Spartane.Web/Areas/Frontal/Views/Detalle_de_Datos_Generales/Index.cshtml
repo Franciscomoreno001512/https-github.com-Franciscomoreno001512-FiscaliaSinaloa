@@ -14,9 +14,9 @@
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Corporacion;
 @using Spartane.Core.Domain.Pais;
-@using Spartane.Core.Domain.Pais;
 @using Spartane.Core.Domain.Estado;
 @using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Pais;
 @using Spartane.Core.Domain.Estado;
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Colonia;
@@ -323,13 +323,13 @@
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Ocupacion</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Municipio_Corporacion</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Corporacion</th>
-                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Pais_de_Origen</th>
+                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Pais_de_Nacimiento</th>
+                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Estado_de_Nacimiento</th>
+                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Municipio_de_Nacimiento</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Originario_de</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Pais</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Estado</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Municipio</th>
-                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Estado_de_Nacimiento</th>
-                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Municipio_de_Nacimiento</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Poblacion</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Colonia</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Codigo_Postal</th>
@@ -806,13 +806,13 @@
         var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio_Corporacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Corporacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pais_de_Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Originario_de =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -989,13 +989,13 @@
         + "&Ocupacion=" + Ocupacion
         + "&Municipio_Corporacion=" + Municipio_Corporacion
         + "&Corporacion=" + Corporacion
-        + "&Pais_de_Origen=" + Pais_de_Origen
+        + "&Pais_de_Nacimiento=" + Pais_de_Nacimiento
+        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
+        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Originario_de=" + Originario_de
         + "&Pais=" + Pais
         + "&Estado=" + Estado
         + "&Municipio=" + Municipio
-        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
-        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Poblacion=" + Poblacion
         + "&Colonia=" + Colonia
         + "&Codigo_Postal=" + Codigo_Postal
@@ -1183,13 +1183,13 @@
         var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio_Corporacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Corporacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pais_de_Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Originario_de =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -1366,13 +1366,13 @@
         + "&Ocupacion=" + Ocupacion
         + "&Municipio_Corporacion=" + Municipio_Corporacion
         + "&Corporacion=" + Corporacion
-        + "&Pais_de_Origen=" + Pais_de_Origen
+        + "&Pais_de_Nacimiento=" + Pais_de_Nacimiento
+        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
+        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Originario_de=" + Originario_de
         + "&Pais=" + Pais
         + "&Estado=" + Estado
         + "&Municipio=" + Municipio
-        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
-        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Poblacion=" + Poblacion
         + "&Colonia=" + Colonia
         + "&Codigo_Postal=" + Codigo_Postal
@@ -1794,13 +1794,13 @@
                 ,{ "data": "OcupacionDescripcion", "orderable": true, "name": "OcupacionDescripcion" }
                 ,{ "data": "Municipio_CorporacionNombre", "orderable": true, "name": "Municipio_CorporacionNombre" }
                 ,{ "data": "CorporacionDescripcion", "orderable": true, "name": "CorporacionDescripcion" }
-                ,{ "data": "Pais_de_OrigenNombre", "orderable": true, "name": "Pais_de_OrigenNombre"}
+                ,{ "data": "Pais_de_NacimientoNombre", "orderable": true, "name": "Pais_de_NacimientoNombre"}
+                ,{ "data": "Estado_de_NacimientoNombre", "orderable": true, "name": "Estado_de_NacimientoNombre"}
+                ,{ "data": "Municipio_de_NacimientoNombre", "orderable": true, "name": "Municipio_de_NacimientoNombre"}
                 ,{ "data": "Originario_de", "orderable": true, "name": "Originario_de", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre"}
                 ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
                 ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
-                ,{ "data": "Estado_de_NacimientoNombre", "orderable": true, "name": "Estado_de_NacimientoNombre"}
-                ,{ "data": "Municipio_de_NacimientoNombre", "orderable": true, "name": "Municipio_de_NacimientoNombre"}
                 ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre"}
                 ,{ "data": "ColoniaNombre", "orderable": true, "name": "ColoniaNombre"}
                 ,{ "data": "Codigo_Postal","className": "dt-right", "orderable": true, "name": "Codigo_Postal" }

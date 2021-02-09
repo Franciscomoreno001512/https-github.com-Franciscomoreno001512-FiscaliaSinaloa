@@ -28,7 +28,9 @@
   <resource culture="en-US" name="Nacionalidad" value="Nacionalidad"></resource>
   <resource culture="en-US" name="Escolaridad" value="Escolaridad"></resource>
   <resource culture="en-US" name="Ocupacion" value="Ocupación"></resource>
-  <resource culture="en-US" name="Pais_de_Origen" value="País de Origen"></resource>
+  <resource culture="en-US" name="Pais_de_Nacimiento" value="País de Nacimiento"></resource>
+  <resource culture="en-US" name="Estado_de_Nacimiento" value="Estado de Nacimiento"></resource>
+  <resource culture="en-US" name="Municipio_de_Nacimiento" value="Municipio de Nacimiento"></resource>
   <resource culture="en-US" name="Originario_de" value="Originario de"></resource>
   <resource culture="en-US" name="Pais" value="País"></resource>
   <resource culture="en-US" name="Estado" value="Estado"></resource>
@@ -57,8 +59,6 @@
   <resource culture="en-US" name="Incompleto" value="Incompleto"></resource>
   <resource culture="en-US" name="Idioma" value="Idioma"></resource>
   <resource culture="en-US" name="Calidad_Migratoria" value="Calidad Migratoria"></resource>
-  <resource culture="en-US" name="Estado_de_Nacimiento" value="Estado de Nacimiento"></resource>
-  <resource culture="en-US" name="Municipio_de_Nacimiento" value="Municipio de Nacimiento"></resource>
   <resource culture="en-US" name="Dialecto" value="Dialecto"></resource>
   <resource culture="en-US" name="Viene_en_Estado_de_Ebriedad" value="Viene en Estado de Ebriedad"></resource>
   <resource culture="en-US" name="Bajo_el_Efecto_de_una_Droga" value="Bajo el Efecto de una Droga"></resource>

@@ -162,6 +162,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = AgravantesData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(AgravantesData.Vigencia), "Vigencia") ??  (string)AgravantesData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = AgravantesData.Observaciones
+                    ,Cve_Delito = AgravantesData.Cve_Delito
+                    ,NO_CARAC = AgravantesData.NO_CARAC
 
 					};
 				}
@@ -245,6 +247,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = AgravantesData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(AgravantesData.Vigencia), "Vigencia") ??  (string)AgravantesData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = AgravantesData.Observaciones
+                    ,Cve_Delito = AgravantesData.Cve_Delito
+                    ,NO_CARAC = AgravantesData.NO_CARAC
 
 					};
 				}
@@ -400,6 +404,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Cve_Delito = m.Cve_Delito
+			,NO_CARAC = m.NO_CARAC
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -517,6 +523,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Cve_Delito = m.Cve_Delito
+			,NO_CARAC = m.NO_CARAC
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -615,6 +623,50 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Cve_Delito))
+            {
+                switch (filter.Cve_DelitoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Agravantes.Cve_Delito LIKE '" + filter.Cve_Delito + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Agravantes.Cve_Delito LIKE '%" + filter.Cve_Delito + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Agravantes.Cve_Delito = '" + filter.Cve_Delito + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Agravantes.Cve_Delito LIKE '%" + filter.Cve_Delito + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.NO_CARAC))
+            {
+                switch (filter.NO_CARACFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Agravantes.NO_CARAC LIKE '" + filter.NO_CARAC + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Agravantes.NO_CARAC LIKE '%" + filter.NO_CARAC + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Agravantes.NO_CARAC = '" + filter.NO_CARAC + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Agravantes.NO_CARAC LIKE '%" + filter.NO_CARAC + "%'";
+                        break;
+                }
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -673,6 +725,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Descripcion = varAgravantes.Descripcion
                         ,Vigencia = varAgravantes.Vigencia
                         ,Observaciones = varAgravantes.Observaciones
+                        ,Cve_Delito = varAgravantes.Cve_Delito
+                        ,NO_CARAC = varAgravantes.NO_CARAC
 
                     };
 
@@ -1015,7 +1069,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = null;
+			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1063,6 +1117,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Cve_Delito = m.Cve_Delito
+			,NO_CARAC = m.NO_CARAC
 
             }).ToList();
 
@@ -1139,6 +1195,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Cve_Delito = m.Cve_Delito
+			,NO_CARAC = m.NO_CARAC
 
             }).ToList();
 
@@ -1181,6 +1239,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                                             ,Descripcion = varAgravantes.Descripcion
                         ,Vigencia = varAgravantes.Vigencia
                         ,Observaciones = varAgravantes.Observaciones
+                        ,Cve_Delito = varAgravantes.Cve_Delito
+                        ,NO_CARAC = varAgravantes.NO_CARAC
                     
                 };
 
@@ -1213,6 +1273,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Cve_Delito = m.Cve_Delito
+			,NO_CARAC = m.NO_CARAC
 
                     
                 };

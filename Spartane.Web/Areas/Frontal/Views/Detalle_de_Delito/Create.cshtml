@@ -506,6 +506,12 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divAgravante">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_DelitoResources.Agravante</label>
+                                <div class="col-sm-8" data-field-id="Agravante" data-attribute="271592" data-field-name="@Resources.Detalle_de_DelitoResources.Agravante">
+                                    @Html.CheckBoxFor(m => m.Agravante, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
                             <div id="divAgravantes_y_o_Calificactivas">
                             <div class="ibox-title">
                                 <h5>@Resources.Detalle_de_DelitoResources.Agravantes_y_o_Calificactivas</h5>
@@ -3740,6 +3746,7 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Delito).trigger('change');
                     }, 3000);
+                    $('#Agravante').prop('checked', result.data.Agravante);
                     Agravantes_del_DelitoDataDataTable = result.Agravantes_y_o_Calificactivas;
                     showAgravantes_del_DelitoGrid(result.Agravantes_y_o_Calificactivas);
                     $('#Agravantes_del_DelitoGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
@@ -3823,6 +3830,7 @@
                 data.append('Tipo_de_Delito', $('#Tipo_de_Delito').val());
                 data.append('Grupo_Delito', $('#Grupo_Delito').val());
                 data.append('Delito', $('#Delito').val());
+                data.append('Agravante', $('#Agravante').prop('checked'));
                 data.append('Circunstancia_Delito', $('#Circunstancia_Delito').val());
                 data.append('Articulado_de_Delito', $('#Articulado_de_Delito').val());
                 data.append('Delito_Principal', $('#Delito_Principal').prop('checked'));

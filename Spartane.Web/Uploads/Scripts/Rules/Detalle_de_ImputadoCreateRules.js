@@ -2845,7 +2845,21 @@ function EjecutarValidacionesAlComienzo() {
     }
     //BusinessRuleId:3585, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-    //NEWBUSINESSRULE_SCREENOPENING//
+    //BusinessRuleId:3714, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divOriginario_de').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Originario_de' + rowIndex));$('#divOriginario_de_tutor').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Originario_de_tutor' + rowIndex));
+
+}
+//BusinessRuleId:3714, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3714, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divOriginario_de').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Originario_de' + rowIndex));$('#divOriginario_de_tutor').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Originario_de_tutor' + rowIndex));
+
+}
+//BusinessRuleId:3714, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//NEWBUSINESSRULE_SCREENOPENING//
 }
 
 function EjecutarValidacionesAntesDeGuardar() {
@@ -3988,6 +4002,7 @@ function CargaGoogleMapsOtrosDomicilios() {
         });
 }
 
+
 function CambiaPaisRow(deesc) {
     debugger;
     var RowSelected = $("#RowSelected").val();
@@ -4224,18 +4239,14 @@ function CargaGoogleMapsOtrosDomicilios() {
 }
 
 
-
-
-
-
-$("#Codigo_Postal").keyup(function () {
-    var str = $('#' + nameOfTable + 'Codigo_Postal' + rowIndex).val();
-    if (str != "") {
-        var regNUM = /^[0-9]{1,5}$/
-        var validacionnum = regNUM.test(str)
-        if (validacionnum == false) {
+$( "#Codigo_Postal" ).keyup(function() { 
+    var str = $('#' + nameOfTable + 'Codigo_Postal' + rowIndex).val(); 
+    if (str != ""){ 
+        var regNUM = /^[0-9]{1,5}$/ 
+        var validacionnum=regNUM.test(str)
+        if (validacionnum==false ) { 
             $('#' + nameOfTable + 'Codigo_Postal' + rowIndex).val($('#' + nameOfTable + 'Codigo_Postal' + rowIndex).val().slice(0, -1));
-        }
-    }
-});
+        } 
+    } 
+    });
 

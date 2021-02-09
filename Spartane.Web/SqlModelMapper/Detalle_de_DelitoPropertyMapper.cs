@@ -50,6 +50,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Delito[Descripcion]":
                 case "DelitoDescripcion":
                     return "Delito.Descripcion";
+                case "Agravante":
+                    return "Detalle_de_Delito.Agravante";
                 case "Circunstancia_Delito[Descripcion]":
                 case "Circunstancia_DelitoDescripcion":
                     return "Circunstancia_del_Delito.Descripcion";
@@ -319,6 +321,10 @@ namespace Spartane.Web.SqlModelMapper
                 }
             }
             if (columnName == "Violencia_de_Genero")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Agravante")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

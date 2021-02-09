@@ -248,20 +248,22 @@ function EjecutarValidacionesDespuesDeGuardar(){
 
 
 
+
+
+
+
+
+
+
+
+
+
 //BusinessRuleId:2972, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
- EvaluaQuery(" EXEC uspGeneraFolio FLDD[lblClave]", rowIndex, nameOfTable);
+ EvaluaQuery(" EXEC uspGeneraFolio FLDD[lblClave]", rowIndex, nameOfTable); alert(DecodifyText(' Se ha Generado correctamente el Expediente', rowIndex, nameOfTable));
 
 }
 //BusinessRuleId:2972, Attribute:2, Operation:Object, Event:AFTERSAVING
-
-
-
-
-
-
-
-
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }
