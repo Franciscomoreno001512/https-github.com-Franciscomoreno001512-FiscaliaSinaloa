@@ -346,13 +346,33 @@ namespace Resources
             }
         }
 
-        /// <summary>Pais_de_Origen</summary>
-        public static string Pais_de_Origen
+        /// <summary>Pais_de_Nacimiento</summary>
+        public static string Pais_de_Nacimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_de_Datos_Generales.GetResource("Pais_de_Origen", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Pais_de_Nacimiento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Estado_de_Nacimiento</summary>
+        public static string Estado_de_Nacimiento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Estado_de_Nacimiento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Municipio_de_Nacimiento</summary>
+        public static string Municipio_de_Nacimiento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Municipio_de_Nacimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -393,26 +413,6 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Datos_Generales.GetResource("Municipio", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Estado_de_Nacimiento</summary>
-        public static string Estado_de_Nacimiento
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Datos_Generales.GetResource("Estado_de_Nacimiento", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Municipio_de_Nacimiento</summary>
-        public static string Municipio_de_Nacimiento
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Datos_Generales.GetResource("Municipio_de_Nacimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

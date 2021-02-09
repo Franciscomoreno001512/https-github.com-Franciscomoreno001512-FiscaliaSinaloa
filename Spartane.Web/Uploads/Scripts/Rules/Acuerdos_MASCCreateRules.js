@@ -77,14 +77,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Resultado' + rowIndex),nameOfTa
 
 //BusinessRuleId:2746, Attribute:266521, Operation:Field, Event:None
 
+
+
 //BusinessRuleId:2421, Attribute:266505, Operation:Field, Event:None
 $("form#CreateAcuerdos_MASC").on('change', '#Tipo_de_Acuerdo', function () {
 	nameOfTable='';
 	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Acuerdo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('0', '0') ) { $('#divParcialidades').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));$('#divPeriodicidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));$('#divMonto_de_la_Parcialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Parcialidad' + rowIndex));} else { $('#divParcialidades').css('display', 'block');$('#divPeriodicidad').css('display', 'block');$('#divMonto_de_la_Parcialidad').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Parcialidad' + rowIndex));}
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Acuerdo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('0', '0') ) { $('#divParcialidades').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));$('#divPeriodicidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));$('#divMonto_de_la_Parcialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Parcialidad' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Parcialidades' + rowIndex),'1');} else { $('#divParcialidades').css('display', 'block');$('#divPeriodicidad').css('display', 'block');$('#divMonto_de_la_Parcialidad').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Parcialidad' + rowIndex));}
 });
-
-
+
 //BusinessRuleId:2421, Attribute:266505, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//

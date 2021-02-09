@@ -30,9 +30,15 @@
     List<SelectListItem> varOcupacion_Ocupacion = null;
     if (ViewBag.Ocupacions_Ocupacion != null)
     { varOcupacion_Ocupacion = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion; }
- List<SelectListItem> varPais_Pais_de_Origen = null;
-    if (ViewBag.Paiss_Pais_de_Origen != null)
-    { varPais_Pais_de_Origen = (List<SelectListItem>)ViewBag.Paiss_Pais_de_Origen; }
+ List<SelectListItem> varPais_Pais_de_Nacimiento = null;
+    if (ViewBag.Paiss_Pais_de_Nacimiento != null)
+    { varPais_Pais_de_Nacimiento = (List<SelectListItem>)ViewBag.Paiss_Pais_de_Nacimiento; }
+ List<SelectListItem> varEstado_Estado_de_Nacimiento = null;
+    if (ViewBag.Estados_Estado_de_Nacimiento != null)
+    { varEstado_Estado_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Estado_de_Nacimiento; }
+ List<SelectListItem> varMunicipio_Municipio_de_Nacimiento = null;
+    if (ViewBag.Municipios_Municipio_de_Nacimiento != null)
+    { varMunicipio_Municipio_de_Nacimiento = (List<SelectListItem>)ViewBag.Municipios_Municipio_de_Nacimiento; }
  List<SelectListItem> varPais_Pais = null;
     if (ViewBag.Paiss_Pais != null)
     { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
@@ -72,12 +78,6 @@
     List<SelectListItem> varCalidad_Migratoria_Calidad_Migratoria = null;
     if (ViewBag.Calidad_Migratorias_Calidad_Migratoria != null)
     { varCalidad_Migratoria_Calidad_Migratoria = (List<SelectListItem>)ViewBag.Calidad_Migratorias_Calidad_Migratoria; }
- List<SelectListItem> varEstado_Estado_de_Nacimiento = null;
-    if (ViewBag.Estados_Estado_de_Nacimiento != null)
-    { varEstado_Estado_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Estado_de_Nacimiento; }
- List<SelectListItem> varMunicipio_Municipio_de_Nacimiento = null;
-    if (ViewBag.Municipios_Municipio_de_Nacimiento != null)
-    { varMunicipio_Municipio_de_Nacimiento = (List<SelectListItem>)ViewBag.Municipios_Municipio_de_Nacimiento; }
     List<SelectListItem> varDialecto_Dialecto = null;
     if (ViewBag.Dialectos_Dialecto != null)
     { varDialecto_Dialecto = (List<SelectListItem>)ViewBag.Dialectos_Dialecto; }
@@ -553,9 +553,15 @@
                         });
                     }
                 </div>
- List<SelectListItem> varPais_Pais_de_Origen = null;
-    if (ViewBag.Paiss_Pais_de_Origen != null)
-    { varPais_Pais_de_Origen = (List<SelectListItem>)ViewBag.Paiss_Pais_de_Origen; }
+ List<SelectListItem> varPais_Pais_de_Nacimiento = null;
+    if (ViewBag.Paiss_Pais_de_Nacimiento != null)
+    { varPais_Pais_de_Nacimiento = (List<SelectListItem>)ViewBag.Paiss_Pais_de_Nacimiento; }
+ List<SelectListItem> varEstado_Estado_de_Nacimiento = null;
+    if (ViewBag.Estados_Estado_de_Nacimiento != null)
+    { varEstado_Estado_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Estado_de_Nacimiento; }
+ List<SelectListItem> varMunicipio_Municipio_de_Nacimiento = null;
+    if (ViewBag.Municipios_Municipio_de_Nacimiento != null)
+    { varMunicipio_Municipio_de_Nacimiento = (List<SelectListItem>)ViewBag.Municipios_Municipio_de_Nacimiento; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_ImputadoResources.Originario_de</h3>
                 </div>
@@ -860,12 +866,6 @@
                         });
                     }
                 </div>
- List<SelectListItem> varEstado_Estado_de_Nacimiento = null;
-    if (ViewBag.Estados_Estado_de_Nacimiento != null)
-    { varEstado_Estado_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Estado_de_Nacimiento; }
- List<SelectListItem> varMunicipio_Municipio_de_Nacimiento = null;
-    if (ViewBag.Municipios_Municipio_de_Nacimiento != null)
-    { varMunicipio_Municipio_de_Nacimiento = (List<SelectListItem>)ViewBag.Municipios_Municipio_de_Nacimiento; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_ImputadoResources.Dialecto</h3>
                 </div>
@@ -2509,19 +2509,49 @@
                 advanceSearch.OcupacionSearchType = 2;
             }
         }
-        advanceSearch.Pais_de_OrigenSearchType = 0;
-        if ($('#ddlAdvancePais_de_Origen').val().length > 0 || $("#txtAdvancePais_de_Origen").val() == "") {
+        advanceSearch.Pais_de_NacimientoSearchType = 0;
+        if ($('#ddlAdvancePais_de_Nacimiento').val().length > 0 || $("#txtAdvancePais_de_Nacimiento").val() == "") {
 
 
             if (isDetalle_de_ImputadoTextSearch) {
-                advanceSearch.Pais_de_OrigenName = $("#txtAdvancePais_de_Origen").val();
-                advanceSearch.Pais_de_OrigenNameSearchType = $("#ddlAdvancePais_de_Origen").val();
-                advanceSearch.Pais_de_OrigenSearchType = 1;
+                advanceSearch.Pais_de_NacimientoName = $("#txtAdvancePais_de_Nacimiento").val();
+                advanceSearch.Pais_de_NacimientoNameSearchType = $("#ddlAdvancePais_de_Nacimiento").val();
+                advanceSearch.Pais_de_NacimientoSearchType = 1;
             }
             else {
 
-                advanceSearch.Pais_de_OrigenToSearch = $("#ddlAdvancePais_de_Origen").val();
-                advanceSearch.Pais_de_OrigenSearchType = 2;
+                advanceSearch.Pais_de_NacimientoToSearch = $("#ddlAdvancePais_de_Nacimiento").val();
+                advanceSearch.Pais_de_NacimientoSearchType = 2;
+            }
+        }
+        advanceSearch.Estado_de_NacimientoSearchType = 0;
+        if ($('#ddlAdvanceEstado_de_Nacimiento').val().length > 0 || $("#txtAdvanceEstado_de_Nacimiento").val() == "") {
+
+
+            if (isDetalle_de_ImputadoTextSearch) {
+                advanceSearch.Estado_de_NacimientoName = $("#txtAdvanceEstado_de_Nacimiento").val();
+                advanceSearch.Estado_de_NacimientoNameSearchType = $("#ddlAdvanceEstado_de_Nacimiento").val();
+                advanceSearch.Estado_de_NacimientoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Estado_de_NacimientoToSearch = $("#ddlAdvanceEstado_de_Nacimiento").val();
+                advanceSearch.Estado_de_NacimientoSearchType = 2;
+            }
+        }
+        advanceSearch.Municipio_de_NacimientoSearchType = 0;
+        if ($('#ddlAdvanceMunicipio_de_Nacimiento').val().length > 0 || $("#txtAdvanceMunicipio_de_Nacimiento").val() == "") {
+
+
+            if (isDetalle_de_ImputadoTextSearch) {
+                advanceSearch.Municipio_de_NacimientoName = $("#txtAdvanceMunicipio_de_Nacimiento").val();
+                advanceSearch.Municipio_de_NacimientoNameSearchType = $("#ddlAdvanceMunicipio_de_Nacimiento").val();
+                advanceSearch.Municipio_de_NacimientoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Municipio_de_NacimientoToSearch = $("#ddlAdvanceMunicipio_de_Nacimiento").val();
+                advanceSearch.Municipio_de_NacimientoSearchType = 2;
             }
         }
         if ($("#txtAdvanceOriginario_de").val() != "") {
@@ -2791,36 +2821,6 @@
 
                 advanceSearch.Calidad_MigratoriaToSearch = $("#ddlAdvanceCalidad_Migratoria").val();
                 advanceSearch.Calidad_MigratoriaSearchType = 2;
-            }
-        }
-        advanceSearch.Estado_de_NacimientoSearchType = 0;
-        if ($('#ddlAdvanceEstado_de_Nacimiento').val().length > 0 || $("#txtAdvanceEstado_de_Nacimiento").val() == "") {
-
-
-            if (isDetalle_de_ImputadoTextSearch) {
-                advanceSearch.Estado_de_NacimientoName = $("#txtAdvanceEstado_de_Nacimiento").val();
-                advanceSearch.Estado_de_NacimientoNameSearchType = $("#ddlAdvanceEstado_de_Nacimiento").val();
-                advanceSearch.Estado_de_NacimientoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Estado_de_NacimientoToSearch = $("#ddlAdvanceEstado_de_Nacimiento").val();
-                advanceSearch.Estado_de_NacimientoSearchType = 2;
-            }
-        }
-        advanceSearch.Municipio_de_NacimientoSearchType = 0;
-        if ($('#ddlAdvanceMunicipio_de_Nacimiento').val().length > 0 || $("#txtAdvanceMunicipio_de_Nacimiento").val() == "") {
-
-
-            if (isDetalle_de_ImputadoTextSearch) {
-                advanceSearch.Municipio_de_NacimientoName = $("#txtAdvanceMunicipio_de_Nacimiento").val();
-                advanceSearch.Municipio_de_NacimientoNameSearchType = $("#ddlAdvanceMunicipio_de_Nacimiento").val();
-                advanceSearch.Municipio_de_NacimientoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Municipio_de_NacimientoToSearch = $("#ddlAdvanceMunicipio_de_Nacimiento").val();
-                advanceSearch.Municipio_de_NacimientoSearchType = 2;
             }
         }
         advanceSearch.DialectoSearchType = 0;
@@ -4051,14 +4051,32 @@
             isDetalle_de_ImputadoTextSearch = false;
             $("#txtAdvanceOcupacion").val('');
         });
-        $("#txtAdvancePais_de_Origen").keypress(function () {
+        $("#txtAdvancePais_de_Nacimiento").keypress(function () {
             isDetalle_de_ImputadoTextSearch = true;
-            $("#ddlAdvancePais_de_Origen").val('').trigger("chosen:updated");
+            $("#ddlAdvancePais_de_Nacimiento").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvancePais_de_Origen").change(function () {
+        $("#ddlAdvancePais_de_Nacimiento").change(function () {
             isDetalle_de_ImputadoTextSearch = false;
-            $("#txtAdvancePais_de_Origen").val('');
+            $("#txtAdvancePais_de_Nacimiento").val('');
+        });
+        $("#txtAdvanceEstado_de_Nacimiento").keypress(function () {
+            isDetalle_de_ImputadoTextSearch = true;
+            $("#ddlAdvanceEstado_de_Nacimiento").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado_de_Nacimiento").change(function () {
+            isDetalle_de_ImputadoTextSearch = false;
+            $("#txtAdvanceEstado_de_Nacimiento").val('');
+        });
+        $("#txtAdvanceMunicipio_de_Nacimiento").keypress(function () {
+            isDetalle_de_ImputadoTextSearch = true;
+            $("#ddlAdvanceMunicipio_de_Nacimiento").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMunicipio_de_Nacimiento").change(function () {
+            isDetalle_de_ImputadoTextSearch = false;
+            $("#txtAdvanceMunicipio_de_Nacimiento").val('');
         });
         $("#txtAdvancePais").keypress(function () {
             isDetalle_de_ImputadoTextSearch = true;
@@ -4176,24 +4194,6 @@
         $("#ddlAdvanceCalidad_Migratoria").change(function () {
             isDetalle_de_ImputadoTextSearch = false;
             $("#txtAdvanceCalidad_Migratoria").val('');
-        });
-        $("#txtAdvanceEstado_de_Nacimiento").keypress(function () {
-            isDetalle_de_ImputadoTextSearch = true;
-            $("#ddlAdvanceEstado_de_Nacimiento").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceEstado_de_Nacimiento").change(function () {
-            isDetalle_de_ImputadoTextSearch = false;
-            $("#txtAdvanceEstado_de_Nacimiento").val('');
-        });
-        $("#txtAdvanceMunicipio_de_Nacimiento").keypress(function () {
-            isDetalle_de_ImputadoTextSearch = true;
-            $("#ddlAdvanceMunicipio_de_Nacimiento").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceMunicipio_de_Nacimiento").change(function () {
-            isDetalle_de_ImputadoTextSearch = false;
-            $("#txtAdvanceMunicipio_de_Nacimiento").val('');
         });
         $("#txtAdvanceDialecto").keypress(function () {
             isDetalle_de_ImputadoTextSearch = true;

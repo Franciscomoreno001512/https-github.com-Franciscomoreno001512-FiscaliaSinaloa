@@ -16,9 +16,9 @@ using Spartane.Core.Domain.Ocupacion;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Corporacion;
 using Spartane.Core.Domain.Pais;
-using Spartane.Core.Domain.Pais;
 using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
+using Spartane.Core.Domain.Pais;
 using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
@@ -143,13 +143,13 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int? Ocupacion { get; set; }
         public int? Municipio_Corporacion { get; set; }
         public int? Corporacion { get; set; }
-        public int? Pais_de_Origen { get; set; }
+        public int? Pais_de_Nacimiento { get; set; }
+        public int? Estado_de_Nacimiento { get; set; }
+        public int? Municipio_de_Nacimiento { get; set; }
         public string Originario_de { get; set; }
         public int? Pais { get; set; }
         public int? Estado { get; set; }
         public int? Municipio { get; set; }
-        public int? Estado_de_Nacimiento { get; set; }
-        public int? Municipio_de_Nacimiento { get; set; }
         public int? Poblacion { get; set; }
         public int? Colonia { get; set; }
         public int? Codigo_Postal { get; set; }
@@ -319,18 +319,18 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Corporacion_Municipio { get; set; }
         [ForeignKey("Corporacion")]
         public virtual Spartane.Core.Domain.Corporacion.Corporacion Corporacion_Corporacion { get; set; }
-        [ForeignKey("Pais_de_Origen")]
-        public virtual Spartane.Core.Domain.Pais.Pais Pais_de_Origen_Pais { get; set; }
+        [ForeignKey("Pais_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Pais.Pais Pais_de_Nacimiento_Pais { get; set; }
+        [ForeignKey("Estado_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Estado.Estado Estado_de_Nacimiento_Estado { get; set; }
+        [ForeignKey("Municipio_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_de_Nacimiento_Municipio { get; set; }
         [ForeignKey("Pais")]
         public virtual Spartane.Core.Domain.Pais.Pais Pais_Pais { get; set; }
         [ForeignKey("Estado")]
         public virtual Spartane.Core.Domain.Estado.Estado Estado_Estado { get; set; }
         [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }
-        [ForeignKey("Estado_de_Nacimiento")]
-        public virtual Spartane.Core.Domain.Estado.Estado Estado_de_Nacimiento_Estado { get; set; }
-        [ForeignKey("Municipio_de_Nacimiento")]
-        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_de_Nacimiento_Municipio { get; set; }
         [ForeignKey("Poblacion")]
         public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("Colonia")]
@@ -524,13 +524,13 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int? Ocupacion { get; set; }
         public int? Municipio_Corporacion { get; set; }
         public int? Corporacion { get; set; }
-        public int? Pais_de_Origen { get; set; }
+        public int? Pais_de_Nacimiento { get; set; }
+        public int? Estado_de_Nacimiento { get; set; }
+        public int? Municipio_de_Nacimiento { get; set; }
         public string Originario_de { get; set; }
         public int? Pais { get; set; }
         public int? Estado { get; set; }
         public int? Municipio { get; set; }
-        public int? Estado_de_Nacimiento { get; set; }
-        public int? Municipio_de_Nacimiento { get; set; }
         public int? Poblacion { get; set; }
         public int? Colonia { get; set; }
         public int? Codigo_Postal { get; set; }
@@ -596,18 +596,18 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Corporacion_Municipio { get; set; }
         [ForeignKey("Corporacion")]
         public virtual Spartane.Core.Domain.Corporacion.Corporacion Corporacion_Corporacion { get; set; }
-        [ForeignKey("Pais_de_Origen")]
-        public virtual Spartane.Core.Domain.Pais.Pais Pais_de_Origen_Pais { get; set; }
+        [ForeignKey("Pais_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Pais.Pais Pais_de_Nacimiento_Pais { get; set; }
+        [ForeignKey("Estado_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Estado.Estado Estado_de_Nacimiento_Estado { get; set; }
+        [ForeignKey("Municipio_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_de_Nacimiento_Municipio { get; set; }
         [ForeignKey("Pais")]
         public virtual Spartane.Core.Domain.Pais.Pais Pais_Pais { get; set; }
         [ForeignKey("Estado")]
         public virtual Spartane.Core.Domain.Estado.Estado Estado_Estado { get; set; }
         [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }
-        [ForeignKey("Estado_de_Nacimiento")]
-        public virtual Spartane.Core.Domain.Estado.Estado Estado_de_Nacimiento_Estado { get; set; }
-        [ForeignKey("Municipio_de_Nacimiento")]
-        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_de_Nacimiento_Municipio { get; set; }
         [ForeignKey("Poblacion")]
         public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("Colonia")]

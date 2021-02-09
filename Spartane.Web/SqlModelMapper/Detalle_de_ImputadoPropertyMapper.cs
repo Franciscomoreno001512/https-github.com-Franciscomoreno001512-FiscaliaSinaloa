@@ -75,9 +75,15 @@ namespace Spartane.Web.SqlModelMapper
                 case "Ocupacion[Descripcion]":
                 case "OcupacionDescripcion":
                     return "Ocupacion.Descripcion";
-                case "Pais_de_Origen[Nombre]":
-                case "Pais_de_OrigenNombre":
+                case "Pais_de_Nacimiento[Nombre]":
+                case "Pais_de_NacimientoNombre":
                     return "Pais.Nombre";
+                case "Estado_de_Nacimiento[Nombre]":
+                case "Estado_de_NacimientoNombre":
+                    return "Estado.Nombre";
+                case "Municipio_de_Nacimiento[Nombre]":
+                case "Municipio_de_NacimientoNombre":
+                    return "Municipio.Nombre";
                 case "Originario_de":
                     return "Detalle_de_Imputado.Originario_de";
                 case "Pais[Nombre]":
@@ -147,12 +153,6 @@ namespace Spartane.Web.SqlModelMapper
                 case "Calidad_Migratoria[Descripcion]":
                 case "Calidad_MigratoriaDescripcion":
                     return "Calidad_Migratoria.Descripcion";
-                case "Estado_de_Nacimiento[Nombre]":
-                case "Estado_de_NacimientoNombre":
-                    return "Estado.Nombre";
-                case "Municipio_de_Nacimiento[Nombre]":
-                case "Municipio_de_NacimientoNombre":
-                    return "Municipio.Nombre";
                 case "Dialecto[Descripcion]":
                 case "DialectoDescripcion":
                     return "Dialecto.Descripcion";

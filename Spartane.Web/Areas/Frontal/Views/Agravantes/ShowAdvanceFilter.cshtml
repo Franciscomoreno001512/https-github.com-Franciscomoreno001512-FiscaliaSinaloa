@@ -91,6 +91,22 @@
                     @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
                     @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.AgravantesResources.Cve_Delito</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Cve_DelitoFilter, filters, new { @class = "form-control", @id = "ddlCve_DelitoFilter" })
+                    @Html.TextBoxFor(m => m.Cve_Delito, new { @class = "form-control", @type = "text", @id = "txtCve_Delito" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.AgravantesResources.NO_CARAC</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NO_CARACFilter, filters, new { @class = "form-control", @id = "ddlNO_CARACFilter" })
+                    @Html.TextBoxFor(m => m.NO_CARAC, new { @class = "form-control", @type = "text", @id = "txtNO_CARAC" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Agravantes/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -132,6 +148,16 @@
             hasParameter = true;
             advanceSearch.AgravantesObservaciones = $("#txtAdvanceObservaciones").val();
             advanceSearch.AgravantesObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        if ($("#txtAdvanceCve_Delito").val() != "") {
+            hasParameter = true;
+            advanceSearch.AgravantesCve_Delito = $("#txtAdvanceCve_Delito").val();
+            advanceSearch.AgravantesCve_DelitoSearchType = $("#ddlAdvanceCve_DelitoFilter").val();
+        }
+        if ($("#txtAdvanceNO_CARAC").val() != "") {
+            hasParameter = true;
+            advanceSearch.AgravantesNO_CARAC = $("#txtAdvanceNO_CARAC").val();
+            advanceSearch.AgravantesNO_CARACSearchType = $("#ddlAdvanceNO_CARACFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

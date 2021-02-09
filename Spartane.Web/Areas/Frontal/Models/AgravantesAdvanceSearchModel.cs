@@ -29,6 +29,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters ObservacionesFilter { set; get; }
         public string Observaciones { set; get; }
 
+        public Filters Cve_DelitoFilter { set; get; }
+        public string Cve_Delito { set; get; }
+
+        public Filters NO_CARACFilter { set; get; }
+        public string NO_CARAC { set; get; }
+
 
     }
 }

@@ -318,6 +318,10 @@ if( GetValueByControlType($('#' + nameOfTable + 'Robo_de_Vehiculo' + rowIndex),n
 
 //BusinessRuleId:3625, Attribute:263456, Operation:Field, Event:None
 
+
+
+
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -1049,29 +1053,11 @@ if( GetValueByControlType($('#' + nameOfTable + 'El_Vehiculo_esta_Asegurado' + r
 }
 //BusinessRuleId:3630, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( GetValueByControlType($('#' + nameOfTable + 'Mercancia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'block');} else { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion_de_lo_que_Transportaba' + rowIndex));}
 
 
-}
-//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( GetValueByControlType($('#' + nameOfTable + 'Mercancia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'block');} else { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion_de_lo_que_Transportaba' + rowIndex));}
 
 
-}
-//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( GetValueByControlType($('#' + nameOfTable + 'Mercancia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'block');} else { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion_de_lo_que_Transportaba' + rowIndex));}
-
-
-}
-//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:3632, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -1096,6 +1082,78 @@ if(operation == 'Consult'){
 
 }
 //BusinessRuleId:3632, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3659, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divRobo_de').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Robo_de' + rowIndex));
+
+
+}
+//BusinessRuleId:3659, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3659, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divRobo_de').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Robo_de' + rowIndex));
+
+
+}
+//BusinessRuleId:3659, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3659, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divRobo_de').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Robo_de' + rowIndex));
+
+
+}
+//BusinessRuleId:3659, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Mercancia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'block');$('#divMonto_de_la_Carga').css('display', 'block');$('#divSenas_Particulares').css('display', 'block');} else { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion_de_lo_que_Transportaba' + rowIndex)); $('#divDescripcion_de_lo_que_Transportaba').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion_de_lo_que_Transportaba' + rowIndex));$('#divMonto_de_la_Carga').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Carga' + rowIndex));$('#divSenas_Particulares').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Senas_Particulares' + rowIndex));}
+
+
+}
+//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Mercancia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'block');$('#divMonto_de_la_Carga').css('display', 'block');$('#divSenas_Particulares').css('display', 'block');} else { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion_de_lo_que_Transportaba' + rowIndex)); $('#divDescripcion_de_lo_que_Transportaba').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion_de_lo_que_Transportaba' + rowIndex));$('#divMonto_de_la_Carga').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Carga' + rowIndex));$('#divSenas_Particulares').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Senas_Particulares' + rowIndex));}
+
+
+}
+//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Mercancia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'block');$('#divMonto_de_la_Carga').css('display', 'block');$('#divSenas_Particulares').css('display', 'block');} else { $('#divDescripcion_de_lo_que_Transportaba').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion_de_lo_que_Transportaba' + rowIndex)); $('#divDescripcion_de_lo_que_Transportaba').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion_de_lo_que_Transportaba' + rowIndex));$('#divMonto_de_la_Carga').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Carga' + rowIndex));$('#divSenas_Particulares').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Senas_Particulares' + rowIndex));}
+
+
+}
+//BusinessRuleId:3631, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3715, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetRequiredToControl( $('#' + nameOfTable + 'Delito' + rowIndex));
+
+
+}
+//BusinessRuleId:3715, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3715, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetRequiredToControl( $('#' + nameOfTable + 'Delito' + rowIndex));
+
+
+}
+//BusinessRuleId:3715, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3715, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetRequiredToControl( $('#' + nameOfTable + 'Delito' + rowIndex));
+
+
+}
+//BusinessRuleId:3715, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
@@ -1156,6 +1214,28 @@ result=false; AsignarValor($('#' + nameOfTable + 'Delito_Principal' + rowIndex),
 
 }
 //BusinessRuleId:2502, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:3768, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+if( $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No hay registros disponibles" || $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No records available" && GetValueByControlType($('#' + nameOfTable + 'Agravante' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) {
+     alert(DecodifyText(' Se tiene que seleccionar un agravante y/o Calificativas', rowIndex, nameOfTable));
+    result=false;
+} 
+else {}
+
+
+}
+//BusinessRuleId:3768, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:3768, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+if( $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No hay registros disponibles" ||  $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No records available" && GetValueByControlType($('#' + nameOfTable + 'Agravante' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { alert(DecodifyText(' Se tiene que seleccionar un agravante y/o Calificativas', rowIndex, nameOfTable));
+
+result=false;} else {}
+
+
+}
+//BusinessRuleId:3768, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;

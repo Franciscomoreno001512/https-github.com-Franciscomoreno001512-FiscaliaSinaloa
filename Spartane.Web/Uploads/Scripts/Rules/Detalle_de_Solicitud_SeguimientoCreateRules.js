@@ -187,9 +187,11 @@ if(operation == 'New'){
 }
 //BusinessRuleId:1707, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+
+
 //BusinessRuleId:3588, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
-if( GetValueByControlType($('#' + nameOfTable + 'Concluir_Acuerdo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { EvaluaQuery(" update Solicitud set Estatus = 101 where Clave = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable); EvaluaQuery(" exec usp_AsignarResolucionProcedimiento_DependiendoTipoDeAcuerdo GLOBAL[SpartanOperationId], FLDD[lblClave]", rowIndex, nameOfTable);} else {}
+if( GetValueByControlType($('#' + nameOfTable + 'Concluir_Acuerdo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { EvaluaQuery(" update Solicitud set Estatus = 101 where Clave = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable); EvaluaQuery(" exec usp_AsignarResolucionProcedimiento_DependiendoTipoDeAcuerdo GLOBAL[SpartanOperationId], FLDD[lblClave]", rowIndex, nameOfTable); EvaluaQuery("update relaciones_masc set Estatus = 101 where Clave = FLD[Relacion]", rowIndex, nameOfTable);} else {}
 
 }
 //BusinessRuleId:3588, Attribute:2, Operation:Object, Event:AFTERSAVING

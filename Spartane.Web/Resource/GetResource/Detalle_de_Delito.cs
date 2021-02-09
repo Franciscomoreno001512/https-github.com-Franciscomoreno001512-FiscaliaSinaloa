@@ -166,6 +166,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Agravante</summary>
+        public static string Agravante
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Delito.GetResource("Agravante", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Agravantes_y_o_Calificactivas</summary>
         public static string Agravantes_y_o_Calificactivas
         {

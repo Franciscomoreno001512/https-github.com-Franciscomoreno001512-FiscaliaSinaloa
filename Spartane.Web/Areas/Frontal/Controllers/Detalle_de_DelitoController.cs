@@ -401,6 +401,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Grupo_Delito), "Grupo_del_Delito") ??  (string)Detalle_de_DelitoData.Grupo_Delito_Grupo_del_Delito.Descripcion
                     ,Delito = Detalle_de_DelitoData.Delito
                     ,DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Delito), "Delito") ??  (string)Detalle_de_DelitoData.Delito_Delito.Descripcion
+                    ,Agravante = Detalle_de_DelitoData.Agravante.GetValueOrDefault()
                     ,Circunstancia_Delito = Detalle_de_DelitoData.Circunstancia_Delito
                     ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Circunstancia_Delito), "Circunstancia_del_Delito") ??  (string)Detalle_de_DelitoData.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
                     ,Articulado_de_Delito = Detalle_de_DelitoData.Articulado_de_Delito
@@ -868,6 +869,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Grupo_Delito), "Grupo_del_Delito") ??  (string)Detalle_de_DelitoData.Grupo_Delito_Grupo_del_Delito.Descripcion
                     ,Delito = Detalle_de_DelitoData.Delito
                     ,DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Delito), "Delito") ??  (string)Detalle_de_DelitoData.Delito_Delito.Descripcion
+                    ,Agravante = Detalle_de_DelitoData.Agravante.GetValueOrDefault()
                     ,Circunstancia_Delito = Detalle_de_DelitoData.Circunstancia_Delito
                     ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Circunstancia_Delito), "Circunstancia_del_Delito") ??  (string)Detalle_de_DelitoData.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
                     ,Articulado_de_Delito = Detalle_de_DelitoData.Articulado_de_Delito
@@ -2684,6 +2686,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
                         ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
+			,Agravante = m.Agravante
                         ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(m.Circunstancia_Delito_Circunstancia_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
 			,Articulado_de_Delito = m.Articulado_de_Delito
 			,Delito_Principal = m.Delito_Principal
@@ -2908,6 +2911,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
                         ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
+			,Agravante = m.Agravante
                         ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(m.Circunstancia_Delito_Circunstancia_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
 			,Articulado_de_Delito = m.Articulado_de_Delito
 			,Delito_Principal = m.Delito_Principal
@@ -3766,6 +3770,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                 where += " AND Detalle_de_Delito.Delito In (" + DelitoIds + ")";
             }
+
+            if (filter.Agravante != RadioOptions.NoApply)
+                where += " AND Detalle_de_Delito.Agravante = " + Convert.ToInt32(filter.Agravante);
 
             if (!string.IsNullOrEmpty(filter.AdvanceCircunstancia_Delito))
             {
@@ -6053,6 +6060,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Delito = varDetalle_de_Delito.Tipo_de_Delito
                         ,Grupo_Delito = varDetalle_de_Delito.Grupo_Delito
                         ,Delito = varDetalle_de_Delito.Delito
+                        ,Agravante = varDetalle_de_Delito.Agravante
                         ,Circunstancia_Delito = varDetalle_de_Delito.Circunstancia_Delito
                         ,Articulado_de_Delito = varDetalle_de_Delito.Articulado_de_Delito
                         ,Delito_Principal = varDetalle_de_Delito.Delito_Principal
@@ -6828,6 +6836,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
                         ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
+			,Agravante = m.Agravante
                         ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(m.Circunstancia_Delito_Circunstancia_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
 			,Articulado_de_Delito = m.Articulado_de_Delito
 			,Delito_Principal = m.Delito_Principal
@@ -7011,6 +7020,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
                         ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
+			,Agravante = m.Agravante
                         ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(m.Circunstancia_Delito_Circunstancia_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
 			,Articulado_de_Delito = m.Articulado_de_Delito
 			,Delito_Principal = m.Delito_Principal
@@ -7160,6 +7170,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Delito = varDetalle_de_Delito.Tipo_de_Delito
                         ,Grupo_Delito = varDetalle_de_Delito.Grupo_Delito
                         ,Delito = varDetalle_de_Delito.Delito
+                        ,Agravante = varDetalle_de_Delito.Agravante
                         ,Circunstancia_Delito = varDetalle_de_Delito.Circunstancia_Delito
                         ,Articulado_de_Delito = varDetalle_de_Delito.Articulado_de_Delito
                         ,Delito_Principal = varDetalle_de_Delito.Delito_Principal
@@ -7240,6 +7251,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,Delito = m.Delito
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
+			,Agravante = m.Agravante
                         ,Circunstancia_Delito = m.Circunstancia_Delito
                         ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(m.Circunstancia_Delito_Circunstancia_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
 			,Articulado_de_Delito = m.Articulado_de_Delito
