@@ -1535,6 +1535,10 @@
                 advanceSearch.DelitoSearchType = 2;
             }
         }
+        if ($("#ddlAdvanceAgravante").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_DelitoAgravante = $("#ddlAdvanceAgravante").val();
+        }
         advanceSearch.Circunstancia_DelitoSearchType = 0;
         if ($('#ddlAdvanceCircunstancia_Delito').val().length > 0 || $("#txtAdvanceCircunstancia_Delito").val() == "") {
 

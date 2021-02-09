@@ -13,6 +13,8 @@ using Spartane.Core.Domain.Nacionalidad;
 using Spartane.Core.Domain.Escolaridad;
 using Spartane.Core.Domain.Ocupacion;
 using Spartane.Core.Domain.Pais;
+using Spartane.Core.Domain.Estado;
+using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Pais;
 using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
@@ -26,8 +28,6 @@ using Spartane.Core.Domain.Especialidad;
 using Spartane.Core.Domain.Estudios_Superiores;
 using Spartane.Core.Domain.Idioma;
 using Spartane.Core.Domain.Calidad_Migratoria;
-using Spartane.Core.Domain.Estado;
-using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Dialecto;
 using Spartane.Core.Domain.Tipo_de_Inimputabilidad;
 using Spartane.Core.Domain.Discapacidades_Mentales;
@@ -125,7 +125,9 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public int? Nacionalidad { get; set; }
         public short? Escolaridad { get; set; }
         public int? Ocupacion { get; set; }
-        public int? Pais_de_Origen { get; set; }
+        public int? Pais_de_Nacimiento { get; set; }
+        public int? Estado_de_Nacimiento { get; set; }
+        public int? Municipio_de_Nacimiento { get; set; }
         public string Originario_de { get; set; }
         public int? Pais { get; set; }
         public int? Estado { get; set; }
@@ -154,8 +156,6 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public bool? Incompleto { get; set; }
         public int? Idioma { get; set; }
         public int? Calidad_Migratoria { get; set; }
-        public int? Estado_de_Nacimiento { get; set; }
-        public int? Municipio_de_Nacimiento { get; set; }
         public int? Dialecto { get; set; }
         public bool? Viene_en_Estado_de_Ebriedad { get; set; }
         public bool? Bajo_el_Efecto_de_una_Droga { get; set; }
@@ -285,8 +285,12 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public virtual Spartane.Core.Domain.Escolaridad.Escolaridad Escolaridad_Escolaridad { get; set; }
         [ForeignKey("Ocupacion")]
         public virtual Spartane.Core.Domain.Ocupacion.Ocupacion Ocupacion_Ocupacion { get; set; }
-        [ForeignKey("Pais_de_Origen")]
-        public virtual Spartane.Core.Domain.Pais.Pais Pais_de_Origen_Pais { get; set; }
+        [ForeignKey("Pais_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Pais.Pais Pais_de_Nacimiento_Pais { get; set; }
+        [ForeignKey("Estado_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Estado.Estado Estado_de_Nacimiento_Estado { get; set; }
+        [ForeignKey("Municipio_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_de_Nacimiento_Municipio { get; set; }
         [ForeignKey("Pais")]
         public virtual Spartane.Core.Domain.Pais.Pais Pais_Pais { get; set; }
         [ForeignKey("Estado")]
@@ -313,10 +317,6 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public virtual Spartane.Core.Domain.Idioma.Idioma Idioma_Idioma { get; set; }
         [ForeignKey("Calidad_Migratoria")]
         public virtual Spartane.Core.Domain.Calidad_Migratoria.Calidad_Migratoria Calidad_Migratoria_Calidad_Migratoria { get; set; }
-        [ForeignKey("Estado_de_Nacimiento")]
-        public virtual Spartane.Core.Domain.Estado.Estado Estado_de_Nacimiento_Estado { get; set; }
-        [ForeignKey("Municipio_de_Nacimiento")]
-        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_de_Nacimiento_Municipio { get; set; }
         [ForeignKey("Dialecto")]
         public virtual Spartane.Core.Domain.Dialecto.Dialecto Dialecto_Dialecto { get; set; }
         [ForeignKey("Tipo_de_Inimputabilidad")]
@@ -466,7 +466,9 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public int? Nacionalidad { get; set; }
         public short? Escolaridad { get; set; }
         public int? Ocupacion { get; set; }
-        public int? Pais_de_Origen { get; set; }
+        public int? Pais_de_Nacimiento { get; set; }
+        public int? Estado_de_Nacimiento { get; set; }
+        public int? Municipio_de_Nacimiento { get; set; }
         public string Originario_de { get; set; }
         public int? Pais { get; set; }
         public int? Estado { get; set; }
@@ -495,8 +497,6 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public bool? Incompleto { get; set; }
         public int? Idioma { get; set; }
         public int? Calidad_Migratoria { get; set; }
-        public int? Estado_de_Nacimiento { get; set; }
-        public int? Municipio_de_Nacimiento { get; set; }
         public int? Dialecto { get; set; }
         public bool? Viene_en_Estado_de_Ebriedad { get; set; }
         public bool? Bajo_el_Efecto_de_una_Droga { get; set; }
@@ -530,8 +530,12 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public virtual Spartane.Core.Domain.Escolaridad.Escolaridad Escolaridad_Escolaridad { get; set; }
         [ForeignKey("Ocupacion")]
         public virtual Spartane.Core.Domain.Ocupacion.Ocupacion Ocupacion_Ocupacion { get; set; }
-        [ForeignKey("Pais_de_Origen")]
-        public virtual Spartane.Core.Domain.Pais.Pais Pais_de_Origen_Pais { get; set; }
+        [ForeignKey("Pais_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Pais.Pais Pais_de_Nacimiento_Pais { get; set; }
+        [ForeignKey("Estado_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Estado.Estado Estado_de_Nacimiento_Estado { get; set; }
+        [ForeignKey("Municipio_de_Nacimiento")]
+        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_de_Nacimiento_Municipio { get; set; }
         [ForeignKey("Pais")]
         public virtual Spartane.Core.Domain.Pais.Pais Pais_Pais { get; set; }
         [ForeignKey("Estado")]
@@ -558,10 +562,6 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public virtual Spartane.Core.Domain.Idioma.Idioma Idioma_Idioma { get; set; }
         [ForeignKey("Calidad_Migratoria")]
         public virtual Spartane.Core.Domain.Calidad_Migratoria.Calidad_Migratoria Calidad_Migratoria_Calidad_Migratoria { get; set; }
-        [ForeignKey("Estado_de_Nacimiento")]
-        public virtual Spartane.Core.Domain.Estado.Estado Estado_de_Nacimiento_Estado { get; set; }
-        [ForeignKey("Municipio_de_Nacimiento")]
-        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_de_Nacimiento_Municipio { get; set; }
         [ForeignKey("Dialecto")]
         public virtual Spartane.Core.Domain.Dialecto.Dialecto Dialecto_Dialecto { get; set; }
         [ForeignKey("Tipo_de_Inimputabilidad")]

@@ -707,7 +707,8 @@ $("form#CreateDetalle_de_Datos_Generales").on('change', '#Pais', function () {
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Pais' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && GetValueByControlType($('#' + nameOfTable + 'Pais' + rowIndex),nameOfTable,rowIndex)==TryParseInt('82', '82') ) { var valor = $('#' + nameOfTable + 'Estado' + rowIndex).val();   $('#' + nameOfTable + 'Estado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Estado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Estado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM ESTADO WHERE PAIS = FLD[Pais]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Estado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM ESTADO WHERE PAIS = FLD[Pais]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Estado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Estado' + rowIndex).val(valor).trigger('change'); $('#divEstado').css('display', 'block');$('#divMunicipio').css('display', 'block');$('#divColonia').css('display', 'block');$('#divPoblacion').css('display', 'block'); $('#divEstado_de_Nacimiento').css('display', 'block');$('#divMunicipio_de_Nacimiento').css('display', 'block');} else { $('#divEstado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));$('#divMunicipio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));$('#divColonia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));$('#divPoblacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex)); $('#divEstado_Civil').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_Civil' + rowIndex));$('#divMunicipio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));$('#divColonia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));$('#divPoblacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));$('#divEstado_de_Nacimiento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_de_Nacimiento' + rowIndex));$('#divMunicipio_de_Nacimiento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_de_Nacimiento' + rowIndex));}
 });
-
+
+
 //BusinessRuleId:556, Attribute:263791, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
@@ -1901,14 +1902,16 @@ if(operation == 'Consult'){
 //BusinessRuleId:3628, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  $('#divLocalidad_del_Tutor').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Localidad_del_Tutor' + rowIndex));$('#divOriginario_de_T').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Originario_de_T' + rowIndex));
-
+
+
 }
 //BusinessRuleId:3628, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:3628, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  $('#divLocalidad_del_Tutor').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Localidad_del_Tutor' + rowIndex));$('#divOriginario_de_T').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Originario_de_T' + rowIndex));
-
+
+
 }
 //BusinessRuleId:3628, Attribute:0, Operation:Object, Event:SCREENOPENING
 
@@ -2930,7 +2933,6 @@ function CargaGoogleMaps() {
 }
 
 
-
 function CargaGoogleMapsOtrosDomicilios() {
 
     debugger;
@@ -3238,6 +3240,7 @@ function CargaGoogleMapsOtrosDomicilios() {
 
                             if (results[0].address_components[i].types[0] == "country") {
                                 debugger;
+								console.log(" CambiaPaisRow(results[0].address_components[i].long_name)" + results[0].address_components[i].long_name)
                                 CambiaPaisRow(results[0].address_components[i].long_name);
                                 // AsignarValor($('#' + nameOfTable + 'Pais' + rowIndex), results[0].address_components[i].long_name);
 
@@ -3245,19 +3248,27 @@ function CargaGoogleMapsOtrosDomicilios() {
                             }
 
                             if (results[0].address_components[i].types[0] == "administrative_area_level_1") {
+								console.log(" CambiaEstadoRow(results[0].address_components[i].long_name)" + results[0].address_components[i].long_name)
                                 CambiaEstadoRow(results[0].address_components[i].long_name);
+
                                 // AsignarValor($('#' + nameOfTable + 'Estado' + rowIndex), results[0].address_components[i].long_name);
                             }
 
                             if (results[0].address_components[i].types[0] == "locality") {
-                                CambiaMunicipioRow(results[0].address_components[i].long_name);
+                                console.log(" CambiaMunicipioRow(results[0].address_components[i].long_name))" + results[0].address_components[i].long_name);
+
+								CambiaMunicipioRow(results[0].address_components[i].long_name);
+
                                 // AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex), results[0].address_components[i].long_name);
                             }
 
 
                             if (results[0].address_components[i].types[0] == "political") { // segun spartanMetadata poblacion es igual a colonia
 
+								 console.log(" CambiaPoblacionRow(results[0].address_components[i].long_name) )" + results[0].address_components[i].long_name);
+								 console.log(" CambiaColoniaRow(results[0].address_components[i].long_name); )" + results[0].address_components[i].long_name);
                                 CambiaPoblacionRow(results[0].address_components[i].long_name);
+
                                 CambiaColoniaRow(results[0].address_components[i].long_name);
                                 // AsignarValor($('#' + nameOfTable + 'Colonia' + rowIndex), results[0].address_components[i].long_name);
                                 //AsignarValor($('#' + nameOfTable + 'Poblacion' + rowIndex), results[0].address_components[i].long_name);
@@ -3316,7 +3327,6 @@ function CargaGoogleMapsOtrosDomicilios() {
             }
         });
 }
-
 
 
 $("#Codigo_Postal").keyup(function () {

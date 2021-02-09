@@ -33,13 +33,13 @@
   <resource culture="en-US" name="Ocupacion" value="Ocupación"></resource>
   <resource culture="en-US" name="Municipio_Corporacion" value="Municipio Corporación"></resource>
   <resource culture="en-US" name="Corporacion" value="Corporación"></resource>
-  <resource culture="en-US" name="Pais_de_Origen" value="País de Origen"></resource>
+  <resource culture="en-US" name="Pais_de_Nacimiento" value="País de Nacimiento"></resource>
+  <resource culture="en-US" name="Estado_de_Nacimiento" value="Estado de Nacimiento"></resource>
+  <resource culture="en-US" name="Municipio_de_Nacimiento" value="Municipio de Nacimiento"></resource>
   <resource culture="en-US" name="Originario_de" value="Originario de"></resource>
   <resource culture="en-US" name="Pais" value="País"></resource>
   <resource culture="en-US" name="Estado" value="Estado"></resource>
   <resource culture="en-US" name="Municipio" value="Municipio"></resource>
-  <resource culture="en-US" name="Estado_de_Nacimiento" value="Estado de Nacimiento"></resource>
-  <resource culture="en-US" name="Municipio_de_Nacimiento" value="Municipio de Nacimiento"></resource>
   <resource culture="en-US" name="Poblacion" value="Población"></resource>
   <resource culture="en-US" name="Colonia" value="Colonia"></resource>
   <resource culture="en-US" name="Codigo_Postal" value="Código Postal"></resource>

@@ -66,6 +66,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Cve_Delito</summary>
+        public static string Cve_Delito
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAgravantes.GetResource("Cve_Delito", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>NO_CARAC</summary>
+        public static string NO_CARAC
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAgravantes.GetResource("NO_CARAC", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderAgravantes.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

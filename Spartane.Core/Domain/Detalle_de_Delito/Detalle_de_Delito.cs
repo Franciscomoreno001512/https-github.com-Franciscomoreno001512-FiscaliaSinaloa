@@ -79,6 +79,7 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public int? Tipo_de_Delito { get; set; }
         public int? Grupo_Delito { get; set; }
         public int? Delito { get; set; }
+        public bool? Agravante { get; set; }
         public int? Circunstancia_Delito { get; set; }
         public string Articulado_de_Delito { get; set; }
         public bool? Delito_Principal { get; set; }
@@ -296,6 +297,7 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public int? Tipo_de_Delito { get; set; }
         public int? Grupo_Delito { get; set; }
         public int? Delito { get; set; }
+        public bool? Agravante { get; set; }
         public int? Circunstancia_Delito { get; set; }
         public string Articulado_de_Delito { get; set; }
         public bool? Delito_Principal { get; set; }

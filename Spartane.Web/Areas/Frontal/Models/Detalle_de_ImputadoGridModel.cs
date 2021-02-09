@@ -43,8 +43,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string EscolaridadDescripcion { get; set; }
         public int? Ocupacion { get; set; }
         public string OcupacionDescripcion { get; set; }
-        public int? Pais_de_Origen { get; set; }
-        public string Pais_de_OrigenNombre { get; set; }
+        public int? Pais_de_Nacimiento { get; set; }
+        public string Pais_de_NacimientoNombre { get; set; }
+        public int? Estado_de_Nacimiento { get; set; }
+        public string Estado_de_NacimientoNombre { get; set; }
+        public int? Municipio_de_Nacimiento { get; set; }
+        public string Municipio_de_NacimientoNombre { get; set; }
         public string Originario_de { get; set; }
         public int? Pais { get; set; }
         public string PaisNombre { get; set; }
@@ -86,10 +90,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string IdiomaDescripcion { get; set; }
         public int? Calidad_Migratoria { get; set; }
         public string Calidad_MigratoriaDescripcion { get; set; }
-        public int? Estado_de_Nacimiento { get; set; }
-        public string Estado_de_NacimientoNombre { get; set; }
-        public int? Municipio_de_Nacimiento { get; set; }
-        public string Municipio_de_NacimientoNombre { get; set; }
         public int? Dialecto { get; set; }
         public string DialectoDescripcion { get; set; }
         public bool? Viene_en_Estado_de_Ebriedad { get; set; }

@@ -13,6 +13,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         {
             Robo_de_Vehiculo = RadioOptions.NoApply;
             Violencia_de_Genero = RadioOptions.NoApply;
+            Agravante = RadioOptions.NoApply;
             Delito_Principal = RadioOptions.NoApply;
             Se_Informaron_sus_Derechos = RadioOptions.NoApply;
             Se_Informo_el_Procedimiento = RadioOptions.NoApply;
@@ -80,6 +81,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters DelitoFilter { set; get; }
         public string AdvanceDelito { set; get; }
         public int[] AdvanceDelitoMultiple { set; get; }
+
+        public RadioOptions Agravante { set; get; }
 
         public Filters Circunstancia_DelitoFilter { set; get; }
         public string AdvanceCircunstancia_Delito { set; get; }

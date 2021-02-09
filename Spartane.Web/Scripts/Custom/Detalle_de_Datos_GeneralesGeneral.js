@@ -1699,16 +1699,38 @@ function GetAutoCompleteDetalle_de_Datos_Generales_Nacionalidad_NacionalidadData
     }
     return AutoCompleteNacionalidadData;
 }
-var AutoCompletePais_de_OrigenData = [];
-function GetAutoCompleteDetalle_de_Datos_Generales_Pais_de_Origen_PaisData(data) {
-	AutoCompletePais_de_OrigenData = [];
+var AutoCompletePais_de_NacimientoData = [];
+function GetAutoCompleteDetalle_de_Datos_Generales_Pais_de_Nacimiento_PaisData(data) {
+	AutoCompletePais_de_NacimientoData = [];
     for (var i = 0; i < data.length; i++) {
-        AutoCompletePais_de_OrigenData.push({
+        AutoCompletePais_de_NacimientoData.push({
             id: data[i].Clave,
             text: data[i].Nombre
         });
     }
-    return AutoCompletePais_de_OrigenData;
+    return AutoCompletePais_de_NacimientoData;
+}
+var AutoCompleteEstado_de_NacimientoData = [];
+function GetAutoCompleteDetalle_de_Datos_Generales_Estado_de_Nacimiento_EstadoData(data) {
+	AutoCompleteEstado_de_NacimientoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteEstado_de_NacimientoData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteEstado_de_NacimientoData;
+}
+var AutoCompleteMunicipio_de_NacimientoData = [];
+function GetAutoCompleteDetalle_de_Datos_Generales_Municipio_de_Nacimiento_MunicipioData(data) {
+	AutoCompleteMunicipio_de_NacimientoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteMunicipio_de_NacimientoData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteMunicipio_de_NacimientoData;
 }
 var AutoCompletePaisData = [];
 function GetAutoCompleteDetalle_de_Datos_Generales_Pais_PaisData(data) {
@@ -1742,28 +1764,6 @@ function GetAutoCompleteDetalle_de_Datos_Generales_Municipio_MunicipioData(data)
         });
     }
     return AutoCompleteMunicipioData;
-}
-var AutoCompleteEstado_de_NacimientoData = [];
-function GetAutoCompleteDetalle_de_Datos_Generales_Estado_de_Nacimiento_EstadoData(data) {
-	AutoCompleteEstado_de_NacimientoData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteEstado_de_NacimientoData.push({
-            id: data[i].Clave,
-            text: data[i].Nombre
-        });
-    }
-    return AutoCompleteEstado_de_NacimientoData;
-}
-var AutoCompleteMunicipio_de_NacimientoData = [];
-function GetAutoCompleteDetalle_de_Datos_Generales_Municipio_de_Nacimiento_MunicipioData(data) {
-	AutoCompleteMunicipio_de_NacimientoData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteMunicipio_de_NacimientoData.push({
-            id: data[i].Clave,
-            text: data[i].Nombre
-        });
-    }
-    return AutoCompleteMunicipio_de_NacimientoData;
 }
 var AutoCompletePoblacionData = [];
 function GetAutoCompleteDetalle_de_Datos_Generales_Poblacion_ColoniaData(data) {
@@ -2011,9 +2011,15 @@ function ClearControls() {
     $('#Nacionalidad').empty();
     $("#Nacionalidad").append('<option value=""></option>');
     $('#Nacionalidad').val('0').trigger('change');
-    $('#Pais_de_Origen').empty();
-    $("#Pais_de_Origen").append('<option value=""></option>');
-    $('#Pais_de_Origen').val('0').trigger('change');
+    $('#Pais_de_Nacimiento').empty();
+    $("#Pais_de_Nacimiento").append('<option value=""></option>');
+    $('#Pais_de_Nacimiento').val('0').trigger('change');
+    $('#Estado_de_Nacimiento').empty();
+    $("#Estado_de_Nacimiento").append('<option value=""></option>');
+    $('#Estado_de_Nacimiento').val('0').trigger('change');
+    $('#Municipio_de_Nacimiento').empty();
+    $("#Municipio_de_Nacimiento").append('<option value=""></option>');
+    $('#Municipio_de_Nacimiento').val('0').trigger('change');
     $('#Pais').empty();
     $("#Pais").append('<option value=""></option>');
     $('#Pais').val('0').trigger('change');
@@ -2023,12 +2029,6 @@ function ClearControls() {
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
-    $('#Estado_de_Nacimiento').empty();
-    $("#Estado_de_Nacimiento").append('<option value=""></option>');
-    $('#Estado_de_Nacimiento').val('0').trigger('change');
-    $('#Municipio_de_Nacimiento').empty();
-    $("#Municipio_de_Nacimiento").append('<option value=""></option>');
-    $('#Municipio_de_Nacimiento').val('0').trigger('change');
     $('#Poblacion').empty();
     $("#Poblacion").append('<option value=""></option>');
     $('#Poblacion').val('0').trigger('change');
@@ -2244,9 +2244,15 @@ $(document).ready(function () {
     $('#Nacionalidad').empty();
     $("#Nacionalidad").append('<option value=""></option>');
     $('#Nacionalidad').val('0').trigger('change');
-    $('#Pais_de_Origen').empty();
-    $("#Pais_de_Origen").append('<option value=""></option>');
-    $('#Pais_de_Origen').val('0').trigger('change');
+    $('#Pais_de_Nacimiento').empty();
+    $("#Pais_de_Nacimiento").append('<option value=""></option>');
+    $('#Pais_de_Nacimiento').val('0').trigger('change');
+    $('#Estado_de_Nacimiento').empty();
+    $("#Estado_de_Nacimiento").append('<option value=""></option>');
+    $('#Estado_de_Nacimiento').val('0').trigger('change');
+    $('#Municipio_de_Nacimiento').empty();
+    $("#Municipio_de_Nacimiento").append('<option value=""></option>');
+    $('#Municipio_de_Nacimiento').val('0').trigger('change');
     $('#Pais').empty();
     $("#Pais").append('<option value=""></option>');
     $('#Pais').val('0').trigger('change');
@@ -2256,12 +2262,6 @@ $(document).ready(function () {
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
-    $('#Estado_de_Nacimiento').empty();
-    $("#Estado_de_Nacimiento").append('<option value=""></option>');
-    $('#Estado_de_Nacimiento').val('0').trigger('change');
-    $('#Municipio_de_Nacimiento').empty();
-    $("#Municipio_de_Nacimiento").append('<option value=""></option>');
-    $('#Municipio_de_Nacimiento').val('0').trigger('change');
     $('#Poblacion').empty();
     $("#Poblacion").append('<option value=""></option>');
     $('#Poblacion').val('0').trigger('change');

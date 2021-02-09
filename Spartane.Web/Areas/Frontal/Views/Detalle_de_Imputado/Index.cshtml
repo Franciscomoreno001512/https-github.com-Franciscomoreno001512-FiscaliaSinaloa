@@ -11,6 +11,8 @@
 @using Spartane.Core.Domain.Escolaridad;
 @using Spartane.Core.Domain.Ocupacion;
 @using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Pais;
 @using Spartane.Core.Domain.Estado;
 @using Spartane.Core.Domain.Municipio;
@@ -24,8 +26,6 @@
 @using Spartane.Core.Domain.Estudios_Superiores;
 @using Spartane.Core.Domain.Idioma;
 @using Spartane.Core.Domain.Calidad_Migratoria;
-@using Spartane.Core.Domain.Estado;
-@using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Dialecto;
 @using Spartane.Core.Domain.Tipo_de_Inimputabilidad;
 @using Spartane.Core.Domain.Discapacidades_Mentales;
@@ -305,7 +305,9 @@
                                     <th>@Resources.Detalle_de_ImputadoResources.Nacionalidad</th>
                                     <th>@Resources.Detalle_de_ImputadoResources.Escolaridad</th>
                                     <th>@Resources.Detalle_de_ImputadoResources.Ocupacion</th>
-                                    <th>@Resources.Detalle_de_ImputadoResources.Pais_de_Origen</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Pais_de_Nacimiento</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Estado_de_Nacimiento</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Municipio_de_Nacimiento</th>
                                     <th>@Resources.Detalle_de_ImputadoResources.Originario_de</th>
                                     <th>@Resources.Detalle_de_ImputadoResources.Pais</th>
                                     <th>@Resources.Detalle_de_ImputadoResources.Estado</th>
@@ -334,8 +336,6 @@
                                     <th>@Resources.Detalle_de_ImputadoResources.Incompleto</th>
                                     <th>@Resources.Detalle_de_ImputadoResources.Idioma</th>
                                     <th>@Resources.Detalle_de_ImputadoResources.Calidad_Migratoria</th>
-                                    <th>@Resources.Detalle_de_ImputadoResources.Estado_de_Nacimiento</th>
-                                    <th>@Resources.Detalle_de_ImputadoResources.Municipio_de_Nacimiento</th>
                                     <th>@Resources.Detalle_de_ImputadoResources.Dialecto</th>
                                     <th>@Resources.Detalle_de_ImputadoResources.Viene_en_Estado_de_Ebriedad</th>
                                     <th>@Resources.Detalle_de_ImputadoResources.Bajo_el_Efecto_de_una_Droga</th>
@@ -483,6 +483,8 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -503,8 +505,6 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -756,7 +756,9 @@
         var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Escolaridad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pais_de_Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Originario_de =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -785,8 +787,6 @@
         var Incompleto = $($('table td .filterData.form-control:input')[counter++]).val();
         var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Calidad_Migratoria =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Dialecto =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Viene_en_Estado_de_Ebriedad = $($('table td .filterData.form-control:input')[counter++]).val();
         var Bajo_el_Efecto_de_una_Droga = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -923,7 +923,9 @@
         + "&Nacionalidad=" + Nacionalidad
         + "&Escolaridad=" + Escolaridad
         + "&Ocupacion=" + Ocupacion
-        + "&Pais_de_Origen=" + Pais_de_Origen
+        + "&Pais_de_Nacimiento=" + Pais_de_Nacimiento
+        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
+        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Originario_de=" + Originario_de
         + "&Pais=" + Pais
         + "&Estado=" + Estado
@@ -952,8 +954,6 @@
         + "&Incompleto=" + Incompleto
         + "&Idioma=" + Idioma
         + "&Calidad_Migratoria=" + Calidad_Migratoria
-        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
-        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Dialecto=" + Dialecto
         + "&Viene_en_Estado_de_Ebriedad=" + Viene_en_Estado_de_Ebriedad
         + "&Bajo_el_Efecto_de_una_Droga=" + Bajo_el_Efecto_de_una_Droga
@@ -1101,7 +1101,9 @@
         var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Escolaridad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pais_de_Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Originario_de =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -1130,8 +1132,6 @@
         var Incompleto = $($('table td .filterData.form-control:input')[counter++]).val();
         var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Calidad_Migratoria =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Dialecto =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Viene_en_Estado_de_Ebriedad = $($('table td .filterData.form-control:input')[counter++]).val();
         var Bajo_el_Efecto_de_una_Droga = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -1268,7 +1268,9 @@
         + "&Nacionalidad=" + Nacionalidad
         + "&Escolaridad=" + Escolaridad
         + "&Ocupacion=" + Ocupacion
-        + "&Pais_de_Origen=" + Pais_de_Origen
+        + "&Pais_de_Nacimiento=" + Pais_de_Nacimiento
+        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
+        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Originario_de=" + Originario_de
         + "&Pais=" + Pais
         + "&Estado=" + Estado
@@ -1297,8 +1299,6 @@
         + "&Incompleto=" + Incompleto
         + "&Idioma=" + Idioma
         + "&Calidad_Migratoria=" + Calidad_Migratoria
-        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
-        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
         + "&Dialecto=" + Dialecto
         + "&Viene_en_Estado_de_Ebriedad=" + Viene_en_Estado_de_Ebriedad
         + "&Bajo_el_Efecto_de_una_Droga=" + Bajo_el_Efecto_de_una_Droga
@@ -1680,7 +1680,9 @@
                 ,{ "data": "NacionalidadNacionalidadC", "orderable": true, "name": "NacionalidadNacionalidadC" }
                 ,{ "data": "EscolaridadDescripcion", "orderable": true, "name": "EscolaridadDescripcion" }
                 ,{ "data": "OcupacionDescripcion", "orderable": true, "name": "OcupacionDescripcion" }
-                ,{ "data": "Pais_de_OrigenNombre", "orderable": true, "name": "Pais_de_OrigenNombre"}
+                ,{ "data": "Pais_de_NacimientoNombre", "orderable": true, "name": "Pais_de_NacimientoNombre"}
+                ,{ "data": "Estado_de_NacimientoNombre", "orderable": true, "name": "Estado_de_NacimientoNombre"}
+                ,{ "data": "Municipio_de_NacimientoNombre", "orderable": true, "name": "Municipio_de_NacimientoNombre"}
                 ,{ "data": "Originario_de", "orderable": true, "name": "Originario_de", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre"}
                 ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
@@ -1709,8 +1711,6 @@
                 ,{ "data": "Incompleto", "orderable": true, "name": "Incompleto","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "IdiomaDescripcion", "orderable": true, "name": "IdiomaDescripcion" }
                 ,{ "data": "Calidad_MigratoriaDescripcion", "orderable": true, "name": "Calidad_MigratoriaDescripcion" }
-                ,{ "data": "Estado_de_NacimientoNombre", "orderable": true, "name": "Estado_de_NacimientoNombre"}
-                ,{ "data": "Municipio_de_NacimientoNombre", "orderable": true, "name": "Municipio_de_NacimientoNombre"}
                 ,{ "data": "DialectoDescripcion", "orderable": true, "name": "DialectoDescripcion" }
                 ,{ "data": "Viene_en_Estado_de_Ebriedad", "orderable": true, "name": "Viene_en_Estado_de_Ebriedad","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Bajo_el_Efecto_de_una_Droga", "orderable": true, "name": "Bajo_el_Efecto_de_una_Droga","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}

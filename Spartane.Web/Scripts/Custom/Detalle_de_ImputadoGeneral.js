@@ -1487,7 +1487,6 @@ function Otros_Domicilios_Probable_ResponsableMapaRow(rowIndex) {
     $("#modalMapa2").click();
 
 }
-
 function GetOtros_Domicilios_Probable_ResponsableFromDataTable() {
     var Otros_Domicilios_Probable_ResponsableData = [];
     var gridData = Otros_Domicilios_Probable_ResponsableTable.fnGetData();
@@ -2324,16 +2323,38 @@ function GetAutoCompleteLugar_de_Detencion_Municipio_de_Detencion_MunicipioData(
     return AutoCompleteMunicipio_de_DetencionData;
 }
 
-var AutoCompletePais_de_OrigenData = [];
-function GetAutoCompleteDetalle_de_Imputado_Pais_de_Origen_PaisData(data) {
-	AutoCompletePais_de_OrigenData = [];
+var AutoCompletePais_de_NacimientoData = [];
+function GetAutoCompleteDetalle_de_Imputado_Pais_de_Nacimiento_PaisData(data) {
+	AutoCompletePais_de_NacimientoData = [];
     for (var i = 0; i < data.length; i++) {
-        AutoCompletePais_de_OrigenData.push({
+        AutoCompletePais_de_NacimientoData.push({
             id: data[i].Clave,
             text: data[i].Nombre
         });
     }
-    return AutoCompletePais_de_OrigenData;
+    return AutoCompletePais_de_NacimientoData;
+}
+var AutoCompleteEstado_de_NacimientoData = [];
+function GetAutoCompleteDetalle_de_Imputado_Estado_de_Nacimiento_EstadoData(data) {
+	AutoCompleteEstado_de_NacimientoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteEstado_de_NacimientoData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteEstado_de_NacimientoData;
+}
+var AutoCompleteMunicipio_de_NacimientoData = [];
+function GetAutoCompleteDetalle_de_Imputado_Municipio_de_Nacimiento_MunicipioData(data) {
+	AutoCompleteMunicipio_de_NacimientoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteMunicipio_de_NacimientoData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteMunicipio_de_NacimientoData;
 }
 var AutoCompletePaisData = [];
 function GetAutoCompleteDetalle_de_Imputado_Pais_PaisData(data) {
@@ -2389,28 +2410,6 @@ function GetAutoCompleteDetalle_de_Imputado_Colonia_ColoniaData(data) {
         });
     }
     return AutoCompleteColoniaData;
-}
-var AutoCompleteEstado_de_NacimientoData = [];
-function GetAutoCompleteDetalle_de_Imputado_Estado_de_Nacimiento_EstadoData(data) {
-	AutoCompleteEstado_de_NacimientoData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteEstado_de_NacimientoData.push({
-            id: data[i].Clave,
-            text: data[i].Nombre
-        });
-    }
-    return AutoCompleteEstado_de_NacimientoData;
-}
-var AutoCompleteMunicipio_de_NacimientoData = [];
-function GetAutoCompleteDetalle_de_Imputado_Municipio_de_Nacimiento_MunicipioData(data) {
-	AutoCompleteMunicipio_de_NacimientoData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteMunicipio_de_NacimientoData.push({
-            id: data[i].Clave,
-            text: data[i].Nombre
-        });
-    }
-    return AutoCompleteMunicipio_de_NacimientoData;
 }
 //Grid GetAutocomplete
 
@@ -2636,9 +2635,15 @@ function ClearControls() {
     $("#Expediente_MASC").append('<option value=""></option>');
     $('#Expediente_MASC').val('0').trigger('change');
                 Lugar_de_DetencionClearGridData();
-    $('#Pais_de_Origen').empty();
-    $("#Pais_de_Origen").append('<option value=""></option>');
-    $('#Pais_de_Origen').val('0').trigger('change');
+    $('#Pais_de_Nacimiento').empty();
+    $("#Pais_de_Nacimiento").append('<option value=""></option>');
+    $('#Pais_de_Nacimiento').val('0').trigger('change');
+    $('#Estado_de_Nacimiento').empty();
+    $("#Estado_de_Nacimiento").append('<option value=""></option>');
+    $('#Estado_de_Nacimiento').val('0').trigger('change');
+    $('#Municipio_de_Nacimiento').empty();
+    $("#Municipio_de_Nacimiento").append('<option value=""></option>');
+    $('#Municipio_de_Nacimiento').val('0').trigger('change');
     $('#Pais').empty();
     $("#Pais").append('<option value=""></option>');
     $('#Pais').val('0').trigger('change');
@@ -2654,12 +2659,6 @@ function ClearControls() {
     $('#Colonia').empty();
     $("#Colonia").append('<option value=""></option>');
     $('#Colonia').val('0').trigger('change');
-    $('#Estado_de_Nacimiento').empty();
-    $("#Estado_de_Nacimiento").append('<option value=""></option>');
-    $('#Estado_de_Nacimiento').val('0').trigger('change');
-    $('#Municipio_de_Nacimiento').empty();
-    $("#Municipio_de_Nacimiento").append('<option value=""></option>');
-    $('#Municipio_de_Nacimiento').val('0').trigger('change');
                 Adicciones_Probable_ResponsableClearGridData();
                 Lugares_Frecuentes_Probable_ResponsableClearGridData();
                 Datos_Personales_Adicionales_Probable_ResponsableClearGridData();
@@ -2880,9 +2879,15 @@ $(document).ready(function () {
     $("#Expediente_MASC").append('<option value=""></option>');
     $('#Expediente_MASC').val('0').trigger('change');
                 Lugar_de_DetencionClearGridData();
-    $('#Pais_de_Origen').empty();
-    $("#Pais_de_Origen").append('<option value=""></option>');
-    $('#Pais_de_Origen').val('0').trigger('change');
+    $('#Pais_de_Nacimiento').empty();
+    $("#Pais_de_Nacimiento").append('<option value=""></option>');
+    $('#Pais_de_Nacimiento').val('0').trigger('change');
+    $('#Estado_de_Nacimiento').empty();
+    $("#Estado_de_Nacimiento").append('<option value=""></option>');
+    $('#Estado_de_Nacimiento').val('0').trigger('change');
+    $('#Municipio_de_Nacimiento').empty();
+    $("#Municipio_de_Nacimiento").append('<option value=""></option>');
+    $('#Municipio_de_Nacimiento').val('0').trigger('change');
     $('#Pais').empty();
     $("#Pais").append('<option value=""></option>');
     $('#Pais').val('0').trigger('change');
@@ -2898,12 +2903,6 @@ $(document).ready(function () {
     $('#Colonia').empty();
     $("#Colonia").append('<option value=""></option>');
     $('#Colonia').val('0').trigger('change');
-    $('#Estado_de_Nacimiento').empty();
-    $("#Estado_de_Nacimiento").append('<option value=""></option>');
-    $('#Estado_de_Nacimiento').val('0').trigger('change');
-    $('#Municipio_de_Nacimiento').empty();
-    $("#Municipio_de_Nacimiento").append('<option value=""></option>');
-    $('#Municipio_de_Nacimiento').val('0').trigger('change');
                 Adicciones_Probable_ResponsableClearGridData();
                 Lugares_Frecuentes_Probable_ResponsableClearGridData();
                 Datos_Personales_Adicionales_Probable_ResponsableClearGridData();

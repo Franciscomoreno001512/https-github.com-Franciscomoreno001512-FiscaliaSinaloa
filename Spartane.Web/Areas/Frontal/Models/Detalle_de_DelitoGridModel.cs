@@ -30,6 +30,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Grupo_DelitoDescripcion { get; set; }
         public int? Delito { get; set; }
         public string DelitoDescripcion { get; set; }
+        public bool? Agravante { get; set; }
         public int? Circunstancia_Delito { get; set; }
         public string Circunstancia_DelitoDescripcion { get; set; }
         public string Articulado_de_Delito { get; set; }
