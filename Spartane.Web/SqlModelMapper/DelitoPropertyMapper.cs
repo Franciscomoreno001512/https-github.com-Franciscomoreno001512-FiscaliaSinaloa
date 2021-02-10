@@ -48,8 +48,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Delito.ESTADISTICO_SSP";
                 case "VAL_VEHICULO":
                     return "Delito.VAL_VEHICULO";
-                case "TIPO_DELITO":
-                    return "Delito.TIPO_DELITO";
+                case "TIPO_DELITO[Descripcion]":
+                case "TIPO_DELITODescripcion":
+                    return "Tipo_Delito.Descripcion";
                 case "circunstancia_clasif":
                     return "Delito.circunstancia_clasif";
                 case "PRINCIPAL":

@@ -643,7 +643,7 @@
                     $.each(result[0].Details.Columns, function (i, c) {
 
                         if (ObjectSelected == "45018") {
-                            if (c == "Clave" || (c == "Documento" && idModule == '1') || (c == "Campo" && idModule == '1') || (c == "Archivo" && idModule == '1') || (c == "Descripcion" && idModule == '1') || (c == "Lista_para_periciales" ) || (c == "Documento_Pericial") || (c == "Archivo_Pericial") ) {
+                            if (c == "clave" || c == "Clave" || (c == "Documento" && idModule == '1') || (c == "Campo" && idModule == '1') || (c == "Archivo" && idModule == '1') || (c == "Descripcion" && idModule == '1') || (c == "Lista_para_periciales" ) || (c == "Documento_Pericial") || (c == "Archivo_Pericial") ) {
                                 htmlColumns += '<th class="text-center" hidden>' + c.replace(/_/g, " ") + '</th>';
                             } else {
                                 htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
@@ -772,7 +772,7 @@
                                 }
                             }
                             else {
-                                if (i == 0 || (idModule == "1" && i == 11) || (idModule == "3" && i == 13) || (idModule == "2" && i == 6) || (idModule == "2" && i == 7) || (idModule == "2" && i == 8) || (i == 17 && idModule == '3') || (i == 18 && idModule == '3') ) {
+                                if (i == 0 || (idModule == "1" && i == 11) || (idModule == "3" && i == 13) || (i == 17 && idModule == '3') || (i == 18 && idModule == '3')) {
                                     htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';

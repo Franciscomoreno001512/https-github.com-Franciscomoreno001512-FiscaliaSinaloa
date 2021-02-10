@@ -925,5 +925,12 @@ function EjecutarValidacionesDespuesDeGuardar() {
 
 
 
-    //NEWBUSINESSRULE_AFTERSAVING//
+    //BusinessRuleId:3853, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" UPDATE Asignacion_de_Turnos SET Nombre_Completo = Nombres + (CASE WHEN Apellido_Paterno IS null THEN '' ELSE ' ' + Apellido_Paterno END) + (CASE WHEN Apellido_Materno IS null THEN '' ELSE ' ' + Apellido_Materno END) WHERE Folio = GLOBAL[KeyValueInserted]	", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:3853, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//NEWBUSINESSRULE_AFTERSAVING//
 }

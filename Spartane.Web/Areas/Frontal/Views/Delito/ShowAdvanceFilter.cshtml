@@ -9,6 +9,9 @@
     List<SelectListItem> varGrupo_del_Delito_Grupo_del_Delito = null;
     if (ViewBag.Grupo_del_Delitos_Grupo_del_Delito != null)
     { varGrupo_del_Delito_Grupo_del_Delito = (List<SelectListItem>)ViewBag.Grupo_del_Delitos_Grupo_del_Delito; }
+ List<SelectListItem> varTipo_Delito_TIPO_DELITO = null;
+    if (ViewBag.Tipo_Delitos_TIPO_DELITO != null)
+    { varTipo_Delito_TIPO_DELITO = (List<SelectListItem>)ViewBag.Tipo_Delitos_TIPO_DELITO; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -161,14 +164,9 @@
                     @Html.DropDownListFor(m => m.VAL_VEHICULOFilter, filters, new { @class = "form-control", @id = "ddlVAL_VEHICULOFilter" })
                     @Html.TextBoxFor(m => m.VAL_VEHICULO, new { @class = "form-control", @type = "text", @id = "txtVAL_VEHICULO" })
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.DelitoResources.TIPO_DELITO</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.TIPO_DELITOFilter, filters, new { @class = "form-control", @id = "ddlTIPO_DELITOFilter" })
-                    @Html.TextBoxFor(m => m.TIPO_DELITO, new { @class = "form-control", @type = "text", @id = "txtTIPO_DELITO" })
-                </div>
+ List<SelectListItem> varTipo_Delito_TIPO_DELITO = null;
+    if (ViewBag.Tipo_Delitos_TIPO_DELITO != null)
+    { varTipo_Delito_TIPO_DELITO = (List<SelectListItem>)ViewBag.Tipo_Delitos_TIPO_DELITO; }
                 <div class="MarginBottom ">
                     <h3>@Resources.DelitoResources.circunstancia_clasif</h3>
                 </div>
@@ -308,10 +306,20 @@
             advanceSearch.DelitoVAL_VEHICULO = $("#txtAdvanceVAL_VEHICULO").val();
             advanceSearch.DelitoVAL_VEHICULOSearchType = $("#ddlAdvanceVAL_VEHICULOFilter").val();
         }
-        if ($("#txtAdvanceTIPO_DELITO").val() != "") {
-            hasParameter = true;
-            advanceSearch.DelitoTIPO_DELITO = $("#txtAdvanceTIPO_DELITO").val();
-            advanceSearch.DelitoTIPO_DELITOSearchType = $("#ddlAdvanceTIPO_DELITOFilter").val();
+        advanceSearch.TIPO_DELITOSearchType = 0;
+        if ($('#ddlAdvanceTIPO_DELITO').val().length > 0 || $("#txtAdvanceTIPO_DELITO").val() == "") {
+
+
+            if (isDelitoTextSearch) {
+                advanceSearch.TIPO_DELITOName = $("#txtAdvanceTIPO_DELITO").val();
+                advanceSearch.TIPO_DELITONameSearchType = $("#ddlAdvanceTIPO_DELITO").val();
+                advanceSearch.TIPO_DELITOSearchType = 1;
+            }
+            else {
+
+                advanceSearch.TIPO_DELITOToSearch = $("#ddlAdvanceTIPO_DELITO").val();
+                advanceSearch.TIPO_DELITOSearchType = 2;
+            }
         }
         if ($("#txtAdvanceFromcircunstancia_clasif").val() != "" || $("#txtAdvanceTocircunstancia_clasif").val() != "") {
             hasParameter = true;
@@ -363,6 +371,15 @@
         $("#ddlAdvanceGrupo_del_Delito").change(function () {
             isDelitoTextSearch = false;
             $("#txtAdvanceGrupo_del_Delito").val('');
+        });
+        $("#txtAdvanceTIPO_DELITO").keypress(function () {
+            isDelitoTextSearch = true;
+            $("#ddlAdvanceTIPO_DELITO").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTIPO_DELITO").change(function () {
+            isDelitoTextSearch = false;
+            $("#txtAdvanceTIPO_DELITO").val('');
         });
 
     });

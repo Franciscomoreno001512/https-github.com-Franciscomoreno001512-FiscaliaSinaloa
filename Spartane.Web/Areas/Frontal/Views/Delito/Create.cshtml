@@ -16,6 +16,9 @@
     List<SelectListItem> varGrupo_del_Delito_Grupo_del_Delito = null;
     if (ViewBag.Grupo_del_Delitos_Grupo_del_Delito != null)
     { varGrupo_del_Delito_Grupo_del_Delito = (List<SelectListItem>)ViewBag.Grupo_del_Delitos_Grupo_del_Delito; }
+ List<SelectListItem> varTipo_Delito_TIPO_DELITO = null;
+    if (ViewBag.Tipo_Delitos_TIPO_DELITO != null)
+    { varTipo_Delito_TIPO_DELITO = (List<SelectListItem>)ViewBag.Tipo_Delitos_TIPO_DELITO; }
 
     Permission permissionConfiguracion_de_Planeacion = ViewBag.PermissionConfiguracion_de_Planeacion;
 
@@ -381,12 +384,19 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="VAL_VEHICULO" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-                            <div class="form-group" id="divTIPO_DELITO">
+				<div class="form-group" id="divTIPO_DELITO">
                                 <label class="col-sm-2 control-label">@Resources.DelitoResources.TIPO_DELITO</label>
                                 <div class="col-sm-8" data-field-id="TIPO_DELITO" data-attribute="268004" data-field-name="@Resources.DelitoResources.TIPO_DELITO">
-                                    <input class="form-control Datos_Generales" id="TIPO_DELITO" name="TIPO_DELITO" type="text" value="@Model.TIPO_DELITO">
-                                    @*<span class="field-validation-valid" data-valmsg-for="TIPO_DELITO" data-valmsg-replace="true"></span>*@
+                                    <select class='fullWidth AutoComplete AutoCompleteDelito_TIPO_DELITO form-control select2-dropdown Datos_Generales' data-val="true" id="TIPO_DELITO" name="TIPO_DELITO">
+                                        <option value="@Model.TIPO_DELITO">@(Model.TIPO_DELITODescripcion??Model.TIPO_DELITODescripcion)</option>
+                                    </select>
                                 </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268004).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_Delito', 'TIPO_DELITO');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             <div class="form-group" id="divcircunstancia_clasif">
                                 <label class="col-sm-2 control-label">@Resources.DelitoResources.circunstancia_clasif</label>
@@ -568,7 +578,40 @@
             }
 
 			
-			
+			       var AutoCompleteTIPO_DELITOData =[];
+       $(".AutoCompleteDelito_TIPO_DELITO").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Delito/GetDelito_TIPO_DELITO_Tipo_Delito")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDelito_TIPO_DELITO_Tipo_DelitoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDelito_TIPO_DELITO");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
 
             @if(ViewBag.IsNew)
             { 
@@ -1199,7 +1242,15 @@
                     $('#TIPO_AGENCIA').val(result.data.TIPO_AGENCIA);
                     $('#ESTADISTICO_SSP').val(result.data.ESTADISTICO_SSP);
                     $('#VAL_VEHICULO').val(result.data.VAL_VEHICULO);
-                    $('#TIPO_DELITO').val(result.data.TIPO_DELITO);
+                    var control = $('#TIPO_DELITO');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.TIPO_DELITO).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.TIPO_DELITO).trigger('change');
+                    }, 3000);
                     $('#circunstancia_clasif').val(result.data.circunstancia_clasif);
                     $('#PRINCIPAL').val(result.data.PRINCIPAL);
                     $('#orden').val(result.data.orden);
