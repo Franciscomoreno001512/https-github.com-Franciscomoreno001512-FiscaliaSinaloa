@@ -3,6 +3,7 @@
 @using Spartane.Core.Domain.Delito;
 @using Spartane.Core.Domain.Titulo_del_Delito;
 @using Spartane.Core.Domain.Grupo_del_Delito;
+@using Spartane.Core.Domain.Tipo_Delito;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -719,7 +720,7 @@
                 ,{ "data": "TIPO_AGENCIA","className": "dt-right", "orderable": true, "name": "TIPO_AGENCIA" }
                 ,{ "data": "ESTADISTICO_SSP", "orderable": true, "name": "ESTADISTICO_SSP", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "VAL_VEHICULO", "orderable": true, "name": "VAL_VEHICULO", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "TIPO_DELITO", "orderable": true, "name": "TIPO_DELITO", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "TIPO_DELITODescripcion", "orderable": true, "name": "TIPO_DELITODescripcion"}
                 ,{ "data": "circunstancia_clasif","className": "dt-right", "orderable": true, "name": "circunstancia_clasif" }
                 ,{ "data": "PRINCIPAL","className": "dt-right", "orderable": true, "name": "PRINCIPAL" }
                 ,{ "data": "orden","className": "dt-right", "orderable": true, "name": "orden" }

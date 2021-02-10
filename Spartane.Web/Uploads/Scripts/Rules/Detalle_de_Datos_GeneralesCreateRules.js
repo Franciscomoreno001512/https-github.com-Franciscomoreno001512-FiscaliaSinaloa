@@ -204,14 +204,7 @@ if( $('#' + nameOfTable + 'Fecha_de_Nacimiento' + rowIndex).val()!=TryParseInt('
 
 
 
-//BusinessRuleId:1905, Attribute:265585, Operation:Field, Event:None
-$("form#CreateDetalle_de_Datos_Generales").on('change', '#Situacion_de_Vulnerabilidad', function () {
-	nameOfTable='';
-	rowIndex='';
-if( $('#' + nameOfTable + 'Situacion_de_Vulnerabilidad' + rowIndex).prop("checked") === true ) { $('#divGrupo_al_que_pertenece').css('display', 'block');} 
-else { $('#divGrupo_al_que_pertenece').css('display', 'none');}
-});
-//BusinessRuleId:1905, Attribute:265585, Operation:Field, Event:None
+
 
 
 
@@ -710,6 +703,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Pais' + rowIndex),nameOfTable,r
 
 
 //BusinessRuleId:556, Attribute:263791, Operation:Field, Event:None
+
+//BusinessRuleId:1905, Attribute:265585, Operation:Field, Event:None
+$("form#CreateDetalle_de_Datos_Generales").on('change', '#Situacion_de_Vulnerabilidad', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Situacion_de_Vulnerabilidad' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divGrupo_al_que_pertenece').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex));} else { SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex)); $('#divGrupo_al_que_pertenece').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex));}
+});
+
+//BusinessRuleId:1905, Attribute:265585, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 //});
@@ -1915,6 +1917,62 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:3628, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:3713, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divOriginario_de').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Originario_de' + rowIndex));$('#divOriginario_de_T').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Originario_de_T' + rowIndex));
+
+}
+//BusinessRuleId:3713, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3713, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divOriginario_de').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Originario_de' + rowIndex));$('#divOriginario_de_T').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Originario_de_T' + rowIndex));
+
+}
+//BusinessRuleId:3713, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3851, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Pais_de_Nacimiento' + rowIndex));
+
+}
+//BusinessRuleId:3851, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3851, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Pais_de_Nacimiento' + rowIndex));
+
+}
+//BusinessRuleId:3851, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3851, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Pais_de_Nacimiento' + rowIndex));
+
+}
+//BusinessRuleId:3851, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3854, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Situacion_de_Vulnerabilidad' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divGrupo_al_que_pertenece').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex));} else { SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex)); $('#divGrupo_al_que_pertenece').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex));}
+
+}
+//BusinessRuleId:3854, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3854, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Situacion_de_Vulnerabilidad' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divGrupo_al_que_pertenece').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex));} else { SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex)); $('#divGrupo_al_que_pertenece').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex));}
+
+}
+//BusinessRuleId:3854, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3854, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Situacion_de_Vulnerabilidad' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divGrupo_al_que_pertenece').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex));} else { SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex)); $('#divGrupo_al_que_pertenece').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_al_que_pertenece' + rowIndex));}
+
+}
+//BusinessRuleId:3854, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -2724,6 +2782,7 @@ function CambiaPais(deesc) {
     var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
     control.select2({ data: data });
     control.val(valorPaisId).trigger('change');
+	$('#Pais').val(valorPaisId).trigger('change');
 
 }
 function CambiaEstado(deesc) {

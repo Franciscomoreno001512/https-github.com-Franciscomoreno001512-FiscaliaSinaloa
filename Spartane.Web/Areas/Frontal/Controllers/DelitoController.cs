@@ -12,6 +12,7 @@ using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
 
 
 
+using Spartane.Core.Domain.Tipo_Delito;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -29,6 +30,7 @@ using Spartane.Web.Areas.WebApiConsumer.Configuracion_de_Planeacion;
 using Spartane.Web.Areas.WebApiConsumer.Categoria_de_Servicio_de_Apoyo;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Servicio_de_Apoyo;
 
+using Spartane.Web.Areas.WebApiConsumer.Tipo_Delito;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -72,6 +74,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ICategoria_de_Servicio_de_ApoyoApiConsumer _ICategoria_de_Servicio_de_ApoyoApiConsumer;
         private ITipo_de_Servicio_de_ApoyoApiConsumer _ITipo_de_Servicio_de_ApoyoApiConsumer;
 
+        private ITipo_DelitoApiConsumer _ITipo_DelitoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -89,7 +92,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public DelitoController(IDelitoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDelitoApiConsumer DelitoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ITitulo_del_DelitoApiConsumer Titulo_del_DelitoApiConsumer , IGrupo_del_DelitoApiConsumer Grupo_del_DelitoApiConsumer , IConfiguracion_de_PlaneacionApiConsumer Configuracion_de_PlaneacionApiConsumer , ICategoria_de_Servicio_de_ApoyoApiConsumer Categoria_de_Servicio_de_ApoyoApiConsumer , ITipo_de_Servicio_de_ApoyoApiConsumer Tipo_de_Servicio_de_ApoyoApiConsumer  )
+        public DelitoController(IDelitoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDelitoApiConsumer DelitoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ITitulo_del_DelitoApiConsumer Titulo_del_DelitoApiConsumer , IGrupo_del_DelitoApiConsumer Grupo_del_DelitoApiConsumer , IConfiguracion_de_PlaneacionApiConsumer Configuracion_de_PlaneacionApiConsumer , ICategoria_de_Servicio_de_ApoyoApiConsumer Categoria_de_Servicio_de_ApoyoApiConsumer , ITipo_de_Servicio_de_ApoyoApiConsumer Tipo_de_Servicio_de_ApoyoApiConsumer  , ITipo_DelitoApiConsumer Tipo_DelitoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -110,6 +113,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ICategoria_de_Servicio_de_ApoyoApiConsumer = Categoria_de_Servicio_de_ApoyoApiConsumer;
             this._ITipo_de_Servicio_de_ApoyoApiConsumer = Tipo_de_Servicio_de_ApoyoApiConsumer;
 
+            this._ITipo_DelitoApiConsumer = Tipo_DelitoApiConsumer;
 
         }
 
@@ -205,6 +209,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,ESTADISTICO_SSP = DelitoData.ESTADISTICO_SSP
                     ,VAL_VEHICULO = DelitoData.VAL_VEHICULO
                     ,TIPO_DELITO = DelitoData.TIPO_DELITO
+                    ,TIPO_DELITODescripcion = CultureHelper.GetTraduction(Convert.ToString(DelitoData.TIPO_DELITO), "Tipo_Delito") ??  (string)DelitoData.TIPO_DELITO_Tipo_Delito.Descripcion
                     ,circunstancia_clasif = DelitoData.circunstancia_clasif
                     ,PRINCIPAL = DelitoData.PRINCIPAL
                     ,orden = DelitoData.orden
@@ -314,6 +319,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,ESTADISTICO_SSP = DelitoData.ESTADISTICO_SSP
                     ,VAL_VEHICULO = DelitoData.VAL_VEHICULO
                     ,TIPO_DELITO = DelitoData.TIPO_DELITO
+                    ,TIPO_DELITODescripcion = CultureHelper.GetTraduction(Convert.ToString(DelitoData.TIPO_DELITO), "Tipo_Delito") ??  (string)DelitoData.TIPO_DELITO_Tipo_Delito.Descripcion
                     ,circunstancia_clasif = DelitoData.circunstancia_clasif
                     ,PRINCIPAL = DelitoData.PRINCIPAL
                     ,orden = DelitoData.orden
@@ -393,6 +399,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_del_Delito", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetTipo_DelitoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_DelitoApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Delito", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -526,7 +553,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,TIPO_AGENCIA = m.TIPO_AGENCIA
 			,ESTADISTICO_SSP = m.ESTADISTICO_SSP
 			,VAL_VEHICULO = m.VAL_VEHICULO
-			,TIPO_DELITO = m.TIPO_DELITO
+                        ,TIPO_DELITODescripcion = CultureHelper.GetTraduction(m.TIPO_DELITO_Tipo_Delito.Clave.ToString(), "Tipo_Delito") ?? (string)m.TIPO_DELITO_Tipo_Delito.Descripcion
 			,circunstancia_clasif = m.circunstancia_clasif
 			,PRINCIPAL = m.PRINCIPAL
 			,orden = m.orden
@@ -659,7 +686,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,TIPO_AGENCIA = m.TIPO_AGENCIA
 			,ESTADISTICO_SSP = m.ESTADISTICO_SSP
 			,VAL_VEHICULO = m.VAL_VEHICULO
-			,TIPO_DELITO = m.TIPO_DELITO
+                        ,TIPO_DELITODescripcion = CultureHelper.GetTraduction(m.TIPO_DELITO_Tipo_Delito.Clave.ToString(), "Tipo_Delito") ?? (string)m.TIPO_DELITO_Tipo_Delito.Descripcion
 			,circunstancia_clasif = m.circunstancia_clasif
 			,PRINCIPAL = m.PRINCIPAL
 			,orden = m.orden
@@ -674,6 +701,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 //Grid GetAutoComplete
 
+        [HttpGet]
+        public JsonResult GetDelito_TIPO_DELITO_Tipo_Delito(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Tipo_Delito.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Tipo_Delito.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ITipo_DelitoApiConsumer.ListaSelAll(1, 20,elWhere , " Tipo_Delito.Descripcion ASC ").Resource;
+               
+                foreach (var item in result.Tipo_Delitos)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_Delito", "Descripcion");
+                    item.Descripcion =trans ??item.Descripcion;
+                }
+                return Json(result.Tipo_Delitos.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -891,26 +945,32 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.TIPO_DELITO))
+            if (!string.IsNullOrEmpty(filter.AdvanceTIPO_DELITO))
             {
                 switch (filter.TIPO_DELITOFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Delito.TIPO_DELITO LIKE '" + filter.TIPO_DELITO + "%'";
+                        where += " AND Tipo_Delito.Descripcion LIKE '" + filter.AdvanceTIPO_DELITO + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Delito.TIPO_DELITO LIKE '%" + filter.TIPO_DELITO + "'";
+                        where += " AND Tipo_Delito.Descripcion LIKE '%" + filter.AdvanceTIPO_DELITO + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Delito.TIPO_DELITO = '" + filter.TIPO_DELITO + "'";
+                        where += " AND Tipo_Delito.Descripcion = '" + filter.AdvanceTIPO_DELITO + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Delito.TIPO_DELITO LIKE '%" + filter.TIPO_DELITO + "%'";
+                        where += " AND Tipo_Delito.Descripcion LIKE '%" + filter.AdvanceTIPO_DELITO + "%'";
                         break;
                 }
+            }
+            else if (filter.AdvanceTIPO_DELITOMultiple != null && filter.AdvanceTIPO_DELITOMultiple.Count() > 0)
+            {
+                var TIPO_DELITOIds = string.Join(",", filter.AdvanceTIPO_DELITOMultiple);
+
+                where += " AND Delito.TIPO_DELITO In (" + TIPO_DELITOIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.Fromcircunstancia_clasif) || !string.IsNullOrEmpty(filter.Tocircunstancia_clasif))
@@ -1629,7 +1689,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = null;
+			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1689,7 +1749,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,TIPO_AGENCIA = m.TIPO_AGENCIA
 			,ESTADISTICO_SSP = m.ESTADISTICO_SSP
 			,VAL_VEHICULO = m.VAL_VEHICULO
-			,TIPO_DELITO = m.TIPO_DELITO
+                        ,TIPO_DELITODescripcion = CultureHelper.GetTraduction(m.TIPO_DELITO_Tipo_Delito.Clave.ToString(), "Tipo_Delito") ?? (string)m.TIPO_DELITO_Tipo_Delito.Descripcion
 			,circunstancia_clasif = m.circunstancia_clasif
 			,PRINCIPAL = m.PRINCIPAL
 			,orden = m.orden
@@ -1781,7 +1841,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,TIPO_AGENCIA = m.TIPO_AGENCIA
 			,ESTADISTICO_SSP = m.ESTADISTICO_SSP
 			,VAL_VEHICULO = m.VAL_VEHICULO
-			,TIPO_DELITO = m.TIPO_DELITO
+                        ,TIPO_DELITODescripcion = CultureHelper.GetTraduction(m.TIPO_DELITO_Tipo_Delito.Clave.ToString(), "Tipo_Delito") ?? (string)m.TIPO_DELITO_Tipo_Delito.Descripcion
 			,circunstancia_clasif = m.circunstancia_clasif
 			,PRINCIPAL = m.PRINCIPAL
 			,orden = m.orden
@@ -1890,7 +1950,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,TIPO_AGENCIA = m.TIPO_AGENCIA
 			,ESTADISTICO_SSP = m.ESTADISTICO_SSP
 			,VAL_VEHICULO = m.VAL_VEHICULO
-			,TIPO_DELITO = m.TIPO_DELITO
+                        ,TIPO_DELITO = m.TIPO_DELITO
+                        ,TIPO_DELITODescripcion = CultureHelper.GetTraduction(m.TIPO_DELITO_Tipo_Delito.Clave.ToString(), "Tipo_Delito") ?? (string)m.TIPO_DELITO_Tipo_Delito.Descripcion
 			,circunstancia_clasif = m.circunstancia_clasif
 			,PRINCIPAL = m.PRINCIPAL
 			,orden = m.orden
