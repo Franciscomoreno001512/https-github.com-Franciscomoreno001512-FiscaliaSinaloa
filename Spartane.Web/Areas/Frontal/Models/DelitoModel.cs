@@ -31,8 +31,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? TIPO_AGENCIA { get; set; }
         public string ESTADISTICO_SSP { get; set; }
         public string VAL_VEHICULO { get; set; }
-        public int? TIPO_DELITO { get; set; }
-        public string TIPO_DELITODescripcion { get; set; }
+        public string TIPO_DELITO { get; set; }
         [Range(0, 9999999999)]
         public int? circunstancia_clasif { get; set; }
         [Range(0, 9999999999)]
@@ -65,8 +64,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? TIPO_AGENCIA { get; set; }
         public string ESTADISTICO_SSP { get; set; }
         public string VAL_VEHICULO { get; set; }
-        public int? TIPO_DELITO { get; set; }
-        public string TIPO_DELITODescripcion { get; set; }
+        public string TIPO_DELITO { get; set; }
         [Range(0, 9999999999)]
         public int? circunstancia_clasif { get; set; }
         [Range(0, 9999999999)]

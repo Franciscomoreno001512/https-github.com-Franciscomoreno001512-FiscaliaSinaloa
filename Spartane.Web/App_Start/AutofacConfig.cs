@@ -9323,3 +9323,11 @@ builder.RegisterType<Zona_de_RoboApiConsumer>().As<IZona_de_RoboApiConsumer>().I
 
 
 
+
+
+
+
+
+
+
+

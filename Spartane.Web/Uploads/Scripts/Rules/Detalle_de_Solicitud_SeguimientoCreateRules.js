@@ -7,6 +7,15 @@ $('#Detalle_de_Solicitud_SeguimientoGuardarYNuevo').hide();
 $('#Detalle_de_Solicitud_SeguimientoGuardarYCopia').hide();
 
 $(document).ready(function () {
+//BusinessRuleId:3859, Attribute:269092, Operation:Field, Event:None
+$("form#CreateDetalle_de_Solicitud_Seguimiento").on('change', '#Forma_de_Pago', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Forma_de_Pago' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') || GetValueByControlType($('#' + nameOfTable + 'Forma_de_Pago' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divCantidad_del_Monto').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Cantidad_del_Monto' + rowIndex));} else { $('#divCantidad_del_Monto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Cantidad_del_Monto' + rowIndex));}
+});
+
+//BusinessRuleId:3859, Attribute:269092, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {

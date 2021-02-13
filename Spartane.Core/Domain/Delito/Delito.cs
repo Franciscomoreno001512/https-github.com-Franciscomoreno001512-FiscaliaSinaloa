@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Titulo_del_Delito;
 using Spartane.Core.Domain.Grupo_del_Delito;
-using Spartane.Core.Domain.Tipo_Delito;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -34,7 +33,7 @@ namespace Spartane.Core.Domain.Delito
         public int? TIPO_AGENCIA { get; set; }
         public string ESTADISTICO_SSP { get; set; }
         public string VAL_VEHICULO { get; set; }
-        public int? TIPO_DELITO { get; set; }
+        public string TIPO_DELITO { get; set; }
         public int? circunstancia_clasif { get; set; }
         public int? PRINCIPAL { get; set; }
         public int? orden { get; set; }
@@ -43,8 +42,6 @@ namespace Spartane.Core.Domain.Delito
         public virtual Spartane.Core.Domain.Titulo_del_Delito.Titulo_del_Delito Titulo_del_Delito_Titulo_del_Delito { get; set; }
         [ForeignKey("Grupo_del_Delito")]
         public virtual Spartane.Core.Domain.Grupo_del_Delito.Grupo_del_Delito Grupo_del_Delito_Grupo_del_Delito { get; set; }
-        [ForeignKey("TIPO_DELITO")]
-        public virtual Spartane.Core.Domain.Tipo_Delito.Tipo_Delito TIPO_DELITO_Tipo_Delito { get; set; }
 
     }
 	
@@ -66,7 +63,7 @@ namespace Spartane.Core.Domain.Delito
         public int? TIPO_AGENCIA { get; set; }
         public string ESTADISTICO_SSP { get; set; }
         public string VAL_VEHICULO { get; set; }
-        public int? TIPO_DELITO { get; set; }
+        public string TIPO_DELITO { get; set; }
         public int? circunstancia_clasif { get; set; }
         public int? PRINCIPAL { get; set; }
         public int? orden { get; set; }
@@ -75,8 +72,6 @@ namespace Spartane.Core.Domain.Delito
         public virtual Spartane.Core.Domain.Titulo_del_Delito.Titulo_del_Delito Titulo_del_Delito_Titulo_del_Delito { get; set; }
         [ForeignKey("Grupo_del_Delito")]
         public virtual Spartane.Core.Domain.Grupo_del_Delito.Grupo_del_Delito Grupo_del_Delito_Grupo_del_Delito { get; set; }
-        [ForeignKey("TIPO_DELITO")]
-        public virtual Spartane.Core.Domain.Tipo_Delito.Tipo_Delito TIPO_DELITO_Tipo_Delito { get; set; }
 
     }
 

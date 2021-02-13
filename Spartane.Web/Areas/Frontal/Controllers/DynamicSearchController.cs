@@ -30,6 +30,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         //public static int ID { get; set; }
         public static string WhereWF { get; set; }
+        public static int? _faseid { get; set; }
 
         public DynamicSearchController(ITokenManager tokenManager, ISpartan_ObjectApiConsumer Spartan_ObjectApiConsumer, ISpartan_Record_Detail_ManagementApiConsumer service, ISpartaneQueryApiConsumer SpartaneQueryApiConsumer, ISpartan_RDM_Operations_DetailApiConsumer Spartan_RDM_Operations_DetailApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer)
         {
@@ -48,12 +49,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             //  ID = id;  ////fjmore borre esto porque cuando multiples clientes entran se planchan la variable de sesion y toma la ultima y eso descompone todo
             _tokenManager.GenerateToken();
             WhereWF = "";
+            _faseid = null;
             _service.SetAuthHeader(_tokenManager.Token);
             var management = _service.GetByKey(id, false).Resource;
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, Convert.ToInt32(management.Object), 1);
             ViewBag.PermissionEdit = permission.Edit;
             Session["Management"] = management;
             ViewBag.UrlImage = ConfigurationManager.AppSettings["urlpublicaimagenes"];
+
+            if (p!=null)
+            {
+                _faseid = p;
+            }
             if (wf != null)
             {
                 _ISpartaneQueryApiConsumer.SetAuthHeader(_tokenManager.Token);
@@ -295,7 +302,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     aux = new ResultGeneralDetail();
                     aux.ObjectId = item.Object_Name.Value;
-                    var counter = _ISpartaneQueryApiConsumer.ExecuteQuery(item.Count_Query.Replace("@@LLAVE@@", id)).Resource;
+                    string faseStringPaso = (_faseid == null ? "null" : _faseid.ToString());
+                    var counter = _ISpartaneQueryApiConsumer.ExecuteQuery(item.Count_Query.Replace("@@LLAVE@@", id).Replace("@@FASE@@", faseStringPaso)).Resource;
                     aux.Counter = Convert.ToInt32(counter);
                     aux.Label = item.Object_Label;
 
@@ -306,7 +314,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     aux.Icon = ConfigurationManager.AppSettings["urlpublicaimagenes"] + "/api/Spartan_File/Files/" + item.Icono + "/" + fileInfo.Description;
 
                     aux.Details = new ModelResultsFields();
-                    string queryDataDetail = item.Query_Data.Replace("@@LLAVE@@", id);
+                    string queryDataDetail = item.Query_Data.Replace("@@LLAVE@@", id).Replace("@@FASE@@", faseStringPaso);
                     var resultQueryDetail = _ISpartaneQueryApiConsumer.ExecuteRawQuery(HttpUtility.UrlEncode(queryDataDetail)).Resource;
                     if (resultQueryDetail != null && resultQueryDetail != "[]")
                     {
@@ -379,7 +387,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						if (Session["Phase"].ToString() !="")
 								fase = "," + Session["Phase"].ToString();
 					}
-                    var counter = _ISpartaneQueryApiConsumer.ExecuteQuery(item.Count_Query.Replace("@@LLAVE@@", id).Replace(",@@FASE@@", fase).Replace(", @@FASE@@", fase)).Resource;
+                    //aqui
+                    string faseStringPaso = (_faseid == null ? "null" : _faseid.ToString());
+                  
+
+
+                    var counter = _ISpartaneQueryApiConsumer.ExecuteQuery(item.Count_Query.Replace("@@LLAVE@@", id).Replace("@@FASE@@", faseStringPaso).Replace("@@FASE@@", faseStringPaso)).Resource;
                     aux.Counter = Convert.ToInt32(counter);
                     aux.Label = item.Object_Label;
 
@@ -390,7 +403,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     aux.Icon = ConfigurationManager.AppSettings["BaseUrl"] + "/api/Spartan_File/Files/" + item.Icono + "/" + fileInfo.Description;
 
                     aux.Details = new ModelResultsFields();
-                    string queryDataDetail = item.Query_Data.Replace("@@LLAVE@@", id);
+                    string queryDataDetail = item.Query_Data.Replace("@@LLAVE@@", id).Replace("@@FASE@@", faseStringPaso);
                     var resultQueryDetail = _ISpartaneQueryApiConsumer.ExecuteRawQuery(HttpUtility.UrlEncode(queryDataDetail)).Resource;
                     if (resultQueryDetail != null && resultQueryDetail != "[]")
                     {
