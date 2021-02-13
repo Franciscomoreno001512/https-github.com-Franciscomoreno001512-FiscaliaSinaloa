@@ -352,17 +352,6 @@ $(function () {
 
 //Grid GetAutocomplete
 
-var AutoCompleteTIPO_DELITOData = [];
-function GetAutoCompleteDelito_TIPO_DELITO_Tipo_DelitoData(data) {
-	AutoCompleteTIPO_DELITOData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteTIPO_DELITOData.push({
-            id: data[i].Clave,
-            text: data[i].Descripcion
-        });
-    }
-    return AutoCompleteTIPO_DELITOData;
-}
 
 
 function getDropdown(elementKey) {
@@ -401,9 +390,6 @@ function ClearControls() {
     ClearFormControls();
     $("#ClaveId").val("0");
                 Configuracion_de_PlaneacionClearGridData();
-    $('#TIPO_DELITO').empty();
-    $("#TIPO_DELITO").append('<option value=""></option>');
-    $('#TIPO_DELITO').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -540,9 +526,6 @@ $(document).ready(function () {
 				SendDelitoData(function (currentId) {
 					$("#ClaveId").val("0");
 	                Configuracion_de_PlaneacionClearGridData();
-    $('#TIPO_DELITO').empty();
-    $("#TIPO_DELITO").append('<option value=""></option>');
-    $('#TIPO_DELITO').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);

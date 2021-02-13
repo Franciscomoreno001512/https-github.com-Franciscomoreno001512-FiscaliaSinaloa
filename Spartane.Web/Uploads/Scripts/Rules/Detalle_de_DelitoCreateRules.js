@@ -315,11 +315,13 @@ if( GetValueByControlType($('#' + nameOfTable + 'Robo_de_Vehiculo' + rowIndex),n
 
 
 
+
+
 //BusinessRuleId:1922, Attribute:263455, Operation:Field, Event:None
 $("form#CreateDetalle_de_Delito").on('change', '#Violencia_de_Genero', function () {
 	nameOfTable='';
 	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block');} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
+if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
 });
 
 
@@ -882,29 +884,11 @@ if(operation == 'Consult'){
 
 
 
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
 
 
-}
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
 
 
-}
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
-
-
-}
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:3572, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -1158,9 +1142,15 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:3715, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
 //BusinessRuleId:3852, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
-if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block');} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
+if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
 
 
 }
@@ -1168,7 +1158,7 @@ if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex
 
 //BusinessRuleId:3852, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
-if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block');} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
+if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
 
 
 }
@@ -1176,11 +1166,41 @@ if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex
 
 //BusinessRuleId:3852, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
-if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block');} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
+if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
 
 
 }
 //BusinessRuleId:3852, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
@@ -1244,7 +1264,7 @@ result=false; AsignarValor($('#' + nameOfTable + 'Delito_Principal' + rowIndex),
 
 //BusinessRuleId:3768, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'New'){
-if( $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No hay registros disponibles" || $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No records available" && GetValueByControlType($('#' + nameOfTable + 'Agravante' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) {
+if( ($("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No hay registros disponibles" || $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No records available") && GetValueByControlType($('#' + nameOfTable + 'Agravante' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) {
      alert(DecodifyText(' Se tiene que seleccionar un agravante y/o Calificativas', rowIndex, nameOfTable));
     result=false;
 } 
@@ -1256,7 +1276,7 @@ else {}
 
 //BusinessRuleId:3768, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'Update'){
-if( $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No hay registros disponibles" ||  $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No records available" && GetValueByControlType($('#' + nameOfTable + 'Agravante' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { alert(DecodifyText(' Se tiene que seleccionar un agravante y/o Calificativas', rowIndex, nameOfTable));
+if(( $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No hay registros disponibles" ||  $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No records available") && GetValueByControlType($('#' + nameOfTable + 'Agravante' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { alert(DecodifyText(' Se tiene que seleccionar un agravante y/o Calificativas', rowIndex, nameOfTable));
 
 result=false;} else {}
 

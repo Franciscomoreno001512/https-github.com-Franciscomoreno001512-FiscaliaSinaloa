@@ -73,8 +73,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string VAL_VEHICULO { set; get; }
 
         public Filters TIPO_DELITOFilter { set; get; }
-        public string AdvanceTIPO_DELITO { set; get; }
-        public int[] AdvanceTIPO_DELITOMultiple { set; get; }
+        public string TIPO_DELITO { set; get; }
 
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
         public string Fromcircunstancia_clasif { set; get; }
