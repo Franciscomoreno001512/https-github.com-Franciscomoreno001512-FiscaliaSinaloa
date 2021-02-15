@@ -633,7 +633,8 @@ $(document).ready(function () {
         rowIndex = '';
         if (GetValueByControlType($('#' + nameOfTable + 'Bajo_el_Efecto_de_una_Droga' + rowIndex), nameOfTable, rowIndex) == TryParseInt('true', 'true')) { $('#divNombre_de_Droga').css('display', 'block'); SetRequiredToControl($('#' + nameOfTable + 'Nombre_de_Droga' + rowIndex)); } else { $('#divNombre_de_Droga').css('display', 'none'); SetNotRequiredToControl($('#' + nameOfTable + 'Nombre_de_Droga' + rowIndex)); SetNotRequiredToControl($('#' + nameOfTable + 'Nombre_de_Droga' + rowIndex)); }
     });
-
+
+
     //BusinessRuleId:1938, Attribute:265807, Operation:Field, Event:None
 
     //NEWBUSINESSRULE_NONE//

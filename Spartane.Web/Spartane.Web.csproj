@@ -15573,6 +15573,26 @@
 <Content Include="Uploads\Scripts\Rules\Zona_de_RoboCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Zona_de_RoboIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Zona_de_Robo\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\ErmeOficio\ErmeOficioApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\ErmeOficio\IErmeOficioApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\ErmeOficioModel.cs" />
+<Compile Include="Areas\Frontal\Models\ErmeOficioGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\ErmeOficioMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\ErmeOficioController.cs" />
+<Content Include="Areas\Frontal\Views\ErmeOficio\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\ErmeOficio\Create.cshtml" />
+<Compile Include="Resource\GetResource\ErmeOficio.cs" />
+<Content Include="Uploads\Resources\ErmeOficioResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\ErmeOficioPropertyMapper.cs" />
+<Content Include="Uploads\Resources\ErmeOficioResource.en-US.xml" />
+<Content Include="Uploads\Scripts\ErmeOficio.js" />
+<Content Include="Scripts\Custom\ErmeOficioGeneral.js" />
+<Content Include="Areas\Frontal\Views\ErmeOficio\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\ErmeOficioAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\ErmeOficioBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\ErmeOficioCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\ErmeOficioIndexRules.js" />
+<Content Include="Areas\Frontal\Views\ErmeOficio\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -16577,6 +16597,26 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

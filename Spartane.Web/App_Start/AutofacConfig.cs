@@ -1943,6 +1943,9 @@ using Spartane.Web.Areas.WebApiConsumer.Tipo_de_queja_sugerencia;
 using Spartane.Services.Zona_de_Robo;
 using Spartane.Core.Domain.Zona_de_Robo;
 using Spartane.Web.Areas.WebApiConsumer.Zona_de_Robo;
+using Spartane.Services.ErmeOficio;
+using Spartane.Core.Domain.ErmeOficio;
+using Spartane.Web.Areas.WebApiConsumer.ErmeOficio;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3361,6 +3364,8 @@ builder.RegisterType<Tipo_de_queja_sugerenciaService>().As<ITipo_de_queja_sugere
 builder.RegisterType<Tipo_de_queja_sugerenciaApiConsumer>().As<ITipo_de_queja_sugerenciaApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Zona_de_RoboService>().As<IZona_de_RoboService>().InstancePerLifetimeScope();
 builder.RegisterType<Zona_de_RoboApiConsumer>().As<IZona_de_RoboApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<ErmeOficioService>().As<IErmeOficioService>().InstancePerLifetimeScope();
+builder.RegisterType<ErmeOficioApiConsumer>().As<IErmeOficioApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3541,6 +3546,8 @@ builder.RegisterType<Zona_de_RoboApiConsumer>().As<IZona_de_RoboApiConsumer>().I
 
     }
 }
+
+
 
 
 

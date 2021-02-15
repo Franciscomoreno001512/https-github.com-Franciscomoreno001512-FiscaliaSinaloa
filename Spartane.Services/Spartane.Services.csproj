@@ -1487,6 +1487,8 @@
 <Compile Include="Tipo_de_queja_sugerencia\Tipo_de_queja_sugerenciaService.cs" />
 <Compile Include="Zona_de_Robo\IZona_de_RoboService.cs" />
 <Compile Include="Zona_de_Robo\Zona_de_RoboService.cs" />
+<Compile Include="ErmeOficio\IErmeOficioService.cs" />
+<Compile Include="ErmeOficio\ErmeOficioService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1586,6 +1588,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

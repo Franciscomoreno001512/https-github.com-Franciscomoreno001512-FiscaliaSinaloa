@@ -1596,6 +1596,8 @@
 <Compile Include="Domain\Tipo_de_queja_sugerencia\Tipo_de_queja_sugerenciaPagingModel.cs" />
 <Compile Include="Domain\Zona_de_Robo\Zona_de_Robo.cs" />
 <Compile Include="Domain\Zona_de_Robo\Zona_de_RoboPagingModel.cs" />
+<Compile Include="Domain\ErmeOficio\ErmeOficio.cs" />
+<Compile Include="Domain\ErmeOficio\ErmeOficioPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1616,6 +1618,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

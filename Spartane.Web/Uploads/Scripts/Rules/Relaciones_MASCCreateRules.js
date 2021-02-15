@@ -686,6 +686,13 @@ if( TryParseInt('2', '2')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nam
 }
 //BusinessRuleId:3821, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+//BusinessRuleId:3860, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+ EvaluaQuery(" exec uspContestarMASC_a_AT FLDD[lblClave]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:3860, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

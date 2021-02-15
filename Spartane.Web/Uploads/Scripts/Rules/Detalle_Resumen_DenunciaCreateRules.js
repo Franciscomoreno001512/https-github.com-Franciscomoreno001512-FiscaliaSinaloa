@@ -35,7 +35,6 @@ if( EvaluaQuery("EXEC UspExisteFolioGeneracionExpediente FLDD[lblClave]",rowInde
 
 
 
-
 //COD-MANI INI OCULTAR BOTONES
 $('#Detalle_Resumen_DenunciaGuardarYNuevo').css('display', 'none');
 $('#Detalle_Resumen_DenunciaGuardarYCopia').css('display', 'none');

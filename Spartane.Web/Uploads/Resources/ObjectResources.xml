@@ -1304,8 +1304,12 @@
 <Object Id="45730" culture="es-es" value="Tipo de queja/sugerencia" />
 <Object Id="46018" culture="en-us" value="Zona de Robo" />
 <Object Id="46018" culture="es-es" value="Zona de Robo" />
+<Object Id="46081" culture="en-us" value="ErmeOficio" />
+<Object Id="46081" culture="es-es" value="ErmeOficio" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
 
 
 
