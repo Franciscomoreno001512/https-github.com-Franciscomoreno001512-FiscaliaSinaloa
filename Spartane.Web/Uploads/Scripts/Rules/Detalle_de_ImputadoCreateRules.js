@@ -3,15 +3,9 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
-    if (
-        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('101', '101') ||
-        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('2', '2') ||
-        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('103', '103')
-    ) {
-        //$("#Detalle_de_ImputadoGuardar").remove();
+    
         $("#Detalle_de_ImputadoGuardarYNuevo").remove();
         $("#Detalle_de_ImputadoGuardarYCopia").remove();
-    }
 
     //INI OCULTAR BOTON DE MAPA
     $("form#CreateDetalle_de_Imputado").on('change', '#Quien_Resulte_Responsable', function () {

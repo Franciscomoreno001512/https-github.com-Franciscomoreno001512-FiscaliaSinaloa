@@ -86,8 +86,8 @@
     Permission permissiondetalle_de_observaciones_mpi = ViewBag.Permissiondetalle_de_observaciones_mpi;
 
     Permission permission = ViewBag.Permission;
-	
-	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+    
+    if (ViewBag.IsPartial || ViewBag.viewInEframe)
    { 
        Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
    }
@@ -182,9 +182,9 @@
                     </div>
 
                      <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-					</div>
-					<div aria-hidden="true" data-backdrop="static" class="modal fade in expediente_ministerio_publicoBusinessRuleModal" id="expediente_ministerio_publicoBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-					</div>
+                    </div>
+                    <div aria-hidden="true" data-backdrop="static" class="modal fade in expediente_ministerio_publicoBusinessRuleModal" id="expediente_ministerio_publicoBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
 
 
                 }
@@ -204,19 +204,19 @@
                                 <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
                 <span id="popupNotification"></span>
                 <div class="container-fluid expediente_ministerio_publicoCreateForm" id="viewmodeledit">
-				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
                         <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
                         <span id="textRequired"></span>
                  </div>
-			<div class="tabs-container">
-                        	<ul class="nav nav-tabs">
+            <div class="tabs-container">
+                            <ul class="nav nav-tabs">
 <li class="active"><a data-toggle="tab" href="#tabDatos_del_Caso"> @Resources.expediente_ministerio_publicoResources.TabDatos_del_Caso</a></li>
 <li class=""><a data-toggle="tab" href="#tabHechos"> @Resources.expediente_ministerio_publicoResources.TabHechos</a></li>
 <li class=""><a data-toggle="tab" href="#tabDatos_del_Acuerdo"> @Resources.expediente_ministerio_publicoResources.TabDatos_del_Acuerdo</a></li>
 <li class=""><a data-toggle="tab" href="#tabResolucion_o_Dictaminacion"> @Resources.expediente_ministerio_publicoResources.TabResolucion_o_Dictaminacion</a></li>
 
-                        	</ul>
-	                	<div class="tab-content">
+                            </ul>
+                        <div class="tab-content">
                             <div id="tabDatos_del_Caso" class="tab-pane active">
                                 <div class="panel-body">
                             <div class="form-group" id="divclave">
@@ -256,14 +256,14 @@
                                     </div>
                                 </div>
                             </div>
-				<div class="form-group" id="divusuario_que_registra">
+                <div class="form-group" id="divusuario_que_registra">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.usuario_que_registra</label>
                                 <div class="col-sm-8" data-field-id="usuario_que_registra" data-attribute="267120" data-field-name="@Resources.expediente_ministerio_publicoResources.usuario_que_registra">
                                     <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_usuario_que_registra form-control select2-dropdown Datos_del_Caso' data-val="true" id="usuario_que_registra" name="usuario_que_registra">
                                         <option value="@Model.usuario_que_registra">@(Model.usuario_que_registraName??Model.usuario_que_registraName)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267120).New)
+                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267120).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'usuario_que_registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -291,49 +291,49 @@
                                     </select>
                                     @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Denuncia" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267402).New)
+                                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267402).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Denuncia', 'Tipo_de_Denuncia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-				<div class="form-group" id="divMP_Asignado">
+                <div class="form-group" id="divMP_Asignado">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.MP_Asignado</label>
                                 <div class="col-sm-8" data-field-id="MP_Asignado" data-attribute="267671" data-field-name="@Resources.expediente_ministerio_publicoResources.MP_Asignado">
                                     <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_MP_Asignado form-control select2-dropdown Datos_del_Caso' data-val="true" id="MP_Asignado" name="MP_Asignado">
                                         <option value="@Model.MP_Asignado">@(Model.MP_AsignadoName??Model.MP_AsignadoName)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267671).New)
+                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267671).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'MP_Asignado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-				<div class="form-group" id="divunidad">
+                <div class="form-group" id="divunidad">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.unidad</label>
                                 <div class="col-sm-8" data-field-id="unidad" data-attribute="267121" data-field-name="@Resources.expediente_ministerio_publicoResources.unidad">
                                     <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_unidad form-control select2-dropdown Datos_del_Caso' data-val="true" id="unidad" name="unidad">
                                         <option value="@Model.unidad">@(Model.unidadDescripcion??Model.unidadDescripcion)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267121).New)
+                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267121).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Unidad', 'unidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-				<div class="form-group" id="divMunicipio">
+                <div class="form-group" id="divMunicipio">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.Municipio</label>
                                 <div class="col-sm-8" data-field-id="Municipio" data-attribute="267379" data-field-name="@Resources.expediente_ministerio_publicoResources.Municipio">
                                     <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_Municipio form-control select2-dropdown Datos_del_Caso' data-val="true" id="Municipio" name="Municipio">
                                         <option value="@Model.Municipio">@(Model.MunicipioNombre??Model.MunicipioNombre)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267379).New)
+                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267379).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -361,7 +361,7 @@
                                     </select>
                                     @*<span class="field-validation-valid" data-valmsg-for="Region" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267397).New)
+                                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267397).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Region', 'Region');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -403,7 +403,7 @@
                                     </select>
                                     @*<span class="field-validation-valid" data-valmsg-for="detenido" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267124).New)
+                                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267124).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('A_Tiempo', 'detenido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -453,7 +453,7 @@
                                     </select>
                                     @*<span class="field-validation-valid" data-valmsg-for="estatus" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267127).New)
+                                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267127).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('estatus_mpi', 'estatus');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -468,7 +468,7 @@
                             </div>
                             <div class="ibox-content">
                                 <div class="">
-									@if (permissiondetalle_de_observaciones_mpi.New && !ViewBag.Consult)
+                                    @if (permissiondetalle_de_observaciones_mpi.New && !ViewBag.Consult)
                                     {
                                         <a onclick="detalle_de_observaciones_mpifnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="detalle_de_observaciones_mpiAddRow btn btn-primary">
                                             <i class="glyphicon glyphicon-plus"></i>
@@ -479,7 +479,7 @@
                                             <i class="fa fa-cogs fa-spin"></i>
                                         </a>
                                     </button>
-									@if (permissiondetalle_de_observaciones_mpi.New && !ViewBag.Consult)
+                                    @if (permissiondetalle_de_observaciones_mpi.New && !ViewBag.Consult)
                                     {
                                         <a onclick="detalle_de_observaciones_mpifnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#Adddetalle_de_observaciones_mpi-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
                                             <i class="glyphicon glyphicon-new-window"></i>
@@ -590,77 +590,77 @@
                                     </select>
                                     @*<span class="field-validation-valid" data-valmsg-for="Lugar_de_los_Hechos" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267422).New)
+                                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267422).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Lugar_Tipo', 'Lugar_de_los_Hechos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-				<div class="form-group" id="divPaisH">
+                <div class="form-group" id="divPaisH">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.PaisH</label>
                                 <div class="col-sm-8" data-field-id="PaisH" data-attribute="267423" data-field-name="@Resources.expediente_ministerio_publicoResources.PaisH">
                                     <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_PaisH form-control select2-dropdown Hechos' data-val="true" id="PaisH" name="PaisH">
                                         <option value="@Model.PaisH">@(Model.PaisHNombre??Model.PaisHNombre)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267423).New)
+                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267423).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Pais', 'PaisH');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-				<div class="form-group" id="divEstado">
+                <div class="form-group" id="divEstado">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.Estado</label>
                                 <div class="col-sm-8" data-field-id="Estado" data-attribute="267433" data-field-name="@Resources.expediente_ministerio_publicoResources.Estado">
                                     <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_Estado form-control select2-dropdown Hechos' data-val="true" id="Estado" name="Estado">
                                         <option value="@Model.Estado">@(Model.EstadoNombre??Model.EstadoNombre)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267433).New)
+                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267433).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Estado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-				<div class="form-group" id="divMunicipio_Hechos">
+                <div class="form-group" id="divMunicipio_Hechos">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.Municipio_Hechos</label>
                                 <div class="col-sm-8" data-field-id="Municipio_Hechos" data-attribute="267434" data-field-name="@Resources.expediente_ministerio_publicoResources.Municipio_Hechos">
                                     <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_Municipio_Hechos form-control select2-dropdown Hechos' data-val="true" id="Municipio_Hechos" name="Municipio_Hechos">
                                         <option value="@Model.Municipio_Hechos">@(Model.Municipio_HechosNombre??Model.Municipio_HechosNombre)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267434).New)
+                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267434).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio_Hechos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-				<div class="form-group" id="divPoblacion">
+                <div class="form-group" id="divPoblacion">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.Poblacion</label>
                                 <div class="col-sm-8" data-field-id="Poblacion" data-attribute="267424" data-field-name="@Resources.expediente_ministerio_publicoResources.Poblacion">
                                     <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_Poblacion form-control select2-dropdown Hechos' data-val="true" id="Poblacion" name="Poblacion">
                                         <option value="@Model.Poblacion">@(Model.PoblacionNombre??Model.PoblacionNombre)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267424).New)
+                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267424).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Poblacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-				<div class="form-group" id="divColoniaH">
+                <div class="form-group" id="divColoniaH">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.ColoniaH</label>
                                 <div class="col-sm-8" data-field-id="ColoniaH" data-attribute="267425" data-field-name="@Resources.expediente_ministerio_publicoResources.ColoniaH">
                                     <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_ColoniaH form-control select2-dropdown Hechos' data-val="true" id="ColoniaH" name="ColoniaH">
                                         <option value="@Model.ColoniaH">@(Model.ColoniaHNombre??Model.ColoniaHNombre)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267425).New)
+                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267425).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'ColoniaH');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -750,7 +750,7 @@
                                     </select>
                                     @*<span class="field-validation-valid" data-valmsg-for="tipo_de_acuerdo" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267133).New)
+                                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267133).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Acuerdo', 'tipo_de_acuerdo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -799,19 +799,19 @@
                             </div>
                               <div class="form-group" id="divmonto_de_reparacion_de_danos">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.monto_de_reparacion_de_danos</label>
-								<div class="col-sm-8">
-									<div class="input-group m-b" data-field-id="monto_de_reparacion_de_danos" data-attribute="267138" data-field-name="@Resources.expediente_ministerio_publicoResources.monto_de_reparacion_de_danos">
-										<span class="input-group-addon">$</span>
-										@if(Model.monto_de_reparacion_de_danos.HasValue)
-						{
-						<input class="form-control col-md-12 inputNumber inputMoney Datos_del_Acuerdo" id="monto_de_reparacion_de_danos" name="monto_de_reparacion_de_danos" type="text" min="0.00" max="999999.99" value="@Model.monto_de_reparacion_de_danos.Value.ToString("N", CultureInfo.InvariantCulture)">
-						}
-						else
-						{
-						<input class="form-control col-md-12 inputNumber inputMoney Datos_del_Acuerdo" id="monto_de_reparacion_de_danos" name="monto_de_reparacion_de_danos" type="text" min="0.00" max="999999.99" value="">
-						}  
-									</div>
-								</div>
+                                <div class="col-sm-8">
+                                    <div class="input-group m-b" data-field-id="monto_de_reparacion_de_danos" data-attribute="267138" data-field-name="@Resources.expediente_ministerio_publicoResources.monto_de_reparacion_de_danos">
+                                        <span class="input-group-addon">$</span>
+                                        @if(Model.monto_de_reparacion_de_danos.HasValue)
+                        {
+                        <input class="form-control col-md-12 inputNumber inputMoney Datos_del_Acuerdo" id="monto_de_reparacion_de_danos" name="monto_de_reparacion_de_danos" type="text" min="0.00" max="999999.99" value="@Model.monto_de_reparacion_de_danos.Value.ToString("N", CultureInfo.InvariantCulture)">
+                        }
+                        else
+                        {
+                        <input class="form-control col-md-12 inputNumber inputMoney Datos_del_Acuerdo" id="monto_de_reparacion_de_danos" name="monto_de_reparacion_de_danos" type="text" min="0.00" max="999999.99" value="">
+                        }  
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group" id="divparcialidades">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.parcialidades</label>
@@ -841,7 +841,7 @@
                                     </select>
                                     @*<span class="field-validation-valid" data-valmsg-for="periodicidad" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267140).New)
+                                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267140).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Periodicidad', 'periodicidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -869,7 +869,7 @@
                                     </select>
                                     @*<span class="field-validation-valid" data-valmsg-for="acepta_acuerdo" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267141).New)
+                                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267141).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('A_Tiempo', 'acepta_acuerdo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -911,14 +911,14 @@
                                     </div>
                                 </div>
                             </div>
-				<div class="form-group" id="divUsuario_que_Cierra">
+                <div class="form-group" id="divUsuario_que_Cierra">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.Usuario_que_Cierra</label>
                                 <div class="col-sm-8" data-field-id="Usuario_que_Cierra" data-attribute="267353" data-field-name="@Resources.expediente_ministerio_publicoResources.Usuario_que_Cierra">
                                     <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_Usuario_que_Cierra form-control select2-dropdown Resolucion_o_Dictaminacion' data-val="true" id="Usuario_que_Cierra" name="Usuario_que_Cierra">
                                         <option value="@Model.Usuario_que_Cierra">@(Model.Usuario_que_CierraName??Model.Usuario_que_CierraName)</option>
                                     </select>
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267353).New)
+                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267353).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Cierra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -946,7 +946,7 @@
                                     </select>
                                     @*<span class="field-validation-valid" data-valmsg-for="tipo_de_cierre" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267145).New)
+                                @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267145).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('tipo_de_cierre', 'tipo_de_cierre');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -963,7 +963,7 @@
                             </div>
                                 </div>
 
-				</div>	
+                </div>  
                     <br />
                             <div class="form-actions fluid">
                                 <input type="hidden" value="@Model.clave" id="Referenceclave" />
@@ -972,7 +972,7 @@
                                 @if (!ViewBag.Consult)
                                 {
                                     <input type="button" value="@Resources.Resources.Guardar" id="expediente_ministerio_publicoGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('expediente_ministerio_publicoCreateForm');"  />
-									<button onclick="expediente_ministerio_publicoGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#expediente_ministerio_publicoBusinessRule-form">
+                                    <button onclick="expediente_ministerio_publicoGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#expediente_ministerio_publicoBusinessRule-form">
                                         <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
                                             <i class="fa fa-cogs fa-spin"></i>
                                         </a>
@@ -987,7 +987,7 @@
                                 }
 
                                 <input type="hidden" id="hdnConfigureType" />
-								<input type="hidden" id="hdnexpediente_ministerio_publicoBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnexpediente_ministerio_publicoBusinessRuleFieldId" />
                                 <input type="hidden" id="hdnexpediente_ministerio_publicoBusinessRuleFieldName" />
                                 <input type="hidden" id="hdnexpediente_ministerio_publicoBusinessRuleAttribute" />
 
@@ -999,8 +999,8 @@
                                     </a>
                                 </button>
                             </div>
-						</div>
-					</div>
+                        </div>
+                    </div>
                 }
         </div>
     </div>
@@ -1053,7 +1053,7 @@
         
 
 
-	function GetTraduction(text) {
+    function GetTraduction(text) {
          switch (text.toLowerCase()) {
             case 'edit':
                 return "@Resources.Resources.Edit";          
@@ -1083,24 +1083,24 @@
                 return "";
         }
     }
-	
-	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
-	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+    
+        var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+        var isPartial = ('@ViewBag.IsPartial' == 'True');
         var isMR = ('@ViewBag.isMR' == 'True');
         var nameMR = '@ViewBag.nameMR';
-		var nameAttribute = '@ViewBag.nameAttribute';
-		var Tab_Datos_del_Caso = true;
+        var nameAttribute = '@ViewBag.nameAttribute';
+        var Tab_Datos_del_Caso = true;
 
-		var Tab_Hechos = true;
+        var Tab_Hechos = true;
 
-		var Tab_Datos_del_Acuerdo = true;
+        var Tab_Datos_del_Acuerdo = true;
 
-		var Tab_Resolucion_o_Dictaminacion = true;
+        var Tab_Resolucion_o_Dictaminacion = true;
 
 
         $(document).ready(function () {
             $('#ObjectId').val('45468');
-		                  
+                          
 
 
 
@@ -1108,7 +1108,7 @@
            
               showdetalle_de_observaciones_mpiGrid(null);
 
-		   
+           
                         $('#fecha_de_registro').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -1158,10 +1158,10 @@
 
 
             initiateUIControls();
-			$('a').tooltip();
-			$('.loading').css('display', 'none');
-			
-			 if (viewInEframe) {             
+            $('a').tooltip();
+            $('.loading').css('display', 'none');
+            
+             if (viewInEframe) {             
                 $('#expediente_ministerio_publicoGuardarYNuevo').hide();
                 $('#expediente_ministerio_publicoGuardarYCopia').hide();
                 $('#expediente_ministerio_publicoCancelar').hide(); 
@@ -1169,15 +1169,15 @@
                 $('#expediente_ministerio_publicoGuardar').val('Actualizar Seccion ' + '@Resources.expediente_ministerio_publicoResources.expediente_ministerio_publico' )
             }
 
-			
-			       var AutoCompleteusuario_que_registraData =[];
+            
+                   var AutoCompleteusuario_que_registraData =[];
        $(".AutoCompleteexpediente_ministerio_publico_usuario_que_registra").select2({
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_usuario_que_registra_Spartan_User")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1208,9 +1208,9 @@
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_MP_Asignado_Spartan_User")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1241,9 +1241,9 @@
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_unidad_Unidad")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1274,9 +1274,9 @@
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_Municipio_Municipio")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1307,9 +1307,9 @@
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_PaisH_Pais")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1340,9 +1340,9 @@
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_Estado_Estado")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1373,9 +1373,9 @@
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_Municipio_Hechos_Municipio")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1406,9 +1406,9 @@
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_Poblacion_Colonia")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1439,9 +1439,9 @@
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_ColoniaH_Colonia")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1472,9 +1472,9 @@
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_Usuario_que_Cierra_Spartan_User")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1506,26 +1506,26 @@
             { 
                 <text>$('input:checkbox').prop('checked', false);</text>
             }
-			else
+            else
             {
                 <text>
-				if (Tab_Datos_del_Caso)
-					Fill_Datos_del_Caso();
+                if (Tab_Datos_del_Caso)
+                    Fill_Datos_del_Caso();
 
-				if (Tab_Hechos)
-					Fill_Hechos();
+                if (Tab_Hechos)
+                    Fill_Hechos();
 
-				if (Tab_Datos_del_Acuerdo)
-					Fill_Datos_del_Acuerdo();
+                if (Tab_Datos_del_Acuerdo)
+                    Fill_Datos_del_Acuerdo();
 
-				if (Tab_Resolucion_o_Dictaminacion)
-					Fill_Resolucion_o_Dictaminacion();
+                if (Tab_Resolucion_o_Dictaminacion)
+                    Fill_Resolucion_o_Dictaminacion();
 
 
                 </text>
             }
             EjecutarValidacionesAlComienzo(); 
-			
+            
         });
 
         var detalle_de_observaciones_mpiinsertRowCurrentIndex = -1;
@@ -1607,10 +1607,10 @@
                 var prevData = detalle_de_observaciones_mpiTable.fnGetData(rowIndexTable );
                 removeddetalle_de_observaciones_mpiData.push(prevData);
                 detalle_de_observaciones_mpiTable.fnDeleteRow(rowIndexTable );
-				showdetalle_de_observaciones_mpiGrid(detalle_de_observaciones_mpiTable.fnGetData());
+                showdetalle_de_observaciones_mpiGrid(detalle_de_observaciones_mpiTable.fnGetData());
               }
             }
-			initiateUIControls();
+            initiateUIControls();
         }
 
         function detalle_de_observaciones_mpirowCreationGrid(row, data, index) {
@@ -1640,23 +1640,23 @@
                 var abc = "if(dynamicFieldValidation('" + detalle_de_observaciones_mpiRowElement + "')){ detalle_de_observaciones_mpiInsertRow(" + index + "); }";
                 var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
                 $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
-				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='detalle_de_observaciones_mpiCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                $('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='detalle_de_observaciones_mpiCancelRow(" + index + ")'>").appendTo(actionColInsert));
                 actionColInsert.appendTo(row);
 
                 for (i = 0; i < controls.length; i++) {
-					var idHeader = $(controls[i]).data('field') + 'Header';
-					if($(controls[i]).length > 1){
-						idHeader = $($(controls[i])[1]).data('field') + 'Header';
-					}					
+                    var idHeader = $(controls[i]).data('field') + 'Header';
+                    if($(controls[i]).length > 1){
+                        idHeader = $($(controls[i])[1]).data('field') + 'Header';
+                    }                   
 
-					var classe = ($('#detalle_de_observaciones_mpiGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#detalle_de_observaciones_mpiGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
-				   
-					if ($(controls[i]).next().length > 0) {
-					    var div = $(controls[i]).next();
-					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
-					}else
-					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
-					
+                    var classe = ($('#detalle_de_observaciones_mpiGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#detalle_de_observaciones_mpiGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+                   
+                    if ($(controls[i]).next().length > 0) {
+                        var div = $(controls[i]).next();
+                        $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+                    }else
+                        $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+                    
                 }
                 $('#detalle_de_observaciones_mpiGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
                 $('#detalle_de_observaciones_mpiGrid .gridDatePicker').attr("readonly", "");
@@ -1664,7 +1664,7 @@
             }
 
             var actionCol = $('<td>');
-			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='detalle_de_observaciones_mpiEditRow(" + index + ", this)'>";
+            var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='detalle_de_observaciones_mpiEditRow(" + index + ", this)'>";
             if (!permission.Edit || isConsultMode)
                 edit = "";
             var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#Adddetalle_de_observaciones_mpi-form' onclick='detalle_de_observaciones_mpiEditRowPopup(" + index + ", this)'>";
@@ -1676,8 +1676,8 @@
             $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
             //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
             $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
-			if ($('.Action' + 'Header').css('display') != 'none')
-				actionCol.appendTo(row);
+            if ($('.Action' + 'Header').css('display') != 'none')
+                actionCol.appendTo(row);
 
             if ($('.observaciones' + 'Header').css('display') != 'none')
                 $('<td id="'+nameOfTable+'observaciones'+rowIndex+'">').text(data.observaciones).appendTo(row);
@@ -1733,7 +1733,7 @@
                         "next": "@Resources.Resources.Next"
                     }
                 },
-				"bDestroy": true,
+                "bDestroy": true,
                 "fnDrawCallback": function (settings) {
                     setdetalle_de_observaciones_mpiValidation();
                 }
@@ -1788,7 +1788,7 @@
                     url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Postdetalle_de_observaciones_mpi?MasterId=")' + claveId + "&referenceId=" + $("#Referenceclave").val(),
                     type: 'POST',
                     data: Getdetalle_de_observaciones_mpi(),
-                    async: true,
+                    async: false,
                     success: function (result) {
 
                     },
@@ -1829,7 +1829,7 @@
         function ShowMessagePendingRowdetalle_de_observaciones_mpi()
         {
             //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Observaciones"))')
-	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Observaciones"))', "warning");
+        showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Observaciones"))', "warning");
         }
 
 
@@ -1845,8 +1845,8 @@
             //Time Picker
             $('.gridTimePicker').clockpicker();
             $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
-			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
-			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+            $('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+            $('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
 
 
 
@@ -1855,9 +1855,9 @@
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getdetalle_de_observaciones_mpi_usuario_que_realiza_observacion_Spartan_User")",
-		cache: false,
+        cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -1905,132 +1905,132 @@
 
     function RefreshCatalog(catalog, control) {
 
-	 if ($('#' + control).hasClass('AutoComplete'))   {
-		   if ($('#' + control).attr("data-isfilter") == "true") {
-				eval(GetReglaFilter(control, $('#ObjectId').val()));
-				return;
-			}
-		}
-			
-			var url = '@Url.Content("~/Frontal/expediente_ministerio_publico/GetCatalogAll")';
-			url = url.replace(/Catalog/g, catalog);
+     if ($('#' + control).hasClass('AutoComplete'))   {
+           if ($('#' + control).attr("data-isfilter") == "true") {
+                eval(GetReglaFilter(control, $('#ObjectId').val()));
+                return;
+            }
+        }
+            
+            var url = '@Url.Content("~/Frontal/expediente_ministerio_publico/GetCatalogAll")';
+            url = url.replace(/Catalog/g, catalog);
 
-			$.ajax({
-				url: url,
-				async: true,
-				success:function(result)
-				{
-					addItemsToSelect($('#' + control), result);
-				},
-				error: function (result)
-				{
-					showNotification("@Resources.Resources.ErrorContactingServer", "error");
-				}
-			});
-		
+            $.ajax({
+                url: url,
+                async: false,
+                success:function(result)
+                {
+                    addItemsToSelect($('#' + control), result);
+                },
+                error: function (result)
+                {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        
     }
 
 
         function Sendexpediente_ministerio_publicoData(callBack) {
-			
-					
-		 var arr = []; 
-		 $("form#Createexpediente_ministerio_publico").find(':input').each(function( index ) {		 
-			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
-			{		
-				arr.push($(this).attr('id')); 
-				$(this).prop('disabled', false);  	
-			}
-	    });
-		
+            
+                    
+         var arr = []; 
+         $("form#Createexpediente_ministerio_publico").find(':input').each(function( index ) {       
+            if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+            {       
+                arr.push($(this).attr('id')); 
+                $(this).prop('disabled', false);    
+            }
+        });
+        
              var formData = new FormData($("form#Createexpediente_ministerio_publico")[0]);
-			$.each( arr, function( key, value ) {
-			  $('#' +value).prop('disabled', true);
-			});
-			var id = $("#Referenceclave").val();
+            $.each( arr, function( key, value ) {
+              $('#' +value).prop('disabled', true);
+            });
+            var id = $("#Referenceclave").val();
             var isNew = $('#hdnIsNew').val();
            
-			if (Tab_Datos_del_Caso && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Datos_del_Caso')) {
-				return false;
-			}						
+            if (Tab_Datos_del_Caso && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Datos_del_Caso')) {
+                return false;
+            }                       
 
-			if (Tab_Hechos && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Hechos')) {
-				return false;
-			}						
+            if (Tab_Hechos && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Hechos')) {
+                return false;
+            }                       
 
-			if (Tab_Datos_del_Acuerdo && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Datos_del_Acuerdo')) {
-				return false;
-			}						
+            if (Tab_Datos_del_Acuerdo && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Datos_del_Acuerdo')) {
+                return false;
+            }                       
 
-			if (Tab_Resolucion_o_Dictaminacion && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Resolucion_o_Dictaminacion')) {
-				return false;
-			}						
+            if (Tab_Resolucion_o_Dictaminacion && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Resolucion_o_Dictaminacion')) {
+                return false;
+            }                       
 
 
-			
-			if (isNew == "True")
+            
+            if (isNew == "True")
             {
                 id = CreateID();
             }
-			
-			
-			if (Tab_Datos_del_Caso)
-				Save_Datos_del_Caso(id);
+            
+            
+            if (Tab_Datos_del_Caso)
+                Save_Datos_del_Caso(id);
 
-			if (Tab_Hechos)
-				Save_Hechos(id);
+            if (Tab_Hechos)
+                Save_Hechos(id);
 
-			if (Tab_Datos_del_Acuerdo)
-				Save_Datos_del_Acuerdo(id);
+            if (Tab_Datos_del_Acuerdo)
+                Save_Datos_del_Acuerdo(id);
 
-			if (Tab_Resolucion_o_Dictaminacion)
-				Save_Resolucion_o_Dictaminacion(id);
+            if (Tab_Resolucion_o_Dictaminacion)
+                Save_Resolucion_o_Dictaminacion(id);
 
 
-			showNotification("@Resources.Resources.SaveSuccess", "success");
-			callBack(id);
+            showNotification("@Resources.Resources.SaveSuccess", "success");
+            callBack(id);
             return true;
         };
-		function CreateID()
-		{
-			var newId = 0;
-			$.ajax({
-				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/CreateID")',
-				type: 'GET',
-				async: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "error");
-					} else {
-						newId = result;
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "error");
-				},
-				cache: false,
-				contentType: false,
-				processData: false
-			});
-			return newId;
-		}
-		
-		function OpenRules()
-		{
-			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
-				$(".expediente_ministerio_publicoBusinessRuleModal").html(data);
-			});
-		}
+        function CreateID()
+        {
+            var newId = 0;
+            $.ajax({
+                url: '@Url.Content("~/Frontal/expediente_ministerio_publico/CreateID")',
+                type: 'GET',
+                async: false,
+                success: function (result) {
+                    if (result < 0) {
+                        showNotification("@Resources.Resources.ErrorSave", "error");
+                    } else {
+                        newId = result;
+                    }
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+            return newId;
+        }
+        
+        function OpenRules()
+        {
+            $.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+                $(".expediente_ministerio_publicoBusinessRuleModal").html(data);
+            });
+        }
                 function expediente_ministerio_publicoGetBusinessRule(FieldId, FieldName, Attribute) {
-			if (FieldId != null && FieldName != null)
-			{
-			        $('#FieldId').val(FieldId);
-				$('#FieldName').val(FieldName);
-				$('#Attribute').val(Attribute);
-			}
-			$('#ObjectId').val('45468');
-			$('#Screen').val('expediente_ministerio_publico');
-			OpenRules();
+            if (FieldId != null && FieldName != null)
+            {
+                    $('#FieldId').val(FieldId);
+                $('#FieldName').val(FieldName);
+                $('#Attribute').val(Attribute);
+            }
+            $('#ObjectId').val('45468');
+            $('#Screen').val('expediente_ministerio_publico');
+            OpenRules();
                }
 
     var permission = {
@@ -2059,17 +2059,17 @@
         }
 
     function expediente_ministerio_publicoBackToGrid() {
-        		if (isPartial)
-			window.close('', '_parent', '');
+                if (isPartial)
+            window.close('', '_parent', '');
         else
-			location.href = "@Url.Content("~/Frontal/expediente_ministerio_publico/")";
+            location.href = "@Url.Content("~/Frontal/expediente_ministerio_publico/")";
     }
-	
-	function ReadScriptSettings(callback)
+    
+    function ReadScriptSettings(callback)
     {
         $.post("@Url.Content("~/Frontal/expediente_ministerio_publico/ReadScriptSettings")", function (data) {
             mainElementObject = JSON.parse(data.MainElement);
-			if (data.ChildElement != null) {
+            if (data.ChildElement != null) {
                 childElementObject = JSON.parse(data.ChildElement);
             }
             callback();
@@ -2081,7 +2081,7 @@
             //$('#hdnConfigureType').val("0");
         }, "json");
     }
-	
+    
         function SaveElementAttributes() {
             if ($('#hdnConfigureType').val() == "1") {
                 $.post("@Url.Content("~/Frontal/expediente_ministerio_publico/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
@@ -2094,18 +2094,18 @@
                     childElementObject = JSON.parse(data.ChildElement);
 
                     for (var i = 0; i < mainElementObject.length; i++) {
-							var mainElementAttributes = '<div class="col-sm-2">';
-							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
-							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
-							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
-							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
-							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
-							mainElementAttributes += '</div>';
-							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+                            var mainElementAttributes = '<div class="col-sm-2">';
+                            mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                            mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                            mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                            mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                            mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                            mainElementAttributes += '</div>';
+                            $('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
 
-							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                            $('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
                   }
-					 if (childElementObject != null) {
+                     if (childElementObject != null) {
                         for (var j = 0; j < childElementObject.length; j++) {
                             var table = childElementObject[j].table.trim();
                             var grid = '#' + table + 'Grid';
@@ -2126,23 +2126,23 @@
                 });
             }
         }
-		$('#Createexpediente_ministerio_publico').on('click', '.btnPopupBusinessRules', function () {
-			var fieldId = $(this).data('field-id');
-			var fieldName = $(this).data('field-name');
-			var attribute = $(this).data('attribute');
-			$('#FieldId').val(fieldId);
-			$('#FieldName').val(fieldName);
-			$('#Attribute').val(attribute);
+        $('#Createexpediente_ministerio_publico').on('click', '.btnPopupBusinessRules', function () {
+            var fieldId = $(this).data('field-id');
+            var fieldName = $(this).data('field-name');
+            var attribute = $(this).data('attribute');
+            $('#FieldId').val(fieldId);
+            $('#FieldName').val(fieldName);
+            $('#Attribute').val(attribute);
                         expediente_ministerio_publicoGetBusinessRule();
-		});
-		//Initialize HTML Editors            
+        });
+        //Initialize HTML Editors            
   var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
   var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
   var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
   var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
-		
-		
-		function Fill_Datos_del_Caso()
+        
+        
+        function Fill_Datos_del_Caso()
         {
             $.ajax({
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Datos_del_Caso")?Id=" + $("#Referenceclave").val(),
@@ -2158,9 +2158,9 @@
                     $('.select2-search__field').val(result.data.usuario_que_registra).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.usuario_que_registra).trigger('change');
+                        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+                        control.select2({ data: data });
+                        control.val(result.data.usuario_que_registra).trigger('change');
                     }, 3000);
                     $('#Tipo_de_Denuncia').val(result.data.Tipo_de_Denuncia);
                     var control = $('#MP_Asignado');
@@ -2168,27 +2168,27 @@
                     $('.select2-search__field').val(result.data.MP_Asignado).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.MP_Asignado).trigger('change');
+                        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+                        control.select2({ data: data });
+                        control.val(result.data.MP_Asignado).trigger('change');
                     }, 3000);
                     var control = $('#unidad');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.unidad).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.unidad).trigger('change');
+                        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+                        control.select2({ data: data });
+                        control.val(result.data.unidad).trigger('change');
                     }, 3000);
                     var control = $('#Municipio');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Municipio).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Municipio).trigger('change');
+                        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+                        control.select2({ data: data });
+                        control.val(result.data.Municipio).trigger('change');
                     }, 3000);
                     $('#Region').val(result.data.Region);
                     $('#nuat').val(result.data.nuat);
@@ -2208,11 +2208,11 @@
                 }
             });
         }
-		
-		function Save_Datos_del_Caso(newId) {
-			var data = new FormData();
-			data.append('clave', newId);
-			                data.append('fecha_de_registro', $('#fecha_de_registro').val());
+        
+        function Save_Datos_del_Caso(newId) {
+            var data = new FormData();
+            data.append('clave', newId);
+                            data.append('fecha_de_registro', $('#fecha_de_registro').val());
                 data.append('hora_de_registro', $('#hora_de_registro').val());
                 data.append('usuario_que_registra', $('#usuario_que_registra').val());
                 data.append('Tipo_de_Denuncia', $('#Tipo_de_Denuncia').val());
@@ -2227,31 +2227,31 @@
                 data.append('hora_puesto_a_disposicion', $('#hora_puesto_a_disposicion').val());
                 data.append('estatus', $('#estatus').val());
 
-			$.ajax({
-				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Datos_del_Caso")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_del_Caso");
-					} else {
-						newId = result;
-                    					    Senddetalle_de_observaciones_mpi(null, newId);
+            $.ajax({
+                url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Datos_del_Caso")',
+                type: 'POST',
+                data: data,
+                async: false,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    if (result < 0) {
+                        showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_del_Caso");
+                    } else {
+                        newId = result;
+                                            Senddetalle_de_observaciones_mpi(null, newId);
 
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_del_Caso");
-				},
-				cache: false
-			});
-		}
+                    }
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_del_Caso");
+                },
+                cache: false
+            });
+        }
 
-		function Fill_Hechos()
+        function Fill_Hechos()
         {
             $.ajax({
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Hechos")?Id=" + $("#Referenceclave").val(),
@@ -2270,45 +2270,45 @@
                     $('.select2-search__field').val(result.data.PaisH).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.PaisH).trigger('change');
+                        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+                        control.select2({ data: data });
+                        control.val(result.data.PaisH).trigger('change');
                     }, 3000);
                     var control = $('#Estado');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Estado).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Estado).trigger('change');
+                        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+                        control.select2({ data: data });
+                        control.val(result.data.Estado).trigger('change');
                     }, 3000);
                     var control = $('#Municipio_Hechos');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Municipio_Hechos).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Municipio_Hechos).trigger('change');
+                        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+                        control.select2({ data: data });
+                        control.val(result.data.Municipio_Hechos).trigger('change');
                     }, 3000);
                     var control = $('#Poblacion');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Poblacion).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Poblacion).trigger('change');
+                        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+                        control.select2({ data: data });
+                        control.val(result.data.Poblacion).trigger('change');
                     }, 3000);
                     var control = $('#ColoniaH');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.ColoniaH).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.ColoniaH).trigger('change');
+                        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+                        control.select2({ data: data });
+                        control.val(result.data.ColoniaH).trigger('change');
                     }, 3000);
                     $('#CalleH').val(result.data.CalleH);
                     $('#Numero_InteriorH').val(result.data.Numero_InteriorH);
@@ -2325,11 +2325,11 @@
                 }
             });
         }
-		
-		function Save_Hechos(newId) {
-			var data = new FormData();
-			data.append('clave', newId);
-			                data.append('Titulo_del_Hecho', $('#Titulo_del_Hecho').val());
+        
+        function Save_Hechos(newId) {
+            var data = new FormData();
+            data.append('clave', newId);
+                            data.append('Titulo_del_Hecho', $('#Titulo_del_Hecho').val());
                 data.append('Fecha_del_Hecho', $('#Fecha_del_Hecho').val());
                 data.append('Narrativa_Breve_de_los_Hechos', $('#Narrativa_Breve_de_los_Hechos').val());
                 data.append('Hora_Aproximada_del_Hecho', $('#Hora_Aproximada_del_Hecho').val());
@@ -2348,30 +2348,30 @@
                 data.append('LongitudH', $('#LongitudH').val());
                 data.append('LatitudH', $('#LatitudH').val());
 
-			$.ajax({
-				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Hechos")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Hechos");
-					} else {
-						newId = result;
+            $.ajax({
+                url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Hechos")',
+                type: 'POST',
+                data: data,
+                async: false,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    if (result < 0) {
+                        showNotification("@Resources.Resources.ErrorSave", "Error al guardar Hechos");
+                    } else {
+                        newId = result;
                     
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Hechos");
-				},
-				cache: false
-			});
-		}
+                    }
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Hechos");
+                },
+                cache: false
+            });
+        }
 
-		function Fill_Datos_del_Acuerdo()
+        function Fill_Datos_del_Acuerdo()
         {
             $.ajax({
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Datos_del_Acuerdo")?Id=" + $("#Referenceclave").val(),
@@ -2397,11 +2397,11 @@
                 }
             });
         }
-		
-		function Save_Datos_del_Acuerdo(newId) {
-			var data = new FormData();
-			data.append('clave', newId);
-			                data.append('tipo_de_acuerdo', $('#tipo_de_acuerdo').val());
+        
+        function Save_Datos_del_Acuerdo(newId) {
+            var data = new FormData();
+            data.append('clave', newId);
+                            data.append('tipo_de_acuerdo', $('#tipo_de_acuerdo').val());
                 data.append('fecha_de_inicio_de_acuerdo', $('#fecha_de_inicio_de_acuerdo').val());
                 data.append('fecha_de_cumplimiento', $('#fecha_de_cumplimiento').val());
                 data.append('hora_de_cumplimiento', $('#hora_de_cumplimiento').val());
@@ -2413,30 +2413,30 @@
                 data.append('acepta_acuerdo', $('#acepta_acuerdo').val());
                 data.append('motivo_de_rechazo_de_acuerdo', $('#motivo_de_rechazo_de_acuerdo').val());
 
-			$.ajax({
-				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Datos_del_Acuerdo")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_del_Acuerdo");
-					} else {
-						newId = result;
+            $.ajax({
+                url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Datos_del_Acuerdo")',
+                type: 'POST',
+                data: data,
+                async: false,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    if (result < 0) {
+                        showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_del_Acuerdo");
+                    } else {
+                        newId = result;
                     
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_del_Acuerdo");
-				},
-				cache: false
-			});
-		}
+                    }
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_del_Acuerdo");
+                },
+                cache: false
+            });
+        }
 
-		function Fill_Resolucion_o_Dictaminacion()
+        function Fill_Resolucion_o_Dictaminacion()
         {
             $.ajax({
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Resolucion_o_Dictaminacion")?Id=" + $("#Referenceclave").val(),
@@ -2452,9 +2452,9 @@
                     $('.select2-search__field').val(result.data.Usuario_que_Cierra).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Usuario_que_Cierra).trigger('change');
+                        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+                        control.select2({ data: data });
+                        control.val(result.data.Usuario_que_Cierra).trigger('change');
                     }, 3000);
                     $('#tipo_de_cierre').val(result.data.tipo_de_cierre);
                     $('#comentarios_de_cierre').val(result.data.comentarios_de_cierre);
@@ -2465,38 +2465,38 @@
                 }
             });
         }
-		
-		function Save_Resolucion_o_Dictaminacion(newId) {
-			var data = new FormData();
-			data.append('clave', newId);
-			                data.append('fecha_de_cierre', $('#fecha_de_cierre').val());
+        
+        function Save_Resolucion_o_Dictaminacion(newId) {
+            var data = new FormData();
+            data.append('clave', newId);
+                            data.append('fecha_de_cierre', $('#fecha_de_cierre').val());
                 data.append('hora_de_cierre', $('#hora_de_cierre').val());
                 data.append('Usuario_que_Cierra', $('#Usuario_que_Cierra').val());
                 data.append('tipo_de_cierre', $('#tipo_de_cierre').val());
                 data.append('comentarios_de_cierre', $('#comentarios_de_cierre').val());
 
-			$.ajax({
-				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Resolucion_o_Dictaminacion")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Resolucion_o_Dictaminacion");
-					} else {
-						newId = result;
+            $.ajax({
+                url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Resolucion_o_Dictaminacion")',
+                type: 'POST',
+                data: data,
+                async: false,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    if (result < 0) {
+                        showNotification("@Resources.Resources.ErrorSave", "Error al guardar Resolucion_o_Dictaminacion");
+                    } else {
+                        newId = result;
                     
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Resolucion_o_Dictaminacion");
-				},
-				cache: false
-			});
-		}
+                    }
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Resolucion_o_Dictaminacion");
+                },
+                cache: false
+            });
+        }
 
 
     </script>

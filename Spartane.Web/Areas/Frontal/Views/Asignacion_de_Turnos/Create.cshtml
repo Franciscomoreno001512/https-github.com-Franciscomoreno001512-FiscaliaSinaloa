@@ -37,6 +37,12 @@
     List<SelectListItem> varTipo_de_Urgencia_Tipo_de_Urgencia = null;
     if (ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia != null)
     { varTipo_de_Urgencia_Tipo_de_Urgencia = (List<SelectListItem>)ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia; }
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Denuncia_Ciudadana = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Denuncia_Ciudadana != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Denuncia_Ciudadana = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Denuncia_Ciudadana; }
+ List<SelectListItem> varAsignacion_de_Turnos_Previos_Turno_Previo = null;
+    if (ViewBag.Asignacion_de_Turnos_Previoss_Turno_Previo != null)
+    { varAsignacion_de_Turnos_Previos_Turno_Previo = (List<SelectListItem>)ViewBag.Asignacion_de_Turnos_Previoss_Turno_Previo; }
     List<SelectListItem> varSpartan_User_Orientador = null;
     if (ViewBag.Spartan_Users_Orientador != null)
     { varSpartan_User_Orientador = (List<SelectListItem>)ViewBag.Spartan_Users_Orientador; }
@@ -446,6 +452,34 @@
                                 </div>
                                 }
                             </div>
+				<div class="form-group" id="divDenuncia_Ciudadana">
+                                <label class="col-sm-2 control-label">@Resources.Asignacion_de_TurnosResources.Denuncia_Ciudadana</label>
+                                <div class="col-sm-8" data-field-id="Denuncia_Ciudadana" data-attribute="272194" data-field-name="@Resources.Asignacion_de_TurnosResources.Denuncia_Ciudadana">
+                                    <select class='fullWidth AutoComplete AutoCompleteAsignacion_de_Turnos_Denuncia_Ciudadana form-control select2-dropdown Datos_Generales' data-val="true" id="Denuncia_Ciudadana" name="Denuncia_Ciudadana">
+                                        <option value="@Model.Denuncia_Ciudadana">@(Model.Denuncia_CiudadanaFolio??Model.Denuncia_CiudadanaFolio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 272194).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud_de_Denuncia_Ciudadana', 'Denuncia_Ciudadana');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divTurno_Previo">
+                                <label class="col-sm-2 control-label">@Resources.Asignacion_de_TurnosResources.Turno_Previo</label>
+                                <div class="col-sm-8" data-field-id="Turno_Previo" data-attribute="272195" data-field-name="@Resources.Asignacion_de_TurnosResources.Turno_Previo">
+                                    <select class='fullWidth AutoComplete AutoCompleteAsignacion_de_Turnos_Turno_Previo form-control select2-dropdown Datos_Generales' data-val="true" id="Turno_Previo" name="Turno_Previo">
+                                        <option value="@Model.Turno_Previo">@(Model.Turno_PrevioNumero_Turno??Model.Turno_PrevioNumero_Turno)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 272195).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Asignacion_de_Turnos_Previos', 'Turno_Previo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divOrientador">
                                 <label class="col-sm-2 control-label">@Resources.Asignacion_de_TurnosResources.Orientador</label>
                                 <div class="col-sm-8" data-field-id="Orientador" data-attribute="265559" data-field-name="@Resources.Asignacion_de_TurnosResources.Orientador">
@@ -739,22 +773,12 @@
         var nameMR = '@ViewBag.nameMR';
 		var nameAttribute = '@ViewBag.nameAttribute';
 		var Tab_Datos_Generales = true;
-		var finalizaTurno =  0;
+
 
         $(document).ready(function () {
             $('#ObjectId').val('45297');
 		    
-		   function getParameterByName(name) //courtesy Artem
-            {
-                name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-                var regexS = "[\\?&]" + name + "=([^&#]*)";
-                var regex = new RegExp(regexS);
-                var results = regex.exec(window.location.href);
-                if (results == null)
-                    return "";
-                else
-                    return decodeURIComponent(results[1].replace(/\+/g, " "));
-            } 
+		   
                         $('#Fecha_de_Turno').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -797,7 +821,73 @@
             }
 
 			
-			
+			       var AutoCompleteDenuncia_CiudadanaData =[];
+       $(".AutoCompleteAsignacion_de_Turnos_Denuncia_Ciudadana").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Asignacion_de_Turnos/GetAsignacion_de_Turnos_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteAsignacion_de_Turnos_Denuncia_Ciudadana_Solicitud_de_Denuncia_CiudadanaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteAsignacion_de_Turnos_Denuncia_Ciudadana");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteTurno_PrevioData =[];
+       $(".AutoCompleteAsignacion_de_Turnos_Turno_Previo").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Asignacion_de_Turnos/GetAsignacion_de_Turnos_Turno_Previo_Asignacion_de_Turnos_Previos")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteAsignacion_de_Turnos_Turno_Previo_Asignacion_de_Turnos_PreviosData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteAsignacion_de_Turnos_Turno_Previo");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
 
             @if(ViewBag.IsNew)
             { 
@@ -813,29 +903,6 @@
                 </text>
             }
             EjecutarValidacionesAlComienzo(); 
-			finalizaTurno = getParameterByName('finalizaTurno');
-
-            if (finalizaTurno == 1) {
-                $("#Numero_de_Turno").prop('disabled', true);
-                $("#Nombres").prop('disabled', true);
-                $("#Apellido_Paterno").prop('disabled', true);
-                $("#Apellido_Materno").prop('disabled', true);
-                $("#Sexo").prop('disabled', true);
-                $("#Edad").prop('disabled', true);
-                $("#Tipo_de_Atencion").prop('disabled', true);
-                $("#Tipo_de_Identificacion").prop('disabled', true);
-                $("#Numero_de_Identificacion").prop('disabled', true);
-                $("#Tipo_de_Urgencia").prop('disabled', true);
-                $("#Orientador").prop('disabled', true);
-                $("#Modulo").prop('disabled', true);
-                $("#Observaciones").prop('disabled', true);
-                $("#Motivo_Finalizacion_Turno").show();
-                $("#divMotivo_Finalizacion_Turno").show();
-
-                $("#Asignacion_de_TurnosGuardar").val('FInalizar');
-                $("#Asignacion_de_TurnosGuardarYNuevo").hide();
-                $("#Asignacion_de_TurnosGuardarYCopia").hide();
-            }	
 			
         });
 
@@ -1118,6 +1185,24 @@
                     $('#Numero_de_Identificacion').val(result.data.Numero_de_Identificacion);
                     $('#Urgencia').prop('checked', result.data.Urgencia);
                     $('#Tipo_de_Urgencia').val(result.data.Tipo_de_Urgencia);
+                    var control = $('#Denuncia_Ciudadana');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Denuncia_Ciudadana).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Denuncia_Ciudadana).trigger('change');
+                    }, 3000);
+                    var control = $('#Turno_Previo');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Turno_Previo).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Turno_Previo).trigger('change');
+                    }, 3000);
                     $('#Orientador').val(result.data.Orientador);
                     $('#Estatus_de_Turno').val(result.data.Estatus_de_Turno);
                     $('#Modulo').val(result.data.Modulo);
@@ -1135,24 +1220,10 @@
             });
         }
 		
-		function ActualizrFechasFinalizar(Folio) {
-                        $.ajax({
-                url: '@Url.Content("~/Frontal/Asignacion_de_Turnos/FinalizarTurno")',
-                data: { "Folio": Folio },
-                type: 'POST',
-       
- 
-            });
-
-        }
 		function Save_Datos_Generales(newId) {
 			var data = new FormData();
-			var estatus = $('#Estatus_de_Turno').val();
-            if (finalizaTurno == 1) { estatus = 3; }
-			var data = new FormData();
 			data.append('Folio', newId);
-			data.append('Fecha_de_Turno', $('#Fecha_de_Turno').val());
-			data.append('Fecha_de_Turno', $('#Fecha_de_Turno').val());
+			                data.append('Fecha_de_Turno', $('#Fecha_de_Turno').val());
                 data.append('Hora_de_Turno', $('#Hora_de_Turno').val());
                 data.append('Numero_de_Turno', $('#Numero_de_Turno').val());
                 data.append('Unidad_de_Atencion', $('#Unidad_de_Atencion').val());
@@ -1169,8 +1240,10 @@
                 data.append('Numero_de_Identificacion', $('#Numero_de_Identificacion').val());
                 data.append('Urgencia', $('#Urgencia').prop('checked'));
                 data.append('Tipo_de_Urgencia', $('#Tipo_de_Urgencia').val());
+                data.append('Denuncia_Ciudadana', $('#Denuncia_Ciudadana').val());
+                data.append('Turno_Previo', $('#Turno_Previo').val());
                 data.append('Orientador', $('#Orientador').val());
-                data.append('Estatus_de_Turno', estatus);
+                data.append('Estatus_de_Turno', $('#Estatus_de_Turno').val());
                 data.append('Modulo', $('#Modulo').val());
                 data.append('Motivo_Finalizacion_Turno', $('#Motivo_Finalizacion_Turno').val());
                 data.append('Observaciones', $('#Observaciones').val());
@@ -1192,9 +1265,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
 					} else {
 						newId = result;
-						if (finalizaTurno == 1) {
-                            ActualizrFechasFinalizar(newId);
-                        }                    
+                    
 					}
 				},
 				error: function (result) {

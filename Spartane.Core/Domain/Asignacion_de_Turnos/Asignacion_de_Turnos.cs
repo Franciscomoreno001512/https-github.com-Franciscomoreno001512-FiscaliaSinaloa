@@ -9,6 +9,8 @@ using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Tipo_de_Atencion;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
 using Spartane.Core.Domain.Tipo_de_Urgencia;
+using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
+using Spartane.Core.Domain.Asignacion_de_Turnos_Previos;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Estatus_de_Turno;
 using Spartane.Core.Domain.Modulo;
@@ -43,6 +45,8 @@ namespace Spartane.Core.Domain.Asignacion_de_Turnos
         public string Numero_de_Identificacion { get; set; }
         public bool? Urgencia { get; set; }
         public int? Tipo_de_Urgencia { get; set; }
+        public int? Denuncia_Ciudadana { get; set; }
+        public int? Turno_Previo { get; set; }
         public int? Orientador { get; set; }
         public int? Estatus_de_Turno { get; set; }
         public int? Modulo { get; set; }
@@ -65,6 +69,10 @@ namespace Spartane.Core.Domain.Asignacion_de_Turnos
         public virtual Spartane.Core.Domain.Tipo_de_Identificacion.Tipo_de_Identificacion Tipo_de_Identificacion_Tipo_de_Identificacion { get; set; }
         [ForeignKey("Tipo_de_Urgencia")]
         public virtual Spartane.Core.Domain.Tipo_de_Urgencia.Tipo_de_Urgencia Tipo_de_Urgencia_Tipo_de_Urgencia { get; set; }
+        [ForeignKey("Denuncia_Ciudadana")]
+        public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana { get; set; }
+        [ForeignKey("Turno_Previo")]
+        public virtual Spartane.Core.Domain.Asignacion_de_Turnos_Previos.Asignacion_de_Turnos_Previos Turno_Previo_Asignacion_de_Turnos_Previos { get; set; }
         [ForeignKey("Orientador")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Orientador_Spartan_User { get; set; }
         [ForeignKey("Estatus_de_Turno")]
@@ -96,6 +104,8 @@ namespace Spartane.Core.Domain.Asignacion_de_Turnos
         public string Numero_de_Identificacion { get; set; }
         public bool? Urgencia { get; set; }
         public int? Tipo_de_Urgencia { get; set; }
+        public int? Denuncia_Ciudadana { get; set; }
+        public int? Turno_Previo { get; set; }
         public int? Orientador { get; set; }
         public int? Estatus_de_Turno { get; set; }
         public int? Modulo { get; set; }
@@ -118,6 +128,10 @@ namespace Spartane.Core.Domain.Asignacion_de_Turnos
         public virtual Spartane.Core.Domain.Tipo_de_Identificacion.Tipo_de_Identificacion Tipo_de_Identificacion_Tipo_de_Identificacion { get; set; }
         [ForeignKey("Tipo_de_Urgencia")]
         public virtual Spartane.Core.Domain.Tipo_de_Urgencia.Tipo_de_Urgencia Tipo_de_Urgencia_Tipo_de_Urgencia { get; set; }
+        [ForeignKey("Denuncia_Ciudadana")]
+        public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana { get; set; }
+        [ForeignKey("Turno_Previo")]
+        public virtual Spartane.Core.Domain.Asignacion_de_Turnos_Previos.Asignacion_de_Turnos_Previos Turno_Previo_Asignacion_de_Turnos_Previos { get; set; }
         [ForeignKey("Orientador")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Orientador_Spartan_User { get; set; }
         [ForeignKey("Estatus_de_Turno")]

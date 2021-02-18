@@ -1306,8 +1306,24 @@
 <Object Id="46018" culture="es-es" value="Zona de Robo" />
 <Object Id="46081" culture="en-us" value="ErmeOficio" />
 <Object Id="46081" culture="es-es" value="ErmeOficio" />
+<Object Id="46094" culture="en-us" value="Asignacion de Turnos Previos" />
+<Object Id="46094" culture="es-es" value="Asignacion de Turnos Previos" />
+<Object Id="45734" culture="en-us" value="Registro de Huellas Dactilares" />
+<Object Id="45734" culture="es-es" value="Registro de Huellas Dactilares" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

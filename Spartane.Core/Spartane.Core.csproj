@@ -1598,6 +1598,10 @@
 <Compile Include="Domain\Zona_de_Robo\Zona_de_RoboPagingModel.cs" />
 <Compile Include="Domain\ErmeOficio\ErmeOficio.cs" />
 <Compile Include="Domain\ErmeOficio\ErmeOficioPagingModel.cs" />
+<Compile Include="Domain\Asignacion_de_Turnos_Previos\Asignacion_de_Turnos_Previos.cs" />
+<Compile Include="Domain\Asignacion_de_Turnos_Previos\Asignacion_de_Turnos_PreviosPagingModel.cs" />
+<Compile Include="Domain\Registro_de_Huellas_Dactilares\Registro_de_Huellas_Dactilares.cs" />
+<Compile Include="Domain\Registro_de_Huellas_Dactilares\Registro_de_Huellas_DactilaresPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1618,6 +1622,10 @@
  </Target>
  -->
 </Project>
+
+
+
+
 
 
 

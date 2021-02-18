@@ -56,6 +56,12 @@ namespace Spartane.Web.SqlModelMapper
                 case "Tipo_de_Urgencia[Descripcion]":
                 case "Tipo_de_UrgenciaDescripcion":
                     return "Tipo_de_Urgencia.Descripcion";
+                case "Denuncia_Ciudadana[Folio]":
+                case "Denuncia_CiudadanaFolio":
+                    return "Solicitud_de_Denuncia_Ciudadana.Folio";
+                case "Turno_Previo[Numero_Turno]":
+                case "Turno_PrevioNumero_Turno":
+                    return "Asignacion_de_Turnos_Previos.Numero_Turno";
                 case "Orientador[Name]":
                 case "OrientadorName":
                     return "Spartan_User.Name";

@@ -3,11 +3,6 @@ var nameOfTable = '';
 var rowIndex = '';
 $(document).ready(function () {
 
-
-
-
-
-
 //BusinessRuleId:1612, Attribute:3, Operation:Object, Event:None
 if(operation == 'List'){
 	if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') || EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('5', '5') ) 
@@ -31,6 +26,10 @@ if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt(
 
 function EjecutarValidacionesDespuesDeCrearLista()
 {
+//INI COD-MAN Ocultar botones de exportar
+$(".html5buttons").hide();
+//FIN COD-MAN Ocultar botones de exportar
+	
 //BusinessRuleId:1515, Attribute:3, Operation:Object, Event:None
 if(operation == 'List'){
 if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('5', '5') || EvaluaQuery("select GLOBAL[USERROLEID]	",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { 

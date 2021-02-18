@@ -1489,6 +1489,10 @@
 <Compile Include="Zona_de_Robo\Zona_de_RoboService.cs" />
 <Compile Include="ErmeOficio\IErmeOficioService.cs" />
 <Compile Include="ErmeOficio\ErmeOficioService.cs" />
+<Compile Include="Asignacion_de_Turnos_Previos\IAsignacion_de_Turnos_PreviosService.cs" />
+<Compile Include="Asignacion_de_Turnos_Previos\Asignacion_de_Turnos_PreviosService.cs" />
+<Compile Include="Registro_de_Huellas_Dactilares\IRegistro_de_Huellas_DactilaresService.cs" />
+<Compile Include="Registro_de_Huellas_Dactilares\Registro_de_Huellas_DactilaresService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1588,6 +1592,10 @@
  </Target>
  -->
 </Project>
+
+
+
+
 
 
 

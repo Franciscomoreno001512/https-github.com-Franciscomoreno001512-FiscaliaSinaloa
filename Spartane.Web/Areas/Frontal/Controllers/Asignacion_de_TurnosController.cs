@@ -8,6 +8,8 @@ using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Tipo_de_Atencion;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
 using Spartane.Core.Domain.Tipo_de_Urgencia;
+using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
+using Spartane.Core.Domain.Asignacion_de_Turnos_Previos;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Estatus_de_Turno;
 using Spartane.Core.Domain.Modulo;
@@ -28,6 +30,8 @@ using Spartane.Web.Areas.WebApiConsumer.Genero;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Atencion;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Identificacion;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Urgencia;
+using Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Denuncia_Ciudadana;
+using Spartane.Web.Areas.WebApiConsumer.Asignacion_de_Turnos_Previos;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Estatus_de_Turno;
 using Spartane.Web.Areas.WebApiConsumer.Modulo;
@@ -57,7 +61,7 @@ using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_Format_Related;
 using Spartane.Core.Domain.Spartan_Format;
 using iTextSharp.text.pdf;
-using Spartane.Web.Areas.WebApiConsumer.SpartaneQuery;
+using Spartane.Web.Areas.WebApiConsumer.SpartaneQuery;											  
 
 
 namespace Spartane.Web.Areas.Frontal.Controllers
@@ -75,6 +79,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ITipo_de_AtencionApiConsumer _ITipo_de_AtencionApiConsumer;
         private ITipo_de_IdentificacionApiConsumer _ITipo_de_IdentificacionApiConsumer;
         private ITipo_de_UrgenciaApiConsumer _ITipo_de_UrgenciaApiConsumer;
+        private ISolicitud_de_Denuncia_CiudadanaApiConsumer _ISolicitud_de_Denuncia_CiudadanaApiConsumer;
+        private IAsignacion_de_Turnos_PreviosApiConsumer _IAsignacion_de_Turnos_PreviosApiConsumer;
         private IEstatus_de_TurnoApiConsumer _IEstatus_de_TurnoApiConsumer;
         private IModuloApiConsumer _IModuloApiConsumer;
         private IMotivo_Finalizacion_TurnoApiConsumer _IMotivo_Finalizacion_TurnoApiConsumer;
@@ -89,14 +95,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ISpartan_FormatApiConsumer _ISpartan_FormatApiConsumer;
         private ISpartan_Format_PermissionsApiConsumer _ISpartan_Format_PermissionsApiConsumer;
 		private ISpartan_Format_RelatedApiConsumer _ISpartan_FormatRelatedApiConsumer;
-		private ISpartaneQueryApiConsumer _ISpartaneQueryApiConsumer;																				  
+		private ISpartaneQueryApiConsumer _ISpartaneQueryApiConsumer;																																															
 
         #endregion "variable declaration"
 
         #region "Constructor Declaration"
 
         
-        public Asignacion_de_TurnosController(IAsignacion_de_TurnosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAsignacion_de_TurnosApiConsumer Asignacion_de_TurnosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IUnidadApiConsumer UnidadApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IGeneroApiConsumer GeneroApiConsumer , ITipo_de_AtencionApiConsumer Tipo_de_AtencionApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , ITipo_de_UrgenciaApiConsumer Tipo_de_UrgenciaApiConsumer , IEstatus_de_TurnoApiConsumer Estatus_de_TurnoApiConsumer , IModuloApiConsumer ModuloApiConsumer , IMotivo_Finalizacion_TurnoApiConsumer Motivo_Finalizacion_TurnoApiConsumer , ISpartaneQueryApiConsumer SpartaneQueryApiConsumer  )
+        public Asignacion_de_TurnosController(IAsignacion_de_TurnosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAsignacion_de_TurnosApiConsumer Asignacion_de_TurnosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IUnidadApiConsumer UnidadApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IGeneroApiConsumer GeneroApiConsumer , ITipo_de_AtencionApiConsumer Tipo_de_AtencionApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , ITipo_de_UrgenciaApiConsumer Tipo_de_UrgenciaApiConsumer , ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer , IAsignacion_de_Turnos_PreviosApiConsumer Asignacion_de_Turnos_PreviosApiConsumer , IEstatus_de_TurnoApiConsumer Estatus_de_TurnoApiConsumer , IModuloApiConsumer ModuloApiConsumer , IMotivo_Finalizacion_TurnoApiConsumer Motivo_Finalizacion_TurnoApiConsumer, ISpartaneQueryApiConsumer SpartaneQueryApiConsumer  )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -116,6 +122,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ITipo_de_AtencionApiConsumer = Tipo_de_AtencionApiConsumer;
             this._ITipo_de_IdentificacionApiConsumer = Tipo_de_IdentificacionApiConsumer;
             this._ITipo_de_UrgenciaApiConsumer = Tipo_de_UrgenciaApiConsumer;
+            this._ISolicitud_de_Denuncia_CiudadanaApiConsumer = Solicitud_de_Denuncia_CiudadanaApiConsumer;
+            this._IAsignacion_de_Turnos_PreviosApiConsumer = Asignacion_de_Turnos_PreviosApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._IEstatus_de_TurnoApiConsumer = Estatus_de_TurnoApiConsumer;
             this._IModuloApiConsumer = ModuloApiConsumer;
@@ -218,6 +226,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Urgencia = Asignacion_de_TurnosData.Urgencia.GetValueOrDefault()
                     ,Tipo_de_Urgencia = Asignacion_de_TurnosData.Tipo_de_Urgencia
                     ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Urgencia), "Tipo_de_Urgencia") ??  (string)Asignacion_de_TurnosData.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                    ,Denuncia_Ciudadana = Asignacion_de_TurnosData.Denuncia_Ciudadana
+                    ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Denuncia_Ciudadana), "Solicitud_de_Denuncia_Ciudadana") ??  (string)Asignacion_de_TurnosData.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                    ,Turno_Previo = Asignacion_de_TurnosData.Turno_Previo
+                    ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Turno_Previo), "Asignacion_de_Turnos_Previos") ??  (string)Asignacion_de_TurnosData.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
                     ,Orientador = Asignacion_de_TurnosData.Orientador
                     ,OrientadorName = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Orientador), "Spartan_User") ??  (string)Asignacion_de_TurnosData.Orientador_Spartan_User.Name
                     ,Estatus_de_Turno = Asignacion_de_TurnosData.Estatus_de_Turno
@@ -396,6 +408,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Urgencia = Asignacion_de_TurnosData.Urgencia.GetValueOrDefault()
                     ,Tipo_de_Urgencia = Asignacion_de_TurnosData.Tipo_de_Urgencia
                     ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Urgencia), "Tipo_de_Urgencia") ??  (string)Asignacion_de_TurnosData.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                    ,Denuncia_Ciudadana = Asignacion_de_TurnosData.Denuncia_Ciudadana
+                    ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Denuncia_Ciudadana), "Solicitud_de_Denuncia_Ciudadana") ??  (string)Asignacion_de_TurnosData.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                    ,Turno_Previo = Asignacion_de_TurnosData.Turno_Previo
+                    ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Turno_Previo), "Asignacion_de_Turnos_Previos") ??  (string)Asignacion_de_TurnosData.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
                     ,Orientador = Asignacion_de_TurnosData.Orientador
                     ,OrientadorName = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Orientador), "Spartan_User") ??  (string)Asignacion_de_TurnosData.Orientador_Spartan_User.Name
                     ,Estatus_de_Turno = Asignacion_de_TurnosData.Estatus_de_Turno
@@ -625,6 +641,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetSolicitud_de_Denuncia_CiudadanaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Folio).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud_de_Denuncia_Ciudadana", "Folio")?? m.Folio,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetAsignacion_de_Turnos_PreviosAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IAsignacion_de_Turnos_PreviosApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IAsignacion_de_Turnos_PreviosApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Numero_Turno).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Asignacion_de_Turnos_Previos", "Numero_Turno")?? m.Numero_Turno,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -935,6 +993,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Identificacion = m.Numero_de_Identificacion
 			,Urgencia = m.Urgencia
                         ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                        ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                        ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
                         ,OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
                         ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
                         ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
@@ -1075,6 +1135,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Identificacion = m.Numero_de_Identificacion
 			,Urgencia = m.Urgencia
                         ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                        ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                        ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
                         ,OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
                         ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
                         ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
@@ -1093,6 +1155,60 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public JsonResult GetAsignacion_de_Turnos_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Solicitud_de_Denuncia_Ciudadana.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud_de_Denuncia_Ciudadana.Folio as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.ListaSelAll(1, 20,elWhere , " Solicitud_de_Denuncia_Ciudadana.Folio ASC ").Resource;
+               
+                foreach (var item in result.Solicitud_de_Denuncia_Ciudadanas)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud_de_Denuncia_Ciudadana", "Folio");
+                    item.Folio =trans ??item.Folio;
+                }
+                return Json(result.Solicitud_de_Denuncia_Ciudadanas.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetAsignacion_de_Turnos_Turno_Previo_Asignacion_de_Turnos_Previos(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IAsignacion_de_Turnos_PreviosApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Asignacion_de_Turnos_Previos.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Asignacion_de_Turnos_Previos.Numero_Turno as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IAsignacion_de_Turnos_PreviosApiConsumer.ListaSelAll(1, 20,elWhere , " Asignacion_de_Turnos_Previos.Numero_Turno ASC ").Resource;
+               
+                foreach (var item in result.Asignacion_de_Turnos_Previoss)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Asignacion_de_Turnos_Previos", "Numero_Turno");
+                    item.Numero_Turno =trans ??item.Numero_Turno;
+                }
+                return Json(result.Asignacion_de_Turnos_Previoss.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -1464,6 +1580,62 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Asignacion_de_Turnos.Tipo_de_Urgencia In (" + Tipo_de_UrgenciaIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceDenuncia_Ciudadana))
+            {
+                switch (filter.Denuncia_CiudadanaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Folio LIKE '" + filter.AdvanceDenuncia_Ciudadana + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Folio LIKE '%" + filter.AdvanceDenuncia_Ciudadana + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Folio = '" + filter.AdvanceDenuncia_Ciudadana + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Folio LIKE '%" + filter.AdvanceDenuncia_Ciudadana + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceDenuncia_CiudadanaMultiple != null && filter.AdvanceDenuncia_CiudadanaMultiple.Count() > 0)
+            {
+                var Denuncia_CiudadanaIds = string.Join(",", filter.AdvanceDenuncia_CiudadanaMultiple);
+
+                where += " AND Asignacion_de_Turnos.Denuncia_Ciudadana In (" + Denuncia_CiudadanaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceTurno_Previo))
+            {
+                switch (filter.Turno_PrevioFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Asignacion_de_Turnos_Previos.Numero_Turno LIKE '" + filter.AdvanceTurno_Previo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Asignacion_de_Turnos_Previos.Numero_Turno LIKE '%" + filter.AdvanceTurno_Previo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Asignacion_de_Turnos_Previos.Numero_Turno = '" + filter.AdvanceTurno_Previo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Asignacion_de_Turnos_Previos.Numero_Turno LIKE '%" + filter.AdvanceTurno_Previo + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTurno_PrevioMultiple != null && filter.AdvanceTurno_PrevioMultiple.Count() > 0)
+            {
+                var Turno_PrevioIds = string.Join(",", filter.AdvanceTurno_PrevioMultiple);
+
+                where += " AND Asignacion_de_Turnos.Turno_Previo In (" + Turno_PrevioIds + ")";
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceOrientador))
             {
                 switch (filter.OrientadorFilter)
@@ -1712,6 +1884,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Numero_de_Identificacion = varAsignacion_de_Turnos.Numero_de_Identificacion
                         ,Urgencia = varAsignacion_de_Turnos.Urgencia
                         ,Tipo_de_Urgencia = varAsignacion_de_Turnos.Tipo_de_Urgencia
+                        ,Denuncia_Ciudadana = varAsignacion_de_Turnos.Denuncia_Ciudadana
+                        ,Turno_Previo = varAsignacion_de_Turnos.Turno_Previo
                         ,Orientador = varAsignacion_de_Turnos.Orientador
                         ,Estatus_de_Turno = varAsignacion_de_Turnos.Estatus_de_Turno
                         ,Modulo = varAsignacion_de_Turnos.Modulo
@@ -2126,6 +2300,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Identificacion = m.Numero_de_Identificacion
 			,Urgencia = m.Urgencia
                         ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                        ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                        ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
                         ,OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
                         ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
                         ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
@@ -2225,6 +2401,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Identificacion = m.Numero_de_Identificacion
 			,Urgencia = m.Urgencia
                         ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                        ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                        ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
                         ,OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
                         ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
                         ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
@@ -2290,6 +2468,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Numero_de_Identificacion = varAsignacion_de_Turnos.Numero_de_Identificacion
                         ,Urgencia = varAsignacion_de_Turnos.Urgencia
                         ,Tipo_de_Urgencia = varAsignacion_de_Turnos.Tipo_de_Urgencia
+                        ,Denuncia_Ciudadana = varAsignacion_de_Turnos.Denuncia_Ciudadana
+                        ,Turno_Previo = varAsignacion_de_Turnos.Turno_Previo
                         ,Orientador = varAsignacion_de_Turnos.Orientador
                         ,Estatus_de_Turno = varAsignacion_de_Turnos.Estatus_de_Turno
                         ,Modulo = varAsignacion_de_Turnos.Modulo
@@ -2350,6 +2530,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Urgencia = m.Urgencia
                         ,Tipo_de_Urgencia = m.Tipo_de_Urgencia
                         ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                        ,Denuncia_Ciudadana = m.Denuncia_Ciudadana
+                        ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                        ,Turno_Previo = m.Turno_Previo
+                        ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
                         ,Orientador = m.Orientador
                         ,OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
                         ,Estatus_de_Turno = m.Estatus_de_Turno
@@ -2477,6 +2661,8 @@ public ActionResult TurnoAsignado(int orientador)
        }
 
  
+
+
 
 
     }
