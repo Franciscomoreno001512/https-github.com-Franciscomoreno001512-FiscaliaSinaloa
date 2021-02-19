@@ -1943,6 +1943,18 @@ using Spartane.Web.Areas.WebApiConsumer.Tipo_de_queja_sugerencia;
 using Spartane.Services.Zona_de_Robo;
 using Spartane.Core.Domain.Zona_de_Robo;
 using Spartane.Web.Areas.WebApiConsumer.Zona_de_Robo;
+using Spartane.Services.ErmeOficio;
+using Spartane.Core.Domain.ErmeOficio;
+using Spartane.Web.Areas.WebApiConsumer.ErmeOficio;
+using Spartane.Services.Asignacion_de_Turnos_Previos;
+using Spartane.Core.Domain.Asignacion_de_Turnos_Previos;
+using Spartane.Web.Areas.WebApiConsumer.Asignacion_de_Turnos_Previos;
+using Spartane.Services.Registro_de_Huellas_Dactilares;
+using Spartane.Core.Domain.Registro_de_Huellas_Dactilares;
+using Spartane.Web.Areas.WebApiConsumer.Registro_de_Huellas_Dactilares;
+using Spartane.Services.Generador_Folio_Documentos_AT;
+using Spartane.Core.Domain.Generador_Folio_Documentos_AT;
+using Spartane.Web.Areas.WebApiConsumer.Generador_Folio_Documentos_AT;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3361,6 +3373,14 @@ builder.RegisterType<Tipo_de_queja_sugerenciaService>().As<ITipo_de_queja_sugere
 builder.RegisterType<Tipo_de_queja_sugerenciaApiConsumer>().As<ITipo_de_queja_sugerenciaApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Zona_de_RoboService>().As<IZona_de_RoboService>().InstancePerLifetimeScope();
 builder.RegisterType<Zona_de_RoboApiConsumer>().As<IZona_de_RoboApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<ErmeOficioService>().As<IErmeOficioService>().InstancePerLifetimeScope();
+builder.RegisterType<ErmeOficioApiConsumer>().As<IErmeOficioApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Asignacion_de_Turnos_PreviosService>().As<IAsignacion_de_Turnos_PreviosService>().InstancePerLifetimeScope();
+builder.RegisterType<Asignacion_de_Turnos_PreviosApiConsumer>().As<IAsignacion_de_Turnos_PreviosApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Registro_de_Huellas_DactilaresService>().As<IRegistro_de_Huellas_DactilaresService>().InstancePerLifetimeScope();
+builder.RegisterType<Registro_de_Huellas_DactilaresApiConsumer>().As<IRegistro_de_Huellas_DactilaresApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Generador_Folio_Documentos_ATService>().As<IGenerador_Folio_Documentos_ATService>().InstancePerLifetimeScope();
+builder.RegisterType<Generador_Folio_Documentos_ATApiConsumer>().As<IGenerador_Folio_Documentos_ATApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3541,6 +3561,34 @@ builder.RegisterType<Zona_de_RoboApiConsumer>().As<IZona_de_RoboApiConsumer>().I
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

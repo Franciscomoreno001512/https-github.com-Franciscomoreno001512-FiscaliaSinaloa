@@ -21,6 +21,12 @@
     List<SelectListItem> varTipo_de_Urgencia_Tipo_de_Urgencia = null;
     if (ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia != null)
     { varTipo_de_Urgencia_Tipo_de_Urgencia = (List<SelectListItem>)ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia; }
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Denuncia_Ciudadana = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Denuncia_Ciudadana != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Denuncia_Ciudadana = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Denuncia_Ciudadana; }
+ List<SelectListItem> varAsignacion_de_Turnos_Previos_Turno_Previo = null;
+    if (ViewBag.Asignacion_de_Turnos_Previoss_Turno_Previo != null)
+    { varAsignacion_de_Turnos_Previos_Turno_Previo = (List<SelectListItem>)ViewBag.Asignacion_de_Turnos_Previoss_Turno_Previo; }
     List<SelectListItem> varSpartan_User_Orientador = null;
     if (ViewBag.Spartan_Users_Orientador != null)
     { varSpartan_User_Orientador = (List<SelectListItem>)ViewBag.Spartan_Users_Orientador; }
@@ -312,6 +318,12 @@
                         });
                     }
                 </div>
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Denuncia_Ciudadana = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Denuncia_Ciudadana != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Denuncia_Ciudadana = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Denuncia_Ciudadana; }
+ List<SelectListItem> varAsignacion_de_Turnos_Previos_Turno_Previo = null;
+    if (ViewBag.Asignacion_de_Turnos_Previoss_Turno_Previo != null)
+    { varAsignacion_de_Turnos_Previos_Turno_Previo = (List<SelectListItem>)ViewBag.Asignacion_de_Turnos_Previoss_Turno_Previo; }
                 <div class="MarginBottom">
                     <h3>@Resources.Asignacion_de_TurnosResources.Orientador</h3>
                 </div>
@@ -641,6 +653,36 @@
                 advanceSearch.Tipo_de_UrgenciaSearchType = 2;
             }
         }
+        advanceSearch.Denuncia_CiudadanaSearchType = 0;
+        if ($('#ddlAdvanceDenuncia_Ciudadana').val().length > 0 || $("#txtAdvanceDenuncia_Ciudadana").val() == "") {
+
+
+            if (isAsignacion_de_TurnosTextSearch) {
+                advanceSearch.Denuncia_CiudadanaName = $("#txtAdvanceDenuncia_Ciudadana").val();
+                advanceSearch.Denuncia_CiudadanaNameSearchType = $("#ddlAdvanceDenuncia_Ciudadana").val();
+                advanceSearch.Denuncia_CiudadanaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Denuncia_CiudadanaToSearch = $("#ddlAdvanceDenuncia_Ciudadana").val();
+                advanceSearch.Denuncia_CiudadanaSearchType = 2;
+            }
+        }
+        advanceSearch.Turno_PrevioSearchType = 0;
+        if ($('#ddlAdvanceTurno_Previo').val().length > 0 || $("#txtAdvanceTurno_Previo").val() == "") {
+
+
+            if (isAsignacion_de_TurnosTextSearch) {
+                advanceSearch.Turno_PrevioName = $("#txtAdvanceTurno_Previo").val();
+                advanceSearch.Turno_PrevioNameSearchType = $("#ddlAdvanceTurno_Previo").val();
+                advanceSearch.Turno_PrevioSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Turno_PrevioToSearch = $("#ddlAdvanceTurno_Previo").val();
+                advanceSearch.Turno_PrevioSearchType = 2;
+            }
+        }
         advanceSearch.OrientadorSearchType = 0;
         if ($('#ddlAdvanceOrientador').val().length > 0 || $("#txtAdvanceOrientador").val() == "") {
 
@@ -797,6 +839,24 @@
         $("#ddlAdvanceTipo_de_Urgencia").change(function () {
             isAsignacion_de_TurnosTextSearch = false;
             $("#txtAdvanceTipo_de_Urgencia").val('');
+        });
+        $("#txtAdvanceDenuncia_Ciudadana").keypress(function () {
+            isAsignacion_de_TurnosTextSearch = true;
+            $("#ddlAdvanceDenuncia_Ciudadana").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDenuncia_Ciudadana").change(function () {
+            isAsignacion_de_TurnosTextSearch = false;
+            $("#txtAdvanceDenuncia_Ciudadana").val('');
+        });
+        $("#txtAdvanceTurno_Previo").keypress(function () {
+            isAsignacion_de_TurnosTextSearch = true;
+            $("#ddlAdvanceTurno_Previo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTurno_Previo").change(function () {
+            isAsignacion_de_TurnosTextSearch = false;
+            $("#txtAdvanceTurno_Previo").val('');
         });
         $("#txtAdvanceOrientador").keypress(function () {
             isAsignacion_de_TurnosTextSearch = true;

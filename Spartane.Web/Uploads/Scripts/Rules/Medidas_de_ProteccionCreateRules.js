@@ -4,7 +4,45 @@ var rowIndex = '';
 var saltarValidacion = false;
 
 $("#Medidas_de_ProteccionGuardarYNuevo, #Medidas_de_ProteccionGuardarYCopia").hide()
+
+/*CODIGO ABRIR GRID*/
+function CM_CierraMr() {
+    $('.fa-check').parent().click();
+}
+function IniciaMR() {
+	var grid='Detalle_Medidas_Proteccion';
+    $('select[name="' + grid + 'Grid_length"]').val('-1').trigger('change');
+    $("#" + grid + "Grid_length").css("display", "none");
+    $('.fa-pencil').click();
+    $('.fa-check').parent().css("display", "none");
+    $('.fa-times').parent().css("display", "none");
+	$("#" + grid + "Grid_info").css("display", "none");
+	$("#" + grid + "Grid_paginate").css("display", "none");
+	
+	
+	$('input[id^="' + grid + '_"]').each(function () {
+		if ($(this).attr('disabled')=="disabled")
+		{
+			$($(this).parent().find('label')[0]).css("display","none");
+			$(this).css("display","none");
+			$(this).after('<label>' + $(this).val() + '</label>');
+		}
+    });
+	
+	$('i[class="glyphicon glyphicon-plus"]').each(function () {
+		$(this).css("display","none");
+    });	
+	
+}
+
 $(document).ready(function () {
+/*CODIGO ABRIR GRID*/	
+if(operation == 'Update'){	
+	    setTimeout(function () {
+        IniciaMR();
+    }, 500);
+}
+	
 //BusinessRuleId:2959, Attribute:268483, Operation:Field, Event:None
 $("form#CreateMedidas_de_Proteccion").on('change', '#Fecha_de_Inicio', function () {
 	nameOfTable='';
@@ -33,7 +71,14 @@ if( GetValueByControlType($('#' + nameOfTable + 'Fecha_de_Inicio' + rowIndex),na
 $("form#CreateMedidas_de_Proteccion").on('change', '#Tipo_de_Medida', function () {
 	nameOfTable='';
 	rowIndex='';
+	$("#divMedidas").css("display", "none");
  fillMRFromQuery('Detalle_Medidas_Proteccion', " select null as Clave, null as Medidas_de_Proteccion ,Null as Seleccionar,Clave as Medida From Medida_de_Proteccion where Tipo=FLD[Tipo_de_Medida]");
+
+	 /*CODIGO ABRIR GRID*/
+    setTimeout(function () {
+        IniciaMR();
+    }, 500);
+	$("#divMedidas").css("display", "block");
 });
 
 
@@ -74,11 +119,28 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:2952, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:3899, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Orden_de_Proteccion' + rowIndex),'Se generará en automatico'); DisabledControl($("#" + nameOfTable + "Orden_de_Proteccion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Orden_de_Proteccion' + rowIndex));}
+
+}
+//BusinessRuleId:3899, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
 //NEWBUSINESSRULE_BEFORESAVING//
+
+//CODMANINI-ADD CODIGO 
+if (result)
+    CM_CierraMr();
+else{
+	 setTimeout(function () {
+        IniciaMR();
+    }, 500);
+}
+//CODMANFIN-ADD
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){

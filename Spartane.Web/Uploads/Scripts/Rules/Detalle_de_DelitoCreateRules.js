@@ -12,13 +12,8 @@ $(document).ready(function () {
 
     }
 
-    if( 
-        EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('2', '2') 
-      ) {
-        //$("#Detalle_de_ImputadoGuardar").remove();
         $("#Detalle_de_DelitoGuardarYNuevo").remove();
         $("#Detalle_de_DelitoGuardarYCopia").remove();
-    }
 	
 	//INI SOLO PERMITIR SOLO LETRAS, NUMEROS
     $("#Placas").bind('keypress', function(event) {
@@ -32,7 +27,13 @@ $(document).ready(function () {
     });
 	//FIN SOLO PERMITIR SOLO LETRAS, NUMEROS
 	
-
+	//CONVERTIR A MAYUSCULAS AL BLUR
+$('input[type="text"],textarea').blur(function() {
+	this.value = this.value.toUpperCase();
+	});
+//END CONVERTIR A MAYUSCULAS AL BLUR
+	
+});
 
 //BusinessRuleId:233, Attribute:263456, Operation:Field, Event:None
 $("form#CreateDetalle_de_Delito").on('change', '#Robo_de_Vehiculo', function () {
@@ -45,14 +46,9 @@ $("a[href='#tabAsignar_Dueno']").css('display', 'block');} else { $("a[href='#ta
 
 //BusinessRuleId:233, Attribute:263456, Operation:Field, Event:None
 
-//CONVERTIR A MAYUSCULAS AL BLUR
-$('input[type="text"],textarea').blur(function() {
-	this.value = this.value.toUpperCase();
-	});
-//END CONVERTIR A MAYUSCULAS AL BLUR
 
 //BusinessRuleId:632, Attribute:0, Operation:Field, Event:None
-if( EvaluaQuery("declare @accidente int"
+/*if( EvaluaQuery("declare @accidente int"
 +" declare @clave int "
 +" set @clave=FLD[Circunstancia_Defuncion]"
 +" "
@@ -66,7 +62,7 @@ if( EvaluaQuery("declare @accidente int"
 +" set @accidente=1"
 +" end"
 +" select @accidente",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divEstado_del_Conductor').css('display', 'block'); $('#divRuta').css('display', 'block');} else { $('#divEstado_del_Conductor').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Conductor' + rowIndex)); $('#divRuta').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Ruta' + rowIndex));}
-
+*/
 
 //BusinessRuleId:632, Attribute:0, Operation:Field, Event:None
 
@@ -122,15 +118,7 @@ if( $('#' + nameOfTable + 'Puede_Ser_Canalizado_a_JA' + rowIndex).val()==TryPars
 
 //BusinessRuleId:1303, Attribute:263498, Operation:Field, Event:None
 
-//BusinessRuleId:1922, Attribute:263455, Operation:Field, Event:None
-$("form#CreateDetalle_de_Delito").on('change', '#Violencia_de_Genero', function () {
-	nameOfTable='';
-	rowIndex='';
-if( $('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex).prop("checked") === true ) { $('#divDelito_Violencia_Genero').css('display', 'block');} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
-});
 
-
-//BusinessRuleId:1922, Attribute:263455, Operation:Field, Event:None
 
 
 
@@ -322,8 +310,20 @@ if( GetValueByControlType($('#' + nameOfTable + 'Robo_de_Vehiculo' + rowIndex),n
 
 
 
-//NEWBUSINESSRULE_NONE//
+
+
+//BusinessRuleId:1922, Attribute:263455, Operation:Field, Event:None
+$("form#CreateDetalle_de_Delito").on('change', '#Violencia_de_Genero', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
 });
+
+
+//BusinessRuleId:1922, Attribute:263455, Operation:Field, Event:None
+
+//NEWBUSINESSRULE_NONE//
+ 
 function EjecutarValidacionesAlComienzo() {
 //BusinessRuleId:1924, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -879,29 +879,11 @@ if(operation == 'Consult'){
 
 
 
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
 
 
-}
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
 
 
-}
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
-
-
-}
-//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:3572, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -1154,6 +1136,66 @@ if(operation == 'Consult'){
 
 }
 //BusinessRuleId:3715, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:3852, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
+
+
+}
+//BusinessRuleId:3852, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3852, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
+
+
+}
+//BusinessRuleId:3852, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3852, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Violencia_de_Genero' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divDelito_Violencia_Genero').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));} else { $('#divDelito_Violencia_Genero').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Delito_Violencia_Genero' + rowIndex));}
+
+
+}
+//BusinessRuleId:3852, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
@@ -1217,7 +1259,7 @@ result=false; AsignarValor($('#' + nameOfTable + 'Delito_Principal' + rowIndex),
 
 //BusinessRuleId:3768, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'New'){
-if( $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No hay registros disponibles" || $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No records available" && GetValueByControlType($('#' + nameOfTable + 'Agravante' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) {
+if( ($("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No hay registros disponibles" || $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No records available") && GetValueByControlType($('#' + nameOfTable + 'Agravante' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) {
      alert(DecodifyText(' Se tiene que seleccionar un agravante y/o Calificativas', rowIndex, nameOfTable));
     result=false;
 } 
@@ -1229,7 +1271,7 @@ else {}
 
 //BusinessRuleId:3768, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'Update'){
-if( $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No hay registros disponibles" ||  $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No records available" && GetValueByControlType($('#' + nameOfTable + 'Agravante' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { alert(DecodifyText(' Se tiene que seleccionar un agravante y/o Calificativas', rowIndex, nameOfTable));
+if(( $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No hay registros disponibles" ||  $("#Agravantes_del_DelitoGrid >tbody >tr").find("td:first").html()=="No records available") && GetValueByControlType($('#' + nameOfTable + 'Agravante' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { alert(DecodifyText(' Se tiene que seleccionar un agravante y/o Calificativas', rowIndex, nameOfTable));
 
 result=false;} else {}
 
@@ -1308,6 +1350,127 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:2742, Attribute:265776, Operation:Object, Event:NEWROWMR
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Filtrar combo de agravantes por el delito seleccionado - No funcionaba agregando una regla de negocio desde spartane
+if(operation == 'New'){
+    //  var valor = $('#' + nameOfTable + 'Agravante' + rowIndex).val();   $('#' + nameOfTable + 'Agravante' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Agravante' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito FLD[Delito]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito FLD[Delito]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Agravante' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Agravante' + rowIndex).val(valor).trigger('change');
+    var valor = $('#' + nameOfTable + 'Agravante' + rowIndex).val();   $('#' + nameOfTable + 'Agravante' + rowIndex).empty();      
+    var DelitoSelected = $("#Delito").val();
+    if(!$('#' + nameOfTable + 'Agravante' + rowIndex).hasClass('AutoComplete'))  
+    {        
+        $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option selected />").val("").text(""));        
+        $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito "+DelitoSelected, rowIndex, nameOfTable), function (index, value) 
+        {           
+                $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option />").val(index).text(value));     
+        }); 
+    }       
+    else    
+    {    
+        var selectData = [];   
+        selectData.push({id: "",text: "" });      
+        $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito "+DelitoSelected, rowIndex, nameOfTable), function (index, value) 
+        {            
+            selectData.push({              
+                id: index,              
+                text: value          
+            });    
+        });      
+        $('#' + nameOfTable + 'Agravante' + rowIndex).select2({data: selectData})    
+    }   
+    $('#' + nameOfTable + 'Agravante' + rowIndex).val(valor).trigger('change');
+    
+    
+}
+
+if(operation == 'Update'){
+    //  var valor = $('#' + nameOfTable + 'Agravante' + rowIndex).val();   $('#' + nameOfTable + 'Agravante' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Agravante' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito FLD[Delito]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito FLD[Delito]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Agravante' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Agravante' + rowIndex).val(valor).trigger('change');
+    var valor = $('#' + nameOfTable + 'Agravante' + rowIndex).val();   $('#' + nameOfTable + 'Agravante' + rowIndex).empty();      
+    var DelitoSelected = $("#Delito").val();
+    if(!$('#' + nameOfTable + 'Agravante' + rowIndex).hasClass('AutoComplete'))  
+    {        
+            $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option selected />").val("").text(""));        
+            $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito "+DelitoSelected, rowIndex, nameOfTable), function (index, value) 
+            {           
+                $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option />").val(index).text(value));     
+            }); 
+        }       
+        else    
+        {    
+            var selectData = [];   
+            selectData.push({id: "",text: "" });      
+            $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito "+DelitoSelected, rowIndex, nameOfTable), function (index, value) 
+            {            
+                selectData.push({              
+                    id: index,              
+                    text: value          
+                });    
+            });      
+            $('#' + nameOfTable + 'Agravante' + rowIndex).select2({data: selectData})    
+        }   
+        $('#' + nameOfTable + 'Agravante' + rowIndex).val(valor).trigger('change');
+    
+    
+    }
+//Filtrar combo de agravantes por el delito seleccionado - No funcionaba agregando una regla de negocio desde spartane
+
+//BusinessRuleId:3849, Attribute:265776, Operation:Object, Event:NEWROWMR
+
+//BusinessRuleId:3849, Attribute:265776, Operation:Object, Event:NEWROWMR
+
+//BusinessRuleId:3849, Attribute:265776, Operation:Object, Event:NEWROWMR
+
+//BusinessRuleId:3849, Attribute:265776, Operation:Object, Event:NEWROWMR
+
 //NEWBUSINESSRULE_NEWROWMR_Agravantes_del_Delito//
     return result;
 }
@@ -1328,6 +1491,76 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:2742, Attribute:265776, Operation:Object, Event:EDITROWMR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:3849, Attribute:265776, Operation:Object, Event:EDITROWMR
+if(operation == 'New'){
+ var valor = $('#' + nameOfTable + 'Agravante' + rowIndex).val();   $('#' + nameOfTable + 'Agravante' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Agravante' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito FLD[Delito]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito FLD[Delito]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Agravante' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Agravante' + rowIndex).val(valor).trigger('change');
+
+
+}
+//BusinessRuleId:3849, Attribute:265776, Operation:Object, Event:EDITROWMR
+
+//BusinessRuleId:3849, Attribute:265776, Operation:Object, Event:EDITROWMR
+if(operation == 'Update'){
+ var valor = $('#' + nameOfTable + 'Agravante' + rowIndex).val();   $('#' + nameOfTable + 'Agravante' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Agravante' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito FLD[Delito]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Agravante' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec sp_GetAgravantesByDelito FLD[Delito]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Agravante' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Agravante' + rowIndex).val(valor).trigger('change');
+
+
+}
+//BusinessRuleId:3849, Attribute:265776, Operation:Object, Event:EDITROWMR
 
 //NEWBUSINESSRULE_EDITROWMR_Agravantes_del_Delito//
     return result;
@@ -1408,3 +1641,4 @@ $( "#divEstado_de_Origen_de_las_Placas" ).on( "click", function() {
     $("#Estado_de_Origen_de_las_Placas").append('<option value=""></option>');
     $('#Estado_de_Origen_de_las_Placas').val('0').trigger('change');
   });
+  

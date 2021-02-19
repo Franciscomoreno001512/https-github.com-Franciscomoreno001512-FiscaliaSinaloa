@@ -15573,6 +15573,86 @@
 <Content Include="Uploads\Scripts\Rules\Zona_de_RoboCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Zona_de_RoboIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Zona_de_Robo\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\ErmeOficio\ErmeOficioApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\ErmeOficio\IErmeOficioApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\ErmeOficioModel.cs" />
+<Compile Include="Areas\Frontal\Models\ErmeOficioGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\ErmeOficioMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\ErmeOficioController.cs" />
+<Content Include="Areas\Frontal\Views\ErmeOficio\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\ErmeOficio\Create.cshtml" />
+<Compile Include="Resource\GetResource\ErmeOficio.cs" />
+<Content Include="Uploads\Resources\ErmeOficioResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\ErmeOficioPropertyMapper.cs" />
+<Content Include="Uploads\Resources\ErmeOficioResource.en-US.xml" />
+<Content Include="Uploads\Scripts\ErmeOficio.js" />
+<Content Include="Scripts\Custom\ErmeOficioGeneral.js" />
+<Content Include="Areas\Frontal\Views\ErmeOficio\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\ErmeOficioAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\ErmeOficioBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\ErmeOficioCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\ErmeOficioIndexRules.js" />
+<Content Include="Areas\Frontal\Views\ErmeOficio\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Asignacion_de_Turnos_Previos\Asignacion_de_Turnos_PreviosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Asignacion_de_Turnos_Previos\IAsignacion_de_Turnos_PreviosApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_de_Turnos_PreviosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_de_Turnos_PreviosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_de_Turnos_PreviosMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Asignacion_de_Turnos_PreviosController.cs" />
+<Content Include="Areas\Frontal\Views\Asignacion_de_Turnos_Previos\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Asignacion_de_Turnos_Previos\Create.cshtml" />
+<Compile Include="Resource\GetResource\Asignacion_de_Turnos_Previos.cs" />
+<Content Include="Uploads\Resources\Asignacion_de_Turnos_PreviosResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Asignacion_de_Turnos_PreviosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Asignacion_de_Turnos_PreviosResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Asignacion_de_Turnos_Previos.js" />
+<Content Include="Scripts\Custom\Asignacion_de_Turnos_PreviosGeneral.js" />
+<Content Include="Areas\Frontal\Views\Asignacion_de_Turnos_Previos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Asignacion_de_Turnos_PreviosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_de_Turnos_PreviosBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Asignacion_de_Turnos_PreviosCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Asignacion_de_Turnos_PreviosIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Asignacion_de_Turnos_Previos\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Registro_de_Huellas_Dactilares\Registro_de_Huellas_DactilaresApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Registro_de_Huellas_Dactilares\IRegistro_de_Huellas_DactilaresApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Registro_de_Huellas_DactilaresModel.cs" />
+<Compile Include="Areas\Frontal\Models\Registro_de_Huellas_DactilaresGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Registro_de_Huellas_DactilaresMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Registro_de_Huellas_DactilaresController.cs" />
+<Content Include="Areas\Frontal\Views\Registro_de_Huellas_Dactilares\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Registro_de_Huellas_Dactilares\Create.cshtml" />
+<Compile Include="Resource\GetResource\Registro_de_Huellas_Dactilares.cs" />
+<Content Include="Uploads\Resources\Registro_de_Huellas_DactilaresResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Registro_de_Huellas_DactilaresPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Registro_de_Huellas_DactilaresResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Registro_de_Huellas_Dactilares.js" />
+<Content Include="Scripts\Custom\Registro_de_Huellas_DactilaresGeneral.js" />
+<Content Include="Areas\Frontal\Views\Registro_de_Huellas_Dactilares\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Registro_de_Huellas_DactilaresAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Registro_de_Huellas_DactilaresBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Registro_de_Huellas_DactilaresCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Registro_de_Huellas_DactilaresIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Registro_de_Huellas_Dactilares\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Generador_Folio_Documentos_AT\Generador_Folio_Documentos_ATApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Generador_Folio_Documentos_AT\IGenerador_Folio_Documentos_ATApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_Folio_Documentos_ATModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_Folio_Documentos_ATGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_Folio_Documentos_ATMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Generador_Folio_Documentos_ATController.cs" />
+<Content Include="Areas\Frontal\Views\Generador_Folio_Documentos_AT\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Generador_Folio_Documentos_AT\Create.cshtml" />
+<Compile Include="Resource\GetResource\Generador_Folio_Documentos_AT.cs" />
+<Content Include="Uploads\Resources\Generador_Folio_Documentos_ATResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Generador_Folio_Documentos_ATPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Generador_Folio_Documentos_ATResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Generador_Folio_Documentos_AT.js" />
+<Content Include="Scripts\Custom\Generador_Folio_Documentos_ATGeneral.js" />
+<Content Include="Areas\Frontal\Views\Generador_Folio_Documentos_AT\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Generador_Folio_Documentos_ATAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_Folio_Documentos_ATBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Generador_Folio_Documentos_ATCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Generador_Folio_Documentos_ATIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Generador_Folio_Documentos_AT\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -16577,6 +16657,86 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

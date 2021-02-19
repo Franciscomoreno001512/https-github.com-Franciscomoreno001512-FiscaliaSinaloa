@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Asignacion_de_Turnos_Previos" value="Asignacion de Turnos Previos"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Fecha" value="Fecha"></resource>
+  <resource culture="en-US" name="Clave_Asignacion_Turno" value="Clave Asignacion Turno"></resource>
+  <resource culture="en-US" name="Numero_Turno" value="Número Turno"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

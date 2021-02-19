@@ -166,6 +166,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Folio</summary>
+        public static string Folio
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Folio", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Documentos_MPO.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

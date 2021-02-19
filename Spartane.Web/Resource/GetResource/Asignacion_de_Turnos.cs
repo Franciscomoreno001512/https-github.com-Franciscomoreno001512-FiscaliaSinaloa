@@ -206,6 +206,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Denuncia_Ciudadana</summary>
+        public static string Denuncia_Ciudadana
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAsignacion_de_Turnos.GetResource("Denuncia_Ciudadana", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Turno_Previo</summary>
+        public static string Turno_Previo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAsignacion_de_Turnos.GetResource("Turno_Previo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Orientador</summary>
         public static string Orientador
         {

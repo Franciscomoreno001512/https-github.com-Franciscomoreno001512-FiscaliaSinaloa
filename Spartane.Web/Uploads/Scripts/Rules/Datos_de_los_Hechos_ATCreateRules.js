@@ -18,6 +18,14 @@ $(document).ready(function () {
         $("#Datos_de_los_Hechos_ATGuardar").remove();
        
     }
+    if (
+        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('9', '9') ||
+        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('17', '17')
+    ) {
+        $("#Datos_de_los_Hechos_ATGuardarYNuevo").remove();
+        $("#Datos_de_los_Hechos_ATGuardarYCopia").remove();
+       
+    }
 
 //CONVERTIR A MAYUSCULAS AL BLUR
 $('input[type="text"],textarea').blur(function() {
@@ -445,8 +453,7 @@ function CambiaColonia(deesc) {
 
 
 function CargaGoogleMaps() {
-    
-  debugger;
+   
    
     debugger;
     $("#Codigo_Postal").val(("")); 
@@ -491,6 +498,84 @@ function CargaGoogleMaps() {
                 }
             }
         });
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            placeMarker(event.latLng);
+            geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        debugger;
+                        //  for (var i = results[0].address_components.length; i < 0 ; i--) {
+                        for (var i = results[0].address_components.length - 1; i >= 0; i--) {
+
+                            if (results[0].address_components[i].types[0] == "postal_code") {
+                                $("#Codigo_Postal").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "country") {
+                                debugger;
+                                CambiaPais(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Pais' + rowIndex), results[0].address_components[i].long_name);
+
+
+                            }
+
+                            if (results[0].address_components[i].types[0] == "administrative_area_level_1") {
+                                CambiaEstado(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Estado' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+                            if (results[0].address_components[i].types[0] == "locality") {
+                                CambiaMunicipio(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+
+                            if (results[0].address_components[i].types[0] == "political") { // segun spartanMetadata poblacion es igual a colonia
+
+                                CambiaPoblacion(results[0].address_components[i].long_name);
+                                CambiaColonia(results[0].address_components[i].long_name);
+                                // AsignarValor($('#' + nameOfTable + 'Colonia' + rowIndex), results[0].address_components[i].long_name);
+                                //AsignarValor($('#' + nameOfTable + 'Poblacion' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+
+
+                            if (results[0].address_components[i].types[0] == "route") {
+                                $("#Calle").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "street_number") {
+                                $("#Numero_Exterior").val((results[0].address_components[i].long_name));
+                            }
+
+
+
+                        }
+                        $('#Latitud').val(marker.getPosition().lat());
+                        $('#Longitud').val(marker.getPosition().lng());
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    }
+                }
+            });
+
+        });
+        function placeMarker(location) {
+
+            if (marker == null) {
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+            else {
+                marker.setPosition(location);
+            }
+
+
+        }
+
 
         // Evento que se dispara cuando se mueve el marcador en en el mapa (es el Marcador de posicion de color Rojo)
         // cada pixel que se mueve o se arrastra se recalcula la latitud y la longitud

@@ -8,8 +8,13 @@ $(document).ready(function () {
 function EjecutarValidacionesAlComienzo() {
 
 
-
-
+//INI COD-MAN OCULTAR BOTON DE GUARDAR 
+if( EvaluaQuery("EXEC UspExisteFolioGeneracionExpediente FLDD[lblClave]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) 
+{ 
+	$('#Detalle_Resumen_DenunciaGuardar').css('display', 'none');
+	$('#Archivo_EditarDocto').css('display', 'none');	
+} 
+//FIN COD-MAN OCULTAR BOTON DE GUARDAR
 
 
 

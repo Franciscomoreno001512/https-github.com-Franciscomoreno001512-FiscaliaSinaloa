@@ -165,226 +165,223 @@
                         	</ul>
 	                	<div class="tab-content">
                             <div id="tabDatos_Generales" class="tab-pane active">
-								<div class="panel-body">
-									<div class="form-group" id="divClave">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Clave</label>
-										<div class="col-sm-8" data-field-id="Clave" data-attribute="263918" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Clave">
-											<label class="form-control" for="Clave" id="lblClave">
-												@if (Model.Clave == 0)
-												{
-													<text>@Resources.Resources.ClaveDefault</text>
-												}
-												else
-												{
-													<text>@Model.Clave</text>
-												}
-											</label>
-										</div>
-									</div>
-									<div class="form-group" id="divModulo_Atencion_Inicial">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Modulo_Atencion_Inicial</label>
-										<div class="col-sm-8" data-field-id="Modulo_Atencion_Inicial" data-attribute="266482" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Modulo_Atencion_Inicial">
-											<select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Modulo_Atencion_Inicial form-control select2-dropdown Datos_Generales' data-val="true" id="Modulo_Atencion_Inicial" name="Modulo_Atencion_Inicial">
-												<option value="@Model.Modulo_Atencion_Inicial">@(Model.Modulo_Atencion_InicialNUAT ?? Model.Modulo_Atencion_InicialNUAT)</option>
-											</select>
-										</div>
-										@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266482).New)
-										{
-											<div class="col-sm-1 abm-icons">
-												<a id="Estado_New" onclick="GetCatalogPopup('Modulo_Atencion_Inicial', 'Modulo_Atencion_Inicial');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-											</div>
-										}
-									</div>
-									<div class="form-group" id="divFecha">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Fecha</label>
-										<div class="col-sm-8" data-field-id="Fecha" data-attribute="266646" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Fecha">
-											<div class='input-group date' id='datetimepicker1'>
-												<input class="form-control col-md-12 Datos_Generales" id="Fecha" name="Fecha" type="text" value="@Model.Fecha">
-												<span class="input-group-addon">
-													<span class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>
-										</div>
-									</div>
-									<div class="form-group" id="divHora">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Hora</label>
-										<div class="col-sm-8" data-field-id="Hora" data-attribute="266647" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Hora">
-											<div class='input-group date' id='timePicker'>
-												<input class="form-control col-md-12 Datos_Generales" id="Hora" name="Hora" type="text" data-autoclose="true" value="@Model.Hora">
-												<span class="input-group-addon">
-													<span class="glyphicon glyphicon-time"></span>
-												</span>
-											</div>
-										</div>
-									</div>
-									<div class="form-group" id="divUsuario_que_Registra">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Usuario_que_Registra</label>
-										<div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="266648" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Usuario_que_Registra">
-											<select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Usuario_que_Registra form-control select2-dropdown Datos_Generales' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
-												<option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName ?? Model.Usuario_que_RegistraName)</option>
-											</select>
-										</div>
-										@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266648).New)
-										{
-											<div class="col-sm-1 abm-icons">
-												<a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-											</div>
-										}
-									</div>
-									<div class="form-group" id="divTipo_de_Documento">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Tipo_de_Documento</label>
-										<div class="col-sm-8" data-field-id="Tipo_de_Documento" data-attribute="266649" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Tipo_de_Documento">
-											<select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Documento must be a number." data-val-required="The Tipo de Documento field is required." id="Tipo_de_Documento" name="Tipo_de_Documento">
-												<option value=""></option>
-												@if (varTipo_de_Documento_Tipo_de_Documento != null)
-												{
-													foreach (var itemTipo_de_Documento in varTipo_de_Documento_Tipo_de_Documento)
-													{
-														if (itemTipo_de_Documento.Value == Convert.ToString(Model.Tipo_de_Documento))
-														{
-															<option value="@itemTipo_de_Documento.Value" selected>@itemTipo_de_Documento.Text</option>
-														}
-														else
-														{
-															<option value="@itemTipo_de_Documento.Value">@itemTipo_de_Documento.Text</option>
-														}
-													}
-												}
-											</select>
-											@*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Documento" data-valmsg-replace="true"></span>*@
-										</div>
-										@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266649).New)
-										{
-											<div class="col-sm-1 abm-icons">
-												<a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Documento', 'Tipo_de_Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-											</div>
-										}
-									</div>
-									<div class="form-group" id="divDocumento">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Documento</label>
-										<div class="col-sm-8" data-field-id="Documento" data-attribute="266650" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Documento">
-											<select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Documento form-control select2-dropdown Datos_Generales' data-val="true" id="Documento" name="Documento">
-												<option value="@Model.Documento">@(Model.DocumentoDescripcion ?? Model.DocumentoDescripcion)</option>
-											</select>
-										</div>
-										@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266650).New)
-										{
-											<div class="col-sm-1 abm-icons">
-												<a id="Estado_New" onclick="GetCatalogPopup('Documento', 'Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-											</div>
-										}
-									</div>
-									<div class="form-group" id="divInvolucrado">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Involucrado</label>
-										<div class="col-sm-8" data-field-id="Involucrado" data-attribute="266660" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Involucrado">
-											<select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Involucrado form-control select2-dropdown Datos_Generales' data-val="true" id="Involucrado" name="Involucrado">
-												<option value="@Model.Involucrado">@(Model.InvolucradoNombre_Completo_del_Tutor ?? Model.InvolucradoNombre_Completo_del_Tutor)</option>
-											</select>
-										</div>
-										@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266660).New)
-										{
-											<div class="col-sm-1 abm-icons">
-												<a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Datos_Generales', 'Involucrado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-											</div>
-										}
-									</div>
-									<div class="form-group" id="divProbable_Responsable">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Probable_Responsable</label>
-										<div class="col-sm-8" data-field-id="Probable_Responsable" data-attribute="266661" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Probable_Responsable">
-											<select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Probable_Responsable form-control select2-dropdown Datos_Generales' data-val="true" id="Probable_Responsable" name="Probable_Responsable">
-												<option value="@Model.Probable_Responsable">@(Model.Probable_ResponsableNombre_Completo_Detenido ?? Model.Probable_ResponsableNombre_Completo_Detenido)</option>
-											</select>
-										</div>
-										@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266661).New)
-										{
-											<div class="col-sm-1 abm-icons">
-												<a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Imputado', 'Probable_Responsable');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-											</div>
-										}
-									</div>
-									<div id="divDelito">
-										<div class="ibox-title">
-											<h5>@Resources.Detalle_de_Documentos_MPOResources.Delito</h5>
-											<div class="ibox-tools">
-											</div>
-										</div>
-										<div class="ibox-content">
-											<div class="">
-												@if (permissionDetalle_Delitos_de_Documentos.New && !ViewBag.Consult)
-												{
-													<a onclick="Detalle_Delitos_de_DocumentosfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Delitos_de_DocumentosAddRow btn btn-primary">
-														<i class="glyphicon glyphicon-plus"></i>
-													</a>
-												}
-												<button onclick="Detalle_de_Documentos_MPOGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '266662')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form">
-													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
-														<i class="fa fa-cogs fa-spin"></i>
-													</a>
-												</button>
-												@if (permissionDetalle_Delitos_de_Documentos.New && !ViewBag.Consult)
-												{
-													<a onclick="Detalle_Delitos_de_DocumentosfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Delitos_de_Documentos-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
-														<i class="glyphicon glyphicon-new-window"></i>
-													</a>
-												}
-											</div>
-											<br />
-											<div style='overflow-x: auto;'>
-												<table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Delitos_de_DocumentosGrid">
-													<thead>
-														<tr>
-															<th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263918" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+				<div class="form-group" id="divModulo_Atencion_Inicial">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Modulo_Atencion_Inicial</label>
+                                <div class="col-sm-8" data-field-id="Modulo_Atencion_Inicial" data-attribute="266482" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Modulo_Atencion_Inicial">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Modulo_Atencion_Inicial form-control select2-dropdown Datos_Generales' data-val="true" id="Modulo_Atencion_Inicial" name="Modulo_Atencion_Inicial">
+                                        <option value="@Model.Modulo_Atencion_Inicial">@(Model.Modulo_Atencion_InicialNUAT??Model.Modulo_Atencion_InicialNUAT)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266482).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Modulo_Atencion_Inicial', 'Modulo_Atencion_Inicial');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Fecha</label>
+                                <div class="col-sm-8" data-field-id="Fecha" data-attribute="266646" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Fecha">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha"  name="Fecha" type="text" value="@Model.Fecha">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Hora</label>
+                                <div class="col-sm-8" data-field-id="Hora" data-attribute="266647" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Hora">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora"  name="Hora" type="text" data-autoclose="true" value="@Model.Hora">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Registra">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Usuario_que_Registra</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="266648" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Usuario_que_Registra">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Usuario_que_Registra form-control select2-dropdown Datos_Generales' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
+                                        <option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName??Model.Usuario_que_RegistraName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266648).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Documento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Tipo_de_Documento</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Documento" data-attribute="266649" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Tipo_de_Documento">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Documento must be a number." data-val-required="The Tipo de Documento field is required." id="Tipo_de_Documento" name="Tipo_de_Documento">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Documento_Tipo_de_Documento != null){ 
+                                            foreach (var itemTipo_de_Documento in varTipo_de_Documento_Tipo_de_Documento)
+                                            {
+                                                if (itemTipo_de_Documento.Value == Convert.ToString(Model.Tipo_de_Documento))
+                                                {
+                                                    <option value="@itemTipo_de_Documento.Value" selected>@itemTipo_de_Documento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Documento.Value">@itemTipo_de_Documento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Documento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266649).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Documento', 'Tipo_de_Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divDocumento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Documento</label>
+                                <div class="col-sm-8" data-field-id="Documento" data-attribute="266650" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Documento">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Documento form-control select2-dropdown Datos_Generales' data-val="true" id="Documento" name="Documento">
+                                        <option value="@Model.Documento">@(Model.DocumentoDescripcion??Model.DocumentoDescripcion)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266650).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Documento', 'Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divInvolucrado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Involucrado</label>
+                                <div class="col-sm-8" data-field-id="Involucrado" data-attribute="266660" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Involucrado">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Involucrado form-control select2-dropdown Datos_Generales' data-val="true" id="Involucrado" name="Involucrado">
+                                        <option value="@Model.Involucrado">@(Model.InvolucradoNombre_Completo_del_Tutor??Model.InvolucradoNombre_Completo_del_Tutor)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266660).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Datos_Generales', 'Involucrado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divProbable_Responsable">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Probable_Responsable</label>
+                                <div class="col-sm-8" data-field-id="Probable_Responsable" data-attribute="266661" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Probable_Responsable">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Probable_Responsable form-control select2-dropdown Datos_Generales' data-val="true" id="Probable_Responsable" name="Probable_Responsable">
+                                        <option value="@Model.Probable_Responsable">@(Model.Probable_ResponsableNombre_Completo_Detenido??Model.Probable_ResponsableNombre_Completo_Detenido)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266661).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Imputado', 'Probable_Responsable');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div id="divDelito">
+                            <div class="ibox-title">
+                                <h5>@Resources.Detalle_de_Documentos_MPOResources.Delito</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_Delitos_de_Documentos.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Delitos_de_DocumentosfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Delitos_de_DocumentosAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Detalle_de_Documentos_MPOGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '266662')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_Delitos_de_Documentos.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Delitos_de_DocumentosfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Delitos_de_Documentos-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Delitos_de_DocumentosGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
 
 
-															<th class="DelitoHeader" style="width:250px">
-																<span>
-																	<button type="button" data-attribute="266659" data-field-id="Detalle_Delitos_de_DocumentosDelito" data-field-name="@Resources.Detalle_Delitos_de_DocumentosResources.Delito" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-																		<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Delitos_de_DocumentosResources.Delito">
-																			<i class="fa fa-cogs fa-spin"></i>
-																		</a>
-																	</button>@Resources.Detalle_Delitos_de_DocumentosResources.Delito
-																</span>
-															</th>
+                                                <th class="DelitoHeader" style="width:250px"><span>
+<button type="button" data-attribute="266659" data-field-id="Detalle_Delitos_de_DocumentosDelito" data-field-name="@Resources.Detalle_Delitos_de_DocumentosResources.Delito" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Delitos_de_DocumentosResources.Delito">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Delitos_de_DocumentosResources.Delito</span></th>
 
-														</tr>
-													</thead>
-												</table>
-											</div>
-										</div>
-									</div>
-									@if (attachedFileArchivo_Adjunto != null && attachedFileArchivo_Adjunto.File_Id > 0)
-									{
-										<div class="form-group" id="divAttachmentArchivo_Adjunto">
-											<label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
-											<div class="col-sm-8 Datos_Generales" data-field-id="Archivo_Adjunto" data-attribute="266663" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Archivo_Adjunto">
-												<a href="@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetFile")?id=@attachedFileArchivo_Adjunto.File_Id" target="_blank">@attachedFileArchivo_Adjunto.Description</a>
-												<img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainArchivo_Adjunto('@attachedFileArchivo_Adjunto.File_Id')" />
-											</div>
-											<input id="hdnRemoveArchivo_Adjunto" name="RemoveArchivo_Adjunto" value="0" type="hidden" />
-											<input class="form-control col-md-12 Datos_Generales" id="hdnAttachedArchivo_Adjunto" type="hidden" name="Archivo_Adjunto" value="@Model.Archivo_Adjunto">
-										</div>
-									}
-									<div class="form-group" id="divArchivo_Adjunto">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Archivo_Adjunto</label>
-										<div class="col-sm-8" data-field-id="Archivo_Adjunto" data-attribute="266663" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Archivo_Adjunto">
-											<input type="file" name="Archivo_AdjuntoFile" id="Archivo_AdjuntoFile" class="form-control" />
-										</div>
-									</div>
-									<div class="form-group" id="divObservaciones">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Observaciones</label>
-										<div class="col-sm-8" data-field-id="Observaciones" data-attribute="266664" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Observaciones">
-											<textarea id="Observaciones" name="Observaciones" class="form-control Datos_Generales" rows="4" cols="50">@Model.Observaciones</textarea>
-											@*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
-										</div>
-									</div>
-									<div class="form-group" id="divArchivo">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Archivo</label>
-										<div class="col-sm-8" data-field-id="Archivo" data-attribute="266665" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Archivo">
-											<input class="form-control inputNumber Datos_Generales" id="Archivo" name="Archivo" type="text" value="@Model.Archivo">
-											@*<span class="field-validation-valid" data-valmsg-for="Archivo" data-valmsg-replace="true"></span>*@
-										</div>
-									</div>
-
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            @if (attachedFileArchivo_Adjunto != null && attachedFileArchivo_Adjunto.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentArchivo_Adjunto">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_Generales" data-field-id="Archivo_Adjunto" data-attribute="266663" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Archivo_Adjunto">
+                                        <a href="@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetFile")?id=@attachedFileArchivo_Adjunto.File_Id" target="_blank">@attachedFileArchivo_Adjunto.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainArchivo_Adjunto('@attachedFileArchivo_Adjunto.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveArchivo_Adjunto" name="RemoveArchivo_Adjunto" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedArchivo_Adjunto" type="hidden" name="Archivo_Adjunto" value="@Model.Archivo_Adjunto">
+                                </div>
+                            }
+                            <div class="form-group" id="divArchivo_Adjunto">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Archivo_Adjunto</label>
+                                <div class="col-sm-8" data-field-id="Archivo_Adjunto" data-attribute="266663" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Archivo_Adjunto">
+                                    <input type="file" name="Archivo_AdjuntoFile" id="Archivo_AdjuntoFile" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="266664" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Observaciones">
+                                    <textarea id="Observaciones" name="Observaciones" class="form-control Datos_Generales" rows="4" cols="50">@Model.Observaciones</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divArchivo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Archivo</label>
+                                <div class="col-sm-8" data-field-id="Archivo" data-attribute="266665" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Archivo">
+                                    <input class="form-control inputNumber Datos_Generales" id="Archivo" name="Archivo" type="text" value="@Model.Archivo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Archivo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
 									<div class="form-group" id="divArchivo">
 										<div class="col-md-12">
 											<div class="col-md-6">
@@ -406,14 +403,20 @@
 										</div>
 
 									</div>
-
-									<div class="form-group" id="divLista_para_periciales">
-										<label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Lista_para_periciales</label>
-										<div class="col-sm-8" data-field-id="Lista_para_periciales" data-attribute="269733" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Lista_para_periciales">
-											@Html.CheckBoxFor(m => m.Lista_para_periciales, new { @class = "i-checks Datos_Generales" })
-										</div>
-									</div>
-								</div>
+                            <div class="form-group" id="divLista_para_periciales">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Lista_para_periciales</label>
+                                <div class="col-sm-8" data-field-id="Lista_para_periciales" data-attribute="269733" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Lista_para_periciales">
+                                    @Html.CheckBoxFor(m => m.Lista_para_periciales, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFolio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Folio</label>
+                                <div class="col-sm-8" data-field-id="Folio" data-attribute="272230" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Folio">
+                                    <input class="form-control Datos_Generales" id="Folio" name="Folio" type="text" value="@Model.Folio">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Folio" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
                                 </div>
 
 				</div>	
@@ -761,9 +764,7 @@
 
                 </text>
             }
-			EjecutarValidacionesAlComienzo(); 
-
-			
+            EjecutarValidacionesAlComienzo(); 
 			debugger;
 			
 			var valorArchivo = $("#Archivo").val();
@@ -1411,6 +1412,7 @@
                     $('#Observaciones').val(result.data.Observaciones);
                     $('#Archivo').val(result.data.Archivo);
                     $('#Lista_para_periciales').prop('checked', result.data.Lista_para_periciales);
+                    $('#Folio').val(result.data.Folio);
 
                 },
                 error: function (result) {
@@ -1436,6 +1438,7 @@
                 data.append('Observaciones', $('#Observaciones').val());
                 data.append('Archivo', $('#Archivo').val());
                 data.append('Lista_para_periciales', $('#Lista_para_periciales').prop('checked'));
+                data.append('Folio', $('#Folio').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/Post_Datos_Generales")',
@@ -1459,7 +1462,7 @@
 				},
 				cache: false
 			});
-	}
+		}
 
 	function GetIdFormatoFromDocumento()
     {
@@ -1556,8 +1559,6 @@
 
 
         }
-
-
 
     </script>
 }

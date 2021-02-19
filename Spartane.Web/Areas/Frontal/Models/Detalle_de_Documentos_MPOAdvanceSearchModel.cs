@@ -67,6 +67,9 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public RadioOptions Lista_para_periciales { set; get; }
 
+        public Filters FolioFilter { set; get; }
+        public string Folio { set; get; }
+
 
     }
 }

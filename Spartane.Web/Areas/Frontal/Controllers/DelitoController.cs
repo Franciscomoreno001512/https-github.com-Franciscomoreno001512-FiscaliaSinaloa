@@ -1629,7 +1629,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = null;
+			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())

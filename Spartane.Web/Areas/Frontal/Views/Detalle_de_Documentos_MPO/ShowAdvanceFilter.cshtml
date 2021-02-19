@@ -162,6 +162,14 @@
                     @Html.TextBoxFor(m => m.ToArchivo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToArchivo", @data_min = "txtAdvanceFromArchivo" })
                     @Html.ValidationMessageFor(m => m.ToArchivo)
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Documentos_MPOResources.Folio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.FolioFilter, filters, new { @class = "form-control", @id = "ddlFolioFilter" })
+                    @Html.TextBoxFor(m => m.Folio, new { @class = "form-control", @type = "text", @id = "txtFolio" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -307,6 +315,11 @@
         if ($("#ddlAdvanceLista_para_periciales").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Documentos_MPOLista_para_periciales = $("#ddlAdvanceLista_para_periciales").val();
+        }
+        if ($("#txtAdvanceFolio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Documentos_MPOFolio = $("#txtAdvanceFolio").val();
+            advanceSearch.Detalle_de_Documentos_MPOFolioSearchType = $("#ddlAdvanceFolioFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
