@@ -1493,6 +1493,8 @@
 <Compile Include="Asignacion_de_Turnos_Previos\Asignacion_de_Turnos_PreviosService.cs" />
 <Compile Include="Registro_de_Huellas_Dactilares\IRegistro_de_Huellas_DactilaresService.cs" />
 <Compile Include="Registro_de_Huellas_Dactilares\Registro_de_Huellas_DactilaresService.cs" />
+<Compile Include="Generador_Folio_Documentos_AT\IGenerador_Folio_Documentos_ATService.cs" />
+<Compile Include="Generador_Folio_Documentos_AT\Generador_Folio_Documentos_ATService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1592,6 +1594,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

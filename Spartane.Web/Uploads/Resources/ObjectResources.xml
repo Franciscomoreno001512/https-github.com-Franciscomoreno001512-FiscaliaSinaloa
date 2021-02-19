@@ -1310,8 +1310,14 @@
 <Object Id="46094" culture="es-es" value="Asignacion de Turnos Previos" />
 <Object Id="45734" culture="en-us" value="Registro de Huellas Dactilares" />
 <Object Id="45734" culture="es-es" value="Registro de Huellas Dactilares" />
+<Object Id="46103" culture="en-us" value="Generador Folio Documentos AT" />
+<Object Id="46103" culture="es-es" value="Generador Folio Documentos AT" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
 
 
 

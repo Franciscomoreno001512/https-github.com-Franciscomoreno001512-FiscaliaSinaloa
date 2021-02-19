@@ -286,6 +286,13 @@ if( EvaluaQuery("declare @Var nvarchar(10)='FLD[Resolucion]'"
 }
 //BusinessRuleId:2977, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:3900, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ fillMRFromQuery('Detalle_Vinculacion_Resolucion', "exec usp_LlenaVinculacionMR GLOBAL[SpartanOperationId]");
+
+}
+//BusinessRuleId:3900, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

@@ -1,4 +1,4 @@
-﻿@model IList<Spartane.Web.Areas.Frontal.Models.Detalle_de_Documentos_MPOGridModel>
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Generador_Folio_Documentos_ATGridModel>
 
 @{
     var rowCounter = 0;
@@ -52,49 +52,28 @@
     <thead>
         <tr>
             <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Clave
+                @Resources.Generador_Folio_Documentos_ATResources.Folio
             </td>
                         <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Clave
+                @Resources.Generador_Folio_Documentos_ATResources.Folio
             </td>
             <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Modulo_Atencion_Inicial
+                @Resources.Generador_Folio_Documentos_ATResources.Fecha_Genera
             </td>
             <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Fecha
+                @Resources.Generador_Folio_Documentos_ATResources.Anio_Genera
             </td>
             <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Hora
+                @Resources.Generador_Folio_Documentos_ATResources.Municipio
             </td>
             <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Usuario_que_Registra
+                @Resources.Generador_Folio_Documentos_ATResources.Unidad
             </td>
             <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Tipo_de_Documento
+                @Resources.Generador_Folio_Documentos_ATResources.Consecutivo
             </td>
             <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Documento
-            </td>
-            <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Involucrado
-            </td>
-            <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Probable_Responsable
-            </td>
-            <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Archivo_Adjunto
-            </td>
-            <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Observaciones
-            </td>
-            <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Archivo
-            </td>
-            <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Lista_para_periciales
-            </td>
-            <td class="column1">
-                @Resources.Detalle_de_Documentos_MPOResources.Folio
+                @Resources.Generador_Folio_Documentos_ATResources.Folio_Ultimo_Generado
             </td>
 
         </tr>
@@ -105,49 +84,28 @@
             {                
                 <tr>
                     <td>
-                        @item.Clave
+                        @item.Folio
                     </td>
 					                    <td>
-                        @item.Clave
-                    </td>
-                    <td>
-                        @item.Modulo_Atencion_Inicial
-                    </td>
-                    <td>
-                        @item.Fecha
-                    </td>
-                    <td>
-                        @item.Hora
-                    </td>
-                    <td>
-                        @item.Usuario_que_Registra
-                    </td>
-                    <td>
-                        @item.Tipo_de_DocumentoDescripcion
-                    </td>
-                    <td>
-                        @item.Documento
-                    </td>
-                    <td>
-                        @item.Involucrado
-                    </td>
-                    <td>
-                        @item.Probable_Responsable
-                    </td>
-                    <td>
-                        @item.Archivo_Adjunto
-                    </td>
-                    <td>
-                        @item.Observaciones
-                    </td>
-                    <td>
-                        @item.Archivo
-                    </td>
-                    <td>
-                        @item.Lista_para_periciales
-                    </td>
-                    <td>
                         @item.Folio
+                    </td>
+                    <td>
+                        @item.Fecha_Genera
+                    </td>
+                    <td>
+                        @item.Anio_Genera
+                    </td>
+                    <td>
+                        @item.MunicipioNombre
+                    </td>
+                    <td>
+                        @item.UnidadDescripcion
+                    </td>
+                    <td>
+                        @item.Consecutivo
+                    </td>
+                    <td>
+                        @item.Folio_Ultimo_Generado
                     </td>
 
                 </tr>

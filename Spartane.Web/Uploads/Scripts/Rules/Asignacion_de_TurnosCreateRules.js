@@ -8,22 +8,32 @@ $(document).ready(function() {
 	$("form#CreateAsignacion_de_Turnos").on('change', '#Tipo_de_Urgencia', function () {
 		nameOfTable='';
 		rowIndex='';
+		TipoUrgenciaanterior = GetValueByControlType($('#' + nameOfTable + 'Urgencia' + rowIndex),nameOfTable,rowIndex);
 		if( GetValueByControlType($('#' + nameOfTable + 'Urgencia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true')) 
 		{
 			if(GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('7', '7'))
-			{			
-				$("#Denuncia_Ciudadana").val('null').trigger("change");
+			{	
+				if($("#Denuncia_Ciudadana").val() != null && $("#Denuncia_Ciudadana").val() != "")
+				{
+					$("#Denuncia_Ciudadana").val('null').trigger("change");
+				}
 			}
 			
 			if(GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('8', '8'))
-			{			
-				$("#Turno_Previo").val('null').trigger("change");
+			{	
+				if($("#Turno_Previo").val() != null && $("#Turno_Previo").val() != "")
+				{			
+					$("#Turno_Previo").val('null').trigger("change");
+				}
 			}
 		}
 		else
 		{
-			$("#Denuncia_Ciudadana").val('null').trigger("change");
-			$("#Turno_Previo").val('null').trigger("change");
+			if(($("#Turno_Previo").val() != null && $("#Turno_Previo").val() != "") || ($("#Denuncia_Ciudadana").val() != null && $("#Denuncia_Ciudadana").val() != ""))
+			{
+				$("#Denuncia_Ciudadana").val('null').trigger("change");
+				$("#Turno_Previo").val('null').trigger("change");
+			}
 		}
 		 
 	});
