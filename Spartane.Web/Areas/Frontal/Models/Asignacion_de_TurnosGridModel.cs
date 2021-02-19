@@ -32,6 +32,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Urgencia { get; set; }
         public int? Tipo_de_Urgencia { get; set; }
         public string Tipo_de_UrgenciaDescripcion { get; set; }
+        public int? Denuncia_Ciudadana { get; set; }
+        public string Denuncia_CiudadanaFolio { get; set; }
+        public int? Turno_Previo { get; set; }
+        public string Turno_PrevioNumero_Turno { get; set; }
         public int? Orientador { get; set; }
         public string OrientadorName { get; set; }
         public int? Estatus_de_Turno { get; set; }

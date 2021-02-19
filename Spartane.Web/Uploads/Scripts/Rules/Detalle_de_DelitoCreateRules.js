@@ -12,13 +12,8 @@ $(document).ready(function () {
 
     }
 
-    if( 
-        EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('2', '2') 
-      ) {
-        //$("#Detalle_de_ImputadoGuardar").remove();
         $("#Detalle_de_DelitoGuardarYNuevo").remove();
         $("#Detalle_de_DelitoGuardarYCopia").remove();
-    }
 	
 	//INI SOLO PERMITIR SOLO LETRAS, NUMEROS
     $("#Placas").bind('keypress', function(event) {

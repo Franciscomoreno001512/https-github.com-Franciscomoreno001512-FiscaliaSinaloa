@@ -67,27 +67,9 @@ if(operation == 'Consult'){
 
 
 
-//BusinessRuleId:2783, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- var valor = $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).val();   $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Agente_Asignado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select distinct Id_User, name from Spartan_User su"
-+" inner join Asignacion_de_Estatus_de_Agente stat on stat.MP = su.Id_User"
-+" where stat.Estatus = 1", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select distinct Id_User, name from Spartan_User su"
-+" inner join Asignacion_de_Estatus_de_Agente stat on stat.MP = su.Id_User"
-+" where stat.Estatus = 1", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).val(valor).trigger('change');
 
-}
-//BusinessRuleId:2783, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2783, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- var valor = $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).val();   $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Agente_Asignado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select distinct Id_User, name from Spartan_User su"
-+" inner join Asignacion_de_Estatus_de_Agente stat on stat.MP = su.Id_User"
-+" where stat.Estatus = 1", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select distinct Id_User, name from Spartan_User su"
-+" inner join Asignacion_de_Estatus_de_Agente stat on stat.MP = su.Id_User"
-+" where stat.Estatus = 1", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).val(valor).trigger('change');
 
-}
-//BusinessRuleId:2783, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2871, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
@@ -95,6 +77,13 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:2871, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3893, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( TryParseInt('17', '17')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ) { var valor = $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).val();   $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Agente_Asignado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("EXEC usp_GetAgentesActivosFromUnidadDelUsuario GLOBAL[USERID]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("EXEC usp_GetAgentesActivosFromUnidadDelUsuario GLOBAL[USERID]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Agente_Asignado' + rowIndex).val(valor).trigger('change');} else {}
+
+}
+//BusinessRuleId:3893, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

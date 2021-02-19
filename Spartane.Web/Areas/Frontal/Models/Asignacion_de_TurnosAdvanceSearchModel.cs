@@ -82,6 +82,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceTipo_de_Urgencia { set; get; }
         public int[] AdvanceTipo_de_UrgenciaMultiple { set; get; }
 
+        public Filters Denuncia_CiudadanaFilter { set; get; }
+        public string AdvanceDenuncia_Ciudadana { set; get; }
+        public int[] AdvanceDenuncia_CiudadanaMultiple { set; get; }
+
+        public Filters Turno_PrevioFilter { set; get; }
+        public string AdvanceTurno_Previo { set; get; }
+        public int[] AdvanceTurno_PrevioMultiple { set; get; }
+
         public Filters OrientadorFilter { set; get; }
         public string AdvanceOrientador { set; get; }
         public int[] AdvanceOrientadorMultiple { set; get; }

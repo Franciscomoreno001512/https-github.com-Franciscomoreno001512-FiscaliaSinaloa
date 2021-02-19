@@ -19,6 +19,8 @@
   <resource culture="es-es" name="Numero_de_Identificacion" value="Número de Identificación"></resource>
   <resource culture="es-es" name="Urgencia" value="Urgencia"></resource>
   <resource culture="es-es" name="Tipo_de_Urgencia" value="Tipo de Urgencia"></resource>
+  <resource culture="es-es" name="Denuncia_Ciudadana" value="Denuncia Ciudadana"></resource>
+  <resource culture="es-es" name="Turno_Previo" value="Turno Previo"></resource>
   <resource culture="es-es" name="Orientador" value="Orientador"></resource>
   <resource culture="es-es" name="Estatus_de_Turno" value="Estatus de Turno"></resource>
   <resource culture="es-es" name="Modulo" value="Módulo"></resource>

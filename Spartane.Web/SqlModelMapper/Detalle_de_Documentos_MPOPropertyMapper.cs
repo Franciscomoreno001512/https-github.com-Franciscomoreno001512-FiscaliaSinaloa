@@ -44,6 +44,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_Documentos_MPO.Archivo";
                 case "Lista_para_periciales":
                     return "Detalle_de_Documentos_MPO.Lista_para_periciales";
+                case "Folio":
+                    return "Detalle_de_Documentos_MPO.Folio";
 
                 default:
                     return propertyName;

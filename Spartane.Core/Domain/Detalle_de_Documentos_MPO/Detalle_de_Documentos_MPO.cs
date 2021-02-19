@@ -36,6 +36,7 @@ namespace Spartane.Core.Domain.Detalle_de_Documentos_MPO
         public string Observaciones { get; set; }
         public int? Archivo { get; set; }
         public bool? Lista_para_periciales { get; set; }
+        public string Folio { get; set; }
 
         [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
@@ -70,6 +71,7 @@ namespace Spartane.Core.Domain.Detalle_de_Documentos_MPO
         public string Observaciones { get; set; }
         public int? Archivo { get; set; }
         public bool? Lista_para_periciales { get; set; }
+        public string Folio { get; set; }
 
 		        [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Generador_Folio_Documentos_AT" value="Generador Folio Documentos AT"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Fecha_Genera" value="Fecha Genera"></resource>
+  <resource culture="en-US" name="Anio_Genera" value="Anio Genera"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Unidad" value="Unidad"></resource>
+  <resource culture="en-US" name="Consecutivo" value="Consecutivo"></resource>
+  <resource culture="en-US" name="Folio_Ultimo_Generado" value="Folio Último Generado"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

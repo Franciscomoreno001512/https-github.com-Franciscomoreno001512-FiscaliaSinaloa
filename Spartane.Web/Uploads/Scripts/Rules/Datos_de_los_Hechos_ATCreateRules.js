@@ -18,6 +18,14 @@ $(document).ready(function () {
         $("#Datos_de_los_Hechos_ATGuardar").remove();
        
     }
+    if (
+        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('9', '9') ||
+        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('17', '17')
+    ) {
+        $("#Datos_de_los_Hechos_ATGuardarYNuevo").remove();
+        $("#Datos_de_los_Hechos_ATGuardarYCopia").remove();
+       
+    }
 
 //CONVERTIR A MAYUSCULAS AL BLUR
 $('input[type="text"],textarea').blur(function() {

@@ -6,6 +6,28 @@ $(function () {
 
 });
 
+var AutoCompleteDenuncia_CiudadanaData = [];
+function GetAutoCompleteAsignacion_de_Turnos_Denuncia_Ciudadana_Solicitud_de_Denuncia_CiudadanaData(data) {
+	AutoCompleteDenuncia_CiudadanaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteDenuncia_CiudadanaData.push({
+            id: data[i].Clave,
+            text: data[i].Folio
+        });
+    }
+    return AutoCompleteDenuncia_CiudadanaData;
+}
+var AutoCompleteTurno_PrevioData = [];
+function GetAutoCompleteAsignacion_de_Turnos_Turno_Previo_Asignacion_de_Turnos_PreviosData(data) {
+	AutoCompleteTurno_PrevioData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteTurno_PrevioData.push({
+            id: data[i].Clave,
+            text: data[i].Numero_Turno
+        });
+    }
+    return AutoCompleteTurno_PrevioData;
+}
 
 
 function getDropdown(elementKey) {
@@ -43,6 +65,12 @@ function ClearControls() {
     $('#CreateAsignacion_de_Turnos')[0].reset();
     ClearFormControls();
     $("#FolioId").val("0");
+    $('#Denuncia_Ciudadana').empty();
+    $("#Denuncia_Ciudadana").append('<option value=""></option>');
+    $('#Denuncia_Ciudadana').val('0').trigger('change');
+    $('#Turno_Previo').empty();
+    $("#Turno_Previo").append('<option value=""></option>');
+    $('#Turno_Previo').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -172,7 +200,13 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendAsignacion_de_TurnosData(function (currentId) {
 					$("#FolioId").val("0");
-	
+	    $('#Denuncia_Ciudadana').empty();
+    $("#Denuncia_Ciudadana").append('<option value=""></option>');
+    $('#Denuncia_Ciudadana').val('0').trigger('change');
+    $('#Turno_Previo').empty();
+    $("#Turno_Previo").append('<option value=""></option>');
+    $('#Turno_Previo').val('0').trigger('change');
+
 					ResetClaveLabel();
 					$("#ReferenceFolio").val(currentId);
 	

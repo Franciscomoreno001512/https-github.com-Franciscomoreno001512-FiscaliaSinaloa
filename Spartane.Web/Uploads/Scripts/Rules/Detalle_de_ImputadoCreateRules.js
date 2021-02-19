@@ -3,15 +3,9 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
-    if (
-        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('101', '101') ||
-        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('2', '2') ||
-        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('103', '103')
-    ) {
-        //$("#Detalle_de_ImputadoGuardar").remove();
+    
         $("#Detalle_de_ImputadoGuardarYNuevo").remove();
         $("#Detalle_de_ImputadoGuardarYCopia").remove();
-    }
 
     //INI OCULTAR BOTON DE MAPA
     $("form#CreateDetalle_de_Imputado").on('change', '#Quien_Resulte_Responsable', function () {
@@ -633,7 +627,8 @@ $(document).ready(function () {
         rowIndex = '';
         if (GetValueByControlType($('#' + nameOfTable + 'Bajo_el_Efecto_de_una_Droga' + rowIndex), nameOfTable, rowIndex) == TryParseInt('true', 'true')) { $('#divNombre_de_Droga').css('display', 'block'); SetRequiredToControl($('#' + nameOfTable + 'Nombre_de_Droga' + rowIndex)); } else { $('#divNombre_de_Droga').css('display', 'none'); SetNotRequiredToControl($('#' + nameOfTable + 'Nombre_de_Droga' + rowIndex)); SetNotRequiredToControl($('#' + nameOfTable + 'Nombre_de_Droga' + rowIndex)); }
     });
-
+
+
     //BusinessRuleId:1938, Attribute:265807, Operation:Field, Event:None
 
     //NEWBUSINESSRULE_NONE//

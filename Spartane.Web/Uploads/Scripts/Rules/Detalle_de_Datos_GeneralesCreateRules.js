@@ -3,15 +3,8 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
-    if (
-        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('101', '101') ||
-        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('2', '2') ||
-        EvaluaQuery("select GLOBAL[USERROLEID]", rowIndex, nameOfTable) == TryParseInt('103', '103')
-    ) {
-        //$("#Detalle_de_Datos_GeneralesGuardar").remove();
         $("#Detalle_de_Datos_GeneralesGuardarYNuevo").remove();
         $("#Detalle_de_Datos_GeneralesGuardarYCopia").remove();
-    }
 
 
     //CONVERTIR A MAYUSCULAS AL BLUR

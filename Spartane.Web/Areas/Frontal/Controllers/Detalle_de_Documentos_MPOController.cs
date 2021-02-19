@@ -214,6 +214,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Observaciones = Detalle_de_Documentos_MPOData.Observaciones
                     ,Archivo = Detalle_de_Documentos_MPOData.Archivo
                     ,Lista_para_periciales = Detalle_de_Documentos_MPOData.Lista_para_periciales.GetValueOrDefault()
+                    ,Folio = Detalle_de_Documentos_MPOData.Folio
 
 					};
 				}
@@ -315,6 +316,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Observaciones = Detalle_de_Documentos_MPOData.Observaciones
                     ,Archivo = Detalle_de_Documentos_MPOData.Archivo
                     ,Lista_para_periciales = Detalle_de_Documentos_MPOData.Lista_para_periciales.GetValueOrDefault()
+                    ,Folio = Detalle_de_Documentos_MPOData.Folio
 
 					};
 				}
@@ -586,6 +588,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
 			,Lista_para_periciales = m.Lista_para_periciales
+			,Folio = m.Folio
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -712,6 +715,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
 			,Lista_para_periciales = m.Lista_para_periciales
+			,Folio = m.Folio
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -1127,6 +1131,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (filter.Lista_para_periciales != RadioOptions.NoApply)
                 where += " AND Detalle_de_Documentos_MPO.Lista_para_periciales = " + Convert.ToInt32(filter.Lista_para_periciales);
 
+            if (!string.IsNullOrEmpty(filter.Folio))
+            {
+                switch (filter.FolioFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.Folio LIKE '" + filter.Folio + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.Folio LIKE '%" + filter.Folio + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.Folio = '" + filter.Folio + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.Folio LIKE '%" + filter.Folio + "%'";
+                        break;
+                }
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -1306,6 +1332,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Observaciones = varDetalle_de_Documentos_MPO.Observaciones
                         ,Archivo = varDetalle_de_Documentos_MPO.Archivo
                         ,Lista_para_periciales = varDetalle_de_Documentos_MPO.Lista_para_periciales
+                        ,Folio = varDetalle_de_Documentos_MPO.Folio
 
                     };
 
@@ -1843,6 +1870,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
 			,Lista_para_periciales = m.Lista_para_periciales
+			,Folio = m.Folio
 
             }).ToList();
 
@@ -1928,6 +1956,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
 			,Lista_para_periciales = m.Lista_para_periciales
+			,Folio = m.Folio
 
             }).ToList();
 
@@ -1996,6 +2025,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Observaciones = varDetalle_de_Documentos_MPO.Observaciones
                         ,Archivo = varDetalle_de_Documentos_MPO.Archivo
                         ,Lista_para_periciales = varDetalle_de_Documentos_MPO.Lista_para_periciales
+                        ,Folio = varDetalle_de_Documentos_MPO.Folio
                     
                 };
 
@@ -2044,6 +2074,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
 			,Lista_para_periciales = m.Lista_para_periciales
+			,Folio = m.Folio
 
                     
                 };
