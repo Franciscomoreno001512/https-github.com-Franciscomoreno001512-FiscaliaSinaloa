@@ -251,9 +251,9 @@
     List<SelectListItem> varOjos_Tamano_de_Ojos = null;
     if (ViewBag.Ojoss_Tamano_de_Ojos != null)
     { varOjos_Tamano_de_Ojos = (List<SelectListItem>)ViewBag.Ojoss_Tamano_de_Ojos; }
-    List<SelectListItem> varFroma_Ojos_Forma_Ojos = null;
-    if (ViewBag.Froma_Ojoss_Forma_Ojos != null)
-    { varFroma_Ojos_Forma_Ojos = (List<SelectListItem>)ViewBag.Froma_Ojoss_Forma_Ojos; }
+    List<SelectListItem> varForma_Ojos_Forma_Ojos = null;
+    if (ViewBag.Forma_Ojoss_Forma_Ojos != null)
+    { varForma_Ojos_Forma_Ojos = (List<SelectListItem>)ViewBag.Forma_Ojoss_Forma_Ojos; }
     List<SelectListItem> varAnteojos_Anteojos = null;
     if (ViewBag.Anteojoss_Anteojos != null)
     { varAnteojos_Anteojos = (List<SelectListItem>)ViewBag.Anteojoss_Anteojos; }
@@ -1074,15 +1074,6 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Longitud" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-							<div class="form-group" id="divMapa">
-                                            <label class="col-sm-2 control-label" style="color:white!important;">Mapa</label>
-                                            <div class="col-sm-8">
-                                                <a href="#" class="btn btn-info btn-lg" style="float:right!important;" id="btnOpenMapa">
-                                                    <span class="glyphicon glyphicon-map-marker"></span> Ver Mapa
-                                                </a>
-                                            </div>
-
-                                        </div>
                             <div class="form-group" id="divTelefono">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Telefono</label>
                                 <div class="col-sm-8" data-field-id="Telefono" data-attribute="263799" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Telefono">
@@ -3258,8 +3249,8 @@
                                 <div class="col-sm-8" data-field-id="Forma_Ojos" data-attribute="266552" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Forma_Ojos">
                                     <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Forma Ojos must be a number." data-val-required="The Forma Ojos field is required." id="Forma_Ojos" name="Forma_Ojos">
                                         <option value=""></option>
-                                        @if (varFroma_Ojos_Forma_Ojos != null){ 
-                                            foreach (var itemForma_Ojos in varFroma_Ojos_Forma_Ojos)
+                                        @if (varForma_Ojos_Forma_Ojos != null){ 
+                                            foreach (var itemForma_Ojos in varForma_Ojos_Forma_Ojos)
                                             {
                                                 if (itemForma_Ojos.Value == Convert.ToString(Model.Forma_Ojos))
                                                 {
@@ -3277,7 +3268,7 @@
 								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266552).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Froma_Ojos', 'Forma_Ojos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Forma_Ojos', 'Forma_Ojos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -3869,104 +3860,6 @@
     </div>
 </div>
 <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
-   <!-- Trigger the modal with a button -->
-    <button style="display: none" type="button" class="btn btn-info btn-lg" data-toggle="modal" id="modalMapa" data-target="#myModal">Ver Mapa</button>
-    <button style="display: none" type="button" class="btn btn-info btn-lg" data-toggle="modal" id="modalMapa2" data-target="#myModal2">Ver Mapa</button>
-
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
-        <div class="modal-dialog" style="width: 90%;">
-											   
-												
-												 
-													 
-											 
-														   
-	   
-						
-					  
-	 
-											
-																 
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Seleccionar Dirección</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <label>Escriba la dirección</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" style="width:100%" id="address" name="address" />
-                            </div>
-                            <div class="col-md-3">
-                                <input type="button" id="BucarDireccion" value="Buscar">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top:12px;">
-                        <div class="col-md-12">
-                            <div class="col-md-12">
-                                <!-- <div id="gmap" style="height:100%; width:100%;"></div> -->
-                                <div id="gmap" style="height: 400px"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="myModal2" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
-        <div class="modal-dialog" style="width: 90%;">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Seleccionar Dirección</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <label>Escriba la dirección</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" style="width:100%" id="address2" name="address2" />
-                            </div>
-                            <div class="col-md-3">
-                                <input type="button" id="BucarDireccion2" value="Buscar">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top:12px;">
-                        <div class="col-md-12">
-                            <div class="col-md-12">
-                                <!-- <div id="gmap" style="height:100%; width:100%;"></div> -->
-                                <div id="gmap2" style="height: 400px"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
-                </div>
-            </div>
-
-        </div>
-    </div>											
 
 @section Styles {
 <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
@@ -4266,7 +4159,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4299,7 +4192,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4332,7 +4225,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4365,7 +4258,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4398,7 +4291,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4431,7 +4324,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4464,7 +4357,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4497,7 +4390,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4530,7 +4423,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4563,7 +4456,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4596,7 +4489,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4629,7 +4522,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4662,7 +4555,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4695,7 +4588,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4728,7 +4621,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4761,7 +4654,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4794,7 +4687,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4827,7 +4720,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4860,7 +4753,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -4893,7 +4786,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -6222,7 +6115,6 @@
                 var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
                 $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
 				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Otros_Domicilios_InvolucradoCancelRow(" + index + ")'>").appendTo(actionColInsert));
-				$('<i class="fa fa-map-marker">').appendTo($("<a data-toggle='tooltip' title='Asignar Coordenadas' onclick='Otros_Domicilios_InvolucradoMapaRow(" + index + ")'>").appendTo(actionColInsert));																																																						 
                 actionColInsert.appendTo(row);
 
                 for (i = 0; i < controls.length; i++) {
@@ -6571,7 +6463,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -6603,7 +6495,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -6635,7 +6527,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -6667,7 +6559,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), 
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -7808,64 +7700,6 @@
 			});
 		}
 
-		$("body").on("click", "#btnOpenMapa", function () {
-                debugger;
-                $("#modalMapa").click();
-
-            });
-            $('#myModal').on('shown.bs.modal', function () {
-                debugger;
-                var lat = $("#Latitud").val();
-                var long = $("#Longitud").val();
-                if (lat != "" && long != "") {
-                    $("#address").val(lat + "," + long);
-                }
-                CargaGoogleMaps();
-				$('#Pais').trigger('change');
-				$('#Estado').trigger('change');
-				$('#Municipio').trigger('change');
-				$('#Colonia').trigger('change');
-				$('#Poblacion').trigger('change');
-            });
-
-            $('#myModal').on('hidden.bs.modal', function () {
-                debugger;
-            });
-            $("body").on("click", "#BucarDireccion", function () {
-
-                debugger;
-                CargaGoogleMaps();
-				$('#Pais').trigger('change');
-				$('#Estado').trigger('change');
-				$('#Municipio').trigger('change');
-				$('#Colonia').trigger('change');
-				$('#Poblacion').trigger('change');
-            });
-
-
-            $('#myModal2').on('shown.bs.modal', function () {
-                debugger;
-                console.log("Entro aqui");
-
-                var RowSelected = $("#RowSelected").val();
-
-
-                var lat = $('#Otros_Domicilios_Involucrado_Coordenada_X_' + RowSelected + '').val();
-                var long = $('#Otros_Domicilios_Involucrado_Coordenada_Y_' + RowSelected + '').val();
-                if (lat != "" && long != "") {
-                    $("#address2").val(lat + "," + long);
-                }
-                CargaGoogleMapsOtrosDomicilios();
-            });
-
-            //$('#myModal2').on('hidden.bs.modal', function () {
-
-            //});
-            $("body").on("click", "#BucarDireccion2", function () {
-                debugger;
-
-                CargaGoogleMapsOtrosDomicilios();
-            });													   
 
     </script>
 }
@@ -7874,7 +7708,5 @@
     <input type="hidden" id="ObjectId" name="ObjectId" value="" />
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
-	
      <input type="hidden" id="Detalle_de_Datos_Generales_cmbLabelSelect" name="Detalle_de_Datos_Generales_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
-	 <input type="hidden" id="RowSelected" name="RowSelected" value="0" />
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl6FOVgpwFjFmSSdVREMUzCQKSq7JQLdA" type="text/javascript"></script>
+

@@ -96,9 +96,9 @@
     List<SelectListItem> varOjos_Ojos = null;
     if (ViewBag.Ojoss_Ojos != null)
     { varOjos_Ojos = (List<SelectListItem>)ViewBag.Ojoss_Ojos; }
-    List<SelectListItem> varFroma_Ojos_Forma_Ojos = null;
-    if (ViewBag.Froma_Ojoss_Forma_Ojos != null)
-    { varFroma_Ojos_Forma_Ojos = (List<SelectListItem>)ViewBag.Froma_Ojoss_Forma_Ojos; }
+    List<SelectListItem> varForma_Ojos_Forma_Ojos = null;
+    if (ViewBag.Forma_Ojoss_Forma_Ojos != null)
+    { varForma_Ojos_Forma_Ojos = (List<SelectListItem>)ViewBag.Forma_Ojoss_Forma_Ojos; }
     List<SelectListItem> varNariz_Base_Nariz_Base = null;
     if (ViewBag.Nariz_Bases_Nariz_Base != null)
     { varNariz_Base_Nariz_Base = (List<SelectListItem>)ViewBag.Nariz_Bases_Nariz_Base; }
@@ -930,9 +930,9 @@
                     @Html.DropDownListFor(m => m.Forma_OjosFilter, filters, new { @class = "form-control", @id = "ddlForma_OjosFilter" })
                     @Html.TextBoxFor(m => m.AdvanceForma_Ojos, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_Ojos" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varFroma_Ojos_Forma_Ojos!=null)
+                    @if (varForma_Ojos_Forma_Ojos!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceForma_OjosMultiple, varFroma_Ojos_Forma_Ojos,
+                        @Html.ListBoxFor(m => m.AdvanceForma_OjosMultiple, varForma_Ojos_Forma_Ojos,
                         new
                         {
                             @class = "form-control chosen-select",

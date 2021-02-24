@@ -221,11 +221,11 @@ public ApiResponse<int> Update_Datos_Generales(Detalle_de_Datos_del_Imputado_MPI
             }
         }
 
-public ApiResponse<int> Update__Datos_de_Media_Filiacion(Detalle_de_Datos_del_Imputado_MPI__Datos_de_Media_Filiacion entity)
+public ApiResponse<int> Update_Datos_de_Media_Filiacion(Detalle_de_Datos_del_Imputado_MPI_Datos_de_Media_Filiacion entity)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put__Datos_de_Media_Filiacion",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_de_Media_Filiacion",
                       Method.PUT, ApiHeader, entity);
 
                 return new ApiResponse<int>(true, result);
@@ -236,18 +236,18 @@ public ApiResponse<int> Update__Datos_de_Media_Filiacion(Detalle_de_Datos_del_Im
             }
         }
 
-        public ApiResponse<Detalle_de_Datos_del_Imputado_MPI__Datos_de_Media_Filiacion> Get__Datos_de_Media_Filiacion(string Key)
+        public ApiResponse<Detalle_de_Datos_del_Imputado_MPI_Datos_de_Media_Filiacion> Get_Datos_de_Media_Filiacion(string Key)
         {
             try
             {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Detalle_de_Datos_del_Imputado_MPI.Detalle_de_Datos_del_Imputado_MPI__Datos_de_Media_Filiacion>(baseApi, ApiControllerUrl + "/Get__Datos_de_Media_Filiacion?id=" + Key,
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Detalle_de_Datos_del_Imputado_MPI.Detalle_de_Datos_del_Imputado_MPI_Datos_de_Media_Filiacion>(baseApi, ApiControllerUrl + "/Get_Datos_de_Media_Filiacion?id=" + Key,
                       Method.GET, ApiHeader);
 
-                return new ApiResponse<Core.Domain.Detalle_de_Datos_del_Imputado_MPI.Detalle_de_Datos_del_Imputado_MPI__Datos_de_Media_Filiacion>(true, varRecords);
+                return new ApiResponse<Core.Domain.Detalle_de_Datos_del_Imputado_MPI.Detalle_de_Datos_del_Imputado_MPI_Datos_de_Media_Filiacion>(true, varRecords);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<Core.Domain.Detalle_de_Datos_del_Imputado_MPI.Detalle_de_Datos_del_Imputado_MPI__Datos_de_Media_Filiacion>(false, null);
+                return new ApiResponse<Core.Domain.Detalle_de_Datos_del_Imputado_MPI.Detalle_de_Datos_del_Imputado_MPI_Datos_de_Media_Filiacion>(false, null);
             }
         }
 

@@ -396,13 +396,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Forma_Ojos</summary>
-        public static string Forma_Ojos
+        /// <summary>Forma_de_Ojos</summary>
+        public static string Forma_de_Ojos
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_de_Datos_del_Imputado_MPI.GetResource("Forma_Ojos", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_de_Datos_del_Imputado_MPI.GetResource("Forma_de_Ojos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -1128,7 +1128,7 @@ namespace Resources
 
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Datos_del_Imputado_MPI.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary> Datos de Media Filiación</summary>	public static string Tab_Datos_de_Media_Filiacion 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Datos_del_Imputado_MPI.GetResource("Tab_Datos_de_Media_Filiacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Datos de Media Filiación</summary>	public static string TabDatos_de_Media_Filiacion 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Datos_del_Imputado_MPI.GetResource("TabDatos_de_Media_Filiacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Control de Tiempos</summary>	public static string TabControl_de_Tiempos 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Datos_del_Imputado_MPI.GetResource("TabControl_de_Tiempos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Datos de los Hechos</summary>	public static string TabDatos_de_los_Hechos 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Datos_del_Imputado_MPI.GetResource("TabDatos_de_los_Hechos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Datos del Abogado</summary>	public static string TabDatos_del_Abogado 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Datos_del_Imputado_MPI.GetResource("TabDatos_del_Abogado", CultureInfo.CurrentUICulture.Name) as String;             		}	}

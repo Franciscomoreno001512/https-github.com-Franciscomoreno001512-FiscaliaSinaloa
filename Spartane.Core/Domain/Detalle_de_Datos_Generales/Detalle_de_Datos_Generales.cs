@@ -79,7 +79,7 @@ using Spartane.Core.Domain.Color_de_Cabello;
 using Spartane.Core.Domain.Calvicie;
 using Spartane.Core.Domain.Color_Ojos;
 using Spartane.Core.Domain.Ojos;
-using Spartane.Core.Domain.Froma_Ojos;
+using Spartane.Core.Domain.Forma_Ojos;
 using Spartane.Core.Domain.Anteojos;
 using Spartane.Core.Domain.Forma_de_Nariz;
 using Spartane.Core.Domain.Tamano_de_Nariz;
@@ -448,7 +448,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         [ForeignKey("Tamano_de_Ojos")]
         public virtual Spartane.Core.Domain.Ojos.Ojos Tamano_de_Ojos_Ojos { get; set; }
         [ForeignKey("Forma_Ojos")]
-        public virtual Spartane.Core.Domain.Froma_Ojos.Froma_Ojos Forma_Ojos_Froma_Ojos { get; set; }
+        public virtual Spartane.Core.Domain.Forma_Ojos.Forma_Ojos Forma_Ojos_Forma_Ojos { get; set; }
         [ForeignKey("Anteojos")]
         public virtual Spartane.Core.Domain.Anteojos.Anteojos Anteojos_Anteojos { get; set; }
         [ForeignKey("Forma_de_Nariz")]
@@ -853,7 +853,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         [ForeignKey("Tamano_de_Ojos")]
         public virtual Spartane.Core.Domain.Ojos.Ojos Tamano_de_Ojos_Ojos { get; set; }
         [ForeignKey("Forma_Ojos")]
-        public virtual Spartane.Core.Domain.Froma_Ojos.Froma_Ojos Forma_Ojos_Froma_Ojos { get; set; }
+        public virtual Spartane.Core.Domain.Forma_Ojos.Forma_Ojos Forma_Ojos_Forma_Ojos { get; set; }
         [ForeignKey("Anteojos")]
         public virtual Spartane.Core.Domain.Anteojos.Anteojos Anteojos_Anteojos { get; set; }
         [ForeignKey("Forma_de_Nariz")]

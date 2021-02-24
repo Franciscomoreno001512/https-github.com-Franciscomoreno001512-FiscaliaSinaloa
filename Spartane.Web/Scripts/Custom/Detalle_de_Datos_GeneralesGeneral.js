@@ -1181,14 +1181,6 @@ function Otros_Domicilios_InvolucradoCancelRow(rowIndex) {
 	initiateUIControls();
 }
 
-function Otros_Domicilios_InvolucradoMapaRow(rowIndex) {
-    debugger;
-    $("#RowSelected").val(rowIndex);
-    $("#RowSelected").text(rowIndex);
-    $("#modalMapa2").click();
-
-}
-
 function GetOtros_Domicilios_InvolucradoFromDataTable() {
     var Otros_Domicilios_InvolucradoData = [];
     var gridData = Otros_Domicilios_InvolucradoTable.fnGetData();

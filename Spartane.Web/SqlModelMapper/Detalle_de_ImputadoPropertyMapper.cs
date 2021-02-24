@@ -256,7 +256,7 @@ namespace Spartane.Web.SqlModelMapper
                     return "Ojos.Descripcion";
                 case "Forma_Ojos[Descripcion]":
                 case "Forma_OjosDescripcion":
-                    return "Froma_Ojos.Descripcion";
+                    return "Forma_Ojos.Descripcion";
                 case "Anteojos[Descripcion]":
                 case "AnteojosDescripcion":
                     return "Anteojos.Descripcion";

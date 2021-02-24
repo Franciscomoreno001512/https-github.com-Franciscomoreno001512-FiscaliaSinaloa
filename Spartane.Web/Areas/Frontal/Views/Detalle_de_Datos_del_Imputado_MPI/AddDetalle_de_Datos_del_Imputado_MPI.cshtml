@@ -89,9 +89,9 @@
     List<SelectListItem> varOjos_Ojos = null;
     if (ViewBag.Ojoss_Ojos != null)
     { varOjos_Ojos = (List<SelectListItem>)ViewBag.Ojoss_Ojos; }
-    List<SelectListItem> varFroma_Ojos_Forma_Ojos = null;
-    if (ViewBag.Froma_Ojoss_Forma_Ojos != null)
-    { varFroma_Ojos_Forma_Ojos = (List<SelectListItem>)ViewBag.Froma_Ojoss_Forma_Ojos; }
+ List<SelectListItem> varForma_Ojos_Forma_de_Ojos = null;
+    if (ViewBag.Forma_Ojoss_Forma_de_Ojos != null)
+    { varForma_Ojos_Forma_de_Ojos = (List<SelectListItem>)ViewBag.Forma_Ojoss_Forma_de_Ojos; }
     List<SelectListItem> varNariz_Base_Nariz_Base = null;
     if (ViewBag.Nariz_Bases_Nariz_Base != null)
     { varNariz_Base_Nariz_Base = (List<SelectListItem>)ViewBag.Nariz_Bases_Nariz_Base; }
@@ -866,27 +866,14 @@
 		</select>
 	</div>
 </div>
-<div class="form-group" id="divForma_Ojos">
-	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_MPIResources.Forma_Ojos</label>
-	<div class="col-sm-8" data-field-id="Forma_Ojos" data-attribute="264262" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_MPIResources.Forma_Ojos">
-		<select class="form-control" data-val="true" data-val-number="The field Forma de Ojos must be a number." data-val-required="The Forma de Ojos field is required." id="Detalle_de_Datos_del_Imputado_MPIForma_Ojos" name="Detalle_de_Datos_del_Imputado_MPIForma_Ojos">
-			<option value=""></option>
-			@if (varFroma_Ojos_Forma_Ojos != null){ 
-				foreach (var itemForma_Ojos in varFroma_Ojos_Forma_Ojos)
-				{
-					if (itemForma_Ojos.Value == Convert.ToString(Model.Forma_Ojos))
-					{
-						<option value="@itemForma_Ojos.Value" selected>@itemForma_Ojos.Text</option>
-					}
-					else
-					{
-						<option value="@itemForma_Ojos.Value">@itemForma_Ojos.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
+<div class="form-group" id="divForma_de_Ojos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_MPIResources.Forma_de_Ojos</label>
+                                <div class="col-sm-8" data-field-id="Forma_de_Ojos" data-attribute="264262" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_MPIResources.Forma_de_Ojos">
+                                    <select class='fullWidth AutoCompleteForma_Ojos form-control select2-dropdown' data-val="true" id="Detalle_de_Datos_del_Imputado_MPIForma_de_Ojos" name="Detalle_de_Datos_del_Imputado_MPIForma_de_Ojos">
+                                        <option value="@Model.Forma_de_Ojos">@(Model.Forma_de_OjosDescripcion??Model.Forma_de_OjosDescripcion)</option>
+                                    </select>
+                                </div>
+                            </div>
 <div class="form-group" id="divNariz_Base">
 	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_MPIResources.Nariz_Base</label>
 	<div class="col-sm-8" data-field-id="Nariz_Base" data-attribute="264263" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_MPIResources.Nariz_Base">
@@ -2239,6 +2226,39 @@
             initiateUIControls();
             EjecutarValidacionesAlComienzo();
 			$('a').tooltip();
+        });
+       var AutoCompleteForma_de_OjosData =[];
+       $(".AutoCompleteDetalle_de_Datos_del_Imputado_MPI_Forma_de_Ojos").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Datos_del_Imputado_MPI/GetDetalle_de_Datos_del_Imputado_MPI_Forma_de_Ojos_Forma_Ojos")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Datos_del_Imputado_MPI_Forma_de_Ojos_Forma_OjosData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Datos_del_Imputado_MPI_Forma_de_Ojos");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
         });
 
         var Detalle_del_Abogado_Imputado_MPIinsertRowCurrentIndex = -1;

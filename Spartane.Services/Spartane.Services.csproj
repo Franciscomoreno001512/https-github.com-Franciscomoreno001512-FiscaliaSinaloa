@@ -1495,6 +1495,8 @@
 <Compile Include="Registro_de_Huellas_Dactilares\Registro_de_Huellas_DactilaresService.cs" />
 <Compile Include="Generador_Folio_Documentos_AT\IGenerador_Folio_Documentos_ATService.cs" />
 <Compile Include="Generador_Folio_Documentos_AT\Generador_Folio_Documentos_ATService.cs" />
+<Compile Include="Forma_Ojos\IForma_OjosService.cs" />
+<Compile Include="Forma_Ojos\Forma_OjosService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1594,6 +1596,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

@@ -73,8 +73,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Color_OjosDescripcion { get; set; }
         public int? Ojos { get; set; }
         public string OjosDescripcion { get; set; }
-        public int? Forma_Ojos { get; set; }
-        public string Forma_OjosDescripcion { get; set; }
+        public int? Forma_de_Ojos { get; set; }
+        public string Forma_de_OjosDescripcion { get; set; }
         public int? Nariz_Base { get; set; }
         public string Nariz_BaseDescripcion { get; set; }
         public int? Labios { get; set; }
@@ -240,7 +240,7 @@ namespace Spartane.Web.Areas.Frontal.Models
 
     }
 
-	public class Detalle_de_Datos_del_Imputado_MPI__Datos_de_Media_FiliacionModel
+	public class Detalle_de_Datos_del_Imputado_MPI_Datos_de_Media_FiliacionModel
     {
         [Required]
         public int Clave { get; set; }
@@ -266,8 +266,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Color_OjosDescripcion { get; set; }
         public int? Ojos { get; set; }
         public string OjosDescripcion { get; set; }
-        public int? Forma_Ojos { get; set; }
-        public string Forma_OjosDescripcion { get; set; }
+        public int? Forma_de_Ojos { get; set; }
+        public string Forma_de_OjosDescripcion { get; set; }
         public int? Nariz_Base { get; set; }
         public string Nariz_BaseDescripcion { get; set; }
         public int? Labios { get; set; }
