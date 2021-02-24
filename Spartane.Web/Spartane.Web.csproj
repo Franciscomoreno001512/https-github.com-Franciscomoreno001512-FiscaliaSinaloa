@@ -15653,6 +15653,26 @@
 <Content Include="Uploads\Scripts\Rules\Generador_Folio_Documentos_ATCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Generador_Folio_Documentos_ATIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Generador_Folio_Documentos_AT\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Forma_Ojos\Forma_OjosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Forma_Ojos\IForma_OjosApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Forma_OjosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Forma_OjosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Forma_OjosMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Forma_OjosController.cs" />
+<Content Include="Areas\Frontal\Views\Forma_Ojos\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Forma_Ojos\Create.cshtml" />
+<Compile Include="Resource\GetResource\Forma_Ojos.cs" />
+<Content Include="Uploads\Resources\Forma_OjosResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Forma_OjosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Forma_OjosResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Forma_Ojos.js" />
+<Content Include="Scripts\Custom\Forma_OjosGeneral.js" />
+<Content Include="Areas\Frontal\Views\Forma_Ojos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Forma_OjosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Forma_OjosBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Forma_OjosCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Forma_OjosIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Forma_Ojos\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -16657,6 +16677,26 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

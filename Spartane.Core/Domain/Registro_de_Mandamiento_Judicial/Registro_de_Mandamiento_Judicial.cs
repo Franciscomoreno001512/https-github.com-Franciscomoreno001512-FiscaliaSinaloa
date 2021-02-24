@@ -34,7 +34,7 @@ using Spartane.Core.Domain.Color_de_Cabello;
 using Spartane.Core.Domain.Calvicie;
 using Spartane.Core.Domain.Color_Ojos;
 using Spartane.Core.Domain.Ojos;
-using Spartane.Core.Domain.Froma_Ojos;
+using Spartane.Core.Domain.Forma_Ojos;
 using Spartane.Core.Domain.Nariz_Base;
 using Spartane.Core.Domain.Labios;
 using Spartane.Core.Domain.Boca;
@@ -209,7 +209,7 @@ namespace Spartane.Core.Domain.Registro_de_Mandamiento_Judicial
         [ForeignKey("Ojos")]
         public virtual Spartane.Core.Domain.Ojos.Ojos Ojos_Ojos { get; set; }
         [ForeignKey("Forma_Ojos")]
-        public virtual Spartane.Core.Domain.Froma_Ojos.Froma_Ojos Forma_Ojos_Froma_Ojos { get; set; }
+        public virtual Spartane.Core.Domain.Forma_Ojos.Forma_Ojos Forma_Ojos_Forma_Ojos { get; set; }
         [ForeignKey("Nariz_Base")]
         public virtual Spartane.Core.Domain.Nariz_Base.Nariz_Base Nariz_Base_Nariz_Base { get; set; }
         [ForeignKey("Labios")]
@@ -421,7 +421,7 @@ namespace Spartane.Core.Domain.Registro_de_Mandamiento_Judicial
         [ForeignKey("Ojos")]
         public virtual Spartane.Core.Domain.Ojos.Ojos Ojos_Ojos { get; set; }
         [ForeignKey("Forma_Ojos")]
-        public virtual Spartane.Core.Domain.Froma_Ojos.Froma_Ojos Forma_Ojos_Froma_Ojos { get; set; }
+        public virtual Spartane.Core.Domain.Forma_Ojos.Forma_Ojos Forma_Ojos_Forma_Ojos { get; set; }
         [ForeignKey("Nariz_Base")]
         public virtual Spartane.Core.Domain.Nariz_Base.Nariz_Base Nariz_Base_Nariz_Base { get; set; }
         [ForeignKey("Labios")]

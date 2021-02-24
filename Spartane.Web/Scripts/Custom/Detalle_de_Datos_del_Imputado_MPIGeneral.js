@@ -1032,6 +1032,17 @@ $(function () {
 
 });
 
+var AutoCompleteForma_de_OjosData = [];
+function GetAutoCompleteDetalle_de_Datos_del_Imputado_MPI_Forma_de_Ojos_Forma_OjosData(data) {
+	AutoCompleteForma_de_OjosData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteForma_de_OjosData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteForma_de_OjosData;
+}
 //Grid GetAutocomplete
 
 //Grid GetAutocomplete
@@ -1073,6 +1084,9 @@ function ClearControls() {
     $('#CreateDetalle_de_Datos_del_Imputado_MPI')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
+    $('#Forma_de_Ojos').empty();
+    $("#Forma_de_Ojos").append('<option value=""></option>');
+    $('#Forma_de_Ojos').val('0').trigger('change');
                 Detalle_del_Abogado_Imputado_MPIClearGridData();
                 Detalle_de_Sentencias_Imputado_MPIClearGridData();
 
@@ -1216,7 +1230,10 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendDetalle_de_Datos_del_Imputado_MPIData(function (currentId) {
 					$("#ClaveId").val("0");
-	                Detalle_del_Abogado_Imputado_MPIClearGridData();
+	    $('#Forma_de_Ojos').empty();
+    $("#Forma_de_Ojos").append('<option value=""></option>');
+    $('#Forma_de_Ojos').val('0').trigger('change');
+                Detalle_del_Abogado_Imputado_MPIClearGridData();
                 Detalle_de_Sentencias_Imputado_MPIClearGridData();
 
 					ResetClaveLabel();

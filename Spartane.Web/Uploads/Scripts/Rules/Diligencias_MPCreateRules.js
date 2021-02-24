@@ -4,7 +4,12 @@ var rowIndex = '';
 var saltarValidacion = false;
 $("#Diligencias_MPGuardarYNuevo , #Diligencias_MPGuardarYCopia").hide()
 $(document).ready(function () {
-
+if(operation == 'Update'){
+	if( TryParseInt('107', '107')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ) 
+	{ 
+		$("#Diligencias_MPGuardar").remove()
+	}
+}
 
 
 
@@ -18,7 +23,7 @@ $("form#CreateDiligencias_MP").on('change', '#Documento', function () {
 	rowIndex='';
 if( EvaluaQuery("select Solicitar_Archivo_Adjunto from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divArchivo_Adjunto').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));} else { $('#divArchivo_Adjunto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));}
 });
-
+
 //BusinessRuleId:2568, Attribute:267313, Operation:Field, Event:None
 
 
@@ -31,7 +36,7 @@ $("form#CreateDiligencias_MP").on('change', '#Documento', function () {
 	rowIndex='';
 if( EvaluaQuery("  select Requerido from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divProbable_Responsable').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));} else { $('#divProbable_Responsable').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));}
 });
-
+
 //BusinessRuleId:2565, Attribute:267313, Operation:Field, Event:None
 
 //BusinessRuleId:2579, Attribute:267313, Operation:Field, Event:None
@@ -40,7 +45,7 @@ $("form#CreateDiligencias_MP").on('change', '#Documento', function () {
 	rowIndex='';
 if( EvaluaQuery("select Requerido_o_Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divInvolucrado').css('display', 'block');$('#divProbable_Responsable').css('display', 'block'); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));} else {}
 });
-
+
 //BusinessRuleId:2579, Attribute:267313, Operation:Field, Event:None
 
 //BusinessRuleId:2569, Attribute:267313, Operation:Field, Event:None
@@ -49,7 +54,7 @@ $("form#CreateDiligencias_MP").on('change', '#Documento', function () {
 	rowIndex='';
 if( EvaluaQuery("select Solicitar_Numero_de_Oficio from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divNumero_de_Oficio').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));} else { $('#divNumero_de_Oficio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));}
 });
-
+
 //BusinessRuleId:2569, Attribute:267313, Operation:Field, Event:None
 
 
@@ -75,7 +80,7 @@ $("form#CreateDiligencias_MP").on('change', '#Involucrado', function () {
 if( EvaluaQuery("select Persona_Desaparecida from Detalle_de_Datos_Generales"
 +" where Tipo_de_Compareciente = 2 AND persona_aparecio = 0 and clave = FLD[Involucrado]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { alert(DecodifyText('La persona seleccionada se encuentra desaparecida, favor de registrar la aparición de la persona', rowIndex, nameOfTable));} else {}
 });
-
+
 //BusinessRuleId:2897, Attribute:267315, Operation:Field, Event:None
 
 
@@ -86,7 +91,7 @@ $("form#CreateDiligencias_MP").on('change', '#Documento', function () {
 	rowIndex='';
 if( EvaluaQuery("select Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divInvolucrado').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));} else { $('#divInvolucrado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}
 });
-
+
 //BusinessRuleId:2564, Attribute:267313, Operation:Field, Event:None
 
 //BusinessRuleId:3015, Attribute:267313, Operation:Field, Event:None
@@ -95,7 +100,7 @@ $("form#CreateDiligencias_MP").on('change', '#Documento', function () {
 	rowIndex='';
  AsignarValor($('#' + nameOfTable + 'Descripcion' + rowIndex),EvaluaQuery("select Descripcion from Documento where Clave = FLD[Documento]", rowIndex, nameOfTable));
 });
-
+
 //BusinessRuleId:3015, Attribute:267313, Operation:Field, Event:None
 
 
@@ -110,7 +115,7 @@ $("form#CreateDiligencias_MP").on('change', '#Documento', function () {
 	rowIndex='';
 if( EvaluaQuery("select Tipo_de_Documento from documento where Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Lista_para_periciales' + rowIndex),'false');}
 });
-
+
 //BusinessRuleId:3504, Attribute:267313, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
@@ -163,14 +168,14 @@ if(operation == 'New'){
 //BusinessRuleId:2574, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( EvaluaQuery("  select Requerido_o_Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divProbable_Responsable').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));} else { $('#divProbable_Responsable').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));}
-
+
 }
 //BusinessRuleId:2574, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2574, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( EvaluaQuery("  select Requerido_o_Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divProbable_Responsable').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));} else { $('#divProbable_Responsable').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));}
-
+
 }
 //BusinessRuleId:2574, Attribute:0, Operation:Object, Event:SCREENOPENING
 
@@ -185,28 +190,28 @@ if( EvaluaQuery("  select Requerido_o_Solicitante from Documento where clave = F
 //BusinessRuleId:2577, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( EvaluaQuery("select Solicitar_Numero_de_Oficio from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divNumero_de_Oficio').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));} else { $('#divNumero_de_Oficio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));}
-
+
 }
 //BusinessRuleId:2577, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2577, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( EvaluaQuery("select Solicitar_Numero_de_Oficio from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divNumero_de_Oficio').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));} else { $('#divNumero_de_Oficio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));}
-
+
 }
 //BusinessRuleId:2577, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2575, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( EvaluaQuery("select Solicitar_Archivo_Adjunto from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divArchivo_Adjunto').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));} else { $('#divArchivo_Adjunto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));}
-
+
 }
 //BusinessRuleId:2575, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2575, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( EvaluaQuery("select Solicitar_Archivo_Adjunto from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divArchivo_Adjunto').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));} else { $('#divArchivo_Adjunto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));}
-
+
 }
 //BusinessRuleId:2575, Attribute:0, Operation:Object, Event:SCREENOPENING
 
@@ -217,49 +222,49 @@ if( EvaluaQuery("select Solicitar_Archivo_Adjunto from Documento where clave = F
 //BusinessRuleId:2619, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  $('#divTipo_de_Documento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex));
-
+
 }
 //BusinessRuleId:2619, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2619, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  $('#divTipo_de_Documento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex));
-
+
 }
 //BusinessRuleId:2619, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2619, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
  $('#divTipo_de_Documento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex));
-
+
 }
 //BusinessRuleId:2619, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2559, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  var valor = $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).val();   $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec uspGetTipoDocumentoOrigen 3", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec uspGetTipoDocumentoOrigen 3", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).val(valor).trigger('change');
-
+
 }
 //BusinessRuleId:2559, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2559, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  var valor = $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).val();   $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec uspGetTipoDocumentoOrigen 3", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec uspGetTipoDocumentoOrigen 3", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex).val(valor).trigger('change');
-
+
 }
 //BusinessRuleId:2559, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2620, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  var valor = $('#' + nameOfTable + 'Documento' + rowIndex).val();   $('#' + nameOfTable + 'Documento' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Documento' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Documento' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave,Descripcion from documento where Origen = 3", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Documento' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave,Descripcion from documento where Origen = 3", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Documento' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Documento' + rowIndex).val(valor).trigger('change');
-
+
 }
 //BusinessRuleId:2620, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2620, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  var valor = $('#' + nameOfTable + 'Documento' + rowIndex).val();   $('#' + nameOfTable + 'Documento' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Documento' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Documento' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave,Descripcion from documento where Origen = 3", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Documento' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave,Descripcion from documento where Origen = 3", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Documento' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Documento' + rowIndex).val(valor).trigger('change');
-
+
 }
 //BusinessRuleId:2620, Attribute:0, Operation:Object, Event:SCREENOPENING
 
@@ -270,14 +275,14 @@ if(operation == 'Update'){
 //BusinessRuleId:2560, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  var valor = $('#' + nameOfTable + 'Involucrado' + rowIndex).val();   $('#' + nameOfTable + 'Involucrado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Involucrado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Involucrado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Nombre_Completo from Detalle_de_Datos_Generales where Expediente_MP=GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Involucrado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Nombre_Completo from Detalle_de_Datos_Generales where Expediente_MP=GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Involucrado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Involucrado' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val();   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Probable_Responsable' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Nombre_Completo_Detenido from Detalle_de_Imputado where Expediente_MP=GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Nombre_Completo_Detenido from Detalle_de_Imputado where Expediente_MP=GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val(valor).trigger('change');
-
+
 }
 //BusinessRuleId:2560, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2560, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  var valor = $('#' + nameOfTable + 'Involucrado' + rowIndex).val();   $('#' + nameOfTable + 'Involucrado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Involucrado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Involucrado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Nombre_Completo from Detalle_de_Datos_Generales where Expediente_MP=GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Involucrado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Nombre_Completo from Detalle_de_Datos_Generales where Expediente_MP=GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Involucrado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Involucrado' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val();   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Probable_Responsable' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Nombre_Completo_Detenido from Detalle_de_Imputado where Expediente_MP=GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Nombre_Completo_Detenido from Detalle_de_Imputado where Expediente_MP=GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val(valor).trigger('change');
-
+
 }
 //BusinessRuleId:2560, Attribute:0, Operation:Object, Event:SCREENOPENING
 
@@ -312,21 +317,21 @@ if(operation == 'Update'){
 //BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( EvaluaQuery("select Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divInvolucrado').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));} else { $('#divInvolucrado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}
-
+
 }
 //BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( EvaluaQuery("select Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divInvolucrado').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));} else { $('#divInvolucrado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}
-
+
 }
 //BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:3483, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));
-
+
 }
 //BusinessRuleId:3483, Attribute:0, Operation:Object, Event:SCREENOPENING
 
@@ -341,16 +346,23 @@ if(operation == 'New'){
 //BusinessRuleId:3484, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( EvaluaQuery("select Tipo_de_Documento from documento where Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
-
+
 }
 //BusinessRuleId:3484, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:3484, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
 if( EvaluaQuery("select Tipo_de_Documento from documento where Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
-
+
 }
 //BusinessRuleId:3484, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3902, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( TryParseInt('107', '107')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ) { DisabledControl($("#" + nameOfTable + "Clave" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));}DisabledControl($("#" + nameOfTable + "Expediente_MP" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Registra" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Registra' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Documento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex));}DisabledControl($("#" + nameOfTable + "Documento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Documento' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_de_Oficio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));}DisabledControl($("#" + nameOfTable + "Involucrado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Probable_Responsable" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));}DisabledControl($("#" + nameOfTable + "Archivo_Adjunto" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));}DisabledControl($("#" + nameOfTable + "Observaciones" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex));}DisabledControl($("#" + nameOfTable + "Archivo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Descripcion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Lista_para_periciales" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}} else {}
+
+}
+//BusinessRuleId:3902, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
@@ -379,16 +391,16 @@ function EjecutarValidacionesAntesDeGuardar(){
 //BusinessRuleId:2582, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'New'){
 if( EvaluaQuery("	select Requerido_o_Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Involucrado' + rowIndex),nameOfTable,rowIndex)>=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Probable_Responsable' + rowIndex),nameOfTable,rowIndex)>=TryParseInt('1', '1') ) { alert(DecodifyText(' 	Debe seleccionar solamente una persona, puede ser Solicitante o Requerido', rowIndex, nameOfTable));
-result=false;} else {}
-
+result=false;} else {}
+
 }
 //BusinessRuleId:2582, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //BusinessRuleId:2582, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'Update'){
 if( EvaluaQuery("	select Requerido_o_Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Involucrado' + rowIndex),nameOfTable,rowIndex)>=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Probable_Responsable' + rowIndex),nameOfTable,rowIndex)>=TryParseInt('1', '1') ) { alert(DecodifyText(' 	Debe seleccionar solamente una persona, puede ser Solicitante o Requerido', rowIndex, nameOfTable));
-result=false;} else {}
-
+result=false;} else {}
+
 }
 //BusinessRuleId:2582, Attribute:2, Operation:Object, Event:BEFORESAVING
 
@@ -407,30 +419,30 @@ if( EvaluaQuery("	select Requerido_o_Solicitante from Documento where clave = FL
 //BusinessRuleId:2581, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'New'){
 if( EvaluaQuery("select Requerido_o_Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Involucrado' + rowIndex),nameOfTable,rowIndex)==TryParseInt('null', 'null') && GetValueByControlType($('#' + nameOfTable + 'Probable_Responsable' + rowIndex),nameOfTable,rowIndex)==TryParseInt('null', 'null') ) { alert(DecodifyText(' Debe seleccionar por lo menos una persona, puede ser Solicitante o Requerido', rowIndex, nameOfTable));
-result=false;} else {}
-
+result=false;} else {}
+
 }
 //BusinessRuleId:2581, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //BusinessRuleId:2581, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'Update'){
 if( EvaluaQuery("select Requerido_o_Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Involucrado' + rowIndex),nameOfTable,rowIndex)==TryParseInt('null', 'null') && GetValueByControlType($('#' + nameOfTable + 'Probable_Responsable' + rowIndex),nameOfTable,rowIndex)==TryParseInt('null', 'null') ) { alert(DecodifyText(' Debe seleccionar por lo menos una persona, puede ser Solicitante o Requerido', rowIndex, nameOfTable));
-result=false;} else {}
-
+result=false;} else {}
+
 }
 //BusinessRuleId:2581, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //BusinessRuleId:2621, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'New'){
  AsignarValor($('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex),EvaluaQuery("select Tipo_de_Documento from documento where Clave = FLD[Documento]", rowIndex, nameOfTable));
-
+
 }
 //BusinessRuleId:2621, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //BusinessRuleId:2621, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'Update'){
  AsignarValor($('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex),EvaluaQuery("select Tipo_de_Documento from documento where Clave = FLD[Documento]", rowIndex, nameOfTable));
-
+
 }
 //BusinessRuleId:2621, Attribute:2, Operation:Object, Event:BEFORESAVING
 
@@ -443,7 +455,7 @@ if(operation == 'New'){
  EvaluaQuery("  update Diligencias_MP "
 +" set expediente_mp = GLOBAL[SpartanOperationId] "
 +" where clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
-
+
 }
 //BusinessRuleId:2583, Attribute:2, Operation:Object, Event:AFTERSAVING
 
@@ -458,14 +470,14 @@ if(operation == 'New'){
 //BusinessRuleId:3495, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Lista_para_periciales' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { EvaluaQuery(" EXEC UspInsertar_Servicio_Pericial_Desde_Diligencias 3, GLOBAL[SpartanOperationId], FLDD[lblClave]", rowIndex, nameOfTable);} else {}
-
+
 }
 //BusinessRuleId:3495, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:3494, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
 if( GetValueByControlType($('#' + nameOfTable + 'Lista_para_periciales' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { EvaluaQuery(" EXEC UspInsertar_Servicio_Pericial_Desde_Diligencias 3, GLOBAL[SpartanOperationId], GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
-
+
 }
 //BusinessRuleId:3494, Attribute:2, Operation:Object, Event:AFTERSAVING
 

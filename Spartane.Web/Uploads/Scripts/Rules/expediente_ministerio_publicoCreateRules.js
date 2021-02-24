@@ -599,152 +599,47 @@ if(operation == 'Consult'){
 
 
 
-//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '5'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '5'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '5'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '6'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '6'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '6'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '7'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '7'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '7'",rowIndex, nameOfTable) ) {} else {}
-
-}
-//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -901,6 +796,726 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2586, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:4058, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4058, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4058, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4058, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4058, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4058, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4059, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4059, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4059, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4059, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4059, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4059, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4061, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4061, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4061, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4061, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4061, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4061, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4063, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4063, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4063, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4063, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4063, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4063, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4065, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '5'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4065, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4065, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '5'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4065, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4065, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '5'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4065, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4067, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '6'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4067, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4067, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '6'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4067, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4067, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '6'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4067, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4069, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '7'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4069, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4069, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '7'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4069, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4069, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '7'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4069, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4071, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '8'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4071, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4071, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '8'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4071, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4071, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '8'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4071, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4073, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '9'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4073, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4073, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '9'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4073, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4073, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '9'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4073, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:4075, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $("a[href='#tabDatos_del_Acuerdo']").css('display', 'none'); $("a[href='#tabResolucion_o_Dictaminacion']").css('display', 'none'); DisabledControl($("#" + nameOfTable + "tipo_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'tipo_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_inicio_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_inicio_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "hora_de_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'hora_de_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "domicilio_para_el_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'domicilio_para_el_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "monto_de_reparacion_de_danos" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'monto_de_reparacion_de_danos' + rowIndex));}DisabledControl($("#" + nameOfTable + "parcialidades" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'parcialidades' + rowIndex));}DisabledControl($("#" + nameOfTable + "periodicidad" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'periodicidad' + rowIndex));}DisabledControl($("#" + nameOfTable + "acepta_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'acepta_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "motivo_de_rechazo_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'motivo_de_rechazo_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "hora_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'hora_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "tipo_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'tipo_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "comentarios_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'comentarios_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Cierra" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Cierra' + rowIndex));}
+
+}
+//BusinessRuleId:4075, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4075, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $("a[href='#tabDatos_del_Acuerdo']").css('display', 'none'); $("a[href='#tabResolucion_o_Dictaminacion']").css('display', 'none'); DisabledControl($("#" + nameOfTable + "tipo_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'tipo_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_inicio_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_inicio_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "hora_de_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'hora_de_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "domicilio_para_el_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'domicilio_para_el_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "monto_de_reparacion_de_danos" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'monto_de_reparacion_de_danos' + rowIndex));}DisabledControl($("#" + nameOfTable + "parcialidades" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'parcialidades' + rowIndex));}DisabledControl($("#" + nameOfTable + "periodicidad" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'periodicidad' + rowIndex));}DisabledControl($("#" + nameOfTable + "acepta_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'acepta_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "motivo_de_rechazo_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'motivo_de_rechazo_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "hora_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'hora_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "tipo_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'tipo_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "comentarios_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'comentarios_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Cierra" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Cierra' + rowIndex));}
+
+}
+//BusinessRuleId:4075, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4075, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $("a[href='#tabDatos_del_Acuerdo']").css('display', 'none'); $("a[href='#tabResolucion_o_Dictaminacion']").css('display', 'none'); DisabledControl($("#" + nameOfTable + "tipo_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'tipo_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_inicio_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_inicio_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "hora_de_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'hora_de_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "domicilio_para_el_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'domicilio_para_el_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "monto_de_reparacion_de_danos" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'monto_de_reparacion_de_danos' + rowIndex));}DisabledControl($("#" + nameOfTable + "parcialidades" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'parcialidades' + rowIndex));}DisabledControl($("#" + nameOfTable + "periodicidad" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'periodicidad' + rowIndex));}DisabledControl($("#" + nameOfTable + "acepta_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'acepta_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "motivo_de_rechazo_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'motivo_de_rechazo_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "hora_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'hora_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "tipo_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'tipo_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "comentarios_de_cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'comentarios_de_cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Cierra" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Cierra' + rowIndex));}
+
+}
+//BusinessRuleId:4075, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
