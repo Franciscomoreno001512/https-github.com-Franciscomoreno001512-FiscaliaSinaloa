@@ -38,7 +38,7 @@
   <resource culture="en-US" name="Calvicie" value="Calvicie"></resource>
   <resource culture="en-US" name="Color_Ojos" value="Color de Ojos"></resource>
   <resource culture="en-US" name="Ojos" value="Ojos"></resource>
-  <resource culture="en-US" name="Forma_Ojos" value="Forma de Ojos"></resource>
+  <resource culture="en-US" name="Forma_de_Ojos" value="Forma de Ojos"></resource>
   <resource culture="en-US" name="Nariz_Base" value="Nariz Base"></resource>
   <resource culture="en-US" name="Labios" value="Labios"></resource>
   <resource culture="en-US" name="Boca" value="Boca"></resource>
@@ -113,7 +113,7 @@
   <resource culture="en-US" name="Judicializar" value="Judicializar"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
-<resource culture="en-US" name="Tab_Datos_de_Media_Filiacion" value=" Datos de Media Filiación"></resource>
+<resource culture="en-US" name="TabDatos_de_Media_Filiacion" value="Datos de Media Filiación"></resource>
 <resource culture="en-US" name="TabControl_de_Tiempos" value="Control de Tiempos"></resource>
 <resource culture="en-US" name="TabDatos_de_los_Hechos" value="Datos de los Hechos"></resource>
 <resource culture="en-US" name="TabDatos_del_Abogado" value="Datos del Abogado"></resource>

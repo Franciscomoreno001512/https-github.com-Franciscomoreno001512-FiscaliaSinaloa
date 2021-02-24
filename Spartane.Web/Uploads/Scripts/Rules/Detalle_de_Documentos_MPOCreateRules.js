@@ -256,6 +256,33 @@ if( EvaluaQuery("SELECT COUNT(Clave) FROM Detalle_de_Imputado WHERE Modulo_Atenc
 
 
 
+
+
+
+
+
+
+//BusinessRuleId:3901, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex)); $('#divFolio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));
+
+}
+//BusinessRuleId:3901, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3901, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex)); $('#divFolio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));
+
+}
+//BusinessRuleId:3901, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3901, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex)); $('#divFolio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));
+
+}
+//BusinessRuleId:3901, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -288,14 +315,7 @@ if( GetValueByControlType($('#' + nameOfTable + 'Lista_para_periciales' + rowInd
 }
 //BusinessRuleId:3492, Attribute:2, Operation:Object, Event:AFTERSAVING
 
-//BusinessRuleId:1735, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'New'){
- EvaluaQuery(" update Detalle_de_Documentos_MPO"
-+" 	set Modulo_Atencion_Inicial= GLOBAL[SpartanOperationId]"
-+" 	where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
-
-}
-//BusinessRuleId:1735, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 
 //BusinessRuleId:3491, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
@@ -303,6 +323,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Lista_para_periciales' + rowInd
 
 }
 //BusinessRuleId:3491, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:1735, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" update Detalle_de_Documentos_MPO"
++" 	set Modulo_Atencion_Inicial= GLOBAL[SpartanOperationId]"
++" 	where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); EvaluaQuery("EXEC UspGeneraFolioDocumentos GLOBAL[KeyValueInserted]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:1735, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

@@ -1604,6 +1604,8 @@
 <Compile Include="Domain\Registro_de_Huellas_Dactilares\Registro_de_Huellas_DactilaresPagingModel.cs" />
 <Compile Include="Domain\Generador_Folio_Documentos_AT\Generador_Folio_Documentos_AT.cs" />
 <Compile Include="Domain\Generador_Folio_Documentos_AT\Generador_Folio_Documentos_ATPagingModel.cs" />
+<Compile Include="Domain\Forma_Ojos\Forma_Ojos.cs" />
+<Compile Include="Domain\Forma_Ojos\Forma_OjosPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1624,6 +1626,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

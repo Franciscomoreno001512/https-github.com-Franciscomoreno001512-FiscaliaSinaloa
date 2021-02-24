@@ -3,6 +3,12 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
+	
+	//CONVERTIR A MAYUSCULAS AL BLUR
+    $('input[type="text"],textarea').blur(function () {
+        this.value = this.value.toUpperCase();
+    });
+    //END CONVERTIR A MAYUSCULAS AL BLUR
 
 
 //BusinessRuleId:638, Attribute:263907, Operation:Field, Event:None

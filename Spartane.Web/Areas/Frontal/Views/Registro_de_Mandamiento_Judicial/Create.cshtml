@@ -130,9 +130,9 @@
     List<SelectListItem> varOjos_Ojos = null;
     if (ViewBag.Ojoss_Ojos != null)
     { varOjos_Ojos = (List<SelectListItem>)ViewBag.Ojoss_Ojos; }
-    List<SelectListItem> varFroma_Ojos_Forma_Ojos = null;
-    if (ViewBag.Froma_Ojoss_Forma_Ojos != null)
-    { varFroma_Ojos_Forma_Ojos = (List<SelectListItem>)ViewBag.Froma_Ojoss_Forma_Ojos; }
+    List<SelectListItem> varForma_Ojos_Forma_Ojos = null;
+    if (ViewBag.Forma_Ojoss_Forma_Ojos != null)
+    { varForma_Ojos_Forma_Ojos = (List<SelectListItem>)ViewBag.Forma_Ojoss_Forma_Ojos; }
     List<SelectListItem> varNariz_Base_Nariz_Base = null;
     if (ViewBag.Nariz_Bases_Nariz_Base != null)
     { varNariz_Base_Nariz_Base = (List<SelectListItem>)ViewBag.Nariz_Bases_Nariz_Base; }
@@ -1690,8 +1690,8 @@
                                 <div class="col-sm-8" data-field-id="Forma_Ojos" data-attribute="268987" data-field-name="@Resources.Registro_de_Mandamiento_JudicialResources.Forma_Ojos">
                                     <select class="form-control Media_Filiacion" data-val="true" data-val-number="The field Forma Ojos must be a number." data-val-required="The Forma Ojos field is required." id="Forma_Ojos" name="Forma_Ojos">
                                         <option value=""></option>
-                                        @if (varFroma_Ojos_Forma_Ojos != null){ 
-                                            foreach (var itemForma_Ojos in varFroma_Ojos_Forma_Ojos)
+                                        @if (varForma_Ojos_Forma_Ojos != null){ 
+                                            foreach (var itemForma_Ojos in varForma_Ojos_Forma_Ojos)
                                             {
                                                 if (itemForma_Ojos.Value == Convert.ToString(Model.Forma_Ojos))
                                                 {
@@ -1709,7 +1709,7 @@
 								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268987).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Froma_Ojos', 'Forma_Ojos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Forma_Ojos', 'Forma_Ojos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>

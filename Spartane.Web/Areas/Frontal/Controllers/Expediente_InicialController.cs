@@ -5137,8 +5137,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Color_OjosDescripcion = CultureHelper.GetTraduction(m.Color_Ojos_Color_Ojos.Clave.ToString(), "Descripcion") ??(string)m.Color_Ojos_Color_Ojos.Descripcion
                         ,Ojos = m.Ojos
                         ,OjosDescripcion = CultureHelper.GetTraduction(m.Ojos_Ojos.Clave.ToString(), "Descripcion") ??(string)m.Ojos_Ojos.Descripcion
-                        ,Forma_Ojos = m.Forma_Ojos
-                        ,Forma_OjosDescripcion = CultureHelper.GetTraduction(m.Forma_Ojos_Froma_Ojos.Clave.ToString(), "Descripcion") ??(string)m.Forma_Ojos_Froma_Ojos.Descripcion
+                        //,Forma_Ojos = m.Forma_Ojos
+                        //,Forma_OjosDescripcion = CultureHelper.GetTraduction(m.Forma_Ojos_Froma_Ojos.Clave.ToString(), "Descripcion") ??(string)m.Forma_Ojos_Froma_Ojos.Descripcion
                         ,Nariz_Base = m.Nariz_Base
                         ,Nariz_BaseDescripcion = CultureHelper.GetTraduction(m.Nariz_Base_Nariz_Base.Clave.ToString(), "Descripcion") ??(string)m.Nariz_Base_Nariz_Base.Descripcion
                         ,Labios = m.Labios
@@ -5331,8 +5331,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Color_OjosDescripcion = CultureHelper.GetTraduction(m.Color_Ojos_Color_Ojos.Clave.ToString(), "Descripcion") ??(string)m.Color_Ojos_Color_Ojos.Descripcion
                         ,Ojos = m.Ojos
                         ,OjosDescripcion = CultureHelper.GetTraduction(m.Ojos_Ojos.Clave.ToString(), "Descripcion") ??(string)m.Ojos_Ojos.Descripcion
-                        ,Forma_Ojos = m.Forma_Ojos
-                        ,Forma_OjosDescripcion = CultureHelper.GetTraduction(m.Forma_Ojos_Froma_Ojos.Clave.ToString(), "Descripcion") ??(string)m.Forma_Ojos_Froma_Ojos.Descripcion
+                        //,Forma_Ojos = m.Forma_Ojos
+                        //,Forma_OjosDescripcion = CultureHelper.GetTraduction(m.Forma_Ojos_Froma_Ojos.Clave.ToString(), "Descripcion") ??(string)m.Forma_Ojos_Froma_Ojos.Descripcion
                         ,Nariz_Base = m.Nariz_Base
                         ,Nariz_BaseDescripcion = CultureHelper.GetTraduction(m.Nariz_Base_Nariz_Base.Clave.ToString(), "Descripcion") ??(string)m.Nariz_Base_Nariz_Base.Descripcion
                         ,Labios = m.Labios
@@ -8409,7 +8409,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                             ,Calvicie = (Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Calvicie) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Calvicie))
                             ,Color_Ojos = (Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Color_Ojos) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Color_Ojos))
                             ,Ojos = (Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Ojos) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Ojos))
-                            ,Forma_Ojos = (Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Forma_Ojos) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Forma_Ojos))
+                           // ,Forma_Ojos = (Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Forma_Ojos) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Forma_Ojos))
                             ,Nariz_Base = (Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Nariz_Base) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Nariz_Base))
                             ,Labios = (Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Labios) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Labios))
                             ,Boca = (Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Boca) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_de_Datos_del_Imputado_MPIItem.Boca))

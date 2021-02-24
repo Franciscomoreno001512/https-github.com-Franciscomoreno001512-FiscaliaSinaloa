@@ -67,8 +67,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Color_OjosDescripcion { get; set; }
         public int? Ojos { get; set; }
         public string OjosDescripcion { get; set; }
-        public int? Forma_Ojos { get; set; }
-        public string Forma_OjosDescripcion { get; set; }
+        public int? Forma_de_Ojos { get; set; }
+        public string Forma_de_OjosDescripcion { get; set; }
         public int? Nariz_Base { get; set; }
         public string Nariz_BaseDescripcion { get; set; }
         public int? Labios { get; set; }

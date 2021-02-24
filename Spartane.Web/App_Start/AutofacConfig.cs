@@ -1955,6 +1955,9 @@ using Spartane.Web.Areas.WebApiConsumer.Registro_de_Huellas_Dactilares;
 using Spartane.Services.Generador_Folio_Documentos_AT;
 using Spartane.Core.Domain.Generador_Folio_Documentos_AT;
 using Spartane.Web.Areas.WebApiConsumer.Generador_Folio_Documentos_AT;
+using Spartane.Services.Forma_Ojos;
+using Spartane.Core.Domain.Forma_Ojos;
+using Spartane.Web.Areas.WebApiConsumer.Forma_Ojos;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3381,6 +3384,8 @@ builder.RegisterType<Registro_de_Huellas_DactilaresService>().As<IRegistro_de_Hu
 builder.RegisterType<Registro_de_Huellas_DactilaresApiConsumer>().As<IRegistro_de_Huellas_DactilaresApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Generador_Folio_Documentos_ATService>().As<IGenerador_Folio_Documentos_ATService>().InstancePerLifetimeScope();
 builder.RegisterType<Generador_Folio_Documentos_ATApiConsumer>().As<IGenerador_Folio_Documentos_ATApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Forma_OjosService>().As<IForma_OjosService>().InstancePerLifetimeScope();
+builder.RegisterType<Forma_OjosApiConsumer>().As<IForma_OjosApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3561,6 +3566,60 @@ builder.RegisterType<Generador_Folio_Documentos_ATApiConsumer>().As<IGenerador_F
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

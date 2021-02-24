@@ -631,7 +631,18 @@ $(document).ready(function () {
 
     //BusinessRuleId:1938, Attribute:265807, Operation:Field, Event:None
 
-    //NEWBUSINESSRULE_NONE//
+    
+
+//BusinessRuleId:4082, Attribute:265798, Operation:Field, Event:None
+$("form#CreateDetalle_de_Imputado").on('change', '#Escolaridad_Detenido', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Escolaridad_Detenido' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') ) { $('#divEspecialidad').css('display', 'block');$('#divEstudios_Superiores').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));} else { SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex)); $('#divEspecialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));$('#divEstudios_Superiores').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));}
+});
+
+//BusinessRuleId:4082, Attribute:265798, Operation:Field, Event:None
+
+//NEWBUSINESSRULE_NONE//
 });
 
 function EjecutarValidacionesAlComienzo() {
@@ -2664,7 +2675,28 @@ function EjecutarValidacionesAlComienzo() {
     }
     //BusinessRuleId:3855, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-    //NEWBUSINESSRULE_SCREENOPENING//
+    //BusinessRuleId:4083, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Escolaridad_Detenido' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') ) { $('#divEspecialidad').css('display', 'block');$('#divEstudios_Superiores').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));} else { SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex)); $('#divEspecialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));$('#divEstudios_Superiores').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));}
+
+}
+//BusinessRuleId:4083, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4083, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Escolaridad_Detenido' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') ) { $('#divEspecialidad').css('display', 'block');$('#divEstudios_Superiores').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));} else { SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex)); $('#divEspecialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));$('#divEstudios_Superiores').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));}
+
+}
+//BusinessRuleId:4083, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4083, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Escolaridad_Detenido' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') ) { $('#divEspecialidad').css('display', 'block');$('#divEstudios_Superiores').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));} else { SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex)); $('#divEspecialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));$('#divEstudios_Superiores').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));}
+
+}
+//BusinessRuleId:4083, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//NEWBUSINESSRULE_SCREENOPENING//
 }
 
 function EjecutarValidacionesAntesDeGuardar() {

@@ -24,7 +24,7 @@ using Spartane.Core.Domain.Forma_Cabello;
 using Spartane.Core.Domain.Calvicie;
 using Spartane.Core.Domain.Color_Ojos;
 using Spartane.Core.Domain.Ojos;
-using Spartane.Core.Domain.Froma_Ojos;
+using Spartane.Core.Domain.Forma_Ojos;
 using Spartane.Core.Domain.Nariz_Base;
 using Spartane.Core.Domain.Labios;
 using Spartane.Core.Domain.Boca;
@@ -123,7 +123,7 @@ using Spartane.Web.Areas.WebApiConsumer.Forma_Cabello;
 using Spartane.Web.Areas.WebApiConsumer.Calvicie;
 using Spartane.Web.Areas.WebApiConsumer.Color_Ojos;
 using Spartane.Web.Areas.WebApiConsumer.Ojos;
-using Spartane.Web.Areas.WebApiConsumer.Froma_Ojos;
+using Spartane.Web.Areas.WebApiConsumer.Forma_Ojos;
 using Spartane.Web.Areas.WebApiConsumer.Nariz_Base;
 using Spartane.Web.Areas.WebApiConsumer.Labios;
 using Spartane.Web.Areas.WebApiConsumer.Boca;
@@ -224,7 +224,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ICalvicieApiConsumer _ICalvicieApiConsumer;
         private IColor_OjosApiConsumer _IColor_OjosApiConsumer;
         private IOjosApiConsumer _IOjosApiConsumer;
-        private IFroma_OjosApiConsumer _IFroma_OjosApiConsumer;
+        private IForma_OjosApiConsumer _IForma_OjosApiConsumer;
         private INariz_BaseApiConsumer _INariz_BaseApiConsumer;
         private ILabiosApiConsumer _ILabiosApiConsumer;
         private IBocaApiConsumer _IBocaApiConsumer;
@@ -266,7 +266,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Datos_del_Imputado_MPIController(IDetalle_de_Datos_del_Imputado_MPIService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Datos_del_Imputado_MPIApiConsumer Detalle_de_Datos_del_Imputado_MPIApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IEscolaridadApiConsumer EscolaridadApiConsumer , IOcupacionApiConsumer OcupacionApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , ILocalidadApiConsumer LocalidadApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IPaisApiConsumer PaisApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IFroma_OjosApiConsumer Froma_OjosApiConsumer , INariz_BaseApiConsumer Nariz_BaseApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IMentonApiConsumer MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , ICatalogo_Estatus_Detenido_MPIApiConsumer Catalogo_Estatus_Detenido_MPIApiConsumer , IMedidas_CautelaresApiConsumer Medidas_CautelaresApiConsumer , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IDetalle_del_Abogado_Imputado_MPIApiConsumer Detalle_del_Abogado_Imputado_MPIApiConsumer , IAbogadoApiConsumer AbogadoApiConsumer  , IDetalle_de_Sentencias_Imputado_MPIApiConsumer Detalle_de_Sentencias_Imputado_MPIApiConsumer , IDelitoApiConsumer DelitoApiConsumer , ISentenciaApiConsumer SentenciaApiConsumer  , IEstatus_del_ImputadoApiConsumer Estatus_del_ImputadoApiConsumer )
+        public Detalle_de_Datos_del_Imputado_MPIController(IDetalle_de_Datos_del_Imputado_MPIService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Datos_del_Imputado_MPIApiConsumer Detalle_de_Datos_del_Imputado_MPIApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IEscolaridadApiConsumer EscolaridadApiConsumer , IOcupacionApiConsumer OcupacionApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , ILocalidadApiConsumer LocalidadApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IPaisApiConsumer PaisApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IForma_OjosApiConsumer Forma_OjosApiConsumer , INariz_BaseApiConsumer Nariz_BaseApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IMentonApiConsumer MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , ICatalogo_Estatus_Detenido_MPIApiConsumer Catalogo_Estatus_Detenido_MPIApiConsumer , IMedidas_CautelaresApiConsumer Medidas_CautelaresApiConsumer , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IDetalle_del_Abogado_Imputado_MPIApiConsumer Detalle_del_Abogado_Imputado_MPIApiConsumer , IAbogadoApiConsumer AbogadoApiConsumer  , IDetalle_de_Sentencias_Imputado_MPIApiConsumer Detalle_de_Sentencias_Imputado_MPIApiConsumer , IDelitoApiConsumer DelitoApiConsumer , ISentenciaApiConsumer SentenciaApiConsumer  , IEstatus_del_ImputadoApiConsumer Estatus_del_ImputadoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -298,7 +298,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ICalvicieApiConsumer = CalvicieApiConsumer;
             this._IColor_OjosApiConsumer = Color_OjosApiConsumer;
             this._IOjosApiConsumer = OjosApiConsumer;
-            this._IFroma_OjosApiConsumer = Froma_OjosApiConsumer;
+            this._IForma_OjosApiConsumer = Forma_OjosApiConsumer;
             this._INariz_BaseApiConsumer = Nariz_BaseApiConsumer;
             this._ILabiosApiConsumer = LabiosApiConsumer;
             this._IBocaApiConsumer = BocaApiConsumer;
@@ -461,8 +461,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Color_OjosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_del_Imputado_MPIData.Color_Ojos), "Color_Ojos") ??  (string)Detalle_de_Datos_del_Imputado_MPIData.Color_Ojos_Color_Ojos.Descripcion
                     ,Ojos = Detalle_de_Datos_del_Imputado_MPIData.Ojos
                     ,OjosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_del_Imputado_MPIData.Ojos), "Ojos") ??  (string)Detalle_de_Datos_del_Imputado_MPIData.Ojos_Ojos.Descripcion
-                    ,Forma_Ojos = Detalle_de_Datos_del_Imputado_MPIData.Forma_Ojos
-                    ,Forma_OjosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_del_Imputado_MPIData.Forma_Ojos), "Froma_Ojos") ??  (string)Detalle_de_Datos_del_Imputado_MPIData.Forma_Ojos_Froma_Ojos.Descripcion
+                    ,Forma_de_Ojos = Detalle_de_Datos_del_Imputado_MPIData.Forma_de_Ojos
+                    ,Forma_de_OjosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_del_Imputado_MPIData.Forma_de_Ojos), "Forma_Ojos") ??  (string)Detalle_de_Datos_del_Imputado_MPIData.Forma_de_Ojos_Forma_Ojos.Descripcion
                     ,Nariz_Base = Detalle_de_Datos_del_Imputado_MPIData.Nariz_Base
                     ,Nariz_BaseDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_del_Imputado_MPIData.Nariz_Base), "Nariz_Base") ??  (string)Detalle_de_Datos_del_Imputado_MPIData.Nariz_Base_Nariz_Base.Descripcion
                     ,Labios = Detalle_de_Datos_del_Imputado_MPIData.Labios
@@ -723,13 +723,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Ojoss_Ojos = Ojoss_Ojos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Ojos", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IFroma_OjosApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Froma_Ojoss_Forma_Ojos = _IFroma_OjosApiConsumer.SelAll(true);
-            if (Froma_Ojoss_Forma_Ojos != null && Froma_Ojoss_Forma_Ojos.Resource != null)
-                ViewBag.Froma_Ojoss_Forma_Ojos = Froma_Ojoss_Forma_Ojos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Froma_Ojos", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _INariz_BaseApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Nariz_Bases_Nariz_Base = _INariz_BaseApiConsumer.SelAll(true);
@@ -1036,8 +1029,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Color_OjosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_del_Imputado_MPIData.Color_Ojos), "Color_Ojos") ??  (string)Detalle_de_Datos_del_Imputado_MPIData.Color_Ojos_Color_Ojos.Descripcion
                     ,Ojos = Detalle_de_Datos_del_Imputado_MPIData.Ojos
                     ,OjosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_del_Imputado_MPIData.Ojos), "Ojos") ??  (string)Detalle_de_Datos_del_Imputado_MPIData.Ojos_Ojos.Descripcion
-                    ,Forma_Ojos = Detalle_de_Datos_del_Imputado_MPIData.Forma_Ojos
-                    ,Forma_OjosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_del_Imputado_MPIData.Forma_Ojos), "Froma_Ojos") ??  (string)Detalle_de_Datos_del_Imputado_MPIData.Forma_Ojos_Froma_Ojos.Descripcion
+                    ,Forma_de_Ojos = Detalle_de_Datos_del_Imputado_MPIData.Forma_de_Ojos
+                    ,Forma_de_OjosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_del_Imputado_MPIData.Forma_de_Ojos), "Forma_Ojos") ??  (string)Detalle_de_Datos_del_Imputado_MPIData.Forma_de_Ojos_Forma_Ojos.Descripcion
                     ,Nariz_Base = Detalle_de_Datos_del_Imputado_MPIData.Nariz_Base
                     ,Nariz_BaseDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_del_Imputado_MPIData.Nariz_Base), "Nariz_Base") ??  (string)Detalle_de_Datos_del_Imputado_MPIData.Nariz_Base_Nariz_Base.Descripcion
                     ,Labios = Detalle_de_Datos_del_Imputado_MPIData.Labios
@@ -1299,13 +1292,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Ojoss_Ojos = Ojoss_Ojos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Ojos", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IFroma_OjosApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Froma_Ojoss_Forma_Ojos = _IFroma_OjosApiConsumer.SelAll(true);
-            if (Froma_Ojoss_Forma_Ojos != null && Froma_Ojoss_Forma_Ojos.Resource != null)
-                ViewBag.Froma_Ojoss_Forma_Ojos = Froma_Ojoss_Forma_Ojos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Froma_Ojos", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _INariz_BaseApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Nariz_Bases_Nariz_Base = _INariz_BaseApiConsumer.SelAll(true);
@@ -1999,19 +1985,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
-        public ActionResult GetFroma_OjosAll()
+		[HttpGet]
+        public ActionResult GetForma_OjosAll()
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IFroma_OjosApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IFroma_OjosApiConsumer.SelAll(false).Resource;
-                
+                _IForma_OjosApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IForma_OjosApiConsumer.SelAll(false).Resource;
+				
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Froma_Ojos", "Descripcion")?? m.Descripcion,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_Ojos", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -2371,7 +2357,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,CalvicieDescripcion = CultureHelper.GetTraduction(m.Calvicie_Calvicie.Clave.ToString(), "Descripcion") ?? (string)m.Calvicie_Calvicie.Descripcion
                         ,Color_OjosDescripcion = CultureHelper.GetTraduction(m.Color_Ojos_Color_Ojos.Clave.ToString(), "Descripcion") ?? (string)m.Color_Ojos_Color_Ojos.Descripcion
                         ,OjosDescripcion = CultureHelper.GetTraduction(m.Ojos_Ojos.Clave.ToString(), "Descripcion") ?? (string)m.Ojos_Ojos.Descripcion
-                        ,Forma_OjosDescripcion = CultureHelper.GetTraduction(m.Forma_Ojos_Froma_Ojos.Clave.ToString(), "Descripcion") ?? (string)m.Forma_Ojos_Froma_Ojos.Descripcion
+                        ,Forma_de_OjosDescripcion = CultureHelper.GetTraduction(m.Forma_de_Ojos_Forma_Ojos.Clave.ToString(), "Forma_Ojos") ?? (string)m.Forma_de_Ojos_Forma_Ojos.Descripcion
                         ,Nariz_BaseDescripcion = CultureHelper.GetTraduction(m.Nariz_Base_Nariz_Base.Clave.ToString(), "Descripcion") ?? (string)m.Nariz_Base_Nariz_Base.Descripcion
                         ,LabiosDescripcion = CultureHelper.GetTraduction(m.Labios_Labios.Clave.ToString(), "Descripcion") ?? (string)m.Labios_Labios.Descripcion
                         ,BocaDescripcion = CultureHelper.GetTraduction(m.Boca_Boca.Clave.ToString(), "Descripcion") ?? (string)m.Boca_Boca.Descripcion
@@ -2449,6 +2435,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public JsonResult GetDetalle_de_Datos_del_Imputado_MPI_Forma_de_Ojos_Forma_Ojos(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IForma_OjosApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Forma_Ojos.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Forma_Ojos.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IForma_OjosApiConsumer.ListaSelAll(1, 20,elWhere , " Forma_Ojos.Descripcion ASC ").Resource;
+               
+                foreach (var item in result.Forma_Ojoss)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Forma_Ojos", "Descripcion");
+                    item.Descripcion =trans ??item.Descripcion;
+                }
+                return Json(result.Forma_Ojoss.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 //Grid GetAutoComplete
 
 //Grid GetAutoComplete
@@ -2810,7 +2823,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Calvicie = varDetalle_de_Datos_del_Imputado_MPI.Calvicie
                         ,Color_Ojos = varDetalle_de_Datos_del_Imputado_MPI.Color_Ojos
                         ,Ojos = varDetalle_de_Datos_del_Imputado_MPI.Ojos
-                        ,Forma_Ojos = varDetalle_de_Datos_del_Imputado_MPI.Forma_Ojos
+                        ,Forma_de_Ojos = varDetalle_de_Datos_del_Imputado_MPI.Forma_de_Ojos
                         ,Nariz_Base = varDetalle_de_Datos_del_Imputado_MPI.Nariz_Base
                         ,Labios = varDetalle_de_Datos_del_Imputado_MPI.Labios
                         ,Boca = varDetalle_de_Datos_del_Imputado_MPI.Boca
@@ -3686,7 +3699,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ,CalvicieDescripcion = (string)m.Calvicie_Calvicie.Descripcion
                 ,Color_OjosDescripcion = (string)m.Color_Ojos_Color_Ojos.Descripcion
                 ,OjosDescripcion = (string)m.Ojos_Ojos.Descripcion
-                ,Forma_OjosDescripcion = (string)m.Forma_Ojos_Froma_Ojos.Descripcion
+                ,Forma_de_OjosDescripcion = (string)m.Forma_de_Ojos_Forma_Ojos.Descripcion
                 ,Nariz_BaseDescripcion = (string)m.Nariz_Base_Nariz_Base.Descripcion
                 ,LabiosDescripcion = (string)m.Labios_Labios.Descripcion
                 ,BocaDescripcion = (string)m.Boca_Boca.Descripcion
@@ -3839,7 +3852,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ,CalvicieDescripcion = (string)m.Calvicie_Calvicie.Descripcion
                 ,Color_OjosDescripcion = (string)m.Color_Ojos_Color_Ojos.Descripcion
                 ,OjosDescripcion = (string)m.Ojos_Ojos.Descripcion
-                ,Forma_OjosDescripcion = (string)m.Forma_Ojos_Froma_Ojos.Descripcion
+                ,Forma_de_OjosDescripcion = (string)m.Forma_de_Ojos_Forma_Ojos.Descripcion
                 ,Nariz_BaseDescripcion = (string)m.Nariz_Base_Nariz_Base.Descripcion
                 ,LabiosDescripcion = (string)m.Labios_Labios.Descripcion
                 ,BocaDescripcion = (string)m.Boca_Boca.Descripcion
