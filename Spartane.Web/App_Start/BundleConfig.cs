@@ -71,7 +71,6 @@ namespace Spartane.Web
             // Inspinia script
             bundles.Add(new ScriptBundle("~/bundles/inspinia").Include(
                       "~/Scripts/plugins/metisMenu/metisMenu.min.js",
-                      "~/Scripts/plugins/pace/pace.min.js",
                       "~/Scripts/app/inspinia.js"));
 
             // Inspinia skin config script

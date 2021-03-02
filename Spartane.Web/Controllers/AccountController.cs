@@ -584,8 +584,11 @@ namespace Spartane.Web.Controllers
                         Session["USERROLEID"] = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id;
                         Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
                         Session["LANGUAGEID"] = (model.SelectedLanguage.HasValue) ? model.SelectedLanguage.Value : 1;
+                        MenuHelper.GetLatestMenu(model.UserName, passwordEncripted);
                         SessionHelper.Relogin = false;
-                      
+
+
+
                         return RedirectToLocal("~/Frontal/Home/Index");
                     }
                     else
