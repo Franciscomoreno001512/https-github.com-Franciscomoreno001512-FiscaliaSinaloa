@@ -433,7 +433,8 @@ $(document).ready(function () {
             window.close();
       }
     });
-	$("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosGuardar', function () {
+    $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosGuardar', function () {
+        debugger;
 		$('#Control_de_DocumentosGuardar').attr('disabled', true);
 		$('#Control_de_DocumentosGuardar').unbind()
         if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {

@@ -40,6 +40,7 @@
         Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
     }
 }
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <div class="loading style-2"><div class="loading-wheel"></div></div>
 <div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
     <div class="modal-dialog">
@@ -160,7 +161,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Control_de_DocumentosResources.TabDatos_Generales</a></li>
                                 <li class=""><a data-toggle="tab" href="#tabDocumento"> @Resources.Control_de_DocumentosResources.TabDocumento</a></li>
-                                <li class=""><a data-toggle="tab" href="#tabSecciones"> Secciones</a></li>
+                                <li class="hidden"><a data-toggle="tab" href="#tabSecciones"> Secciones</a></li>
                                 <li class=""><a data-toggle="tab" href="#tabHistorial"> @Resources.Control_de_DocumentosResources.TabHistorial</a></li>
                                 <div class="form-actions fluid">
                                     <input type="hidden" value="@Model.Folio" id="ReferenceFolio" />
@@ -336,14 +337,23 @@
                                                 @*<span class="field-validation-valid" data-valmsg-for="Numero_de_Expediente" data-valmsg-replace="true"></span>*@
                                             </div>
                                         </div>
-                                        <div class="form-group" id="divCuerpo_del_Documento">
+                                        <div class="form-group hidden" id="divCuerpo_del_Documento">
                                             @*<label class="col-sm-2 control-label">@Resources.Control_de_DocumentosResources.Cuerpo_del_Documento</label>*@
                                             @if (ViewBag.body != null)
                                             {
-                                                //var base64EncodedBytes = System.Convert.FromBase64String(ViewBag.body);
-                                                //string bo = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+                                                if (ViewBag.GUID_ == null || ViewBag.GUID_ == "")
+                                                {
+                                                    <textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento">@Html.Raw(ViewBag.body)</textarea>
+                                                }
+                                                else
+                                                {
+                                                    var base64EncodedBytes = System.Convert.FromBase64String(ViewBag.body);
+                                                    string bo = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+                                                    <textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento">@Html.Raw(bo)</textarea>
+                                                }
 
-                                                @*<textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento">@Html.Raw(bo)</textarea>*@
+
+
                                             }
                                             else
 
@@ -387,9 +397,21 @@
 
                                             @if (ViewBag.header != null)
                                             {
-                                                var base64EncodedBytesh = System.Convert.FromBase64String(ViewBag.header);
-                                                string he = System.Text.Encoding.UTF8.GetString(base64EncodedBytesh);
-                                                <textarea id="Encabezado" data-type="ckEditor" class="form-control Secciones" name="Encabezado">@Html.Raw(he)</textarea>
+
+                                                if (ViewBag.GUID_ == null || ViewBag.GUID_ == "")
+                                                {
+                                                    <textarea id="Encabezado" data-type="ckEditor" class="form-control Secciones" name="Encabezado">@Html.Raw(ViewBag.header)</textarea>
+                                                }
+                                                else
+                                                {
+                                                    var base64EncodedBytesh = System.Convert.FromBase64String(ViewBag.header);
+                                                    string he = System.Text.Encoding.UTF8.GetString(base64EncodedBytesh);
+                                                    <textarea id="Encabezado" data-type="ckEditor" class="form-control Secciones" name="Encabezado">@Html.Raw(he)</textarea>
+                                                }
+
+
+
+                                            
                                             }
                                             else
 
@@ -402,9 +424,22 @@
 
                                             @if (ViewBag.footer != null)
                                             {
-                                                var base64EncodedBytesf = System.Convert.FromBase64String(ViewBag.footer);
-                                                string foot = System.Text.Encoding.UTF8.GetString(base64EncodedBytesf);
-                                                <textarea id="Pie_de_Pagina" data-type="ckEditor" class="form-control Secciones" name="Pie_de_Pagina">@Html.Raw(foot)</textarea>
+
+                                                if (ViewBag.GUID_ == null || ViewBag.GUID_ == "")
+                                                {
+                                                    <textarea id="Pie_de_Pagina" data-type="ckEditor" class="form-control Secciones" name="Pie_de_Pagina">@Html.Raw(ViewBag.footer)</textarea>
+                                                }
+                                                else
+                                                {
+
+                                                    var base64EncodedBytesf = System.Convert.FromBase64String(ViewBag.footer);
+                                                    string foot = System.Text.Encoding.UTF8.GetString(base64EncodedBytesf);
+                                                    <textarea id="Pie_de_Pagina" data-type="ckEditor" class="form-control Secciones" name="Pie_de_Pagina">@Html.Raw(foot)</textarea>
+                                                }
+
+
+
+
                                             }
                                             else
 
@@ -689,15 +724,16 @@
                 $('#Control_de_DocumentosGuardar').val('Actualizar Seccion ' + '@Resources.Control_de_DocumentosResources.Control_de_Documentos' )
             }
 
-
-
+         
+           
 
             @if(ViewBag.IsNew)
             {
                 <text>
 
                 $('input:checkbox').prop('checked', false);
-                Fill_Documento("new");
+            Fill_Documento("new");
+            Fill_Secciones("new");
 
                </text>
             }
@@ -708,10 +744,10 @@
 					Fill_Datos_Generales();
 
 				if (Tab_Documento)
-					Fill_Documento("old");
+                    Fill_Documento("old");
 
 				if (Tab_Secciones)
-					Fill_Secciones();
+                    Fill_Secciones("old");
 
 				if (Tab_Historial)
 					Fill_Historial();
@@ -737,7 +773,7 @@
                     $('#Detalle_Historial_Control_de_DocumentosGrid .gridDatePicker').attr("readonly", "");
                 },
                 error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    //showNotification("@Resources.Resources.ErrorContactingServer", "error");
                 }
             });
         }
@@ -959,7 +995,7 @@
                     Detalle_Historial_Control_de_Documentos_Spartan_UserItems = result;
                 },
                 error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    //showNotification("@Resources.Resources.ErrorContactingServer", "error");
                 }
             });
         }
@@ -991,7 +1027,7 @@
 
                     },
                     error: function (result) {
-                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                        //showNotification("@Resources.Resources.ErrorContactingServer", "error");
                     },
                     cache: false,
                     contentType: false,
@@ -1092,7 +1128,7 @@
 				},
 				error: function (result)
 				{
-					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+					//showNotification("@Resources.Resources.ErrorContactingServer", "error");
 				}
 			});
 
@@ -1177,7 +1213,7 @@ $('#Pie_de_Pagina').text(htmlEncode(CKEDITOR.instances["Pie_de_Pagina"].getData(
 					}
 				},
 				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+					//showNotification("@Resources.Resources.ErrorContactingServer", "error");
 				},
 				cache: false,
 				contentType: false,
@@ -1230,7 +1266,7 @@ $('#Pie_de_Pagina').text(htmlEncode(CKEDITOR.instances["Pie_de_Pagina"].getData(
         }
 
             function Control_de_DocumentosBackToGrid() {
-                debugger;
+              
                 @*@if(ViewBag.isCallFromCatalogoPopupTest == "TRUE")
                 {
                      <text> GeneratePDFFromControlDocumentos();</text>
@@ -1359,7 +1395,7 @@ CKEDITOR.replace('Pie_de_Pagina', {
 
                 },
                 error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    //showNotification("@Resources.Resources.ErrorContactingServer", "error");
                 }
             });
         }
@@ -1397,10 +1433,46 @@ CKEDITOR.replace('Pie_de_Pagina', {
 				cache: false
 			});
 		}
+            //fjmore
+            function GetHtmlObjects(guid) {
+                //var objreturn = {
+                //    header: "",
+                //    body: "",
+                //    footer: "",
+                //};         
 
-		function Fill_Documento(process)
+                //objreturn.header = EvaluaQuery("select header from HtmlElementsTemp where [guid] = '" + guid + "'");
+                //objreturn.body = EvaluaQuery("select body from HtmlElementsTemp where [guid] = '" + guid + "'");
+                //objreturn.footer = EvaluaQuery("select footer from HtmlElementsTemp where [guid] = '" + guid + "'");
+
+                //return objreturn;
+                var objResult = null;
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Control_de_Documentos/GetHtmlObjects?guid=")' + guid,
+                    type: 'GET',
+                    async: false,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                   
+                        if (result != null) {
+                            objResult = result;
+                        }
+                    },
+                    error: function (result) {
+
+                    },
+                    cache: false
+                });
+
+                return objResult;
+            }
+
+            function Fill_Documento(process)
         {
 
+                debugger;
             if (process == "old") {
                 $.ajax({
                     url: "@Url.Content("~/Frontal/Control_de_Documentos/Get_Documento")?Id=" + $("#ReferenceFolio").val(),
@@ -1418,15 +1490,15 @@ CKEDITOR.replace('Pie_de_Pagina', {
 
                     },
                     error: function (result) {
-                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                        //showNotification("@Resources.Resources.ErrorContactingServer", "error");
                     }
                 });
             } else {
-               @{
-                    var base64EncodedBytes = System.Convert.FromBase64String(ViewBag.body);
-                    string bo = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
-                }
-                cuerpodocumento = '@ViewBag.body';
+              
+
+                //  var decodeString = atob(htmls.body);
+                var resp = GetHtmlObjects('@ViewBag.GUID_')
+                cuerpodocumento = resp.body;
 
             }
 
@@ -1434,7 +1506,7 @@ CKEDITOR.replace('Pie_de_Pagina', {
          }
 
         function Save_DocumentoTX(newId) {
-            debugger;
+          
 			var data = new FormData();
 			data.append('Folio', newId);
 			data.append('Proceso', $('#Proceso').val());
@@ -1463,7 +1535,7 @@ CKEDITOR.replace('Pie_de_Pagina', {
 					}
 				},
 				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Documento");
+					//showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Documento");
 				},
 				cache: false
 			});
@@ -1471,7 +1543,7 @@ CKEDITOR.replace('Pie_de_Pagina', {
 
 
             function Save_Documento(newId) {
-                debugger;
+              
 			var data = new FormData();
 			data.append('Folio', newId);
 			                data.append('Proceso', $('#Proceso').val());
@@ -1499,38 +1571,46 @@ CKEDITOR.replace('Pie_de_Pagina', {
 					}
 				},
 				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Documento");
+					//showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Documento");
 				},
 				cache: false
 			});
 		}
 
-		function Fill_Secciones()
-        {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Control_de_Documentos/Get_Secciones")?Id=" + $("#ReferenceFolio").val(),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                                        $('#Folio').val(result.data.Folio);
-                    $('#Encabezado').val(result.data.Encabezado);
-                    CKEDITOR.instances['Encabezado'].setData((result.data.Encabezado));
-                    $('#Pie_de_Pagina').val(result.data.Pie_de_Pagina);
-                    CKEDITOR.instances['Pie_de_Pagina'].setData((result.data.Pie_de_Pagina));
-                    txencabezado = result.data.Encabezado;
-                    txpiepagina = result.data.Pie_de_Pagina;
+            function Fill_Secciones(process) {
+                if (process == "old") {
 
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    $.ajax({
+                        url: "@Url.Content("~/Frontal/Control_de_Documentos/Get_Secciones")?Id=" + $("#ReferenceFolio").val(),
+                        type: 'GET',
+                        dataType: "json",
+                        async: false,
+                        success: function (result) {
+                            $('#Folio').val(result.data.Folio);
+                            $('#Encabezado').val(result.data.Encabezado);
+                            CKEDITOR.instances['Encabezado'].setData((result.data.Encabezado));
+                            $('#Pie_de_Pagina').val(result.data.Pie_de_Pagina);
+                            CKEDITOR.instances['Pie_de_Pagina'].setData((result.data.Pie_de_Pagina));
+                            txencabezado = result.data.Encabezado;
+                            txpiepagina = result.data.Pie_de_Pagina;
+
+                        },
+                        error: function (result) {
+                            //showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                        }
+                    });
                 }
-            });
-        }
+                else {
+                 
+                    var resp = GetHtmlObjects('@ViewBag.GUID_')
+                    txencabezado = resp.he;
+                    txpiepagina = resp.foo
+                }
+            }
 
 
             function Save_SeccionesTX(newId) {
-            debugger;
+            
 			var data = new FormData();
             data.append('Folio', newId);
             //fjmore
@@ -1556,7 +1636,7 @@ CKEDITOR.replace('Pie_de_Pagina', {
 					}
 				},
 				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Secciones");
+				//	showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Secciones");
 				},
 				cache: false
 			});
@@ -1611,7 +1691,7 @@ CKEDITOR.replace('Pie_de_Pagina', {
 
                 },
                 error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    //showNotification("@Resources.Resources.ErrorContactingServer", "error");
                 }
             });
         }
@@ -1645,23 +1725,23 @@ CKEDITOR.replace('Pie_de_Pagina', {
 		}
 
             $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosCancelar', function () {
-                debugger;
+             
                 localStorage.setItem('controlDocumentoDynamiSeach', "false");
 
             });
             $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosGuardar', function () {
-                debugger;
+               
                 localStorage.setItem('controlDocumentoDynamiSeach',"false");
             });
 
 			 window.addEventListener('beforeunload', (event) => {
-                debugger;
+               
                 localStorage.setItem('controlDocumentoDynamiSeach',"false");
 
              });
 
             TXTextControl.addEventListener("textControlLoaded", function (e) {
-
+             
                 // disable the loading progress dialog
                 TXTextControl.isLoadingDialogEnabled = false;
 
@@ -1669,7 +1749,7 @@ CKEDITOR.replace('Pie_de_Pagina', {
                 restoreDocument();
 
                 // set auto save to 500 milliseconds
-                //var intervalAutoSave = setInterval(autoSaveDocument, 10000);
+                var intervalAutoSave = setInterval(autoSaveDocument, 1000);
             });
 
             TXTextControl.addEventListener("webSocketClosed", function (e) {
@@ -1685,6 +1765,7 @@ CKEDITOR.replace('Pie_de_Pagina', {
             });
 
             TXTextControl.addEventListener("ribbonTabsLoaded", function (e) {
+              
                 $("#tabPageLayout").addClass("hidden");
                 $("#tabReports").addClass("hidden");
                 $("#tabView").addClass("hidden");
@@ -1698,6 +1779,10 @@ CKEDITOR.replace('Pie_de_Pagina', {
                 $("#ribbonTabInsert_btnInsertFile").addClass("hidden");
                 $("#ribbonTabHome_tglBtnClientPaste").addClass("hidden");
                 $("#ribbonTabHome_btnServerPaste").addClass("hidden");
+
+                $("#tabFile").addClass("hidden");
+                
+             
                 if (cuerpodocumento != "")
                     TXTextControlLoad();
             });
@@ -1708,23 +1793,78 @@ CKEDITOR.replace('Pie_de_Pagina', {
             var b_encabezado = false;
             var b_piep = false;
             function TXTextControlLoad() {
+              
                 console.log("Entro TXTextControlLoad");
 
-                var encoded = btoa(cuerpodocumento);  // btoa base-64-encodes strings.
-                TXTextControl.loadDocument(TXTextControl.StreamType.HTMLFormat, encoded);
+                @*debugger;
+                var html = cuerpodocumento;
+                var dataToSend = JSON.stringify({ 'text': html });
+
+
+                var objResult = null;
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Control_de_Documentos/EncodingUTF8GetString")',
+                    type: 'POST',
+                    async: false,
+                    dataType: "json",
+                    contentType: false,
+                    data: dataToSend,
+                    processData: false,
+                    success: function (result) {
+                        debugger;
+                        if (result != null) {
+                            objResult = result;
+                        }
+                    },
+                    error: function (result) {
+
+                    },
+                    cache: false
+                });*@
+
                 debugger;
+                var cuerpodoc = "";
+                var MyStringArray = new Array();
+                MyStringArray.push("firstval");
+                MyStringArray.push(cuerpodocumento);
+
+                var StringifiedContent = JSON.stringify({ 'varName': MyStringArray });
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    url: '@Url.Content("~/Frontal/Control_de_Documentos/EncodingUTF8GetString")',
+                    data: StringifiedContent,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (msg) {
+                        cuerpodoc = msg.resp;
+                    }
+                }); 
+
+                cuerpodocumento = encode_utf8(cuerpodoc);
+
+
+                
+                var encoded = btoa(cuerpodocumento);  // btoa base-64-encodes strings.
+                //var encoded = btoa(objResult);  // btoa base-64-encodes strings.
+                TXTextControl.loadDocument(TXTextControl.StreamType.HTMLFormat, encoded);
+              
                 if (txencabezado != "") {
                     TXTextControl.headersAndFooters.add(TXTextControl.HeaderFooterType.Header, callback1, errorCallback1);
                     b_encabezado = true;
                 }
 
-                if (txpiepagina != "") {
+                if (txpiepagina != "" && txpiepagina != "undefined" ) {
                     TXTextControl.headersAndFooters.add(TXTextControl.HeaderFooterType.Footer, callback1F, errorCallback1);
                     b_piep = true;
                 }
             }
+            function encode_utf8(s) {
+                return unescape(encodeURIComponent(s));
+            }
 
             function autoSaveDocument() {
+             
                 console.log("Entro autoSaveDocument");
                 // store the document in the session storage
                 // which is shared over all browser tabs (complete session)
@@ -1749,6 +1889,7 @@ CKEDITOR.replace('Pie_de_Pagina', {
             }
 
             function restoreDocument() {
+               
                 console.log("Entro restoreDocument");
 
 
@@ -1766,29 +1907,35 @@ CKEDITOR.replace('Pie_de_Pagina', {
             }
 
             function callback1(header) {
+             
                 TXTextControl.headersAndFooters.getItem(TXTextControl.HeaderFooterType.Header, callback2, errorCallback1)
             }
             var headerprincipal = null;
             function callback2(header) {
+              
                 header.activate(callback3, errorCallback1);
                 headerprincipal = header;
             }
             function callback3(header) {
-                var encoded = btoa(txencabezado);
+               
+                var encoded = btoa(encode_utf8(txencabezado));
                 headerprincipal.selection.load(TXTextControl.StreamType.HTMLFormat, encoded);
                 headerprincipal.deactivate(callback4, errorCallback1);
             }
 
             function callback1F(header) {
+             
                 TXTextControl.headersAndFooters.getItem(TXTextControl.HeaderFooterType.Footer, callback2F, errorCallback1)
             }
             var footerprincipal = null;
             function callback2F(footer) {
+                
                 footer.activate(callback3F, errorCallback1);
                 footerprincipal = footer;
             }
             function callback3F(header) {
-                var encoded = btoa(txpiepagina);
+               
+                var encoded = btoa(encode_utf8(txpiepagina));
                 footerprincipal.selection.load(TXTextControl.StreamType.HTMLFormat, encoded);
                 footerprincipal.deactivate(callback4, errorCallback1);
             }
@@ -1798,11 +1945,12 @@ CKEDITOR.replace('Pie_de_Pagina', {
             }
 
             function errorCallback1(error) {
-                alert("incorrecto" + error);
+               
+                //alert("incorrecto" + error);
             }
 
             function GuardaDocumentFromClient() {
-                debugger;
+              
                 var textonew = '';
                 var save1 = new TXTextControl.SaveSettings();
                 TXTextControl.save(TXTextControl.StreamType.HTMLFormat, callbacksave, save1, errorCallback1);
@@ -1820,33 +1968,41 @@ CKEDITOR.replace('Pie_de_Pagina', {
             }
             var txBody = "";
             function callbacksave(datos) {
+               
                 datos.data = datos.data.replace('<meta content="TX28_HTM 28.0.804.500" name="GENERATOR" />', '<meta charset="utf-8" />');
                 datos.data = datos.data.replace('<title> - This document has been created with TX Text Control Trial Version 28.0 Server - You can use this trial version for further 24 days.</title>', '');
                 txBody = datos;
             }
             var txEncabezado = "";
             function callbacksaveE(datos) {
+              
                 txEncabezado = datos;
             }
             var txFooter = "";
             function callbacksaveF(datos) {
+             
                 txFooter = datos;
             }
             function callback2save(header) {
+              
                 var save1 = new TXTextControl.SaveSettings();
                 header.selection.save(TXTextControl.StreamType.HTMLFormat, callbacksaveE, save1, errorCallback1);
             }
             function callback3save(footer) {
+              
                 var save1 = new TXTextControl.SaveSettings();
                 footer.selection.save(TXTextControl.StreamType.HTMLFormat, callbacksaveF, save1, errorCallback1);
             }
 
+
             function GuardaDocumentPDF() {
+               
                 var save1 = new TXTextControl.SaveSettings();
                 TXTextControl.saveDocument(TXTextControl.StreamType.AdobePDF, callbacksaveDoc, save1, errorCallback1);
             }
             var bytesPDF = '';
             function callbacksaveDoc(datos) {
+            
                 bytesPDF = datos;
             }
 
