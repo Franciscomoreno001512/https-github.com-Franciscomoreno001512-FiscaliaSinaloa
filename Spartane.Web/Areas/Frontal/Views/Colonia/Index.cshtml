@@ -3,6 +3,8 @@
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Vigencia;
+@using Spartane.Core.Domain.Tipo_de_Localidad;
+@using Spartane.Core.Domain.Colonia;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -212,6 +214,8 @@
                                     <th>@Resources.ColoniaResources.sector</th>
                                     <th>@Resources.ColoniaResources.estatus</th>
                                     <th>@Resources.ColoniaResources.cod_localidad</th>
+                                    <th>@Resources.ColoniaResources.Tipo</th>
+                                    <th>@Resources.ColoniaResources.Poblacion</th>
 
                                 </tr>
                             </thead>
@@ -232,6 +236,8 @@
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
                             </tfoot>
@@ -361,6 +367,8 @@
         var sector =  $($('table td .filterData.form-control:input')[counter++]).val();
         var estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var cod_localidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -377,6 +385,8 @@
         + "&sector=" + sector
         + "&estatus=" + estatus
         + "&cod_localidad=" + cod_localidad
+        + "&Tipo=" + Tipo
+        + "&Poblacion=" + Poblacion
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Colonia/Export?format=")" + format
@@ -404,6 +414,8 @@
         var sector =  $($('table td .filterData.form-control:input')[counter++]).val();
         var estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var cod_localidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -420,6 +432,8 @@
         + "&sector=" + sector
         + "&estatus=" + estatus
         + "&cod_localidad=" + cod_localidad
+        + "&Tipo=" + Tipo
+        + "&Poblacion=" + Poblacion
 ;
 
     }
@@ -600,11 +614,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -669,7 +683,7 @@
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "Nombre", "orderable": true, "name": "Nombre", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
+                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre" }
                 ,{ "data": "Codigo_Postal","className": "dt-right", "orderable": true, "name": "Codigo_Postal" }
                 ,{ "data": "Zona", "orderable": true, "name": "Zona", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "VigenteAbreviacion", "orderable": true, "name": "VigenteAbreviacion" }
@@ -681,6 +695,8 @@
                 ,{ "data": "sector","className": "dt-right", "orderable": true, "name": "sector" }
                 ,{ "data": "estatus", "orderable": true, "name": "estatus", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "cod_localidad","className": "dt-right", "orderable": true, "name": "cod_localidad" }
+                ,{ "data": "TipoDescripcion", "orderable": true, "name": "TipoDescripcion" }
+                ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre"}
 
             ],
 			"colReorder": true,

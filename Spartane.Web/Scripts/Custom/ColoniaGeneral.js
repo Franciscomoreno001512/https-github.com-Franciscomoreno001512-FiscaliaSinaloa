@@ -6,16 +6,16 @@ $(function () {
 
 });
 
-var AutoCompleteMunicipioData = [];
-function GetAutoCompleteColonia_Municipio_MunicipioData(data) {
-	AutoCompleteMunicipioData = [];
+var AutoCompletePoblacionData = [];
+function GetAutoCompleteColonia_Poblacion_ColoniaData(data) {
+	AutoCompletePoblacionData = [];
     for (var i = 0; i < data.length; i++) {
-        AutoCompleteMunicipioData.push({
+        AutoCompletePoblacionData.push({
             id: data[i].Clave,
             text: data[i].Nombre
         });
     }
-    return AutoCompleteMunicipioData;
+    return AutoCompletePoblacionData;
 }
 
 
@@ -54,9 +54,9 @@ function ClearControls() {
     $('#CreateColonia')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
-    $('#Municipio').empty();
-    $("#Municipio").append('<option value=""></option>');
-    $('#Municipio').val('0').trigger('change');
+    $('#Poblacion').empty();
+    $("#Poblacion").append('<option value=""></option>');
+    $('#Poblacion').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -186,9 +186,9 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendColoniaData(function (currentId) {
 					$("#ClaveId").val("0");
-	    $('#Municipio').empty();
-    $("#Municipio").append('<option value=""></option>');
-    $('#Municipio').val('0').trigger('change');
+	    $('#Poblacion').empty();
+    $("#Poblacion").append('<option value=""></option>');
+    $('#Poblacion').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);

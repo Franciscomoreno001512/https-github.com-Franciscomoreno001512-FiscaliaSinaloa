@@ -3,6 +3,12 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
+	if (operation == 'Update') {
+		if( EvaluaQuery("select Canalizado from Detalle_de_Relaciones where Clave = FLDD[lblClave]",rowIndex, nameOfTable)==TryParseInt('1', '1') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { 
+			$("#Detalle_de_RelacionesGuardar").remove();
+		} 
+	} 
+
 
 $("#Detalle_de_RelacionesGuardarYNuevo").remove();
 $("#Detalle_de_RelacionesGuardarYCopia").remove();
@@ -482,6 +488,15 @@ if( EvaluaQuery("SELECT COUNT(Clave) FROM Detalle_de_Imputado WHERE Modulo_Atenc
 }
 //BusinessRuleId:2951, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+//BusinessRuleId:4110, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("select Canalizado from Detalle_de_Relaciones where Clave = FLDD[lblClave]",rowIndex, nameOfTable)==TryParseInt('1', '1') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { DisabledControl($("#" + nameOfTable + "Clave" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));}DisabledControl($("#" + nameOfTable + "Involucrado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Probable_Responsable" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));}DisabledControl($("#" + nameOfTable + "Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Es_Familiar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Es_Familiar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Parentesco" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Parentesco' + rowIndex));}DisabledControl($("#" + nameOfTable + "Modulo_Atencion_Inicial" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Atencion_Inicial' + rowIndex));}DisabledControl($("#" + nameOfTable + "Expediente_MP" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));}DisabledControl($("#" + nameOfTable + "Descripcion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));}} else {}
+
+}
+//BusinessRuleId:4110, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -573,6 +588,20 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2946, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:4121, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" exec uspActualizadatosGeneracionExpediente GLOBAL[SpartanOperationId]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:4121, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:4121, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+ EvaluaQuery(" exec uspActualizadatosGeneracionExpediente GLOBAL[SpartanOperationId]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:4121, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

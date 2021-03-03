@@ -1,555 +1,5 @@
 ﻿
 
-//Begin Declarations for Foreigns fields for Detalle_de_Canalizar_Estatus MultiRow
-var Detalle_de_Canalizar_EstatuscountRowsChecked = 0;
-
-
-
-function GetDetalle_de_Canalizar_Estatus_EstatusName(Id) {
-    for (var i = 0; i < Detalle_de_Canalizar_Estatus_EstatusItems.length; i++) {
-        if (Detalle_de_Canalizar_Estatus_EstatusItems[i].Clave == Id) {
-            return Detalle_de_Canalizar_Estatus_EstatusItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_de_Canalizar_Estatus_EstatusDropDown() {
-    var Detalle_de_Canalizar_Estatus_EstatusDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_de_Canalizar_Estatus_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_de_Canalizar_Estatus_EstatusDropdown);
-    if(Detalle_de_Canalizar_Estatus_EstatusItems != null)
-    {
-       for (var i = 0; i < Detalle_de_Canalizar_Estatus_EstatusItems.length; i++) {
-           $('<option />', { value: Detalle_de_Canalizar_Estatus_EstatusItems[i].Clave, text:    Detalle_de_Canalizar_Estatus_EstatusItems[i].Descripcion }).appendTo(Detalle_de_Canalizar_Estatus_EstatusDropdown);
-       }
-    }
-    return Detalle_de_Canalizar_Estatus_EstatusDropdown;
-}
-function GetDetalle_de_Canalizar_Estatus_Estatus_OrientadorName(Id) {
-    for (var i = 0; i < Detalle_de_Canalizar_Estatus_Estatus_OrientadorItems.length; i++) {
-        if (Detalle_de_Canalizar_Estatus_Estatus_OrientadorItems[i].Clave == Id) {
-            return Detalle_de_Canalizar_Estatus_Estatus_OrientadorItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_de_Canalizar_Estatus_Estatus_OrientadorDropDown() {
-    var Detalle_de_Canalizar_Estatus_Estatus_OrientadorDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_de_Canalizar_Estatus_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_de_Canalizar_Estatus_Estatus_OrientadorDropdown);
-    if(Detalle_de_Canalizar_Estatus_Estatus_OrientadorItems != null)
-    {
-       for (var i = 0; i < Detalle_de_Canalizar_Estatus_Estatus_OrientadorItems.length; i++) {
-           $('<option />', { value: Detalle_de_Canalizar_Estatus_Estatus_OrientadorItems[i].Clave, text:    Detalle_de_Canalizar_Estatus_Estatus_OrientadorItems[i].Descripcion }).appendTo(Detalle_de_Canalizar_Estatus_Estatus_OrientadorDropdown);
-       }
-    }
-    return Detalle_de_Canalizar_Estatus_Estatus_OrientadorDropdown;
-}
-
-
-function GetInsertDetalle_de_Canalizar_EstatusRowControls(index) {
-    var columnData = [];
-    var inputData = "<input type='text' class='fullWidth form-control'/>";
-
-    columnData[0] = $($.parseHTML(GetGridDatePicker())).addClass('Detalle_de_Canalizar_Estatus_Fecha_de_Cambio_de_Estatus Fecha_de_Cambio_de_Estatus').attr('id', 'Detalle_de_Canalizar_Estatus_Fecha_de_Cambio_de_Estatus_' + index).attr('data-field', 'Fecha_de_Cambio_de_Estatus');
-    columnData[1] = $($.parseHTML(GetGridTimePicker())).addClass('Detalle_de_Canalizar_Estatus_Hora_de_Cambio_de_Estatus Hora_de_Cambio_de_Estatus').attr('id', 'Detalle_de_Canalizar_Estatus_Hora_de_Cambio_de_Estatus_' + index).attr('data-field', 'Hora_de_Cambio_de_Estatus');
-    columnData[2] = $(GetDetalle_de_Canalizar_Estatus_EstatusDropDown()).addClass('Detalle_de_Canalizar_Estatus_Estatus_Interno Estatus_Interno').attr('id', 'Detalle_de_Canalizar_Estatus_Estatus_Interno_' + index).attr('data-field', 'Estatus_Interno').after($.parseHTML(addNew('Detalle_de_Canalizar_Estatus', 'Estatus', 'Estatus_Interno', 263769)));
-    columnData[3] = $(GetDetalle_de_Canalizar_Estatus_Estatus_OrientadorDropDown()).addClass('Detalle_de_Canalizar_Estatus_Estatus_de_Canalizacion Estatus_de_Canalizacion').attr('id', 'Detalle_de_Canalizar_Estatus_Estatus_de_Canalizacion_' + index).attr('data-field', 'Estatus_de_Canalizacion').after($.parseHTML(addNew('Detalle_de_Canalizar_Estatus', 'Estatus_Orientador', 'Estatus_de_Canalizacion', 263770)));
-
-
-    initiateUIControls();
-    return columnData;
-}
-
-function Detalle_de_Canalizar_EstatusInsertRow(rowIndex) {
-if (EjecutarValidacionesAntesDeGuardarMRDetalle_de_Canalizar_Estatus("Detalle_de_Canalizar_Estatus_", "_" + rowIndex)) {
-    var iPage = Detalle_de_Canalizar_EstatusTable.fnPagingInfo().iPage;
-    var nameOfGrid = 'Detalle_de_Canalizar_Estatus';
-    var prevData = Detalle_de_Canalizar_EstatusTable.fnGetData(rowIndex);
-    var data = Detalle_de_Canalizar_EstatusTable.fnGetNodes(rowIndex);
-    var counter = 1;
-    var newData = {
-        Clave: prevData.Clave,
-        IsInsertRow: false
-
-        ,Fecha_de_Cambio_de_Estatus:  data.childNodes[counter++].childNodes[0].value
-        ,Hora_de_Cambio_de_Estatus:  data.childNodes[counter++].childNodes[0].value
-        ,Estatus_Interno:  data.childNodes[counter++].childNodes[0].value
-        ,Estatus_de_Canalizacion:  data.childNodes[counter++].childNodes[0].value
-
-    }
-    Detalle_de_Canalizar_EstatusTable.fnUpdate(newData, rowIndex, null, true);
-    Detalle_de_Canalizar_EstatusrowCreationGrid(data, newData, rowIndex);
-    Detalle_de_Canalizar_EstatusTable.fnPageChange(iPage);
-    Detalle_de_Canalizar_EstatuscountRowsChecked--;	
-    EjecutarValidacionesDespuesDeGuardarMRDetalle_de_Canalizar_Estatus("Detalle_de_Canalizar_Estatus_", "_" + rowIndex);
-  }
-}
-
-function Detalle_de_Canalizar_EstatusCancelRow(rowIndex) {
-    var prevData = Detalle_de_Canalizar_EstatusTable.fnGetData(rowIndex);
-    var data = Detalle_de_Canalizar_EstatusTable.fnGetNodes(rowIndex);
-
-    if (prevData.IsInsertRow) {
-        Detalle_de_Canalizar_EstatusTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
-            console.log('Row deleted');
-        }, true);
-    } else {
-        Detalle_de_Canalizar_EstatusrowCreationGrid(data, prevData, rowIndex);
-    }
-	showDetalle_de_Canalizar_EstatusGrid(Detalle_de_Canalizar_EstatusTable.fnGetData());
-    Detalle_de_Canalizar_EstatuscountRowsChecked--;
-	initiateUIControls();
-}
-
-function GetDetalle_de_Canalizar_EstatusFromDataTable() {
-    var Detalle_de_Canalizar_EstatusData = [];
-    var gridData = Detalle_de_Canalizar_EstatusTable.fnGetData();
-    //debugger;
-    for (var i = 0; i < gridData.length; i++) {
-        if (gridData[i].IsInsertRow == null || !gridData[i].IsInsertRow)
-            Detalle_de_Canalizar_EstatusData.push({
-                Clave: gridData[i].Clave
-
-                ,Fecha_de_Cambio_de_Estatus: gridData[i].Fecha_de_Cambio_de_Estatus
-                ,Hora_de_Cambio_de_Estatus: gridData[i].Hora_de_Cambio_de_Estatus
-                ,Estatus_Interno: gridData[i].Estatus_Interno
-                ,Estatus_de_Canalizacion: gridData[i].Estatus_de_Canalizacion
-
-                ,Removed: false
-            });
-    }
-
-    for (i = 0; i < removedDetalle_de_Canalizar_EstatusData.length; i++) {
-        if (removedDetalle_de_Canalizar_EstatusData[i] != null && removedDetalle_de_Canalizar_EstatusData[i].Clave > 0)
-            Detalle_de_Canalizar_EstatusData.push({
-                Clave: removedDetalle_de_Canalizar_EstatusData[i].Clave
-
-                ,Fecha_de_Cambio_de_Estatus: removedDetalle_de_Canalizar_EstatusData[i].Fecha_de_Cambio_de_Estatus
-                ,Hora_de_Cambio_de_Estatus: removedDetalle_de_Canalizar_EstatusData[i].Hora_de_Cambio_de_Estatus
-                ,Estatus_Interno: removedDetalle_de_Canalizar_EstatusData[i].Estatus_Interno
-                ,Estatus_de_Canalizacion: removedDetalle_de_Canalizar_EstatusData[i].Estatus_de_Canalizacion
-
-                , Removed: true
-            });
-    }	
-
-    return Detalle_de_Canalizar_EstatusData;
-}
-
-function Detalle_de_Canalizar_EstatusEditRow(rowIndex, currentRow, executeRules) {
-    var rowIndexTable = (currentRow) ? Detalle_de_Canalizar_EstatusTable.fnGetPosition($(currentRow).parent().parent()[0]) : rowIndex;
-    Detalle_de_Canalizar_EstatuscountRowsChecked++;
-    var Detalle_de_Canalizar_EstatusRowElement = "Detalle_de_Canalizar_Estatus_" + rowIndex.toString();
-    var prevData = Detalle_de_Canalizar_EstatusTable.fnGetData(rowIndexTable );
-    var row = Detalle_de_Canalizar_EstatusTable.fnGetNodes(rowIndexTable);
-    row.innerHTML = "";
-    var nameOfTable = "Detalle_de_Canalizar_Estatus_";
-    var rowIndexFormed = "_" + rowIndex;
-    var controls = Detalle_de_Canalizar_EstatusGetUpdateRowControls(prevData, "Detalle_de_Canalizar_Estatus_", "_" + rowIndex);
-
-    var abc = "if(dynamicFieldValidation('" + Detalle_de_Canalizar_EstatusRowElement + "')){ Detalle_de_Canalizar_EstatusInsertRow(" + rowIndex + "); }";
-    var updateRowClick = '<a  onclick="' + abc + '">';
-
-    var actionColInsert = $('<td>');
-    $('<i class="fa fa-check">').appendTo($(updateRowClick).appendTo(actionColInsert));
-    $('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_de_Canalizar_EstatusCancelRow(" + rowIndex + ")'>").appendTo(actionColInsert));
-    actionColInsert.appendTo(row);
-
-    for (i = 0; i < controls.length; i++) {
-        var idHeader = $(controls[i]).data('field') + 'Header';
-        if ($(controls[i]).length > 1) {
-            idHeader = $($(controls[i])[1]).data('field') + 'Header';
-        }
-		var classe = ($('#Detalle_de_Canalizar_EstatusGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + ($('#Detalle_de_Canalizar_EstatusGrid .' + idHeader).css('display') == 'none' ? ' hide' : '' );
-		  if ($(controls[i]).next().length > 0) {
-		        var div = $(controls[i]).next();
-		        $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
-		    }
-		    else
-                $(controls[i]).appendTo($('<td class="' + classe +  '" id="td'+nameOfTable+idHeader.replace('Header', '')+rowIndexFormed+'">').appendTo(row));                   
-    }
-    
-    setDetalle_de_Canalizar_EstatusValidation();
-    initiateUIControls();
-    $('.Detalle_de_Canalizar_Estatus' + rowIndexFormed + ' .inputMoney').inputmask("currency", { prefix: "", rightAlign: false });
-    $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
-    if(executeRules == null || (executeRules != null && executeRules == true))
-    {
-         EjecutarValidacionesEditRowMRDetalle_de_Canalizar_Estatus(nameOfTable, rowIndexFormed);
-    }
-}
-
-function Detalle_de_Canalizar_EstatusfnOpenAddRowPopUp() {
-    var currentRowIndex = Detalle_de_Canalizar_EstatusTable.fnGetData().length;
-    Detalle_de_Canalizar_EstatusfnClickAddRow();
-    GetAddDetalle_de_Canalizar_EstatusPopup(currentRowIndex, 0);
-}
-
-function Detalle_de_Canalizar_EstatusEditRowPopup(rowIndex, currentRow) {
-    var rowIndexTable = Detalle_de_Canalizar_EstatusTable.fnGetPosition($(currentRow).parent().parent()[0]);
-    var Detalle_de_Canalizar_EstatusRowElement = "Detalle_de_Canalizar_Estatus_" + rowIndex.toString();
-    var prevData = Detalle_de_Canalizar_EstatusTable.fnGetData(rowIndexTable);
-    GetAddDetalle_de_Canalizar_EstatusPopup(rowIndex, 1, prevData.Clave);
-
-    $('#Detalle_de_Canalizar_EstatusFecha_de_Cambio_de_Estatus').val(prevData.Fecha_de_Cambio_de_Estatus);
-    $('#Detalle_de_Canalizar_EstatusHora_de_Cambio_de_Estatus').val(prevData.Hora_de_Cambio_de_Estatus);
-    $('#Detalle_de_Canalizar_EstatusEstatus_Interno').val(prevData.Estatus_Interno);
-    $('#Detalle_de_Canalizar_EstatusEstatus_de_Canalizacion').val(prevData.Estatus_de_Canalizacion);
-
-    initiateUIControls();
-
-
-
-
-
-
-}
-
-function Detalle_de_Canalizar_EstatusAddInsertRow() {
-    if (Detalle_de_Canalizar_EstatusinsertRowCurrentIndex < 1)
-    {
-        Detalle_de_Canalizar_EstatusinsertRowCurrentIndex = 1;
-    }
-    return {
-        Clave: null,
-        IsInsertRow: true
-
-        ,Fecha_de_Cambio_de_Estatus: ""
-        ,Hora_de_Cambio_de_Estatus: ""
-        ,Estatus_Interno: ""
-        ,Estatus_de_Canalizacion: ""
-
-    }
-}
-
-function Detalle_de_Canalizar_EstatusfnClickAddRow() {
-    Detalle_de_Canalizar_EstatuscountRowsChecked++;
-    Detalle_de_Canalizar_EstatusTable.fnAddData(Detalle_de_Canalizar_EstatusAddInsertRow(), true);
-    Detalle_de_Canalizar_EstatusTable.fnPageChange('last');
-    initiateUIControls();
-	 //var tag = $('#Detalle_de_Canalizar_EstatusGrid tbody tr td .form-control').first().get(0).tagName.toLowerCase();
-    //$('#Detalle_de_Canalizar_EstatusGrid tbody tr:nth-of-type(' + (Detalle_de_Canalizar_EstatusinsertRowCurrentIndex + 1) + ') ' + tag ).focus();
-    EjecutarValidacionesNewRowMRDetalle_de_Canalizar_Estatus("Detalle_de_Canalizar_Estatus_", "_" + Detalle_de_Canalizar_EstatusinsertRowCurrentIndex);
-}
-
-function Detalle_de_Canalizar_EstatusClearGridData() {
-    Detalle_de_Canalizar_EstatusData = [];
-    Detalle_de_Canalizar_EstatusdeletedItem = [];
-    Detalle_de_Canalizar_EstatusDataMain = [];
-    Detalle_de_Canalizar_EstatusDataMainPages = [];
-    Detalle_de_Canalizar_EstatusnewItemCount = 0;
-    Detalle_de_Canalizar_EstatusmaxItemIndex = 0;
-    $("#Detalle_de_Canalizar_EstatusGrid").DataTable().clear();
-    $("#Detalle_de_Canalizar_EstatusGrid").DataTable().destroy();
-}
-
-//Used to Get Atención Inicial Information
-function GetDetalle_de_Canalizar_Estatus() {
-    var form_data = new FormData();
-    for (var i = 0; i < Detalle_de_Canalizar_EstatusData.length; i++) {
-        form_data.append('[' + i + '].Clave', Detalle_de_Canalizar_EstatusData[i].Clave);
-
-        form_data.append('[' + i + '].Fecha_de_Cambio_de_Estatus', Detalle_de_Canalizar_EstatusData[i].Fecha_de_Cambio_de_Estatus);
-        form_data.append('[' + i + '].Hora_de_Cambio_de_Estatus', Detalle_de_Canalizar_EstatusData[i].Hora_de_Cambio_de_Estatus);
-        form_data.append('[' + i + '].Estatus_Interno', Detalle_de_Canalizar_EstatusData[i].Estatus_Interno);
-        form_data.append('[' + i + '].Estatus_de_Canalizacion', Detalle_de_Canalizar_EstatusData[i].Estatus_de_Canalizacion);
-
-        form_data.append('[' + i + '].Removed', Detalle_de_Canalizar_EstatusData[i].Removed);
-    }
-    return form_data;
-}
-function Detalle_de_Canalizar_EstatusInsertRowFromPopup(rowIndex) {
-    //if (EjecutarValidacionesAntesDeGuardarMRDetalle_de_Canalizar_Estatus("Detalle_de_Canalizar_EstatusTable", rowIndex)) {
-    var prevData = Detalle_de_Canalizar_EstatusTable.fnGetData(rowIndex);
-    var data = Detalle_de_Canalizar_EstatusTable.fnGetNodes(rowIndex);
-    var newData = {
-        Clave: prevData.Clave,
-        IsInsertRow: false
-
-        ,Fecha_de_Cambio_de_Estatus: $('#Detalle_de_Canalizar_EstatusFecha_de_Cambio_de_Estatus').val()
-        ,Hora_de_Cambio_de_Estatus: $('#Detalle_de_Canalizar_EstatusHora_de_Cambio_de_Estatus').val()
-        ,Estatus_Interno: $('#Detalle_de_Canalizar_EstatusEstatus_Interno').val()
-        ,Estatus_de_Canalizacion: $('#Detalle_de_Canalizar_EstatusEstatus_de_Canalizacion').val()
-
-    }
-
-    Detalle_de_Canalizar_EstatusTable.fnUpdate(newData, rowIndex, null, true);
-    Detalle_de_Canalizar_EstatusrowCreationGrid(data, newData, rowIndex);
-    $('#AddDetalle_de_Canalizar_Estatus-form').modal({ show: false });
-    $('#AddDetalle_de_Canalizar_Estatus-form').modal('hide');
-    Detalle_de_Canalizar_EstatusEditRow(rowIndex);
-    Detalle_de_Canalizar_EstatusInsertRow(rowIndex);
-    //}
-}
-function Detalle_de_Canalizar_EstatusRemoveAddRow(rowIndex) {
-    Detalle_de_Canalizar_EstatusTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
-    }, true);
-}
-
-//End Declarations for Foreigns fields for Detalle_de_Canalizar_Estatus MultiRow
-//Begin Declarations for Foreigns fields for Detalle_de_Documentos_de_MPO MultiRow
-var Detalle_de_Documentos_de_MPOcountRowsChecked = 0;
-
-
-
-
-
-
-function GetInsertDetalle_de_Documentos_de_MPORowControls(index) {
-    var columnData = [];
-    var inputData = "<input type='text' class='fullWidth form-control'/>";
-
-    columnData[0] = $($.parseHTML(GetGridDatePicker())).addClass('Detalle_de_Documentos_de_MPO_Fecha Fecha').attr('id', 'Detalle_de_Documentos_de_MPO_Fecha_' + index).attr('data-field', 'Fecha');
-    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_de_Documentos_de_MPO_Documento Documento').attr('id', 'Detalle_de_Documentos_de_MPO_Documento_' + index).attr('data-field', 'Documento');
-    columnData[2] = $($.parseHTML(GetFileUploader())).addClass('Detalle_de_Documentos_de_MPO_Archivo_FileUpload Archivo').attr('id', 'Detalle_de_Documentos_de_MPO_Archivo_' + index).attr('data-field', 'Archivo');
-
-
-    initiateUIControls();
-    return columnData;
-}
-
-function Detalle_de_Documentos_de_MPOInsertRow(rowIndex) {
-if (EjecutarValidacionesAntesDeGuardarMRDetalle_de_Documentos_de_MPO("Detalle_de_Documentos_de_MPO_", "_" + rowIndex)) {
-    var iPage = Detalle_de_Documentos_de_MPOTable.fnPagingInfo().iPage;
-    var nameOfGrid = 'Detalle_de_Documentos_de_MPO';
-    var prevData = Detalle_de_Documentos_de_MPOTable.fnGetData(rowIndex);
-    var data = Detalle_de_Documentos_de_MPOTable.fnGetNodes(rowIndex);
-    var counter = 1;
-    var newData = {
-        Clave: prevData.Clave,
-        IsInsertRow: false
-
-        ,Fecha:  data.childNodes[counter++].childNodes[0].value
-        ,Documento:  data.childNodes[counter++].childNodes[0].value
-        ,ArchivoFileInfo: ($('#' + nameOfGrid + 'Grid .ArchivoHeader').css('display') != 'none') ? { 
-             FileName: prevData.ArchivoFileInfo != null && prevData.ArchivoFileInfo.FileName != null && prevData.ArchivoFileInfo.FileName != ''? prevData.ArchivoFileInfo.FileName : (data.childNodes[counter].childNodes[0].files.length > 0 ? data.childNodes[counter].childNodes[0].files[0].name : ''),              
-			 FileId:   prevData.ArchivoFileInfo != null && prevData.ArchivoFileInfo.FileName != null && prevData.ArchivoFileInfo.FileName != '' ? prevData.ArchivoFileInfo.FileId :  prevData.ArchivoFileInfo != null && prevData.ArchivoFileInfo.FileId != '' && prevData.ArchivoFileInfo.FileId != undefined ? prevData.ArchivoFileInfo.FileId : '0',
-             FileSize: prevData.ArchivoFileInfo != null && prevData.ArchivoFileInfo.FileName != null ? prevData.ArchivoFileInfo.FileSize : (data.childNodes[counter].childNodes[0].files.length > 0 ? data.childNodes[counter].childNodes[0].files[0].name : '') 
-         } : ''
-        ,ArchivoDetail: (data.childNodes[counter] != 'undefined' && data.childNodes[counter].childNodes[0].childNodes.length == 0) ? data.childNodes[counter++].childNodes[0] : prevData.ArchivoDetail
-
-    }
-    Detalle_de_Documentos_de_MPOTable.fnUpdate(newData, rowIndex, null, true);
-    Detalle_de_Documentos_de_MPOrowCreationGrid(data, newData, rowIndex);
-    Detalle_de_Documentos_de_MPOTable.fnPageChange(iPage);
-    Detalle_de_Documentos_de_MPOcountRowsChecked--;	
-    EjecutarValidacionesDespuesDeGuardarMRDetalle_de_Documentos_de_MPO("Detalle_de_Documentos_de_MPO_", "_" + rowIndex);
-  }
-}
-
-function Detalle_de_Documentos_de_MPOCancelRow(rowIndex) {
-    var prevData = Detalle_de_Documentos_de_MPOTable.fnGetData(rowIndex);
-    var data = Detalle_de_Documentos_de_MPOTable.fnGetNodes(rowIndex);
-
-    if (prevData.IsInsertRow) {
-        Detalle_de_Documentos_de_MPOTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
-            console.log('Row deleted');
-        }, true);
-    } else {
-        Detalle_de_Documentos_de_MPOrowCreationGrid(data, prevData, rowIndex);
-    }
-	showDetalle_de_Documentos_de_MPOGrid(Detalle_de_Documentos_de_MPOTable.fnGetData());
-    Detalle_de_Documentos_de_MPOcountRowsChecked--;
-	initiateUIControls();
-}
-
-function GetDetalle_de_Documentos_de_MPOFromDataTable() {
-    var Detalle_de_Documentos_de_MPOData = [];
-    var gridData = Detalle_de_Documentos_de_MPOTable.fnGetData();
-    //debugger;
-    for (var i = 0; i < gridData.length; i++) {
-        if (gridData[i].IsInsertRow == null || !gridData[i].IsInsertRow)
-            Detalle_de_Documentos_de_MPOData.push({
-                Clave: gridData[i].Clave
-
-                ,Fecha: gridData[i].Fecha
-                ,Documento: gridData[i].Documento
-                ,ArchivoInfo: {
-                    FileName: gridData[i].ArchivoFileInfo.FileName, FileId: gridData[i].ArchivoFileInfo.FileId, FileSize: gridData[i].ArchivoFileInfo.FileSize,
-                    Control: gridData[i].ArchivoDetail != null && gridData[i].ArchivoDetail.files != null && gridData[i].ArchivoDetail.files.length > 0 ? gridData[i].ArchivoDetail.files[0] : null,
-                    ArchivoRemoveFile: gridData[i].ArchivoDetail != null
-                }
-
-                ,Removed: false
-            });
-    }
-
-    for (i = 0; i < removedDetalle_de_Documentos_de_MPOData.length; i++) {
-        if (removedDetalle_de_Documentos_de_MPOData[i] != null && removedDetalle_de_Documentos_de_MPOData[i].Clave > 0)
-            Detalle_de_Documentos_de_MPOData.push({
-                Clave: removedDetalle_de_Documentos_de_MPOData[i].Clave
-
-                ,Fecha: removedDetalle_de_Documentos_de_MPOData[i].Fecha
-                ,Documento: removedDetalle_de_Documentos_de_MPOData[i].Documento
-                ,ArchivoInfo: {
-                    FileName: removedDetalle_de_Documentos_de_MPOData[i].ArchivoFileInfo.FileName, 
-                    FileId: removedDetalle_de_Documentos_de_MPOData[i].ArchivoFileInfo.FileId, 
-                    FileSize: removedDetalle_de_Documentos_de_MPOData[i].ArchivoFileInfo.FileSize,
-                    Control: removedDetalle_de_Documentos_de_MPOData[i].ArchivoDetail != null && removedDetalle_de_Documentos_de_MPOData[i].ArchivoDetail.files.length > 0 ? removedDetalle_de_Documentos_de_MPOData[i].ArchivoDetail.files[0] : null,
-                    ArchivoRemoveFile: removedDetalle_de_Documentos_de_MPOData[i].ArchivoDetail != null
-                }
-
-                , Removed: true
-            });
-    }	
-
-    return Detalle_de_Documentos_de_MPOData;
-}
-
-function Detalle_de_Documentos_de_MPOEditRow(rowIndex, currentRow, executeRules) {
-    var rowIndexTable = (currentRow) ? Detalle_de_Documentos_de_MPOTable.fnGetPosition($(currentRow).parent().parent()[0]) : rowIndex;
-    Detalle_de_Documentos_de_MPOcountRowsChecked++;
-    var Detalle_de_Documentos_de_MPORowElement = "Detalle_de_Documentos_de_MPO_" + rowIndex.toString();
-    var prevData = Detalle_de_Documentos_de_MPOTable.fnGetData(rowIndexTable );
-    var row = Detalle_de_Documentos_de_MPOTable.fnGetNodes(rowIndexTable);
-    row.innerHTML = "";
-    var nameOfTable = "Detalle_de_Documentos_de_MPO_";
-    var rowIndexFormed = "_" + rowIndex;
-    var controls = Detalle_de_Documentos_de_MPOGetUpdateRowControls(prevData, "Detalle_de_Documentos_de_MPO_", "_" + rowIndex);
-
-    var abc = "if(dynamicFieldValidation('" + Detalle_de_Documentos_de_MPORowElement + "')){ Detalle_de_Documentos_de_MPOInsertRow(" + rowIndex + "); }";
-    var updateRowClick = '<a  onclick="' + abc + '">';
-
-    var actionColInsert = $('<td>');
-    $('<i class="fa fa-check">').appendTo($(updateRowClick).appendTo(actionColInsert));
-    $('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_de_Documentos_de_MPOCancelRow(" + rowIndex + ")'>").appendTo(actionColInsert));
-    actionColInsert.appendTo(row);
-
-    for (i = 0; i < controls.length; i++) {
-        var idHeader = $(controls[i]).data('field') + 'Header';
-        if ($(controls[i]).length > 1) {
-            idHeader = $($(controls[i])[1]).data('field') + 'Header';
-        }
-		var classe = ($('#Detalle_de_Documentos_de_MPOGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + ($('#Detalle_de_Documentos_de_MPOGrid .' + idHeader).css('display') == 'none' ? ' hide' : '' );
-		  if ($(controls[i]).next().length > 0) {
-		        var div = $(controls[i]).next();
-		        $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
-		    }
-		    else
-                $(controls[i]).appendTo($('<td class="' + classe +  '" id="td'+nameOfTable+idHeader.replace('Header', '')+rowIndexFormed+'">').appendTo(row));                   
-    }
-    
-    setDetalle_de_Documentos_de_MPOValidation();
-    initiateUIControls();
-    $('.Detalle_de_Documentos_de_MPO' + rowIndexFormed + ' .inputMoney').inputmask("currency", { prefix: "", rightAlign: false });
-    $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
-    if(executeRules == null || (executeRules != null && executeRules == true))
-    {
-         EjecutarValidacionesEditRowMRDetalle_de_Documentos_de_MPO(nameOfTable, rowIndexFormed);
-    }
-}
-
-function Detalle_de_Documentos_de_MPOfnOpenAddRowPopUp() {
-    var currentRowIndex = Detalle_de_Documentos_de_MPOTable.fnGetData().length;
-    Detalle_de_Documentos_de_MPOfnClickAddRow();
-    GetAddDetalle_de_Documentos_de_MPOPopup(currentRowIndex, 0);
-}
-
-function Detalle_de_Documentos_de_MPOEditRowPopup(rowIndex, currentRow) {
-    var rowIndexTable = Detalle_de_Documentos_de_MPOTable.fnGetPosition($(currentRow).parent().parent()[0]);
-    var Detalle_de_Documentos_de_MPORowElement = "Detalle_de_Documentos_de_MPO_" + rowIndex.toString();
-    var prevData = Detalle_de_Documentos_de_MPOTable.fnGetData(rowIndexTable);
-    GetAddDetalle_de_Documentos_de_MPOPopup(rowIndex, 1, prevData.Clave);
-
-    $('#Detalle_de_Documentos_de_MPOFecha').val(prevData.Fecha);
-    $('#Detalle_de_Documentos_de_MPODocumento').val(prevData.Documento);
-
-
-    initiateUIControls();
-
-
-
-    $('#existingArchivo').html(prevData.ArchivoFileDetail == null && (prevData.ArchivoFileInfo.FileId == null || prevData.ArchivoFileInfo.FileId <= 0) ? $.parseHTML(GetFileUploader()) : GetFileInfo(prevData.ArchivoFileInfo, prevData.ArchivoFileDetail));
-
-}
-
-function Detalle_de_Documentos_de_MPOAddInsertRow() {
-    if (Detalle_de_Documentos_de_MPOinsertRowCurrentIndex < 1)
-    {
-        Detalle_de_Documentos_de_MPOinsertRowCurrentIndex = 1;
-    }
-    return {
-        Clave: null,
-        IsInsertRow: true
-
-        ,Fecha: ""
-        ,Documento: ""
-        ,ArchivoFileInfo: ""
-
-    }
-}
-
-function Detalle_de_Documentos_de_MPOfnClickAddRow() {
-    Detalle_de_Documentos_de_MPOcountRowsChecked++;
-    Detalle_de_Documentos_de_MPOTable.fnAddData(Detalle_de_Documentos_de_MPOAddInsertRow(), true);
-    Detalle_de_Documentos_de_MPOTable.fnPageChange('last');
-    initiateUIControls();
-	 //var tag = $('#Detalle_de_Documentos_de_MPOGrid tbody tr td .form-control').first().get(0).tagName.toLowerCase();
-    //$('#Detalle_de_Documentos_de_MPOGrid tbody tr:nth-of-type(' + (Detalle_de_Documentos_de_MPOinsertRowCurrentIndex + 1) + ') ' + tag ).focus();
-    EjecutarValidacionesNewRowMRDetalle_de_Documentos_de_MPO("Detalle_de_Documentos_de_MPO_", "_" + Detalle_de_Documentos_de_MPOinsertRowCurrentIndex);
-}
-
-function Detalle_de_Documentos_de_MPOClearGridData() {
-    Detalle_de_Documentos_de_MPOData = [];
-    Detalle_de_Documentos_de_MPOdeletedItem = [];
-    Detalle_de_Documentos_de_MPODataMain = [];
-    Detalle_de_Documentos_de_MPODataMainPages = [];
-    Detalle_de_Documentos_de_MPOnewItemCount = 0;
-    Detalle_de_Documentos_de_MPOmaxItemIndex = 0;
-    $("#Detalle_de_Documentos_de_MPOGrid").DataTable().clear();
-    $("#Detalle_de_Documentos_de_MPOGrid").DataTable().destroy();
-}
-
-//Used to Get Atención Inicial Information
-function GetDetalle_de_Documentos_de_MPO() {
-    var form_data = new FormData();
-    for (var i = 0; i < Detalle_de_Documentos_de_MPOData.length; i++) {
-        form_data.append('[' + i + '].Clave', Detalle_de_Documentos_de_MPOData[i].Clave);
-
-        form_data.append('[' + i + '].Fecha', Detalle_de_Documentos_de_MPOData[i].Fecha);
-        form_data.append('[' + i + '].Documento', Detalle_de_Documentos_de_MPOData[i].Documento);
-        form_data.append('[' + i + '].ArchivoInfo.FileId', Detalle_de_Documentos_de_MPOData[i].ArchivoInfo.FileId);
-        form_data.append('[' + i + '].ArchivoInfo.FileName', Detalle_de_Documentos_de_MPOData[i].ArchivoInfo.FileName);
-        form_data.append('[' + i + '].ArchivoInfo.FileSize', Detalle_de_Documentos_de_MPOData[i].ArchivoInfo.FileSize);
-        form_data.append('[' + i + '].ArchivoInfo.Control', Detalle_de_Documentos_de_MPOData[i].ArchivoInfo.Control);
-        form_data.append('[' + i + '].ArchivoInfo.RemoveFile', Detalle_de_Documentos_de_MPOData[i].ArchivoInfo.ArchivoRemoveFile);
-
-        form_data.append('[' + i + '].Removed', Detalle_de_Documentos_de_MPOData[i].Removed);
-    }
-    return form_data;
-}
-function Detalle_de_Documentos_de_MPOInsertRowFromPopup(rowIndex) {
-    //if (EjecutarValidacionesAntesDeGuardarMRDetalle_de_Documentos_de_MPO("Detalle_de_Documentos_de_MPOTable", rowIndex)) {
-    var prevData = Detalle_de_Documentos_de_MPOTable.fnGetData(rowIndex);
-    var data = Detalle_de_Documentos_de_MPOTable.fnGetNodes(rowIndex);
-    var newData = {
-        Clave: prevData.Clave,
-        IsInsertRow: false
-
-        ,Fecha: $('#Detalle_de_Documentos_de_MPOFecha').val()
-        ,Documento: $('#Detalle_de_Documentos_de_MPODocumento').val()
-        ,ArchivoFileInfo: { ArchivoFileName: prevData.ArchivoFileInfo.FileName, ArchivoFileId: prevData.ArchivoFileInfo.FileId, ArchivoFileSize: prevData.ArchivoFileInfo.FileSize }
-        ,ArchivoFileDetail: $('#Archivo').find('label').length == 0 ? $('#ArchivoFileInfoPop')[0] : prevData.ArchivoFileDetail
-
-    }
-
-    Detalle_de_Documentos_de_MPOTable.fnUpdate(newData, rowIndex, null, true);
-    Detalle_de_Documentos_de_MPOrowCreationGrid(data, newData, rowIndex);
-    $('#AddDetalle_de_Documentos_de_MPO-form').modal({ show: false });
-    $('#AddDetalle_de_Documentos_de_MPO-form').modal('hide');
-    Detalle_de_Documentos_de_MPOEditRow(rowIndex);
-    Detalle_de_Documentos_de_MPOInsertRow(rowIndex);
-    //}
-}
-function Detalle_de_Documentos_de_MPORemoveAddRow(rowIndex) {
-    Detalle_de_Documentos_de_MPOTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
-    }, true);
-}
-
-//End Declarations for Foreigns fields for Detalle_de_Documentos_de_MPO MultiRow
 //Begin Declarations for Foreigns fields for Detalle_de_coincidencias_a MultiRow
 var Detalle_de_coincidencias_acountRowsChecked = 0;
 
@@ -1054,90 +504,6 @@ function Detalle_Historico_MPORemoveAddRow(rowIndex) {
 
 
 $(function () {
-    function Detalle_de_Canalizar_EstatusinitializeMainArray(totalCount) {
-        if (Detalle_de_Canalizar_EstatusDataMain.length != totalCount && !Detalle_de_Canalizar_EstatusDataMainInitialized) {
-            Detalle_de_Canalizar_EstatusDataMainInitialized = true;
-            for (var i = 0; i < totalCount; i++) {
-                Detalle_de_Canalizar_EstatusDataMain[i] = null;
-            }
-        }
-    }
-    function Detalle_de_Canalizar_EstatusremoveFromMainArray() {
-        for (var j = 0; j < Detalle_de_Canalizar_EstatusdeletedItem.length; j++) {
-            for (var i = 0; i < Detalle_de_Canalizar_EstatusDataMain.length; i++) {
-                if (Detalle_de_Canalizar_EstatusDataMain[i] != null && Detalle_de_Canalizar_EstatusDataMain[i].Id == Detalle_de_Canalizar_EstatusdeletedItem[j]) {
-                    hDetalle_de_Canalizar_EstatusDataMain.splice(i, 1);
-                    break;
-                }
-            }
-        }
-    }
-    function Detalle_de_Canalizar_EstatuscopyMainHistoryArray() {
-        var data = [];
-        for (var i = 0; i < Detalle_de_Canalizar_EstatusDataMain.length; i++) {
-            data[i] = Detalle_de_Canalizar_EstatusDataMain[i];
-
-        }
-        return data;
-    }
-    function Detalle_de_Canalizar_EstatusgetNewResult() {
-        var newData = copyMainDetalle_de_Canalizar_EstatusArray();
-
-        for (var i = 0; i < Detalle_de_Canalizar_EstatusData.length; i++) {
-            if (Detalle_de_Canalizar_EstatusData[i].Removed == null || Detalle_de_Canalizar_EstatusData[i].Removed == false) {
-                newData.splice(0, 0, Detalle_de_Canalizar_EstatusData[i]);
-            }
-        }
-        return newData;
-    }
-    function Detalle_de_Canalizar_EstatuspushToMainArray(data, pageIndex, pageSize) {
-        for (var i = 0; i < data.length; i++) {
-            if (Detalle_de_Canalizar_EstatusDataMain[(pageIndex * pageSize) - pageSize + i] == null)
-                Detalle_de_Canalizar_EstatusDataMain[(pageIndex * pageSize) - pageSize + i] = data[i];
-        }
-    }
-    function Detalle_de_Documentos_de_MPOinitializeMainArray(totalCount) {
-        if (Detalle_de_Documentos_de_MPODataMain.length != totalCount && !Detalle_de_Documentos_de_MPODataMainInitialized) {
-            Detalle_de_Documentos_de_MPODataMainInitialized = true;
-            for (var i = 0; i < totalCount; i++) {
-                Detalle_de_Documentos_de_MPODataMain[i] = null;
-            }
-        }
-    }
-    function Detalle_de_Documentos_de_MPOremoveFromMainArray() {
-        for (var j = 0; j < Detalle_de_Documentos_de_MPOdeletedItem.length; j++) {
-            for (var i = 0; i < Detalle_de_Documentos_de_MPODataMain.length; i++) {
-                if (Detalle_de_Documentos_de_MPODataMain[i] != null && Detalle_de_Documentos_de_MPODataMain[i].Id == Detalle_de_Documentos_de_MPOdeletedItem[j]) {
-                    hDetalle_de_Documentos_de_MPODataMain.splice(i, 1);
-                    break;
-                }
-            }
-        }
-    }
-    function Detalle_de_Documentos_de_MPOcopyMainHistoryArray() {
-        var data = [];
-        for (var i = 0; i < Detalle_de_Documentos_de_MPODataMain.length; i++) {
-            data[i] = Detalle_de_Documentos_de_MPODataMain[i];
-
-        }
-        return data;
-    }
-    function Detalle_de_Documentos_de_MPOgetNewResult() {
-        var newData = copyMainDetalle_de_Documentos_de_MPOArray();
-
-        for (var i = 0; i < Detalle_de_Documentos_de_MPOData.length; i++) {
-            if (Detalle_de_Documentos_de_MPOData[i].Removed == null || Detalle_de_Documentos_de_MPOData[i].Removed == false) {
-                newData.splice(0, 0, Detalle_de_Documentos_de_MPOData[i]);
-            }
-        }
-        return newData;
-    }
-    function Detalle_de_Documentos_de_MPOpushToMainArray(data, pageIndex, pageSize) {
-        for (var i = 0; i < data.length; i++) {
-            if (Detalle_de_Documentos_de_MPODataMain[(pageIndex * pageSize) - pageSize + i] == null)
-                Detalle_de_Documentos_de_MPODataMain[(pageIndex * pageSize) - pageSize + i] = data[i];
-        }
-    }
     function Detalle_de_coincidencias_ainitializeMainArray(totalCount) {
         if (Detalle_de_coincidencias_aDataMain.length != totalCount && !Detalle_de_coincidencias_aDataMainInitialized) {
             Detalle_de_coincidencias_aDataMainInitialized = true;
@@ -1225,6 +591,17 @@ $(function () {
 
 });
 
+var AutoCompleteTurno_AsignadoData = [];
+function GetAutoCompleteModulo_Atencion_Inicial_Turno_Asignado_Asignacion_de_TurnosData(data) {
+	AutoCompleteTurno_AsignadoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteTurno_AsignadoData.push({
+            id: data[i].Folio,
+            text: data[i].Numero_de_Turno
+        });
+    }
+    return AutoCompleteTurno_AsignadoData;
+}
 var AutoCompleteUsuario_que_RegistraData = [];
 function GetAutoCompleteModulo_Atencion_Inicial_Usuario_que_Registra_Spartan_UserData(data) {
 	AutoCompleteUsuario_que_RegistraData = [];
@@ -1247,8 +624,28 @@ function GetAutoCompleteModulo_Atencion_Inicial_Municipio_MunicipioData(data) {
     }
     return AutoCompleteMunicipioData;
 }
-//Grid GetAutocomplete
-
+var AutoCompleteMinisterio_Publico_en_TurnoData = [];
+function GetAutoCompleteModulo_Atencion_Inicial_Ministerio_Publico_en_Turno_Jefes_de_Usuarios_del_SistemaData(data) {
+	AutoCompleteMinisterio_Publico_en_TurnoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteMinisterio_Publico_en_TurnoData.push({
+            id: data[i].Clave,
+            text: data[i].Ministerio_Publico_en_Turno
+        });
+    }
+    return AutoCompleteMinisterio_Publico_en_TurnoData;
+}
+var AutoCompleteSolicitud_de_Denuncia_CiudadanaData = [];
+function GetAutoCompleteModulo_Atencion_Inicial_Solicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_CiudadanaData(data) {
+	AutoCompleteSolicitud_de_Denuncia_CiudadanaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteSolicitud_de_Denuncia_CiudadanaData.push({
+            id: data[i].Clave,
+            text: data[i].Folio
+        });
+    }
+    return AutoCompleteSolicitud_de_Denuncia_CiudadanaData;
+}
 var AutoCompleteOrientadorData = [];
 function GetAutoCompleteModulo_Atencion_Inicial_Orientador_Spartan_UserData(data) {
 	AutoCompleteOrientadorData = [];
@@ -1319,30 +716,6 @@ function GetAutoCompleteModulo_Atencion_Inicial_Colonia_de_los_Hechos_ColoniaDat
 
 //Grid GetAutocomplete
 
-//Grid GetAutocomplete
-
-var AutoCompleteCoordinadorJAData = [];
-function GetAutoCompleteModulo_Atencion_Inicial_CoordinadorJA_Spartan_UserData(data) {
-	AutoCompleteCoordinadorJAData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteCoordinadorJAData.push({
-            id: data[i].Id_User,
-            text: data[i].Name
-        });
-    }
-    return AutoCompleteCoordinadorJAData;
-}
-var AutoCompleteEspJAData = [];
-function GetAutoCompleteModulo_Atencion_Inicial_EspJA_Spartan_UserData(data) {
-	AutoCompleteEspJAData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteEspJAData.push({
-            id: data[i].Id_User,
-            text: data[i].Name
-        });
-    }
-    return AutoCompleteEspJAData;
-}
 
 
 function getDropdown(elementKey) {
@@ -1380,13 +753,21 @@ function ClearControls() {
     $('#CreateModulo_Atencion_Inicial')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
+    $('#Turno_Asignado').empty();
+    $("#Turno_Asignado").append('<option value=""></option>');
+    $('#Turno_Asignado').val('0').trigger('change');
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
-                Detalle_de_Canalizar_EstatusClearGridData();
+    $('#Ministerio_Publico_en_Turno').empty();
+    $("#Ministerio_Publico_en_Turno").append('<option value=""></option>');
+    $('#Ministerio_Publico_en_Turno').val('0').trigger('change');
+    $('#Solicitud_de_Denuncia_Ciudadana').empty();
+    $("#Solicitud_de_Denuncia_Ciudadana").append('<option value=""></option>');
+    $('#Solicitud_de_Denuncia_Ciudadana').val('0').trigger('change');
     $('#Orientador').empty();
     $("#Orientador").append('<option value=""></option>');
     $('#Orientador').val('0').trigger('change');
@@ -1405,15 +786,8 @@ function ClearControls() {
     $('#Colonia_de_los_Hechos').empty();
     $("#Colonia_de_los_Hechos").append('<option value=""></option>');
     $('#Colonia_de_los_Hechos').val('0').trigger('change');
-                Detalle_de_Documentos_de_MPOClearGridData();
                 Detalle_de_coincidencias_aClearGridData();
                 Detalle_Historico_MPOClearGridData();
-    $('#CoordinadorJA').empty();
-    $("#CoordinadorJA").append('<option value=""></option>');
-    $('#CoordinadorJA').val('0').trigger('change');
-    $('#EspJA').empty();
-    $("#EspJA").append('<option value=""></option>');
-    $('#EspJA').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -1448,16 +822,6 @@ function CheckValidation() {
     var $myForm = $('#CreateModulo_Atencion_Inicial');
     if (!$myForm[0].checkValidity()) {
         $myForm.submit();
-        return false;
-    }
-    if (Detalle_de_Canalizar_EstatuscountRowsChecked > 0)
-    {
-        ShowMessagePendingRowDetalle_de_Canalizar_Estatus();
-        return false;
-    }
-    if (Detalle_de_Documentos_de_MPOcountRowsChecked > 0)
-    {
-        ShowMessagePendingRowDetalle_de_Documentos_de_MPO();
         return false;
     }
     if (Detalle_de_coincidencias_acountRowsChecked > 0)
@@ -1540,9 +904,7 @@ $(document).ready(function () {
 					ClearControls();
 					ClearAttachmentsDiv();
 					ResetClaveLabel();
-	                getDetalle_de_Canalizar_EstatusData();
-                getDetalle_de_Documentos_de_MPOData();
-                getDetalle_de_coincidencias_aData();
+	                getDetalle_de_coincidencias_aData();
                 getDetalle_Historico_MPOData();
 
 					if (isPartial)
@@ -1567,13 +929,21 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendModulo_Atencion_InicialData(function (currentId) {
 					$("#ClaveId").val("0");
-	    $('#Usuario_que_Registra').empty();
+	    $('#Turno_Asignado').empty();
+    $("#Turno_Asignado").append('<option value=""></option>');
+    $('#Turno_Asignado').val('0').trigger('change');
+    $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
-                Detalle_de_Canalizar_EstatusClearGridData();
+    $('#Ministerio_Publico_en_Turno').empty();
+    $("#Ministerio_Publico_en_Turno").append('<option value=""></option>');
+    $('#Ministerio_Publico_en_Turno').val('0').trigger('change');
+    $('#Solicitud_de_Denuncia_Ciudadana').empty();
+    $("#Solicitud_de_Denuncia_Ciudadana").append('<option value=""></option>');
+    $('#Solicitud_de_Denuncia_Ciudadana').val('0').trigger('change');
     $('#Orientador').empty();
     $("#Orientador").append('<option value=""></option>');
     $('#Orientador').val('0').trigger('change');
@@ -1592,21 +962,12 @@ $(document).ready(function () {
     $('#Colonia_de_los_Hechos').empty();
     $("#Colonia_de_los_Hechos").append('<option value=""></option>');
     $('#Colonia_de_los_Hechos').val('0').trigger('change');
-                Detalle_de_Documentos_de_MPOClearGridData();
                 Detalle_de_coincidencias_aClearGridData();
                 Detalle_Historico_MPOClearGridData();
-    $('#CoordinadorJA').empty();
-    $("#CoordinadorJA").append('<option value=""></option>');
-    $('#CoordinadorJA').val('0').trigger('change');
-    $('#EspJA').empty();
-    $("#EspJA").append('<option value=""></option>');
-    $('#EspJA').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
-	                getDetalle_de_Canalizar_EstatusData();
-                getDetalle_de_Documentos_de_MPOData();
-                getDetalle_de_coincidencias_aData();
+	                getDetalle_de_coincidencias_aData();
                 getDetalle_Historico_MPOData();
 
 					EjecutarValidacionesDespuesDeGuardar();		

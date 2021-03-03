@@ -2,7 +2,7 @@
 <resources>
   <resource culture="en-us" name="Modulo_Atencion_Inicial" value="Atención Inicial"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
-  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Folio" value="Número de Denuncia"></resource>
   <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
   <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
   <resource culture="en-US" name="Turno_Asignado" value="Turno Asignado"></resource>
@@ -23,6 +23,7 @@
   <resource culture="en-US" name="Delegacion" value="Delegación"></resource>
   <resource culture="en-US" name="Agencia" value="Agencia"></resource>
   <resource culture="en-US" name="Ministerio_Publico_en_Turno" value="Ministerio Público en Turno"></resource>
+  <resource culture="en-US" name="Solicitud_de_Denuncia_Ciudadana" value="Solicitud de Denuncia Ciudadana"></resource>
   <resource culture="en-US" name="Nombres_turno" value="Nombre(s)"></resource>
   <resource culture="en-US" name="Apellido_Paterno_turno" value="Apellido Paterno"></resource>
   <resource culture="en-US" name="Apellido_Materno_turno" value="Apellido Materno"></resource>
@@ -35,18 +36,6 @@
   <resource culture="en-US" name="Tipo_de_Urgencia_turno" value="Tipo de Urgencia"></resource>
   <resource culture="en-US" name="Motivo_Finalizacion_Turno" value="Motivo Finalización Turno"></resource>
   <resource culture="en-US" name="Observaciones_turno" value="Observaciones"></resource>
-  <resource culture="en-US" name="Requiere_Traductor" value="¿Requiere Traductor?"></resource>
-  <resource culture="en-US" name="Lengua_Originaria" value="Lengua Originaria"></resource>
-  <resource culture="en-US" name="Idioma" value="Idioma"></resource>
-  <resource culture="en-US" name="Autoriza_Traductor" value="Autoriza o no Autoriza Servicio"></resource>
-  <resource culture="en-US" name="Finalizar_Servicios_de_Apoyo" value="Finalizar Servicios de Apoyo"></resource>
-  <resource culture="en-US" name="Estatus2" value="Canalizar a"></resource>
-  <resource culture="en-US" name="Unidad_canaliza" value="Unidad"></resource>
-  <resource culture="en-US" name="Enviar_a_MP" value="Enviar a MP"></resource>
-  <resource culture="en-US" name="Correccion_de_Estatus" value="Corrección de Estatus"></resource>
-  <resource culture="en-US" name="Historial_de_Canalizaciones" value="Historial de Canalizaciones"></resource>
-  <resource culture="en-US" name="Requiere_Servicios_de_Apoyo" value="¿Requiere Servicios de Apoyo?"></resource>
-  <resource culture="en-US" name="Persona_Moral" value="Persona Moral"></resource>
   <resource culture="en-US" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>
   <resource culture="en-US" name="Narrativa_Breve_de_los_Hechos" value="Narrativa Breve de los Hechos"></resource>
   <resource culture="en-US" name="Prioridad_del_Hecho" value="Prioridad del Hecho"></resource>
@@ -72,44 +61,17 @@
   <resource culture="en-US" name="Tipo_de_Lugar_del_Hecho" value="Tipo de Lugar del Hecho"></resource>
   <resource culture="en-US" name="Zona_de_los_Hechos" value="Zona"></resource>
   <resource culture="en-US" name="Turno" value="Turno"></resource>
-  <resource culture="en-US" name="Tipo_de_Acuerdo" value="Tipo de Acuerdo"></resource>
-  <resource culture="en-US" name="Fecha_de_Inicio_de_Acuerdo" value="Fecha de Inicio de Acuerdo"></resource>
-  <resource culture="en-US" name="Fecha_de_Cumplimiento_del_Acuerdo" value="Fecha de Cumplimiento del Acuerdo"></resource>
-  <resource culture="en-US" name="Hora_de_Cumplimiento_del_Acuerdo" value="Hora de Cumplimiento del Acuerdo"></resource>
-  <resource culture="en-US" name="Domicilio_para_el_Cumplimiento" value="Domicilio para el Cumplimiento del Acuerdo"></resource>
-  <resource culture="en-US" name="Monto_de_Reparacion_de_Danos" value="Monto de Reparación de Daños"></resource>
-  <resource culture="en-US" name="Parcialidades" value="Parcialidades"></resource>
-  <resource culture="en-US" name="Periodicidad" value="Periodicidad"></resource>
-  <resource culture="en-US" name="Se_Acepta_Acuerdo" value="¿Se Acepta Acuerdo?"></resource>
-  <resource culture="en-US" name="Motivo_de_Rechazo_de_Acuerdo" value="Motivo de Rechazo de Acuerdo"></resource>
-  <resource culture="en-US" name="Documentos_generados_en_MASC" value="Documentos generados en MASC"></resource>
   <resource culture="en-US" name="Coincidencias" value="Coincidencias"></resource>
   <resource culture="en-US" name="Cerrar" value="Cerrar"></resource>
   <resource culture="en-US" name="Fecha_de_Cierre" value="Fecha de Cierre"></resource>
   <resource culture="en-US" name="Hora_de_Cierre" value="Hora de Cierre"></resource>
   <resource culture="en-US" name="Historial" value="Historial"></resource>
-  <resource culture="en-US" name="NUC" value="NUC"></resource>
-  <resource culture="en-US" name="Fecha_de_Vencimiento_1" value="Fecha de Vencimiento 1"></resource>
-  <resource culture="en-US" name="EspecialistaJA" value="EspecialistaJA"></resource>
-  <resource culture="en-US" name="Campo_Oculto1" value="Campo Oculto1"></resource>
-  <resource culture="en-US" name="JefeMPO" value="Jefe"></resource>
-  <resource culture="en-US" name="Campo_Oculto2" value="Campo Oculto2"></resource>
-  <resource culture="en-US" name="Campo_Oculto3" value="Campo Oculto3"></resource>
-  <resource culture="en-US" name="CoordinadorJA" value="CoordinadorJA"></resource>
-  <resource culture="en-US" name="EspJA" value="EspJA"></resource>
-  <resource culture="en-US" name="Ano_Actual" value="Año Actual"></resource>
-  <resource culture="en-US" name="Secuencial" value="Secuencial"></resource>
 
 <resource culture="en-US" name="TabDatos_del_Caso" value="Datos del Caso"></resource>
 <resource culture="en-US" name="TabInformacion_de_Turno" value="Información de Turno"></resource>
-<resource culture="en-US" name="TabServicios_de_Apoyo" value="Servicios de Apoyo"></resource>
-<resource culture="en-US" name="TabCanalizar" value="Canalizar"></resource>
-<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 <resource culture="en-US" name="TabDatos_de_los_Hechos_en_MPO" value="Datos de los Hechos en MPO"></resource>
-<resource culture="en-US" name="TabDatos_del_Acuerdo" value="Datos del Acuerdo"></resource>
 <resource culture="en-US" name="TabBitacora_de_Coincidencias" value="Bitácora de Coincidencias"></resource>
 <resource culture="en-US" name="TabCierre" value="Cierre"></resource>
 <resource culture="en-US" name="TabHistorial_de_movimientos" value="Historial de movimientos"></resource>
-<resource culture="en-US" name="TabCampos_Ocultos" value="Campos Ocultos"></resource>
 
 </resources>

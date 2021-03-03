@@ -3,12 +3,18 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.ColoniaAdvanceSearchModel
 @{
- List<SelectListItem> varMunicipio_Municipio = null;
+    List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
     List<SelectListItem> varVigencia_Vigente = null;
     if (ViewBag.Vigencias_Vigente != null)
     { varVigencia_Vigente = (List<SelectListItem>)ViewBag.Vigencias_Vigente; }
+    List<SelectListItem> varTipo_de_Localidad_Tipo = null;
+    if (ViewBag.Tipo_de_Localidads_Tipo != null)
+    { varTipo_de_Localidad_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Localidads_Tipo; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -65,9 +71,27 @@
                     @Html.DropDownListFor(m => m.NombreFilter, filters, new { @class = "form-control", @id = "ddlNombreFilter" })
                     @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", @type = "text", @id = "txtNombre" })
                 </div>
- List<SelectListItem> varMunicipio_Municipio = null;
-    if (ViewBag.Municipios_Municipio != null)
-    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+                <div class="MarginBottom">
+                    <h3>@Resources.ColoniaResources.Municipio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.MunicipioFilter, filters, new { @class = "form-control", @id = "ddlMunicipioFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMunicipio, new { @class = "form-control", @type = "text", @id = "txtAdvanceMunicipio" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMunicipio_Municipio!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMunicipioMultiple, varMunicipio_Municipio,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMunicipio"
+                        });
+                    }
+                </div>
                 <div class="MarginBottom ">
                     <h3>@Resources.ColoniaResources.Codigo_Postal</h3>
                 </div>
@@ -190,6 +214,30 @@
                     @Html.TextBoxFor(m => m.Tocod_localidad, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_localidad", @data_min = "txtAdvanceFromcod_localidad" })
                     @Html.ValidationMessageFor(m => m.Tocod_localidad)
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ColoniaResources.Tipo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Localidad_Tipo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipoMultiple, varTipo_de_Localidad_Tipo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo"
+                        });
+                    }
+                </div>
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Colonia/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -292,6 +340,36 @@
             advanceSearch.Coloniacod_localidadFrom = $("#txtAdvanceFromcod_localidad").val();
             advanceSearch.Coloniacod_localidadTo = $("#txtAdvanceTocod_localidad").val();
         }
+        advanceSearch.TipoSearchType = 0;
+        if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
+
+
+            if (isColoniaTextSearch) {
+                advanceSearch.TipoName = $("#txtAdvanceTipo").val();
+                advanceSearch.TipoNameSearchType = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 2;
+            }
+        }
+        advanceSearch.PoblacionSearchType = 0;
+        if ($('#ddlAdvancePoblacion').val().length > 0 || $("#txtAdvancePoblacion").val() == "") {
+
+
+            if (isColoniaTextSearch) {
+                advanceSearch.PoblacionName = $("#txtAdvancePoblacion").val();
+                advanceSearch.PoblacionNameSearchType = $("#ddlAdvancePoblacion").val();
+                advanceSearch.PoblacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.PoblacionToSearch = $("#ddlAdvancePoblacion").val();
+                advanceSearch.PoblacionSearchType = 2;
+            }
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblColonia').DataTable().draw();
@@ -327,6 +405,24 @@
         $("#ddlAdvanceVigente").change(function () {
             isColoniaTextSearch = false;
             $("#txtAdvanceVigente").val('');
+        });
+        $("#txtAdvanceTipo").keypress(function () {
+            isColoniaTextSearch = true;
+            $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo").change(function () {
+            isColoniaTextSearch = false;
+            $("#txtAdvanceTipo").val('');
+        });
+        $("#txtAdvancePoblacion").keypress(function () {
+            isColoniaTextSearch = true;
+            $("#ddlAdvancePoblacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePoblacion").change(function () {
+            isColoniaTextSearch = false;
+            $("#txtAdvancePoblacion").val('');
         });
 
     });

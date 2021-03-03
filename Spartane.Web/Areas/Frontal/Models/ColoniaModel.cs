@@ -34,6 +34,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string estatus { get; set; }
         [Range(0, 9999999999)]
         public int? cod_localidad { get; set; }
+        public int? Tipo { get; set; }
+        public string TipoDescripcion { get; set; }
+        public int? Poblacion { get; set; }
+        public string PoblacionNombre { get; set; }
 
     }
 	
@@ -63,6 +67,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string estatus { get; set; }
         [Range(0, 9999999999)]
         public int? cod_localidad { get; set; }
+        public int? Tipo { get; set; }
+        public string TipoDescripcion { get; set; }
+        public int? Poblacion { get; set; }
+        public string PoblacionNombre { get; set; }
 
     }
 

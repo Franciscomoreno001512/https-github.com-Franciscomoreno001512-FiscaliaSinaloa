@@ -6,9 +6,15 @@
     List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
  List<SelectListItem> varSpartan_User_Usuario_que_registra = null;
     if (ViewBag.Spartan_Users_Usuario_que_registra != null)
     { varSpartan_User_Usuario_que_registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_registra; }
+    List<SelectListItem> varTipo_de_Expediente_Generado_Generar = null;
+    if (ViewBag.Tipo_de_Expediente_Generados_Generar != null)
+    { varTipo_de_Expediente_Generado_Generar = (List<SelectListItem>)ViewBag.Tipo_de_Expediente_Generados_Generar; }
     List<SelectListItem> varDocumento_Documento = null;
     if (ViewBag.Documentos_Documento != null)
     { varDocumento_Documento = (List<SelectListItem>)ViewBag.Documentos_Documento; }
@@ -81,6 +87,87 @@
                         });
                     }
                 </div>
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_Resumen_DenunciaResources.Fecha_de_registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_registro" name="FromFecha_de_registro" type="text" value="@Model.FromFecha_de_registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_registro" name="ToFecha_de_registro" type="text" value="@Model.ToFecha_de_registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_Resumen_DenunciaResources.Hora_de_registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_registro" name="FromHora_de_registro" type="text" value="@Model.FromHora_de_registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_registro" name="ToHora_de_registro" type="text" value="@Model.ToHora_de_registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_registra != null)
+    { varSpartan_User_Usuario_que_registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_registra; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Resumen_DenunciaResources.Generar</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.GenerarFilter, filters, new { @class = "form-control", @id = "ddlGenerarFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceGenerar, new { @class = "form-control", @type = "text", @id = "txtAdvanceGenerar" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Expediente_Generado_Generar!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceGenerarMultiple, varTipo_de_Expediente_Generado_Generar,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceGenerar"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Resumen_DenunciaResources.Numero_Generado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_GeneradoFilter, filters, new { @class = "form-control", @id = "ddlNumero_GeneradoFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Generado, new { @class = "form-control", @type = "text", @id = "txtNumero_Generado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Resumen_DenunciaResources.Numero_de_Oficio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_de_OficioFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_OficioFilter" })
+                    @Html.TextBoxFor(m => m.Numero_de_Oficio, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Oficio" })
+                </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Resumen_DenunciaResources.Probable_Responsable</h3>
                 </div>
@@ -121,9 +208,6 @@
                     @Html.DropDownListFor(m => m.HechosFilter, filters, new { @class = "form-control", @id = "ddlHechosFilter" })
                     @Html.TextBoxFor(m => m.Hechos, new { @class = "form-control", @type = "text", @id = "txtHechos" })
                 </div>
- List<SelectListItem> varSpartan_User_Usuario_que_registra = null;
-    if (ViewBag.Spartan_Users_Usuario_que_registra != null)
-    { varSpartan_User_Usuario_que_registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_registra; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Resumen_DenunciaResources.Documento</h3>
                 </div>
@@ -156,44 +240,6 @@
                     @Html.TextBoxFor(m => m.ToArchivo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToArchivo", @data_min = "txtAdvanceFromArchivo" })
                     @Html.ValidationMessageFor(m => m.ToArchivo)
                 </div>
-        <div class="MarginBottom ">
-            <h3>@Resources.Detalle_Resumen_DenunciaResources.Fecha_de_registro</h3>
-        </div>
-        <div class="MarginBottom form-inline">
-            <label class="">@Resources.Resources.From:</label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceFromFecha_de_registro" name="FromFecha_de_registro" type="text" value="@Model.FromFecha_de_registro" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-            <label class="">@Resources.Resources.To: </label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceToFecha_de_registro" name="ToFecha_de_registro" type="text" value="@Model.ToFecha_de_registro" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-        <div class="MarginBottom ">
-            <h3>@Resources.Detalle_Resumen_DenunciaResources.Hora_de_registro</h3>
-        </div>
-        <div class="MarginBottom form-inline">
-            <label class="">@Resources.Resources.From:</label>
-            <div class="input-group clock" data-autoclose="true">
-                <input class="form-control" id="txtAdvanceFromHora_de_registro" name="FromHora_de_registro" type="text" value="@Model.FromHora_de_registro" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-time"></span>
-                </span>
-            </div>
-            <label class="">@Resources.Resources.To: </label>
-            <div class="input-group clock" data-autoclose="true">
-                <input class="form-control" id="txtAdvanceToHora_de_registro" name="ToHora_de_registro" type="text" value="@Model.ToHora_de_registro" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-time"></span>
-                </span>
-            </div>
-        </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_Resumen_Denuncia/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -225,6 +271,71 @@
                 advanceSearch.Modulo_Atencion_InicialToSearch = $("#ddlAdvanceModulo_Atencion_Inicial").val();
                 advanceSearch.Modulo_Atencion_InicialSearchType = 2;
             }
+        }
+        advanceSearch.Expediente_MPSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MP').val().length > 0 || $("#txtAdvanceExpediente_MP").val() == "") {
+
+
+            if (isDetalle_Resumen_DenunciaTextSearch) {
+                advanceSearch.Expediente_MPName = $("#txtAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPNameSearchType = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MPToSearch = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha_de_registro").val() != "" || $("#txtAdvanceToFecha_de_registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Resumen_DenunciaFecha_de_registroFrom = $("#txtAdvanceFromFecha_de_registro").val();
+            advanceSearch.Detalle_Resumen_DenunciaFecha_de_registroTo = $("#txtAdvanceToFecha_de_registro").val();
+        }
+        if ($("#txtAdvanceHora_de_registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Resumen_DenunciaHora_de_registro = $("#txtAdvanceHora_de_registro").val();
+            advanceSearch.Detalle_Resumen_DenunciaHora_de_registroSearchType = $("#ddlAdvanceHora_de_registroFilter").val();
+        }
+        advanceSearch.Usuario_que_registraSearchType = 0;
+        if ($('#ddlAdvanceUsuario_que_registra').val().length > 0 || $("#txtAdvanceUsuario_que_registra").val() == "") {
+
+
+            if (isDetalle_Resumen_DenunciaTextSearch) {
+                advanceSearch.Usuario_que_registraName = $("#txtAdvanceUsuario_que_registra").val();
+                advanceSearch.Usuario_que_registraNameSearchType = $("#ddlAdvanceUsuario_que_registra").val();
+                advanceSearch.Usuario_que_registraSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_que_registraToSearch = $("#ddlAdvanceUsuario_que_registra").val();
+                advanceSearch.Usuario_que_registraSearchType = 2;
+            }
+        }
+        advanceSearch.GenerarSearchType = 0;
+        if ($('#ddlAdvanceGenerar').val().length > 0 || $("#txtAdvanceGenerar").val() == "") {
+
+
+            if (isDetalle_Resumen_DenunciaTextSearch) {
+                advanceSearch.GenerarName = $("#txtAdvanceGenerar").val();
+                advanceSearch.GenerarNameSearchType = $("#ddlAdvanceGenerar").val();
+                advanceSearch.GenerarSearchType = 1;
+            }
+            else {
+
+                advanceSearch.GenerarToSearch = $("#ddlAdvanceGenerar").val();
+                advanceSearch.GenerarSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNumero_Generado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Resumen_DenunciaNumero_Generado = $("#txtAdvanceNumero_Generado").val();
+            advanceSearch.Detalle_Resumen_DenunciaNumero_GeneradoSearchType = $("#ddlAdvanceNumero_GeneradoFilter").val();
+        }
+        if ($("#txtAdvanceNumero_de_Oficio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Resumen_DenunciaNumero_de_Oficio = $("#txtAdvanceNumero_de_Oficio").val();
+            advanceSearch.Detalle_Resumen_DenunciaNumero_de_OficioSearchType = $("#ddlAdvanceNumero_de_OficioFilter").val();
         }
         if ($("#txtAdvanceProbable_Responsable").val() != "") {
             hasParameter = true;
@@ -259,21 +370,6 @@
             hasParameter = true;
             advanceSearch.Detalle_Resumen_DenunciaArchivo_Descargado = $("#ddlAdvanceArchivo_Descargado").val();
         }
-        advanceSearch.Usuario_que_registraSearchType = 0;
-        if ($('#ddlAdvanceUsuario_que_registra').val().length > 0 || $("#txtAdvanceUsuario_que_registra").val() == "") {
-
-
-            if (isDetalle_Resumen_DenunciaTextSearch) {
-                advanceSearch.Usuario_que_registraName = $("#txtAdvanceUsuario_que_registra").val();
-                advanceSearch.Usuario_que_registraNameSearchType = $("#ddlAdvanceUsuario_que_registra").val();
-                advanceSearch.Usuario_que_registraSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Usuario_que_registraToSearch = $("#ddlAdvanceUsuario_que_registra").val();
-                advanceSearch.Usuario_que_registraSearchType = 2;
-            }
-        }
         advanceSearch.DocumentoSearchType = 0;
         if ($('#ddlAdvanceDocumento').val().length > 0 || $("#txtAdvanceDocumento").val() == "") {
 
@@ -293,16 +389,6 @@
             hasParameter = true;
             advanceSearch.Detalle_Resumen_DenunciaArchivoFrom = $("#txtAdvanceFromArchivo").val();
             advanceSearch.Detalle_Resumen_DenunciaArchivoTo = $("#txtAdvanceToArchivo").val();
-        }
-        if ($("#txtAdvanceFromFecha_de_registro").val() != "" || $("#txtAdvanceToFecha_de_registro").val() != "") {
-            hasParameter = true;
-            advanceSearch.Detalle_Resumen_DenunciaFecha_de_registroFrom = $("#txtAdvanceFromFecha_de_registro").val();
-            advanceSearch.Detalle_Resumen_DenunciaFecha_de_registroTo = $("#txtAdvanceToFecha_de_registro").val();
-        }
-        if ($("#txtAdvanceHora_de_registro").val() != "") {
-            hasParameter = true;
-            advanceSearch.Detalle_Resumen_DenunciaHora_de_registro = $("#txtAdvanceHora_de_registro").val();
-            advanceSearch.Detalle_Resumen_DenunciaHora_de_registroSearchType = $("#ddlAdvanceHora_de_registroFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
@@ -331,6 +417,15 @@
             isDetalle_Resumen_DenunciaTextSearch = false;
             $("#txtAdvanceModulo_Atencion_Inicial").val('');
         });
+        $("#txtAdvanceExpediente_MP").keypress(function () {
+            isDetalle_Resumen_DenunciaTextSearch = true;
+            $("#ddlAdvanceExpediente_MP").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MP").change(function () {
+            isDetalle_Resumen_DenunciaTextSearch = false;
+            $("#txtAdvanceExpediente_MP").val('');
+        });
         $("#txtAdvanceUsuario_que_registra").keypress(function () {
             isDetalle_Resumen_DenunciaTextSearch = true;
             $("#ddlAdvanceUsuario_que_registra").val('').trigger("chosen:updated");
@@ -339,6 +434,15 @@
         $("#ddlAdvanceUsuario_que_registra").change(function () {
             isDetalle_Resumen_DenunciaTextSearch = false;
             $("#txtAdvanceUsuario_que_registra").val('');
+        });
+        $("#txtAdvanceGenerar").keypress(function () {
+            isDetalle_Resumen_DenunciaTextSearch = true;
+            $("#ddlAdvanceGenerar").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceGenerar").change(function () {
+            isDetalle_Resumen_DenunciaTextSearch = false;
+            $("#txtAdvanceGenerar").val('');
         });
         $("#txtAdvanceDocumento").keypress(function () {
             isDetalle_Resumen_DenunciaTextSearch = true;

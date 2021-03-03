@@ -6,6 +6,20 @@ $(document).ready(function () {
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
+//BusinessRuleId:4114, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));
+
+}
+//BusinessRuleId:4114, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4114, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));
+
+}
+//BusinessRuleId:4114, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

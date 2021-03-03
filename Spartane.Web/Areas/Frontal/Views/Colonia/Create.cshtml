@@ -10,12 +10,18 @@
 /*
 
 */
- List<SelectListItem> varMunicipio_Municipio = null;
+    List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
     List<SelectListItem> varVigencia_Vigente = null;
     if (ViewBag.Vigencias_Vigente != null)
     { varVigencia_Vigente = (List<SelectListItem>)ViewBag.Vigencias_Vigente; }
+    List<SelectListItem> varTipo_de_Localidad_Tipo = null;
+    if (ViewBag.Tipo_de_Localidads_Tipo != null)
+    { varTipo_de_Localidad_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Localidads_Tipo; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
 
 
     Permission permission = ViewBag.Permission;
@@ -168,14 +174,28 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Nombre" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-				<div class="form-group" id="divMunicipio">
+                            <div class="form-group" id="divMunicipio">
                                 <label class="col-sm-2 control-label">@Resources.ColoniaResources.Municipio</label>
                                 <div class="col-sm-8" data-field-id="Municipio" data-attribute="262456" data-field-name="@Resources.ColoniaResources.Municipio">
-                                    <select class='fullWidth AutoComplete AutoCompleteColonia_Municipio form-control select2-dropdown Datos_Generales' data-val="true" id="Municipio" name="Municipio">
-                                        <option value="@Model.Municipio">@(Model.MunicipioNombre??Model.MunicipioNombre)</option>
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Municipio" name="Municipio">
+                                        <option value=""></option>
+                                        @if (varMunicipio_Municipio != null){ 
+                                            foreach (var itemMunicipio in varMunicipio_Municipio)
+                                            {
+                                                if (itemMunicipio.Value == Convert.ToString(Model.Municipio))
+                                                {
+                                                    <option value="@itemMunicipio.Value" selected>@itemMunicipio.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemMunicipio.Value">@itemMunicipio.Text</option>
+                                                }
+                                            }
+                                        }
                                     </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Municipio" data-valmsg-replace="true"></span>*@
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262456).New)
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262456).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -279,6 +299,48 @@
                                     <input class="form-control inputNumber Datos_Generales" id="cod_localidad" name="cod_localidad" type="text" value="@Model.cod_localidad">
                                     @*<span class="field-validation-valid" data-valmsg-for="cod_localidad" data-valmsg-replace="true"></span>*@
                                 </div>
+                            </div>
+                            <div class="form-group" id="divTipo">
+                                <label class="col-sm-2 control-label">@Resources.ColoniaResources.Tipo</label>
+                                <div class="col-sm-8" data-field-id="Tipo" data-attribute="272958" data-field-name="@Resources.ColoniaResources.Tipo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Tipo" name="Tipo">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Localidad_Tipo != null){ 
+                                            foreach (var itemTipo in varTipo_de_Localidad_Tipo)
+                                            {
+                                                if (itemTipo.Value == Convert.ToString(Model.Tipo))
+                                                {
+                                                    <option value="@itemTipo.Value" selected>@itemTipo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo.Value">@itemTipo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 272958).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Localidad', 'Tipo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divPoblacion">
+                                <label class="col-sm-2 control-label">@Resources.ColoniaResources.Poblacion</label>
+                                <div class="col-sm-8" data-field-id="Poblacion" data-attribute="272959" data-field-name="@Resources.ColoniaResources.Poblacion">
+                                    <select class='fullWidth AutoComplete AutoCompleteColonia_Poblacion form-control select2-dropdown Datos_Generales' data-val="true" id="Poblacion" name="Poblacion">
+                                        <option value="@Model.Poblacion">@(Model.PoblacionNombre??Model.PoblacionNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 272959).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Poblacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             </div>
                                 </div>
@@ -431,11 +493,11 @@
             }
 
 			
-			       var AutoCompleteMunicipioData =[];
-       $(".AutoCompleteColonia_Municipio").select2({
+			       var AutoCompletePoblacionData =[];
+       $(".AutoCompleteColonia_Poblacion").select2({
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
-                url: "@Url.Content("~/Frontal/Colonia/GetColonia_Municipio_Municipio")",
+                url: "@Url.Content("~/Frontal/Colonia/GetColonia_Poblacion_Colonia")",
 		cache: false,
                 dataType: 'json',
                 async: true,
@@ -449,7 +511,7 @@
                     params.page = params.page || 1;
 
                     return {
-                        results: GetAutoCompleteColonia_Municipio_MunicipioData(data),
+                        results: GetAutoCompleteColonia_Poblacion_ColoniaData(data),
                         pagination: {
                             more: false 
                         }
@@ -459,7 +521,7 @@
             escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
-        var $eventExternal = $(".AutoCompleteColonia_Municipio");
+        var $eventExternal = $(".AutoCompleteColonia_Poblacion");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -746,15 +808,7 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Nombre').val(result.data.Nombre);
-                    var control = $('#Municipio');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Municipio).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Municipio).trigger('change');
-                    }, 3000);
+                    $('#Municipio').val(result.data.Municipio);
                     $('#Codigo_Postal').val(result.data.Codigo_Postal);
                     $('#Zona').val(result.data.Zona);
                     $('#Vigente').val(result.data.Vigente);
@@ -766,6 +820,16 @@
                     $('#sector').val(result.data.sector);
                     $('#estatus').val(result.data.estatus);
                     $('#cod_localidad').val(result.data.cod_localidad);
+                    $('#Tipo').val(result.data.Tipo);
+                    var control = $('#Poblacion');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Poblacion).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Poblacion).trigger('change');
+                    }, 3000);
 
                 },
                 error: function (result) {
@@ -790,6 +854,8 @@
                 data.append('sector', $('#sector').val());
                 data.append('estatus', $('#estatus').val());
                 data.append('cod_localidad', $('#cod_localidad').val());
+                data.append('Tipo', $('#Tipo').val());
+                data.append('Poblacion', $('#Poblacion').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Colonia/Post_Datos_Generales")',

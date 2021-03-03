@@ -15673,6 +15673,126 @@
 <Content Include="Uploads\Scripts\Rules\Forma_OjosCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Forma_OjosIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Forma_Ojos\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Localidad\Tipo_de_LocalidadApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Localidad\ITipo_de_LocalidadApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_LocalidadModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_LocalidadGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_LocalidadMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_LocalidadController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Localidad\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Localidad\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Localidad.cs" />
+<Content Include="Uploads\Resources\Tipo_de_LocalidadResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_LocalidadPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_LocalidadResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Localidad.js" />
+<Content Include="Scripts\Custom\Tipo_de_LocalidadGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Localidad\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_LocalidadAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_LocalidadBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_LocalidadCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_LocalidadIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Localidad\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Expediente_Generado\Tipo_de_Expediente_GeneradoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Expediente_Generado\ITipo_de_Expediente_GeneradoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Expediente_GeneradoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Expediente_GeneradoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Expediente_GeneradoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_Expediente_GeneradoController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Expediente_Generado\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Expediente_Generado\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Expediente_Generado.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Expediente_GeneradoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_Expediente_GeneradoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Expediente_GeneradoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Expediente_Generado.js" />
+<Content Include="Scripts\Custom\Tipo_de_Expediente_GeneradoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Expediente_Generado\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Expediente_GeneradoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Expediente_GeneradoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Expediente_GeneradoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Expediente_GeneradoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Expediente_Generado\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Area_de_Servicios_de_Apoyo\Area_de_Servicios_de_ApoyoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Area_de_Servicios_de_Apoyo\IArea_de_Servicios_de_ApoyoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Area_de_Servicios_de_ApoyoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Area_de_Servicios_de_ApoyoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Area_de_Servicios_de_ApoyoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Area_de_Servicios_de_ApoyoController.cs" />
+<Content Include="Areas\Frontal\Views\Area_de_Servicios_de_Apoyo\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Area_de_Servicios_de_Apoyo\Create.cshtml" />
+<Compile Include="Resource\GetResource\Area_de_Servicios_de_Apoyo.cs" />
+<Content Include="Uploads\Resources\Area_de_Servicios_de_ApoyoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Area_de_Servicios_de_ApoyoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Area_de_Servicios_de_ApoyoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Area_de_Servicios_de_Apoyo.js" />
+<Content Include="Scripts\Custom\Area_de_Servicios_de_ApoyoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Area_de_Servicios_de_Apoyo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Area_de_Servicios_de_ApoyoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Area_de_Servicios_de_ApoyoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Area_de_Servicios_de_ApoyoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Area_de_Servicios_de_ApoyoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Area_de_Servicios_de_Apoyo\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Estatus_de_Solicitud_de_Apoyo\Estatus_de_Solicitud_de_ApoyoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Estatus_de_Solicitud_de_Apoyo\IEstatus_de_Solicitud_de_ApoyoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Solicitud_de_ApoyoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Solicitud_de_ApoyoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Solicitud_de_ApoyoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Estatus_de_Solicitud_de_ApoyoController.cs" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Solicitud_de_Apoyo\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Solicitud_de_Apoyo\Create.cshtml" />
+<Compile Include="Resource\GetResource\Estatus_de_Solicitud_de_Apoyo.cs" />
+<Content Include="Uploads\Resources\Estatus_de_Solicitud_de_ApoyoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Estatus_de_Solicitud_de_ApoyoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Estatus_de_Solicitud_de_ApoyoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Estatus_de_Solicitud_de_Apoyo.js" />
+<Content Include="Scripts\Custom\Estatus_de_Solicitud_de_ApoyoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Solicitud_de_Apoyo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Solicitud_de_ApoyoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Solicitud_de_ApoyoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Estatus_de_Solicitud_de_ApoyoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Estatus_de_Solicitud_de_ApoyoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Solicitud_de_Apoyo\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\SubArea_de_Servicios_de_Apoyo\SubArea_de_Servicios_de_ApoyoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\SubArea_de_Servicios_de_Apoyo\ISubArea_de_Servicios_de_ApoyoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\SubArea_de_Servicios_de_ApoyoModel.cs" />
+<Compile Include="Areas\Frontal\Models\SubArea_de_Servicios_de_ApoyoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\SubArea_de_Servicios_de_ApoyoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\SubArea_de_Servicios_de_ApoyoController.cs" />
+<Content Include="Areas\Frontal\Views\SubArea_de_Servicios_de_Apoyo\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\SubArea_de_Servicios_de_Apoyo\Create.cshtml" />
+<Compile Include="Resource\GetResource\SubArea_de_Servicios_de_Apoyo.cs" />
+<Content Include="Uploads\Resources\SubArea_de_Servicios_de_ApoyoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\SubArea_de_Servicios_de_ApoyoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\SubArea_de_Servicios_de_ApoyoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\SubArea_de_Servicios_de_Apoyo.js" />
+<Content Include="Scripts\Custom\SubArea_de_Servicios_de_ApoyoGeneral.js" />
+<Content Include="Areas\Frontal\Views\SubArea_de_Servicios_de_Apoyo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\SubArea_de_Servicios_de_ApoyoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\SubArea_de_Servicios_de_ApoyoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\SubArea_de_Servicios_de_ApoyoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\SubArea_de_Servicios_de_ApoyoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\SubArea_de_Servicios_de_Apoyo\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Asignacion_de_Apoyo\Tipo_de_Asignacion_de_ApoyoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Asignacion_de_Apoyo\ITipo_de_Asignacion_de_ApoyoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Asignacion_de_ApoyoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Asignacion_de_ApoyoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Asignacion_de_ApoyoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_Asignacion_de_ApoyoController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Asignacion_de_Apoyo\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Asignacion_de_Apoyo\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Asignacion_de_Apoyo.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Asignacion_de_ApoyoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_Asignacion_de_ApoyoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Asignacion_de_ApoyoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Asignacion_de_Apoyo.js" />
+<Content Include="Scripts\Custom\Tipo_de_Asignacion_de_ApoyoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Asignacion_de_Apoyo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Asignacion_de_ApoyoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Asignacion_de_ApoyoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Asignacion_de_ApoyoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Asignacion_de_ApoyoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Asignacion_de_Apoyo\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -16677,6 +16797,126 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

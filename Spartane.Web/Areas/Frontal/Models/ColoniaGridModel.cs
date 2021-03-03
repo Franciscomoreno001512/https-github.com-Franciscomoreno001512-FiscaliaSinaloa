@@ -24,6 +24,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? sector { get; set; }
         public string estatus { get; set; }
         public int? cod_localidad { get; set; }
+        public int? Tipo { get; set; }
+        public string TipoDescripcion { get; set; }
+        public int? Poblacion { get; set; }
+        public string PoblacionNombre { get; set; }
         
     }
 }

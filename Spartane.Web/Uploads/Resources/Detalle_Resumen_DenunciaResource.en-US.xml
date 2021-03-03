@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" standalone="yes"?>
 <resources>
-  <resource culture="en-us" name="Detalle_Resumen_Denuncia" value="Detalle Resumen Denuncia"></resource>
+  <resource culture="en-us" name="Detalle_Resumen_Denuncia" value="Generar Expediente"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Modulo_Atencion_Inicial" value="Modulo Atención Inicial"></resource>
+  <resource culture="en-US" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="en-US" name="Fecha_de_registro" value="Fecha de registro"></resource>
+  <resource culture="en-US" name="Hora_de_registro" value="Hora de registro"></resource>
+  <resource culture="en-US" name="Usuario_que_registra" value="Usuario que registra"></resource>
+  <resource culture="en-US" name="Generar" value="Generar"></resource>
+  <resource culture="en-US" name="Numero_Generado" value="Número Generado"></resource>
+  <resource culture="en-US" name="Numero_de_Oficio" value="Número de Oficio"></resource>
   <resource culture="en-US" name="Probable_Responsable" value="Probable Responsable"></resource>
   <resource culture="en-US" name="Delito" value="Delito"></resource>
   <resource culture="en-US" name="Victima" value="Victima"></resource>
@@ -10,11 +17,8 @@
   <resource culture="en-US" name="Hechos" value="Hechos"></resource>
   <resource culture="en-US" name="Generado" value="Generado"></resource>
   <resource culture="en-US" name="Archivo_Descargado" value="Archivo Descargado"></resource>
-  <resource culture="en-US" name="Usuario_que_registra" value="Usuario que registra"></resource>
   <resource culture="en-US" name="Documento" value="Documento"></resource>
   <resource culture="en-US" name="Archivo" value="Archivo"></resource>
-  <resource culture="en-US" name="Fecha_de_registro" value="Fecha de registro"></resource>
-  <resource culture="en-US" name="Hora_de_registro" value="Hora de registro"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 
