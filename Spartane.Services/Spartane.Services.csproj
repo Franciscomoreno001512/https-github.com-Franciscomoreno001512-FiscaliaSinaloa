@@ -1497,6 +1497,18 @@
 <Compile Include="Generador_Folio_Documentos_AT\Generador_Folio_Documentos_ATService.cs" />
 <Compile Include="Forma_Ojos\IForma_OjosService.cs" />
 <Compile Include="Forma_Ojos\Forma_OjosService.cs" />
+<Compile Include="Tipo_de_Localidad\ITipo_de_LocalidadService.cs" />
+<Compile Include="Tipo_de_Localidad\Tipo_de_LocalidadService.cs" />
+<Compile Include="Tipo_de_Expediente_Generado\ITipo_de_Expediente_GeneradoService.cs" />
+<Compile Include="Tipo_de_Expediente_Generado\Tipo_de_Expediente_GeneradoService.cs" />
+<Compile Include="Area_de_Servicios_de_Apoyo\IArea_de_Servicios_de_ApoyoService.cs" />
+<Compile Include="Area_de_Servicios_de_Apoyo\Area_de_Servicios_de_ApoyoService.cs" />
+<Compile Include="Estatus_de_Solicitud_de_Apoyo\IEstatus_de_Solicitud_de_ApoyoService.cs" />
+<Compile Include="Estatus_de_Solicitud_de_Apoyo\Estatus_de_Solicitud_de_ApoyoService.cs" />
+<Compile Include="SubArea_de_Servicios_de_Apoyo\ISubArea_de_Servicios_de_ApoyoService.cs" />
+<Compile Include="SubArea_de_Servicios_de_Apoyo\SubArea_de_Servicios_de_ApoyoService.cs" />
+<Compile Include="Tipo_de_Asignacion_de_Apoyo\ITipo_de_Asignacion_de_ApoyoService.cs" />
+<Compile Include="Tipo_de_Asignacion_de_Apoyo\Tipo_de_Asignacion_de_ApoyoService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1596,6 +1608,18 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

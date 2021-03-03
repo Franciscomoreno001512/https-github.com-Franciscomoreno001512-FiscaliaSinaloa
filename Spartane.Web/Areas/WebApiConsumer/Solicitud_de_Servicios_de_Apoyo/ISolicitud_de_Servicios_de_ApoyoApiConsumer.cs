@@ -29,6 +29,18 @@ namespace Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Servicios_de_Apoyo
 		ApiResponse<int> Update_Datos_Generales(Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_Apoyo_Datos_Generales entity);
 		ApiResponse<Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_Apoyo_Datos_Generales> Get_Datos_Generales(string Key);
 
+		ApiResponse<int> Update_Recepcion(Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_Apoyo_Recepcion entity);
+		ApiResponse<Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_Apoyo_Recepcion> Get_Recepcion(string Key);
+
+		ApiResponse<int> Update_Asignacion(Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_Apoyo_Asignacion entity);
+		ApiResponse<Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_Apoyo_Asignacion> Get_Asignacion(string Key);
+
+		ApiResponse<int> Update_Contestacion(Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_Apoyo_Contestacion entity);
+		ApiResponse<Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_Apoyo_Contestacion> Get_Contestacion(string Key);
+
+		ApiResponse<int> Update_Autorizacion(Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_Apoyo_Autorizacion entity);
+		ApiResponse<Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_Apoyo_Autorizacion> Get_Autorizacion(string Key);
+
 
     }
 }

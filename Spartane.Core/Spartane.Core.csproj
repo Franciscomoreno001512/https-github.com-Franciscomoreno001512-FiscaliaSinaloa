@@ -1606,6 +1606,18 @@
 <Compile Include="Domain\Generador_Folio_Documentos_AT\Generador_Folio_Documentos_ATPagingModel.cs" />
 <Compile Include="Domain\Forma_Ojos\Forma_Ojos.cs" />
 <Compile Include="Domain\Forma_Ojos\Forma_OjosPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Localidad\Tipo_de_Localidad.cs" />
+<Compile Include="Domain\Tipo_de_Localidad\Tipo_de_LocalidadPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Expediente_Generado\Tipo_de_Expediente_Generado.cs" />
+<Compile Include="Domain\Tipo_de_Expediente_Generado\Tipo_de_Expediente_GeneradoPagingModel.cs" />
+<Compile Include="Domain\Area_de_Servicios_de_Apoyo\Area_de_Servicios_de_Apoyo.cs" />
+<Compile Include="Domain\Area_de_Servicios_de_Apoyo\Area_de_Servicios_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Solicitud_de_Apoyo\Estatus_de_Solicitud_de_Apoyo.cs" />
+<Compile Include="Domain\Estatus_de_Solicitud_de_Apoyo\Estatus_de_Solicitud_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\SubArea_de_Servicios_de_Apoyo\SubArea_de_Servicios_de_Apoyo.cs" />
+<Compile Include="Domain\SubArea_de_Servicios_de_Apoyo\SubArea_de_Servicios_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Asignacion_de_Apoyo\Tipo_de_Asignacion_de_Apoyo.cs" />
+<Compile Include="Domain\Tipo_de_Asignacion_de_Apoyo\Tipo_de_Asignacion_de_ApoyoPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1626,6 +1638,18 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

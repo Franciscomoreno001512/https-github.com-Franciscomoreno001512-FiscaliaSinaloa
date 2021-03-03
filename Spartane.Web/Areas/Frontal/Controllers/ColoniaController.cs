@@ -4,6 +4,8 @@ using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Vigencia;
+using Spartane.Core.Domain.Tipo_de_Localidad;
+using Spartane.Core.Domain.Colonia;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -16,6 +18,8 @@ using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Vigencia;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Localidad;
+using Spartane.Web.Areas.WebApiConsumer.Colonia;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -54,6 +58,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IColoniaApiConsumer _IColoniaApiConsumer;
         private IMunicipioApiConsumer _IMunicipioApiConsumer;
         private IVigenciaApiConsumer _IVigenciaApiConsumer;
+        private ITipo_de_LocalidadApiConsumer _ITipo_de_LocalidadApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -71,7 +76,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public ColoniaController(IColoniaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IColoniaApiConsumer ColoniaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IVigenciaApiConsumer VigenciaApiConsumer )
+        public ColoniaController(IColoniaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IColoniaApiConsumer ColoniaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IVigenciaApiConsumer VigenciaApiConsumer , ITipo_de_LocalidadApiConsumer Tipo_de_LocalidadApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -87,6 +92,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._IVigenciaApiConsumer = VigenciaApiConsumer;
+            this._ITipo_de_LocalidadApiConsumer = Tipo_de_LocalidadApiConsumer;
+            this._IColoniaApiConsumer = ColoniaApiConsumer;
 
         }
 
@@ -177,6 +184,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,sector = ColoniaData.sector
                     ,estatus = ColoniaData.estatus
                     ,cod_localidad = ColoniaData.cod_localidad
+                    ,Tipo = ColoniaData.Tipo
+                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(ColoniaData.Tipo), "Tipo_de_Localidad") ??  (string)ColoniaData.Tipo_Tipo_de_Localidad.Descripcion
+                    ,Poblacion = ColoniaData.Poblacion
+                    ,PoblacionNombre = CultureHelper.GetTraduction(Convert.ToString(ColoniaData.Poblacion), "Colonia") ??  (string)ColoniaData.Poblacion_Colonia.Nombre
 
 					};
 				}
@@ -187,12 +198,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Municipios_Municipio = _IMunicipioApiConsumer.SelAll(true);
+            if (Municipios_Municipio != null && Municipios_Municipio.Resource != null)
+                ViewBag.Municipios_Municipio = Municipios_Municipio.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IVigenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Vigencias_Vigente = _IVigenciaApiConsumer.SelAll(true);
             if (Vigencias_Vigente != null && Vigencias_Vigente.Resource != null)
                 ViewBag.Vigencias_Vigente = Vigencias_Vigente.Resource.Where(m => m.Abreviacion != null).OrderBy(m => m.Abreviacion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Vigencia", "Abreviacion") ?? m.Abreviacion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_LocalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Localidads_Tipo = _ITipo_de_LocalidadApiConsumer.SelAll(true);
+            if (Tipo_de_Localidads_Tipo != null && Tipo_de_Localidads_Tipo.Resource != null)
+                ViewBag.Tipo_de_Localidads_Tipo = Tipo_de_Localidads_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Localidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -271,6 +296,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,sector = ColoniaData.sector
                     ,estatus = ColoniaData.estatus
                     ,cod_localidad = ColoniaData.cod_localidad
+                    ,Tipo = ColoniaData.Tipo
+                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(ColoniaData.Tipo), "Tipo_de_Localidad") ??  (string)ColoniaData.Tipo_Tipo_de_Localidad.Descripcion
+                    ,Poblacion = ColoniaData.Poblacion
+                    ,PoblacionNombre = CultureHelper.GetTraduction(Convert.ToString(ColoniaData.Poblacion), "Colonia") ??  (string)ColoniaData.Poblacion_Colonia.Nombre
 
 					};
 				}
@@ -279,12 +308,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Municipios_Municipio = _IMunicipioApiConsumer.SelAll(true);
+            if (Municipios_Municipio != null && Municipios_Municipio.Resource != null)
+                ViewBag.Municipios_Municipio = Municipios_Municipio.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IVigenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Vigencias_Vigente = _IVigenciaApiConsumer.SelAll(true);
             if (Vigencias_Vigente != null && Vigencias_Vigente.Resource != null)
                 ViewBag.Vigencias_Vigente = Vigencias_Vigente.Resource.Where(m => m.Abreviacion != null).OrderBy(m => m.Abreviacion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Vigencia", "Abreviacion") ?? m.Abreviacion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_LocalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Localidads_Tipo = _ITipo_de_LocalidadApiConsumer.SelAll(true);
+            if (Tipo_de_Localidads_Tipo != null && Tipo_de_Localidads_Tipo.Resource != null)
+                ViewBag.Tipo_de_Localidads_Tipo = Tipo_de_Localidads_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Localidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -306,7 +349,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
-		[HttpGet]
+        [HttpGet]
         public ActionResult GetMunicipioAll()
         {
             try
@@ -315,7 +358,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IMunicipioApiConsumer.SelAll(false).Resource;
-				
+                
                 return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre")?? m.Nombre,
@@ -340,6 +383,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Abreviacion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Vigencia", "Abreviacion")?? m.Abreviacion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetTipo_de_LocalidadAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_LocalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_LocalidadApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Localidad", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetColoniaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IColoniaApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre")?? m.Nombre,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -381,12 +466,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Municipios_Municipio = _IMunicipioApiConsumer.SelAll(true);
+            if (Municipios_Municipio != null && Municipios_Municipio.Resource != null)
+                ViewBag.Municipios_Municipio = Municipios_Municipio.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IVigenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Vigencias_Vigente = _IVigenciaApiConsumer.SelAll(true);
             if (Vigencias_Vigente != null && Vigencias_Vigente.Resource != null)
                 ViewBag.Vigencias_Vigente = Vigencias_Vigente.Resource.Where(m => m.Abreviacion != null).OrderBy(m => m.Abreviacion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Vigencia", "Abreviacion") ?? m.Abreviacion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_LocalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Localidads_Tipo = _ITipo_de_LocalidadApiConsumer.SelAll(true);
+            if (Tipo_de_Localidads_Tipo != null && Tipo_de_Localidads_Tipo.Resource != null)
+                ViewBag.Tipo_de_Localidads_Tipo = Tipo_de_Localidads_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Localidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -399,12 +498,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Municipios_Municipio = _IMunicipioApiConsumer.SelAll(true);
+            if (Municipios_Municipio != null && Municipios_Municipio.Resource != null)
+                ViewBag.Municipios_Municipio = Municipios_Municipio.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IVigenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Vigencias_Vigente = _IVigenciaApiConsumer.SelAll(true);
             if (Vigencias_Vigente != null && Vigencias_Vigente.Resource != null)
                 ViewBag.Vigencias_Vigente = Vigencias_Vigente.Resource.Where(m => m.Abreviacion != null).OrderBy(m => m.Abreviacion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Vigencia", "Abreviacion") ?? m.Abreviacion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_LocalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Localidads_Tipo = _ITipo_de_LocalidadApiConsumer.SelAll(true);
+            if (Tipo_de_Localidads_Tipo != null && Tipo_de_Localidads_Tipo.Resource != null)
+                ViewBag.Tipo_de_Localidads_Tipo = Tipo_de_Localidads_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Localidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -445,7 +558,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Nombre = m.Nombre
-                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Municipio.Nombre
 			,Codigo_Postal = m.Codigo_Postal
 			,Zona = m.Zona
                         ,VigenteAbreviacion = CultureHelper.GetTraduction(m.Vigente_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigente_Vigencia.Abreviacion
@@ -457,6 +570,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,sector = m.sector
 			,estatus = m.estatus
 			,cod_localidad = m.cod_localidad
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Localidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Localidad.Descripcion
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -572,7 +687,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Nombre = m.Nombre
-                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Municipio.Nombre
 			,Codigo_Postal = m.Codigo_Postal
 			,Zona = m.Zona
                         ,VigenteAbreviacion = CultureHelper.GetTraduction(m.Vigente_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigente_Vigencia.Abreviacion
@@ -584,6 +699,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,sector = m.sector
 			,estatus = m.estatus
 			,cod_localidad = m.cod_localidad
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Localidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Localidad.Descripcion
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -594,7 +711,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
         [HttpGet]
-        public JsonResult GetColonia_Municipio_Municipio(string query, string where)
+        public JsonResult GetColonia_Poblacion_Colonia(string query, string where)
         {
             try
             {
@@ -602,18 +719,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where = "";
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Municipio.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IMunicipioApiConsumer.ListaSelAll(1, 20,elWhere , " Municipio.Nombre ASC ").Resource;
+				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
                
-                foreach (var item in result.Municipios)
+                foreach (var item in result.Colonias)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Municipio", "Nombre");
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Colonia", "Nombre");
                     item.Nombre =trans ??item.Nombre;
                 }
-                return Json(result.Municipios.ToArray(), JsonRequestBehavior.AllowGet);
+                return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -837,6 +954,62 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Colonia.cod_localidad <= " + filter.Tocod_localidad;
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo))
+            {
+                switch (filter.TipoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Localidad.Descripcion LIKE '" + filter.AdvanceTipo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Localidad.Descripcion LIKE '%" + filter.AdvanceTipo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Localidad.Descripcion = '" + filter.AdvanceTipo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Localidad.Descripcion LIKE '%" + filter.AdvanceTipo + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipoMultiple != null && filter.AdvanceTipoMultiple.Count() > 0)
+            {
+                var TipoIds = string.Join(",", filter.AdvanceTipoMultiple);
+
+                where += " AND Colonia.Tipo In (" + TipoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvancePoblacion))
+            {
+                switch (filter.PoblacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Colonia.Nombre LIKE '" + filter.AdvancePoblacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvancePoblacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Colonia.Nombre = '" + filter.AdvancePoblacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvancePoblacion + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvancePoblacionMultiple != null && filter.AdvancePoblacionMultiple.Count() > 0)
+            {
+                var PoblacionIds = string.Join(",", filter.AdvancePoblacionMultiple);
+
+                where += " AND Colonia.Poblacion In (" + PoblacionIds + ")";
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -905,6 +1078,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,sector = varColonia.sector
                         ,estatus = varColonia.estatus
                         ,cod_localidad = varColonia.cod_localidad
+                        ,Tipo = varColonia.Tipo
+                        ,Poblacion = varColonia.Poblacion
 
                     };
 
@@ -1247,7 +1422,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = null;
+			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1293,7 +1468,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Nombre = m.Nombre
-                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Municipio.Nombre
 			,Codigo_Postal = m.Codigo_Postal
 			,Zona = m.Zona
                         ,VigenteAbreviacion = CultureHelper.GetTraduction(m.Vigente_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigente_Vigencia.Abreviacion
@@ -1305,6 +1480,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,sector = m.sector
 			,estatus = m.estatus
 			,cod_localidad = m.cod_localidad
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Localidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Localidad.Descripcion
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
 
             }).ToList();
 
@@ -1379,7 +1556,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Nombre = m.Nombre
-                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Municipio.Nombre
 			,Codigo_Postal = m.Codigo_Postal
 			,Zona = m.Zona
                         ,VigenteAbreviacion = CultureHelper.GetTraduction(m.Vigente_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigente_Vigencia.Abreviacion
@@ -1391,6 +1568,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,sector = m.sector
 			,estatus = m.estatus
 			,cod_localidad = m.cod_localidad
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Localidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Localidad.Descripcion
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
 
             }).ToList();
 
@@ -1443,6 +1622,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,sector = varColonia.sector
                         ,estatus = varColonia.estatus
                         ,cod_localidad = varColonia.cod_localidad
+                        ,Tipo = varColonia.Tipo
+                        ,Poblacion = varColonia.Poblacion
                     
                 };
 
@@ -1473,7 +1654,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
 			,Nombre = m.Nombre
                         ,Municipio = m.Municipio
-                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Municipio.Nombre
 			,Codigo_Postal = m.Codigo_Postal
 			,Zona = m.Zona
                         ,Vigente = m.Vigente
@@ -1486,6 +1667,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,sector = m.sector
 			,estatus = m.estatus
 			,cod_localidad = m.cod_localidad
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Localidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Localidad.Descripcion
+                        ,Poblacion = m.Poblacion
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
 
                     
                 };

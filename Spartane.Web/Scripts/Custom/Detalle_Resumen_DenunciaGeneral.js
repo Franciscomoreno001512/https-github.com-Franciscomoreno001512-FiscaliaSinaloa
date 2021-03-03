@@ -6,6 +6,17 @@ $(function () {
 
 });
 
+var AutoCompleteExpediente_MPData = [];
+function GetAutoCompleteDetalle_Resumen_Denuncia_Expediente_MP_expediente_ministerio_publicoData(data) {
+	AutoCompleteExpediente_MPData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MPData.push({
+            id: data[i].clave,
+            text: data[i].nuat
+        });
+    }
+    return AutoCompleteExpediente_MPData;
+}
 var AutoCompleteUsuario_que_registraData = [];
 function GetAutoCompleteDetalle_Resumen_Denuncia_Usuario_que_registra_Spartan_UserData(data) {
 	AutoCompleteUsuario_que_registraData = [];
@@ -54,6 +65,9 @@ function ClearControls() {
     $('#CreateDetalle_Resumen_Denuncia')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
     $('#Usuario_que_registra').empty();
     $("#Usuario_que_registra").append('<option value=""></option>');
     $('#Usuario_que_registra').val('0').trigger('change');
@@ -186,7 +200,10 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendDetalle_Resumen_DenunciaData(function (currentId) {
 					$("#ClaveId").val("0");
-	    $('#Usuario_que_registra').empty();
+	    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
+    $('#Usuario_que_registra').empty();
     $("#Usuario_que_registra").append('<option value=""></option>');
     $('#Usuario_que_registra').val('0').trigger('change');
 

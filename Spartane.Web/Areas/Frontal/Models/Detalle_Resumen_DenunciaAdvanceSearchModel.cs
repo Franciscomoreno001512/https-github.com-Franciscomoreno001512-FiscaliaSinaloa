@@ -25,6 +25,33 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceModulo_Atencion_Inicial { set; get; }
         public int[] AdvanceModulo_Atencion_InicialMultiple { set; get; }
 
+        public Filters Expediente_MPFilter { set; get; }
+        public string AdvanceExpediente_MP { set; get; }
+        public int[] AdvanceExpediente_MPMultiple { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_de_registro { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_de_registro", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_de_registro { set; get; }
+
+        public string ToHora_de_registro { set; get; }
+        public string FromHora_de_registro { set; get; }
+
+        public Filters Usuario_que_registraFilter { set; get; }
+        public string AdvanceUsuario_que_registra { set; get; }
+        public int[] AdvanceUsuario_que_registraMultiple { set; get; }
+
+        public Filters GenerarFilter { set; get; }
+        public string AdvanceGenerar { set; get; }
+        public int[] AdvanceGenerarMultiple { set; get; }
+
+        public Filters Numero_GeneradoFilter { set; get; }
+        public string Numero_Generado { set; get; }
+
+        public Filters Numero_de_OficioFilter { set; get; }
+        public string Numero_de_Oficio { set; get; }
+
         public Filters Probable_ResponsableFilter { set; get; }
         public string Probable_Responsable { set; get; }
 
@@ -44,10 +71,6 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public RadioOptions Archivo_Descargado { set; get; }
 
-        public Filters Usuario_que_registraFilter { set; get; }
-        public string AdvanceUsuario_que_registra { set; get; }
-        public int[] AdvanceUsuario_que_registraMultiple { set; get; }
-
         public Filters DocumentoFilter { set; get; }
         public string AdvanceDocumento { set; get; }
         public int[] AdvanceDocumentoMultiple { set; get; }
@@ -57,15 +80,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
         [IsNumberAfterAttribute("FromArchivo", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToArchivo { set; get; }
-
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_registro { set; get; }
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_registro", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_registro { set; get; }
-
-        public string ToHora_de_registro { set; get; }
-        public string FromHora_de_registro { set; get; }
 
 
     }
