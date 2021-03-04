@@ -11,15 +11,12 @@
 @using Spartane.Core.Domain.Delegacion;
 @using Spartane.Core.Domain.Agencia;
 @using Spartane.Core.Domain.Jefes_de_Usuarios_del_Sistema;
+@using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
 @using Spartane.Core.Domain.Genero;
 @using Spartane.Core.Domain.Tipo_de_Atencion;
 @using Spartane.Core.Domain.Tipo_de_Identificacion;
 @using Spartane.Core.Domain.Tipo_de_Urgencia;
 @using Spartane.Core.Domain.Motivo_Finalizacion_Turno;
-@using Spartane.Core.Domain.Dialecto;
-@using Spartane.Core.Domain.Idioma;
-@using Spartane.Core.Domain.Estatus_Orientador;
-@using Spartane.Core.Domain.Unidad;
 @using Spartane.Core.Domain.Prioridad_del_Hecho;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Pais;
@@ -30,11 +27,6 @@
 @using Spartane.Core.Domain.Documento_Extraviado;
 @using Spartane.Core.Domain.Lugar_Tipo;
 @using Spartane.Core.Domain.Zona;
-@using Spartane.Core.Domain.Tipo_de_Acuerdo;
-@using Spartane.Core.Domain.Periodicidad;
-@using Spartane.Core.Domain.Jefes_de_Usuarios_del_Sistema;
-@using Spartane.Core.Domain.Spartan_User;
-@using Spartane.Core.Domain.Spartan_User;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -252,6 +244,7 @@
                                     <th>@Resources.Modulo_Atencion_InicialResources.Delegacion</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Agencia</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Ministerio_Publico_en_Turno</th>
+                                    <th>@Resources.Modulo_Atencion_InicialResources.Solicitud_de_Denuncia_Ciudadana</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Nombres_turno</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Apellido_Paterno_turno</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Apellido_Materno_turno</th>
@@ -264,17 +257,6 @@
                                     <th>@Resources.Modulo_Atencion_InicialResources.Tipo_de_Urgencia_turno</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Motivo_Finalizacion_Turno</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Observaciones_turno</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Requiere_Traductor</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Lengua_Originaria</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Idioma</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Autoriza_Traductor</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Finalizar_Servicios_de_Apoyo</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Estatus2</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Unidad_canaliza</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Enviar_a_MP</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Correccion_de_Estatus</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Requiere_Servicios_de_Apoyo</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Persona_Moral</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Titulo_del_Hecho</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Narrativa_Breve_de_los_Hechos</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Prioridad_del_Hecho</th>
@@ -300,30 +282,9 @@
                                     <th>@Resources.Modulo_Atencion_InicialResources.Tipo_de_Lugar_del_Hecho</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Zona_de_los_Hechos</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Turno</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Tipo_de_Acuerdo</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Fecha_de_Inicio_de_Acuerdo</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Fecha_de_Cumplimiento_del_Acuerdo</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Hora_de_Cumplimiento_del_Acuerdo</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Domicilio_para_el_Cumplimiento</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Monto_de_Reparacion_de_Danos</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Parcialidades</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Periodicidad</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Se_Acepta_Acuerdo</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Motivo_de_Rechazo_de_Acuerdo</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Cerrar</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Fecha_de_Cierre</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Hora_de_Cierre</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.NUC</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Fecha_de_Vencimiento_1</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.EspecialistaJA</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Campo_Oculto1</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.JefeMPO</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Campo_Oculto2</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Campo_Oculto3</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.CoordinadorJA</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.EspJA</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Ano_Actual</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Secuencial</th>
 
                                 </tr>
                             </thead>
@@ -356,6 +317,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -364,17 +326,6 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -400,30 +351,9 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="time"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
 
                                 </tr>
                             </tfoot>
@@ -561,6 +491,7 @@
         var Delegacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Agencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Ministerio_Publico_en_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitud_de_Denuncia_Ciudadana =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -573,17 +504,6 @@
         var Tipo_de_Urgencia_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_Finalizacion_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Requiere_Traductor = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Lengua_Originaria =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Autoriza_Traductor = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Finalizar_Servicios_de_Apoyo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estatus2 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Unidad_canaliza =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Enviar_a_MP = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Correccion_de_Estatus = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Requiere_Servicios_de_Apoyo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Persona_Moral = $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Prioridad_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -609,30 +529,9 @@
         var Tipo_de_Lugar_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Zona_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Inicio_de_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Cumplimiento_del_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Cumplimiento_del_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Domicilio_para_el_Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Monto_de_Reparacion_de_Danos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Parcialidades =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Periodicidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Se_Acepta_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Motivo_de_Rechazo_de_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Cerrar = $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
-        var NUC =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Vencimiento_1 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var EspecialistaJA =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Campo_Oculto1 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var JefeMPO =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Campo_Oculto2 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Campo_Oculto3 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var CoordinadorJA =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var EspJA =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ano_Actual =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Secuencial =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -657,6 +556,7 @@
         + "&Delegacion=" + Delegacion
         + "&Agencia=" + Agencia
         + "&Ministerio_Publico_en_Turno=" + Ministerio_Publico_en_Turno
+        + "&Solicitud_de_Denuncia_Ciudadana=" + Solicitud_de_Denuncia_Ciudadana
         + "&Nombres_turno=" + Nombres_turno
         + "&Apellido_Paterno_turno=" + Apellido_Paterno_turno
         + "&Apellido_Materno_turno=" + Apellido_Materno_turno
@@ -669,17 +569,6 @@
         + "&Tipo_de_Urgencia_turno=" + Tipo_de_Urgencia_turno
         + "&Motivo_Finalizacion_Turno=" + Motivo_Finalizacion_Turno
         + "&Observaciones_turno=" + Observaciones_turno
-        + "&Requiere_Traductor=" + Requiere_Traductor
-        + "&Lengua_Originaria=" + Lengua_Originaria
-        + "&Idioma=" + Idioma
-        + "&Autoriza_Traductor=" + Autoriza_Traductor
-        + "&Finalizar_Servicios_de_Apoyo=" + Finalizar_Servicios_de_Apoyo
-        + "&Estatus2=" + Estatus2
-        + "&Unidad_canaliza=" + Unidad_canaliza
-        + "&Enviar_a_MP=" + Enviar_a_MP
-        + "&Correccion_de_Estatus=" + Correccion_de_Estatus
-        + "&Requiere_Servicios_de_Apoyo=" + Requiere_Servicios_de_Apoyo
-        + "&Persona_Moral=" + Persona_Moral
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
         + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
         + "&Prioridad_del_Hecho=" + Prioridad_del_Hecho
@@ -705,30 +594,9 @@
         + "&Tipo_de_Lugar_del_Hecho=" + Tipo_de_Lugar_del_Hecho
         + "&Zona_de_los_Hechos=" + Zona_de_los_Hechos
         + "&Turno=" + Turno
-        + "&Tipo_de_Acuerdo=" + Tipo_de_Acuerdo
-        + "&Fecha_de_Inicio_de_Acuerdo=" + Fecha_de_Inicio_de_Acuerdo
-        + "&Fecha_de_Cumplimiento_del_Acuerdo=" + Fecha_de_Cumplimiento_del_Acuerdo
-        + "&Hora_de_Cumplimiento_del_Acuerdo=" + Hora_de_Cumplimiento_del_Acuerdo
-        + "&Domicilio_para_el_Cumplimiento=" + Domicilio_para_el_Cumplimiento
-        + "&Monto_de_Reparacion_de_Danos=" + Monto_de_Reparacion_de_Danos
-        + "&Parcialidades=" + Parcialidades
-        + "&Periodicidad=" + Periodicidad
-        + "&Se_Acepta_Acuerdo=" + Se_Acepta_Acuerdo
-        + "&Motivo_de_Rechazo_de_Acuerdo=" + Motivo_de_Rechazo_de_Acuerdo
         + "&Cerrar=" + Cerrar
         + "&Fecha_de_Cierre=" + Fecha_de_Cierre
         + "&Hora_de_Cierre=" + Hora_de_Cierre
-        + "&NUC=" + NUC
-        + "&Fecha_de_Vencimiento_1=" + Fecha_de_Vencimiento_1
-        + "&EspecialistaJA=" + EspecialistaJA
-        + "&Campo_Oculto1=" + Campo_Oculto1
-        + "&JefeMPO=" + JefeMPO
-        + "&Campo_Oculto2=" + Campo_Oculto2
-        + "&Campo_Oculto3=" + Campo_Oculto3
-        + "&CoordinadorJA=" + CoordinadorJA
-        + "&EspJA=" + EspJA
-        + "&Ano_Actual=" + Ano_Actual
-        + "&Secuencial=" + Secuencial
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Export?format=")" + format
@@ -764,6 +632,7 @@
         var Delegacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Agencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Ministerio_Publico_en_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitud_de_Denuncia_Ciudadana =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -776,17 +645,6 @@
         var Tipo_de_Urgencia_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_Finalizacion_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Requiere_Traductor = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Lengua_Originaria =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Autoriza_Traductor = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Finalizar_Servicios_de_Apoyo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estatus2 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Unidad_canaliza =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Enviar_a_MP = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Correccion_de_Estatus = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Requiere_Servicios_de_Apoyo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Persona_Moral = $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Prioridad_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -812,30 +670,9 @@
         var Tipo_de_Lugar_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Zona_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Inicio_de_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Cumplimiento_del_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Cumplimiento_del_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Domicilio_para_el_Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Monto_de_Reparacion_de_Danos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Parcialidades =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Periodicidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Se_Acepta_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Motivo_de_Rechazo_de_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Cerrar = $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
-        var NUC =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Vencimiento_1 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var EspecialistaJA =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Campo_Oculto1 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var JefeMPO =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Campo_Oculto2 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Campo_Oculto3 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var CoordinadorJA =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var EspJA =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ano_Actual =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Secuencial =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -860,6 +697,7 @@
         + "&Delegacion=" + Delegacion
         + "&Agencia=" + Agencia
         + "&Ministerio_Publico_en_Turno=" + Ministerio_Publico_en_Turno
+        + "&Solicitud_de_Denuncia_Ciudadana=" + Solicitud_de_Denuncia_Ciudadana
         + "&Nombres_turno=" + Nombres_turno
         + "&Apellido_Paterno_turno=" + Apellido_Paterno_turno
         + "&Apellido_Materno_turno=" + Apellido_Materno_turno
@@ -872,17 +710,6 @@
         + "&Tipo_de_Urgencia_turno=" + Tipo_de_Urgencia_turno
         + "&Motivo_Finalizacion_Turno=" + Motivo_Finalizacion_Turno
         + "&Observaciones_turno=" + Observaciones_turno
-        + "&Requiere_Traductor=" + Requiere_Traductor
-        + "&Lengua_Originaria=" + Lengua_Originaria
-        + "&Idioma=" + Idioma
-        + "&Autoriza_Traductor=" + Autoriza_Traductor
-        + "&Finalizar_Servicios_de_Apoyo=" + Finalizar_Servicios_de_Apoyo
-        + "&Estatus2=" + Estatus2
-        + "&Unidad_canaliza=" + Unidad_canaliza
-        + "&Enviar_a_MP=" + Enviar_a_MP
-        + "&Correccion_de_Estatus=" + Correccion_de_Estatus
-        + "&Requiere_Servicios_de_Apoyo=" + Requiere_Servicios_de_Apoyo
-        + "&Persona_Moral=" + Persona_Moral
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
         + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
         + "&Prioridad_del_Hecho=" + Prioridad_del_Hecho
@@ -908,30 +735,9 @@
         + "&Tipo_de_Lugar_del_Hecho=" + Tipo_de_Lugar_del_Hecho
         + "&Zona_de_los_Hechos=" + Zona_de_los_Hechos
         + "&Turno=" + Turno
-        + "&Tipo_de_Acuerdo=" + Tipo_de_Acuerdo
-        + "&Fecha_de_Inicio_de_Acuerdo=" + Fecha_de_Inicio_de_Acuerdo
-        + "&Fecha_de_Cumplimiento_del_Acuerdo=" + Fecha_de_Cumplimiento_del_Acuerdo
-        + "&Hora_de_Cumplimiento_del_Acuerdo=" + Hora_de_Cumplimiento_del_Acuerdo
-        + "&Domicilio_para_el_Cumplimiento=" + Domicilio_para_el_Cumplimiento
-        + "&Monto_de_Reparacion_de_Danos=" + Monto_de_Reparacion_de_Danos
-        + "&Parcialidades=" + Parcialidades
-        + "&Periodicidad=" + Periodicidad
-        + "&Se_Acepta_Acuerdo=" + Se_Acepta_Acuerdo
-        + "&Motivo_de_Rechazo_de_Acuerdo=" + Motivo_de_Rechazo_de_Acuerdo
         + "&Cerrar=" + Cerrar
         + "&Fecha_de_Cierre=" + Fecha_de_Cierre
         + "&Hora_de_Cierre=" + Hora_de_Cierre
-        + "&NUC=" + NUC
-        + "&Fecha_de_Vencimiento_1=" + Fecha_de_Vencimiento_1
-        + "&EspecialistaJA=" + EspecialistaJA
-        + "&Campo_Oculto1=" + Campo_Oculto1
-        + "&JefeMPO=" + JefeMPO
-        + "&Campo_Oculto2=" + Campo_Oculto2
-        + "&Campo_Oculto3=" + Campo_Oculto3
-        + "&CoordinadorJA=" + CoordinadorJA
-        + "&EspJA=" + EspJA
-        + "&Ano_Actual=" + Ano_Actual
-        + "&Secuencial=" + Secuencial
 ;
 
     }
@@ -1112,11 +918,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -1183,7 +989,7 @@
                 ,{ "data": "Folio", "orderable": true, "name": "Folio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
                 ,{ "data": "Hora_de_Registro", "orderable": true, "name": "Hora_de_Registro" }
-                ,{ "data": "Turno_AsignadoNumero_de_Turno", "orderable": true, "name": "Turno_AsignadoNumero_de_Turno" }
+                ,{ "data": "Turno_AsignadoNumero_de_Turno", "orderable": true, "name": "Turno_AsignadoNumero_de_Turno"}
                 ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName"}
                 ,{ "data": "UnidadDescripcion", "orderable": true, "name": "UnidadDescripcion" }
                 ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
@@ -1200,7 +1006,8 @@
                 ,{ "data": "Fecha_en_que_llega_para_validacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_en_que_llega_para_validacion" }
                 ,{ "data": "DelegacionDescripcion", "orderable": true, "name": "DelegacionDescripcion" }
                 ,{ "data": "AgenciaDescripcion", "orderable": true, "name": "AgenciaDescripcion" }
-                ,{ "data": "Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno", "orderable": true, "name": "Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno" }
+                ,{ "data": "Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno", "orderable": true, "name": "Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno"}
+                ,{ "data": "Solicitud_de_Denuncia_CiudadanaFolio", "orderable": true, "name": "Solicitud_de_Denuncia_CiudadanaFolio"}
                 ,{ "data": "Nombres_turno", "orderable": true, "name": "Nombres_turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Paterno_turno", "orderable": true, "name": "Apellido_Paterno_turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Materno_turno", "orderable": true, "name": "Apellido_Materno_turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
@@ -1213,17 +1020,6 @@
                 ,{ "data": "Tipo_de_Urgencia_turnoDescripcion", "orderable": true, "name": "Tipo_de_Urgencia_turnoDescripcion" }
                 ,{ "data": "Motivo_Finalizacion_TurnoDescripcion", "orderable": true, "name": "Motivo_Finalizacion_TurnoDescripcion" }
                 ,{ "data": "Observaciones_turno", "orderable": true, "name": "Observaciones_turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Requiere_Traductor", "orderable": true, "name": "Requiere_Traductor","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
-                ,{ "data": "Lengua_OriginariaDescripcion", "orderable": true, "name": "Lengua_OriginariaDescripcion" }
-                ,{ "data": "IdiomaDescripcion", "orderable": true, "name": "IdiomaDescripcion" }
-                ,{ "data": "Autoriza_Traductor", "orderable": true, "name": "Autoriza_Traductor","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
-                ,{ "data": "Finalizar_Servicios_de_Apoyo", "orderable": true, "name": "Finalizar_Servicios_de_Apoyo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
-                ,{ "data": "Estatus2Descripcion", "orderable": true, "name": "Estatus2Descripcion" }
-                ,{ "data": "Unidad_canalizaDescripcion", "orderable": true, "name": "Unidad_canalizaDescripcion" }
-                ,{ "data": "Enviar_a_MP", "orderable": true, "name": "Enviar_a_MP","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
-                ,{ "data": "Correccion_de_Estatus", "orderable": true, "name": "Correccion_de_Estatus","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
-                ,{ "data": "Requiere_Servicios_de_Apoyo", "orderable": true, "name": "Requiere_Servicios_de_Apoyo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
-                ,{ "data": "Persona_Moral", "orderable": true, "name": "Persona_Moral","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Titulo_del_Hecho", "orderable": true, "name": "Titulo_del_Hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Narrativa_Breve_de_los_Hechos", "orderable": true, "name": "Narrativa_Breve_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Prioridad_del_HechoDescripcion", "orderable": true, "name": "Prioridad_del_HechoDescripcion" }
@@ -1249,30 +1045,9 @@
                 ,{ "data": "Tipo_de_Lugar_del_HechoDescripcion", "orderable": true, "name": "Tipo_de_Lugar_del_HechoDescripcion" }
                 ,{ "data": "Zona_de_los_HechosDescripcion", "orderable": true, "name": "Zona_de_los_HechosDescripcion" }
                 ,{ "data": "Turno", "orderable": true, "name": "Turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Tipo_de_AcuerdoDescripcion", "orderable": true, "name": "Tipo_de_AcuerdoDescripcion" }
-                ,{ "data": "Fecha_de_Inicio_de_Acuerdo", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Inicio_de_Acuerdo" }
-                ,{ "data": "Fecha_de_Cumplimiento_del_Acuerdo", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cumplimiento_del_Acuerdo" }
-                ,{ "data": "Hora_de_Cumplimiento_del_Acuerdo", "orderable": true, "name": "Hora_de_Cumplimiento_del_Acuerdo" }
-                ,{ "data": "Domicilio_para_el_Cumplimiento", "orderable": true, "name": "Domicilio_para_el_Cumplimiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Monto_de_Reparacion_de_Danos", "orderable": true, "name": "Monto_de_Reparacion_de_Danos", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
-                ,{ "data": "Parcialidades","className": "dt-right", "orderable": true, "name": "Parcialidades" }
-                ,{ "data": "PeriodicidadDescripcion", "orderable": true, "name": "PeriodicidadDescripcion" }
-                ,{ "data": "Se_Acepta_Acuerdo", "orderable": true, "name": "Se_Acepta_Acuerdo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
-                ,{ "data": "Motivo_de_Rechazo_de_Acuerdo", "orderable": true, "name": "Motivo_de_Rechazo_de_Acuerdo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Cerrar", "orderable": true, "name": "Cerrar","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Fecha_de_Cierre", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cierre" }
                 ,{ "data": "Hora_de_Cierre", "orderable": true, "name": "Hora_de_Cierre" }
-                ,{ "data": "NUC", "orderable": true, "name": "NUC", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_de_Vencimiento_1", "orderable": true, "name": "Fecha_de_Vencimiento_1", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "EspecialistaJA", "orderable": true, "name": "EspecialistaJA", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Campo_Oculto1", "orderable": true, "name": "Campo_Oculto1", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "JefeMPOMinisterio_Publico_en_Turno", "orderable": true, "name": "JefeMPOMinisterio_Publico_en_Turno" }
-                ,{ "data": "Campo_Oculto2", "orderable": true, "name": "Campo_Oculto2", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Campo_Oculto3", "orderable": true, "name": "Campo_Oculto3", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "CoordinadorJAName", "orderable": true, "name": "CoordinadorJAName"}
-                ,{ "data": "EspJAName", "orderable": true, "name": "EspJAName"}
-                ,{ "data": "Ano_Actual", "orderable": true, "name": "Ano_Actual", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Secuencial","className": "dt-right", "orderable": true, "name": "Secuencial" }
 
             ],
 			"colReorder": true,

@@ -20,18 +20,12 @@
     string Fecha_del_Hecho = "";
     if (Model.Fecha_del_Hecho == "")
     { Model.Fecha_del_Hecho = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-    string Fecha_de_Inicio_de_Acuerdo = "";
-    if (Model.Fecha_de_Inicio_de_Acuerdo == "")
-    { Model.Fecha_de_Inicio_de_Acuerdo = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-    string Fecha_de_Cumplimiento_del_Acuerdo = "";
-    if (Model.Fecha_de_Cumplimiento_del_Acuerdo == "")
-    { Model.Fecha_de_Cumplimiento_del_Acuerdo = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string Fecha_de_Cierre = "";
     if (Model.Fecha_de_Cierre == "")
     { Model.Fecha_de_Cierre = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
 */
-    List<SelectListItem> varAsignacion_de_Turnos_Turno_Asignado = null;
+ List<SelectListItem> varAsignacion_de_Turnos_Turno_Asignado = null;
     if (ViewBag.Asignacion_de_Turnoss_Turno_Asignado != null)
     { varAsignacion_de_Turnos_Turno_Asignado = (List<SelectListItem>)ViewBag.Asignacion_de_Turnoss_Turno_Asignado; }
  List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
@@ -58,9 +52,12 @@
     List<SelectListItem> varAgencia_Agencia = null;
     if (ViewBag.Agencias_Agencia != null)
     { varAgencia_Agencia = (List<SelectListItem>)ViewBag.Agencias_Agencia; }
-    List<SelectListItem> varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno = null;
+ List<SelectListItem> varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno = null;
     if (ViewBag.Jefes_de_Usuarios_del_Sistemas_Ministerio_Publico_en_Turno != null)
     { varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno = (List<SelectListItem>)ViewBag.Jefes_de_Usuarios_del_Sistemas_Ministerio_Publico_en_Turno; }
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana; }
     List<SelectListItem> varGenero_Sexo_turno = null;
     if (ViewBag.Generos_Sexo_turno != null)
     { varGenero_Sexo_turno = (List<SelectListItem>)ViewBag.Generos_Sexo_turno; }
@@ -76,18 +73,6 @@
     List<SelectListItem> varMotivo_Finalizacion_Turno_Motivo_Finalizacion_Turno = null;
     if (ViewBag.Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno != null)
     { varMotivo_Finalizacion_Turno_Motivo_Finalizacion_Turno = (List<SelectListItem>)ViewBag.Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno; }
-    List<SelectListItem> varDialecto_Lengua_Originaria = null;
-    if (ViewBag.Dialectos_Lengua_Originaria != null)
-    { varDialecto_Lengua_Originaria = (List<SelectListItem>)ViewBag.Dialectos_Lengua_Originaria; }
-    List<SelectListItem> varIdioma_Idioma = null;
-    if (ViewBag.Idiomas_Idioma != null)
-    { varIdioma_Idioma = (List<SelectListItem>)ViewBag.Idiomas_Idioma; }
-    List<SelectListItem> varEstatus_Orientador_Estatus2 = null;
-    if (ViewBag.Estatus_Orientadors_Estatus2 != null)
-    { varEstatus_Orientador_Estatus2 = (List<SelectListItem>)ViewBag.Estatus_Orientadors_Estatus2; }
-    List<SelectListItem> varUnidad_Unidad_canaliza = null;
-    if (ViewBag.Unidads_Unidad_canaliza != null)
-    { varUnidad_Unidad_canaliza = (List<SelectListItem>)ViewBag.Unidads_Unidad_canaliza; }
     List<SelectListItem> varPrioridad_del_Hecho_Prioridad_del_Hecho = null;
     if (ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho != null)
     { varPrioridad_del_Hecho_Prioridad_del_Hecho = (List<SelectListItem>)ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho; }
@@ -118,24 +103,7 @@
     List<SelectListItem> varZona_Zona_de_los_Hechos = null;
     if (ViewBag.Zonas_Zona_de_los_Hechos != null)
     { varZona_Zona_de_los_Hechos = (List<SelectListItem>)ViewBag.Zonas_Zona_de_los_Hechos; }
-    List<SelectListItem> varTipo_de_Acuerdo_Tipo_de_Acuerdo = null;
-    if (ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo != null)
-    { varTipo_de_Acuerdo_Tipo_de_Acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo; }
-    List<SelectListItem> varPeriodicidad_Periodicidad = null;
-    if (ViewBag.Periodicidads_Periodicidad != null)
-    { varPeriodicidad_Periodicidad = (List<SelectListItem>)ViewBag.Periodicidads_Periodicidad; }
-    List<SelectListItem> varJefes_de_Usuarios_del_Sistema_JefeMPO = null;
-    if (ViewBag.Jefes_de_Usuarios_del_Sistemas_JefeMPO != null)
-    { varJefes_de_Usuarios_del_Sistema_JefeMPO = (List<SelectListItem>)ViewBag.Jefes_de_Usuarios_del_Sistemas_JefeMPO; }
- List<SelectListItem> varSpartan_User_CoordinadorJA = null;
-    if (ViewBag.Spartan_Users_CoordinadorJA != null)
-    { varSpartan_User_CoordinadorJA = (List<SelectListItem>)ViewBag.Spartan_Users_CoordinadorJA; }
- List<SelectListItem> varSpartan_User_EspJA = null;
-    if (ViewBag.Spartan_Users_EspJA != null)
-    { varSpartan_User_EspJA = (List<SelectListItem>)ViewBag.Spartan_Users_EspJA; }
 
-    Permission permissionDetalle_de_Canalizar_Estatus = ViewBag.PermissionDetalle_de_Canalizar_Estatus;
-    Permission permissionDetalle_de_Documentos_de_MPO = ViewBag.PermissionDetalle_de_Documentos_de_MPO;
     Permission permissionDetalle_de_coincidencias_a = ViewBag.PermissionDetalle_de_coincidencias_a;
     Permission permissionDetalle_Historico_MPO = ViewBag.PermissionDetalle_Historico_MPO;
 
@@ -243,12 +211,6 @@
 
                 }
             }
-                    <div aria-hidden="true" class="modal fade in AddDetalle_de_Canalizar_EstatusModal" id="AddDetalle_de_Canalizar_Estatus-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-                    </div>
-
-                    <div aria-hidden="true" class="modal fade in AddDetalle_de_Documentos_de_MPOModal" id="AddDetalle_de_Documentos_de_MPO-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-                    </div>
-
                     <div aria-hidden="true" class="modal fade in AddDetalle_de_coincidencias_aModal" id="AddDetalle_de_coincidencias_a-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                     </div>
 
@@ -275,15 +237,10 @@
                         	<ul class="nav nav-tabs">
 <li class="active"><a data-toggle="tab" href="#tabDatos_del_Caso"> @Resources.Modulo_Atencion_InicialResources.TabDatos_del_Caso</a></li>
 <li class=""><a data-toggle="tab" href="#tabInformacion_de_Turno"> @Resources.Modulo_Atencion_InicialResources.TabInformacion_de_Turno</a></li>
-<li class=""><a data-toggle="tab" href="#tabServicios_de_Apoyo"> @Resources.Modulo_Atencion_InicialResources.TabServicios_de_Apoyo</a></li>
-<li class=""><a data-toggle="tab" href="#tabCanalizar"> @Resources.Modulo_Atencion_InicialResources.TabCanalizar</a></li>
-<li class=""><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Modulo_Atencion_InicialResources.TabDatos_Generales</a></li>
 <li class=""><a data-toggle="tab" href="#tabDatos_de_los_Hechos_en_MPO"> @Resources.Modulo_Atencion_InicialResources.TabDatos_de_los_Hechos_en_MPO</a></li>
-<li class=""><a data-toggle="tab" href="#tabDatos_del_Acuerdo"> @Resources.Modulo_Atencion_InicialResources.TabDatos_del_Acuerdo</a></li>
 <li class=""><a data-toggle="tab" href="#tabBitacora_de_Coincidencias"> @Resources.Modulo_Atencion_InicialResources.TabBitacora_de_Coincidencias</a></li>
 <li class=""><a data-toggle="tab" href="#tabCierre"> @Resources.Modulo_Atencion_InicialResources.TabCierre</a></li>
 <li class=""><a data-toggle="tab" href="#tabHistorial_de_movimientos"> @Resources.Modulo_Atencion_InicialResources.TabHistorial_de_movimientos</a></li>
-<li class=""><a data-toggle="tab" href="#tabCampos_Ocultos"> @Resources.Modulo_Atencion_InicialResources.TabCampos_Ocultos</a></li>
 
                         	</ul>
 	                	<div class="tab-content">
@@ -333,28 +290,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="divTurno_Asignado">
+				<div class="form-group" id="divTurno_Asignado">
                                 <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Turno_Asignado</label>
                                 <div class="col-sm-8" data-field-id="Turno_Asignado" data-attribute="265574" data-field-name="@Resources.Modulo_Atencion_InicialResources.Turno_Asignado">
-                                    <select class="form-control Datos_del_Caso" data-val="true" data-val-number="The field Turno Asignado must be a number." data-val-required="The Turno Asignado field is required." id="Turno_Asignado" name="Turno_Asignado">
-                                        <option value=""></option>
-                                        @if (varAsignacion_de_Turnos_Turno_Asignado != null){ 
-                                            foreach (var itemTurno_Asignado in varAsignacion_de_Turnos_Turno_Asignado)
-                                            {
-                                                if (itemTurno_Asignado.Value == Convert.ToString(Model.Turno_Asignado))
-                                                {
-                                                    <option value="@itemTurno_Asignado.Value" selected>@itemTurno_Asignado.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTurno_Asignado.Value">@itemTurno_Asignado.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteModulo_Atencion_Inicial_Turno_Asignado form-control select2-dropdown Datos_del_Caso' data-val="true" id="Turno_Asignado" name="Turno_Asignado">
+                                        <option value="@Model.Turno_Asignado">@(Model.Turno_AsignadoNumero_de_Turno??Model.Turno_AsignadoNumero_de_Turno)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Turno_Asignado" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265574).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265574).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Asignacion_de_Turnos', 'Turno_Asignado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -621,31 +564,31 @@
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divMinisterio_Publico_en_Turno">
+				<div class="form-group" id="divMinisterio_Publico_en_Turno">
                                 <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Ministerio_Publico_en_Turno</label>
                                 <div class="col-sm-8" data-field-id="Ministerio_Publico_en_Turno" data-attribute="262866" data-field-name="@Resources.Modulo_Atencion_InicialResources.Ministerio_Publico_en_Turno">
-                                    <select class="form-control Datos_del_Caso" data-val="true" data-val-number="The field Ministerio Público en Turno must be a number." data-val-required="The Ministerio Público en Turno field is required." id="Ministerio_Publico_en_Turno" name="Ministerio_Publico_en_Turno">
-                                        <option value=""></option>
-                                        @if (varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno != null){ 
-                                            foreach (var itemMinisterio_Publico_en_Turno in varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno)
-                                            {
-                                                if (itemMinisterio_Publico_en_Turno.Value == Convert.ToString(Model.Ministerio_Publico_en_Turno))
-                                                {
-                                                    <option value="@itemMinisterio_Publico_en_Turno.Value" selected>@itemMinisterio_Publico_en_Turno.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemMinisterio_Publico_en_Turno.Value">@itemMinisterio_Publico_en_Turno.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteModulo_Atencion_Inicial_Ministerio_Publico_en_Turno form-control select2-dropdown Datos_del_Caso' data-val="true" id="Ministerio_Publico_en_Turno" name="Ministerio_Publico_en_Turno">
+                                        <option value="@Model.Ministerio_Publico_en_Turno">@(Model.Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno??Model.Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Ministerio_Publico_en_Turno" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262866).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262866).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Jefes_de_Usuarios_del_Sistema', 'Ministerio_Publico_en_Turno');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divSolicitud_de_Denuncia_Ciudadana">
+                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Solicitud_de_Denuncia_Ciudadana</label>
+                                <div class="col-sm-8" data-field-id="Solicitud_de_Denuncia_Ciudadana" data-attribute="269444" data-field-name="@Resources.Modulo_Atencion_InicialResources.Solicitud_de_Denuncia_Ciudadana">
+                                    <select class='fullWidth AutoComplete AutoCompleteModulo_Atencion_Inicial_Solicitud_de_Denuncia_Ciudadana form-control select2-dropdown Datos_del_Caso' data-val="true" id="Solicitud_de_Denuncia_Ciudadana" name="Solicitud_de_Denuncia_Ciudadana">
+                                        <option value="@Model.Solicitud_de_Denuncia_Ciudadana">@(Model.Solicitud_de_Denuncia_CiudadanaFolio??Model.Solicitud_de_Denuncia_CiudadanaFolio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269444).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud_de_Denuncia_Ciudadana', 'Solicitud_de_Denuncia_Ciudadana');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -841,244 +784,6 @@
                                 <div class="col-sm-8" data-field-id="Observaciones_turno" data-attribute="266679" data-field-name="@Resources.Modulo_Atencion_InicialResources.Observaciones_turno">
                                     <textarea id="Observaciones_turno" name="Observaciones_turno" class="form-control Informacion_de_Turno" rows="4" cols="50">@Model.Observaciones_turno</textarea>
                                     @*<span class="field-validation-valid" data-valmsg-for="Observaciones_turno" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            </div>
-                                </div>
-
-
-                            <div id="tabServicios_de_Apoyo" class="tab-pane">
-                                <div class="panel-body">
-                            <div class="form-group" id="divRequiere_Traductor">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Requiere_Traductor</label>
-                                <div class="col-sm-8" data-field-id="Requiere_Traductor" data-attribute="262796" data-field-name="@Resources.Modulo_Atencion_InicialResources.Requiere_Traductor">
-                                    @Html.CheckBoxFor(m => m.Requiere_Traductor, new { @class = "i-checks Servicios_de_Apoyo" })
-                                </div>
-                            </div>
-                            <div class="form-group" id="divLengua_Originaria">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Lengua_Originaria</label>
-                                <div class="col-sm-8" data-field-id="Lengua_Originaria" data-attribute="262797" data-field-name="@Resources.Modulo_Atencion_InicialResources.Lengua_Originaria">
-                                    <select class="form-control Servicios_de_Apoyo" data-val="true" data-val-number="The field Lengua Originaria must be a number." data-val-required="The Lengua Originaria field is required." id="Lengua_Originaria" name="Lengua_Originaria">
-                                        <option value=""></option>
-                                        @if (varDialecto_Lengua_Originaria != null){ 
-                                            foreach (var itemLengua_Originaria in varDialecto_Lengua_Originaria)
-                                            {
-                                                if (itemLengua_Originaria.Value == Convert.ToString(Model.Lengua_Originaria))
-                                                {
-                                                    <option value="@itemLengua_Originaria.Value" selected>@itemLengua_Originaria.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemLengua_Originaria.Value">@itemLengua_Originaria.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Lengua_Originaria" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262797).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Dialecto', 'Lengua_Originaria');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divIdioma">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Idioma</label>
-                                <div class="col-sm-8" data-field-id="Idioma" data-attribute="262848" data-field-name="@Resources.Modulo_Atencion_InicialResources.Idioma">
-                                    <select class="form-control Servicios_de_Apoyo" data-val="true" data-val-number="The field Idioma must be a number." data-val-required="The Idioma field is required." id="Idioma" name="Idioma">
-                                        <option value=""></option>
-                                        @if (varIdioma_Idioma != null){ 
-                                            foreach (var itemIdioma in varIdioma_Idioma)
-                                            {
-                                                if (itemIdioma.Value == Convert.ToString(Model.Idioma))
-                                                {
-                                                    <option value="@itemIdioma.Value" selected>@itemIdioma.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemIdioma.Value">@itemIdioma.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Idioma" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262848).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Idioma', 'Idioma');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divAutoriza_Traductor">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Autoriza_Traductor</label>
-                                <div class="col-sm-8" data-field-id="Autoriza_Traductor" data-attribute="262801" data-field-name="@Resources.Modulo_Atencion_InicialResources.Autoriza_Traductor">
-                                    @Html.CheckBoxFor(m => m.Autoriza_Traductor, new { @class = "i-checks Servicios_de_Apoyo" })
-                                </div>
-                            </div>
-                            <div class="form-group" id="divFinalizar_Servicios_de_Apoyo">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Finalizar_Servicios_de_Apoyo</label>
-                                <div class="col-sm-8" data-field-id="Finalizar_Servicios_de_Apoyo" data-attribute="262825" data-field-name="@Resources.Modulo_Atencion_InicialResources.Finalizar_Servicios_de_Apoyo">
-                                    @Html.CheckBoxFor(m => m.Finalizar_Servicios_de_Apoyo, new { @class = "i-checks Servicios_de_Apoyo" })
-                                </div>
-                            </div>
-                            </div>
-                                </div>
-
-
-                            <div id="tabCanalizar" class="tab-pane">
-                                <div class="panel-body">
-                            <div class="form-group" id="divEstatus2">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Estatus2</label>
-                                <div class="col-sm-8" data-field-id="Estatus2" data-attribute="262816" data-field-name="@Resources.Modulo_Atencion_InicialResources.Estatus2">
-                                    <select class="form-control Canalizar" data-val="true" data-val-number="The field Canalizar a must be a number." data-val-required="The Canalizar a field is required." id="Estatus2" name="Estatus2">
-                                        <option value=""></option>
-                                        @if (varEstatus_Orientador_Estatus2 != null){ 
-                                            foreach (var itemEstatus2 in varEstatus_Orientador_Estatus2)
-                                            {
-                                                if (itemEstatus2.Value == Convert.ToString(Model.Estatus2))
-                                                {
-                                                    <option value="@itemEstatus2.Value" selected>@itemEstatus2.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemEstatus2.Value">@itemEstatus2.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Estatus2" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262816).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Estatus_Orientador', 'Estatus2');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divUnidad_canaliza">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Unidad_canaliza</label>
-                                <div class="col-sm-8" data-field-id="Unidad_canaliza" data-attribute="268121" data-field-name="@Resources.Modulo_Atencion_InicialResources.Unidad_canaliza">
-                                    <select class="form-control Canalizar" data-val="true" data-val-number="The field Unidad must be a number." data-val-required="The Unidad field is required." id="Unidad_canaliza" name="Unidad_canaliza">
-                                        <option value=""></option>
-                                        @if (varUnidad_Unidad_canaliza != null){ 
-                                            foreach (var itemUnidad_canaliza in varUnidad_Unidad_canaliza)
-                                            {
-                                                if (itemUnidad_canaliza.Value == Convert.ToString(Model.Unidad_canaliza))
-                                                {
-                                                    <option value="@itemUnidad_canaliza.Value" selected>@itemUnidad_canaliza.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemUnidad_canaliza.Value">@itemUnidad_canaliza.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Unidad_canaliza" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268121).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Unidad', 'Unidad_canaliza');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divEnviar_a_MP">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Enviar_a_MP</label>
-                                <div class="col-sm-8" data-field-id="Enviar_a_MP" data-attribute="262846" data-field-name="@Resources.Modulo_Atencion_InicialResources.Enviar_a_MP">
-                                    @Html.CheckBoxFor(m => m.Enviar_a_MP, new { @class = "i-checks Canalizar" })
-                                </div>
-                            </div>
-                            <div class="form-group" id="divCorreccion_de_Estatus">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Correccion_de_Estatus</label>
-                                <div class="col-sm-8" data-field-id="Correccion_de_Estatus" data-attribute="262847" data-field-name="@Resources.Modulo_Atencion_InicialResources.Correccion_de_Estatus">
-                                    @Html.CheckBoxFor(m => m.Correccion_de_Estatus, new { @class = "i-checks Canalizar" })
-                                </div>
-                            </div>
-                            <div id="divHistorial_de_Canalizaciones">
-                            <div class="ibox-title">
-                                <h5>@Resources.Modulo_Atencion_InicialResources.Historial_de_Canalizaciones</h5>
-                                <div class="ibox-tools">
-                                </div>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="">
-									@if (permissionDetalle_de_Canalizar_Estatus.New && !ViewBag.Consult)
-                                    {
-                                        <a onclick="Detalle_de_Canalizar_EstatusfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_de_Canalizar_EstatusAddRow btn btn-primary">
-                                            <i class="glyphicon glyphicon-plus"></i>
-                                        </a>
-                                    }
-                                    <button onclick="Modulo_Atencion_InicialGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '266494')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form">
-                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
-                                            <i class="fa fa-cogs fa-spin"></i>
-                                        </a>
-                                    </button>
-									@if (permissionDetalle_de_Canalizar_Estatus.New && !ViewBag.Consult)
-                                    {
-                                        <a onclick="Detalle_de_Canalizar_EstatusfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_de_Canalizar_Estatus-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
-                                            <i class="glyphicon glyphicon-new-window"></i>
-                                        </a>
-                                    }  
-                                </div>
-
-                                <br />
-
-                                <div style='overflow-x: auto;'>
-                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_de_Canalizar_EstatusGrid">
-                                        <thead>
-                                            <tr>
-                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
-
-                                                <th class="Fecha_de_Cambio_de_EstatusHeader"><span>
-<button type="button" data-attribute="263767" data-field-id="Detalle_de_Canalizar_EstatusFecha_de_Cambio_de_Estatus" data-field-name="@Resources.Detalle_de_Canalizar_EstatusResources.Fecha_de_Cambio_de_Estatus" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Canalizar_EstatusResources.Fecha_de_Cambio_de_Estatus">
-                                                                <i class="fa fa-cogs fa-spin"></i>
-                                                            </a>
-                                                        </button>@Resources.Detalle_de_Canalizar_EstatusResources.Fecha_de_Cambio_de_Estatus</span></th>
-                                                <th class="Hora_de_Cambio_de_EstatusHeader"><span>
-<button type="button" data-attribute="263768" data-field-id="Detalle_de_Canalizar_EstatusHora_de_Cambio_de_Estatus" data-field-name="@Resources.Detalle_de_Canalizar_EstatusResources.Hora_de_Cambio_de_Estatus" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Canalizar_EstatusResources.Hora_de_Cambio_de_Estatus">
-                                                                <i class="fa fa-cogs fa-spin"></i>
-                                                            </a>
-                                                        </button>@Resources.Detalle_de_Canalizar_EstatusResources.Hora_de_Cambio_de_Estatus</span></th>
-                                                <th class="Estatus_InternoHeader"><span>
-<button type="button" data-attribute="263769" data-field-id="Detalle_de_Canalizar_EstatusEstatus_Interno" data-field-name="@Resources.Detalle_de_Canalizar_EstatusResources.Estatus_Interno" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Canalizar_EstatusResources.Estatus_Interno">
-                                                                <i class="fa fa-cogs fa-spin"></i>
-                                                            </a>
-                                                        </button>@Resources.Detalle_de_Canalizar_EstatusResources.Estatus_Interno</span></th>
-                                                <th class="Estatus_de_CanalizacionHeader"><span>
-<button type="button" data-attribute="263770" data-field-id="Detalle_de_Canalizar_EstatusEstatus_de_Canalizacion" data-field-name="@Resources.Detalle_de_Canalizar_EstatusResources.Estatus_de_Canalizacion" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Canalizar_EstatusResources.Estatus_de_Canalizacion">
-                                                                <i class="fa fa-cogs fa-spin"></i>
-                                                            </a>
-                                                        </button>@Resources.Detalle_de_Canalizar_EstatusResources.Estatus_de_Canalizacion</span></th>
-
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-                                </div>
-
-
-                            <div id="tabDatos_Generales" class="tab-pane">
-                                <div class="panel-body">
-                            <div class="form-group" id="divRequiere_Servicios_de_Apoyo">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Requiere_Servicios_de_Apoyo</label>
-                                <div class="col-sm-8" data-field-id="Requiere_Servicios_de_Apoyo" data-attribute="262823" data-field-name="@Resources.Modulo_Atencion_InicialResources.Requiere_Servicios_de_Apoyo">
-                                    @Html.CheckBoxFor(m => m.Requiere_Servicios_de_Apoyo, new { @class = "i-checks Datos_Generales" })
-                                </div>
-                            </div>
-                            <div class="form-group" id="divPersona_Moral">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Persona_Moral</label>
-                                <div class="col-sm-8" data-field-id="Persona_Moral" data-attribute="262844" data-field-name="@Resources.Modulo_Atencion_InicialResources.Persona_Moral">
-                                    @Html.CheckBoxFor(m => m.Persona_Moral, new { @class = "i-checks Datos_Generales" })
                                 </div>
                             </div>
                             </div>
@@ -1399,205 +1104,6 @@
                                 </div>
 
 
-                            <div id="tabDatos_del_Acuerdo" class="tab-pane">
-                                <div class="panel-body">
-                            <div class="form-group" id="divTipo_de_Acuerdo">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Tipo_de_Acuerdo</label>
-                                <div class="col-sm-8" data-field-id="Tipo_de_Acuerdo" data-attribute="262831" data-field-name="@Resources.Modulo_Atencion_InicialResources.Tipo_de_Acuerdo">
-                                    <select class="form-control Datos_del_Acuerdo" data-val="true" data-val-number="The field Tipo de Acuerdo must be a number." data-val-required="The Tipo de Acuerdo field is required." id="Tipo_de_Acuerdo" name="Tipo_de_Acuerdo">
-                                        <option value=""></option>
-                                        @if (varTipo_de_Acuerdo_Tipo_de_Acuerdo != null){ 
-                                            foreach (var itemTipo_de_Acuerdo in varTipo_de_Acuerdo_Tipo_de_Acuerdo)
-                                            {
-                                                if (itemTipo_de_Acuerdo.Value == Convert.ToString(Model.Tipo_de_Acuerdo))
-                                                {
-                                                    <option value="@itemTipo_de_Acuerdo.Value" selected>@itemTipo_de_Acuerdo.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTipo_de_Acuerdo.Value">@itemTipo_de_Acuerdo.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Acuerdo" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262831).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Acuerdo', 'Tipo_de_Acuerdo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divFecha_de_Inicio_de_Acuerdo">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Fecha_de_Inicio_de_Acuerdo</label>
-                                <div class="col-sm-8" data-field-id="Fecha_de_Inicio_de_Acuerdo" data-attribute="262834" data-field-name="@Resources.Modulo_Atencion_InicialResources.Fecha_de_Inicio_de_Acuerdo">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Datos_del_Acuerdo" id="Fecha_de_Inicio_de_Acuerdo"  name="Fecha_de_Inicio_de_Acuerdo" type="text" value="@Model.Fecha_de_Inicio_de_Acuerdo">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divFecha_de_Cumplimiento_del_Acuerdo">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Fecha_de_Cumplimiento_del_Acuerdo</label>
-                                <div class="col-sm-8" data-field-id="Fecha_de_Cumplimiento_del_Acuerdo" data-attribute="262835" data-field-name="@Resources.Modulo_Atencion_InicialResources.Fecha_de_Cumplimiento_del_Acuerdo">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Datos_del_Acuerdo" id="Fecha_de_Cumplimiento_del_Acuerdo"  name="Fecha_de_Cumplimiento_del_Acuerdo" type="text" value="@Model.Fecha_de_Cumplimiento_del_Acuerdo">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divHora_de_Cumplimiento_del_Acuerdo">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Hora_de_Cumplimiento_del_Acuerdo</label>
-                                <div class="col-sm-8" data-field-id="Hora_de_Cumplimiento_del_Acuerdo" data-attribute="262836" data-field-name="@Resources.Modulo_Atencion_InicialResources.Hora_de_Cumplimiento_del_Acuerdo">
-                                    <div class='input-group date' id='timePicker'>
-                                        <input class="form-control col-md-12 Datos_del_Acuerdo" id="Hora_de_Cumplimiento_del_Acuerdo"  name="Hora_de_Cumplimiento_del_Acuerdo" type="text" data-autoclose="true" value="@Model.Hora_de_Cumplimiento_del_Acuerdo">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divDomicilio_para_el_Cumplimiento">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Domicilio_para_el_Cumplimiento</label>
-                                <div class="col-sm-8" data-field-id="Domicilio_para_el_Cumplimiento" data-attribute="262837" data-field-name="@Resources.Modulo_Atencion_InicialResources.Domicilio_para_el_Cumplimiento">
-                                    <textarea id="Domicilio_para_el_Cumplimiento" name="Domicilio_para_el_Cumplimiento" class="form-control Datos_del_Acuerdo" rows="4" cols="50">@Model.Domicilio_para_el_Cumplimiento</textarea>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Domicilio_para_el_Cumplimiento" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                              <div class="form-group" id="divMonto_de_Reparacion_de_Danos">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Monto_de_Reparacion_de_Danos</label>
-								<div class="col-sm-8">
-									<div class="input-group m-b" data-field-id="Monto_de_Reparacion_de_Danos" data-attribute="262838" data-field-name="@Resources.Modulo_Atencion_InicialResources.Monto_de_Reparacion_de_Danos">
-										<span class="input-group-addon">$</span>
-										@if(Model.Monto_de_Reparacion_de_Danos.HasValue)
-						{
-						<input class="form-control col-md-12 inputNumber inputMoney Datos_del_Acuerdo" id="Monto_de_Reparacion_de_Danos" name="Monto_de_Reparacion_de_Danos" type="text" min="0.00" max="999999.99" value="@Model.Monto_de_Reparacion_de_Danos.Value.ToString("N", CultureInfo.InvariantCulture)">
-						}
-						else
-						{
-						<input class="form-control col-md-12 inputNumber inputMoney Datos_del_Acuerdo" id="Monto_de_Reparacion_de_Danos" name="Monto_de_Reparacion_de_Danos" type="text" min="0.00" max="999999.99" value="">
-						}  
-									</div>
-								</div>
-                            </div>
-                            <div class="form-group" id="divParcialidades">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Parcialidades</label>
-                                <div class="col-sm-8" data-field-id="Parcialidades" data-attribute="262839" data-field-name="@Resources.Modulo_Atencion_InicialResources.Parcialidades">
-                                    <input class="form-control inputNumber Datos_del_Acuerdo" id="Parcialidades" name="Parcialidades" type="text" value="@Model.Parcialidades">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Parcialidades" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divPeriodicidad">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Periodicidad</label>
-                                <div class="col-sm-8" data-field-id="Periodicidad" data-attribute="262840" data-field-name="@Resources.Modulo_Atencion_InicialResources.Periodicidad">
-                                    <select class="form-control Datos_del_Acuerdo" data-val="true" data-val-number="The field Periodicidad must be a number." data-val-required="The Periodicidad field is required." id="Periodicidad" name="Periodicidad">
-                                        <option value=""></option>
-                                        @if (varPeriodicidad_Periodicidad != null){ 
-                                            foreach (var itemPeriodicidad in varPeriodicidad_Periodicidad)
-                                            {
-                                                if (itemPeriodicidad.Value == Convert.ToString(Model.Periodicidad))
-                                                {
-                                                    <option value="@itemPeriodicidad.Value" selected>@itemPeriodicidad.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemPeriodicidad.Value">@itemPeriodicidad.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Periodicidad" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262840).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Periodicidad', 'Periodicidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divSe_Acepta_Acuerdo">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Se_Acepta_Acuerdo</label>
-                                <div class="col-sm-8" data-field-id="Se_Acepta_Acuerdo" data-attribute="262832" data-field-name="@Resources.Modulo_Atencion_InicialResources.Se_Acepta_Acuerdo">
-                                    @Html.CheckBoxFor(m => m.Se_Acepta_Acuerdo, new { @class = "i-checks Datos_del_Acuerdo" })
-                                </div>
-                            </div>
-                            <div class="form-group" id="divMotivo_de_Rechazo_de_Acuerdo">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Motivo_de_Rechazo_de_Acuerdo</label>
-                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo_de_Acuerdo" data-attribute="262833" data-field-name="@Resources.Modulo_Atencion_InicialResources.Motivo_de_Rechazo_de_Acuerdo">
-                                    <textarea id="Motivo_de_Rechazo_de_Acuerdo" name="Motivo_de_Rechazo_de_Acuerdo" class="form-control Datos_del_Acuerdo" rows="4" cols="50">@Model.Motivo_de_Rechazo_de_Acuerdo</textarea>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo_de_Acuerdo" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div id="divDocumentos_generados_en_MASC">
-                            <div class="ibox-title">
-                                <h5>@Resources.Modulo_Atencion_InicialResources.Documentos_generados_en_MASC</h5>
-                                <div class="ibox-tools">
-                                </div>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="">
-									@if (permissionDetalle_de_Documentos_de_MPO.New && !ViewBag.Consult)
-                                    {
-                                        <a onclick="Detalle_de_Documentos_de_MPOfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_de_Documentos_de_MPOAddRow btn btn-primary">
-                                            <i class="glyphicon glyphicon-plus"></i>
-                                        </a>
-                                    }
-                                    <button onclick="Modulo_Atencion_InicialGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '266487')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form">
-                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
-                                            <i class="fa fa-cogs fa-spin"></i>
-                                        </a>
-                                    </button>
-									@if (permissionDetalle_de_Documentos_de_MPO.New && !ViewBag.Consult)
-                                    {
-                                        <a onclick="Detalle_de_Documentos_de_MPOfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_de_Documentos_de_MPO-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
-                                            <i class="glyphicon glyphicon-new-window"></i>
-                                        </a>
-                                    }  
-                                </div>
-
-                                <br />
-
-                                <div style='overflow-x: auto;'>
-                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_de_Documentos_de_MPOGrid">
-                                        <thead>
-                                            <tr>
-                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
-
-
-                                                <th class="FechaHeader"><span>
-<button type="button" data-attribute="264340" data-field-id="Detalle_de_Documentos_de_MPOFecha" data-field-name="@Resources.Detalle_de_Documentos_de_MPOResources.Fecha" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Documentos_de_MPOResources.Fecha">
-                                                                <i class="fa fa-cogs fa-spin"></i>
-                                                            </a>
-                                                        </button>@Resources.Detalle_de_Documentos_de_MPOResources.Fecha</span></th>
-                                                <th class="DocumentoHeader"><span>
-<button type="button" data-attribute="264338" data-field-id="Detalle_de_Documentos_de_MPODocumento" data-field-name="@Resources.Detalle_de_Documentos_de_MPOResources.Documento" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Documentos_de_MPOResources.Documento">
-                                                                <i class="fa fa-cogs fa-spin"></i>
-                                                            </a>
-                                                        </button>@Resources.Detalle_de_Documentos_de_MPOResources.Documento</span></th>
-                                                <th class="ArchivoHeader"><span>
-<button type="button" data-attribute="264339" data-field-id="Detalle_de_Documentos_de_MPOArchivo" data-field-name="@Resources.Detalle_de_Documentos_de_MPOResources.Archivo" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Documentos_de_MPOResources.Archivo">
-                                                                <i class="fa fa-cogs fa-spin"></i>
-                                                            </a>
-                                                        </button>@Resources.Detalle_de_Documentos_de_MPOResources.Archivo</span></th>
-
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-                                </div>
-
-
                             <div id="tabBitacora_de_Coincidencias" class="tab-pane">
                                 <div class="panel-body">
                             <div id="divCoincidencias">
@@ -1778,124 +1284,6 @@
                             </div>
                                 </div>
 
-
-                            <div id="tabCampos_Ocultos" class="tab-pane">
-                                <div class="panel-body">
-                            <div class="form-group" id="divNUC">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.NUC</label>
-                                <div class="col-sm-8" data-field-id="NUC" data-attribute="262859" data-field-name="@Resources.Modulo_Atencion_InicialResources.NUC">
-                                    <input class="form-control Campos_Ocultos" id="NUC" name="NUC" type="text" value="@Model.NUC">
-                                    @*<span class="field-validation-valid" data-valmsg-for="NUC" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divFecha_de_Vencimiento_1">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Fecha_de_Vencimiento_1</label>
-                                <div class="col-sm-8" data-field-id="Fecha_de_Vencimiento_1" data-attribute="262860" data-field-name="@Resources.Modulo_Atencion_InicialResources.Fecha_de_Vencimiento_1">
-                                    <input class="form-control Campos_Ocultos" id="Fecha_de_Vencimiento_1" name="Fecha_de_Vencimiento_1" type="text" value="@Model.Fecha_de_Vencimiento_1">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Fecha_de_Vencimiento_1" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divEspecialistaJA">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.EspecialistaJA</label>
-                                <div class="col-sm-8" data-field-id="EspecialistaJA" data-attribute="262861" data-field-name="@Resources.Modulo_Atencion_InicialResources.EspecialistaJA">
-                                    <input class="form-control Campos_Ocultos" id="EspecialistaJA" name="EspecialistaJA" type="text" value="@Model.EspecialistaJA">
-                                    @*<span class="field-validation-valid" data-valmsg-for="EspecialistaJA" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divCampo_Oculto1">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Campo_Oculto1</label>
-                                <div class="col-sm-8" data-field-id="Campo_Oculto1" data-attribute="262862" data-field-name="@Resources.Modulo_Atencion_InicialResources.Campo_Oculto1">
-                                    <input class="form-control Campos_Ocultos" id="Campo_Oculto1" name="Campo_Oculto1" type="text" value="@Model.Campo_Oculto1">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Campo_Oculto1" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divJefeMPO">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.JefeMPO</label>
-                                <div class="col-sm-8" data-field-id="JefeMPO" data-attribute="262863" data-field-name="@Resources.Modulo_Atencion_InicialResources.JefeMPO">
-                                    <select class="form-control Campos_Ocultos" data-val="true" data-val-number="The field Jefe must be a number." data-val-required="The Jefe field is required." id="JefeMPO" name="JefeMPO">
-                                        <option value=""></option>
-                                        @if (varJefes_de_Usuarios_del_Sistema_JefeMPO != null){ 
-                                            foreach (var itemJefeMPO in varJefes_de_Usuarios_del_Sistema_JefeMPO)
-                                            {
-                                                if (itemJefeMPO.Value == Convert.ToString(Model.JefeMPO))
-                                                {
-                                                    <option value="@itemJefeMPO.Value" selected>@itemJefeMPO.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemJefeMPO.Value">@itemJefeMPO.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="JefeMPO" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262863).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Jefes_de_Usuarios_del_Sistema', 'JefeMPO');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divCampo_Oculto2">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Campo_Oculto2</label>
-                                <div class="col-sm-8" data-field-id="Campo_Oculto2" data-attribute="262864" data-field-name="@Resources.Modulo_Atencion_InicialResources.Campo_Oculto2">
-                                    <input class="form-control Campos_Ocultos" id="Campo_Oculto2" name="Campo_Oculto2" type="text" value="@Model.Campo_Oculto2">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Campo_Oculto2" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divCampo_Oculto3">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Campo_Oculto3</label>
-                                <div class="col-sm-8" data-field-id="Campo_Oculto3" data-attribute="262865" data-field-name="@Resources.Modulo_Atencion_InicialResources.Campo_Oculto3">
-                                    <input class="form-control Campos_Ocultos" id="Campo_Oculto3" name="Campo_Oculto3" type="text" value="@Model.Campo_Oculto3">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Campo_Oculto3" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-				<div class="form-group" id="divCoordinadorJA">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.CoordinadorJA</label>
-                                <div class="col-sm-8" data-field-id="CoordinadorJA" data-attribute="262869" data-field-name="@Resources.Modulo_Atencion_InicialResources.CoordinadorJA">
-                                    <select class='fullWidth AutoComplete AutoCompleteModulo_Atencion_Inicial_CoordinadorJA form-control select2-dropdown Campos_Ocultos' data-val="true" id="CoordinadorJA" name="CoordinadorJA">
-                                        <option value="@Model.CoordinadorJA">@(Model.CoordinadorJAName??Model.CoordinadorJAName)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262869).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'CoordinadorJA');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divEspJA">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.EspJA</label>
-                                <div class="col-sm-8" data-field-id="EspJA" data-attribute="262870" data-field-name="@Resources.Modulo_Atencion_InicialResources.EspJA">
-                                    <select class='fullWidth AutoComplete AutoCompleteModulo_Atencion_Inicial_EspJA form-control select2-dropdown Campos_Ocultos' data-val="true" id="EspJA" name="EspJA">
-                                        <option value="@Model.EspJA">@(Model.EspJAName??Model.EspJAName)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262870).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'EspJA');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divAno_Actual">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Ano_Actual</label>
-                                <div class="col-sm-8" data-field-id="Ano_Actual" data-attribute="262827" data-field-name="@Resources.Modulo_Atencion_InicialResources.Ano_Actual">
-                                    <input class="form-control Campos_Ocultos" id="Ano_Actual" name="Ano_Actual" type="text" value="@Model.Ano_Actual">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Ano_Actual" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divSecuencial">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Secuencial</label>
-                                <div class="col-sm-8" data-field-id="Secuencial" data-attribute="262828" data-field-name="@Resources.Modulo_Atencion_InicialResources.Secuencial">
-                                    <input class="form-control inputNumber Campos_Ocultos" id="Secuencial" name="Secuencial" type="text" value="@Model.Secuencial">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Secuencial" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            </div>
-                                </div>
-
 				</div>	
                     <br />
                             <div class="form-actions fluid">
@@ -2026,15 +1414,7 @@
 
 		var Tab_Informacion_de_Turno = true;
 
-		var Tab_Servicios_de_Apoyo = true;
-
-		var Tab_Canalizar = true;
-
-		var Tab_Datos_Generales = true;
-
 		var Tab_Datos_de_los_Hechos_en_MPO = true;
-
-		var Tab_Datos_del_Acuerdo = true;
 
 		var Tab_Bitacora_de_Coincidencias = true;
 
@@ -2042,25 +1422,10 @@
 
 		var Tab_Historial_de_movimientos = true;
 
-		var Tab_Campos_Ocultos = true;
-
 
         $(document).ready(function () {
             $('#ObjectId').val('45004');
 		                  
-
-
-            GetDetalle_de_Canalizar_Estatus_EstatusItem();
-            GetDetalle_de_Canalizar_Estatus_Estatus_OrientadorItem();
-           
-              showDetalle_de_Canalizar_EstatusGrid(null);
-              
-
-
-
-           
-              showDetalle_de_Documentos_de_MPOGrid(null);
-              
 
 
 
@@ -2110,23 +1475,6 @@
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
             $('#Hora_del_Hecho').clockpicker();
-            $('#Fecha_de_Inicio_de_Acuerdo').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true,
-                format: "@ConfigurationProperty.DateFormatDatePicker"
-            });
-            $('#Fecha_de_Cumplimiento_del_Acuerdo').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true,
-                format: "@ConfigurationProperty.DateFormatDatePicker"
-            });
-            $('#Hora_de_Cumplimiento_del_Acuerdo').clockpicker();
             $('#Fecha_de_Cierre').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -2151,14 +1499,47 @@
             }
 
 			
-			       var AutoCompleteUsuario_que_RegistraData =[];
+			       var AutoCompleteTurno_AsignadoData =[];
+       $(".AutoCompleteModulo_Atencion_Inicial_Turno_Asignado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetModulo_Atencion_Inicial_Turno_Asignado_Asignacion_de_Turnos")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteModulo_Atencion_Inicial_Turno_Asignado_Asignacion_de_TurnosData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteModulo_Atencion_Inicial_Turno_Asignado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_RegistraData =[];
        $(".AutoCompleteModulo_Atencion_Inicial_Usuario_que_Registra").select2({
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
                 url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetModulo_Atencion_Inicial_Usuario_que_Registra_Spartan_User")",
 		cache: false,
                 dataType: 'json',
-                async: false,
+                async: true,
                 global: false,
                 data: function (params) {
                     return {
@@ -2191,7 +1572,7 @@
                 url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetModulo_Atencion_Inicial_Municipio_Municipio")",
 		cache: false,
                 dataType: 'json',
-                async: false,
+                async: true,
                 global: false,
                 data: function (params) {
                     return {
@@ -2213,6 +1594,72 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteModulo_Atencion_Inicial_Municipio");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteMinisterio_Publico_en_TurnoData =[];
+       $(".AutoCompleteModulo_Atencion_Inicial_Ministerio_Publico_en_Turno").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetModulo_Atencion_Inicial_Ministerio_Publico_en_Turno_Jefes_de_Usuarios_del_Sistema")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteModulo_Atencion_Inicial_Ministerio_Publico_en_Turno_Jefes_de_Usuarios_del_SistemaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteModulo_Atencion_Inicial_Ministerio_Publico_en_Turno");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteSolicitud_de_Denuncia_CiudadanaData =[];
+       $(".AutoCompleteModulo_Atencion_Inicial_Solicitud_de_Denuncia_Ciudadana").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetModulo_Atencion_Inicial_Solicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteModulo_Atencion_Inicial_Solicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_CiudadanaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteModulo_Atencion_Inicial_Solicitud_de_Denuncia_Ciudadana");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -2415,72 +1862,6 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
-       var AutoCompleteCoordinadorJAData =[];
-       $(".AutoCompleteModulo_Atencion_Inicial_CoordinadorJA").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetModulo_Atencion_Inicial_CoordinadorJA_Spartan_User")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteModulo_Atencion_Inicial_CoordinadorJA_Spartan_UserData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteModulo_Atencion_Inicial_CoordinadorJA");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
-       var AutoCompleteEspJAData =[];
-       $(".AutoCompleteModulo_Atencion_Inicial_EspJA").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetModulo_Atencion_Inicial_EspJA_Spartan_User")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteModulo_Atencion_Inicial_EspJA_Spartan_UserData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteModulo_Atencion_Inicial_EspJA");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
 
 
             @if(ViewBag.IsNew)
@@ -2496,20 +1877,8 @@
 				if (Tab_Informacion_de_Turno)
 					Fill_Informacion_de_Turno();
 
-				if (Tab_Servicios_de_Apoyo)
-					Fill_Servicios_de_Apoyo();
-
-				if (Tab_Canalizar)
-					Fill_Canalizar();
-
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
 				if (Tab_Datos_de_los_Hechos_en_MPO)
 					Fill_Datos_de_los_Hechos_en_MPO();
-
-				if (Tab_Datos_del_Acuerdo)
-					Fill_Datos_del_Acuerdo();
 
 				if (Tab_Bitacora_de_Coincidencias)
 					Fill_Bitacora_de_Coincidencias();
@@ -2520,9 +1889,6 @@
 				if (Tab_Historial_de_movimientos)
 					Fill_Historial_de_movimientos();
 
-				if (Tab_Campos_Ocultos)
-					Fill_Campos_Ocultos();
-
 
                 </text>
             }
@@ -2530,608 +1896,6 @@
 			
         });
 
-        var Detalle_de_Canalizar_EstatusinsertRowCurrentIndex = -1;
-        var Detalle_de_Canalizar_EstatusDataDataTable;
-        function getDetalle_de_Canalizar_EstatusData() {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetDetalle_de_Canalizar_Estatus")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                    Detalle_de_Canalizar_EstatusDataDataTable = result.data;
-                    showDetalle_de_Canalizar_EstatusGrid(result.data);
-                    $('#Detalle_de_Canalizar_EstatusGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
-                    $('#Detalle_de_Canalizar_EstatusGrid .gridDatePicker').attr("readonly", "");
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-        function Detalle_de_Canalizar_EstatusGetUpdateRowControls(data, nameOfTable, rowIndex) {
-
-            var columnData = [];
-            var counter = 0;
-            var inputData = "<input type='text' class='fullWidth form-control' />";
-
-            columnData[counter++] = $($($.parseHTML(GetGridDatePicker())).val(data.Fecha_de_Cambio_de_Estatus)).addClass('Fecha_de_Cambio_de_Estatus').attr('id', nameOfTable + 'Fecha_de_Cambio_de_Estatus' + rowIndex).attr('data-field', 'Fecha_de_Cambio_de_Estatus');
-            columnData[counter++] = $($($.parseHTML(GetGridTimePicker())).val(data.Hora_de_Cambio_de_Estatus)).addClass('Hora_de_Cambio_de_Estatus').attr('id', nameOfTable + 'Hora_de_Cambio_de_Estatus' + rowIndex).attr('data-field', 'Hora_de_Cambio_de_Estatus');
-           columnData[counter++] = $($(GetDetalle_de_Canalizar_Estatus_EstatusDropDown()).val(data.Estatus_Interno)).addClass('Estatus_Interno inputNumber').attr('id', nameOfTable + 'Estatus_Interno' + rowIndex).attr('data-field', 'Estatus_Interno').after($.parseHTML(addNew('Detalle_de_Canalizar_Estatus', 'Estatus','Estatus_Interno', 263769)));
-           columnData[counter++] = $($(GetDetalle_de_Canalizar_Estatus_Estatus_OrientadorDropDown()).val(data.Estatus_de_Canalizacion)).addClass('Estatus_de_Canalizacion inputNumber').attr('id', nameOfTable + 'Estatus_de_Canalizacion' + rowIndex).attr('data-field', 'Estatus_de_Canalizacion').after($.parseHTML(addNew('Detalle_de_Canalizar_Estatus', 'Estatus_Orientador','Estatus_de_Canalizacion', 263770)));
-
-            return columnData;
-        }
-
-
-
-        function GetFileInfo(fileData, fileUploadData) {
-
-            var $div = $("<div>");
-            if (fileUploadData != null && fileUploadData.files.length > 0) {
-
-                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
-                //<i class="fa fa-times-circle" id='removeFileAttachment'>
-                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
-                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
-                        var parent = $(this).parent().parent();
-                        parent.empty();
-                        parent.append("<input type='file'>");
-                    }
-                }));
-                return $div;
-
-            } else if (fileUploadData != null) {
-                return $.parseHTML(GetFileUploader());
-            } else {
-                $div.append("<label>" + fileData.FileName + "</label>");
-                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
-                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
-                        var parent = $(this).parent().parent();
-                        parent.empty();
-                        parent.append("<input type='file'>");
-                    }
-                }));
-                return $div;
-            }
-        }
-
-        var removedDetalle_de_Canalizar_EstatusData = [];
-        function Detalle_de_Canalizar_EstatusDeleteRow(rowIndex, row) {
-            var rowIndexTable = Detalle_de_Canalizar_EstatusTable.fnGetPosition($(row).parent().parent()[0]);
-            var permission = {            
-                 Delete: '@permissionDetalle_de_Canalizar_Estatus.Delete' == 'True'
-            };
-            if (!permission.Delete || isConsultMode)
-                return;            
-            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
-              if (EjecutarValidacionesAlEliminarMRDetalle_de_Canalizar_Estatus('Detalle_de_Canalizar_Estatus_', '_' + rowIndex)) {
-                var prevData = Detalle_de_Canalizar_EstatusTable.fnGetData(rowIndexTable );
-                removedDetalle_de_Canalizar_EstatusData.push(prevData);
-                Detalle_de_Canalizar_EstatusTable.fnDeleteRow(rowIndexTable );
-				showDetalle_de_Canalizar_EstatusGrid(Detalle_de_Canalizar_EstatusTable.fnGetData());
-              }
-            }
-			initiateUIControls();
-        }
-
-        function Detalle_de_Canalizar_EstatusrowCreationGrid(row, data, index) {
-            var permission =  {            
-                 Edit: '@permissionDetalle_de_Canalizar_Estatus.Edit' == 'True',
-                 Delete: '@permissionDetalle_de_Canalizar_Estatus.Delete' == 'True'
-            };
-            setDetalle_de_Canalizar_EstatusValidation();
-            var Detalle_de_Canalizar_EstatusRowElement = "Detalle_de_Canalizar_Estatus_" + index.toString();
-            $(row).addClass(Detalle_de_Canalizar_EstatusRowElement);
-            var nameOfTable='Detalle_de_Canalizar_Estatus_';
-            var rowIndex = '_' + index;
-            Detalle_de_Canalizar_EstatusinsertRowCurrentIndex = index;
-
-            row.innerHTML = "";
-
-            if (data.IsInsertRow) {
-
-                if (row.childNodes.length != 0) {
-                    for (var i = 0; i < row.childNodes.length; i++) {
-                        row.childNodes[i].remove();
-                    }
-                }
-                var controls = GetInsertDetalle_de_Canalizar_EstatusRowControls(index);
-                var actionColInsert = $('<td>');
-
-                var abc = "if(dynamicFieldValidation('" + Detalle_de_Canalizar_EstatusRowElement + "')){ Detalle_de_Canalizar_EstatusInsertRow(" + index + "); }";
-                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
-                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
-				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_de_Canalizar_EstatusCancelRow(" + index + ")'>").appendTo(actionColInsert));
-                actionColInsert.appendTo(row);
-
-                for (i = 0; i < controls.length; i++) {
-					var idHeader = $(controls[i]).data('field') + 'Header';
-					if($(controls[i]).length > 1){
-						idHeader = $($(controls[i])[1]).data('field') + 'Header';
-					}					
-
-					var classe = ($('#Detalle_de_Canalizar_EstatusGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_de_Canalizar_EstatusGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
-				   
-					if ($(controls[i]).next().length > 0) {
-					    var div = $(controls[i]).next();
-					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
-					}else
-					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
-					
-                }
-                $('#Detalle_de_Canalizar_EstatusGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
-                $('#Detalle_de_Canalizar_EstatusGrid .gridDatePicker').attr("readonly", "");
-                return;
-            }
-
-            var actionCol = $('<td>');
-			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_de_Canalizar_EstatusEditRow(" + index + ", this)'>";
-            if (!permission.Edit || isConsultMode)
-                edit = "";
-            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_de_Canalizar_Estatus-form' onclick='Detalle_de_Canalizar_EstatusEditRowPopup(" + index + ", this)'>";
-            if (!permission.Edit || isConsultMode)
-                editPopUp = "";
-            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_de_Canalizar_EstatusDeleteRow(" + index + ", this)'>";
-            if (!permission.Delete || isConsultMode)
-                eliminar = "";
-            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
-            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
-            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
-			if ($('.Action' + 'Header').css('display') != 'none')
-				actionCol.appendTo(row);
-
-            if ($('.Fecha_de_Cambio_de_Estatus' + 'Header').css('display') != 'none')
-                $('<td id="'+nameOfTable+'Fecha_de_Cambio_de_Estatus'+rowIndex+'">').text(data.Fecha_de_Cambio_de_Estatus).appendTo(row);
-            else
-                $('<td style="display:none;" id="'+nameOfTable+'Fecha_de_Cambio_de_Estatus'+rowIndex+'">').text(data.Fecha_de_Cambio_de_Estatus).appendTo(row);
-            if ($('.Hora_de_Cambio_de_Estatus' + 'Header').css('display') != 'none')
-                $('<td id="'+nameOfTable+'Hora_de_Cambio_de_Estatus'+rowIndex+'">').text(data.Hora_de_Cambio_de_Estatus).appendTo(row);
-            else
-                $('<td style="display:none;" id="'+nameOfTable+'Hora_de_Cambio_de_Estatus'+rowIndex+'">').text(data.Hora_de_Cambio_de_Estatus).appendTo(row);
-            if ($('.Estatus_Interno' + 'Header').css('display') != 'none')
-                $('<td id="'+nameOfTable+'Estatus_Interno'+rowIndex+'">').text(GetDetalle_de_Canalizar_Estatus_EstatusName(data.Estatus_Interno)).appendTo(row);
-	    else 
-		$('<td style="display:none;" id="'+nameOfTable+'Estatus_Interno'+rowIndex+'">').text(GetDetalle_de_Canalizar_Estatus_EstatusName(data.Estatus_Interno)).appendTo(row);
-            if ($('.Estatus_de_Canalizacion' + 'Header').css('display') != 'none')
-                $('<td id="'+nameOfTable+'Estatus_de_Canalizacion'+rowIndex+'">').text(GetDetalle_de_Canalizar_Estatus_Estatus_OrientadorName(data.Estatus_de_Canalizacion)).appendTo(row);
-	    else 
-		$('<td style="display:none;" id="'+nameOfTable+'Estatus_de_Canalizacion'+rowIndex+'">').text(GetDetalle_de_Canalizar_Estatus_Estatus_OrientadorName(data.Estatus_de_Canalizacion)).appendTo(row);
-
-        }
-
-        var Detalle_de_Canalizar_EstatusTable;
-        function showDetalle_de_Canalizar_EstatusGrid(dataSet) {
-            //removedDetalle_de_Canalizar_EstatusData = [];
-            Detalle_de_Canalizar_EstatusTable = $('#Detalle_de_Canalizar_EstatusGrid').dataTable({
-                dom: '<"html5buttons"B>lTgitp',
-                buttons: [
-                ],
-                "createdRow": Detalle_de_Canalizar_EstatusrowCreationGrid,
-                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
-                data: dataSet,
-                "columns": [
-                    { "data": null, 'visible': true, "orderable": false },
-
-                    { "data": "Fecha_de_Cambio_de_Estatus", "orderable": false },
-                    { "data": "Hora_de_Cambio_de_Estatus", "orderable": false },
-                    { "data": "Estatus_Interno", "orderable": false },
-                    { "data": "Estatus_de_Canalizacion", "orderable": false },
-
-                ],
-                "order": [[0, "asc"]],
-                "language": {
-                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
-                    "zeroRecords": "@Resources.Resources.NothingFound",
-                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
-                    "infoEmpty": "@Resources.Resources.NoRecords",
-                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
-                    "sSearch": "@Resources.Resources.Search",
-                    "paginate": {
-                        "previous": "@Resources.Resources.Previous",
-                        "next": "@Resources.Resources.Next"
-                    }
-                },
-				"bDestroy": true,
-                "fnDrawCallback": function (settings) {
-                    setDetalle_de_Canalizar_EstatusValidation();
-                }
-            }).on('init.dt', function (e, data) {
-                $('a').tooltip();
-            }).on('draw.dt', function () {
-                $('#Detalle_de_Canalizar_EstatusGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
-                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
-            });
-        }
-
-
-
-
-    var Detalle_de_Canalizar_Estatus_EstatusItems;
-        function GetDetalle_de_Canalizar_Estatus_EstatusItem() {
-            Detalle_de_Canalizar_Estatus_EstatusItems = null;
-            var ajaxUrl = "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetDetalle_de_Canalizar_Estatus_EstatusAll")";
-            $.ajax({
-                url: ajaxUrl,
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                global: false,
-                success: function (result) {
-                    Detalle_de_Canalizar_Estatus_EstatusItems = result;
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-    var Detalle_de_Canalizar_Estatus_Estatus_OrientadorItems;
-        function GetDetalle_de_Canalizar_Estatus_Estatus_OrientadorItem() {
-            Detalle_de_Canalizar_Estatus_Estatus_OrientadorItems = null;
-            var ajaxUrl = "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetDetalle_de_Canalizar_Estatus_Estatus_OrientadorAll")";
-            $.ajax({
-                url: ajaxUrl,
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                global: false,
-                success: function (result) {
-                    Detalle_de_Canalizar_Estatus_Estatus_OrientadorItems = result;
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-
-        var Detalle_de_Canalizar_EstatusData = [];
-        var Detalle_de_Canalizar_EstatusdeletedItem = [];
-        var Detalle_de_Canalizar_EstatusDataMain = [];
-        var Detalle_de_Canalizar_EstatusDataMainPages = [];
-        var Detalle_de_Canalizar_EstatusnewItemCount = 0;
-        var Detalle_de_Canalizar_EstatusmaxItemIndex = 0;
-        var Detalle_de_Canalizar_EstatusDataMainInitialized = false;
-
-        function SendDetalle_de_Canalizar_Estatus(callBack, ClaveId) {
-            Detalle_de_Canalizar_EstatusData = GetDetalle_de_Canalizar_EstatusFromDataTable();
-
-            if (Detalle_de_Canalizar_EstatusData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
-                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
-                    ClaveId = $("#ReferenceClave").val();                
-                if ($("#ReferenceClave").val() == '')
-                    $("#ReferenceClave").val('0');
-                $.ajax({
-                    url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/PostDetalle_de_Canalizar_Estatus?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
-                    type: 'POST',
-                    data: GetDetalle_de_Canalizar_Estatus(),
-                    async: true,
-                    success: function (result) {
-
-                    },
-                    error: function (result) {
-                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                    },
-                    cache: false,
-                    contentType: false,
-                    processData: false
-                });
-            } else {
-                //showNotification("@Resources.Resources.SaveSuccess", "success");
-                //callBack(ClaveId);
-            }
-            return true;
-        }
-
-        function GetAddDetalle_de_Canalizar_EstatusPopup(currentRowIndex, mode, id) {
-
-            $.ajax({
-                url: "@Url.Action("AddDetalle_de_Canalizar_Estatus", "Detalle_de_Canalizar_Estatus")",
-                type: "GET",
-                async: false,
-                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
-                success: function (data) {
-                    $(".AddDetalle_de_Canalizar_EstatusModal").html(data);
-                },
-                error: function () {
-
-                }
-            });
-
-            @*$.get('@Url.Action("AddDetalle_de_Canalizar_Estatus", "Detalle_de_Canalizar_Estatus")', { rowIndex: currentRowIndex }, function (data) {
-                $(".AddDetalle_de_Canalizar_EstatusModal").html(data);
-            });*@
-        }
-
-        function ShowMessagePendingRowDetalle_de_Canalizar_Estatus()
-        {
-            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Historial de Canalizaciones"))')
-	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Historial de Canalizaciones"))', "warning");
-        }
-        var Detalle_de_Documentos_de_MPOinsertRowCurrentIndex = -1;
-        var Detalle_de_Documentos_de_MPODataDataTable;
-        function getDetalle_de_Documentos_de_MPOData() {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetDetalle_de_Documentos_de_MPO")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                    Detalle_de_Documentos_de_MPODataDataTable = result.data;
-                    showDetalle_de_Documentos_de_MPOGrid(result.data);
-                    $('#Detalle_de_Documentos_de_MPOGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
-                    $('#Detalle_de_Documentos_de_MPOGrid .gridDatePicker').attr("readonly", "");
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-        function Detalle_de_Documentos_de_MPOGetUpdateRowControls(data, nameOfTable, rowIndex) {
-
-            var columnData = [];
-            var counter = 0;
-            var inputData = "<input type='text' class='fullWidth form-control' />";
-
-            columnData[counter++] = $($($.parseHTML(GetGridDatePicker())).val(data.Fecha)).addClass('Fecha').attr('id', nameOfTable + 'Fecha' + rowIndex).attr('data-field', 'Fecha');
-            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Documento)).addClass('Documento').attr('id', nameOfTable + 'Documento' + rowIndex).attr('data-field', 'Documento');
-            columnData[counter++] = data.ArchivoDetail == null || (data.ArchivoFileInfo.FileId == null || (data.ArchivoFileInfo.FileId <= 0 && data.ArchivoFileInfo.FileName  == '')) ? $($.parseHTML(GetFileUploader())).attr('id', nameOfTable + 'Archivo' + rowIndex).attr('data-field', 'Archivo','Spartane_File') : $(GetFileInfo(data.ArchivoFileInfo, data.ArchivoDetail)).attr('id', nameOfTable + 'Archivo' + rowIndex).attr('data-field', 'Archivo','Spartane_File');
-
-            return columnData;
-        }
-
-
-
-        function GetFileInfo(fileData, fileUploadData) {
-
-            var $div = $("<div>");
-            if (fileUploadData != null && fileUploadData.files.length > 0) {
-
-                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
-                //<i class="fa fa-times-circle" id='removeFileAttachment'>
-                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
-                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
-                        var parent = $(this).parent().parent();
-                        parent.empty();
-                        parent.append("<input type='file'>");
-                    }
-                }));
-                return $div;
-
-            } else if (fileUploadData != null) {
-                return $.parseHTML(GetFileUploader());
-            } else {
-                $div.append("<label>" + fileData.FileName + "</label>");
-                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
-                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
-                        var parent = $(this).parent().parent();
-                        parent.empty();
-                        parent.append("<input type='file'>");
-                    }
-                }));
-                return $div;
-            }
-        }
-
-        var removedDetalle_de_Documentos_de_MPOData = [];
-        function Detalle_de_Documentos_de_MPODeleteRow(rowIndex, row) {
-            var rowIndexTable = Detalle_de_Documentos_de_MPOTable.fnGetPosition($(row).parent().parent()[0]);
-            var permission = {            
-                 Delete: '@permissionDetalle_de_Documentos_de_MPO.Delete' == 'True'
-            };
-            if (!permission.Delete || isConsultMode)
-                return;            
-            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
-              if (EjecutarValidacionesAlEliminarMRDetalle_de_Documentos_de_MPO('Detalle_de_Documentos_de_MPO_', '_' + rowIndex)) {
-                var prevData = Detalle_de_Documentos_de_MPOTable.fnGetData(rowIndexTable );
-                removedDetalle_de_Documentos_de_MPOData.push(prevData);
-                Detalle_de_Documentos_de_MPOTable.fnDeleteRow(rowIndexTable );
-				showDetalle_de_Documentos_de_MPOGrid(Detalle_de_Documentos_de_MPOTable.fnGetData());
-              }
-            }
-			initiateUIControls();
-        }
-
-        function Detalle_de_Documentos_de_MPOrowCreationGrid(row, data, index) {
-            var permission =  {            
-                 Edit: '@permissionDetalle_de_Documentos_de_MPO.Edit' == 'True',
-                 Delete: '@permissionDetalle_de_Documentos_de_MPO.Delete' == 'True'
-            };
-            setDetalle_de_Documentos_de_MPOValidation();
-            var Detalle_de_Documentos_de_MPORowElement = "Detalle_de_Documentos_de_MPO_" + index.toString();
-            $(row).addClass(Detalle_de_Documentos_de_MPORowElement);
-            var nameOfTable='Detalle_de_Documentos_de_MPO_';
-            var rowIndex = '_' + index;
-            Detalle_de_Documentos_de_MPOinsertRowCurrentIndex = index;
-
-            row.innerHTML = "";
-
-            if (data.IsInsertRow) {
-
-                if (row.childNodes.length != 0) {
-                    for (var i = 0; i < row.childNodes.length; i++) {
-                        row.childNodes[i].remove();
-                    }
-                }
-                var controls = GetInsertDetalle_de_Documentos_de_MPORowControls(index);
-                var actionColInsert = $('<td>');
-
-                var abc = "if(dynamicFieldValidation('" + Detalle_de_Documentos_de_MPORowElement + "')){ Detalle_de_Documentos_de_MPOInsertRow(" + index + "); }";
-                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
-                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
-				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_de_Documentos_de_MPOCancelRow(" + index + ")'>").appendTo(actionColInsert));
-                actionColInsert.appendTo(row);
-
-                for (i = 0; i < controls.length; i++) {
-					var idHeader = $(controls[i]).data('field') + 'Header';
-					if($(controls[i]).length > 1){
-						idHeader = $($(controls[i])[1]).data('field') + 'Header';
-					}					
-
-					var classe = ($('#Detalle_de_Documentos_de_MPOGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_de_Documentos_de_MPOGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
-				   
-					if ($(controls[i]).next().length > 0) {
-					    var div = $(controls[i]).next();
-					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
-					}else
-					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
-					
-                }
-                $('#Detalle_de_Documentos_de_MPOGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
-                $('#Detalle_de_Documentos_de_MPOGrid .gridDatePicker').attr("readonly", "");
-                return;
-            }
-
-            var actionCol = $('<td>');
-			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_de_Documentos_de_MPOEditRow(" + index + ", this)'>";
-            if (!permission.Edit || isConsultMode)
-                edit = "";
-            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_de_Documentos_de_MPO-form' onclick='Detalle_de_Documentos_de_MPOEditRowPopup(" + index + ", this)'>";
-            if (!permission.Edit || isConsultMode)
-                editPopUp = "";
-            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_de_Documentos_de_MPODeleteRow(" + index + ", this)'>";
-            if (!permission.Delete || isConsultMode)
-                eliminar = "";
-            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
-            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
-            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
-			if ($('.Action' + 'Header').css('display') != 'none')
-				actionCol.appendTo(row);
-
-            if ($('.Fecha' + 'Header').css('display') != 'none')
-                $('<td id="'+nameOfTable+'Fecha'+rowIndex+'">').text(data.Fecha).appendTo(row);
-            else
-                $('<td style="display:none;" id="'+nameOfTable+'Fecha'+rowIndex+'">').text(data.Fecha).appendTo(row);
-            if ($('.Documento' + 'Header').css('display') != 'none')
-                $('<td id="'+nameOfTable+'Documento'+rowIndex+'">').text(data.Documento).appendTo(row);
-            else 
-                $('<td style="display:none;" id="'+nameOfTable+'Documento'+rowIndex+'">').text(data.Documento).appendTo(row);
-            if ($('.Archivo' + 'Header').css('display') != 'none'){
-                var ArchivofileTd = $('<td>');
-            if (data.ArchivoDetail != null && data.ArchivoDetail.files != null) {
-                if (data.ArchivoDetail.files.length > 0)
-                    $("<a >" + data.ArchivoDetail.files[0].name + "</a>").appendTo(ArchivofileTd);
-            }
-            else if (data.ArchivoFileInfo != null && data.ArchivoFileInfo.FileId > 0) {
-                $("<a href='" + '@Url.Content("~/Frontal/Detalle_de_Documentos_de_MPO/GetFile?id=")' + data.ArchivoFileInfo.FileId + "' target='_blank'>" + data.ArchivoFileInfo.FileName + "</a>").appendTo(ArchivofileTd);
-            } else if (data.ArchivoFileInfo != null){
-                $("<a >" + data.ArchivoFileInfo.FileName + "</a>").appendTo(ArchivofileTd);
-            }
-            ArchivofileTd.appendTo(row);
-}
-
-        }
-
-        var Detalle_de_Documentos_de_MPOTable;
-        function showDetalle_de_Documentos_de_MPOGrid(dataSet) {
-            //removedDetalle_de_Documentos_de_MPOData = [];
-            Detalle_de_Documentos_de_MPOTable = $('#Detalle_de_Documentos_de_MPOGrid').dataTable({
-                dom: '<"html5buttons"B>lTgitp',
-                buttons: [
-                ],
-                "createdRow": Detalle_de_Documentos_de_MPOrowCreationGrid,
-                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
-                data: dataSet,
-                "columns": [
-                    { "data": null, 'visible': true, "orderable": false },
-
-                    { "data": "Fecha", "orderable": false },
-                    { "data": "Documento", "orderable": false },
-                    { "data": "ArchivoFileInfo", "orderable": false },
-
-                ],
-                "order": [[0, "asc"]],
-                "language": {
-                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
-                    "zeroRecords": "@Resources.Resources.NothingFound",
-                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
-                    "infoEmpty": "@Resources.Resources.NoRecords",
-                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
-                    "sSearch": "@Resources.Resources.Search",
-                    "paginate": {
-                        "previous": "@Resources.Resources.Previous",
-                        "next": "@Resources.Resources.Next"
-                    }
-                },
-				"bDestroy": true,
-                "fnDrawCallback": function (settings) {
-                    setDetalle_de_Documentos_de_MPOValidation();
-                }
-            }).on('init.dt', function (e, data) {
-                $('a').tooltip();
-            }).on('draw.dt', function () {
-                $('#Detalle_de_Documentos_de_MPOGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
-                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
-            });
-        }
-
-
-
-
-
-
-        var Detalle_de_Documentos_de_MPOData = [];
-        var Detalle_de_Documentos_de_MPOdeletedItem = [];
-        var Detalle_de_Documentos_de_MPODataMain = [];
-        var Detalle_de_Documentos_de_MPODataMainPages = [];
-        var Detalle_de_Documentos_de_MPOnewItemCount = 0;
-        var Detalle_de_Documentos_de_MPOmaxItemIndex = 0;
-        var Detalle_de_Documentos_de_MPODataMainInitialized = false;
-
-        function SendDetalle_de_Documentos_de_MPO(callBack, ClaveId) {
-            Detalle_de_Documentos_de_MPOData = GetDetalle_de_Documentos_de_MPOFromDataTable();
-
-            if (Detalle_de_Documentos_de_MPOData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
-                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
-                    ClaveId = $("#ReferenceClave").val();                
-                if ($("#ReferenceClave").val() == '')
-                    $("#ReferenceClave").val('0');
-                $.ajax({
-                    url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/PostDetalle_de_Documentos_de_MPO?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
-                    type: 'POST',
-                    data: GetDetalle_de_Documentos_de_MPO(),
-                    async: true,
-                    success: function (result) {
-
-                    },
-                    error: function (result) {
-                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                    },
-                    cache: false,
-                    contentType: false,
-                    processData: false
-                });
-            } else {
-                //showNotification("@Resources.Resources.SaveSuccess", "success");
-                //callBack(ClaveId);
-            }
-            return true;
-        }
-
-        function GetAddDetalle_de_Documentos_de_MPOPopup(currentRowIndex, mode, id) {
-
-            $.ajax({
-                url: "@Url.Action("AddDetalle_de_Documentos_de_MPO", "Detalle_de_Documentos_de_MPO")",
-                type: "GET",
-                async: false,
-                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
-                success: function (data) {
-                    $(".AddDetalle_de_Documentos_de_MPOModal").html(data);
-                },
-                error: function () {
-
-                }
-            });
-
-            @*$.get('@Url.Action("AddDetalle_de_Documentos_de_MPO", "Detalle_de_Documentos_de_MPO")', { rowIndex: currentRowIndex }, function (data) {
-                $(".AddDetalle_de_Documentos_de_MPOModal").html(data);
-            });*@
-        }
-
-        function ShowMessagePendingRowDetalle_de_Documentos_de_MPO()
-        {
-            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Documentos generados en MASC"))')
-	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Documentos generados en MASC"))', "warning");
-        }
         var Detalle_de_coincidencias_ainsertRowCurrentIndex = -1;
         var Detalle_de_coincidencias_aDataDataTable;
         function getDetalle_de_coincidencias_aData() {
@@ -3727,17 +2491,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         }
 
     </script>
@@ -3811,23 +2564,7 @@
 				return false;
 			}						
 
-			if (Tab_Servicios_de_Apoyo && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Servicios_de_Apoyo')) {
-				return false;
-			}						
-
-			if (Tab_Canalizar && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Canalizar')) {
-				return false;
-			}						
-
-			if (Tab_Datos_Generales && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Datos_Generales')) {
-				return false;
-			}						
-
 			if (Tab_Datos_de_los_Hechos_en_MPO && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Datos_de_los_Hechos_en_MPO')) {
-				return false;
-			}						
-
-			if (Tab_Datos_del_Acuerdo && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Datos_del_Acuerdo')) {
 				return false;
 			}						
 
@@ -3840,10 +2577,6 @@
 			}						
 
 			if (Tab_Historial_de_movimientos && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Historial_de_movimientos')) {
-				return false;
-			}						
-
-			if (Tab_Campos_Ocultos && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Campos_Ocultos')) {
 				return false;
 			}						
 
@@ -3861,20 +2594,8 @@
 			if (Tab_Informacion_de_Turno)
 				Save_Informacion_de_Turno(id);
 
-			if (Tab_Servicios_de_Apoyo)
-				Save_Servicios_de_Apoyo(id);
-
-			if (Tab_Canalizar)
-				Save_Canalizar(id);
-
-			if (Tab_Datos_Generales)
-				Save_Datos_Generales(id);
-
 			if (Tab_Datos_de_los_Hechos_en_MPO)
 				Save_Datos_de_los_Hechos_en_MPO(id);
-
-			if (Tab_Datos_del_Acuerdo)
-				Save_Datos_del_Acuerdo(id);
 
 			if (Tab_Bitacora_de_Coincidencias)
 				Save_Bitacora_de_Coincidencias(id);
@@ -3884,9 +2605,6 @@
 
 			if (Tab_Historial_de_movimientos)
 				Save_Historial_de_movimientos(id);
-
-			if (Tab_Campos_Ocultos)
-				Save_Campos_Ocultos(id);
 
 
 			showNotification("@Resources.Resources.SaveSuccess", "success");
@@ -4056,7 +2774,15 @@
                     $('#Folio').val(result.data.Folio);
                     $('#Fecha_de_Registro').val(result.data.Fecha_de_Registro);
                     $('#Hora_de_Registro').val(result.data.Hora_de_Registro);
-                    $('#Turno_Asignado').val(result.data.Turno_Asignado);
+                    var control = $('#Turno_Asignado');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Turno_Asignado).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Turno_Asignado).trigger('change');
+                    }, 3000);
                     var control = $('#Usuario_que_Registra');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Usuario_que_Registra).trigger('keyup');
@@ -4089,7 +2815,24 @@
                     $('#Fecha_en_que_llega_para_validacion').val(result.data.Fecha_en_que_llega_para_validacion);
                     $('#Delegacion').val(result.data.Delegacion);
                     $('#Agencia').val(result.data.Agencia);
-                    $('#Ministerio_Publico_en_Turno').val(result.data.Ministerio_Publico_en_Turno);
+                    var control = $('#Ministerio_Publico_en_Turno');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Ministerio_Publico_en_Turno).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Ministerio_Publico_en_Turno).trigger('change');
+                    }, 3000);
+                    var control = $('#Solicitud_de_Denuncia_Ciudadana');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Solicitud_de_Denuncia_Ciudadana).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Solicitud_de_Denuncia_Ciudadana).trigger('change');
+                    }, 3000);
 
                 },
                 error: function (result) {
@@ -4122,6 +2865,7 @@
                 data.append('Delegacion', $('#Delegacion').val());
                 data.append('Agencia', $('#Agencia').val());
                 data.append('Ministerio_Publico_en_Turno', $('#Ministerio_Publico_en_Turno').val());
+                data.append('Solicitud_de_Denuncia_Ciudadana', $('#Solicitud_de_Denuncia_Ciudadana').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Datos_del_Caso")',
@@ -4209,165 +2953,6 @@
 				},
 				error: function (result) {
 					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Informacion_de_Turno");
-				},
-				cache: false
-			});
-		}
-
-		function Fill_Servicios_de_Apoyo()
-        {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Get_Servicios_de_Apoyo")?Id=" + $("#ReferenceClave").val(),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                                        $('#Clave').val(result.data.Clave);
-                    $('#Requiere_Traductor').prop('checked', result.data.Requiere_Traductor);
-                    $('#Lengua_Originaria').val(result.data.Lengua_Originaria);
-                    $('#Idioma').val(result.data.Idioma);
-                    $('#Autoriza_Traductor').prop('checked', result.data.Autoriza_Traductor);
-                    $('#Finalizar_Servicios_de_Apoyo').prop('checked', result.data.Finalizar_Servicios_de_Apoyo);
-
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-		
-		function Save_Servicios_de_Apoyo(newId) {
-			var data = new FormData();
-			data.append('Clave', newId);
-			                data.append('Requiere_Traductor', $('#Requiere_Traductor').prop('checked'));
-                data.append('Lengua_Originaria', $('#Lengua_Originaria').val());
-                data.append('Idioma', $('#Idioma').val());
-                data.append('Autoriza_Traductor', $('#Autoriza_Traductor').prop('checked'));
-                data.append('Finalizar_Servicios_de_Apoyo', $('#Finalizar_Servicios_de_Apoyo').prop('checked'));
-
-			$.ajax({
-				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Servicios_de_Apoyo")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Servicios_de_Apoyo");
-					} else {
-						newId = result;
-                    
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Servicios_de_Apoyo");
-				},
-				cache: false
-			});
-		}
-
-		function Fill_Canalizar()
-        {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Get_Canalizar")?Id=" + $("#ReferenceClave").val(),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                                        $('#Clave').val(result.data.Clave);
-                    $('#Estatus2').val(result.data.Estatus2);
-                    $('#Unidad_canaliza').val(result.data.Unidad_canaliza);
-                    $('#Enviar_a_MP').prop('checked', result.data.Enviar_a_MP);
-                    $('#Correccion_de_Estatus').prop('checked', result.data.Correccion_de_Estatus);
-                    Detalle_de_Canalizar_EstatusDataDataTable = result.Historial_de_Canalizaciones;
-                    showDetalle_de_Canalizar_EstatusGrid(result.Historial_de_Canalizaciones);
-                    $('#Detalle_de_Canalizar_EstatusGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
-                    $('#Detalle_de_Canalizar_EstatusGrid .gridDatePicker').attr("readonly", "");
-
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-		
-		function Save_Canalizar(newId) {
-			var data = new FormData();
-			data.append('Clave', newId);
-			                data.append('Estatus2', $('#Estatus2').val());
-                data.append('Unidad_canaliza', $('#Unidad_canaliza').val());
-                data.append('Enviar_a_MP', $('#Enviar_a_MP').prop('checked'));
-                data.append('Correccion_de_Estatus', $('#Correccion_de_Estatus').prop('checked'));
-
-			$.ajax({
-				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Canalizar")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Canalizar");
-					} else {
-						newId = result;
-                    					    SendDetalle_de_Canalizar_Estatus(null, newId);
-
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Canalizar");
-				},
-				cache: false
-			});
-		}
-
-		function Fill_Datos_Generales()
-        {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                                        $('#Clave').val(result.data.Clave);
-                    $('#Requiere_Servicios_de_Apoyo').prop('checked', result.data.Requiere_Servicios_de_Apoyo);
-                    $('#Persona_Moral').prop('checked', result.data.Persona_Moral);
-
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-		
-		function Save_Datos_Generales(newId) {
-			var data = new FormData();
-			data.append('Clave', newId);
-			                data.append('Requiere_Servicios_de_Apoyo', $('#Requiere_Servicios_de_Apoyo').prop('checked'));
-                data.append('Persona_Moral', $('#Persona_Moral').prop('checked'));
-
-			$.ajax({
-				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Datos_Generales")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
-					} else {
-						newId = result;
-                    
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
 				},
 				cache: false
 			});
@@ -4510,76 +3095,6 @@
 				},
 				error: function (result) {
 					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_de_los_Hechos_en_MPO");
-				},
-				cache: false
-			});
-		}
-
-		function Fill_Datos_del_Acuerdo()
-        {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Get_Datos_del_Acuerdo")?Id=" + $("#ReferenceClave").val(),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                                        $('#Clave').val(result.data.Clave);
-                    $('#Tipo_de_Acuerdo').val(result.data.Tipo_de_Acuerdo);
-                    $('#Fecha_de_Inicio_de_Acuerdo').val(result.data.Fecha_de_Inicio_de_Acuerdo);
-                    $('#Fecha_de_Cumplimiento_del_Acuerdo').val(result.data.Fecha_de_Cumplimiento_del_Acuerdo);
-                    $('#Hora_de_Cumplimiento_del_Acuerdo').val(result.data.Hora_de_Cumplimiento_del_Acuerdo);
-                    $('#Domicilio_para_el_Cumplimiento').val(result.data.Domicilio_para_el_Cumplimiento);
-                    $('#Monto_de_Reparacion_de_Danos').val(result.data.Monto_de_Reparacion_de_Danos);
-                    $('#Parcialidades').val(result.data.Parcialidades);
-                    $('#Periodicidad').val(result.data.Periodicidad);
-                    $('#Se_Acepta_Acuerdo').prop('checked', result.data.Se_Acepta_Acuerdo);
-                    $('#Motivo_de_Rechazo_de_Acuerdo').val(result.data.Motivo_de_Rechazo_de_Acuerdo);
-                    Detalle_de_Documentos_de_MPODataDataTable = result.Documentos_generados_en_MASC;
-                    showDetalle_de_Documentos_de_MPOGrid(result.Documentos_generados_en_MASC);
-                    $('#Detalle_de_Documentos_de_MPOGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
-                    $('#Detalle_de_Documentos_de_MPOGrid .gridDatePicker').attr("readonly", "");
-
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-		
-		function Save_Datos_del_Acuerdo(newId) {
-			var data = new FormData();
-			data.append('Clave', newId);
-			                data.append('Tipo_de_Acuerdo', $('#Tipo_de_Acuerdo').val());
-                data.append('Fecha_de_Inicio_de_Acuerdo', $('#Fecha_de_Inicio_de_Acuerdo').val());
-                data.append('Fecha_de_Cumplimiento_del_Acuerdo', $('#Fecha_de_Cumplimiento_del_Acuerdo').val());
-                data.append('Hora_de_Cumplimiento_del_Acuerdo', $('#Hora_de_Cumplimiento_del_Acuerdo').val());
-                data.append('Domicilio_para_el_Cumplimiento', $('#Domicilio_para_el_Cumplimiento').val());
- 
-               data.append('Monto_de_Reparacion_de_Danos', Number($('#Monto_de_Reparacion_de_Danos').val().replace(/[^0-9.-]+/g, "")));
-                data.append('Parcialidades', $('#Parcialidades').val());
-                data.append('Periodicidad', $('#Periodicidad').val());
-                data.append('Se_Acepta_Acuerdo', $('#Se_Acepta_Acuerdo').prop('checked'));
-                data.append('Motivo_de_Rechazo_de_Acuerdo', $('#Motivo_de_Rechazo_de_Acuerdo').val());
-
-			$.ajax({
-				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Datos_del_Acuerdo")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_del_Acuerdo");
-					} else {
-						newId = result;
-                    					    SendDetalle_de_Documentos_de_MPO(null, newId);
-
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_del_Acuerdo");
 				},
 				cache: false
 			});
@@ -4728,88 +3243,6 @@
 				},
 				error: function (result) {
 					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Historial_de_movimientos");
-				},
-				cache: false
-			});
-		}
-
-		function Fill_Campos_Ocultos()
-        {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Get_Campos_Ocultos")?Id=" + $("#ReferenceClave").val(),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                                        $('#Clave').val(result.data.Clave);
-                    $('#NUC').val(result.data.NUC);
-                    $('#Fecha_de_Vencimiento_1').val(result.data.Fecha_de_Vencimiento_1);
-                    $('#EspecialistaJA').val(result.data.EspecialistaJA);
-                    $('#Campo_Oculto1').val(result.data.Campo_Oculto1);
-                    $('#JefeMPO').val(result.data.JefeMPO);
-                    $('#Campo_Oculto2').val(result.data.Campo_Oculto2);
-                    $('#Campo_Oculto3').val(result.data.Campo_Oculto3);
-                    var control = $('#CoordinadorJA');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.CoordinadorJA).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.CoordinadorJA).trigger('change');
-                    }, 3000);
-                    var control = $('#EspJA');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.EspJA).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.EspJA).trigger('change');
-                    }, 3000);
-                    $('#Ano_Actual').val(result.data.Ano_Actual);
-                    $('#Secuencial').val(result.data.Secuencial);
-
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-		
-		function Save_Campos_Ocultos(newId) {
-			var data = new FormData();
-			data.append('Clave', newId);
-			                data.append('NUC', $('#NUC').val());
-                data.append('Fecha_de_Vencimiento_1', $('#Fecha_de_Vencimiento_1').val());
-                data.append('EspecialistaJA', $('#EspecialistaJA').val());
-                data.append('Campo_Oculto1', $('#Campo_Oculto1').val());
-                data.append('JefeMPO', $('#JefeMPO').val());
-                data.append('Campo_Oculto2', $('#Campo_Oculto2').val());
-                data.append('Campo_Oculto3', $('#Campo_Oculto3').val());
-                data.append('CoordinadorJA', $('#CoordinadorJA').val());
-                data.append('EspJA', $('#EspJA').val());
-                data.append('Ano_Actual', $('#Ano_Actual').val());
-                data.append('Secuencial', $('#Secuencial').val());
-
-			$.ajax({
-				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Campos_Ocultos")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Campos_Ocultos");
-					} else {
-						newId = result;
-                    
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Campos_Ocultos");
 				},
 				cache: false
 			});

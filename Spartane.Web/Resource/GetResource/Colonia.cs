@@ -166,6 +166,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Tipo</summary>
+        public static string Tipo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderColonia.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Poblacion</summary>
+        public static string Poblacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderColonia.GetResource("Poblacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderColonia.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

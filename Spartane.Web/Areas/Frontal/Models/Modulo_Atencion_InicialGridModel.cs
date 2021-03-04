@@ -40,6 +40,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AgenciaDescripcion { get; set; }
         public int? Ministerio_Publico_en_Turno { get; set; }
         public string Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno { get; set; }
+        public int? Solicitud_de_Denuncia_Ciudadana { get; set; }
+        public string Solicitud_de_Denuncia_CiudadanaFolio { get; set; }
         public string Nombres_turno { get; set; }
         public string Apellido_Paterno_turno { get; set; }
         public string Apellido_Materno_turno { get; set; }
@@ -57,21 +59,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Motivo_Finalizacion_Turno { get; set; }
         public string Motivo_Finalizacion_TurnoDescripcion { get; set; }
         public string Observaciones_turno { get; set; }
-        public bool? Requiere_Traductor { get; set; }
-        public int? Lengua_Originaria { get; set; }
-        public string Lengua_OriginariaDescripcion { get; set; }
-        public int? Idioma { get; set; }
-        public string IdiomaDescripcion { get; set; }
-        public bool? Autoriza_Traductor { get; set; }
-        public bool? Finalizar_Servicios_de_Apoyo { get; set; }
-        public int? Estatus2 { get; set; }
-        public string Estatus2Descripcion { get; set; }
-        public int? Unidad_canaliza { get; set; }
-        public string Unidad_canalizaDescripcion { get; set; }
-        public bool? Enviar_a_MP { get; set; }
-        public bool? Correccion_de_Estatus { get; set; }
-        public bool? Requiere_Servicios_de_Apoyo { get; set; }
-        public bool? Persona_Moral { get; set; }
         public string Titulo_del_Hecho { get; set; }
         public string Narrativa_Breve_de_los_Hechos { get; set; }
         public int? Prioridad_del_Hecho { get; set; }
@@ -107,35 +94,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Zona_de_los_Hechos { get; set; }
         public string Zona_de_los_HechosDescripcion { get; set; }
         public string Turno { get; set; }
-        public int? Tipo_de_Acuerdo { get; set; }
-        public string Tipo_de_AcuerdoDescripcion { get; set; }
-        public string Fecha_de_Inicio_de_Acuerdo { get; set; }
-        public string Fecha_de_Cumplimiento_del_Acuerdo { get; set; }
-        public string Hora_de_Cumplimiento_del_Acuerdo { get; set; }
-        public string Domicilio_para_el_Cumplimiento { get; set; }
-        public decimal? Monto_de_Reparacion_de_Danos { get; set; }
-        public int? Parcialidades { get; set; }
-        public int? Periodicidad { get; set; }
-        public string PeriodicidadDescripcion { get; set; }
-        public bool? Se_Acepta_Acuerdo { get; set; }
-        public string Motivo_de_Rechazo_de_Acuerdo { get; set; }
         public bool? Cerrar { get; set; }
         public string Fecha_de_Cierre { get; set; }
         public string Hora_de_Cierre { get; set; }
-        public string NUC { get; set; }
-        public string Fecha_de_Vencimiento_1 { get; set; }
-        public string EspecialistaJA { get; set; }
-        public string Campo_Oculto1 { get; set; }
-        public int? JefeMPO { get; set; }
-        public string JefeMPOMinisterio_Publico_en_Turno { get; set; }
-        public string Campo_Oculto2 { get; set; }
-        public string Campo_Oculto3 { get; set; }
-        public int? CoordinadorJA { get; set; }
-        public string CoordinadorJAName { get; set; }
-        public int? EspJA { get; set; }
-        public string EspJAName { get; set; }
-        public string Ano_Actual { get; set; }
-        public int? Secuencial { get; set; }
         
     }
 }

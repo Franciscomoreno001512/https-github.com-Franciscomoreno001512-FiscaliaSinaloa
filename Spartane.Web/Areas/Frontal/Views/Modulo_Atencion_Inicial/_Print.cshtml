@@ -121,6 +121,9 @@
                 @Resources.Modulo_Atencion_InicialResources.Ministerio_Publico_en_Turno
             </td>
             <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Solicitud_de_Denuncia_Ciudadana
+            </td>
+            <td class="column1">
                 @Resources.Modulo_Atencion_InicialResources.Nombres_turno
             </td>
             <td class="column1">
@@ -155,39 +158,6 @@
             </td>
             <td class="column1">
                 @Resources.Modulo_Atencion_InicialResources.Observaciones_turno
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Requiere_Traductor
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Lengua_Originaria
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Idioma
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Autoriza_Traductor
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Finalizar_Servicios_de_Apoyo
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Estatus2
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Unidad_canaliza
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Enviar_a_MP
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Correccion_de_Estatus
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Requiere_Servicios_de_Apoyo
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Persona_Moral
             </td>
             <td class="column1">
                 @Resources.Modulo_Atencion_InicialResources.Titulo_del_Hecho
@@ -265,36 +235,6 @@
                 @Resources.Modulo_Atencion_InicialResources.Turno
             </td>
             <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Tipo_de_Acuerdo
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Fecha_de_Inicio_de_Acuerdo
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Fecha_de_Cumplimiento_del_Acuerdo
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Hora_de_Cumplimiento_del_Acuerdo
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Domicilio_para_el_Cumplimiento
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Monto_de_Reparacion_de_Danos
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Parcialidades
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Periodicidad
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Se_Acepta_Acuerdo
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Motivo_de_Rechazo_de_Acuerdo
-            </td>
-            <td class="column1">
                 @Resources.Modulo_Atencion_InicialResources.Cerrar
             </td>
             <td class="column1">
@@ -302,39 +242,6 @@
             </td>
             <td class="column1">
                 @Resources.Modulo_Atencion_InicialResources.Hora_de_Cierre
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.NUC
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Fecha_de_Vencimiento_1
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.EspecialistaJA
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Campo_Oculto1
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.JefeMPO
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Campo_Oculto2
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Campo_Oculto3
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.CoordinadorJA
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.EspJA
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Ano_Actual
-            </td>
-            <td class="column1">
-                @Resources.Modulo_Atencion_InicialResources.Secuencial
             </td>
 
         </tr>
@@ -360,7 +267,7 @@
                         @item.Hora_de_Registro
                     </td>
                     <td>
-                        @item.Turno_AsignadoNumero_de_Turno
+                        @item.Turno_Asignado
                     </td>
                     <td>
                         @item.Usuario_que_Registra
@@ -411,7 +318,10 @@
                         @item.AgenciaDescripcion
                     </td>
                     <td>
-                        @item.Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno
+                        @item.Ministerio_Publico_en_Turno
+                    </td>
+                    <td>
+                        @item.Solicitud_de_Denuncia_Ciudadana
                     </td>
                     <td>
                         @item.Nombres_turno
@@ -448,39 +358,6 @@
                     </td>
                     <td>
                         @item.Observaciones_turno
-                    </td>
-                    <td>
-                        @item.Requiere_Traductor
-                    </td>
-                    <td>
-                        @item.Lengua_OriginariaDescripcion
-                    </td>
-                    <td>
-                        @item.IdiomaDescripcion
-                    </td>
-                    <td>
-                        @item.Autoriza_Traductor
-                    </td>
-                    <td>
-                        @item.Finalizar_Servicios_de_Apoyo
-                    </td>
-                    <td>
-                        @item.Estatus2Descripcion
-                    </td>
-                    <td>
-                        @item.Unidad_canalizaDescripcion
-                    </td>
-                    <td>
-                        @item.Enviar_a_MP
-                    </td>
-                    <td>
-                        @item.Correccion_de_Estatus
-                    </td>
-                    <td>
-                        @item.Requiere_Servicios_de_Apoyo
-                    </td>
-                    <td>
-                        @item.Persona_Moral
                     </td>
                     <td>
                         @item.Titulo_del_Hecho
@@ -558,36 +435,6 @@
                         @item.Turno
                     </td>
                     <td>
-                        @item.Tipo_de_AcuerdoDescripcion
-                    </td>
-                    <td>
-                        @item.Fecha_de_Inicio_de_Acuerdo
-                    </td>
-                    <td>
-                        @item.Fecha_de_Cumplimiento_del_Acuerdo
-                    </td>
-                    <td>
-                        @item.Hora_de_Cumplimiento_del_Acuerdo
-                    </td>
-                    <td>
-                        @item.Domicilio_para_el_Cumplimiento
-                    </td>
-                    <td>
-                        @item.Monto_de_Reparacion_de_Danos
-                    </td>
-                    <td>
-                        @item.Parcialidades
-                    </td>
-                    <td>
-                        @item.PeriodicidadDescripcion
-                    </td>
-                    <td>
-                        @item.Se_Acepta_Acuerdo
-                    </td>
-                    <td>
-                        @item.Motivo_de_Rechazo_de_Acuerdo
-                    </td>
-                    <td>
                         @item.Cerrar
                     </td>
                     <td>
@@ -595,39 +442,6 @@
                     </td>
                     <td>
                         @item.Hora_de_Cierre
-                    </td>
-                    <td>
-                        @item.NUC
-                    </td>
-                    <td>
-                        @item.Fecha_de_Vencimiento_1
-                    </td>
-                    <td>
-                        @item.EspecialistaJA
-                    </td>
-                    <td>
-                        @item.Campo_Oculto1
-                    </td>
-                    <td>
-                        @item.JefeMPOMinisterio_Publico_en_Turno
-                    </td>
-                    <td>
-                        @item.Campo_Oculto2
-                    </td>
-                    <td>
-                        @item.Campo_Oculto3
-                    </td>
-                    <td>
-                        @item.CoordinadorJA
-                    </td>
-                    <td>
-                        @item.EspJA
-                    </td>
-                    <td>
-                        @item.Ano_Actual
-                    </td>
-                    <td>
-                        @item.Secuencial
                     </td>
 
                 </tr>

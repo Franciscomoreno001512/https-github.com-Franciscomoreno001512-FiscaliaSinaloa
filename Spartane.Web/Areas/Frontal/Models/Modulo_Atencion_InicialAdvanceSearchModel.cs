@@ -12,15 +12,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Modulo_Atencion_InicialAdvanceSearchModel()
         {
             Urgencia_turno = RadioOptions.NoApply;
-            Requiere_Traductor = RadioOptions.NoApply;
-            Autoriza_Traductor = RadioOptions.NoApply;
-            Finalizar_Servicios_de_Apoyo = RadioOptions.NoApply;
-            Enviar_a_MP = RadioOptions.NoApply;
-            Correccion_de_Estatus = RadioOptions.NoApply;
-            Requiere_Servicios_de_Apoyo = RadioOptions.NoApply;
-            Persona_Moral = RadioOptions.NoApply;
             Documento_Extraviado_hechos = RadioOptions.NoApply;
-            Se_Acepta_Acuerdo = RadioOptions.NoApply;
             Cerrar = RadioOptions.NoApply;
 
         }
@@ -112,6 +104,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceMinisterio_Publico_en_Turno { set; get; }
         public int[] AdvanceMinisterio_Publico_en_TurnoMultiple { set; get; }
 
+        public Filters Solicitud_de_Denuncia_CiudadanaFilter { set; get; }
+        public string AdvanceSolicitud_de_Denuncia_Ciudadana { set; get; }
+        public int[] AdvanceSolicitud_de_Denuncia_CiudadanaMultiple { set; get; }
+
         public Filters Nombres_turnoFilter { set; get; }
         public string Nombres_turno { set; get; }
 
@@ -154,36 +150,6 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters Observaciones_turnoFilter { set; get; }
         public string Observaciones_turno { set; get; }
-
-        public RadioOptions Requiere_Traductor { set; get; }
-
-        public Filters Lengua_OriginariaFilter { set; get; }
-        public string AdvanceLengua_Originaria { set; get; }
-        public int[] AdvanceLengua_OriginariaMultiple { set; get; }
-
-        public Filters IdiomaFilter { set; get; }
-        public string AdvanceIdioma { set; get; }
-        public int[] AdvanceIdiomaMultiple { set; get; }
-
-        public RadioOptions Autoriza_Traductor { set; get; }
-
-        public RadioOptions Finalizar_Servicios_de_Apoyo { set; get; }
-
-        public Filters Estatus2Filter { set; get; }
-        public string AdvanceEstatus2 { set; get; }
-        public int[] AdvanceEstatus2Multiple { set; get; }
-
-        public Filters Unidad_canalizaFilter { set; get; }
-        public string AdvanceUnidad_canaliza { set; get; }
-        public int[] AdvanceUnidad_canalizaMultiple { set; get; }
-
-        public RadioOptions Enviar_a_MP { set; get; }
-
-        public RadioOptions Correccion_de_Estatus { set; get; }
-
-        public RadioOptions Requiere_Servicios_de_Apoyo { set; get; }
-
-        public RadioOptions Persona_Moral { set; get; }
 
         public Filters Titulo_del_HechoFilter { set; get; }
         public string Titulo_del_Hecho { set; get; }
@@ -275,49 +241,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters TurnoFilter { set; get; }
         public string Turno { set; get; }
 
-        public Filters Tipo_de_AcuerdoFilter { set; get; }
-        public string AdvanceTipo_de_Acuerdo { set; get; }
-        public int[] AdvanceTipo_de_AcuerdoMultiple { set; get; }
-
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_Inicio_de_Acuerdo { set; get; }
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_Inicio_de_Acuerdo", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_Inicio_de_Acuerdo { set; get; }
-
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_Cumplimiento_del_Acuerdo { set; get; }
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_Cumplimiento_del_Acuerdo", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_Cumplimiento_del_Acuerdo { set; get; }
-
-        public string ToHora_de_Cumplimiento_del_Acuerdo { set; get; }
-        public string FromHora_de_Cumplimiento_del_Acuerdo { set; get; }
-
-        public Filters Domicilio_para_el_CumplimientoFilter { set; get; }
-        public string Domicilio_para_el_Cumplimiento { set; get; }
-
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        public string FromMonto_de_Reparacion_de_Danos { set; get; }
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        [IsNumberAfterAttribute("FromMonto_de_Reparacion_de_Danos", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToMonto_de_Reparacion_de_Danos { set; get; }
-
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        public string FromParcialidades { set; get; }
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        [IsNumberAfterAttribute("FromParcialidades", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToParcialidades { set; get; }
-
-        public Filters PeriodicidadFilter { set; get; }
-        public string AdvancePeriodicidad { set; get; }
-        public int[] AdvancePeriodicidadMultiple { set; get; }
-
-        public RadioOptions Se_Acepta_Acuerdo { set; get; }
-
-        public Filters Motivo_de_Rechazo_de_AcuerdoFilter { set; get; }
-        public string Motivo_de_Rechazo_de_Acuerdo { set; get; }
-
         public RadioOptions Cerrar { set; get; }
 
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
@@ -328,45 +251,6 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public string ToHora_de_Cierre { set; get; }
         public string FromHora_de_Cierre { set; get; }
-
-        public Filters NUCFilter { set; get; }
-        public string NUC { set; get; }
-
-        public Filters Fecha_de_Vencimiento_1Filter { set; get; }
-        public string Fecha_de_Vencimiento_1 { set; get; }
-
-        public Filters EspecialistaJAFilter { set; get; }
-        public string EspecialistaJA { set; get; }
-
-        public Filters Campo_Oculto1Filter { set; get; }
-        public string Campo_Oculto1 { set; get; }
-
-        public Filters JefeMPOFilter { set; get; }
-        public string AdvanceJefeMPO { set; get; }
-        public int[] AdvanceJefeMPOMultiple { set; get; }
-
-        public Filters Campo_Oculto2Filter { set; get; }
-        public string Campo_Oculto2 { set; get; }
-
-        public Filters Campo_Oculto3Filter { set; get; }
-        public string Campo_Oculto3 { set; get; }
-
-        public Filters CoordinadorJAFilter { set; get; }
-        public string AdvanceCoordinadorJA { set; get; }
-        public int[] AdvanceCoordinadorJAMultiple { set; get; }
-
-        public Filters EspJAFilter { set; get; }
-        public string AdvanceEspJA { set; get; }
-        public int[] AdvanceEspJAMultiple { set; get; }
-
-        public Filters Ano_ActualFilter { set; get; }
-        public string Ano_Actual { set; get; }
-
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        public string FromSecuencial { set; get; }
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        [IsNumberAfterAttribute("FromSecuencial", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToSecuencial { set; get; }
 
 
     }

@@ -1,4 +1,8 @@
-﻿
+﻿        function RemoveAttachmentMainVer_Documento () {
+            $("#hdnRemoveVer_Documento").val("1");
+            $("#divAttachmentVer_Documento").hide();
+        }
+
 
 
 

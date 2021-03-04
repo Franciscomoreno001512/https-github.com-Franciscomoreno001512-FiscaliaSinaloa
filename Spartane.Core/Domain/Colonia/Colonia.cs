@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Vigencia;
+using Spartane.Core.Domain.Tipo_de_Localidad;
+using Spartane.Core.Domain.Colonia;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,11 +33,17 @@ namespace Spartane.Core.Domain.Colonia
         public int? sector { get; set; }
         public string estatus { get; set; }
         public int? cod_localidad { get; set; }
+        public int? Tipo { get; set; }
+        public int? Poblacion { get; set; }
 
         [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }
         [ForeignKey("Vigente")]
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigente_Vigencia { get; set; }
+        [ForeignKey("Tipo")]
+        public virtual Spartane.Core.Domain.Tipo_de_Localidad.Tipo_de_Localidad Tipo_Tipo_de_Localidad { get; set; }
+        [ForeignKey("Poblacion")]
+        public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
 
     }
 	
@@ -55,11 +63,17 @@ namespace Spartane.Core.Domain.Colonia
         public int? sector { get; set; }
         public string estatus { get; set; }
         public int? cod_localidad { get; set; }
+        public int? Tipo { get; set; }
+        public int? Poblacion { get; set; }
 
 		        [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }
         [ForeignKey("Vigente")]
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigente_Vigencia { get; set; }
+        [ForeignKey("Tipo")]
+        public virtual Spartane.Core.Domain.Tipo_de_Localidad.Tipo_de_Localidad Tipo_Tipo_de_Localidad { get; set; }
+        [ForeignKey("Poblacion")]
+        public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
 
     }
 
