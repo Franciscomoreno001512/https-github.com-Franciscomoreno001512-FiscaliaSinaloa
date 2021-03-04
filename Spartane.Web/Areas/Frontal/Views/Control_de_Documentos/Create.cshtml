@@ -4,6 +4,8 @@
 @using Spartane.Core.Domain.Permission
 @using Spartane.Core.Domain.Spartane_File
 @using Spartane.Web.Helpers
+@using TXTextControl.Web
+@using TXTextControl.Web.MVC
 @model Spartane.Web.Areas.Frontal.Models.Control_de_DocumentosModel
 @{
     Spartane_File attachedFileArchivo = (Spartane_File)ViewBag.ArchivoSpartane_File;
@@ -338,17 +340,24 @@
                                             @*<label class="col-sm-2 control-label">@Resources.Control_de_DocumentosResources.Cuerpo_del_Documento</label>*@
                                             @if (ViewBag.body != null)
                                             {
-                                                var base64EncodedBytes = System.Convert.FromBase64String(ViewBag.body);
-                                                string bo = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+                                                //var base64EncodedBytes = System.Convert.FromBase64String(ViewBag.body);
+                                                //string bo = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
 
-                                                <textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento" style=" height: 62vh;">@Html.Raw(bo)</textarea>
+                                                @*<textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento">@Html.Raw(bo)</textarea>*@
                                             }
                                             else
 
                                             {
-                                                <textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento" style=" height: 62vh;">@Html.Raw(Model.Cuerpo_del_Documento)</textarea>
+                                                <textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento">@Html.Raw(Model.Cuerpo_del_Documento)</textarea>
                                             }
                                         </div>
+                                        @Html.TXTextControl().TextControl(settings =>
+                                        {
+                                           settings.DocumentFileDirectory = Server.MapPath("~/HTMLTemplates");
+                                           settings.UICulture = System.Globalization.CultureInfo.GetCultureInfo("es-MX");
+                                           settings.Culture = System.Globalization.CultureInfo.GetCultureInfo("es-MX");
+                                       }).Render()
+
                                         @if (attachedFileArchivo != null && attachedFileArchivo.File_Id > 0)
                                         {
                                             <div class="form-group" id="divAttachmentArchivo">
@@ -498,44 +507,44 @@
                                     </div>
                                 </div>
 
-                             
+
 
                             </div>
                             <br />
                             @*<div class="form-actions fluid">
-                                <input type="hidden" value="@Model.Folio" id="ReferenceFolio" />
-                                <input type="hidden" value="@Model.Folio" name="Folio" id="FolioId" />
-                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
-                                @if (!ViewBag.Consult)
-                                {
-                                    <input type="button" value="@Resources.Resources.Guardar" id="Control_de_DocumentosGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" />
-                                    <button onclick="Control_de_DocumentosGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_DocumentosBusinessRule-form">
-                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                    <input type="hidden" value="@Model.Folio" id="ReferenceFolio" />
+                                    <input type="hidden" value="@Model.Folio" name="Folio" id="FolioId" />
+                                    <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                    @if (!ViewBag.Consult)
+                                    {
+                                        <input type="button" value="@Resources.Resources.Guardar" id="Control_de_DocumentosGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" />
+                                        <button onclick="Control_de_DocumentosGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_DocumentosBusinessRule-form">
+                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                                <i class="fa fa-cogs fa-spin"></i>
+                                            </a>
+                                        </button>
+
+                                        <input type="button" value="@Resources.Resources.GuardarNuevo" id="Control_de_DocumentosGuardarYNuevo" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew" />
+                                        <input type="button" value="@Resources.Resources.GuardarCopia" id="Control_de_DocumentosGuardarYCopia" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy" />
+                                        if (permission.Configure)
+                                        {
+                                            <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                        }
+                                    }
+
+                                    <input type="hidden" id="hdnConfigureType" />
+                                    <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleFieldId" />
+                                    <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleFieldName" />
+                                    <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleAttribute" />
+
+                                    <input type="button" value="@Resources.Resources.Cancelar" id="Control_de_DocumentosCancelar" name="Control_de_DocumentosCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                    <button onclick="Control_de_DocumentosGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_DocumentosBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
                                             <i class="fa fa-cogs fa-spin"></i>
                                         </a>
                                     </button>
-
-                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Control_de_DocumentosGuardarYNuevo" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew" />
-                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Control_de_DocumentosGuardarYCopia" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy" />
-                                    if (permission.Configure)
-                                    {
-                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
-                                    }
-                                }
-
-                                <input type="hidden" id="hdnConfigureType" />
-                                <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleFieldId" />
-                                <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleFieldName" />
-                                <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleAttribute" />
-
-                                <input type="button" value="@Resources.Resources.Cancelar" id="Control_de_DocumentosCancelar" name="Control_de_DocumentosCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
-
-                                <button onclick="Control_de_DocumentosGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_DocumentosBusinessRule-form">
-                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
-                                        <i class="fa fa-cogs fa-spin"></i>
-                                    </a>
-                                </button>
-                            </div>*@
+                                </div>*@
                         </div>
                     </div>
                 }
@@ -545,7 +554,7 @@
     <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content(" ~/")" />
 
     @section Styles {
-        <link href="@Url.Content(" ~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+        <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
         @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
         @Styles.Render("~/plugins/dateRangeStyles")
         @Styles.Render("~/plugins/dataPickerStyles")
@@ -581,14 +590,6 @@
             .fullWidth {
                 width: 100%;
             }
-
-            div#divCuerpo_del_Documento {
-                height: 70vh;
-            }
-
-            #Cuerpo_del_Documento {
-                height: 70vh;
-            }
         </style>
     }
 
@@ -601,20 +602,6 @@
 
 
         <script type="text/javascript">
-
-
-            window.onload = function () {
-                debugger;
-
-                setTimeout(function () {
-                    $('#cke_1_contents').css("height", "");
-                    $('#cke_1_contents').css("height", "70vh");
-
-                    $('#divAttachmentArchivo').css("margin-top", "");
-                    $('#divAttachmentArchivo').css("margin-top", "15vh");
-
-                }, 300); 
-            }
 
         function RemoveAttachmentMainArchivo () {
             $("#hdnRemoveArchivo").val("1");
@@ -679,7 +666,7 @@
               showDetalle_Historial_Control_de_DocumentosGrid(null);
 
 
-                        $('#Fecha_de_Registro').datepicker({
+            $('#Fecha_de_Registro').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
                 forceParse: false,
@@ -707,7 +694,12 @@
 
             @if(ViewBag.IsNew)
             {
-                <text>$('input:checkbox').prop('checked', false);</text>
+                <text>
+
+                $('input:checkbox').prop('checked', false);
+                Fill_Documento("new");
+
+               </text>
             }
 			else
             {
@@ -716,7 +708,7 @@
 					Fill_Datos_Generales();
 
 				if (Tab_Documento)
-					Fill_Documento();
+					Fill_Documento("old");
 
 				if (Tab_Secciones)
 					Fill_Secciones();
@@ -728,16 +720,6 @@
                 </text>
             }
             EjecutarValidacionesAlComienzo();
-
-                            setTimeout(function () {
-                    $('#cke_1_contents').css("height", "");
-                    $('#cke_1_contents').css("height", "70vh");
-
-                    $('#divAttachmentArchivo').css("margin-top", "");
-                    $('#divAttachmentArchivo').css("margin-top", "15vh");
-
-                }, 300); 
-
         });
 
         var Detalle_Historial_Control_de_DocumentosinsertRowCurrentIndex = -1;
@@ -1167,10 +1149,10 @@ $('#Pie_de_Pagina').text(htmlEncode(CKEDITOR.instances["Pie_de_Pagina"].getData(
 				Save_Datos_Generales(id);
 
 			if (Tab_Documento)
-				Save_Documento(id);
+                Save_DocumentoTX(id);
 
 			if (Tab_Secciones)
-				Save_Secciones(id);
+                Save_SeccionesTX(id);
 
 			if (Tab_Historial)
 				Save_Historial(id);
@@ -1384,8 +1366,8 @@ CKEDITOR.replace('Pie_de_Pagina', {
 
 		function Save_Datos_Generales(newId) {
 			var data = new FormData();
-			data.append('Folio', newId);
-			                data.append('Fecha_de_Registro', $('#Fecha_de_Registro').val());
+			    data.append('Folio', newId);
+			    data.append('Fecha_de_Registro', $('#Fecha_de_Registro').val());
                 data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
                 data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
                 data.append('idFormato', $('#idFormato').val());
@@ -1416,28 +1398,77 @@ CKEDITOR.replace('Pie_de_Pagina', {
 			});
 		}
 
-		function Fill_Documento()
+		function Fill_Documento(process)
         {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Control_de_Documentos/Get_Documento")?Id=" + $("#ReferenceFolio").val(),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                    debugger;
-                                        $('#Folio').val(result.data.Folio);
-                    $('#Proceso').val(result.data.Proceso);
-                    $('#Numero_de_Expediente').val(result.data.Numero_de_Expediente);
-                    $('#Cuerpo_del_Documento').val(result.data.Cuerpo_del_Documento);
-                    CKEDITOR.instances['Cuerpo_del_Documento'].setData((result.data.Cuerpo_del_Documento));
-                    $('#Archivo').val(result.data.Archivo);
 
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            if (process == "old") {
+                $.ajax({
+                    url: "@Url.Content("~/Frontal/Control_de_Documentos/Get_Documento")?Id=" + $("#ReferenceFolio").val(),
+                    type: 'GET',
+                    dataType: "json",
+                    async: false,
+                    success: function (result) {
+                        $('#Folio').val(result.data.Folio);
+                        $('#Proceso').val(result.data.Proceso);
+                        $('#Numero_de_Expediente').val(result.data.Numero_de_Expediente);
+                        $('#Cuerpo_del_Documento').val(result.data.Cuerpo_del_Documento);
+                        CKEDITOR.instances['Cuerpo_del_Documento'].setData((result.data.Cuerpo_del_Documento));
+                        cuerpodocumento = result.data.Cuerpo_del_Documento;
+                        $('#Archivo').val(result.data.Archivo);
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    }
+                });
+            } else {
+               @{
+                    var base64EncodedBytes = System.Convert.FromBase64String(ViewBag.body);
+                    string bo = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
                 }
-            });
-        }
+                cuerpodocumento = '@ViewBag.body';
+
+            }
+
+
+         }
+
+        function Save_DocumentoTX(newId) {
+            debugger;
+			var data = new FormData();
+			data.append('Folio', newId);
+			data.append('Proceso', $('#Proceso').val());
+            data.append('Numero_de_Expediente', $('#Numero_de_Expediente').val());
+            //fjmore
+            // data.append('Cuerpo_del_Documento', $('#Cuerpo_del_Documento').val());
+            data.append('Cuerpo_del_Documento', txBody.data);
+            data.append('Archivo', "tx" + newId + ".pdf" );
+            data.append('ArchivoFile', bytesPDF.data);
+            data.append('ArchivoRemoveAttachment', 0);
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Control_de_Documentos/Post_Documento")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Documento");
+					} else {
+						newId = result;
+
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Documento");
+				},
+				cache: false
+			});
+		}
+
 
             function Save_Documento(newId) {
                 debugger;
@@ -1464,8 +1495,7 @@ CKEDITOR.replace('Pie_de_Pagina', {
 					if (result < 0) {
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Documento");
 					} else {
-						newId = result;
-
+                        newId = result;
 					}
 				},
 				error: function (result) {
@@ -1488,6 +1518,8 @@ CKEDITOR.replace('Pie_de_Pagina', {
                     CKEDITOR.instances['Encabezado'].setData((result.data.Encabezado));
                     $('#Pie_de_Pagina').val(result.data.Pie_de_Pagina);
                     CKEDITOR.instances['Pie_de_Pagina'].setData((result.data.Pie_de_Pagina));
+                    txencabezado = result.data.Encabezado;
+                    txpiepagina = result.data.Pie_de_Pagina;
 
                 },
                 error: function (result) {
@@ -1495,6 +1527,41 @@ CKEDITOR.replace('Pie_de_Pagina', {
                 }
             });
         }
+
+
+            function Save_SeccionesTX(newId) {
+            debugger;
+			var data = new FormData();
+            data.append('Folio', newId);
+            //fjmore
+			               // data.append('Encabezado', $('#Encabezado').val());
+            data.append('Encabezado', txEncabezado.data);
+               // data.append('Pie_de_Pagina', $('#Pie_de_Pagina').val());
+            data.append('Pie_de_Pagina', txFooter.data);
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Control_de_Documentos/Post_Secciones")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Secciones");
+					} else {
+						newId = result;
+
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Secciones");
+				},
+				cache: false
+			});
+		}
+
 
 		function Save_Secciones(newId) {
 			var data = new FormData();
@@ -1580,18 +1647,210 @@ CKEDITOR.replace('Pie_de_Pagina', {
             $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosCancelar', function () {
                 debugger;
                 localStorage.setItem('controlDocumentoDynamiSeach', "false");
-                
+
             });
             $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosGuardar', function () {
                 debugger;
                 localStorage.setItem('controlDocumentoDynamiSeach',"false");
             });
-			
+
 			 window.addEventListener('beforeunload', (event) => {
                 debugger;
                 localStorage.setItem('controlDocumentoDynamiSeach',"false");
-       
+
+             });
+
+            TXTextControl.addEventListener("textControlLoaded", function (e) {
+
+                // disable the loading progress dialog
+                TXTextControl.isLoadingDialogEnabled = false;
+
+                // restore the document
+                restoreDocument();
+
+                // set auto save to 500 milliseconds
+                //var intervalAutoSave = setInterval(autoSaveDocument, 10000);
             });
+
+            TXTextControl.addEventListener("webSocketClosed", function (e) {
+                console.log("Entro TXTextControl.addEventListener webSocketClosed");
+
+                // reload, if connection is lost
+                location.reload();
+            });
+
+            TXTextControl.addEventListener("documentLoaded", function (e) {
+
+                $("#txReconnectMsg").hide(); // show dialog
+            });
+
+            TXTextControl.addEventListener("ribbonTabsLoaded", function (e) {
+                $("#tabPageLayout").addClass("hidden");
+                $("#tabReports").addClass("hidden");
+                $("#tabView").addClass("hidden");
+                $("#tabProofing").addClass("hidden");
+                $("#tabPermissions").addClass("hidden");
+                $("#tabFormFields").addClass("hidden");
+                $("#tabDefault").text("EDITOR");
+                $("#tabInsert").text("INSERTAR");
+                $("#ribbonTabInsert_drpDnBtnInsertShape").addClass("hidden");
+                $("#ribbonTabInsert_drpDnBtnInsertChart").addClass("hidden");
+                $("#ribbonTabInsert_btnInsertFile").addClass("hidden");
+                $("#ribbonTabHome_tglBtnClientPaste").addClass("hidden");
+                $("#ribbonTabHome_btnServerPaste").addClass("hidden");
+                if (cuerpodocumento != "")
+                    TXTextControlLoad();
+            });
+
+            var cuerpodocumento = "";
+            var txencabezado = "";
+            var txpiepagina = "";
+            var b_encabezado = false;
+            var b_piep = false;
+            function TXTextControlLoad() {
+                console.log("Entro TXTextControlLoad");
+
+                var encoded = btoa(cuerpodocumento);  // btoa base-64-encodes strings.
+                TXTextControl.loadDocument(TXTextControl.StreamType.HTMLFormat, encoded);
+                debugger;
+                if (txencabezado != "") {
+                    TXTextControl.headersAndFooters.add(TXTextControl.HeaderFooterType.Header, callback1, errorCallback1);
+                    b_encabezado = true;
+                }
+
+                if (txpiepagina != "") {
+                    TXTextControl.headersAndFooters.add(TXTextControl.HeaderFooterType.Footer, callback1F, errorCallback1);
+                    b_piep = true;
+                }
+            }
+
+            function autoSaveDocument() {
+                console.log("Entro autoSaveDocument");
+                // store the document in the session storage
+                // which is shared over all browser tabs (complete session)
+                var save1 = new TXTextControl.SaveSettings();
+                TXTextControl.save(TXTextControl.StreamType.HTMLFormat, callbacksave, save1, errorCallback1);
+                if (b_encabezado)
+                    headerprincipal.selection.save(TXTextControl.StreamType.HTMLFormat, callbacksaveE, save1, errorCallback1);
+                 else
+                    TXTextControl.headersAndFooters.getItem(TXTextControl.HeaderFooterType.Header, callback2save, errorCallback1);
+                if (b_piep)
+                    footerprincipal.selection.save(TXTextControl.StreamType.HTMLFormat, callbacksaveF, save1, errorCallback1);
+                 else
+                    TXTextControl.headersAndFooters.getItem(TXTextControl.HeaderFooterType.Footer, callback3save, errorCallback1);
+                TXTextControl.saveDocument(TXTextControl.StreamType.AdobePDF, callbacksaveDoc, save1, errorCallback1);
+
+                TXTextControl.saveDocument(
+                    TXTextControl.streamType.InternalUnicodeFormat, function (e) {
+
+                        sessionStorage.document = e.data;
+                    }
+                );
+            }
+
+            function restoreDocument() {
+                console.log("Entro restoreDocument");
+
+
+                // if document exists, load it from the session storage
+                if (sessionStorage["document"]) {
+
+                    $("#txReconnectMsg").show(); // hide dialog
+
+                    TXTextControl.loadDocument(
+                        TXTextControl.streamType.InternalUnicodeFormat,
+                        sessionStorage.document);
+                }
+                else
+                    $("#txReconnectMsg").hide(); // hide dialog
+            }
+
+            function callback1(header) {
+                TXTextControl.headersAndFooters.getItem(TXTextControl.HeaderFooterType.Header, callback2, errorCallback1)
+            }
+            var headerprincipal = null;
+            function callback2(header) {
+                header.activate(callback3, errorCallback1);
+                headerprincipal = header;
+            }
+            function callback3(header) {
+                var encoded = btoa(txencabezado);
+                headerprincipal.selection.load(TXTextControl.StreamType.HTMLFormat, encoded);
+                headerprincipal.deactivate(callback4, errorCallback1);
+            }
+
+            function callback1F(header) {
+                TXTextControl.headersAndFooters.getItem(TXTextControl.HeaderFooterType.Footer, callback2F, errorCallback1)
+            }
+            var footerprincipal = null;
+            function callback2F(footer) {
+                footer.activate(callback3F, errorCallback1);
+                footerprincipal = footer;
+            }
+            function callback3F(header) {
+                var encoded = btoa(txpiepagina);
+                footerprincipal.selection.load(TXTextControl.StreamType.HTMLFormat, encoded);
+                footerprincipal.deactivate(callback4, errorCallback1);
+            }
+
+            function callback4(header) {
+
+            }
+
+            function errorCallback1(error) {
+                alert("incorrecto" + error);
+            }
+
+            function GuardaDocumentFromClient() {
+                debugger;
+                var textonew = '';
+                var save1 = new TXTextControl.SaveSettings();
+                TXTextControl.save(TXTextControl.StreamType.HTMLFormat, callbacksave, save1, errorCallback1);
+                if (b_encabezado) {
+                    var save1 = new TXTextControl.SaveSettings();
+                    headerprincipal.selection.save(TXTextControl.StreamType.HTMLFormat, callbacksaveE, save1, errorCallback1);
+                }else
+                    TXTextControl.headersAndFooters.getItem(TXTextControl.HeaderFooterType.Header, callback2save, errorCallback1)
+
+                if (b_piep) {
+                    var save1 = new TXTextControl.SaveSettings();
+                    footerprincipal.selection.save(TXTextControl.StreamType.HTMLFormat, callbacksaveF, save1, errorCallback1);
+                }else
+                    TXTextControl.headersAndFooters.getItem(TXTextControl.HeaderFooterType.Footer, callback3save, errorCallback1)
+            }
+            var txBody = "";
+            function callbacksave(datos) {
+                datos.data = datos.data.replace('<meta content="TX28_HTM 28.0.804.500" name="GENERATOR" />', '<meta charset="utf-8" />');
+                datos.data = datos.data.replace('<title> - This document has been created with TX Text Control Trial Version 28.0 Server - You can use this trial version for further 24 days.</title>', '');
+                txBody = datos;
+            }
+            var txEncabezado = "";
+            function callbacksaveE(datos) {
+                txEncabezado = datos;
+            }
+            var txFooter = "";
+            function callbacksaveF(datos) {
+                txFooter = datos;
+            }
+            function callback2save(header) {
+                var save1 = new TXTextControl.SaveSettings();
+                header.selection.save(TXTextControl.StreamType.HTMLFormat, callbacksaveE, save1, errorCallback1);
+            }
+            function callback3save(footer) {
+                var save1 = new TXTextControl.SaveSettings();
+                footer.selection.save(TXTextControl.StreamType.HTMLFormat, callbacksaveF, save1, errorCallback1);
+            }
+
+            function GuardaDocumentPDF() {
+                var save1 = new TXTextControl.SaveSettings();
+                TXTextControl.saveDocument(TXTextControl.StreamType.AdobePDF, callbacksaveDoc, save1, errorCallback1);
+            }
+            var bytesPDF = '';
+            function callbacksaveDoc(datos) {
+                bytesPDF = datos;
+            }
+
+
         </script>
     }
     <input type="hidden" id="FieldId" name="FieldId" value="" />
@@ -1600,4 +1859,8 @@ CKEDITOR.replace('Pie_de_Pagina', {
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
     <input type="hidden" id="Control_de_Documentos_cmbLabelSelect" name="Control_de_Documentos_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+
+
+
+
 

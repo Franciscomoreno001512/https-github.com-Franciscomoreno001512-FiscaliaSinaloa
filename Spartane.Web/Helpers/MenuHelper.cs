@@ -23,6 +23,8 @@ using Spartane.Web.Areas.WebApiConsumer.SpartanModule;
 using Spartane.Web.Areas.WebApiConsumer.SpartanUserRoleModule;
 using System.Web;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User_Role;
+using Spartane.Web.Areas.WebApiConsumer.SpartaneQuery;
+using Newtonsoft.Json;
 
 namespace Spartane.Web.Helpers
 {
@@ -31,6 +33,7 @@ namespace Spartane.Web.Helpers
     /// </summary>
     public static class MenuHelper
     {
+        private static readonly ISpartaneQueryApiConsumer _ISpartaneQueryApiConsumer = null;
         private static readonly ITokenManager _tokenManager;
         private static readonly ISpartanModuleApiConsumer _spartaneModuleApiConsumer;
         private static readonly ISpartanUserRoleModuleApiConsumer _spartanUserRoleModuleApiConsumer;
@@ -55,6 +58,7 @@ namespace Spartane.Web.Helpers
             _spartaneUserRoleModuleObjectApiConsumer = DependencyResolver.Current.GetService<ISpartaneUserRoleModuleObjectApiConsumer>();
             _spartaneObjectApiConsumer = DependencyResolver.Current.GetService<ISpartaneObjectApiConsumer>();
             _ISpartane_FileApiConsumer = DependencyResolver.Current.GetService<ISpartaneFileApiConsumer>();
+            _ISpartaneQueryApiConsumer = DependencyResolver.Current.GetService<ISpartaneQueryApiConsumer>();
         }
 
         /// <summary>
@@ -64,17 +68,13 @@ namespace Spartane.Web.Helpers
         public static List<RecursiveObject> GetCurrentRoleMenus()
         {
             var roleId = SessionHelper.Role;
-            if (MenuOrder == null)
-            {
-                MenuHelper.GetLatestMenu();
-            }
             return MenuOrder != null && MenuOrder.ContainsKey(roleId) ? MenuOrder[roleId] : new List<RecursiveObject>();
         }
 
         /// <summary>
         /// Used to get the latest version of the menu
         /// </summary>
-        public static void GetLatestMenu()
+        public static void GetLatestMenu(string username = null, string pass = null)
         {
             //new Thread(() =>
             //{
@@ -91,8 +91,29 @@ namespace Spartane.Web.Helpers
 
             var userRoles = _userRoleApiConsumer.SelAll(true).Resource;
 
+            List<ModelRole> listaRoles = null;
+
+            if (!string.IsNullOrEmpty(username))
+            {
+                var result = _ISpartaneQueryApiConsumer.ExecuteRawQuery(string.Format("select su.role, sur.description from spartan_user su inner join  spartan_user_role sur on sur.user_role_id = su.role where username='{0}'", username));
+
+
+                listaRoles = JsonConvert.DeserializeObject<List<ModelRole>>(result.Resource);
+
+            }
+
+
+
             if (!userRoles.Any())
                 return;
+
+
+            if (listaRoles != null && listaRoles.Any())
+            {
+                userRoles = userRoles.Where(s => s.User_Role_Id == listaRoles.FirstOrDefault().Role).ToList();
+            }
+
+
 
             //Getting all as the _spartanUserRoleModuleApiConsumer GETByKey method not working
             var userRoleModuleAll = _spartanUserRoleModuleApiConsumer.SelAll(true).Resource;
@@ -329,7 +350,7 @@ namespace Spartane.Web.Helpers
                     originalOrder = item.Order_Shown,
                     moduleOrder = orderShown,
                     Objects = GetModuleObjects(roleId, item.Id),
-                    Image = GetImageBytes(item.Image)
+                    Image = null// GetImageBytes(item.Image)
 
                 });
             }
@@ -430,4 +451,10 @@ namespace Spartane.Web.Helpers
         }
 
     }
+    public class ModelRole
+    {
+        public int Role { get; set; }
+        public string description { get; set; }
+    }
 }
+

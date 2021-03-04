@@ -79,7 +79,7 @@ namespace Resources
                         { }
 
                 culture = culture.ToLower();
-                result= _objectList.FirstOrDefault(m => m.Id == id && m.Culture == culture).Value;
+                result= _objectList.FirstOrDefault(m => m.Id == id && m.Culture == culture)?.Value;
             }
             catch (Exception)
             {
