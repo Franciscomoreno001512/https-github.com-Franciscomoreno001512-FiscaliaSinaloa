@@ -890,6 +890,8 @@
     <Compile Include="AuthFilters\ObjectAuthAttribute.cs" />
     <Compile Include="CKFinderAuthenticator.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\TXPrintController.cs" />
+    <Compile Include="Controllers\TXWebSocketController.cs" />
     <Compile Include="CustomModelBinders\DecimalModelBinder.cs" />
     <Compile Include="Filters\CustomActionFilter.cs" />
     <Compile Include="Filters\SecurityAttribute.cs" />
