@@ -166,7 +166,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 foo = foo.Replace(' ', '+');
 
                 //
-                var elimina = _ISpartaneQueryApiConsumer.ExecuteRawQuery(string.Format("delete from  HtmlElementsTemp where guid =  '{0}'", guid)).Resource;
+              //  var elimina = _ISpartaneQueryApiConsumer.ExecuteRawQuery(string.Format("delete from  HtmlElementsTemp where guid =  '{0}'", guid)).Resource;
 
             }
             if (ModuleId == 0)
@@ -299,14 +299,118 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             ViewBag.nameMR = nameMR;
             ViewBag.nameAttribute = nameAttribute;
             ViewBag.viewInEframe = viewInEframe;
-            ViewBag.header = he;
-            var base64EncodedBytes = System.Convert.FromBase64String(body);
-            string bo = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
-            ViewBag.body = bo;
-            ViewBag.footer = foo;
+
+
+            ViewBag.header = string.IsNullOrEmpty(he) ? varControl_de_Documentos.Encabezado : he;
+            ViewBag.body = string.IsNullOrEmpty(body) ? varControl_de_Documentos.Cuerpo_del_Documento : body; ;
+            ViewBag.footer = string.IsNullOrEmpty(foo) ? varControl_de_Documentos.Pie_de_Pagina : foo;
+
+            if (string.IsNullOrEmpty(ViewBag.header) || ViewBag.header  == "undefined")
+            {
+                ViewBag.header = "";
+            }
+
+            if (string.IsNullOrEmpty(ViewBag.body) || ViewBag.body == "undefined")
+            {
+                ViewBag.body = "";
+            }
+
+            if (string.IsNullOrEmpty(ViewBag.footer) || ViewBag.footer == "undefined")
+            {
+                ViewBag.footer = "";
+            }
+
+
+
             ViewBag.isCallFromCatalogoPopupTest = isCallFromCatalogoPopupTest;
+            ViewBag.GUID_ = guid;
 
             return View(varControl_de_Documentos);
+        }
+
+
+        [HttpGet]
+        public ActionResult GetHtmlObjects(string guid)
+        {
+            string he = "";
+            string body = "";
+            string foo = "";
+            if (guid != null)
+            {
+                var table = JsonConvert.DeserializeObject<DataTable>(_ISpartaneQueryApiConsumer.ExecuteRawQuery(string.Format("exec us_GetHtmlElementsTemp '{0}'", guid)).Resource);
+                he = table.Rows[0]["Header"].ToString();
+                body = table.Rows[0]["body"].ToString();
+                foo = table.Rows[0]["footer"].ToString();
+
+                he = he.Replace(' ', '+');
+                body = body.Replace(' ', '+');
+                foo  = foo.Replace(' ', '+');
+
+                var base64EncodedBytesHeader = System.Convert.FromBase64String(he);
+                 he = System.Text.Encoding.UTF8.GetString(base64EncodedBytesHeader);
+
+
+                var base64EncodedBytesBody = System.Convert.FromBase64String(body);
+                 body = System.Text.Encoding.UTF8.GetString(base64EncodedBytesBody);
+
+                var base64EncodedBytesfooter = System.Convert.FromBase64String(foo);
+                foo = System.Text.Encoding.UTF8.GetString(base64EncodedBytesfooter);
+
+
+            }
+
+            var resultado = new {
+                he,
+                body,
+                foo
+            };
+
+            return Json( resultado, JsonRequestBehavior.AllowGet);
+
+
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult EncodingUTF8GetString(List<string> varName)
+        {
+            string resp = "";
+            try
+            {
+                string text = "";
+                
+                text = varName[1];
+                
+                string testEncode = Base64Encode(text);
+
+                string dec1 = Base64Decode(testEncode);
+                
+                resp = dec1;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            var resultado = new
+            {
+                resp
+            };
+
+            return Json(resultado, JsonRequestBehavior.AllowGet);
+
+
+        }
+
+        public  string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+        public  string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
 
         [HttpGet]
