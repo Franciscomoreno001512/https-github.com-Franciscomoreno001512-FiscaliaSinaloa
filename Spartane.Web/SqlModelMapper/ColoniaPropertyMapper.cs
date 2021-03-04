@@ -44,6 +44,12 @@ namespace Spartane.Web.SqlModelMapper
                     return "Colonia.estatus";
                 case "cod_localidad":
                     return "Colonia.cod_localidad";
+                case "Tipo[Descripcion]":
+                case "TipoDescripcion":
+                    return "Tipo_de_Localidad.Descripcion";
+                case "Poblacion[Nombre]":
+                case "PoblacionNombre":
+                    return "Colonia.Nombre";
 
                 default:
                     return propertyName;

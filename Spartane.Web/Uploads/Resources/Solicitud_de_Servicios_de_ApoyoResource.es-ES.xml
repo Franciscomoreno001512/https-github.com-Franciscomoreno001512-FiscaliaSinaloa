@@ -3,11 +3,53 @@
   <resource culture="es-es" name="Solicitud_de_Servicios_de_Apoyo" value="Solicitud de Servicios de Apoyo"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
   <resource culture="es-es" name="Tipo_de_Servicio" value="Tipo de Servicio"></resource>
-  <resource culture="es-es" name="Dictamen" value="Dictamen"></resource>
   <resource culture="es-es" name="Responsable" value="Responsable"></resource>
   <resource culture="es-es" name="Clave_MR" value="Clave MR"></resource>
   <resource culture="es-es" name="Compareciente" value="Compareciente"></resource>
+  <resource culture="es-es" name="Fecha_de_Solicitud" value="Fecha de Solicitud"></resource>
+  <resource culture="es-es" name="Hora_de_Solicitud" value="Hora de Solicitud"></resource>
+  <resource culture="es-es" name="Usuario_que_Solicita" value="Usuario que Solicita"></resource>
+  <resource culture="es-es" name="Origen" value="Origen"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente_AT" value="Número de Expediente AT"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente_MP" value="Número de Expediente MP"></resource>
+  <resource culture="es-es" name="NUAT" value="NUAT"></resource>
+  <resource culture="es-es" name="Numero_de_Denuncia" value="Número de Denuncia"></resource>
+  <resource culture="es-es" name="Carpeta_de_Investigacion" value="Carpeta de Investigación"></resource>
+  <resource culture="es-es" name="Numero_de_Oficio" value="Número de Oficio"></resource>
+  <resource culture="es-es" name="Solicitud" value="Solicitud"></resource>
+  <resource culture="es-es" name="Ver_Documento" value="Ver Documento"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+  <resource culture="es-es" name="Fecha_de_Recepcion" value="Fecha de Recepción"></resource>
+  <resource culture="es-es" name="Hora_de_Recepcion" value="Hora de Recepción"></resource>
+  <resource culture="es-es" name="Usuario_que_Recibe" value="Usuario que Recibe"></resource>
+  <resource culture="es-es" name="Area_Asignada" value="Area Asignada"></resource>
+  <resource culture="es-es" name="SubArea_Asignada" value="SubArea Asignada"></resource>
+  <resource culture="es-es" name="Observaciones_Recepcion" value="Observaciones Recepcion"></resource>
+  <resource culture="es-es" name="Fecha_de_Asignacion" value="Fecha de Asignación"></resource>
+  <resource culture="es-es" name="Hora_de_Asignacion" value="Hora de Asignación"></resource>
+  <resource culture="es-es" name="Usuario_que_Asigna" value="Usuario que Asigna"></resource>
+  <resource culture="es-es" name="Tipo_de_Asignacion" value="Tipo de Asignación"></resource>
+  <resource culture="es-es" name="Responsable_Asignado" value="Responsable Asignado"></resource>
+  <resource culture="es-es" name="Observaciones_Asignacion" value="Observaciones Asignacion"></resource>
+  <resource culture="es-es" name="Fecha_de_Contestacion" value="Fecha de Contestación"></resource>
+  <resource culture="es-es" name="Hora_de_Contestacion" value="Hora de Contestación"></resource>
+  <resource culture="es-es" name="Usuario_que_contesta" value="Usuario que contesta"></resource>
+  <resource culture="es-es" name="Dictamen" value="Dictamen"></resource>
+  <resource culture="es-es" name="Enviar_Contestacion" value="Enviar Contestación"></resource>
+  <resource culture="es-es" name="Archivo" value="Archivo"></resource>
+  <resource culture="es-es" name="Observaciones_Contestacion" value="Observaciones Contestacion"></resource>
+  <resource culture="es-es" name="Fecha_de_Revision" value="Fecha de Revisión"></resource>
+  <resource culture="es-es" name="Hora_de_Revision" value="Hora de Revisión"></resource>
+  <resource culture="es-es" name="Usuario_que_Revisa" value="Usuario que Revisa"></resource>
+  <resource culture="es-es" name="Resultado_de_Autorizacion" value="Resultado de Autorización"></resource>
+  <resource culture="es-es" name="Motivo_de_Rechazo" value="Motivo de Rechazo"></resource>
+  <resource culture="es-es" name="Observaciones_Autorizacion" value="Observaciones Autorizacion"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabRecepcion" value="Recepción"></resource>
+<resource culture="es-es" name="TabAsignacion" value="Asignación"></resource>
+<resource culture="es-es" name="TabContestacion" value="Contestación"></resource>
+<resource culture="es-es" name="TabAutorizacion" value="Autorización"></resource>
 
 </resources>

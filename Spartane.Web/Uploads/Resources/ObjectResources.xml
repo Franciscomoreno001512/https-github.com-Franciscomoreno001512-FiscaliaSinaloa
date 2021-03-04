@@ -1156,8 +1156,8 @@
 <Object Id="45617" culture="es-es" value="Tipo de Documentos" />
 <Object Id="45619" culture="en-us" value="Datos de los Hechos AT" />
 <Object Id="45619" culture="es-es" value="Datos de los Hechos AT" />
-<Object Id="45620" culture="en-us" value="Detalle Resumen Denuncia" />
-<Object Id="45620" culture="es-es" value="Detalle Resumen Denuncia" />
+<Object Id="45620" culture="en-us" value="Generar Expediente" />
+<Object Id="45620" culture="es-es" value="Generar Expediente" />
 <Object Id="45625" culture="en-us" value="Detalle Medidas Protección" />
 <Object Id="45625" culture="es-es" value="Detalle Medidas Protección" />
 <Object Id="45623" culture="en-us" value="Medida de Protección" />
@@ -1314,8 +1314,54 @@
 <Object Id="46103" culture="es-es" value="Generador Folio Documentos AT" />
 <Object Id="46176" culture="en-us" value="Forma de Ojos" />
 <Object Id="46176" culture="es-es" value="Forma de Ojos" />
+<Object Id="46200" culture="en-us" value="Tipo de Localidad" />
+<Object Id="46200" culture="es-es" value="Tipo de Localidad" />
+<Object Id="46201" culture="en-us" value="Tipo de Expediente Generado" />
+<Object Id="46201" culture="es-es" value="Tipo de Expediente Generado" />
+<Object Id="46205" culture="en-us" value="Área de Servicios de Apoyo" />
+<Object Id="46205" culture="es-es" value="Área de Servicios de Apoyo" />
+<Object Id="46203" culture="en-us" value="Estatus de Solicitud de Apoyo" />
+<Object Id="46203" culture="es-es" value="Estatus de Solicitud de Apoyo" />
+<Object Id="46206" culture="en-us" value="SubArea de Servicios de Apoyo" />
+<Object Id="46206" culture="es-es" value="SubArea de Servicios de Apoyo" />
+<Object Id="46204" culture="en-us" value="Tipo de Asignación de Apoyo" />
+<Object Id="46204" culture="es-es" value="Tipo de Asignación de Apoyo" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

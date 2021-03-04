@@ -81,6 +81,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         [IsNumberAfterAttribute("Fromcod_localidad", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string Tocod_localidad { set; get; }
 
+        public Filters TipoFilter { set; get; }
+        public string AdvanceTipo { set; get; }
+        public int[] AdvanceTipoMultiple { set; get; }
+
+        public Filters PoblacionFilter { set; get; }
+        public string AdvancePoblacion { set; get; }
+        public int[] AdvancePoblacionMultiple { set; get; }
+
 
     }
 }

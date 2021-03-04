@@ -6,7 +6,23 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Solicitud_de_Servicios_de_ApoyoModel
 @{
+    Spartane_File attachedFileVer_Documento = (Spartane_File)ViewBag.Ver_DocumentoSpartane_File;
 
+    string Fecha_de_Solicitud = "";
+    if (Model.Fecha_de_Solicitud == "")
+    { Model.Fecha_de_Solicitud = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Recepcion = "";
+    if (Model.Fecha_de_Recepcion == "")
+    { Model.Fecha_de_Recepcion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Asignacion = "";
+    if (Model.Fecha_de_Asignacion == "")
+    { Model.Fecha_de_Asignacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Contestacion = "";
+    if (Model.Fecha_de_Contestacion == "")
+    { Model.Fecha_de_Contestacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Revision = "";
+    if (Model.Fecha_de_Revision == "")
+    { Model.Fecha_de_Revision = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
     List<SelectListItem> varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio = null;
     if (ViewBag.Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio != null)
@@ -14,6 +30,54 @@
     List<SelectListItem> varCompareciente_Compareciente = null;
     if (ViewBag.Comparecientes_Compareciente != null)
     { varCompareciente_Compareciente = (List<SelectListItem>)ViewBag.Comparecientes_Compareciente; }
+    List<SelectListItem> varSpartan_User_Usuario_que_Solicita = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Solicita != null)
+    { varSpartan_User_Usuario_que_Solicita = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Solicita; }
+    List<SelectListItem> varOrigen_de_Invitacion_Origen = null;
+    if (ViewBag.Origen_de_Invitacions_Origen != null)
+    { varOrigen_de_Invitacion_Origen = (List<SelectListItem>)ViewBag.Origen_de_Invitacions_Origen; }
+    List<SelectListItem> varModulo_Atencion_Inicial_Numero_de_Expediente_AT = null;
+    if (ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT != null)
+    { varModulo_Atencion_Inicial_Numero_de_Expediente_AT = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT; }
+    List<SelectListItem> varexpediente_ministerio_publico_Numero_de_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Numero_de_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP; }
+    List<SelectListItem> varDocumento_Solicitud = null;
+    if (ViewBag.Documentos_Solicitud != null)
+    { varDocumento_Solicitud = (List<SelectListItem>)ViewBag.Documentos_Solicitud; }
+    List<SelectListItem> varEstatus_de_Solicitud_de_Apoyo_Estatus = null;
+    if (ViewBag.Estatus_de_Solicitud_de_Apoyos_Estatus != null)
+    { varEstatus_de_Solicitud_de_Apoyo_Estatus = (List<SelectListItem>)ViewBag.Estatus_de_Solicitud_de_Apoyos_Estatus; }
+    List<SelectListItem> varSpartan_User_Usuario_que_Recibe = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Recibe != null)
+    { varSpartan_User_Usuario_que_Recibe = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Recibe; }
+    List<SelectListItem> varArea_de_Servicios_de_Apoyo_Area_Asignada = null;
+    if (ViewBag.Area_de_Servicios_de_Apoyos_Area_Asignada != null)
+    { varArea_de_Servicios_de_Apoyo_Area_Asignada = (List<SelectListItem>)ViewBag.Area_de_Servicios_de_Apoyos_Area_Asignada; }
+    List<SelectListItem> varSubArea_de_Servicios_de_Apoyo_SubArea_Asignada = null;
+    if (ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_Asignada != null)
+    { varSubArea_de_Servicios_de_Apoyo_SubArea_Asignada = (List<SelectListItem>)ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_Asignada; }
+    List<SelectListItem> varSpartan_User_Usuario_que_Asigna = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Asigna != null)
+    { varSpartan_User_Usuario_que_Asigna = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Asigna; }
+    List<SelectListItem> varTipo_de_Asignacion_de_Apoyo_Tipo_de_Asignacion = null;
+    if (ViewBag.Tipo_de_Asignacion_de_Apoyos_Tipo_de_Asignacion != null)
+    { varTipo_de_Asignacion_de_Apoyo_Tipo_de_Asignacion = (List<SelectListItem>)ViewBag.Tipo_de_Asignacion_de_Apoyos_Tipo_de_Asignacion; }
+    List<SelectListItem> varSpartan_User_Responsable_Asignado = null;
+    if (ViewBag.Spartan_Users_Responsable_Asignado != null)
+    { varSpartan_User_Responsable_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Responsable_Asignado; }
+    List<SelectListItem> varSpartan_User_Usuario_que_contesta = null;
+    if (ViewBag.Spartan_Users_Usuario_que_contesta != null)
+    { varSpartan_User_Usuario_que_contesta = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_contesta; }
+    List<SelectListItem> varDocumento_Dictamen = null;
+    if (ViewBag.Documentos_Dictamen != null)
+    { varDocumento_Dictamen = (List<SelectListItem>)ViewBag.Documentos_Dictamen; }
+    List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
+    { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
+    List<SelectListItem> varResultado_de_Revision_Resultado_de_Autorizacion = null;
+    if (ViewBag.Resultado_de_Revisions_Resultado_de_Autorizacion != null)
+    { varResultado_de_Revision_Resultado_de_Autorizacion = (List<SelectListItem>)ViewBag.Resultado_de_Revisions_Resultado_de_Autorizacion; }
 
 
     Permission permission = ViewBag.Permission;
@@ -160,12 +224,6 @@
 		</select>
 	</div>
 </div>
-<div class="form-group" id="divDictamen">
-                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Dictamen</label>
-                                <div class="col-sm-8" data-field-id="Dictamen" data-attribute="263283" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Dictamen">
-                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoDictamen" name="Solicitud_de_Servicios_de_ApoyoDictamen" type="text" value="@Model.Dictamen">
-                                </div>
-                            </div>
 <div class="form-group" id="divResponsable">
                                 <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Responsable</label>
                                 <div class="col-sm-8" data-field-id="Responsable" data-attribute="263284" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Responsable">
@@ -199,6 +257,542 @@
 		</select>
 	</div>
 </div>
+<div class="form-group" id="divFecha_de_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Solicitud" data-attribute="272986" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Solicitud">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Solicitud_de_Servicios_de_ApoyoFecha_de_Solicitud" readonly="readonly" name="Solicitud_de_Servicios_de_ApoyoFecha_de_Solicitud" type="text" value="@Model.Fecha_de_Solicitud">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_de_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Solicitud" data-attribute="272987" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Solicitud">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Solicitud_de_Servicios_de_ApoyoHora_de_Solicitud" readonly="readonly" name="Solicitud_de_Servicios_de_ApoyoHora_de_Solicitud" type="text" data-autoclose="true" value="@Model.Hora_de_Solicitud">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divUsuario_que_Solicita">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Solicita</label>
+	<div class="col-sm-8" data-field-id="Usuario_que_Solicita" data-attribute="272988" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Solicita">
+		<select class="form-control" data-val="true" data-val-number="The field Usuario que Solicita must be a number." data-val-required="The Usuario que Solicita field is required." id="Solicitud_de_Servicios_de_ApoyoUsuario_que_Solicita" name="Solicitud_de_Servicios_de_ApoyoUsuario_que_Solicita">
+			<option value=""></option>
+			@if (varSpartan_User_Usuario_que_Solicita != null){ 
+				foreach (var itemUsuario_que_Solicita in varSpartan_User_Usuario_que_Solicita)
+				{
+					if (itemUsuario_que_Solicita.Value == Convert.ToString(Model.Usuario_que_Solicita))
+					{
+						<option value="@itemUsuario_que_Solicita.Value" selected>@itemUsuario_que_Solicita.Text</option>
+					}
+					else
+					{
+						<option value="@itemUsuario_que_Solicita.Value">@itemUsuario_que_Solicita.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divOrigen">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Origen</label>
+	<div class="col-sm-8" data-field-id="Origen" data-attribute="272989" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Origen">
+		<select class="form-control" data-val="true" data-val-number="The field Origen must be a number." data-val-required="The Origen field is required." id="Solicitud_de_Servicios_de_ApoyoOrigen" name="Solicitud_de_Servicios_de_ApoyoOrigen">
+			<option value=""></option>
+			@if (varOrigen_de_Invitacion_Origen != null){ 
+				foreach (var itemOrigen in varOrigen_de_Invitacion_Origen)
+				{
+					if (itemOrigen.Value == Convert.ToString(Model.Origen))
+					{
+						<option value="@itemOrigen.Value" selected>@itemOrigen.Text</option>
+					}
+					else
+					{
+						<option value="@itemOrigen.Value">@itemOrigen.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Expediente_AT">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_AT</label>
+	<div class="col-sm-8" data-field-id="Numero_de_Expediente_AT" data-attribute="272990" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_AT">
+		<select class="form-control" data-val="true" data-val-number="The field Número de Expediente AT must be a number." data-val-required="The Número de Expediente AT field is required." id="Solicitud_de_Servicios_de_ApoyoNumero_de_Expediente_AT" name="Solicitud_de_Servicios_de_ApoyoNumero_de_Expediente_AT">
+			<option value=""></option>
+			@if (varModulo_Atencion_Inicial_Numero_de_Expediente_AT != null){ 
+				foreach (var itemNumero_de_Expediente_AT in varModulo_Atencion_Inicial_Numero_de_Expediente_AT)
+				{
+					if (itemNumero_de_Expediente_AT.Value == Convert.ToString(Model.Numero_de_Expediente_AT))
+					{
+						<option value="@itemNumero_de_Expediente_AT.Value" selected>@itemNumero_de_Expediente_AT.Text</option>
+					}
+					else
+					{
+						<option value="@itemNumero_de_Expediente_AT.Value">@itemNumero_de_Expediente_AT.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Expediente_MP">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_MP</label>
+	<div class="col-sm-8" data-field-id="Numero_de_Expediente_MP" data-attribute="272991" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_MP">
+		<select class="form-control" data-val="true" data-val-number="The field Número de Expediente MP must be a number." data-val-required="The Número de Expediente MP field is required." id="Solicitud_de_Servicios_de_ApoyoNumero_de_Expediente_MP" name="Solicitud_de_Servicios_de_ApoyoNumero_de_Expediente_MP">
+			<option value=""></option>
+			@if (varexpediente_ministerio_publico_Numero_de_Expediente_MP != null){ 
+				foreach (var itemNumero_de_Expediente_MP in varexpediente_ministerio_publico_Numero_de_Expediente_MP)
+				{
+					if (itemNumero_de_Expediente_MP.Value == Convert.ToString(Model.Numero_de_Expediente_MP))
+					{
+						<option value="@itemNumero_de_Expediente_MP.Value" selected>@itemNumero_de_Expediente_MP.Text</option>
+					}
+					else
+					{
+						<option value="@itemNumero_de_Expediente_MP.Value">@itemNumero_de_Expediente_MP.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNUAT">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.NUAT</label>
+                                <div class="col-sm-8" data-field-id="NUAT" data-attribute="272992" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.NUAT">
+                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoNUAT" name="Solicitud_de_Servicios_de_ApoyoNUAT" type="text" value="@Model.NUAT">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_de_Denuncia">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Denuncia</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Denuncia" data-attribute="272993" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Denuncia">
+                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoNumero_de_Denuncia" name="Solicitud_de_Servicios_de_ApoyoNumero_de_Denuncia" type="text" value="@Model.Numero_de_Denuncia">
+                                </div>
+                            </div>
+<div class="form-group" id="divCarpeta_de_Investigacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Carpeta_de_Investigacion</label>
+                                <div class="col-sm-8" data-field-id="Carpeta_de_Investigacion" data-attribute="272994" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Carpeta_de_Investigacion">
+                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoCarpeta_de_Investigacion" name="Solicitud_de_Servicios_de_ApoyoCarpeta_de_Investigacion" type="text" value="@Model.Carpeta_de_Investigacion">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_de_Oficio">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Oficio</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Oficio" data-attribute="272995" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Oficio">
+                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoNumero_de_Oficio" name="Solicitud_de_Servicios_de_ApoyoNumero_de_Oficio" type="text" value="@Model.Numero_de_Oficio">
+                                </div>
+                            </div>
+<div class="form-group" id="divSolicitud">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud</label>
+	<div class="col-sm-8" data-field-id="Solicitud" data-attribute="272996" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud">
+		<select class="form-control" data-val="true" data-val-number="The field Solicitud must be a number." data-val-required="The Solicitud field is required." id="Solicitud_de_Servicios_de_ApoyoSolicitud" name="Solicitud_de_Servicios_de_ApoyoSolicitud">
+			<option value=""></option>
+			@if (varDocumento_Solicitud != null){ 
+				foreach (var itemSolicitud in varDocumento_Solicitud)
+				{
+					if (itemSolicitud.Value == Convert.ToString(Model.Solicitud))
+					{
+						<option value="@itemSolicitud.Value" selected>@itemSolicitud.Text</option>
+					}
+					else
+					{
+						<option value="@itemSolicitud.Value">@itemSolicitud.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+@if (attachedFileVer_Documento != null && attachedFileVer_Documento.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentVer_Documento">
+                                    <label class="col-sm-2 control-label">Previously Attached File</label>
+                                    <div class="col-sm-8" data-field-id="Ver_Documento" data-attribute="272997" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Ver_Documento">
+                                        <a href="@Url.Content("~/Frontal/Solicitud_de_Servicios_de_Apoyo/GetFile")?id=@attachedFileVer_Documento.File_Id" target="_blank">@attachedFileVer_Documento.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainVer_Documento('@attachedFileVer_Documento.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveVer_Documento" name="RemoveVer_Documento" value="0" type="hidden" />
+                                    <input class="form-control col-md-12" id="hdnAttachedVer_Documento" type="hidden" name="Ver_Documento" value="@Model.Ver_Documento">
+                                </div>
+                            }
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Ver_Documento</label>
+                                <div class="col-sm-8" data-field-id="Ver_Documento" data-attribute="272997" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Ver_Documento">
+                                    <input type="file" name="Solicitud_de_Servicios_de_ApoyoVer_DocumentoFile" id="Solicitud_de_Servicios_de_ApoyoVer_DocumentoFile" class="form-control" />
+                                </div>
+                            </div>
+<div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="272998" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones">
+                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoObservaciones" name="Solicitud_de_Servicios_de_ApoyoObservaciones" type="text" value="@Model.Observaciones">
+                                </div>
+                            </div>
+<div class="form-group" id="divEstatus">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Estatus</label>
+	<div class="col-sm-8" data-field-id="Estatus" data-attribute="272999" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Estatus">
+		<select class="form-control" data-val="true" data-val-number="The field Estatus must be a number." data-val-required="The Estatus field is required." id="Solicitud_de_Servicios_de_ApoyoEstatus" name="Solicitud_de_Servicios_de_ApoyoEstatus">
+			<option value=""></option>
+			@if (varEstatus_de_Solicitud_de_Apoyo_Estatus != null){ 
+				foreach (var itemEstatus in varEstatus_de_Solicitud_de_Apoyo_Estatus)
+				{
+					if (itemEstatus.Value == Convert.ToString(Model.Estatus))
+					{
+						<option value="@itemEstatus.Value" selected>@itemEstatus.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstatus.Value">@itemEstatus.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divFecha_de_Recepcion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Recepcion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Recepcion" data-attribute="273003" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Recepcion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Solicitud_de_Servicios_de_ApoyoFecha_de_Recepcion" readonly="readonly" name="Solicitud_de_Servicios_de_ApoyoFecha_de_Recepcion" type="text" value="@Model.Fecha_de_Recepcion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_de_Recepcion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Recepcion</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Recepcion" data-attribute="273005" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Recepcion">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Solicitud_de_Servicios_de_ApoyoHora_de_Recepcion" readonly="readonly" name="Solicitud_de_Servicios_de_ApoyoHora_de_Recepcion" type="text" data-autoclose="true" value="@Model.Hora_de_Recepcion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divUsuario_que_Recibe">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Recibe</label>
+	<div class="col-sm-8" data-field-id="Usuario_que_Recibe" data-attribute="273006" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Recibe">
+		<select class="form-control" data-val="true" data-val-number="The field Usuario que Recibe must be a number." data-val-required="The Usuario que Recibe field is required." id="Solicitud_de_Servicios_de_ApoyoUsuario_que_Recibe" name="Solicitud_de_Servicios_de_ApoyoUsuario_que_Recibe">
+			<option value=""></option>
+			@if (varSpartan_User_Usuario_que_Recibe != null){ 
+				foreach (var itemUsuario_que_Recibe in varSpartan_User_Usuario_que_Recibe)
+				{
+					if (itemUsuario_que_Recibe.Value == Convert.ToString(Model.Usuario_que_Recibe))
+					{
+						<option value="@itemUsuario_que_Recibe.Value" selected>@itemUsuario_que_Recibe.Text</option>
+					}
+					else
+					{
+						<option value="@itemUsuario_que_Recibe.Value">@itemUsuario_que_Recibe.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divArea_Asignada">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Area_Asignada</label>
+	<div class="col-sm-8" data-field-id="Area_Asignada" data-attribute="273007" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Area_Asignada">
+		<select class="form-control" data-val="true" data-val-number="The field Area Asignada must be a number." data-val-required="The Area Asignada field is required." id="Solicitud_de_Servicios_de_ApoyoArea_Asignada" name="Solicitud_de_Servicios_de_ApoyoArea_Asignada">
+			<option value=""></option>
+			@if (varArea_de_Servicios_de_Apoyo_Area_Asignada != null){ 
+				foreach (var itemArea_Asignada in varArea_de_Servicios_de_Apoyo_Area_Asignada)
+				{
+					if (itemArea_Asignada.Value == Convert.ToString(Model.Area_Asignada))
+					{
+						<option value="@itemArea_Asignada.Value" selected>@itemArea_Asignada.Text</option>
+					}
+					else
+					{
+						<option value="@itemArea_Asignada.Value">@itemArea_Asignada.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divSubArea_Asignada">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.SubArea_Asignada</label>
+	<div class="col-sm-8" data-field-id="SubArea_Asignada" data-attribute="273008" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.SubArea_Asignada">
+		<select class="form-control" data-val="true" data-val-number="The field SubArea Asignada must be a number." data-val-required="The SubArea Asignada field is required." id="Solicitud_de_Servicios_de_ApoyoSubArea_Asignada" name="Solicitud_de_Servicios_de_ApoyoSubArea_Asignada">
+			<option value=""></option>
+			@if (varSubArea_de_Servicios_de_Apoyo_SubArea_Asignada != null){ 
+				foreach (var itemSubArea_Asignada in varSubArea_de_Servicios_de_Apoyo_SubArea_Asignada)
+				{
+					if (itemSubArea_Asignada.Value == Convert.ToString(Model.SubArea_Asignada))
+					{
+						<option value="@itemSubArea_Asignada.Value" selected>@itemSubArea_Asignada.Text</option>
+					}
+					else
+					{
+						<option value="@itemSubArea_Asignada.Value">@itemSubArea_Asignada.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divObservaciones_Recepcion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Recepcion</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Recepcion" data-attribute="273009" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Recepcion">
+                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoObservaciones_Recepcion" name="Solicitud_de_Servicios_de_ApoyoObservaciones_Recepcion" type="text" value="@Model.Observaciones_Recepcion">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Asignacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Asignacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Asignacion" data-attribute="273010" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Asignacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Solicitud_de_Servicios_de_ApoyoFecha_de_Asignacion" readonly="readonly" name="Solicitud_de_Servicios_de_ApoyoFecha_de_Asignacion" type="text" value="@Model.Fecha_de_Asignacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_de_Asignacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Asignacion</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Asignacion" data-attribute="273011" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Asignacion">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Solicitud_de_Servicios_de_ApoyoHora_de_Asignacion" readonly="readonly" name="Solicitud_de_Servicios_de_ApoyoHora_de_Asignacion" type="text" data-autoclose="true" value="@Model.Hora_de_Asignacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divUsuario_que_Asigna">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Asigna</label>
+	<div class="col-sm-8" data-field-id="Usuario_que_Asigna" data-attribute="273012" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Asigna">
+		<select class="form-control" data-val="true" data-val-number="The field Usuario que Asigna must be a number." data-val-required="The Usuario que Asigna field is required." id="Solicitud_de_Servicios_de_ApoyoUsuario_que_Asigna" name="Solicitud_de_Servicios_de_ApoyoUsuario_que_Asigna">
+			<option value=""></option>
+			@if (varSpartan_User_Usuario_que_Asigna != null){ 
+				foreach (var itemUsuario_que_Asigna in varSpartan_User_Usuario_que_Asigna)
+				{
+					if (itemUsuario_que_Asigna.Value == Convert.ToString(Model.Usuario_que_Asigna))
+					{
+						<option value="@itemUsuario_que_Asigna.Value" selected>@itemUsuario_que_Asigna.Text</option>
+					}
+					else
+					{
+						<option value="@itemUsuario_que_Asigna.Value">@itemUsuario_que_Asigna.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Asignacion">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Tipo_de_Asignacion</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Asignacion" data-attribute="273013" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Tipo_de_Asignacion">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Asignación must be a number." data-val-required="The Tipo de Asignación field is required." id="Solicitud_de_Servicios_de_ApoyoTipo_de_Asignacion" name="Solicitud_de_Servicios_de_ApoyoTipo_de_Asignacion">
+			<option value=""></option>
+			@if (varTipo_de_Asignacion_de_Apoyo_Tipo_de_Asignacion != null){ 
+				foreach (var itemTipo_de_Asignacion in varTipo_de_Asignacion_de_Apoyo_Tipo_de_Asignacion)
+				{
+					if (itemTipo_de_Asignacion.Value == Convert.ToString(Model.Tipo_de_Asignacion))
+					{
+						<option value="@itemTipo_de_Asignacion.Value" selected>@itemTipo_de_Asignacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Asignacion.Value">@itemTipo_de_Asignacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divResponsable_Asignado">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Responsable_Asignado</label>
+	<div class="col-sm-8" data-field-id="Responsable_Asignado" data-attribute="273014" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Responsable_Asignado">
+		<select class="form-control" data-val="true" data-val-number="The field Responsable Asignado must be a number." data-val-required="The Responsable Asignado field is required." id="Solicitud_de_Servicios_de_ApoyoResponsable_Asignado" name="Solicitud_de_Servicios_de_ApoyoResponsable_Asignado">
+			<option value=""></option>
+			@if (varSpartan_User_Responsable_Asignado != null){ 
+				foreach (var itemResponsable_Asignado in varSpartan_User_Responsable_Asignado)
+				{
+					if (itemResponsable_Asignado.Value == Convert.ToString(Model.Responsable_Asignado))
+					{
+						<option value="@itemResponsable_Asignado.Value" selected>@itemResponsable_Asignado.Text</option>
+					}
+					else
+					{
+						<option value="@itemResponsable_Asignado.Value">@itemResponsable_Asignado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divObservaciones_Asignacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Asignacion</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Asignacion" data-attribute="273015" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Asignacion">
+                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoObservaciones_Asignacion" name="Solicitud_de_Servicios_de_ApoyoObservaciones_Asignacion" type="text" value="@Model.Observaciones_Asignacion">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Contestacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Contestacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Contestacion" data-attribute="273018" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Contestacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Solicitud_de_Servicios_de_ApoyoFecha_de_Contestacion" readonly="readonly" name="Solicitud_de_Servicios_de_ApoyoFecha_de_Contestacion" type="text" value="@Model.Fecha_de_Contestacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_de_Contestacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Contestacion</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Contestacion" data-attribute="273019" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Contestacion">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Solicitud_de_Servicios_de_ApoyoHora_de_Contestacion" readonly="readonly" name="Solicitud_de_Servicios_de_ApoyoHora_de_Contestacion" type="text" data-autoclose="true" value="@Model.Hora_de_Contestacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divUsuario_que_contesta">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_contesta</label>
+	<div class="col-sm-8" data-field-id="Usuario_que_contesta" data-attribute="273020" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_contesta">
+		<select class="form-control" data-val="true" data-val-number="The field Usuario que contesta must be a number." data-val-required="The Usuario que contesta field is required." id="Solicitud_de_Servicios_de_ApoyoUsuario_que_contesta" name="Solicitud_de_Servicios_de_ApoyoUsuario_que_contesta">
+			<option value=""></option>
+			@if (varSpartan_User_Usuario_que_contesta != null){ 
+				foreach (var itemUsuario_que_contesta in varSpartan_User_Usuario_que_contesta)
+				{
+					if (itemUsuario_que_contesta.Value == Convert.ToString(Model.Usuario_que_contesta))
+					{
+						<option value="@itemUsuario_que_contesta.Value" selected>@itemUsuario_que_contesta.Text</option>
+					}
+					else
+					{
+						<option value="@itemUsuario_que_contesta.Value">@itemUsuario_que_contesta.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divDictamen">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Dictamen</label>
+	<div class="col-sm-8" data-field-id="Dictamen" data-attribute="273021" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Dictamen">
+		<select class="form-control" data-val="true" data-val-number="The field Dictamen must be a number." data-val-required="The Dictamen field is required." id="Solicitud_de_Servicios_de_ApoyoDictamen" name="Solicitud_de_Servicios_de_ApoyoDictamen">
+			<option value=""></option>
+			@if (varDocumento_Dictamen != null){ 
+				foreach (var itemDictamen in varDocumento_Dictamen)
+				{
+					if (itemDictamen.Value == Convert.ToString(Model.Dictamen))
+					{
+						<option value="@itemDictamen.Value" selected>@itemDictamen.Text</option>
+					}
+					else
+					{
+						<option value="@itemDictamen.Value">@itemDictamen.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEnviar_Contestacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Enviar_Contestacion</label>
+                                <div class="col-sm-8" data-field-id="Enviar_Contestacion" data-attribute="273022" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Enviar_Contestacion">
+                                    @Html.CheckBoxFor(m => m.Enviar_Contestacion, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divArchivo">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Archivo</label>
+	<div class="col-sm-8" data-field-id="Archivo" data-attribute="273023" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Archivo">
+		<input class="form-control inputNumber" id="Solicitud_de_Servicios_de_ApoyoArchivo" name="Solicitud_de_Servicios_de_ApoyoArchivo" type="text" value="@Model.Archivo">
+	</div>
+</div>
+<div class="form-group" id="divObservaciones_Contestacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Contestacion</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Contestacion" data-attribute="273024" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Contestacion">
+                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoObservaciones_Contestacion" name="Solicitud_de_Servicios_de_ApoyoObservaciones_Contestacion" type="text" value="@Model.Observaciones_Contestacion">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Revision">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Revision</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Revision" data-attribute="273025" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Revision">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Solicitud_de_Servicios_de_ApoyoFecha_de_Revision" readonly="readonly" name="Solicitud_de_Servicios_de_ApoyoFecha_de_Revision" type="text" value="@Model.Fecha_de_Revision">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_de_Revision">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Revision</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Revision" data-attribute="273026" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Revision">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Solicitud_de_Servicios_de_ApoyoHora_de_Revision" readonly="readonly" name="Solicitud_de_Servicios_de_ApoyoHora_de_Revision" type="text" data-autoclose="true" value="@Model.Hora_de_Revision">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divUsuario_que_Revisa">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Revisa</label>
+	<div class="col-sm-8" data-field-id="Usuario_que_Revisa" data-attribute="273027" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Revisa">
+		<select class="form-control" data-val="true" data-val-number="The field Usuario que Revisa must be a number." data-val-required="The Usuario que Revisa field is required." id="Solicitud_de_Servicios_de_ApoyoUsuario_que_Revisa" name="Solicitud_de_Servicios_de_ApoyoUsuario_que_Revisa">
+			<option value=""></option>
+			@if (varSpartan_User_Usuario_que_Revisa != null){ 
+				foreach (var itemUsuario_que_Revisa in varSpartan_User_Usuario_que_Revisa)
+				{
+					if (itemUsuario_que_Revisa.Value == Convert.ToString(Model.Usuario_que_Revisa))
+					{
+						<option value="@itemUsuario_que_Revisa.Value" selected>@itemUsuario_que_Revisa.Text</option>
+					}
+					else
+					{
+						<option value="@itemUsuario_que_Revisa.Value">@itemUsuario_que_Revisa.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divResultado_de_Autorizacion">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Resultado_de_Autorizacion</label>
+	<div class="col-sm-8" data-field-id="Resultado_de_Autorizacion" data-attribute="273028" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Resultado_de_Autorizacion">
+		<select class="form-control" data-val="true" data-val-number="The field Resultado de Autorización must be a number." data-val-required="The Resultado de Autorización field is required." id="Solicitud_de_Servicios_de_ApoyoResultado_de_Autorizacion" name="Solicitud_de_Servicios_de_ApoyoResultado_de_Autorizacion">
+			<option value=""></option>
+			@if (varResultado_de_Revision_Resultado_de_Autorizacion != null){ 
+				foreach (var itemResultado_de_Autorizacion in varResultado_de_Revision_Resultado_de_Autorizacion)
+				{
+					if (itemResultado_de_Autorizacion.Value == Convert.ToString(Model.Resultado_de_Autorizacion))
+					{
+						<option value="@itemResultado_de_Autorizacion.Value" selected>@itemResultado_de_Autorizacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemResultado_de_Autorizacion.Value">@itemResultado_de_Autorizacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMotivo_de_Rechazo">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Motivo_de_Rechazo</label>
+                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo" data-attribute="273029" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Motivo_de_Rechazo">
+                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoMotivo_de_Rechazo" name="Solicitud_de_Servicios_de_ApoyoMotivo_de_Rechazo" type="text" value="@Model.Motivo_de_Rechazo">
+                                </div>
+                            </div>
+<div class="form-group" id="divObservaciones_Autorizacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Autorizacion</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Autorizacion" data-attribute="273030" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Autorizacion">
+                                    <input class="form-control" id="Solicitud_de_Servicios_de_ApoyoObservaciones_Autorizacion" name="Solicitud_de_Servicios_de_ApoyoObservaciones_Autorizacion" type="text" value="@Model.Observaciones_Autorizacion">
+                                </div>
+                            </div>
 
 								</div>	
 							</div>
@@ -283,6 +877,10 @@
 
     <script type="text/javascript">
         
+        function RemoveAttachmentMainVer_Documento () {
+            $("#hdnRemoveVer_Documento").val("1");
+            $("#divAttachmentVer_Documento").hide();
+        }
 
 
 
@@ -294,6 +892,51 @@
             var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
             $('#dvSaveJob').html(insertRowHTML);
 			
+            $('#Solicitud_de_Servicios_de_ApoyoFecha_de_Solicitud').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Solicitud_de_Servicios_de_ApoyoHora_de_Solicitud').clockpicker();
+            $('#Solicitud_de_Servicios_de_ApoyoFecha_de_Recepcion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Solicitud_de_Servicios_de_ApoyoHora_de_Recepcion').clockpicker();
+            $('#Solicitud_de_Servicios_de_ApoyoFecha_de_Asignacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Solicitud_de_Servicios_de_ApoyoHora_de_Asignacion').clockpicker();
+            $('#Solicitud_de_Servicios_de_ApoyoFecha_de_Contestacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Solicitud_de_Servicios_de_ApoyoHora_de_Contestacion').clockpicker();
+            $('#Solicitud_de_Servicios_de_ApoyoFecha_de_Revision').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Solicitud_de_Servicios_de_ApoyoHora_de_Revision').clockpicker();
 
 
             initiateUIControls();

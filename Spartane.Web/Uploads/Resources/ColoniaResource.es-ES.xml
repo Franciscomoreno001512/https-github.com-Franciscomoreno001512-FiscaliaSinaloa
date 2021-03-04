@@ -15,6 +15,8 @@
   <resource culture="es-es" name="sector" value="sector"></resource>
   <resource culture="es-es" name="estatus" value="estatus"></resource>
   <resource culture="es-es" name="cod_localidad" value="cod_localidad"></resource>
+  <resource culture="es-es" name="Tipo" value="Tipo"></resource>
+  <resource culture="es-es" name="Poblacion" value="Población"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

@@ -1958,6 +1958,24 @@ using Spartane.Web.Areas.WebApiConsumer.Generador_Folio_Documentos_AT;
 using Spartane.Services.Forma_Ojos;
 using Spartane.Core.Domain.Forma_Ojos;
 using Spartane.Web.Areas.WebApiConsumer.Forma_Ojos;
+using Spartane.Services.Tipo_de_Localidad;
+using Spartane.Core.Domain.Tipo_de_Localidad;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Localidad;
+using Spartane.Services.Tipo_de_Expediente_Generado;
+using Spartane.Core.Domain.Tipo_de_Expediente_Generado;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Expediente_Generado;
+using Spartane.Services.Area_de_Servicios_de_Apoyo;
+using Spartane.Core.Domain.Area_de_Servicios_de_Apoyo;
+using Spartane.Web.Areas.WebApiConsumer.Area_de_Servicios_de_Apoyo;
+using Spartane.Services.Estatus_de_Solicitud_de_Apoyo;
+using Spartane.Core.Domain.Estatus_de_Solicitud_de_Apoyo;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_de_Solicitud_de_Apoyo;
+using Spartane.Services.SubArea_de_Servicios_de_Apoyo;
+using Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo;
+using Spartane.Web.Areas.WebApiConsumer.SubArea_de_Servicios_de_Apoyo;
+using Spartane.Services.Tipo_de_Asignacion_de_Apoyo;
+using Spartane.Core.Domain.Tipo_de_Asignacion_de_Apoyo;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Asignacion_de_Apoyo;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3386,6 +3404,18 @@ builder.RegisterType<Generador_Folio_Documentos_ATService>().As<IGenerador_Folio
 builder.RegisterType<Generador_Folio_Documentos_ATApiConsumer>().As<IGenerador_Folio_Documentos_ATApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Forma_OjosService>().As<IForma_OjosService>().InstancePerLifetimeScope();
 builder.RegisterType<Forma_OjosApiConsumer>().As<IForma_OjosApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_LocalidadService>().As<ITipo_de_LocalidadService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_LocalidadApiConsumer>().As<ITipo_de_LocalidadApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_Expediente_GeneradoService>().As<ITipo_de_Expediente_GeneradoService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_Expediente_GeneradoApiConsumer>().As<ITipo_de_Expediente_GeneradoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Area_de_Servicios_de_ApoyoService>().As<IArea_de_Servicios_de_ApoyoService>().InstancePerLifetimeScope();
+builder.RegisterType<Area_de_Servicios_de_ApoyoApiConsumer>().As<IArea_de_Servicios_de_ApoyoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_Solicitud_de_ApoyoService>().As<IEstatus_de_Solicitud_de_ApoyoService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_Solicitud_de_ApoyoApiConsumer>().As<IEstatus_de_Solicitud_de_ApoyoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<SubArea_de_Servicios_de_ApoyoService>().As<ISubArea_de_Servicios_de_ApoyoService>().InstancePerLifetimeScope();
+builder.RegisterType<SubArea_de_Servicios_de_ApoyoApiConsumer>().As<ISubArea_de_Servicios_de_ApoyoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_Asignacion_de_ApoyoService>().As<ITipo_de_Asignacion_de_ApoyoService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_Asignacion_de_ApoyoApiConsumer>().As<ITipo_de_Asignacion_de_ApoyoApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3566,6 +3596,40 @@ builder.RegisterType<Forma_OjosApiConsumer>().As<IForma_OjosApiConsumer>().Insta
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

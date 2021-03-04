@@ -68,6 +68,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Ministerio_Publico_en_Turno[Ministerio_Publico_en_Turno]":
                 case "Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno":
                     return "Jefes_de_Usuarios_del_Sistema.Ministerio_Publico_en_Turno";
+                case "Solicitud_de_Denuncia_Ciudadana[Folio]":
+                case "Solicitud_de_Denuncia_CiudadanaFolio":
+                    return "Solicitud_de_Denuncia_Ciudadana.Folio";
                 case "Nombres_turno":
                     return "Modulo_Atencion_Inicial.Nombres_turno";
                 case "Apellido_Paterno_turno":
@@ -97,32 +100,6 @@ namespace Spartane.Web.SqlModelMapper
                     return "Motivo_Finalizacion_Turno.Descripcion";
                 case "Observaciones_turno":
                     return "Modulo_Atencion_Inicial.Observaciones_turno";
-                case "Requiere_Traductor":
-                    return "Modulo_Atencion_Inicial.Requiere_Traductor";
-                case "Lengua_Originaria[Descripcion]":
-                case "Lengua_OriginariaDescripcion":
-                    return "Dialecto.Descripcion";
-                case "Idioma[Descripcion]":
-                case "IdiomaDescripcion":
-                    return "Idioma.Descripcion";
-                case "Autoriza_Traductor":
-                    return "Modulo_Atencion_Inicial.Autoriza_Traductor";
-                case "Finalizar_Servicios_de_Apoyo":
-                    return "Modulo_Atencion_Inicial.Finalizar_Servicios_de_Apoyo";
-                case "Estatus2[Descripcion]":
-                case "Estatus2Descripcion":
-                    return "Estatus_Orientador.Descripcion";
-                case "Unidad_canaliza[Descripcion]":
-                case "Unidad_canalizaDescripcion":
-                    return "Unidad.Descripcion";
-                case "Enviar_a_MP":
-                    return "Modulo_Atencion_Inicial.Enviar_a_MP";
-                case "Correccion_de_Estatus":
-                    return "Modulo_Atencion_Inicial.Correccion_de_Estatus";
-                case "Requiere_Servicios_de_Apoyo":
-                    return "Modulo_Atencion_Inicial.Requiere_Servicios_de_Apoyo";
-                case "Persona_Moral":
-                    return "Modulo_Atencion_Inicial.Persona_Moral";
                 case "Titulo_del_Hecho":
                     return "Modulo_Atencion_Inicial.Titulo_del_Hecho";
                 case "Narrativa_Breve_de_los_Hechos":
@@ -183,59 +160,12 @@ namespace Spartane.Web.SqlModelMapper
                     return "Zona.Descripcion";
                 case "Turno":
                     return "Modulo_Atencion_Inicial.Turno";
-                case "Tipo_de_Acuerdo[Descripcion]":
-                case "Tipo_de_AcuerdoDescripcion":
-                    return "Tipo_de_Acuerdo.Descripcion";
-                case "Fecha_de_Inicio_de_Acuerdo":
-                    return "Modulo_Atencion_Inicial.Fecha_de_Inicio_de_Acuerdo";
-                case "Fecha_de_Cumplimiento_del_Acuerdo":
-                    return "Modulo_Atencion_Inicial.Fecha_de_Cumplimiento_del_Acuerdo";
-                case "Hora_de_Cumplimiento_del_Acuerdo":
-                    return "Modulo_Atencion_Inicial.Hora_de_Cumplimiento_del_Acuerdo";
-                case "Domicilio_para_el_Cumplimiento":
-                    return "Modulo_Atencion_Inicial.Domicilio_para_el_Cumplimiento";
-                case "Monto_de_Reparacion_de_Danos":
-                    return "Modulo_Atencion_Inicial.Monto_de_Reparacion_de_Danos";
-                case "Parcialidades":
-                    return "Modulo_Atencion_Inicial.Parcialidades";
-                case "Periodicidad[Descripcion]":
-                case "PeriodicidadDescripcion":
-                    return "Periodicidad.Descripcion";
-                case "Se_Acepta_Acuerdo":
-                    return "Modulo_Atencion_Inicial.Se_Acepta_Acuerdo";
-                case "Motivo_de_Rechazo_de_Acuerdo":
-                    return "Modulo_Atencion_Inicial.Motivo_de_Rechazo_de_Acuerdo";
                 case "Cerrar":
                     return "Modulo_Atencion_Inicial.Cerrar";
                 case "Fecha_de_Cierre":
                     return "Modulo_Atencion_Inicial.Fecha_de_Cierre";
                 case "Hora_de_Cierre":
                     return "Modulo_Atencion_Inicial.Hora_de_Cierre";
-                case "NUC":
-                    return "Modulo_Atencion_Inicial.NUC";
-                case "Fecha_de_Vencimiento_1":
-                    return "Modulo_Atencion_Inicial.Fecha_de_Vencimiento_1";
-                case "EspecialistaJA":
-                    return "Modulo_Atencion_Inicial.EspecialistaJA";
-                case "Campo_Oculto1":
-                    return "Modulo_Atencion_Inicial.Campo_Oculto1";
-                case "JefeMPO[Ministerio_Publico_en_Turno]":
-                case "JefeMPOMinisterio_Publico_en_Turno":
-                    return "Jefes_de_Usuarios_del_Sistema.Ministerio_Publico_en_Turno";
-                case "Campo_Oculto2":
-                    return "Modulo_Atencion_Inicial.Campo_Oculto2";
-                case "Campo_Oculto3":
-                    return "Modulo_Atencion_Inicial.Campo_Oculto3";
-                case "CoordinadorJA[Name]":
-                case "CoordinadorJAName":
-                    return "Spartan_User.Name";
-                case "EspJA[Name]":
-                case "EspJAName":
-                    return "Spartan_User.Name";
-                case "Ano_Actual":
-                    return "Modulo_Atencion_Inicial.Ano_Actual";
-                case "Secuencial":
-                    return "Modulo_Atencion_Inicial.Secuencial";
 
                 default:
                     return propertyName;
@@ -290,34 +220,6 @@ namespace Spartane.Web.SqlModelMapper
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
-            if (columnName == "Requiere_Traductor")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Autoriza_Traductor")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Finalizar_Servicios_de_Apoyo")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Enviar_a_MP")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Correccion_de_Estatus")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Requiere_Servicios_de_Apoyo")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Persona_Moral")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
             if (columnName == "Fecha_del_Hecho")
             {
                 try
@@ -330,32 +232,6 @@ namespace Spartane.Web.SqlModelMapper
                 }
             }
             if (columnName == "Documento_Extraviado_hechos")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Fecha_de_Inicio_de_Acuerdo")
-            {
-                try
-                {
-                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
-            if (columnName == "Fecha_de_Cumplimiento_del_Acuerdo")
-            {
-                try
-                {
-                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
-            if (columnName == "Se_Acepta_Acuerdo")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

@@ -46,6 +46,76 @@ namespace Resources
             }
         }
 
+        /// <summary>Expediente_MP</summary>
+        public static string Expediente_MP
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Expediente_MP", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_de_registro</summary>
+        public static string Fecha_de_registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Fecha_de_registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_de_registro</summary>
+        public static string Hora_de_registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Hora_de_registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Usuario_que_registra</summary>
+        public static string Usuario_que_registra
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Usuario_que_registra", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Generar</summary>
+        public static string Generar
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Generar", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Numero_Generado</summary>
+        public static string Numero_Generado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Numero_Generado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Numero_de_Oficio</summary>
+        public static string Numero_de_Oficio
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Numero_de_Oficio", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Probable_Responsable</summary>
         public static string Probable_Responsable
         {
@@ -116,16 +186,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Usuario_que_registra</summary>
-        public static string Usuario_que_registra
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Usuario_que_registra", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Documento</summary>
         public static string Documento
         {
@@ -143,26 +203,6 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_Resumen_Denuncia.GetResource("Archivo", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Fecha_de_registro</summary>
-        public static string Fecha_de_registro
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Fecha_de_registro", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Hora_de_registro</summary>
-        public static string Hora_de_registro
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Hora_de_registro", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

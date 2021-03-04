@@ -251,96 +251,6 @@ public ApiResponse<int> Update_Informacion_de_Turno(Modulo_Atencion_Inicial_Info
             }
         }
 
-public ApiResponse<int> Update_Servicios_de_Apoyo(Modulo_Atencion_Inicial_Servicios_de_Apoyo entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Servicios_de_Apoyo",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Modulo_Atencion_Inicial_Servicios_de_Apoyo> Get_Servicios_de_Apoyo(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Servicios_de_Apoyo>(baseApi, ApiControllerUrl + "/Get_Servicios_de_Apoyo?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Servicios_de_Apoyo>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Servicios_de_Apoyo>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Canalizar(Modulo_Atencion_Inicial_Canalizar entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Canalizar",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Modulo_Atencion_Inicial_Canalizar> Get_Canalizar(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Canalizar>(baseApi, ApiControllerUrl + "/Get_Canalizar?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Canalizar>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Canalizar>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Datos_Generales(Modulo_Atencion_Inicial_Datos_Generales entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_Generales",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Modulo_Atencion_Inicial_Datos_Generales> Get_Datos_Generales(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Datos_Generales>(baseApi, ApiControllerUrl + "/Get_Datos_Generales?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Datos_Generales>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Datos_Generales>(false, null);
-            }
-        }
-
 public ApiResponse<int> Update_Datos_de_los_Hechos_en_MPO(Modulo_Atencion_Inicial_Datos_de_los_Hechos_en_MPO entity)
         {
             try
@@ -368,36 +278,6 @@ public ApiResponse<int> Update_Datos_de_los_Hechos_en_MPO(Modulo_Atencion_Inicia
             catch (Exception ex)
             {
                 return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Datos_de_los_Hechos_en_MPO>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Datos_del_Acuerdo(Modulo_Atencion_Inicial_Datos_del_Acuerdo entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_del_Acuerdo",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Modulo_Atencion_Inicial_Datos_del_Acuerdo> Get_Datos_del_Acuerdo(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Datos_del_Acuerdo>(baseApi, ApiControllerUrl + "/Get_Datos_del_Acuerdo?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Datos_del_Acuerdo>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Datos_del_Acuerdo>(false, null);
             }
         }
 
@@ -488,36 +368,6 @@ public ApiResponse<int> Update_Historial_de_movimientos(Modulo_Atencion_Inicial_
             catch (Exception ex)
             {
                 return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Historial_de_movimientos>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Campos_Ocultos(Modulo_Atencion_Inicial_Campos_Ocultos entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Campos_Ocultos",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Modulo_Atencion_Inicial_Campos_Ocultos> Get_Campos_Ocultos(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Campos_Ocultos>(baseApi, ApiControllerUrl + "/Get_Campos_Ocultos?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Campos_Ocultos>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Campos_Ocultos>(false, null);
             }
         }
 

@@ -19,6 +19,23 @@ namespace Spartane.Web.SqlModelMapper
                 case "Modulo_Atencion_Inicial[NUAT]":
                 case "Modulo_Atencion_InicialNUAT":
                     return "Modulo_Atencion_Inicial.NUAT";
+                case "Expediente_MP[nuat]":
+                case "Expediente_MPnuat":
+                    return "expediente_ministerio_publico.nuat";
+                case "Fecha_de_registro":
+                    return "Detalle_Resumen_Denuncia.Fecha_de_registro";
+                case "Hora_de_registro":
+                    return "Detalle_Resumen_Denuncia.Hora_de_registro";
+                case "Usuario_que_registra[Name]":
+                case "Usuario_que_registraName":
+                    return "Spartan_User.Name";
+                case "Generar[Descripcion]":
+                case "GenerarDescripcion":
+                    return "Tipo_de_Expediente_Generado.Descripcion";
+                case "Numero_Generado":
+                    return "Detalle_Resumen_Denuncia.Numero_Generado";
+                case "Numero_de_Oficio":
+                    return "Detalle_Resumen_Denuncia.Numero_de_Oficio";
                 case "Probable_Responsable":
                     return "Detalle_Resumen_Denuncia.Probable_Responsable";
                 case "Delito":
@@ -33,18 +50,11 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_Resumen_Denuncia.Generado";
                 case "Archivo_Descargado":
                     return "Detalle_Resumen_Denuncia.Archivo_Descargado";
-                case "Usuario_que_registra[Name]":
-                case "Usuario_que_registraName":
-                    return "Spartan_User.Name";
                 case "Documento[Descripcion]":
                 case "DocumentoDescripcion":
                     return "Documento.Descripcion";
                 case "Archivo":
                     return "Detalle_Resumen_Denuncia.Archivo";
-                case "Fecha_de_registro":
-                    return "Detalle_Resumen_Denuncia.Fecha_de_registro";
-                case "Hora_de_registro":
-                    return "Detalle_Resumen_Denuncia.Hora_de_registro";
 
                 default:
                     return propertyName;
@@ -62,14 +72,6 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
-            if (columnName == "Generado")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Archivo_Descargado")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
             if (columnName == "Fecha_de_registro")
             {
                 try
@@ -80,6 +82,14 @@ namespace Spartane.Web.SqlModelMapper
                 {
 
                 }
+            }
+            if (columnName == "Generado")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Archivo_Descargado")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
 
 

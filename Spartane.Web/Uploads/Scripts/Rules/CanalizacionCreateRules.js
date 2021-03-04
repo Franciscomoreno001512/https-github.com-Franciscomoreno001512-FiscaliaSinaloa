@@ -8,6 +8,14 @@ $(document).ready(function() {
         $('#CanalizacionGuardar').remove();
     }
 
+    /* DESARROLLO PARA LA REGLA 4107
+    if (operation == 'Update') {
+        if (EvaluaQuery("select Canalizado from Canalizacion where Clave = FLDD[lblClave]",rowIndex, nameOfTable)==TryParseInt('1', '1') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2')) {
+            $('#CanalizacionGuardar').remove();
+        }
+    }
+    */
+
 
     //COD-MANI INI OCULTAR BOTONES
     $('#CanalizacionGuardarYNuevo').css('display', 'none');
@@ -28,7 +36,7 @@ $("form#CreateCanalizacion").on('change', '#Canalizar_a', function () {
 	rowIndex='';
  var valor = $('#' + nameOfTable + 'Municipio' + rowIndex).val();   $('#' + nameOfTable + 'Municipio' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Municipio' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("EXEC uspGetMunicipiosCanalizacion FLD[Canalizar_a]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("EXEC uspGetMunicipiosCanalizacion FLD[Canalizar_a]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Municipio' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Municipio' + rowIndex).val(valor).trigger('change');
 });
-
+
 //BusinessRuleId:3897, Attribute:269152, Operation:Field, Event:None
 
 //BusinessRuleId:3898, Attribute:269153, Operation:Field, Event:None
@@ -37,7 +45,7 @@ $("form#CreateCanalizacion").on('change', '#Municipio', function () {
 	rowIndex='';
  var valor = $('#' + nameOfTable + 'Unidad' + rowIndex).val();   $('#' + nameOfTable + 'Unidad' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Unidad' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Unidad' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec uspGetUnidadesCanalizacion FLD[Municipio], FLD[Canalizar_a]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Unidad' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec uspGetUnidadesCanalizacion FLD[Municipio], FLD[Canalizar_a]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Unidad' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Unidad' + rowIndex).val(valor).trigger('change');
 });
-
+
 //BusinessRuleId:3898, Attribute:269153, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
@@ -439,16 +447,97 @@ if(operation == 'Update'){
 //BusinessRuleId:3896, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('3', '3') ) { AsignarValor($('#' + nameOfTable + 'Canalizar_a' + rowIndex),'2'); DisabledControl($("#" + nameOfTable + "Canalizar_a" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Canalizar_a' + rowIndex));}} else {}
-
+
 }
 //BusinessRuleId:3896, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+//BusinessRuleId:4107, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("select Canalizado from Canalizacion where Clave = FLDD[lblClave]",rowIndex, nameOfTable)==TryParseInt('1', '1') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { DisabledControl($("#" + nameOfTable + "Clave" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));}DisabledControl($("#" + nameOfTable + "Expediente_MP" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_de_Canalizacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Canalizacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_de_Canalizacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Canalizacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Canaliza" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Canaliza' + rowIndex));}DisabledControl($("#" + nameOfTable + "Relacion_a_Canalizar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Relacion_a_Canalizar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Canalizar_a" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Canalizar_a' + rowIndex));}DisabledControl($("#" + nameOfTable + "Municipio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));}DisabledControl($("#" + nameOfTable + "Unidad" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_de_Resolucion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Resolucion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_de_Resolucion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Resolucion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hubo_modificacion_en_la_relacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hubo_modificacion_en_la_relacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Nueva_Relacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Nueva_Relacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "ResolucionId" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'ResolucionId' + rowIndex));}DisabledControl($("#" + nameOfTable + "Resolucion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Resolucion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Detalle_de_la_Resolucion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Detalle_de_la_Resolucion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Observaciones" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex));}DisabledControl($("#" + nameOfTable + "Clave" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));}DisabledControl($("#" + nameOfTable + "Canalizacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Canalizacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Diligencia" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Diligencia' + rowIndex));}DisabledControl($("#" + nameOfTable + "Ver_Documento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Ver_Documento' + rowIndex));}DisabledControl($("#" + nameOfTable + "Observaciones" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex));}DisabledControl($("#" + nameOfTable + "Expediente_AT" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_AT' + rowIndex));}} else {}
+
+}
+//BusinessRuleId:4107, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 
 function EjecutarValidacionesAntesDeGuardar() {
     var result = true;
-    //NEWBUSINESSRULE_BEFORESAVING//
+    
+
+
+
+
+
+
+
+//BusinessRuleId:4132, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+if( EvaluaQuery("select count(*) from detalle_resumen_denuncia"
++" where modulo_atencion_inicial = GLOBAL[SpartanOperationId]"
++" and Generar = 1"
++" ",rowIndex, nameOfTable)!=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Canalizar_a' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { alert(DecodifyText('Para canalizar a ministerio público debe generar primero la denuncia.', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:4132, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:4132, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+if( EvaluaQuery("select count(*) from detalle_resumen_denuncia"
++" where modulo_atencion_inicial = GLOBAL[SpartanOperationId]"
++" and Generar = 1"
++" ",rowIndex, nameOfTable)!=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Canalizar_a' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { alert(DecodifyText('Para canalizar a ministerio público debe generar primero la denuncia.', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:4132, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:4138, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+if( EvaluaQuery("select count(*) from detalle_resumen_denuncia where modulo_atencion_inicial = GLOBAL[SpartanOperationId] and Generar = 2",rowIndex, nameOfTable)!=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Canalizar_a' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { alert(DecodifyText('Para canalizar a mecanismos alternos primero debe elevar la denuncia a carpeta de investigación', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:4138, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:4138, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+if( EvaluaQuery("select count(*) from detalle_resumen_denuncia where modulo_atencion_inicial = GLOBAL[SpartanOperationId] and Generar = 2",rowIndex, nameOfTable)!=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Canalizar_a' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { alert(DecodifyText('Para canalizar a mecanismos alternos primero debe elevar la denuncia a carpeta de investigación', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:4138, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:4139, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+if( EvaluaQuery("select count(*) from detalle_resumen_denuncia"
++" where modulo_atencion_inicial = GLOBAL[SpartanOperationId] and Generar = 2",rowIndex, nameOfTable)!=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Canalizar_a' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('3', '3') ) { alert(DecodifyText('Para canalizar a mecanismos alternos primero debe elevar la denuncia a carpeta de investigación', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:4139, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:4139, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+if( EvaluaQuery("select count(*) from detalle_resumen_denuncia"
++" where modulo_atencion_inicial = GLOBAL[SpartanOperationId] and Generar = 2",rowIndex, nameOfTable)!=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Canalizar_a' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('3', '3') ) { alert(DecodifyText('Para canalizar a mecanismos alternos primero debe elevar la denuncia a carpeta de investigación', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:4139, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//NEWBUSINESSRULE_BEFORESAVING//
     return result;
 }
 

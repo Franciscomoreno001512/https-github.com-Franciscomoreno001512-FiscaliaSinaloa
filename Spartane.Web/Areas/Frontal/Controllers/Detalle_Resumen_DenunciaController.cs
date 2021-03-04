@@ -3,7 +3,9 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Resumen_Denuncia;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Tipo_de_Expediente_Generado;
 using Spartane.Core.Domain.Documento;
 
 using Spartane.Core.Enums;
@@ -16,7 +18,9 @@ using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Resumen_Denuncia;
 using Spartane.Web.Areas.WebApiConsumer.Modulo_Atencion_Inicial;
+using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Expediente_Generado;
 using Spartane.Web.Areas.WebApiConsumer.Documento;
 
 using Spartane.Web.AuthFilters;
@@ -55,7 +59,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_Resumen_DenunciaService service = null;
         private IDetalle_Resumen_DenunciaApiConsumer _IDetalle_Resumen_DenunciaApiConsumer;
         private IModulo_Atencion_InicialApiConsumer _IModulo_Atencion_InicialApiConsumer;
+        private Iexpediente_ministerio_publicoApiConsumer _Iexpediente_ministerio_publicoApiConsumer;
         private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
+        private ITipo_de_Expediente_GeneradoApiConsumer _ITipo_de_Expediente_GeneradoApiConsumer;
         private IDocumentoApiConsumer _IDocumentoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
@@ -74,7 +80,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Resumen_DenunciaController(IDetalle_Resumen_DenunciaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Resumen_DenunciaApiConsumer Detalle_Resumen_DenunciaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IDocumentoApiConsumer DocumentoApiConsumer )
+        public Detalle_Resumen_DenunciaController(IDetalle_Resumen_DenunciaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Resumen_DenunciaApiConsumer Detalle_Resumen_DenunciaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_Expediente_GeneradoApiConsumer Tipo_de_Expediente_GeneradoApiConsumer , IDocumentoApiConsumer DocumentoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -89,7 +95,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._IModulo_Atencion_InicialApiConsumer = Modulo_Atencion_InicialApiConsumer;
+            this._Iexpediente_ministerio_publicoApiConsumer = expediente_ministerio_publicoApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._ITipo_de_Expediente_GeneradoApiConsumer = Tipo_de_Expediente_GeneradoApiConsumer;
             this._IDocumentoApiConsumer = DocumentoApiConsumer;
 
         }
@@ -168,6 +176,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Detalle_Resumen_DenunciaData.Clave 
 	                    ,Modulo_Atencion_Inicial = Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                    ,Expediente_MP = Detalle_Resumen_DenunciaData.Expediente_MP
+                    ,Expediente_MPnuat = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Expediente_MP), "expediente_ministerio_publico") ??  (string)Detalle_Resumen_DenunciaData.Expediente_MP_expediente_ministerio_publico.nuat
+                    ,Fecha_de_registro = (Detalle_Resumen_DenunciaData.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(Detalle_Resumen_DenunciaData.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_registro = Detalle_Resumen_DenunciaData.Hora_de_registro
+                    ,Usuario_que_registra = Detalle_Resumen_DenunciaData.Usuario_que_registra
+                    ,Usuario_que_registraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Usuario_que_registra), "Spartan_User") ??  (string)Detalle_Resumen_DenunciaData.Usuario_que_registra_Spartan_User.Name
+                    ,Generar = Detalle_Resumen_DenunciaData.Generar
+                    ,GenerarDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Generar), "Tipo_de_Expediente_Generado") ??  (string)Detalle_Resumen_DenunciaData.Generar_Tipo_de_Expediente_Generado.Descripcion
+                    ,Numero_Generado = Detalle_Resumen_DenunciaData.Numero_Generado
+                    ,Numero_de_Oficio = Detalle_Resumen_DenunciaData.Numero_de_Oficio
                     ,Probable_Responsable = Detalle_Resumen_DenunciaData.Probable_Responsable
                     ,Delito = Detalle_Resumen_DenunciaData.Delito
                     ,Victima = Detalle_Resumen_DenunciaData.Victima
@@ -175,13 +193,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Hechos = Detalle_Resumen_DenunciaData.Hechos
                     ,Generado = Detalle_Resumen_DenunciaData.Generado.GetValueOrDefault()
                     ,Archivo_Descargado = Detalle_Resumen_DenunciaData.Archivo_Descargado.GetValueOrDefault()
-                    ,Usuario_que_registra = Detalle_Resumen_DenunciaData.Usuario_que_registra
-                    ,Usuario_que_registraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Usuario_que_registra), "Spartan_User") ??  (string)Detalle_Resumen_DenunciaData.Usuario_que_registra_Spartan_User.Name
                     ,Documento = Detalle_Resumen_DenunciaData.Documento
                     ,DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Documento), "Documento") ??  (string)Detalle_Resumen_DenunciaData.Documento_Documento.Descripcion
                     ,Archivo = Detalle_Resumen_DenunciaData.Archivo
-                    ,Fecha_de_registro = (Detalle_Resumen_DenunciaData.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(Detalle_Resumen_DenunciaData.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_registro = Detalle_Resumen_DenunciaData.Hora_de_registro
 
 					};
 				}
@@ -198,6 +212,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial = Modulo_Atencion_Inicials_Modulo_Atencion_Inicial.Resource.Where(m => m.NUAT != null).OrderBy(m => m.NUAT).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT") ?? m.NUAT.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_Expediente_GeneradoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Expediente_Generados_Generar = _ITipo_de_Expediente_GeneradoApiConsumer.SelAll(true);
+            if (Tipo_de_Expediente_Generados_Generar != null && Tipo_de_Expediente_Generados_Generar.Resource != null)
+                ViewBag.Tipo_de_Expediente_Generados_Generar = Tipo_de_Expediente_Generados_Generar.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Expediente_Generado", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Documentos_Documento = _IDocumentoApiConsumer.SelAll(true);
@@ -270,6 +291,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Detalle_Resumen_DenunciaData.Clave 
 	                    ,Modulo_Atencion_Inicial = Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                    ,Expediente_MP = Detalle_Resumen_DenunciaData.Expediente_MP
+                    ,Expediente_MPnuat = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Expediente_MP), "expediente_ministerio_publico") ??  (string)Detalle_Resumen_DenunciaData.Expediente_MP_expediente_ministerio_publico.nuat
+                    ,Fecha_de_registro = (Detalle_Resumen_DenunciaData.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(Detalle_Resumen_DenunciaData.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_registro = Detalle_Resumen_DenunciaData.Hora_de_registro
+                    ,Usuario_que_registra = Detalle_Resumen_DenunciaData.Usuario_que_registra
+                    ,Usuario_que_registraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Usuario_que_registra), "Spartan_User") ??  (string)Detalle_Resumen_DenunciaData.Usuario_que_registra_Spartan_User.Name
+                    ,Generar = Detalle_Resumen_DenunciaData.Generar
+                    ,GenerarDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Generar), "Tipo_de_Expediente_Generado") ??  (string)Detalle_Resumen_DenunciaData.Generar_Tipo_de_Expediente_Generado.Descripcion
+                    ,Numero_Generado = Detalle_Resumen_DenunciaData.Numero_Generado
+                    ,Numero_de_Oficio = Detalle_Resumen_DenunciaData.Numero_de_Oficio
                     ,Probable_Responsable = Detalle_Resumen_DenunciaData.Probable_Responsable
                     ,Delito = Detalle_Resumen_DenunciaData.Delito
                     ,Victima = Detalle_Resumen_DenunciaData.Victima
@@ -277,13 +308,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Hechos = Detalle_Resumen_DenunciaData.Hechos
                     ,Generado = Detalle_Resumen_DenunciaData.Generado.GetValueOrDefault()
                     ,Archivo_Descargado = Detalle_Resumen_DenunciaData.Archivo_Descargado.GetValueOrDefault()
-                    ,Usuario_que_registra = Detalle_Resumen_DenunciaData.Usuario_que_registra
-                    ,Usuario_que_registraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Usuario_que_registra), "Spartan_User") ??  (string)Detalle_Resumen_DenunciaData.Usuario_que_registra_Spartan_User.Name
                     ,Documento = Detalle_Resumen_DenunciaData.Documento
                     ,DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Documento), "Documento") ??  (string)Detalle_Resumen_DenunciaData.Documento_Documento.Descripcion
                     ,Archivo = Detalle_Resumen_DenunciaData.Archivo
-                    ,Fecha_de_registro = (Detalle_Resumen_DenunciaData.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(Detalle_Resumen_DenunciaData.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_registro = Detalle_Resumen_DenunciaData.Hora_de_registro
 
 					};
 				}
@@ -298,6 +325,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial = Modulo_Atencion_Inicials_Modulo_Atencion_Inicial.Resource.Where(m => m.NUAT != null).OrderBy(m => m.NUAT).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT") ?? m.NUAT.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_Expediente_GeneradoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Expediente_Generados_Generar = _ITipo_de_Expediente_GeneradoApiConsumer.SelAll(true);
+            if (Tipo_de_Expediente_Generados_Generar != null && Tipo_de_Expediente_Generados_Generar.Resource != null)
+                ViewBag.Tipo_de_Expediente_Generados_Generar = Tipo_de_Expediente_Generados_Generar.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Expediente_Generado", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Documentos_Documento = _IDocumentoApiConsumer.SelAll(true);
@@ -348,6 +382,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 		[HttpGet]
+        public ActionResult Getexpediente_ministerio_publicoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _Iexpediente_ministerio_publicoApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.nuat).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nuat")?? m.nuat,
+                    Value = Convert.ToString(m.clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
         public ActionResult GetSpartan_UserAll()
         {
             try
@@ -361,6 +416,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
                     Value = Convert.ToString(m.Id_User)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetTipo_de_Expediente_GeneradoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_Expediente_GeneradoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_Expediente_GeneradoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Expediente_Generado", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
@@ -429,6 +505,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT") ?? m.NUAT.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _ITipo_de_Expediente_GeneradoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Expediente_Generados_Generar = _ITipo_de_Expediente_GeneradoApiConsumer.SelAll(true);
+            if (Tipo_de_Expediente_Generados_Generar != null && Tipo_de_Expediente_Generados_Generar.Resource != null)
+                ViewBag.Tipo_de_Expediente_Generados_Generar = Tipo_de_Expediente_Generados_Generar.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Expediente_Generado", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Documentos_Documento = _IDocumentoApiConsumer.SelAll(true);
             if (Documentos_Documento != null && Documentos_Documento.Resource != null)
@@ -453,6 +536,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial = Modulo_Atencion_Inicials_Modulo_Atencion_Inicial.Resource.Where(m => m.NUAT != null).OrderBy(m => m.NUAT).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT") ?? m.NUAT.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_Expediente_GeneradoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Expediente_Generados_Generar = _ITipo_de_Expediente_GeneradoApiConsumer.SelAll(true);
+            if (Tipo_de_Expediente_Generados_Generar != null && Tipo_de_Expediente_Generados_Generar.Resource != null)
+                ViewBag.Tipo_de_Expediente_Generados_Generar = Tipo_de_Expediente_Generados_Generar.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Expediente_Generado", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Documentos_Documento = _IDocumentoApiConsumer.SelAll(true);
@@ -500,6 +590,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "NUAT") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                        ,Expediente_MPnuat = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nuat
+                        ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_registro = m.Hora_de_registro
+                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
+                        ,GenerarDescripcion = CultureHelper.GetTraduction(m.Generar_Tipo_de_Expediente_Generado.Clave.ToString(), "Descripcion") ?? (string)m.Generar_Tipo_de_Expediente_Generado.Descripcion
+			,Numero_Generado = m.Numero_Generado
+			,Numero_de_Oficio = m.Numero_de_Oficio
 			,Probable_Responsable = m.Probable_Responsable
 			,Delito = m.Delito
 			,Victima = m.Victima
@@ -507,11 +604,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hechos = m.Hechos
 			,Generado = m.Generado
 			,Archivo_Descargado = m.Archivo_Descargado
-                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
                         ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
 			,Archivo = m.Archivo
-                        ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_registro = m.Hora_de_registro
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -627,6 +721,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "NUAT") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                        ,Expediente_MPnuat = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nuat
+                        ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_registro = m.Hora_de_registro
+                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
+                        ,GenerarDescripcion = CultureHelper.GetTraduction(m.Generar_Tipo_de_Expediente_Generado.Clave.ToString(), "Descripcion") ?? (string)m.Generar_Tipo_de_Expediente_Generado.Descripcion
+			,Numero_Generado = m.Numero_Generado
+			,Numero_de_Oficio = m.Numero_de_Oficio
 			,Probable_Responsable = m.Probable_Responsable
 			,Delito = m.Delito
 			,Victima = m.Victima
@@ -634,11 +735,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hechos = m.Hechos
 			,Generado = m.Generado
 			,Archivo_Descargado = m.Archivo_Descargado
-                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
                         ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
 			,Archivo = m.Archivo
-                        ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_registro = m.Hora_de_registro
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -648,6 +746,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public JsonResult GetDetalle_Resumen_Denuncia_Expediente_MP_expediente_ministerio_publico(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(expediente_ministerio_publico.clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(expediente_ministerio_publico.nuat as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _Iexpediente_ministerio_publicoApiConsumer.ListaSelAll(1, 20,elWhere , " expediente_ministerio_publico.nuat ASC ").Resource;
+               
+                foreach (var item in result.expediente_ministerio_publicos)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.clave), "expediente_ministerio_publico", "nuat");
+                    item.nuat =trans ??item.nuat;
+                }
+                return Json(result.expediente_ministerio_publicos.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public JsonResult GetDetalle_Resumen_Denuncia_Usuario_que_registra_Spartan_User(string query, string where)
         {
@@ -718,6 +843,155 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Modulo_Atencion_InicialIds = string.Join(",", filter.AdvanceModulo_Atencion_InicialMultiple);
 
                 where += " AND Detalle_Resumen_Denuncia.Modulo_Atencion_Inicial In (" + Modulo_Atencion_InicialIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceExpediente_MP))
+            {
+                switch (filter.Expediente_MPFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND expediente_ministerio_publico.nuat LIKE '" + filter.AdvanceExpediente_MP + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND expediente_ministerio_publico.nuat LIKE '%" + filter.AdvanceExpediente_MP + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND expediente_ministerio_publico.nuat = '" + filter.AdvanceExpediente_MP + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND expediente_ministerio_publico.nuat LIKE '%" + filter.AdvanceExpediente_MP + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceExpediente_MPMultiple != null && filter.AdvanceExpediente_MPMultiple.Count() > 0)
+            {
+                var Expediente_MPIds = string.Join(",", filter.AdvanceExpediente_MPMultiple);
+
+                where += " AND Detalle_Resumen_Denuncia.Expediente_MP In (" + Expediente_MPIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromFecha_de_registro) || !string.IsNullOrEmpty(filter.ToFecha_de_registro))
+            {
+                var Fecha_de_registroFrom = DateTime.ParseExact(filter.FromFecha_de_registro, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_de_registroTo = DateTime.ParseExact(filter.ToFecha_de_registro, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_de_registro))
+                    where += " AND Detalle_Resumen_Denuncia.Fecha_de_registro >= '" + Fecha_de_registroFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_de_registro))
+                    where += " AND Detalle_Resumen_Denuncia.Fecha_de_registro <= '" + Fecha_de_registroTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_de_registro) || !string.IsNullOrEmpty(filter.ToHora_de_registro))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_de_registro))
+                    where += " AND Convert(TIME,Detalle_Resumen_Denuncia.Hora_de_registro) >='" + filter.FromHora_de_registro + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_de_registro))
+                    where += " AND Convert(TIME,Detalle_Resumen_Denuncia.Hora_de_registro) <='" + filter.ToHora_de_registro + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_registra))
+            {
+                switch (filter.Usuario_que_registraFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_registra + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_registra + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_registra + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_registra + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceUsuario_que_registraMultiple != null && filter.AdvanceUsuario_que_registraMultiple.Count() > 0)
+            {
+                var Usuario_que_registraIds = string.Join(",", filter.AdvanceUsuario_que_registraMultiple);
+
+                where += " AND Detalle_Resumen_Denuncia.Usuario_que_registra In (" + Usuario_que_registraIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceGenerar))
+            {
+                switch (filter.GenerarFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Expediente_Generado.Descripcion LIKE '" + filter.AdvanceGenerar + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Expediente_Generado.Descripcion LIKE '%" + filter.AdvanceGenerar + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Expediente_Generado.Descripcion = '" + filter.AdvanceGenerar + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Expediente_Generado.Descripcion LIKE '%" + filter.AdvanceGenerar + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceGenerarMultiple != null && filter.AdvanceGenerarMultiple.Count() > 0)
+            {
+                var GenerarIds = string.Join(",", filter.AdvanceGenerarMultiple);
+
+                where += " AND Detalle_Resumen_Denuncia.Generar In (" + GenerarIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Numero_Generado))
+            {
+                switch (filter.Numero_GeneradoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_Resumen_Denuncia.Numero_Generado LIKE '" + filter.Numero_Generado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_Resumen_Denuncia.Numero_Generado LIKE '%" + filter.Numero_Generado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_Resumen_Denuncia.Numero_Generado = '" + filter.Numero_Generado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_Resumen_Denuncia.Numero_Generado LIKE '%" + filter.Numero_Generado + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Numero_de_Oficio))
+            {
+                switch (filter.Numero_de_OficioFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_Resumen_Denuncia.Numero_de_Oficio LIKE '" + filter.Numero_de_Oficio + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_Resumen_Denuncia.Numero_de_Oficio LIKE '%" + filter.Numero_de_Oficio + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_Resumen_Denuncia.Numero_de_Oficio = '" + filter.Numero_de_Oficio + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_Resumen_Denuncia.Numero_de_Oficio LIKE '%" + filter.Numero_de_Oficio + "%'";
+                        break;
+                }
             }
 
             if (!string.IsNullOrEmpty(filter.Probable_Responsable))
@@ -836,34 +1110,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (filter.Archivo_Descargado != RadioOptions.NoApply)
                 where += " AND Detalle_Resumen_Denuncia.Archivo_Descargado = " + Convert.ToInt32(filter.Archivo_Descargado);
 
-            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_registra))
-            {
-                switch (filter.Usuario_que_registraFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_registra + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_registra + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_registra + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_registra + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceUsuario_que_registraMultiple != null && filter.AdvanceUsuario_que_registraMultiple.Count() > 0)
-            {
-                var Usuario_que_registraIds = string.Join(",", filter.AdvanceUsuario_que_registraMultiple);
-
-                where += " AND Detalle_Resumen_Denuncia.Usuario_que_registra In (" + Usuario_que_registraIds + ")";
-            }
-
             if (!string.IsNullOrEmpty(filter.AdvanceDocumento))
             {
                 switch (filter.DocumentoFilter)
@@ -898,27 +1144,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Detalle_Resumen_Denuncia.Archivo >= " + filter.FromArchivo;
                 if (!string.IsNullOrEmpty(filter.ToArchivo))
                     where += " AND Detalle_Resumen_Denuncia.Archivo <= " + filter.ToArchivo;
-            }
-
-            if (!string.IsNullOrEmpty(filter.FromFecha_de_registro) || !string.IsNullOrEmpty(filter.ToFecha_de_registro))
-            {
-                var Fecha_de_registroFrom = DateTime.ParseExact(filter.FromFecha_de_registro, ConfigurationProperty.DateFormat,
-                    CultureInfo.InvariantCulture as IFormatProvider);
-                var Fecha_de_registroTo = DateTime.ParseExact(filter.ToFecha_de_registro, ConfigurationProperty.DateFormat,
-                  CultureInfo.InvariantCulture as IFormatProvider);
-
-                if (!string.IsNullOrEmpty(filter.FromFecha_de_registro))
-                    where += " AND Detalle_Resumen_Denuncia.Fecha_de_registro >= '" + Fecha_de_registroFrom.ToString("MM-dd-yyyy") + "'";
-                if (!string.IsNullOrEmpty(filter.ToFecha_de_registro))
-                    where += " AND Detalle_Resumen_Denuncia.Fecha_de_registro <= '" + Fecha_de_registroTo.ToString("MM-dd-yyyy") + "'";
-            }
-
-            if (!string.IsNullOrEmpty(filter.FromHora_de_registro) || !string.IsNullOrEmpty(filter.ToHora_de_registro))
-            {
-                if (!string.IsNullOrEmpty(filter.FromHora_de_registro))
-                    where += " AND Convert(TIME,Detalle_Resumen_Denuncia.Hora_de_registro) >='" + filter.FromHora_de_registro + "'";
-                if (!string.IsNullOrEmpty(filter.ToHora_de_registro))
-                    where += " AND Convert(TIME,Detalle_Resumen_Denuncia.Hora_de_registro) <='" + filter.ToHora_de_registro + "'";
             }
 
 
@@ -977,6 +1202,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varDetalle_Resumen_Denuncia.Clave
                         ,Modulo_Atencion_Inicial = varDetalle_Resumen_Denuncia.Modulo_Atencion_Inicial
+                        ,Expediente_MP = varDetalle_Resumen_Denuncia.Expediente_MP
+                        ,Fecha_de_registro = (!String.IsNullOrEmpty(varDetalle_Resumen_Denuncia.Fecha_de_registro)) ? DateTime.ParseExact(varDetalle_Resumen_Denuncia.Fecha_de_registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_registro = varDetalle_Resumen_Denuncia.Hora_de_registro
+                        ,Usuario_que_registra = varDetalle_Resumen_Denuncia.Usuario_que_registra
+                        ,Generar = varDetalle_Resumen_Denuncia.Generar
+                        ,Numero_Generado = varDetalle_Resumen_Denuncia.Numero_Generado
+                        ,Numero_de_Oficio = varDetalle_Resumen_Denuncia.Numero_de_Oficio
                         ,Probable_Responsable = varDetalle_Resumen_Denuncia.Probable_Responsable
                         ,Delito = varDetalle_Resumen_Denuncia.Delito
                         ,Victima = varDetalle_Resumen_Denuncia.Victima
@@ -984,11 +1216,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hechos = varDetalle_Resumen_Denuncia.Hechos
                         ,Generado = varDetalle_Resumen_Denuncia.Generado
                         ,Archivo_Descargado = varDetalle_Resumen_Denuncia.Archivo_Descargado
-                        ,Usuario_que_registra = varDetalle_Resumen_Denuncia.Usuario_que_registra
                         ,Documento = varDetalle_Resumen_Denuncia.Documento
                         ,Archivo = varDetalle_Resumen_Denuncia.Archivo
-                        ,Fecha_de_registro = (!String.IsNullOrEmpty(varDetalle_Resumen_Denuncia.Fecha_de_registro)) ? DateTime.ParseExact(varDetalle_Resumen_Denuncia.Fecha_de_registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_registro = varDetalle_Resumen_Denuncia.Hora_de_registro
 
                     };
 
@@ -1377,6 +1606,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "NUAT") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                        ,Expediente_MPnuat = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nuat
+                        ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_registro = m.Hora_de_registro
+                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
+                        ,GenerarDescripcion = CultureHelper.GetTraduction(m.Generar_Tipo_de_Expediente_Generado.Clave.ToString(), "Descripcion") ?? (string)m.Generar_Tipo_de_Expediente_Generado.Descripcion
+			,Numero_Generado = m.Numero_Generado
+			,Numero_de_Oficio = m.Numero_de_Oficio
 			,Probable_Responsable = m.Probable_Responsable
 			,Delito = m.Delito
 			,Victima = m.Victima
@@ -1384,11 +1620,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hechos = m.Hechos
 			,Generado = m.Generado
 			,Archivo_Descargado = m.Archivo_Descargado
-                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
                         ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
 			,Archivo = m.Archivo
-                        ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_registro = m.Hora_de_registro
 
             }).ToList();
 
@@ -1463,6 +1696,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "NUAT") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                        ,Expediente_MPnuat = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nuat
+                        ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_registro = m.Hora_de_registro
+                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
+                        ,GenerarDescripcion = CultureHelper.GetTraduction(m.Generar_Tipo_de_Expediente_Generado.Clave.ToString(), "Descripcion") ?? (string)m.Generar_Tipo_de_Expediente_Generado.Descripcion
+			,Numero_Generado = m.Numero_Generado
+			,Numero_de_Oficio = m.Numero_de_Oficio
 			,Probable_Responsable = m.Probable_Responsable
 			,Delito = m.Delito
 			,Victima = m.Victima
@@ -1470,11 +1710,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hechos = m.Hechos
 			,Generado = m.Generado
 			,Archivo_Descargado = m.Archivo_Descargado
-                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
                         ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
 			,Archivo = m.Archivo
-                        ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_registro = m.Hora_de_registro
 
             }).ToList();
 
@@ -1515,6 +1752,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varDetalle_Resumen_Denuncia.Clave
                                             ,Modulo_Atencion_Inicial = varDetalle_Resumen_Denuncia.Modulo_Atencion_Inicial
+                        ,Expediente_MP = varDetalle_Resumen_Denuncia.Expediente_MP
+                        ,Fecha_de_registro = (!String.IsNullOrEmpty(varDetalle_Resumen_Denuncia.Fecha_de_registro)) ? DateTime.ParseExact(varDetalle_Resumen_Denuncia.Fecha_de_registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_registro = varDetalle_Resumen_Denuncia.Hora_de_registro
+                        ,Usuario_que_registra = varDetalle_Resumen_Denuncia.Usuario_que_registra
+                        ,Generar = varDetalle_Resumen_Denuncia.Generar
+                        ,Numero_Generado = varDetalle_Resumen_Denuncia.Numero_Generado
+                        ,Numero_de_Oficio = varDetalle_Resumen_Denuncia.Numero_de_Oficio
                         ,Probable_Responsable = varDetalle_Resumen_Denuncia.Probable_Responsable
                         ,Delito = varDetalle_Resumen_Denuncia.Delito
                         ,Victima = varDetalle_Resumen_Denuncia.Victima
@@ -1522,11 +1766,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hechos = varDetalle_Resumen_Denuncia.Hechos
                         ,Generado = varDetalle_Resumen_Denuncia.Generado
                         ,Archivo_Descargado = varDetalle_Resumen_Denuncia.Archivo_Descargado
-                        ,Usuario_que_registra = varDetalle_Resumen_Denuncia.Usuario_que_registra
                         ,Documento = varDetalle_Resumen_Denuncia.Documento
                         ,Archivo = varDetalle_Resumen_Denuncia.Archivo
-                        ,Fecha_de_registro = (!String.IsNullOrEmpty(varDetalle_Resumen_Denuncia.Fecha_de_registro)) ? DateTime.ParseExact(varDetalle_Resumen_Denuncia.Fecha_de_registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_registro = varDetalle_Resumen_Denuncia.Hora_de_registro
                     
                 };
 
@@ -1557,6 +1798,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Modulo_Atencion_Inicial = m.Modulo_Atencion_Inicial
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "NUAT") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                        ,Expediente_MP = m.Expediente_MP
+                        ,Expediente_MPnuat = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nuat
+                        ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_registro = m.Hora_de_registro
+                        ,Usuario_que_registra = m.Usuario_que_registra
+                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
+                        ,Generar = m.Generar
+                        ,GenerarDescripcion = CultureHelper.GetTraduction(m.Generar_Tipo_de_Expediente_Generado.Clave.ToString(), "Descripcion") ?? (string)m.Generar_Tipo_de_Expediente_Generado.Descripcion
+			,Numero_Generado = m.Numero_Generado
+			,Numero_de_Oficio = m.Numero_de_Oficio
 			,Probable_Responsable = m.Probable_Responsable
 			,Delito = m.Delito
 			,Victima = m.Victima
@@ -1564,13 +1815,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hechos = m.Hechos
 			,Generado = m.Generado
 			,Archivo_Descargado = m.Archivo_Descargado
-                        ,Usuario_que_registra = m.Usuario_que_registra
-                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
                         ,Documento = m.Documento
                         ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
 			,Archivo = m.Archivo
-                        ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_registro = m.Hora_de_registro
 
                     
                 };
