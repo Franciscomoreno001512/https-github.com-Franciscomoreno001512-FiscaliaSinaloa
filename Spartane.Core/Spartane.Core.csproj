@@ -1618,6 +1618,18 @@
 <Compile Include="Domain\SubArea_de_Servicios_de_Apoyo\SubArea_de_Servicios_de_ApoyoPagingModel.cs" />
 <Compile Include="Domain\Tipo_de_Asignacion_de_Apoyo\Tipo_de_Asignacion_de_Apoyo.cs" />
 <Compile Include="Domain\Tipo_de_Asignacion_de_Apoyo\Tipo_de_Asignacion_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Resolucion_de_AT\Estatus_de_Resolucion_de_AT.cs" />
+<Compile Include="Domain\Estatus_de_Resolucion_de_AT\Estatus_de_Resolucion_de_ATPagingModel.cs" />
+<Compile Include="Domain\Resolucion_AT\Resolucion_AT.cs" />
+<Compile Include="Domain\Resolucion_AT\Resolucion_ATPagingModel.cs" />
+<Compile Include="Domain\Configuracion_de_Servicios_de_Apoyo\Configuracion_de_Servicios_de_Apoyo.cs" />
+<Compile Include="Domain\Configuracion_de_Servicios_de_Apoyo\Configuracion_de_Servicios_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\Detalle_Solicitud_Disponibles_Configuracion\Detalle_Solicitud_Disponibles_ConfiguracionPagingModel.cs" />
+<Compile Include="Domain\Detalle_Solicitud_Disponibles_Configuracion\Detalle_Solicitud_Disponibles_Configuracion.cs" />
+<Compile Include="Domain\Asignacion_responsable_servicios_apoyo\Asignacion_responsable_servicios_apoyo.cs" />
+<Compile Include="Domain\Asignacion_responsable_servicios_apoyo\Asignacion_responsable_servicios_apoyoPagingModel.cs" />
+<Compile Include="Domain\Detalle_subareas_responsable_servicio_apoyo\Detalle_subareas_responsable_servicio_apoyoPagingModel.cs" />
+<Compile Include="Domain\Detalle_subareas_responsable_servicio_apoyo\Detalle_subareas_responsable_servicio_apoyo.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1638,6 +1650,18 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

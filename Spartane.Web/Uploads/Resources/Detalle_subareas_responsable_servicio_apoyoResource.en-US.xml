@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_subareas_responsable_servicio_apoyo" value="Detalle SubÁreas Responsable"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="SubArea_Asignada" value="SubÁrea Asignada"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

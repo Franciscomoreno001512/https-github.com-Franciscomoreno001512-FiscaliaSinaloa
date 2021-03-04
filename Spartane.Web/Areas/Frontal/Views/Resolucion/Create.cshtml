@@ -237,10 +237,83 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="ClaveFiscalia" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divResolucion_AT">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Resolucion_AT</label>
+                                <div class="col-sm-8" data-field-id="Resolucion_AT" data-attribute="273031" data-field-name="@Resources.ResolucionResources.Resolucion_AT">
+                                    @Html.CheckBoxFor(m => m.Resolucion_AT, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divResolucion_MP">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Resolucion_MP</label>
+                                <div class="col-sm-8" data-field-id="Resolucion_MP" data-attribute="273032" data-field-name="@Resources.ResolucionResources.Resolucion_MP">
+                                    @Html.CheckBoxFor(m => m.Resolucion_MP, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
                             <div class="form-group" id="divAplica_para_Adolescentes">
                                 <label class="col-sm-2 control-label">@Resources.ResolucionResources.Aplica_para_Adolescentes</label>
                                 <div class="col-sm-8" data-field-id="Aplica_para_Adolescentes" data-attribute="269091" data-field-name="@Resources.ResolucionResources.Aplica_para_Adolescentes">
                                     @Html.CheckBoxFor(m => m.Aplica_para_Adolescentes, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divAplica_para_Denuncia">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Aplica_para_Denuncia</label>
+                                <div class="col-sm-8" data-field-id="Aplica_para_Denuncia" data-attribute="273033" data-field-name="@Resources.ResolucionResources.Aplica_para_Denuncia">
+                                    @Html.CheckBoxFor(m => m.Aplica_para_Denuncia, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divAplica_para_Carpeta_de_Investigacion">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Aplica_para_Carpeta_de_Investigacion</label>
+                                <div class="col-sm-8" data-field-id="Aplica_para_Carpeta_de_Investigacion" data-attribute="273034" data-field-name="@Resources.ResolucionResources.Aplica_para_Carpeta_de_Investigacion">
+                                    @Html.CheckBoxFor(m => m.Aplica_para_Carpeta_de_Investigacion, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divAbreviacion">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Abreviacion</label>
+                                <div class="col-sm-8" data-field-id="Abreviacion" data-attribute="269543" data-field-name="@Resources.ResolucionResources.Abreviacion">
+                                    <input class="form-control Datos_Generales" id="Abreviacion" name="Abreviacion" type="text" value="@Model.Abreviacion">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Abreviacion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divVigencia">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Vigencia</label>
+                                <div class="col-sm-8" data-field-id="Vigencia" data-attribute="269544" data-field-name="@Resources.ResolucionResources.Vigencia">
+                                    <input class="form-control Datos_Generales" id="Vigencia" name="Vigencia" type="text" value="@Model.Vigencia">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Vigencia" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divMostrarDependencia">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.MostrarDependencia</label>
+                                <div class="col-sm-8" data-field-id="MostrarDependencia" data-attribute="269545" data-field-name="@Resources.ResolucionResources.MostrarDependencia">
+                                    <input class="form-control Datos_Generales" id="MostrarDependencia" name="MostrarDependencia" type="text" value="@Model.MostrarDependencia">
+                                    @*<span class="field-validation-valid" data-valmsg-for="MostrarDependencia" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divConteo">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Conteo</label>
+                                <div class="col-sm-8" data-field-id="Conteo" data-attribute="269546" data-field-name="@Resources.ResolucionResources.Conteo">
+                                    <input class="form-control inputNumber Datos_Generales" id="Conteo" name="Conteo" type="text" value="@Model.Conteo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Conteo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divEstatus">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Estatus</label>
+                                <div class="col-sm-8" data-field-id="Estatus" data-attribute="269547" data-field-name="@Resources.ResolucionResources.Estatus">
+                                    <input class="form-control inputNumber Datos_Generales" id="Estatus" name="Estatus" type="text" value="@Model.Estatus">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Estatus" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divEstatus_esp">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Estatus_esp</label>
+                                <div class="col-sm-8" data-field-id="Estatus_esp" data-attribute="269548" data-field-name="@Resources.ResolucionResources.Estatus_esp">
+                                    <input class="form-control inputNumber Datos_Generales" id="Estatus_esp" name="Estatus_esp" type="text" value="@Model.Estatus_esp">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Estatus_esp" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divMostrar_Estadistico">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Mostrar_Estadistico</label>
+                                <div class="col-sm-8" data-field-id="Mostrar_Estadistico" data-attribute="269549" data-field-name="@Resources.ResolucionResources.Mostrar_Estadistico">
+                                    <input class="form-control inputNumber Datos_Generales" id="Mostrar_Estadistico" name="Mostrar_Estadistico" type="text" value="@Model.Mostrar_Estadistico">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Mostrar_Estadistico" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             </div>
@@ -680,7 +753,18 @@
                     $('#Resolucion_Padre_para_Autorizacion').val(result.data.Resolucion_Padre_para_Autorizacion);
                     $('#Generar_Judicializacion').prop('checked', result.data.Generar_Judicializacion);
                     $('#ClaveFiscalia').val(result.data.ClaveFiscalia);
+                    $('#Resolucion_AT').prop('checked', result.data.Resolucion_AT);
+                    $('#Resolucion_MP').prop('checked', result.data.Resolucion_MP);
                     $('#Aplica_para_Adolescentes').prop('checked', result.data.Aplica_para_Adolescentes);
+                    $('#Aplica_para_Denuncia').prop('checked', result.data.Aplica_para_Denuncia);
+                    $('#Aplica_para_Carpeta_de_Investigacion').prop('checked', result.data.Aplica_para_Carpeta_de_Investigacion);
+                    $('#Abreviacion').val(result.data.Abreviacion);
+                    $('#Vigencia').val(result.data.Vigencia);
+                    $('#MostrarDependencia').val(result.data.MostrarDependencia);
+                    $('#Conteo').val(result.data.Conteo);
+                    $('#Estatus').val(result.data.Estatus);
+                    $('#Estatus_esp').val(result.data.Estatus_esp);
+                    $('#Mostrar_Estadistico').val(result.data.Mostrar_Estadistico);
 
                 },
                 error: function (result) {
@@ -697,7 +781,18 @@
                 data.append('Resolucion_Padre_para_Autorizacion', $('#Resolucion_Padre_para_Autorizacion').val());
                 data.append('Generar_Judicializacion', $('#Generar_Judicializacion').prop('checked'));
                 data.append('ClaveFiscalia', $('#ClaveFiscalia').val());
+                data.append('Resolucion_AT', $('#Resolucion_AT').prop('checked'));
+                data.append('Resolucion_MP', $('#Resolucion_MP').prop('checked'));
                 data.append('Aplica_para_Adolescentes', $('#Aplica_para_Adolescentes').prop('checked'));
+                data.append('Aplica_para_Denuncia', $('#Aplica_para_Denuncia').prop('checked'));
+                data.append('Aplica_para_Carpeta_de_Investigacion', $('#Aplica_para_Carpeta_de_Investigacion').prop('checked'));
+                data.append('Abreviacion', $('#Abreviacion').val());
+                data.append('Vigencia', $('#Vigencia').val());
+                data.append('MostrarDependencia', $('#MostrarDependencia').val());
+                data.append('Conteo', $('#Conteo').val());
+                data.append('Estatus', $('#Estatus').val());
+                data.append('Estatus_esp', $('#Estatus_esp').val());
+                data.append('Mostrar_Estadistico', $('#Mostrar_Estadistico').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Resolucion/Post_Datos_Generales")',

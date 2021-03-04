@@ -1509,6 +1509,18 @@
 <Compile Include="SubArea_de_Servicios_de_Apoyo\SubArea_de_Servicios_de_ApoyoService.cs" />
 <Compile Include="Tipo_de_Asignacion_de_Apoyo\ITipo_de_Asignacion_de_ApoyoService.cs" />
 <Compile Include="Tipo_de_Asignacion_de_Apoyo\Tipo_de_Asignacion_de_ApoyoService.cs" />
+<Compile Include="Estatus_de_Resolucion_de_AT\IEstatus_de_Resolucion_de_ATService.cs" />
+<Compile Include="Estatus_de_Resolucion_de_AT\Estatus_de_Resolucion_de_ATService.cs" />
+<Compile Include="Resolucion_AT\IResolucion_ATService.cs" />
+<Compile Include="Resolucion_AT\Resolucion_ATService.cs" />
+<Compile Include="Configuracion_de_Servicios_de_Apoyo\IConfiguracion_de_Servicios_de_ApoyoService.cs" />
+<Compile Include="Configuracion_de_Servicios_de_Apoyo\Configuracion_de_Servicios_de_ApoyoService.cs" />
+<Compile Include="Detalle_Solicitud_Disponibles_Configuracion\IDetalle_Solicitud_Disponibles_ConfiguracionService.cs" />
+<Compile Include="Detalle_Solicitud_Disponibles_Configuracion\Detalle_Solicitud_Disponibles_ConfiguracionService.cs" />
+<Compile Include="Asignacion_responsable_servicios_apoyo\IAsignacion_responsable_servicios_apoyoService.cs" />
+<Compile Include="Asignacion_responsable_servicios_apoyo\Asignacion_responsable_servicios_apoyoService.cs" />
+<Compile Include="Detalle_subareas_responsable_servicio_apoyo\IDetalle_subareas_responsable_servicio_apoyoService.cs" />
+<Compile Include="Detalle_subareas_responsable_servicio_apoyo\Detalle_subareas_responsable_servicio_apoyoService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1608,6 +1620,18 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

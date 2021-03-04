@@ -1326,8 +1326,34 @@
 <Object Id="46206" culture="es-es" value="SubArea de Servicios de Apoyo" />
 <Object Id="46204" culture="en-us" value="Tipo de Asignación de Apoyo" />
 <Object Id="46204" culture="es-es" value="Tipo de Asignación de Apoyo" />
+<Object Id="46208" culture="en-us" value="Estatus de Resolución de AT" />
+<Object Id="46208" culture="es-es" value="Estatus de Resolución de AT" />
+<Object Id="46209" culture="en-us" value="Generar Resolución" />
+<Object Id="46209" culture="es-es" value="Generar Resolución" />
+<Object Id="46223" culture="en-us" value="Configuración de Servicios de Apoyo" />
+<Object Id="46223" culture="es-es" value="Configuración de Servicios de Apoyo" />
+<Object Id="46225" culture="en-us" value="Detalle Solicitud Disponibles Configuración" />
+<Object Id="46225" culture="es-es" value="Detalle Solicitud Disponibles Configuración" />
+<Object Id="46226" culture="en-us" value="Asignación de Responsable de Servicios de Apoyo" />
+<Object Id="46226" culture="es-es" value="Asignación de Responsable de Servicios de Apoyo" />
+<Object Id="46227" culture="en-us" value="Detalle SubÁreas Responsable" />
+<Object Id="46227" culture="es-es" value="Detalle SubÁreas Responsable" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

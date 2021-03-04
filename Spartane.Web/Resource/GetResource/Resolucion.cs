@@ -86,6 +86,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Resolucion_AT</summary>
+        public static string Resolucion_AT
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Resolucion_AT", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Resolucion_MP</summary>
+        public static string Resolucion_MP
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Resolucion_MP", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Aplica_para_Adolescentes</summary>
         public static string Aplica_para_Adolescentes
         {
@@ -93,6 +113,96 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderResolucion.GetResource("Aplica_para_Adolescentes", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Aplica_para_Denuncia</summary>
+        public static string Aplica_para_Denuncia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Aplica_para_Denuncia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Aplica_para_Carpeta_de_Investigacion</summary>
+        public static string Aplica_para_Carpeta_de_Investigacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Aplica_para_Carpeta_de_Investigacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Abreviacion</summary>
+        public static string Abreviacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Abreviacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Vigencia</summary>
+        public static string Vigencia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Vigencia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>MostrarDependencia</summary>
+        public static string MostrarDependencia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("MostrarDependencia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Conteo</summary>
+        public static string Conteo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Conteo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Estatus</summary>
+        public static string Estatus
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Estatus", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Estatus_esp</summary>
+        public static string Estatus_esp
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Estatus_esp", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Mostrar_Estadistico</summary>
+        public static string Mostrar_Estadistico
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Mostrar_Estadistico", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

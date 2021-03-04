@@ -72,12 +72,12 @@
   <Role culture="es-es" Id="113" value="Director de Litigación Oral"></Role>
   <Role culture="en-us" Id="114" value="Órgano Interno de Control"></Role>
   <Role culture="es-es" Id="114" value="Órgano Interno de Control"></Role>
-  <Role culture="en-us" Id="115" value="Recepcion SP"></Role>
-  <Role culture="es-es" Id="115" value="Recepcion SP"></Role>
+  <Role culture="en-us" Id="115" value="Recepción de Servicios de Apoyo"></Role>
+  <Role culture="es-es" Id="115" value="Recepción de Servicios de Apoyo"></Role>
   <Role culture="en-us" Id="116" value="Coordinador Area Pericial SP"></Role>
   <Role culture="es-es" Id="116" value="Coordinador Area Pericial SP"></Role>
-  <Role culture="en-us" Id="117" value="Perito"></Role>
-  <Role culture="es-es" Id="117" value="Perito"></Role>
+  <Role culture="en-us" Id="117" value="Especialista de Servicios de Apoyo"></Role>
+  <Role culture="es-es" Id="117" value="Especialista de Servicios de Apoyo"></Role>
   <Role culture="en-us" Id="118" value="-"></Role>
   <Role culture="es-es" Id="118" value="-"></Role>
 </Roles>

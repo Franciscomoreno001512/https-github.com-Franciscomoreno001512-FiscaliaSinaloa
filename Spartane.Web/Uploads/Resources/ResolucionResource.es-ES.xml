@@ -7,7 +7,18 @@
   <resource culture="es-es" name="Resolucion_Padre_para_Autorizacion" value="Resolución Padre para Autorización"></resource>
   <resource culture="es-es" name="Generar_Judicializacion" value="Generar Judicialización"></resource>
   <resource culture="es-es" name="ClaveFiscalia" value="ClaveFiscalia"></resource>
+  <resource culture="es-es" name="Resolucion_AT" value="Resolución AT"></resource>
+  <resource culture="es-es" name="Resolucion_MP" value="Resolución MP"></resource>
   <resource culture="es-es" name="Aplica_para_Adolescentes" value="Aplica para Adolescentes"></resource>
+  <resource culture="es-es" name="Aplica_para_Denuncia" value="Aplica para Denuncia"></resource>
+  <resource culture="es-es" name="Aplica_para_Carpeta_de_Investigacion" value="Aplica para Carpeta de Investigación"></resource>
+  <resource culture="es-es" name="Abreviacion" value="Abreviación"></resource>
+  <resource culture="es-es" name="Vigencia" value="Vigencia "></resource>
+  <resource culture="es-es" name="MostrarDependencia" value="Mostrar Dependencia"></resource>
+  <resource culture="es-es" name="Conteo" value="Conteo "></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus "></resource>
+  <resource culture="es-es" name="Estatus_esp" value="Estatus esp"></resource>
+  <resource culture="es-es" name="Mostrar_Estadistico" value="Mostrar Estadistico"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

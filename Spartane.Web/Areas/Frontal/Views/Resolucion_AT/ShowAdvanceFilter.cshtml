@@ -1,0 +1,595 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Resolucion_ATAdvanceSearchModel
+@{
+    List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
+    if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
+    { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
+    List<SelectListItem> varSpartan_User_Persona_que_Resuelve = null;
+    if (ViewBag.Spartan_Users_Persona_que_Resuelve != null)
+    { varSpartan_User_Persona_que_Resuelve = (List<SelectListItem>)ViewBag.Spartan_Users_Persona_que_Resuelve; }
+    List<SelectListItem> varEstatus_de_Resolucion_de_AT_Estatus = null;
+    if (ViewBag.Estatus_de_Resolucion_de_ATs_Estatus != null)
+    { varEstatus_de_Resolucion_de_AT_Estatus = (List<SelectListItem>)ViewBag.Estatus_de_Resolucion_de_ATs_Estatus; }
+ List<SelectListItem> varResolucion_Resolucion = null;
+    if (ViewBag.Resolucions_Resolucion != null)
+    { varResolucion_Resolucion = (List<SelectListItem>)ViewBag.Resolucions_Resolucion; }
+ List<SelectListItem> varDetalle_de_Relaciones_Relacion = null;
+    if (ViewBag.Detalle_de_Relacioness_Relacion != null)
+    { varDetalle_de_Relaciones_Relacion = (List<SelectListItem>)ViewBag.Detalle_de_Relacioness_Relacion; }
+    List<SelectListItem> varSpartan_User_Dictaminador = null;
+    if (ViewBag.Spartan_Users_Dictaminador != null)
+    { varSpartan_User_Dictaminador = (List<SelectListItem>)ViewBag.Spartan_Users_Dictaminador; }
+ List<SelectListItem> varResolucion_Resultado_de_Validacion = null;
+    if (ViewBag.Resolucions_Resultado_de_Validacion != null)
+    { varResolucion_Resultado_de_Validacion = (List<SelectListItem>)ViewBag.Resolucions_Resultado_de_Validacion; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Resolucion_AT", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Resolucion_ATResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Resolucion_ATResources.Modulo_Atencion_Inicial</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Modulo_Atencion_InicialFilter, filters, new { @class = "form-control", @id = "ddlModulo_Atencion_InicialFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceModulo_Atencion_Inicial, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo_Atencion_Inicial" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varModulo_Atencion_Inicial_Modulo_Atencion_Inicial!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceModulo_Atencion_InicialMultiple, varModulo_Atencion_Inicial_Modulo_Atencion_Inicial,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceModulo_Atencion_Inicial"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Resolucion_ATResources.Fecha_de_Resolucion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Resolucion" name="FromFecha_de_Resolucion" type="text" value="@Model.FromFecha_de_Resolucion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Resolucion" name="ToFecha_de_Resolucion" type="text" value="@Model.ToFecha_de_Resolucion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Resolucion_ATResources.Persona_que_Resuelve</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Persona_que_ResuelveFilter, filters, new { @class = "form-control", @id = "ddlPersona_que_ResuelveFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePersona_que_Resuelve, new { @class = "form-control", @type = "text", @id = "txtAdvancePersona_que_Resuelve" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varSpartan_User_Persona_que_Resuelve!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePersona_que_ResuelveMultiple, varSpartan_User_Persona_que_Resuelve,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePersona_que_Resuelve"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Resolucion_ATResources.Estatus</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EstatusFilter, filters, new { @class = "form-control", @id = "ddlEstatusFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstatus, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstatus" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstatus_de_Resolucion_de_AT_Estatus!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstatusMultiple, varEstatus_de_Resolucion_de_AT_Estatus,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstatus"
+                        });
+                    }
+                </div>
+ List<SelectListItem> varResolucion_Resolucion = null;
+    if (ViewBag.Resolucions_Resolucion != null)
+    { varResolucion_Resolucion = (List<SelectListItem>)ViewBag.Resolucions_Resolucion; }
+ List<SelectListItem> varDetalle_de_Relaciones_Relacion = null;
+    if (ViewBag.Detalle_de_Relacioness_Relacion != null)
+    { varDetalle_de_Relaciones_Relacion = (List<SelectListItem>)ViewBag.Detalle_de_Relacioness_Relacion; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Resolucion_ATResources.Observaciones</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Resolucion_ATResources.Fecha_de_Validacion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Validacion" name="FromFecha_de_Validacion" type="text" value="@Model.FromFecha_de_Validacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Validacion" name="ToFecha_de_Validacion" type="text" value="@Model.ToFecha_de_Validacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Resolucion_ATResources.Hora_de_Validacion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Validacion" name="FromHora_de_Validacion" type="text" value="@Model.FromHora_de_Validacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Validacion" name="ToHora_de_Validacion" type="text" value="@Model.ToHora_de_Validacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Resolucion_ATResources.Dictaminador</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DictaminadorFilter, filters, new { @class = "form-control", @id = "ddlDictaminadorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceDictaminador, new { @class = "form-control", @type = "text", @id = "txtAdvanceDictaminador" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varSpartan_User_Dictaminador!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceDictaminadorMultiple, varSpartan_User_Dictaminador,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceDictaminador"
+                        });
+                    }
+                </div>
+ List<SelectListItem> varResolucion_Resultado_de_Validacion = null;
+    if (ViewBag.Resolucions_Resultado_de_Validacion != null)
+    { varResolucion_Resultado_de_Validacion = (List<SelectListItem>)ViewBag.Resolucions_Resultado_de_Validacion; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Resolucion_ATResources.Observaciones_Dictaminador</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_DictaminadorFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_DictaminadorFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_Dictaminador, new { @class = "form-control", @type = "text", @id = "txtObservaciones_Dictaminador" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Resolucion_AT/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Resolucion_ATClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Resolucion_ATClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.Modulo_Atencion_InicialSearchType = 0;
+        if ($('#ddlAdvanceModulo_Atencion_Inicial').val().length > 0 || $("#txtAdvanceModulo_Atencion_Inicial").val() == "") {
+
+
+            if (isResolucion_ATTextSearch) {
+                advanceSearch.Modulo_Atencion_InicialName = $("#txtAdvanceModulo_Atencion_Inicial").val();
+                advanceSearch.Modulo_Atencion_InicialNameSearchType = $("#ddlAdvanceModulo_Atencion_Inicial").val();
+                advanceSearch.Modulo_Atencion_InicialSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Modulo_Atencion_InicialToSearch = $("#ddlAdvanceModulo_Atencion_Inicial").val();
+                advanceSearch.Modulo_Atencion_InicialSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha_de_Resolucion").val() != "" || $("#txtAdvanceToFecha_de_Resolucion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Resolucion_ATFecha_de_ResolucionFrom = $("#txtAdvanceFromFecha_de_Resolucion").val();
+            advanceSearch.Resolucion_ATFecha_de_ResolucionTo = $("#txtAdvanceToFecha_de_Resolucion").val();
+        }
+        advanceSearch.Persona_que_ResuelveSearchType = 0;
+        if ($('#ddlAdvancePersona_que_Resuelve').val().length > 0 || $("#txtAdvancePersona_que_Resuelve").val() == "") {
+
+
+            if (isResolucion_ATTextSearch) {
+                advanceSearch.Persona_que_ResuelveName = $("#txtAdvancePersona_que_Resuelve").val();
+                advanceSearch.Persona_que_ResuelveNameSearchType = $("#ddlAdvancePersona_que_Resuelve").val();
+                advanceSearch.Persona_que_ResuelveSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Persona_que_ResuelveToSearch = $("#ddlAdvancePersona_que_Resuelve").val();
+                advanceSearch.Persona_que_ResuelveSearchType = 2;
+            }
+        }
+        advanceSearch.EstatusSearchType = 0;
+        if ($('#ddlAdvanceEstatus').val().length > 0 || $("#txtAdvanceEstatus").val() == "") {
+
+
+            if (isResolucion_ATTextSearch) {
+                advanceSearch.EstatusName = $("#txtAdvanceEstatus").val();
+                advanceSearch.EstatusNameSearchType = $("#ddlAdvanceEstatus").val();
+                advanceSearch.EstatusSearchType = 1;
+            }
+            else {
+
+                advanceSearch.EstatusToSearch = $("#ddlAdvanceEstatus").val();
+                advanceSearch.EstatusSearchType = 2;
+            }
+        }
+        advanceSearch.ResolucionSearchType = 0;
+        if ($('#ddlAdvanceResolucion').val().length > 0 || $("#txtAdvanceResolucion").val() == "") {
+
+
+            if (isResolucion_ATTextSearch) {
+                advanceSearch.ResolucionName = $("#txtAdvanceResolucion").val();
+                advanceSearch.ResolucionNameSearchType = $("#ddlAdvanceResolucion").val();
+                advanceSearch.ResolucionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ResolucionToSearch = $("#ddlAdvanceResolucion").val();
+                advanceSearch.ResolucionSearchType = 2;
+            }
+        }
+        advanceSearch.RelacionSearchType = 0;
+        if ($('#ddlAdvanceRelacion').val().length > 0 || $("#txtAdvanceRelacion").val() == "") {
+
+
+            if (isResolucion_ATTextSearch) {
+                advanceSearch.RelacionName = $("#txtAdvanceRelacion").val();
+                advanceSearch.RelacionNameSearchType = $("#ddlAdvanceRelacion").val();
+                advanceSearch.RelacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.RelacionToSearch = $("#ddlAdvanceRelacion").val();
+                advanceSearch.RelacionSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceObservaciones").val() != "") {
+            hasParameter = true;
+            advanceSearch.Resolucion_ATObservaciones = $("#txtAdvanceObservaciones").val();
+            advanceSearch.Resolucion_ATObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Validacion").val() != "" || $("#txtAdvanceToFecha_de_Validacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Resolucion_ATFecha_de_ValidacionFrom = $("#txtAdvanceFromFecha_de_Validacion").val();
+            advanceSearch.Resolucion_ATFecha_de_ValidacionTo = $("#txtAdvanceToFecha_de_Validacion").val();
+        }
+        if ($("#txtAdvanceHora_de_Validacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Resolucion_ATHora_de_Validacion = $("#txtAdvanceHora_de_Validacion").val();
+            advanceSearch.Resolucion_ATHora_de_ValidacionSearchType = $("#ddlAdvanceHora_de_ValidacionFilter").val();
+        }
+        advanceSearch.DictaminadorSearchType = 0;
+        if ($('#ddlAdvanceDictaminador').val().length > 0 || $("#txtAdvanceDictaminador").val() == "") {
+
+
+            if (isResolucion_ATTextSearch) {
+                advanceSearch.DictaminadorName = $("#txtAdvanceDictaminador").val();
+                advanceSearch.DictaminadorNameSearchType = $("#ddlAdvanceDictaminador").val();
+                advanceSearch.DictaminadorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.DictaminadorToSearch = $("#ddlAdvanceDictaminador").val();
+                advanceSearch.DictaminadorSearchType = 2;
+            }
+        }
+        advanceSearch.Resultado_de_ValidacionSearchType = 0;
+        if ($('#ddlAdvanceResultado_de_Validacion').val().length > 0 || $("#txtAdvanceResultado_de_Validacion").val() == "") {
+
+
+            if (isResolucion_ATTextSearch) {
+                advanceSearch.Resultado_de_ValidacionName = $("#txtAdvanceResultado_de_Validacion").val();
+                advanceSearch.Resultado_de_ValidacionNameSearchType = $("#ddlAdvanceResultado_de_Validacion").val();
+                advanceSearch.Resultado_de_ValidacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Resultado_de_ValidacionToSearch = $("#ddlAdvanceResultado_de_Validacion").val();
+                advanceSearch.Resultado_de_ValidacionSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceObservaciones_Dictaminador").val() != "") {
+            hasParameter = true;
+            advanceSearch.Resolucion_ATObservaciones_Dictaminador = $("#txtAdvanceObservaciones_Dictaminador").val();
+            advanceSearch.Resolucion_ATObservaciones_DictaminadorSearchType = $("#ddlAdvanceObservaciones_DictaminadorFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblResolucion_AT').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isResolucion_ATTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceModulo_Atencion_Inicial").keypress(function () {
+            isResolucion_ATTextSearch = true;
+            $("#ddlAdvanceModulo_Atencion_Inicial").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo_Atencion_Inicial").change(function () {
+            isResolucion_ATTextSearch = false;
+            $("#txtAdvanceModulo_Atencion_Inicial").val('');
+        });
+        $("#txtAdvancePersona_que_Resuelve").keypress(function () {
+            isResolucion_ATTextSearch = true;
+            $("#ddlAdvancePersona_que_Resuelve").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePersona_que_Resuelve").change(function () {
+            isResolucion_ATTextSearch = false;
+            $("#txtAdvancePersona_que_Resuelve").val('');
+        });
+        $("#txtAdvanceEstatus").keypress(function () {
+            isResolucion_ATTextSearch = true;
+            $("#ddlAdvanceEstatus").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstatus").change(function () {
+            isResolucion_ATTextSearch = false;
+            $("#txtAdvanceEstatus").val('');
+        });
+        $("#txtAdvanceResolucion").keypress(function () {
+            isResolucion_ATTextSearch = true;
+            $("#ddlAdvanceResolucion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceResolucion").change(function () {
+            isResolucion_ATTextSearch = false;
+            $("#txtAdvanceResolucion").val('');
+        });
+        $("#txtAdvanceRelacion").keypress(function () {
+            isResolucion_ATTextSearch = true;
+            $("#ddlAdvanceRelacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceRelacion").change(function () {
+            isResolucion_ATTextSearch = false;
+            $("#txtAdvanceRelacion").val('');
+        });
+        $("#txtAdvanceDictaminador").keypress(function () {
+            isResolucion_ATTextSearch = true;
+            $("#ddlAdvanceDictaminador").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDictaminador").change(function () {
+            isResolucion_ATTextSearch = false;
+            $("#txtAdvanceDictaminador").val('');
+        });
+        $("#txtAdvanceResultado_de_Validacion").keypress(function () {
+            isResolucion_ATTextSearch = true;
+            $("#ddlAdvanceResultado_de_Validacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceResultado_de_Validacion").change(function () {
+            isResolucion_ATTextSearch = false;
+            $("#txtAdvanceResultado_de_Validacion").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

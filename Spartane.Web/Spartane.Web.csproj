@@ -15793,6 +15793,120 @@
 <Content Include="Uploads\Scripts\Rules\Tipo_de_Asignacion_de_ApoyoCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Tipo_de_Asignacion_de_ApoyoIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Tipo_de_Asignacion_de_Apoyo\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Estatus_de_Resolucion_de_AT\Estatus_de_Resolucion_de_ATApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Estatus_de_Resolucion_de_AT\IEstatus_de_Resolucion_de_ATApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Resolucion_de_ATModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Resolucion_de_ATGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Resolucion_de_ATMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Estatus_de_Resolucion_de_ATController.cs" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Resolucion_de_AT\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Resolucion_de_AT\Create.cshtml" />
+<Compile Include="Resource\GetResource\Estatus_de_Resolucion_de_AT.cs" />
+<Content Include="Uploads\Resources\Estatus_de_Resolucion_de_ATResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Estatus_de_Resolucion_de_ATPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Estatus_de_Resolucion_de_ATResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Estatus_de_Resolucion_de_AT.js" />
+<Content Include="Scripts\Custom\Estatus_de_Resolucion_de_ATGeneral.js" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Resolucion_de_AT\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Resolucion_de_ATAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Resolucion_de_ATBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Estatus_de_Resolucion_de_ATCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Estatus_de_Resolucion_de_ATIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Resolucion_de_AT\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Resolucion_AT\Resolucion_ATApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Resolucion_AT\IResolucion_ATApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Resolucion_ATModel.cs" />
+<Compile Include="Areas\Frontal\Models\Resolucion_ATGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Resolucion_ATMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Resolucion_ATController.cs" />
+<Content Include="Areas\Frontal\Views\Resolucion_AT\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Resolucion_AT\Create.cshtml" />
+<Compile Include="Resource\GetResource\Resolucion_AT.cs" />
+<Content Include="Uploads\Resources\Resolucion_ATResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Resolucion_ATPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Resolucion_ATResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Resolucion_AT.js" />
+<Content Include="Scripts\Custom\Resolucion_ATGeneral.js" />
+<Content Include="Areas\Frontal\Views\Resolucion_AT\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Resolucion_ATAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Resolucion_ATBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Resolucion_ATCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Resolucion_ATIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Resolucion_AT\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Configuracion_de_Servicios_de_Apoyo\Configuracion_de_Servicios_de_ApoyoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Configuracion_de_Servicios_de_Apoyo\IConfiguracion_de_Servicios_de_ApoyoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Configuracion_de_Servicios_de_ApoyoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Configuracion_de_Servicios_de_ApoyoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Configuracion_de_Servicios_de_ApoyoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Configuracion_de_Servicios_de_ApoyoController.cs" />
+<Content Include="Areas\Frontal\Views\Configuracion_de_Servicios_de_Apoyo\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Configuracion_de_Servicios_de_Apoyo\Create.cshtml" />
+<Compile Include="Resource\GetResource\Configuracion_de_Servicios_de_Apoyo.cs" />
+<Content Include="Uploads\Resources\Configuracion_de_Servicios_de_ApoyoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Configuracion_de_Servicios_de_ApoyoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Configuracion_de_Servicios_de_ApoyoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Configuracion_de_Servicios_de_Apoyo.js" />
+<Content Include="Scripts\Custom\Configuracion_de_Servicios_de_ApoyoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Configuracion_de_Servicios_de_Apoyo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Configuracion_de_Servicios_de_ApoyoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Configuracion_de_Servicios_de_ApoyoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Configuracion_de_Servicios_de_ApoyoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Configuracion_de_Servicios_de_ApoyoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Configuracion_de_Servicios_de_Apoyo\_Print.cshtml" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Solicitud_Disponibles_ConfiguracionController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Solicitud_Disponibles_ConfiguracionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Solicitud_Disponibles_ConfiguracionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Solicitud_Disponibles_ConfiguracionMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Solicitud_Disponibles_Configuracion\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Solicitud_Disponibles_Configuracion\AddDetalle_Solicitud_Disponibles_Configuracion.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Solicitud_Disponibles_Configuracion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Solicitud_Disponibles_Configuracion\Detalle_Solicitud_Disponibles_ConfiguracionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Solicitud_Disponibles_Configuracion\IDetalle_Solicitud_Disponibles_ConfiguracionApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Solicitud_Disponibles_Configuracion.cs" />
+<Content Include="Scripts\Custom\Detalle_Solicitud_Disponibles_ConfiguracionGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Solicitud_Disponibles_ConfiguracionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Solicitud_Disponibles_ConfiguracionResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Solicitud_Disponibles_ConfiguracionResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Solicitud_Disponibles_Configuracion.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Solicitud_Disponibles_ConfiguracionIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Solicitud_Disponibles_ConfiguracionCreateRules.js" />
+<Compile Include="Areas\WebApiConsumer\Asignacion_responsable_servicios_apoyo\Asignacion_responsable_servicios_apoyoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Asignacion_responsable_servicios_apoyo\IAsignacion_responsable_servicios_apoyoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_responsable_servicios_apoyoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_responsable_servicios_apoyoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_responsable_servicios_apoyoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Asignacion_responsable_servicios_apoyoController.cs" />
+<Content Include="Areas\Frontal\Views\Asignacion_responsable_servicios_apoyo\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Asignacion_responsable_servicios_apoyo\Create.cshtml" />
+<Compile Include="Resource\GetResource\Asignacion_responsable_servicios_apoyo.cs" />
+<Content Include="Uploads\Resources\Asignacion_responsable_servicios_apoyoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Asignacion_responsable_servicios_apoyoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Asignacion_responsable_servicios_apoyoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Asignacion_responsable_servicios_apoyo.js" />
+<Content Include="Scripts\Custom\Asignacion_responsable_servicios_apoyoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Asignacion_responsable_servicios_apoyo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Asignacion_responsable_servicios_apoyoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_responsable_servicios_apoyoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Asignacion_responsable_servicios_apoyoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Asignacion_responsable_servicios_apoyoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Asignacion_responsable_servicios_apoyo\_Print.cshtml" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_subareas_responsable_servicio_apoyoController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_subareas_responsable_servicio_apoyoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_subareas_responsable_servicio_apoyoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_subareas_responsable_servicio_apoyoMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_subareas_responsable_servicio_apoyo\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_subareas_responsable_servicio_apoyo\AddDetalle_subareas_responsable_servicio_apoyo.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_subareas_responsable_servicio_apoyo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_subareas_responsable_servicio_apoyo\Detalle_subareas_responsable_servicio_apoyoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_subareas_responsable_servicio_apoyo\IDetalle_subareas_responsable_servicio_apoyoApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_subareas_responsable_servicio_apoyo.cs" />
+<Content Include="Scripts\Custom\Detalle_subareas_responsable_servicio_apoyoGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_subareas_responsable_servicio_apoyoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_subareas_responsable_servicio_apoyoResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_subareas_responsable_servicio_apoyoResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_subareas_responsable_servicio_apoyo.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_subareas_responsable_servicio_apoyoIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_subareas_responsable_servicio_apoyoCreateRules.js" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -16797,6 +16911,120 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1976,6 +1976,24 @@ using Spartane.Web.Areas.WebApiConsumer.SubArea_de_Servicios_de_Apoyo;
 using Spartane.Services.Tipo_de_Asignacion_de_Apoyo;
 using Spartane.Core.Domain.Tipo_de_Asignacion_de_Apoyo;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Asignacion_de_Apoyo;
+using Spartane.Services.Estatus_de_Resolucion_de_AT;
+using Spartane.Core.Domain.Estatus_de_Resolucion_de_AT;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_de_Resolucion_de_AT;
+using Spartane.Services.Resolucion_AT;
+using Spartane.Core.Domain.Resolucion_AT;
+using Spartane.Web.Areas.WebApiConsumer.Resolucion_AT;
+using Spartane.Services.Configuracion_de_Servicios_de_Apoyo;
+using Spartane.Core.Domain.Configuracion_de_Servicios_de_Apoyo;
+using Spartane.Web.Areas.WebApiConsumer.Configuracion_de_Servicios_de_Apoyo;
+using Spartane.Services.Detalle_Solicitud_Disponibles_Configuracion;
+using Spartane.Core.Domain.Detalle_Solicitud_Disponibles_Configuracion;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Solicitud_Disponibles_Configuracion;
+using Spartane.Services.Asignacion_responsable_servicios_apoyo;
+using Spartane.Core.Domain.Asignacion_responsable_servicios_apoyo;
+using Spartane.Web.Areas.WebApiConsumer.Asignacion_responsable_servicios_apoyo;
+using Spartane.Services.Detalle_subareas_responsable_servicio_apoyo;
+using Spartane.Core.Domain.Detalle_subareas_responsable_servicio_apoyo;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_subareas_responsable_servicio_apoyo;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3416,6 +3434,18 @@ builder.RegisterType<SubArea_de_Servicios_de_ApoyoService>().As<ISubArea_de_Serv
 builder.RegisterType<SubArea_de_Servicios_de_ApoyoApiConsumer>().As<ISubArea_de_Servicios_de_ApoyoApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Tipo_de_Asignacion_de_ApoyoService>().As<ITipo_de_Asignacion_de_ApoyoService>().InstancePerLifetimeScope();
 builder.RegisterType<Tipo_de_Asignacion_de_ApoyoApiConsumer>().As<ITipo_de_Asignacion_de_ApoyoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_Resolucion_de_ATService>().As<IEstatus_de_Resolucion_de_ATService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_Resolucion_de_ATApiConsumer>().As<IEstatus_de_Resolucion_de_ATApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Resolucion_ATService>().As<IResolucion_ATService>().InstancePerLifetimeScope();
+builder.RegisterType<Resolucion_ATApiConsumer>().As<IResolucion_ATApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Configuracion_de_Servicios_de_ApoyoService>().As<IConfiguracion_de_Servicios_de_ApoyoService>().InstancePerLifetimeScope();
+builder.RegisterType<Configuracion_de_Servicios_de_ApoyoApiConsumer>().As<IConfiguracion_de_Servicios_de_ApoyoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Solicitud_Disponibles_ConfiguracionService>().As<IDetalle_Solicitud_Disponibles_ConfiguracionService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Solicitud_Disponibles_ConfiguracionApiConsumer>().As<IDetalle_Solicitud_Disponibles_ConfiguracionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Asignacion_responsable_servicios_apoyoService>().As<IAsignacion_responsable_servicios_apoyoService>().InstancePerLifetimeScope();
+builder.RegisterType<Asignacion_responsable_servicios_apoyoApiConsumer>().As<IAsignacion_responsable_servicios_apoyoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_subareas_responsable_servicio_apoyoService>().As<IDetalle_subareas_responsable_servicio_apoyoService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_subareas_responsable_servicio_apoyoApiConsumer>().As<IDetalle_subareas_responsable_servicio_apoyoApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3596,6 +3626,20 @@ builder.RegisterType<Tipo_de_Asignacion_de_ApoyoApiConsumer>().As<ITipo_de_Asign
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

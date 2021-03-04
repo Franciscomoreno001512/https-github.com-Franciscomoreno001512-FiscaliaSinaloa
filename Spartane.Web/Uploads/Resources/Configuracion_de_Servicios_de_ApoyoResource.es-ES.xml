@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Configuracion_de_Servicios_de_Apoyo" value="Configuración de Servicios de Apoyo"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Region" value="Región"></resource>
+  <resource culture="es-es" name="Area" value="Área"></resource>
+  <resource culture="es-es" name="SubArea" value="SubÁrea"></resource>
+  <resource culture="es-es" name="Acreditada" value="Acreditada"></resource>
+  <resource culture="es-es" name="Centralizada" value="Centralizada"></resource>
+  <resource culture="es-es" name="Solicitudes_Disponibles" value="Solicitudes Disponibles"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

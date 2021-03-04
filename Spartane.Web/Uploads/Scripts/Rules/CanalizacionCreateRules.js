@@ -565,6 +565,13 @@ if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTabl
 }
 //BusinessRuleId:3570, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+//BusinessRuleId:4143, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { EvaluaQuery(" EXEC usp_GeneraResolucionAT_AlCanalizar GLOBAL[KeyValueInserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:4143, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

@@ -193,26 +193,11 @@ if( EvaluaQuery("select Canalizado from Detalle_Resumen_Denuncia where Clave = F
 
 
 
-//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- $('#divGenerar').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Generar' + rowIndex));$('#divNumero_Generado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Generado' + rowIndex));$('#divNumero_de_Oficio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex)); DisabledControl($("#" + nameOfTable + "Generar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Generar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_Generado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Generado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_de_Oficio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));}
-
-}
-//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- $('#divGenerar').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Generar' + rowIndex));$('#divNumero_Generado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Generado' + rowIndex));$('#divNumero_de_Oficio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex)); DisabledControl($("#" + nameOfTable + "Generar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Generar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_Generado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Generado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_de_Oficio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));}
-
-}
-//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- $('#divGenerar').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Generar' + rowIndex));$('#divNumero_Generado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Generado' + rowIndex));$('#divNumero_de_Oficio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex)); DisabledControl($("#" + nameOfTable + "Generar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Generar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_Generado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Generado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_de_Oficio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));}
-
-}
-//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
 
 //BusinessRuleId:4126, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -301,6 +286,27 @@ if(operation == 'New'){
 }
 //BusinessRuleId:3018, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ DisabledControl($("#" + nameOfTable + "Generar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Generar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_Generado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Generado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_de_Oficio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));}
+
+}
+//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Generar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Generar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_Generado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Generado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_de_Oficio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));}
+
+}
+//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ DisabledControl($("#" + nameOfTable + "Generar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Generar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_Generado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Generado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_de_Oficio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Oficio' + rowIndex));}
+
+}
+//BusinessRuleId:4124, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -323,13 +329,7 @@ function EjecutarValidacionesAntesDeGuardar(){
 
 
 
-//BusinessRuleId:2971, Attribute:2, Operation:Object, Event:BEFORESAVING
-if(operation == 'New'){
-if( EvaluaQuery("EXEC uspGetPuedeGenerarExpediente FLDD[lblClave]",rowIndex, nameOfTable)==TryParseInt('0', '0') ) { alert(DecodifyText(' Datos mínimos para generar Número de Expediente no validos!', rowIndex, nameOfTable));
-result=false;} else {}
-
-}
-//BusinessRuleId:2971, Attribute:2, Operation:Object, Event:BEFORESAVING
+
 
 //BusinessRuleId:3014, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'New'){
@@ -361,6 +361,14 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:4136, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:4140, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Probable_Responsable' + rowIndex),nameOfTable,rowIndex)==TryParseInt('null', 'null') || GetValueByControlType($('#' + nameOfTable + 'Delito' + rowIndex),nameOfTable,rowIndex)==TryParseInt('null', 'null') || GetValueByControlType($('#' + nameOfTable + 'Victima' + rowIndex),nameOfTable,rowIndex)==TryParseInt('null', 'null') || GetValueByControlType($('#' + nameOfTable + 'Relacion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('null', 'null') || GetValueByControlType($('#' + nameOfTable + 'Hechos' + rowIndex),nameOfTable,rowIndex)==TryParseInt('null', 'null') ) { alert(DecodifyText('Datos mínimos para generar Número de Expediente no validos', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:4140, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;

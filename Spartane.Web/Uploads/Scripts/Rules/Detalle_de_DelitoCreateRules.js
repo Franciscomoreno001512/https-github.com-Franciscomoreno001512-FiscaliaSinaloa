@@ -1333,6 +1333,15 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:4119, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+//BusinessRuleId:1732, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('2', '2') ) { EvaluaQuery("update Detalle_de_Delito"
++" 	set Expediente_Inicial= GLOBAL[SpartanOperationId]"
++" 	where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:1732, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

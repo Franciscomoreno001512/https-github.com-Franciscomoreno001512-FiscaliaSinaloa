@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Solicitud_Disponibles_Configuracion" value="Detalle Solicitud Disponibles Configuración"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Documento" value="Documento"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

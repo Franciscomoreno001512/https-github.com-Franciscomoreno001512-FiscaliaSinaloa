@@ -204,7 +204,18 @@
                                     <th>@Resources.ResolucionResources.Resolucion_Padre_para_Autorizacion</th>
                                     <th>@Resources.ResolucionResources.Generar_Judicializacion</th>
                                     <th>@Resources.ResolucionResources.ClaveFiscalia</th>
+                                    <th>@Resources.ResolucionResources.Resolucion_AT</th>
+                                    <th>@Resources.ResolucionResources.Resolucion_MP</th>
                                     <th>@Resources.ResolucionResources.Aplica_para_Adolescentes</th>
+                                    <th>@Resources.ResolucionResources.Aplica_para_Denuncia</th>
+                                    <th>@Resources.ResolucionResources.Aplica_para_Carpeta_de_Investigacion</th>
+                                    <th>@Resources.ResolucionResources.Abreviacion</th>
+                                    <th>@Resources.ResolucionResources.Vigencia</th>
+                                    <th>@Resources.ResolucionResources.MostrarDependencia</th>
+                                    <th>@Resources.ResolucionResources.Conteo</th>
+                                    <th>@Resources.ResolucionResources.Estatus</th>
+                                    <th>@Resources.ResolucionResources.Estatus_esp</th>
+                                    <th>@Resources.ResolucionResources.Mostrar_Estadistico</th>
 
                                 </tr>
                             </thead>
@@ -218,6 +229,17 @@
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
 
                                 </tr>
                             </tfoot>
@@ -339,7 +361,18 @@
         var Resolucion_Padre_para_Autorizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Generar_Judicializacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var ClaveFiscalia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resolucion_AT = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resolucion_MP = $($('table td .filterData.form-control:input')[counter++]).val();
         var Aplica_para_Adolescentes = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Aplica_para_Denuncia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Aplica_para_Carpeta_de_Investigacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Abreviacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Vigencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var MostrarDependencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Conteo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus_esp =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Mostrar_Estadistico =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -348,7 +381,18 @@
         + "&Resolucion_Padre_para_Autorizacion=" + Resolucion_Padre_para_Autorizacion
         + "&Generar_Judicializacion=" + Generar_Judicializacion
         + "&ClaveFiscalia=" + ClaveFiscalia
+        + "&Resolucion_AT=" + Resolucion_AT
+        + "&Resolucion_MP=" + Resolucion_MP
         + "&Aplica_para_Adolescentes=" + Aplica_para_Adolescentes
+        + "&Aplica_para_Denuncia=" + Aplica_para_Denuncia
+        + "&Aplica_para_Carpeta_de_Investigacion=" + Aplica_para_Carpeta_de_Investigacion
+        + "&Abreviacion=" + Abreviacion
+        + "&Vigencia=" + Vigencia
+        + "&MostrarDependencia=" + MostrarDependencia
+        + "&Conteo=" + Conteo
+        + "&Estatus=" + Estatus
+        + "&Estatus_esp=" + Estatus_esp
+        + "&Mostrar_Estadistico=" + Mostrar_Estadistico
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Resolucion/Export?format=")" + format
@@ -368,7 +412,18 @@
         var Resolucion_Padre_para_Autorizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Generar_Judicializacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var ClaveFiscalia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resolucion_AT = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resolucion_MP = $($('table td .filterData.form-control:input')[counter++]).val();
         var Aplica_para_Adolescentes = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Aplica_para_Denuncia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Aplica_para_Carpeta_de_Investigacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Abreviacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Vigencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var MostrarDependencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Conteo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus_esp =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Mostrar_Estadistico =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -377,7 +432,18 @@
         + "&Resolucion_Padre_para_Autorizacion=" + Resolucion_Padre_para_Autorizacion
         + "&Generar_Judicializacion=" + Generar_Judicializacion
         + "&ClaveFiscalia=" + ClaveFiscalia
+        + "&Resolucion_AT=" + Resolucion_AT
+        + "&Resolucion_MP=" + Resolucion_MP
         + "&Aplica_para_Adolescentes=" + Aplica_para_Adolescentes
+        + "&Aplica_para_Denuncia=" + Aplica_para_Denuncia
+        + "&Aplica_para_Carpeta_de_Investigacion=" + Aplica_para_Carpeta_de_Investigacion
+        + "&Abreviacion=" + Abreviacion
+        + "&Vigencia=" + Vigencia
+        + "&MostrarDependencia=" + MostrarDependencia
+        + "&Conteo=" + Conteo
+        + "&Estatus=" + Estatus
+        + "&Estatus_esp=" + Estatus_esp
+        + "&Mostrar_Estadistico=" + Mostrar_Estadistico
 ;
 
     }
@@ -558,11 +624,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -631,7 +697,18 @@
                 ,{ "data": "Resolucion_Padre_para_AutorizacionDescripcion", "orderable": true, "name": "Resolucion_Padre_para_AutorizacionDescripcion" }
                 ,{ "data": "Generar_Judicializacion", "orderable": true, "name": "Generar_Judicializacion","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "ClaveFiscalia", "orderable": true, "name": "ClaveFiscalia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Resolucion_AT", "orderable": true, "name": "Resolucion_AT","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Resolucion_MP", "orderable": true, "name": "Resolucion_MP","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Aplica_para_Adolescentes", "orderable": true, "name": "Aplica_para_Adolescentes","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Aplica_para_Denuncia", "orderable": true, "name": "Aplica_para_Denuncia","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Aplica_para_Carpeta_de_Investigacion", "orderable": true, "name": "Aplica_para_Carpeta_de_Investigacion","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Abreviacion", "orderable": true, "name": "Abreviacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Vigencia", "orderable": true, "name": "Vigencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "MostrarDependencia", "orderable": true, "name": "MostrarDependencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Conteo","className": "dt-right", "orderable": true, "name": "Conteo" }
+                ,{ "data": "Estatus","className": "dt-right", "orderable": true, "name": "Estatus" }
+                ,{ "data": "Estatus_esp","className": "dt-right", "orderable": true, "name": "Estatus_esp" }
+                ,{ "data": "Mostrar_Estadistico","className": "dt-right", "orderable": true, "name": "Mostrar_Estadistico" }
 
             ],
 			"colReorder": true,

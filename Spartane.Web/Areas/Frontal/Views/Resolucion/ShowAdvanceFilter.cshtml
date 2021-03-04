@@ -115,6 +115,74 @@
                     @Html.DropDownListFor(m => m.ClaveFiscaliaFilter, filters, new { @class = "form-control", @id = "ddlClaveFiscaliaFilter" })
                     @Html.TextBoxFor(m => m.ClaveFiscalia, new { @class = "form-control", @type = "text", @id = "txtClaveFiscalia" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ResolucionResources.Abreviacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AbreviacionFilter, filters, new { @class = "form-control", @id = "ddlAbreviacionFilter" })
+                    @Html.TextBoxFor(m => m.Abreviacion, new { @class = "form-control", @type = "text", @id = "txtAbreviacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ResolucionResources.Vigencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.VigenciaFilter, filters, new { @class = "form-control", @id = "ddlVigenciaFilter" })
+                    @Html.TextBoxFor(m => m.Vigencia, new { @class = "form-control", @type = "text", @id = "txtVigencia" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ResolucionResources.MostrarDependencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.MostrarDependenciaFilter, filters, new { @class = "form-control", @id = "ddlMostrarDependenciaFilter" })
+                    @Html.TextBoxFor(m => m.MostrarDependencia, new { @class = "form-control", @type = "text", @id = "txtMostrarDependencia" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ResolucionResources.Conteo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromConteo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromConteo" })
+                    @Html.ValidationMessageFor(m => m.FromConteo)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToConteo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToConteo", @data_min = "txtAdvanceFromConteo" })
+                    @Html.ValidationMessageFor(m => m.ToConteo)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ResolucionResources.Estatus</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromEstatus, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromEstatus" })
+                    @Html.ValidationMessageFor(m => m.FromEstatus)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToEstatus, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToEstatus", @data_min = "txtAdvanceFromEstatus" })
+                    @Html.ValidationMessageFor(m => m.ToEstatus)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ResolucionResources.Estatus_esp</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromEstatus_esp, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromEstatus_esp" })
+                    @Html.ValidationMessageFor(m => m.FromEstatus_esp)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToEstatus_esp, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToEstatus_esp", @data_min = "txtAdvanceFromEstatus_esp" })
+                    @Html.ValidationMessageFor(m => m.ToEstatus_esp)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ResolucionResources.Mostrar_Estadistico</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromMostrar_Estadistico, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromMostrar_Estadistico" })
+                    @Html.ValidationMessageFor(m => m.FromMostrar_Estadistico)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToMostrar_Estadistico, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToMostrar_Estadistico", @data_min = "txtAdvanceFromMostrar_Estadistico" })
+                    @Html.ValidationMessageFor(m => m.ToMostrar_Estadistico)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Resolucion/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -176,9 +244,60 @@
             advanceSearch.ResolucionClaveFiscalia = $("#txtAdvanceClaveFiscalia").val();
             advanceSearch.ResolucionClaveFiscaliaSearchType = $("#ddlAdvanceClaveFiscaliaFilter").val();
         }
+        if ($("#ddlAdvanceResolucion_AT").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionResolucion_AT = $("#ddlAdvanceResolucion_AT").val();
+        }
+        if ($("#ddlAdvanceResolucion_MP").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionResolucion_MP = $("#ddlAdvanceResolucion_MP").val();
+        }
         if ($("#ddlAdvanceAplica_para_Adolescentes").val() != "") {
             hasParameter = true;
             advanceSearch.ResolucionAplica_para_Adolescentes = $("#ddlAdvanceAplica_para_Adolescentes").val();
+        }
+        if ($("#ddlAdvanceAplica_para_Denuncia").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionAplica_para_Denuncia = $("#ddlAdvanceAplica_para_Denuncia").val();
+        }
+        if ($("#ddlAdvanceAplica_para_Carpeta_de_Investigacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionAplica_para_Carpeta_de_Investigacion = $("#ddlAdvanceAplica_para_Carpeta_de_Investigacion").val();
+        }
+        if ($("#txtAdvanceAbreviacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionAbreviacion = $("#txtAdvanceAbreviacion").val();
+            advanceSearch.ResolucionAbreviacionSearchType = $("#ddlAdvanceAbreviacionFilter").val();
+        }
+        if ($("#txtAdvanceVigencia").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionVigencia = $("#txtAdvanceVigencia").val();
+            advanceSearch.ResolucionVigenciaSearchType = $("#ddlAdvanceVigenciaFilter").val();
+        }
+        if ($("#txtAdvanceMostrarDependencia").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionMostrarDependencia = $("#txtAdvanceMostrarDependencia").val();
+            advanceSearch.ResolucionMostrarDependenciaSearchType = $("#ddlAdvanceMostrarDependenciaFilter").val();
+        }
+        if ($("#txtAdvanceFromConteo").val() != "" || $("#txtAdvanceToConteo").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionConteoFrom = $("#txtAdvanceFromConteo").val();
+            advanceSearch.ResolucionConteoTo = $("#txtAdvanceToConteo").val();
+        }
+        if ($("#txtAdvanceFromEstatus").val() != "" || $("#txtAdvanceToEstatus").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionEstatusFrom = $("#txtAdvanceFromEstatus").val();
+            advanceSearch.ResolucionEstatusTo = $("#txtAdvanceToEstatus").val();
+        }
+        if ($("#txtAdvanceFromEstatus_esp").val() != "" || $("#txtAdvanceToEstatus_esp").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionEstatus_espFrom = $("#txtAdvanceFromEstatus_esp").val();
+            advanceSearch.ResolucionEstatus_espTo = $("#txtAdvanceToEstatus_esp").val();
+        }
+        if ($("#txtAdvanceFromMostrar_Estadistico").val() != "" || $("#txtAdvanceToMostrar_Estadistico").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionMostrar_EstadisticoFrom = $("#txtAdvanceFromMostrar_Estadistico").val();
+            advanceSearch.ResolucionMostrar_EstadisticoTo = $("#txtAdvanceToMostrar_Estadistico").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

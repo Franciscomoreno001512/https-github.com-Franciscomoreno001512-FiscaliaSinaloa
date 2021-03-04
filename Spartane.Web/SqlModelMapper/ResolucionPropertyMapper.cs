@@ -28,8 +28,30 @@ namespace Spartane.Web.SqlModelMapper
                     return "Resolucion.Generar_Judicializacion";
                 case "ClaveFiscalia":
                     return "Resolucion.ClaveFiscalia";
+                case "Resolucion_AT":
+                    return "Resolucion.Resolucion_AT";
+                case "Resolucion_MP":
+                    return "Resolucion.Resolucion_MP";
                 case "Aplica_para_Adolescentes":
                     return "Resolucion.Aplica_para_Adolescentes";
+                case "Aplica_para_Denuncia":
+                    return "Resolucion.Aplica_para_Denuncia";
+                case "Aplica_para_Carpeta_de_Investigacion":
+                    return "Resolucion.Aplica_para_Carpeta_de_Investigacion";
+                case "Abreviacion":
+                    return "Resolucion.Abreviacion";
+                case "Vigencia":
+                    return "Resolucion.Vigencia";
+                case "MostrarDependencia":
+                    return "Resolucion.MostrarDependencia";
+                case "Conteo":
+                    return "Resolucion.Conteo";
+                case "Estatus":
+                    return "Resolucion.Estatus";
+                case "Estatus_esp":
+                    return "Resolucion.Estatus_esp";
+                case "Mostrar_Estadistico":
+                    return "Resolucion.Mostrar_Estadistico";
 
                 default:
                     return propertyName;
@@ -51,7 +73,23 @@ namespace Spartane.Web.SqlModelMapper
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
+            if (columnName == "Resolucion_AT")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Resolucion_MP")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
             if (columnName == "Aplica_para_Adolescentes")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Aplica_para_Denuncia")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Aplica_para_Carpeta_de_Investigacion")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
