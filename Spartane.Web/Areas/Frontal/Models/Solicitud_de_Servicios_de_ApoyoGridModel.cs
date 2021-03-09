@@ -8,17 +8,13 @@ namespace Spartane.Web.Areas.Frontal.Models
 {
     public class Solicitud_de_Servicios_de_ApoyoGridModel
     {
-        public int Clave { get; set; }
-        public int? Tipo_de_Servicio { get; set; }
-        public string Tipo_de_ServicioServicio { get; set; }
-        public string Responsable { get; set; }
-        public int? Clave_MR { get; set; }
-        public int? Compareciente { get; set; }
-        public string ComparecienteNombre_Completo { get; set; }
+        public int Folio { get; set; }
         public string Fecha_de_Solicitud { get; set; }
         public string Hora_de_Solicitud { get; set; }
         public int? Usuario_que_Solicita { get; set; }
         public string Usuario_que_SolicitaName { get; set; }
+        public int? Region { get; set; }
+        public string RegionDescripcion { get; set; }
         public int? Origen { get; set; }
         public string OrigenDescripcion { get; set; }
         public int? Numero_de_Expediente_AT { get; set; }

@@ -14,18 +14,8 @@ namespace Spartane.Web.SqlModelMapper
         {
             switch (propertyName)
             {
-                case "Clave":
-                    return "Solicitud_de_Servicios_de_Apoyo.Clave";
-                case "Tipo_de_Servicio[Servicio]":
-                case "Tipo_de_ServicioServicio":
-                    return "Tipo_de_Servicio_de_Apoyo.Servicio";
-                case "Responsable":
-                    return "Solicitud_de_Servicios_de_Apoyo.Responsable";
-                case "Clave_MR":
-                    return "Solicitud_de_Servicios_de_Apoyo.Clave_MR";
-                case "Compareciente[Nombre_Completo]":
-                case "ComparecienteNombre_Completo":
-                    return "Compareciente.Nombre_Completo";
+                case "Folio":
+                    return "Solicitud_de_Servicios_de_Apoyo.Folio";
                 case "Fecha_de_Solicitud":
                     return "Solicitud_de_Servicios_de_Apoyo.Fecha_de_Solicitud";
                 case "Hora_de_Solicitud":
@@ -33,6 +23,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Usuario_que_Solicita[Name]":
                 case "Usuario_que_SolicitaName":
                     return "Spartan_User.Name";
+                case "Region[Descripcion]":
+                case "RegionDescripcion":
+                    return "Region.Descripcion";
                 case "Origen[Descripcion]":
                 case "OrigenDescripcion":
                     return "Origen_de_Invitacion.Descripcion";

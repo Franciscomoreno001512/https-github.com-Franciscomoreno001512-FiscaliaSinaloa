@@ -8,6 +8,11 @@ $(document).ready(function () {
 			$("#Detalle_de_RelacionesGuardar").remove();
 		} 
 	} 
+	if(operation == 'Update'){
+        if( TryParseInt('107', '107')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ){
+            $("#Detalle_de_RelacionesGuardar").hide();
+        }
+    }
 
 
 $("#Detalle_de_RelacionesGuardarYNuevo").remove();
@@ -497,6 +502,14 @@ if( EvaluaQuery("select Canalizado from Detalle_de_Relaciones where Clave = FLDD
 }
 //BusinessRuleId:4110, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:4379, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Clave" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));}DisabledControl($("#" + nameOfTable + "Involucrado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}DisabledControl($("#" + nameOfTable + "Probable_Responsable" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Probable_Responsable' + rowIndex));}DisabledControl($("#" + nameOfTable + "Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Es_Familiar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Es_Familiar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Parentesco" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Parentesco' + rowIndex));}DisabledControl($("#" + nameOfTable + "Modulo_Atencion_Inicial" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Atencion_Inicial' + rowIndex));}DisabledControl($("#" + nameOfTable + "Expediente_MP" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));}DisabledControl($("#" + nameOfTable + "Descripcion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));}
+
+
+}
+//BusinessRuleId:4379, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -592,14 +605,16 @@ if(operation == 'New'){
 //BusinessRuleId:4121, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
  EvaluaQuery(" exec uspActualizadatosGeneracionExpediente GLOBAL[SpartanOperationId]", rowIndex, nameOfTable);
-
+
+
 }
 //BusinessRuleId:4121, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:4121, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
  EvaluaQuery(" exec uspActualizadatosGeneracionExpediente GLOBAL[SpartanOperationId]", rowIndex, nameOfTable);
-
+
+
 }
 //BusinessRuleId:4121, Attribute:2, Operation:Object, Event:AFTERSAVING
 

@@ -4,6 +4,7 @@
 @using Spartane.Core.Domain.Dilgencia_MASC;
 @using Spartane.Core.Domain.Origen_de_Invitacion;
 @using Spartane.Core.Domain.Tipo_de_Documento;
+@using Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -204,6 +205,7 @@
                                     <th>@Resources.DocumentoResources.Diligencia</th>
                                     <th>@Resources.DocumentoResources.Origen</th>
                                     <th>@Resources.DocumentoResources.Tipo_de_Documento</th>
+                                    <th>@Resources.DocumentoResources.SubArea_de_Servicios_de_Apoyo</th>
                                     <th>@Resources.DocumentoResources.idFormato</th>
                                     <th>@Resources.DocumentoResources.Requerido</th>
                                     <th>@Resources.DocumentoResources.Solicitante</th>
@@ -217,6 +219,7 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -347,6 +350,7 @@
         var Diligencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Documento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var SubArea_de_Servicios_de_Apoyo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var idFormato =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Requerido = $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitante = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -360,6 +364,7 @@
         + "&Diligencia=" + Diligencia
         + "&Origen=" + Origen
         + "&Tipo_de_Documento=" + Tipo_de_Documento
+        + "&SubArea_de_Servicios_de_Apoyo=" + SubArea_de_Servicios_de_Apoyo
         + "&idFormato=" + idFormato
         + "&Requerido=" + Requerido
         + "&Solicitante=" + Solicitante
@@ -384,6 +389,7 @@
         var Diligencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Documento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var SubArea_de_Servicios_de_Apoyo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var idFormato =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Requerido = $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitante = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -397,6 +403,7 @@
         + "&Diligencia=" + Diligencia
         + "&Origen=" + Origen
         + "&Tipo_de_Documento=" + Tipo_de_Documento
+        + "&SubArea_de_Servicios_de_Apoyo=" + SubArea_de_Servicios_de_Apoyo
         + "&idFormato=" + idFormato
         + "&Requerido=" + Requerido
         + "&Solicitante=" + Solicitante
@@ -583,11 +590,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -655,6 +662,7 @@
                 ,{ "data": "DiligenciaDescripcion", "orderable": true, "name": "DiligenciaDescripcion" }
                 ,{ "data": "OrigenDescripcion", "orderable": true, "name": "OrigenDescripcion" }
                 ,{ "data": "Tipo_de_DocumentoDescripcion", "orderable": true, "name": "Tipo_de_DocumentoDescripcion" }
+                ,{ "data": "SubArea_de_Servicios_de_ApoyoDescripcion", "orderable": true, "name": "SubArea_de_Servicios_de_ApoyoDescripcion" }
                 ,{ "data": "idFormato","className": "dt-right", "orderable": true, "name": "idFormato" }
                 ,{ "data": "Requerido", "orderable": true, "name": "Requerido","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Solicitante", "orderable": true, "name": "Solicitante","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}

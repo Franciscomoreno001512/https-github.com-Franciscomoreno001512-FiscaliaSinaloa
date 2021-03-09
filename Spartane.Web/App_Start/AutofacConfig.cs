@@ -9536,3 +9536,27 @@ builder.RegisterType<Detalle_subareas_responsable_servicio_apoyoApiConsumer>().A
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

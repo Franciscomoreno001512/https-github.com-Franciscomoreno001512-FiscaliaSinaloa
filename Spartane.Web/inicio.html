@@ -101,10 +101,12 @@
     <script type="text/javascript">
 
         function Finalizar() {       
+            debugger;
 			localStorage.setItem("OrigenPC", "0");				
-            window.location.href = "Account/Login";
+            window.location.href = "Account/Login?returnUrl='LoginPC'";
         }
-		function DenunciaAnonima(){
+        function DenunciaAnonima() {
+            debugger;
 			 $.ajax({
                     url: 'Account/ValidateLogin3',
                     type: 'POST',

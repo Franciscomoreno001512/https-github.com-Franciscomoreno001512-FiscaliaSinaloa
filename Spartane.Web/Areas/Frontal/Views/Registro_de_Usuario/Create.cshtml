@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading portal-c">
 
     <div class="row">
         <div class="col-lg-10">
@@ -134,7 +134,11 @@
                  </div>
 			<div class="tabs-container">
                         	<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Registro_de_UsuarioResources.TabDatos_Generales</a></li>
+<li class="active" data-fase="0"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Registro_de_UsuarioResources.TabDatos_Generales</a></li>
+<li class="" data-fase="1"><a data-toggle="tab" href="#tabDatos_para_Iniciar_Sesion"> @Resources.Registro_de_UsuarioResources.TabDatos_para_Iniciar_Sesion</a></li>
+<li class="" data-fase="2"><a data-toggle="tab" href="#tabDatos_para_validar_tu_cuenta"> @Resources.Registro_de_UsuarioResources.TabDatos_para_validar_tu_cuenta</a></li>
+<li class="" data-fase="3"><a data-toggle="tab" href="#tabValidacion">Verificación</a></li>
+<li class="" data-fase="4"><a data-toggle="tab" href="#tabLogica"> @Resources.Registro_de_UsuarioResources.TabLogica</a></li>
 
                         	</ul>
 	                	<div class="tab-content">
@@ -183,72 +187,124 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Nombre_Completo" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabDatos_para_Iniciar_Sesion" class="tab-pane">
+                                <div class="panel-body">
+								<label>Es necesario introducir una contraseña segura, mínimo con una letra minúscula, una letra mayúscula, un número y un carácter especial.</label>
                             <div class="form-group" id="divUsuario">
                                 <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Usuario</label>
                                 <div class="col-sm-8" data-field-id="Usuario" data-attribute="269006" data-field-name="@Resources.Registro_de_UsuarioResources.Usuario">
-                                    <input class="form-control Datos_Generales" id="Usuario" name="Usuario" type="text" value="@Model.Usuario">
+                                    <input class="form-control Datos_para_Iniciar_Sesion" id="Usuario" name="Usuario" type="text" value="@Model.Usuario">
                                     @*<span class="field-validation-valid" data-valmsg-for="Usuario" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divContrasena">
                                 <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Contrasena</label>
                                 <div class="col-sm-8" data-field-id="Contrasena" data-attribute="269007" data-field-name="@Resources.Registro_de_UsuarioResources.Contrasena">
-                                    <input class="form-control Datos_Generales" id="Contrasena" name="Contrasena" type="text" value="@Model.Contrasena">
+                                    <input class="form-control Datos_para_Iniciar_Sesion" maxlength="10" id="Contrasena" name="Contrasena" type="password" value="@Model.Contrasena">
                                     @*<span class="field-validation-valid" data-valmsg-for="Contrasena" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divConfirmar_Contrasena">
                                 <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Confirmar_Contrasena</label>
                                 <div class="col-sm-8" data-field-id="Confirmar_Contrasena" data-attribute="269008" data-field-name="@Resources.Registro_de_UsuarioResources.Confirmar_Contrasena">
-                                    <input class="form-control Datos_Generales" id="Confirmar_Contrasena" name="Confirmar_Contrasena" type="text" value="@Model.Confirmar_Contrasena">
+                                    <input class="form-control Datos_para_Iniciar_Sesion" maxlength="10" id="Confirmar_Contrasena" name="Confirmar_Contrasena" type="password" value="@Model.Confirmar_Contrasena">
                                     @*<span class="field-validation-valid" data-valmsg-for="Confirmar_Contrasena" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-                            <div class="form-group" id="divCorreo">
-                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Correo</label>
-                                <div class="col-sm-8" data-field-id="Correo" data-attribute="269009" data-field-name="@Resources.Registro_de_UsuarioResources.Correo">
-                                    <input class="form-control Datos_Generales" id="Correo" name="Correo" type="text" value="@Model.Correo">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Correo" data-valmsg-replace="true"></span>*@
+                            </div>
+                                </div>
+
+
+                            <div id="tabDatos_para_validar_tu_cuenta" class="tab-pane">
+                                <div class="panel-body">
+                                    <label>Es necesario que para efectos de autenticación proporciones tu correo electrónico o tu teléfono celular, o ambos.</label>
+                                    <div class="form-group" id="divCorreo">
+                                        <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Correo</label>
+                                        <div class="col-sm-8" data-field-id="Correo" data-attribute="269009"
+                                            data-field-name="@Resources.Registro_de_UsuarioResources.Correo">
+                                            <input class="form-control Datos_para_validar_tu_cuenta" id="Correo" name="Correo" type="text"
+                                                value="@Model.Correo">
+                                            @*<span class="field-validation-valid" data-valmsg-for="Correo" data-valmsg-replace="true"></span>*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="divCelular">
+                                        <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Celular</label>
+                                        <div class="col-sm-8" data-field-id="Celular" data-attribute="269010"
+                                            data-field-name="@Resources.Registro_de_UsuarioResources.Celular">
+                                            <input class="form-control Datos_para_validar_tu_cuenta" id="Celular" name="Celular" type="text"
+                                                value="@Model.Celular">
+                                            @*<span class="field-validation-valid" data-valmsg-for="Celular" data-valmsg-replace="true"></span>*@
+                                        </div>
+                                    </div>
+                                    <div class="checkbox">
+                                        <input id="idusopersonal" type="checkbox">
+                                        <label>Confirmo que el número celular es de uso personal y no de un tercero.</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <input id="idterminos" type="checkbox">
+                                        <label> Confirmo que he leído y entiendo <a href="#">los términos y condiciones  de uso del sitio</a> y <a href="#">el aviso de privacidad de datos</a>.</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="divCelular">
-                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Celular</label>
-                                <div class="col-sm-8" data-field-id="Celular" data-attribute="269010" data-field-name="@Resources.Registro_de_UsuarioResources.Celular">
-                                    <input class="form-control Datos_Generales" id="Celular" name="Celular" type="text" value="@Model.Celular">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Celular" data-valmsg-replace="true"></span>*@
+
+                            <div id="tabValidacion" class="tab-pane">
+                                <div class="panel-body">
+                                <label>Para poder verificar su cuenta por favor introduzca el código de verificación de 9 dígitos que le enviamos por SMS a su teléfono y/o a su cuenta de correo electrónico.</label>
+                                    <div class="form-group" id="divCodigo_Verificacion_Correo">
+                                        <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Correo</label>
+                                            <div class="col-sm-8" data-field-id="Codigo_Verificacion_Correo" data-attribute="269011"
+                                            data-field-name="@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Correo">
+                                                <input class="form-control Validacion" id="Codigo_Verificacion_Correo" name="Codigo_Verificacion_Correo"
+                                                type="text" value="@Model.Codigo_Verificacion_Correo">
+                                                <span>¿No recibiste el codigo? <a href="#" id="idReenviarCodigoCorreo">Reenviar Código al Correo</a>
+                                            @*<span class="field-validation-valid" data-valmsg-for="Codigo_Verificacion_Correo"
+                                                data-valmsg-replace="true"></span>*@
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="divCodigo_Verificacion_Celular">
+                                        <label
+                                            class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Celular</label>
+                                        <div class="col-sm-8" data-field-id="Codigo_Verificacion_Celular" data-attribute="269012"
+                                            data-field-name="@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Celular">
+                                            <input class="form-control Validacion" id="Codigo_Verificacion_Celular"
+                                                name="Codigo_Verificacion_Celular" type="text" value="@Model.Codigo_Verificacion_Celular">
+                                                <span>¿No recibiste el codigo? <a href="#" id="idReenviarCodigoCelular">Reenviar Código al Celular</a>
+                                            @*<span class="field-validation-valid" data-valmsg-for="Codigo_Verificacion_Celular"
+                                                data-valmsg-replace="true"></span>*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="divCodigo_Reestablecer_Contrasena">
+                                        <label
+                                            class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Codigo_Reestablecer_Contrasena</label>
+                                        <div class="col-sm-8" data-field-id="Codigo_Reestablecer_Contrasena" data-attribute="269013"
+                                            data-field-name="@Resources.Registro_de_UsuarioResources.Codigo_Reestablecer_Contrasena">
+                                            <input class="form-control Validacion" id="Codigo_Reestablecer_Contrasena"
+                                                name="Codigo_Reestablecer_Contrasena" type="text" value="@Model.Codigo_Reestablecer_Contrasena">
+                                            @*<span class="field-validation-valid" data-valmsg-for="Codigo_Reestablecer_Contrasena"
+                                                data-valmsg-replace="true"></span>*@
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="divCodigo_Verificacion_Correo">
-                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Correo</label>
-                                <div class="col-sm-8" data-field-id="Codigo_Verificacion_Correo" data-attribute="269011" data-field-name="@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Correo">
-                                    <input class="form-control Datos_Generales" id="Codigo_Verificacion_Correo" name="Codigo_Verificacion_Correo" type="text" value="@Model.Codigo_Verificacion_Correo">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Verificacion_Correo" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divCodigo_Verificacion_Celular">
-                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Celular</label>
-                                <div class="col-sm-8" data-field-id="Codigo_Verificacion_Celular" data-attribute="269012" data-field-name="@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Celular">
-                                    <input class="form-control Datos_Generales" id="Codigo_Verificacion_Celular" name="Codigo_Verificacion_Celular" type="text" value="@Model.Codigo_Verificacion_Celular">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Verificacion_Celular" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divCodigo_Reestablecer_Contrasena">
-                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Codigo_Reestablecer_Contrasena</label>
-                                <div class="col-sm-8" data-field-id="Codigo_Reestablecer_Contrasena" data-attribute="269013" data-field-name="@Resources.Registro_de_UsuarioResources.Codigo_Reestablecer_Contrasena">
-                                    <input class="form-control Datos_Generales" id="Codigo_Reestablecer_Contrasena" name="Codigo_Reestablecer_Contrasena" type="text" value="@Model.Codigo_Reestablecer_Contrasena">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Reestablecer_Contrasena" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
+
+
+                            <div id="tabLogica" class="tab-pane">
+                                <div class="panel-body">
                             <div class="form-group" id="divEl_correo_fue_Validado">
                                 <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.El_correo_fue_Validado</label>
                                 <div class="col-sm-8" data-field-id="El_correo_fue_Validado" data-attribute="269014" data-field-name="@Resources.Registro_de_UsuarioResources.El_correo_fue_Validado">
-                                    @Html.CheckBoxFor(m => m.El_correo_fue_Validado, new { @class = "i-checks Datos_Generales" })
+                                    @Html.CheckBoxFor(m => m.El_correo_fue_Validado, new { @class = "i-checks Logica" })
                                 </div>
                             </div>
                             <div class="form-group" id="divEl_Celular_fue_Validado">
                                 <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.El_Celular_fue_Validado</label>
                                 <div class="col-sm-8" data-field-id="El_Celular_fue_Validado" data-attribute="269015" data-field-name="@Resources.Registro_de_UsuarioResources.El_Celular_fue_Validado">
-                                    @Html.CheckBoxFor(m => m.El_Celular_fue_Validado, new { @class = "i-checks Datos_Generales" })
+                                    @Html.CheckBoxFor(m => m.El_Celular_fue_Validado, new { @class = "i-checks Logica" })
                                 </div>
                             </div>
                             </div>
@@ -282,8 +338,17 @@
                                 <input type="hidden" id="hdnRegistro_de_UsuarioBusinessRuleFieldName" />
                                 <input type="hidden" id="hdnRegistro_de_UsuarioBusinessRuleAttribute" />
 
-                                <input type="button" value="@Resources.Resources.Cancelar" id="Registro_de_UsuarioCancelar" name="Registro_de_UsuarioCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
-
+                                <div class="row">
+                                    <div class="col-xs-10 col-xs-offset-1">
+                                        <div class="row">
+                                            
+                                            <input type="button" value="@Resources.Resources.Cancelar" id="Registro_de_UsuarioCancelar" name="Registro_de_UsuarioCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+								            <input type="button" value="Anterior" id="Registro_de_UsuarioAnterior" class="btn btn-w-m btn-primary btn_save"  />
+								            <input type="button" value="Siguiente" id="Registro_de_UsuarioSiguiente" class="btn btn-w-m btn-primary btn_save"  />								
+								            <input type="button" value="Reenviar" id="Registro_de_UsuarioReenviar" class="btn btn-w-m btn-primary btn_save"   />		
+								        </div>
+                                    </div>
+                                </div>
                                 <button onclick="Registro_de_UsuarioGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Registro_de_UsuarioBusinessRule-form">
                                     <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
                                         <i class="fa fa-cogs fa-spin"></i>
@@ -297,9 +362,43 @@
     </div>
 </div>
 <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+<div id="divmodalaux" class="hidden" style="border: 2px solid lightgray; border-radius: 4px; z-index: 99999; position: absolute; width: 1800px; height: 1200px; background: rgba(192,192,192,0.5)!important; top: -300px; left: -300px;">
+	<div id="modalaux" style="top:400px;left:-100px;" class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">        
+					<div class="row">
+						<div class="col-4">
+							<img class="logo-fiscalia logo-modal"  src="~/Images/logotipos/fiscalia200px.png" alt="Logotipo Fiscalia Sinaloa">
+						</div>
+					</div>
 
+					<div class="row">
+						<div class="col-sm-12 b-r">
+						<h2 id="modalauxtit" class="m-t-none m-b text-capitalize">Aviso Importante</h2>
+						<p  id="modalauxtxt" class>Parrafo con infomación</p>
+					
+						<!-- DIV DE ERROR. Solo si se requiere-->
+						<div class="form-group">
+							<div id="error-old-password"></div>
+						</div>
+						<!-- FIN: DIV DE ERROR-->
+						
+						<!-- DIV DE BOTONES DE ACEPTAR Y CANCELAR. Solo si se requiere-->
+						<div style="text-align:right;" class="form-group">
+							<button id="saveaux" type="button" class="btn btn-w-m btn-primary btn_save">Aceptar</button>                      
+						</div>
+						<!-- FIN: DIV DE BOTONES DE GUARDAD/ACEPTAR Y CANCELAR-->
+
+					</div>
+				</div>            
+			</div>
+		</div>
+	</div>
+</div>
 @section Styles {
 <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+<link href="~/Content/portal-ciudadano.css" rel="stylesheet">
+
     @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
     @Styles.Render("~/plugins/dateRangeStyles")
     @Styles.Render("~/plugins/dataPickerStyles")
@@ -382,6 +481,14 @@
 		var nameAttribute = '@ViewBag.nameAttribute';
 		var Tab_Datos_Generales = true;
 
+		var Tab_Datos_para_Iniciar_Sesion = true;
+
+		var Tab_Datos_para_validar_tu_cuenta = true;
+
+		var Tab_Validacion = true;
+
+		var Tab_Logica = true;
+
 
         $(document).ready(function () {
             $('#ObjectId').val('45684');
@@ -413,6 +520,18 @@
                 <text>
 				if (Tab_Datos_Generales)
 					Fill_Datos_Generales();
+
+				if (Tab_Datos_para_Iniciar_Sesion)
+					Fill_Datos_para_Iniciar_Sesion();
+
+				if (Tab_Datos_para_validar_tu_cuenta)
+					Fill_Datos_para_validar_tu_cuenta();
+
+				if (Tab_Validacion)
+					Fill_Validacion();
+
+				if (Tab_Logica)
+					Fill_Logica();
 
 
                 </text>
@@ -483,7 +602,7 @@
 		
     }
 
-
+		var NuevoIDV=0;
         function SendRegistro_de_UsuarioData(callBack) {
 			
 					
@@ -507,16 +626,45 @@
 				return false;
 			}						
 
+			if (Tab_Datos_para_Iniciar_Sesion && !checkClientValidate('Registro_de_UsuarioCreateForm', 'Datos_para_Iniciar_Sesion')) {
+				return false;
+			}						
+
+			if (Tab_Datos_para_validar_tu_cuenta && !checkClientValidate('Registro_de_UsuarioCreateForm', 'Datos_para_validar_tu_cuenta')) {
+				return false;
+			}						
+
+			if (Tab_Validacion && !checkClientValidate('Registro_de_UsuarioCreateForm', 'Validacion')) {
+				return false;
+			}						
+
+			if (Tab_Logica && !checkClientValidate('Registro_de_UsuarioCreateForm', 'Logica')) {
+				return false;
+			}						
+
 
 			
 			if (isNew == "True")
             {
                 id = CreateID();
+				NuevoIDV=id;
             }
 			
 			
 			if (Tab_Datos_Generales)
 				Save_Datos_Generales(id);
+
+			if (Tab_Datos_para_Iniciar_Sesion)
+				Save_Datos_para_Iniciar_Sesion(id);
+
+			if (Tab_Datos_para_validar_tu_cuenta)
+				Save_Datos_para_validar_tu_cuenta(id);
+
+			if (Tab_Validacion)
+				Save_Validacion(id);
+
+			if (Tab_Logica)
+				Save_Logica(id);
 
 
 			showNotification("@Resources.Resources.SaveSuccess", "success");
@@ -687,16 +835,6 @@
                     $('#Apellido_Paterno').val(result.data.Apellido_Paterno);
                     $('#Apellido_Materno').val(result.data.Apellido_Materno);
                     $('#Nombre_Completo').val(result.data.Nombre_Completo);
-                    $('#Usuario').val(result.data.Usuario);
-                    $('#Contrasena').val(result.data.Contrasena);
-                    $('#Confirmar_Contrasena').val(result.data.Confirmar_Contrasena);
-                    $('#Correo').val(result.data.Correo);
-                    $('#Celular').val(result.data.Celular);
-                    $('#Codigo_Verificacion_Correo').val(result.data.Codigo_Verificacion_Correo);
-                    $('#Codigo_Verificacion_Celular').val(result.data.Codigo_Verificacion_Celular);
-                    $('#Codigo_Reestablecer_Contrasena').val(result.data.Codigo_Reestablecer_Contrasena);
-                    $('#El_correo_fue_Validado').prop('checked', result.data.El_correo_fue_Validado);
-                    $('#El_Celular_fue_Validado').prop('checked', result.data.El_Celular_fue_Validado);
 
                 },
                 error: function (result) {
@@ -712,16 +850,6 @@
                 data.append('Apellido_Paterno', $('#Apellido_Paterno').val());
                 data.append('Apellido_Materno', $('#Apellido_Materno').val());
                 data.append('Nombre_Completo', $('#Nombre_Completo').val());
-                data.append('Usuario', $('#Usuario').val());
-                data.append('Contrasena', $('#Contrasena').val());
-                data.append('Confirmar_Contrasena', $('#Confirmar_Contrasena').val());
-                data.append('Correo', $('#Correo').val());
-                data.append('Celular', $('#Celular').val());
-                data.append('Codigo_Verificacion_Correo', $('#Codigo_Verificacion_Correo').val());
-                data.append('Codigo_Verificacion_Celular', $('#Codigo_Verificacion_Celular').val());
-                data.append('Codigo_Reestablecer_Contrasena', $('#Codigo_Reestablecer_Contrasena').val());
-                data.append('El_correo_fue_Validado', $('#El_correo_fue_Validado').prop('checked'));
-                data.append('El_Celular_fue_Validado', $('#El_Celular_fue_Validado').prop('checked'));
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Registro_de_Usuario/Post_Datos_Generales")',
@@ -741,6 +869,202 @@
 				},
 				error: function (result) {
 					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Datos_para_Iniciar_Sesion()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Registro_de_Usuario/Get_Datos_para_Iniciar_Sesion")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Usuario').val(result.data.Usuario);
+                    $('#Contrasena').val(result.data.Contrasena);
+                    $('#Confirmar_Contrasena').val(result.data.Confirmar_Contrasena);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_para_Iniciar_Sesion(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Usuario', $('#Usuario').val());
+                data.append('Contrasena', $('#Contrasena').val());
+                data.append('Confirmar_Contrasena', $('#Confirmar_Contrasena').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Usuario/Post_Datos_para_Iniciar_Sesion")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_para_Iniciar_Sesion");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_para_Iniciar_Sesion");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Datos_para_validar_tu_cuenta()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Registro_de_Usuario/Get_Datos_para_validar_tu_cuenta")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Correo').val(result.data.Correo);
+                    $('#Celular').val(result.data.Celular);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_para_validar_tu_cuenta(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Correo', $('#Correo').val());
+                data.append('Celular', $('#Celular').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Usuario/Post_Datos_para_validar_tu_cuenta")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_para_validar_tu_cuenta");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_para_validar_tu_cuenta");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Validacion()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Registro_de_Usuario/Get_Validacion")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Codigo_Verificacion_Correo').val(result.data.Codigo_Verificacion_Correo);
+                    $('#Codigo_Verificacion_Celular').val(result.data.Codigo_Verificacion_Celular);
+                    $('#Codigo_Reestablecer_Contrasena').val(result.data.Codigo_Reestablecer_Contrasena);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Validacion(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Codigo_Verificacion_Correo', $('#Codigo_Verificacion_Correo').val());
+                data.append('Codigo_Verificacion_Celular', $('#Codigo_Verificacion_Celular').val());
+                data.append('Codigo_Reestablecer_Contrasena', $('#Codigo_Reestablecer_Contrasena').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Usuario/Post_Validacion")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Validacion");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Validacion");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Logica()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Registro_de_Usuario/Get_Logica")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#El_correo_fue_Validado').prop('checked', result.data.El_correo_fue_Validado);
+                    $('#El_Celular_fue_Validado').prop('checked', result.data.El_Celular_fue_Validado);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Logica(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('El_correo_fue_Validado', $('#El_correo_fue_Validado').prop('checked'));
+                data.append('El_Celular_fue_Validado', $('#El_Celular_fue_Validado').prop('checked'));
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Usuario/Post_Logica")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Logica");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Logica");
 				},
 				cache: false
 			});

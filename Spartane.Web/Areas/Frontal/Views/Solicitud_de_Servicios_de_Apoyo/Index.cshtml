@@ -1,9 +1,23 @@
 ﻿@using System.Collections.Generic
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Region;
+@using Spartane.Core.Domain.Origen_de_Invitacion;
 @using Spartane.Core.Domain.Modulo_Atencion_Inicial;
-@using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
-@using Spartane.Core.Domain.Compareciente;
+@using Spartane.Core.Domain.expediente_ministerio_publico;
+@using Spartane.Core.Domain.Documento;
+@using Spartane.Core.Domain.Estatus_de_Solicitud_de_Apoyo;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Area_de_Servicios_de_Apoyo;
+@using Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Tipo_de_Asignacion_de_Apoyo;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Documento;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Resultado_de_Revision;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -199,13 +213,46 @@
                             <thead>
                                 <tr>
                                     <th>@Resources.Resources.Actions</th>
-                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Clave</th>
-                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Folio_del_Caso</th>
-                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Tipo_de_Servicio</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Folio</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Solicitud</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Solicitud</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Solicita</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Region</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Origen</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_AT</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_MP</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.NUAT</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Denuncia</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Carpeta_de_Investigacion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Oficio</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Estatus</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Recepcion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Recepcion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Recibe</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Area_Asignada</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.SubArea_Asignada</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Recepcion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Asignacion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Asignacion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Asigna</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Tipo_de_Asignacion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Responsable_Asignado</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Asignacion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Contestacion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Contestacion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_contesta</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Dictamen</th>
-                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Responsable</th>
-                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Clave_MR</th>
-                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Compareciente</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Enviar_Contestacion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Archivo</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Contestacion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Revision</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Revision</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Revisa</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Resultado_de_Autorizacion</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Motivo_de_Rechazo</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Autorizacion</th>
 
                                 </tr>
                             </thead>
@@ -213,11 +260,44 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
@@ -334,22 +414,88 @@
 
         var queryString = GetQueryString();
 
-        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Folio_del_Caso = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Servicio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Solicita =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Expediente_AT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Oficio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Recepcion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Recepcion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Recibe =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Area_Asignada =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var SubArea_Asignada =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Asigna =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Asignacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Responsable_Asignado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Asignacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Contestacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Contestacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_contesta =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Dictamen =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Clave_MR =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Compareciente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Enviar_Contestacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Contestacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Revisa =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado_de_Autorizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Rechazo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Autorizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
-        var queryString = "&Clave=" + Clave 
-        + "&Folio_del_Caso=" + Folio_del_Caso
-        + "&Tipo_de_Servicio=" + Tipo_de_Servicio
+        var queryString = "&Folio=" + Folio 
+        + "&Fecha_de_Solicitud=" + Fecha_de_Solicitud
+        + "&Hora_de_Solicitud=" + Hora_de_Solicitud
+        + "&Usuario_que_Solicita=" + Usuario_que_Solicita
+        + "&Region=" + Region
+        + "&Origen=" + Origen
+        + "&Numero_de_Expediente_AT=" + Numero_de_Expediente_AT
+        + "&Numero_de_Expediente_MP=" + Numero_de_Expediente_MP
+        + "&NUAT=" + NUAT
+        + "&Numero_de_Denuncia=" + Numero_de_Denuncia
+        + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
+        + "&Numero_de_Oficio=" + Numero_de_Oficio
+        + "&Solicitud=" + Solicitud
+        + "&Observaciones=" + Observaciones
+        + "&Estatus=" + Estatus
+        + "&Fecha_de_Recepcion=" + Fecha_de_Recepcion
+        + "&Hora_de_Recepcion=" + Hora_de_Recepcion
+        + "&Usuario_que_Recibe=" + Usuario_que_Recibe
+        + "&Area_Asignada=" + Area_Asignada
+        + "&SubArea_Asignada=" + SubArea_Asignada
+        + "&Observaciones_Recepcion=" + Observaciones_Recepcion
+        + "&Fecha_de_Asignacion=" + Fecha_de_Asignacion
+        + "&Hora_de_Asignacion=" + Hora_de_Asignacion
+        + "&Usuario_que_Asigna=" + Usuario_que_Asigna
+        + "&Tipo_de_Asignacion=" + Tipo_de_Asignacion
+        + "&Responsable_Asignado=" + Responsable_Asignado
+        + "&Observaciones_Asignacion=" + Observaciones_Asignacion
+        + "&Fecha_de_Contestacion=" + Fecha_de_Contestacion
+        + "&Hora_de_Contestacion=" + Hora_de_Contestacion
+        + "&Usuario_que_contesta=" + Usuario_que_contesta
         + "&Dictamen=" + Dictamen
-        + "&Responsable=" + Responsable
-        + "&Clave_MR=" + Clave_MR
-        + "&Compareciente=" + Compareciente
+        + "&Enviar_Contestacion=" + Enviar_Contestacion
+        + "&Archivo=" + Archivo
+        + "&Observaciones_Contestacion=" + Observaciones_Contestacion
+        + "&Fecha_de_Revision=" + Fecha_de_Revision
+        + "&Hora_de_Revision=" + Hora_de_Revision
+        + "&Usuario_que_Revisa=" + Usuario_que_Revisa
+        + "&Resultado_de_Autorizacion=" + Resultado_de_Autorizacion
+        + "&Motivo_de_Rechazo=" + Motivo_de_Rechazo
+        + "&Observaciones_Autorizacion=" + Observaciones_Autorizacion
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Solicitud_de_Servicios_de_Apoyo/Export?format=")" + format
@@ -363,22 +509,88 @@
     function GetQueryString() {
 	
 	 var counter = 0;
-        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Folio_del_Caso = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Servicio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Solicita =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Expediente_AT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Oficio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Recepcion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Recepcion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Recibe =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Area_Asignada =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var SubArea_Asignada =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Asigna =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Asignacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Responsable_Asignado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Asignacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Contestacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Contestacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_contesta =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Dictamen =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Clave_MR =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Compareciente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Enviar_Contestacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Contestacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Revisa =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado_de_Autorizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Rechazo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Autorizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
-        return "&Clave=" + Clave 
-        + "&Folio_del_Caso=" + Folio_del_Caso
-        + "&Tipo_de_Servicio=" + Tipo_de_Servicio
+        return "&Folio=" + Folio 
+        + "&Fecha_de_Solicitud=" + Fecha_de_Solicitud
+        + "&Hora_de_Solicitud=" + Hora_de_Solicitud
+        + "&Usuario_que_Solicita=" + Usuario_que_Solicita
+        + "&Region=" + Region
+        + "&Origen=" + Origen
+        + "&Numero_de_Expediente_AT=" + Numero_de_Expediente_AT
+        + "&Numero_de_Expediente_MP=" + Numero_de_Expediente_MP
+        + "&NUAT=" + NUAT
+        + "&Numero_de_Denuncia=" + Numero_de_Denuncia
+        + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
+        + "&Numero_de_Oficio=" + Numero_de_Oficio
+        + "&Solicitud=" + Solicitud
+        + "&Observaciones=" + Observaciones
+        + "&Estatus=" + Estatus
+        + "&Fecha_de_Recepcion=" + Fecha_de_Recepcion
+        + "&Hora_de_Recepcion=" + Hora_de_Recepcion
+        + "&Usuario_que_Recibe=" + Usuario_que_Recibe
+        + "&Area_Asignada=" + Area_Asignada
+        + "&SubArea_Asignada=" + SubArea_Asignada
+        + "&Observaciones_Recepcion=" + Observaciones_Recepcion
+        + "&Fecha_de_Asignacion=" + Fecha_de_Asignacion
+        + "&Hora_de_Asignacion=" + Hora_de_Asignacion
+        + "&Usuario_que_Asigna=" + Usuario_que_Asigna
+        + "&Tipo_de_Asignacion=" + Tipo_de_Asignacion
+        + "&Responsable_Asignado=" + Responsable_Asignado
+        + "&Observaciones_Asignacion=" + Observaciones_Asignacion
+        + "&Fecha_de_Contestacion=" + Fecha_de_Contestacion
+        + "&Hora_de_Contestacion=" + Hora_de_Contestacion
+        + "&Usuario_que_contesta=" + Usuario_que_contesta
         + "&Dictamen=" + Dictamen
-        + "&Responsable=" + Responsable
-        + "&Clave_MR=" + Clave_MR
-        + "&Compareciente=" + Compareciente
+        + "&Enviar_Contestacion=" + Enviar_Contestacion
+        + "&Archivo=" + Archivo
+        + "&Observaciones_Contestacion=" + Observaciones_Contestacion
+        + "&Fecha_de_Revision=" + Fecha_de_Revision
+        + "&Hora_de_Revision=" + Hora_de_Revision
+        + "&Usuario_que_Revisa=" + Usuario_que_Revisa
+        + "&Resultado_de_Autorizacion=" + Resultado_de_Autorizacion
+        + "&Motivo_de_Rechazo=" + Motivo_de_Rechazo
+        + "&Observaciones_Autorizacion=" + Observaciones_Autorizacion
 ;
 
     }
@@ -559,11 +771,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -611,28 +823,61 @@
                     "className": "center actionColumn text-nowrap",
 					"orderable": false, 					
 					"render": function (data, type, full, meta) {
-                        var edit = '<a title="@Resources.Resources.Edit" href="@Url.Action("Create", "Solicitud_de_Servicios_de_Apoyo")?Id=' + data.Clave + '" class="editor_edit edit-MR"><i class="fa fa-edit"></i></a>';
+                        var edit = '<a title="@Resources.Resources.Edit" href="@Url.Action("Create", "Solicitud_de_Servicios_de_Apoyo")?Id=' + data.Folio + '" class="editor_edit edit-MR"><i class="fa fa-edit"></i></a>';
                         if (!permission.Edit)
                             edit = '';
-                        var consult = '<a title="@Resources.Resources.Consult" href="@Url.Action("Create", "Solicitud_de_Servicios_de_Apoyo")?Id=' + data.Clave + '&consult=1"  class="editor_remove"><i class="fa fa-male"></i></a>';
+                        var consult = '<a title="@Resources.Resources.Consult" href="@Url.Action("Create", "Solicitud_de_Servicios_de_Apoyo")?Id=' + data.Folio + '&consult=1"  class="editor_remove"><i class="fa fa-male"></i></a>';
                         if (!permission.Consult)
                             consult = '';
-                        var print = '<a title="@Resources.Resources.Print" data-toggle="modal" data-target="#printFormatModal" data-idrecord="' + data.Clave + '"  class="editor_print print-MR"><i class="fa fa-print"></i></a>';
+                        var print = '<a title="@Resources.Resources.Print" data-toggle="modal" data-target="#printFormatModal" data-idrecord="' + data.Folio + '"  class="editor_print print-MR"><i class="fa fa-print"></i></a>';
                         if (!permission.Print)
                             print = '';
-                        var del = '<a title="@Resources.Resources.Delete" onclick="DeleteSolicitud_de_Servicios_de_Apoyo(\'' + data.Clave + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
+                        var del = '<a title="@Resources.Resources.Delete" onclick="DeleteSolicitud_de_Servicios_de_Apoyo(\'' + data.Folio + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
                         if (!permission.Delete)
                             del = '';
                         return edit + del + consult + print;
                     }
                 }, 
-                { "data": "Clave", "orderable": true, "name": "Clave" }
-                ,{ "data": "Folio_del_CasoFolio", "orderable": true, "name": "Folio_del_CasoFolio" }
-                ,{ "data": "Tipo_de_ServicioServicio", "orderable": true, "name": "Tipo_de_ServicioServicio" }
-                ,{ "data": "Dictamen", "orderable": true, "name": "Dictamen", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Responsable", "orderable": true, "name": "Responsable", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Clave_MR","className": "dt-right", "orderable": true, "name": "Clave_MR" }
-                ,{ "data": "ComparecienteNombre_Completo", "orderable": true, "name": "ComparecienteNombre_Completo" }
+                { "data": "Folio", "orderable": true, "name": "Folio" }
+                ,{ "data": "Fecha_de_Solicitud", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Solicitud" }
+                ,{ "data": "Hora_de_Solicitud", "orderable": true, "name": "Hora_de_Solicitud" }
+                ,{ "data": "Usuario_que_SolicitaName", "orderable": true, "name": "Usuario_que_SolicitaName"}
+                ,{ "data": "RegionDescripcion", "orderable": true, "name": "RegionDescripcion" }
+                ,{ "data": "OrigenDescripcion", "orderable": true, "name": "OrigenDescripcion" }
+                ,{ "data": "Numero_de_Expediente_ATNUAT", "orderable": true, "name": "Numero_de_Expediente_ATNUAT"}
+                ,{ "data": "Numero_de_Expediente_MPnuat", "orderable": true, "name": "Numero_de_Expediente_MPnuat"}
+                ,{ "data": "NUAT", "orderable": true, "name": "NUAT", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_de_Denuncia", "orderable": true, "name": "Numero_de_Denuncia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Carpeta_de_Investigacion", "orderable": true, "name": "Carpeta_de_Investigacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_de_Oficio", "orderable": true, "name": "Numero_de_Oficio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "SolicitudDescripcion", "orderable": true, "name": "SolicitudDescripcion"}
+                ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "EstatusDescripcion", "orderable": true, "name": "EstatusDescripcion" }
+                ,{ "data": "Fecha_de_Recepcion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Recepcion" }
+                ,{ "data": "Hora_de_Recepcion", "orderable": true, "name": "Hora_de_Recepcion" }
+                ,{ "data": "Usuario_que_RecibeName", "orderable": true, "name": "Usuario_que_RecibeName"}
+                ,{ "data": "Area_AsignadaDescripcion", "orderable": true, "name": "Area_AsignadaDescripcion" }
+                ,{ "data": "SubArea_AsignadaDescripcion", "orderable": true, "name": "SubArea_AsignadaDescripcion" }
+                ,{ "data": "Observaciones_Recepcion", "orderable": true, "name": "Observaciones_Recepcion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Asignacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Asignacion" }
+                ,{ "data": "Hora_de_Asignacion", "orderable": true, "name": "Hora_de_Asignacion" }
+                ,{ "data": "Usuario_que_AsignaName", "orderable": true, "name": "Usuario_que_AsignaName"}
+                ,{ "data": "Tipo_de_AsignacionDescripcion", "orderable": true, "name": "Tipo_de_AsignacionDescripcion" }
+                ,{ "data": "Responsable_AsignadoName", "orderable": true, "name": "Responsable_AsignadoName"}
+                ,{ "data": "Observaciones_Asignacion", "orderable": true, "name": "Observaciones_Asignacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Contestacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Contestacion" }
+                ,{ "data": "Hora_de_Contestacion", "orderable": true, "name": "Hora_de_Contestacion" }
+                ,{ "data": "Usuario_que_contestaName", "orderable": true, "name": "Usuario_que_contestaName"}
+                ,{ "data": "DictamenDescripcion", "orderable": true, "name": "DictamenDescripcion"}
+                ,{ "data": "Enviar_Contestacion", "orderable": true, "name": "Enviar_Contestacion","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Archivo","className": "dt-right", "orderable": true, "name": "Archivo" }
+                ,{ "data": "Observaciones_Contestacion", "orderable": true, "name": "Observaciones_Contestacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Revision", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Revision" }
+                ,{ "data": "Hora_de_Revision", "orderable": true, "name": "Hora_de_Revision" }
+                ,{ "data": "Usuario_que_RevisaName", "orderable": true, "name": "Usuario_que_RevisaName"}
+                ,{ "data": "Resultado_de_AutorizacionDescripcion", "orderable": true, "name": "Resultado_de_AutorizacionDescripcion" }
+                ,{ "data": "Motivo_de_Rechazo", "orderable": true, "name": "Motivo_de_Rechazo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Observaciones_Autorizacion", "orderable": true, "name": "Observaciones_Autorizacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],
 			"colReorder": true,
@@ -701,10 +946,10 @@
         });
     });
 
-    function DeleteSolicitud_de_Servicios_de_Apoyo(Clave) {
+    function DeleteSolicitud_de_Servicios_de_Apoyo(Folio) {
        if (confirm(htmlDecode('@Resources.Resources.DeleteRecord'))) {
             $.ajax({
-                url: '@Url.Content("~/Frontal/Solicitud_de_Servicios_de_Apoyo/Delete?id=")' + Clave,
+                url: '@Url.Content("~/Frontal/Solicitud_de_Servicios_de_Apoyo/Delete?id=")' + Folio,
                 type: 'DELETE',
                 success: function (result) {
                     if (result) {

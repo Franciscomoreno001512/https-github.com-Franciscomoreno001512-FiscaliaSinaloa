@@ -10,6 +10,116 @@ $(function () {
 
 });
 
+var AutoCompleteUsuario_que_SolicitaData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Usuario_que_Solicita_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_SolicitaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_SolicitaData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_SolicitaData;
+}
+var AutoCompleteNumero_de_Expediente_ATData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Numero_de_Expediente_AT_Modulo_Atencion_InicialData(data) {
+	AutoCompleteNumero_de_Expediente_ATData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteNumero_de_Expediente_ATData.push({
+            id: data[i].Clave,
+            text: data[i].NUAT
+        });
+    }
+    return AutoCompleteNumero_de_Expediente_ATData;
+}
+var AutoCompleteNumero_de_Expediente_MPData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Numero_de_Expediente_MP_expediente_ministerio_publicoData(data) {
+	AutoCompleteNumero_de_Expediente_MPData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteNumero_de_Expediente_MPData.push({
+            id: data[i].clave,
+            text: data[i].nuat
+        });
+    }
+    return AutoCompleteNumero_de_Expediente_MPData;
+}
+var AutoCompleteSolicitudData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Solicitud_DocumentoData(data) {
+	AutoCompleteSolicitudData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteSolicitudData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteSolicitudData;
+}
+var AutoCompleteUsuario_que_RecibeData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Usuario_que_Recibe_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_RecibeData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_RecibeData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_RecibeData;
+}
+var AutoCompleteUsuario_que_AsignaData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Usuario_que_Asigna_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_AsignaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_AsignaData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_AsignaData;
+}
+var AutoCompleteResponsable_AsignadoData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Responsable_Asignado_Spartan_UserData(data) {
+	AutoCompleteResponsable_AsignadoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteResponsable_AsignadoData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteResponsable_AsignadoData;
+}
+var AutoCompleteUsuario_que_contestaData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Usuario_que_contesta_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_contestaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_contestaData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_contestaData;
+}
+var AutoCompleteDictamenData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Dictamen_DocumentoData(data) {
+	AutoCompleteDictamenData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteDictamenData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteDictamenData;
+}
+var AutoCompleteUsuario_que_RevisaData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Usuario_que_Revisa_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_RevisaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_RevisaData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_RevisaData;
+}
 
 
 function getDropdown(elementKey) {
@@ -43,10 +153,40 @@ function GetGridAutoComplete(data,field, id) {
 }
 
 function ClearControls() {
-    $("#ReferenceClave").val("0");
+    $("#ReferenceFolio").val("0");
     $('#CreateSolicitud_de_Servicios_de_Apoyo')[0].reset();
     ClearFormControls();
-    $("#ClaveId").val("0");
+    $("#FolioId").val("0");
+    $('#Usuario_que_Solicita').empty();
+    $("#Usuario_que_Solicita").append('<option value=""></option>');
+    $('#Usuario_que_Solicita').val('0').trigger('change');
+    $('#Numero_de_Expediente_AT').empty();
+    $("#Numero_de_Expediente_AT").append('<option value=""></option>');
+    $('#Numero_de_Expediente_AT').val('0').trigger('change');
+    $('#Numero_de_Expediente_MP').empty();
+    $("#Numero_de_Expediente_MP").append('<option value=""></option>');
+    $('#Numero_de_Expediente_MP').val('0').trigger('change');
+    $('#Solicitud').empty();
+    $("#Solicitud").append('<option value=""></option>');
+    $('#Solicitud').val('0').trigger('change');
+    $('#Usuario_que_Recibe').empty();
+    $("#Usuario_que_Recibe").append('<option value=""></option>');
+    $('#Usuario_que_Recibe').val('0').trigger('change');
+    $('#Usuario_que_Asigna').empty();
+    $("#Usuario_que_Asigna").append('<option value=""></option>');
+    $('#Usuario_que_Asigna').val('0').trigger('change');
+    $('#Responsable_Asignado').empty();
+    $("#Responsable_Asignado").append('<option value=""></option>');
+    $('#Responsable_Asignado').val('0').trigger('change');
+    $('#Usuario_que_contesta').empty();
+    $("#Usuario_que_contesta").append('<option value=""></option>');
+    $('#Usuario_que_contesta').val('0').trigger('change');
+    $('#Dictamen').empty();
+    $("#Dictamen").append('<option value=""></option>');
+    $('#Dictamen').val('0').trigger('change');
+    $('#Usuario_que_Revisa').empty();
+    $("#Usuario_que_Revisa").append('<option value=""></option>');
+    $('#Usuario_que_Revisa').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -89,7 +229,7 @@ function CheckValidation() {
 
 
 function ResetClaveLabel() {
-    $("#lblClave").text("0");
+    $("#lblFolio").text("0");
 }
 $(document).ready(function () {
     $("form#CreateSolicitud_de_Servicios_de_Apoyo").submit(function (e) {
@@ -175,10 +315,40 @@ $(document).ready(function () {
 		if (EjecutarValidacionesAntesDeGuardar()) {
 			if (CheckValidation())
 				SendSolicitud_de_Servicios_de_ApoyoData(function (currentId) {
-					$("#ClaveId").val("0");
-	
+					$("#FolioId").val("0");
+	    $('#Usuario_que_Solicita').empty();
+    $("#Usuario_que_Solicita").append('<option value=""></option>');
+    $('#Usuario_que_Solicita').val('0').trigger('change');
+    $('#Numero_de_Expediente_AT').empty();
+    $("#Numero_de_Expediente_AT").append('<option value=""></option>');
+    $('#Numero_de_Expediente_AT').val('0').trigger('change');
+    $('#Numero_de_Expediente_MP').empty();
+    $("#Numero_de_Expediente_MP").append('<option value=""></option>');
+    $('#Numero_de_Expediente_MP').val('0').trigger('change');
+    $('#Solicitud').empty();
+    $("#Solicitud").append('<option value=""></option>');
+    $('#Solicitud').val('0').trigger('change');
+    $('#Usuario_que_Recibe').empty();
+    $("#Usuario_que_Recibe").append('<option value=""></option>');
+    $('#Usuario_que_Recibe').val('0').trigger('change');
+    $('#Usuario_que_Asigna').empty();
+    $("#Usuario_que_Asigna").append('<option value=""></option>');
+    $('#Usuario_que_Asigna').val('0').trigger('change');
+    $('#Responsable_Asignado').empty();
+    $("#Responsable_Asignado").append('<option value=""></option>');
+    $('#Responsable_Asignado').val('0').trigger('change');
+    $('#Usuario_que_contesta').empty();
+    $("#Usuario_que_contesta").append('<option value=""></option>');
+    $('#Usuario_que_contesta').val('0').trigger('change');
+    $('#Dictamen').empty();
+    $("#Dictamen").append('<option value=""></option>');
+    $('#Dictamen').val('0').trigger('change');
+    $('#Usuario_que_Revisa').empty();
+    $("#Usuario_que_Revisa").append('<option value=""></option>');
+    $('#Usuario_que_Revisa').val('0').trigger('change');
+
 					ResetClaveLabel();
-					$("#ReferenceClave").val(currentId);
+					$("#ReferenceFolio").val(currentId);
 	
 					EjecutarValidacionesDespuesDeGuardar();		
 					if (isPartial)

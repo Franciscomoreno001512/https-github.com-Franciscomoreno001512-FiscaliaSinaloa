@@ -221,6 +221,126 @@ public ApiResponse<int> Update_Datos_Generales(Registro_de_Usuario_Datos_General
             }
         }
 
+public ApiResponse<int> Update_Datos_para_Iniciar_Sesion(Registro_de_Usuario_Datos_para_Iniciar_Sesion entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_para_Iniciar_Sesion",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Registro_de_Usuario_Datos_para_Iniciar_Sesion> Get_Datos_para_Iniciar_Sesion(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_para_Iniciar_Sesion>(baseApi, ApiControllerUrl + "/Get_Datos_para_Iniciar_Sesion?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_para_Iniciar_Sesion>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_para_Iniciar_Sesion>(false, null);
+            }
+        }
+
+public ApiResponse<int> Update_Datos_para_validar_tu_cuenta(Registro_de_Usuario_Datos_para_validar_tu_cuenta entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_para_validar_tu_cuenta",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Registro_de_Usuario_Datos_para_validar_tu_cuenta> Get_Datos_para_validar_tu_cuenta(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_para_validar_tu_cuenta>(baseApi, ApiControllerUrl + "/Get_Datos_para_validar_tu_cuenta?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_para_validar_tu_cuenta>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_para_validar_tu_cuenta>(false, null);
+            }
+        }
+
+public ApiResponse<int> Update_Validacion(Registro_de_Usuario_Validacion entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Validacion",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Registro_de_Usuario_Validacion> Get_Validacion(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Validacion>(baseApi, ApiControllerUrl + "/Get_Validacion?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Validacion>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Validacion>(false, null);
+            }
+        }
+
+public ApiResponse<int> Update_Logica(Registro_de_Usuario_Logica entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Logica",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Registro_de_Usuario_Logica> Get_Logica(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Logica>(baseApi, ApiControllerUrl + "/Get_Logica?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Logica>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Logica>(false, null);
+            }
+        }
+
 
     }
 }

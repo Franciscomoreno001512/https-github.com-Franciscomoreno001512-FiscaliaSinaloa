@@ -39,6 +39,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceTipo_de_Documento { set; get; }
         public int[] AdvanceTipo_de_DocumentoMultiple { set; get; }
 
+        public Filters SubArea_de_Servicios_de_ApoyoFilter { set; get; }
+        public string AdvanceSubArea_de_Servicios_de_Apoyo { set; get; }
+        public int[] AdvanceSubArea_de_Servicios_de_ApoyoMultiple { set; get; }
+
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
         public string FromidFormato { set; get; }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]

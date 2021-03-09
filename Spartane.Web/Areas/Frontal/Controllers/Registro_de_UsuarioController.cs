@@ -1402,16 +1402,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Apellido_Paterno = varRegistro_de_Usuario.Apellido_Paterno
                         ,Apellido_Materno = varRegistro_de_Usuario.Apellido_Materno
                         ,Nombre_Completo = varRegistro_de_Usuario.Nombre_Completo
-                        ,Usuario = varRegistro_de_Usuario.Usuario
-                        ,Contrasena = varRegistro_de_Usuario.Contrasena
-                        ,Confirmar_Contrasena = varRegistro_de_Usuario.Confirmar_Contrasena
-                        ,Correo = varRegistro_de_Usuario.Correo
-                        ,Celular = varRegistro_de_Usuario.Celular
-                        ,Codigo_Verificacion_Correo = varRegistro_de_Usuario.Codigo_Verificacion_Correo
-                        ,Codigo_Verificacion_Celular = varRegistro_de_Usuario.Codigo_Verificacion_Celular
-                        ,Codigo_Reestablecer_Contrasena = varRegistro_de_Usuario.Codigo_Reestablecer_Contrasena
-                        ,El_correo_fue_Validado = varRegistro_de_Usuario.El_correo_fue_Validado
-                        ,El_Celular_fue_Validado = varRegistro_de_Usuario.El_Celular_fue_Validado
                     
                 };
 
@@ -1444,14 +1434,240 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
 			,Nombre_Completo = m.Nombre_Completo
+
+                    
+                };
+				var resultData = new
+                {
+                    data = result
+
+                };
+                return Json(resultData, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);            
+        }
+
+		[HttpPost]
+        public ActionResult Post_Datos_para_Iniciar_Sesion(Registro_de_Usuario_Datos_para_Iniciar_SesionModel varRegistro_de_Usuario)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegistro_de_UsuarioApiConsumer.SetAuthHeader(_tokenManager.Token);
+				
+                var result = "";
+                var Registro_de_Usuario_Datos_para_Iniciar_SesionInfo = new Registro_de_Usuario_Datos_para_Iniciar_Sesion
+                {
+                    Clave = varRegistro_de_Usuario.Clave
+                                            ,Usuario = varRegistro_de_Usuario.Usuario
+                        ,Contrasena = varRegistro_de_Usuario.Contrasena
+                        ,Confirmar_Contrasena = varRegistro_de_Usuario.Confirmar_Contrasena
+                    
+                };
+
+                result = _IRegistro_de_UsuarioApiConsumer.Update_Datos_para_Iniciar_Sesion(Registro_de_Usuario_Datos_para_Iniciar_SesionInfo).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+		
+		[HttpGet]
+        public JsonResult Get_Datos_para_Iniciar_Sesion(string Id)
+        {     
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
+            {                
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegistro_de_UsuarioApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var m = _IRegistro_de_UsuarioApiConsumer.Get_Datos_para_Iniciar_Sesion(Id).Resource;
+                if (m == null)
+                    return Json(null, JsonRequestBehavior.AllowGet);
+				
+                var result = new Registro_de_Usuario_Datos_para_Iniciar_SesionModel
+                {
+                    Clave = m.Clave
 			,Usuario = m.Usuario
 			,Contrasena = m.Contrasena
 			,Confirmar_Contrasena = m.Confirmar_Contrasena
+
+                    
+                };
+				var resultData = new
+                {
+                    data = result
+
+                };
+                return Json(resultData, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);            
+        }
+
+		[HttpPost]
+        public ActionResult Post_Datos_para_validar_tu_cuenta(Registro_de_Usuario_Datos_para_validar_tu_cuentaModel varRegistro_de_Usuario)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegistro_de_UsuarioApiConsumer.SetAuthHeader(_tokenManager.Token);
+				
+                var result = "";
+                var Registro_de_Usuario_Datos_para_validar_tu_cuentaInfo = new Registro_de_Usuario_Datos_para_validar_tu_cuenta
+                {
+                    Clave = varRegistro_de_Usuario.Clave
+                                            ,Correo = varRegistro_de_Usuario.Correo
+                        ,Celular = varRegistro_de_Usuario.Celular
+                    
+                };
+
+                result = _IRegistro_de_UsuarioApiConsumer.Update_Datos_para_validar_tu_cuenta(Registro_de_Usuario_Datos_para_validar_tu_cuentaInfo).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+		
+		[HttpGet]
+        public JsonResult Get_Datos_para_validar_tu_cuenta(string Id)
+        {     
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
+            {                
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegistro_de_UsuarioApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var m = _IRegistro_de_UsuarioApiConsumer.Get_Datos_para_validar_tu_cuenta(Id).Resource;
+                if (m == null)
+                    return Json(null, JsonRequestBehavior.AllowGet);
+				
+                var result = new Registro_de_Usuario_Datos_para_validar_tu_cuentaModel
+                {
+                    Clave = m.Clave
 			,Correo = m.Correo
 			,Celular = m.Celular
+
+                    
+                };
+				var resultData = new
+                {
+                    data = result
+
+                };
+                return Json(resultData, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);            
+        }
+
+		[HttpPost]
+        public ActionResult Post_Validacion(Registro_de_Usuario_ValidacionModel varRegistro_de_Usuario)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegistro_de_UsuarioApiConsumer.SetAuthHeader(_tokenManager.Token);
+				
+                var result = "";
+                var Registro_de_Usuario_ValidacionInfo = new Registro_de_Usuario_Validacion
+                {
+                    Clave = varRegistro_de_Usuario.Clave
+                                            ,Codigo_Verificacion_Correo = varRegistro_de_Usuario.Codigo_Verificacion_Correo
+                        ,Codigo_Verificacion_Celular = varRegistro_de_Usuario.Codigo_Verificacion_Celular
+                        ,Codigo_Reestablecer_Contrasena = varRegistro_de_Usuario.Codigo_Reestablecer_Contrasena
+                    
+                };
+
+                result = _IRegistro_de_UsuarioApiConsumer.Update_Validacion(Registro_de_Usuario_ValidacionInfo).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+		
+		[HttpGet]
+        public JsonResult Get_Validacion(string Id)
+        {     
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
+            {                
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegistro_de_UsuarioApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var m = _IRegistro_de_UsuarioApiConsumer.Get_Validacion(Id).Resource;
+                if (m == null)
+                    return Json(null, JsonRequestBehavior.AllowGet);
+				
+                var result = new Registro_de_Usuario_ValidacionModel
+                {
+                    Clave = m.Clave
 			,Codigo_Verificacion_Correo = m.Codigo_Verificacion_Correo
 			,Codigo_Verificacion_Celular = m.Codigo_Verificacion_Celular
 			,Codigo_Reestablecer_Contrasena = m.Codigo_Reestablecer_Contrasena
+
+                    
+                };
+				var resultData = new
+                {
+                    data = result
+
+                };
+                return Json(resultData, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);            
+        }
+
+		[HttpPost]
+        public ActionResult Post_Logica(Registro_de_Usuario_LogicaModel varRegistro_de_Usuario)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegistro_de_UsuarioApiConsumer.SetAuthHeader(_tokenManager.Token);
+				
+                var result = "";
+                var Registro_de_Usuario_LogicaInfo = new Registro_de_Usuario_Logica
+                {
+                    Clave = varRegistro_de_Usuario.Clave
+                                            ,El_correo_fue_Validado = varRegistro_de_Usuario.El_correo_fue_Validado
+                        ,El_Celular_fue_Validado = varRegistro_de_Usuario.El_Celular_fue_Validado
+                    
+                };
+
+                result = _IRegistro_de_UsuarioApiConsumer.Update_Logica(Registro_de_Usuario_LogicaInfo).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+		
+		[HttpGet]
+        public JsonResult Get_Logica(string Id)
+        {     
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
+            {                
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegistro_de_UsuarioApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var m = _IRegistro_de_UsuarioApiConsumer.Get_Logica(Id).Resource;
+                if (m == null)
+                    return Json(null, JsonRequestBehavior.AllowGet);
+				
+                var result = new Registro_de_Usuario_LogicaModel
+                {
+                    Clave = m.Clave
 			,El_correo_fue_Validado = m.El_correo_fue_Validado
 			,El_Celular_fue_Validado = m.El_Celular_fue_Validado
 

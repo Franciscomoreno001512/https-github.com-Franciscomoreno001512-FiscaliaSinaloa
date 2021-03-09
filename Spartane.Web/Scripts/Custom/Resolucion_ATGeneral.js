@@ -28,6 +28,17 @@ function GetAutoCompleteResolucion_AT_Relacion_Detalle_de_RelacionesData(data) {
     }
     return AutoCompleteRelacionData;
 }
+var AutoCompleteDictaminadorData = [];
+function GetAutoCompleteResolucion_AT_Dictaminador_Spartan_UserData(data) {
+	AutoCompleteDictaminadorData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteDictaminadorData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteDictaminadorData;
+}
 var AutoCompleteResultado_de_ValidacionData = [];
 function GetAutoCompleteResolucion_AT_Resultado_de_Validacion_ResolucionData(data) {
 	AutoCompleteResultado_de_ValidacionData = [];
@@ -82,6 +93,9 @@ function ClearControls() {
     $('#Relacion').empty();
     $("#Relacion").append('<option value=""></option>');
     $('#Relacion').val('0').trigger('change');
+    $('#Dictaminador').empty();
+    $("#Dictaminador").append('<option value=""></option>');
+    $('#Dictaminador').val('0').trigger('change');
     $('#Resultado_de_Validacion').empty();
     $("#Resultado_de_Validacion").append('<option value=""></option>');
     $('#Resultado_de_Validacion').val('0').trigger('change');
@@ -220,6 +234,9 @@ $(document).ready(function () {
     $('#Relacion').empty();
     $("#Relacion").append('<option value=""></option>');
     $('#Relacion').val('0').trigger('change');
+    $('#Dictaminador').empty();
+    $("#Dictaminador").append('<option value=""></option>');
+    $('#Dictaminador').val('0').trigger('change');
     $('#Resultado_de_Validacion').empty();
     $("#Resultado_de_Validacion").append('<option value=""></option>');
     $('#Resultado_de_Validacion').val('0').trigger('change');

@@ -18,7 +18,7 @@
  List<SelectListItem> varDetalle_de_Relaciones_Relacion = null;
     if (ViewBag.Detalle_de_Relacioness_Relacion != null)
     { varDetalle_de_Relaciones_Relacion = (List<SelectListItem>)ViewBag.Detalle_de_Relacioness_Relacion; }
-    List<SelectListItem> varSpartan_User_Dictaminador = null;
+ List<SelectListItem> varSpartan_User_Dictaminador = null;
     if (ViewBag.Spartan_Users_Dictaminador != null)
     { varSpartan_User_Dictaminador = (List<SelectListItem>)ViewBag.Spartan_Users_Dictaminador; }
  List<SelectListItem> varResolucion_Resultado_de_Validacion = null;
@@ -206,27 +206,9 @@
                 </span>
             </div>
         </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Resolucion_ATResources.Dictaminador</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.DictaminadorFilter, filters, new { @class = "form-control", @id = "ddlDictaminadorFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceDictaminador, new { @class = "form-control", @type = "text", @id = "txtAdvanceDictaminador" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSpartan_User_Dictaminador!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceDictaminadorMultiple, varSpartan_User_Dictaminador,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceDictaminador"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varSpartan_User_Dictaminador = null;
+    if (ViewBag.Spartan_Users_Dictaminador != null)
+    { varSpartan_User_Dictaminador = (List<SelectListItem>)ViewBag.Spartan_Users_Dictaminador; }
  List<SelectListItem> varResolucion_Resultado_de_Validacion = null;
     if (ViewBag.Resolucions_Resultado_de_Validacion != null)
     { varResolucion_Resultado_de_Validacion = (List<SelectListItem>)ViewBag.Resolucions_Resultado_de_Validacion; }

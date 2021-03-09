@@ -11,18 +11,13 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Solicitud_de_Servicios_de_ApoyoModel
     {
         [Required]
-        public int Clave { get; set; }
-        public int? Tipo_de_Servicio { get; set; }
-        public string Tipo_de_ServicioServicio { get; set; }
-        public string Responsable { get; set; }
-        [Range(0, 9999999999)]
-        public int? Clave_MR { get; set; }
-        public int? Compareciente { get; set; }
-        public string ComparecienteNombre_Completo { get; set; }
+        public int Folio { get; set; }
         public string Fecha_de_Solicitud { get; set; }
         public string Hora_de_Solicitud { get; set; }
         public int? Usuario_que_Solicita { get; set; }
         public string Usuario_que_SolicitaName { get; set; }
+        public int? Region { get; set; }
+        public string RegionDescripcion { get; set; }
         public int? Origen { get; set; }
         public string OrigenDescripcion { get; set; }
         public int? Numero_de_Expediente_AT { get; set; }
@@ -83,18 +78,13 @@ namespace Spartane.Web.Areas.Frontal.Models
 	public class Solicitud_de_Servicios_de_Apoyo_Datos_GeneralesModel
     {
         [Required]
-        public int Clave { get; set; }
-        public int? Tipo_de_Servicio { get; set; }
-        public string Tipo_de_ServicioServicio { get; set; }
-        public string Responsable { get; set; }
-        [Range(0, 9999999999)]
-        public int? Clave_MR { get; set; }
-        public int? Compareciente { get; set; }
-        public string ComparecienteNombre_Completo { get; set; }
+        public int Folio { get; set; }
         public string Fecha_de_Solicitud { get; set; }
         public string Hora_de_Solicitud { get; set; }
         public int? Usuario_que_Solicita { get; set; }
         public string Usuario_que_SolicitaName { get; set; }
+        public int? Region { get; set; }
+        public string RegionDescripcion { get; set; }
         public int? Origen { get; set; }
         public string OrigenDescripcion { get; set; }
         public int? Numero_de_Expediente_AT { get; set; }
@@ -119,7 +109,7 @@ namespace Spartane.Web.Areas.Frontal.Models
 	public class Solicitud_de_Servicios_de_Apoyo_RecepcionModel
     {
         [Required]
-        public int Clave { get; set; }
+        public int Folio { get; set; }
         public string Fecha_de_Recepcion { get; set; }
         public string Hora_de_Recepcion { get; set; }
         public int? Usuario_que_Recibe { get; set; }
@@ -135,7 +125,7 @@ namespace Spartane.Web.Areas.Frontal.Models
 	public class Solicitud_de_Servicios_de_Apoyo_AsignacionModel
     {
         [Required]
-        public int Clave { get; set; }
+        public int Folio { get; set; }
         public string Fecha_de_Asignacion { get; set; }
         public string Hora_de_Asignacion { get; set; }
         public int? Usuario_que_Asigna { get; set; }
@@ -151,7 +141,7 @@ namespace Spartane.Web.Areas.Frontal.Models
 	public class Solicitud_de_Servicios_de_Apoyo_ContestacionModel
     {
         [Required]
-        public int Clave { get; set; }
+        public int Folio { get; set; }
         public string Fecha_de_Contestacion { get; set; }
         public string Hora_de_Contestacion { get; set; }
         public int? Usuario_que_contesta { get; set; }
@@ -168,7 +158,7 @@ namespace Spartane.Web.Areas.Frontal.Models
 	public class Solicitud_de_Servicios_de_Apoyo_AutorizacionModel
     {
         [Required]
-        public int Clave { get; set; }
+        public int Folio { get; set; }
         public string Fecha_de_Revision { get; set; }
         public string Hora_de_Revision { get; set; }
         public int? Usuario_que_Revisa { get; set; }

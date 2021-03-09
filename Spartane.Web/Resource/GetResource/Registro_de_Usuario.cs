@@ -178,6 +178,10 @@ namespace Resources
 
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderRegistro_de_Usuario.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Datos para Iniciar Sesión</summary>	public static string TabDatos_para_Iniciar_Sesion 	{		get		{			SetPath();  			return resourceProviderRegistro_de_Usuario.GetResource("TabDatos_para_Iniciar_Sesion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Datos para validar tu cuenta</summary>	public static string TabDatos_para_validar_tu_cuenta 	{		get		{			SetPath();  			return resourceProviderRegistro_de_Usuario.GetResource("TabDatos_para_validar_tu_cuenta", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Validación</summary>	public static string TabValidacion 	{		get		{			SetPath();  			return resourceProviderRegistro_de_Usuario.GetResource("TabValidacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Lógica</summary>	public static string TabLogica 	{		get		{			SetPath();  			return resourceProviderRegistro_de_Usuario.GetResource("TabLogica", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
     }
 }

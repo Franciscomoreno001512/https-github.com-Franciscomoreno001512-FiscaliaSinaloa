@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Spartane.Core.Domain.Modulo_Atencion_Inicial;
-using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
-using Spartane.Core.Domain.Compareciente;
 using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Region;
 using Spartane.Core.Domain.Origen_de_Invitacion;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.expediente_ministerio_publico;
@@ -35,15 +33,11 @@ namespace Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo
     /// </summary>
     public class Solicitud_de_Servicios_de_Apoyo: BaseEntity
     {
-        public int Clave { get; set; }
-        public int? Folio_del_Caso { get; set; }
-        public int? Tipo_de_Servicio { get; set; }
-        public string Responsable { get; set; }
-        public int? Clave_MR { get; set; }
-        public int? Compareciente { get; set; }
+        public int Folio { get; set; }
         public DateTime? Fecha_de_Solicitud { get; set; }
         public string Hora_de_Solicitud { get; set; }
         public int? Usuario_que_Solicita { get; set; }
+        public int? Region { get; set; }
         public int? Origen { get; set; }
         public int? Numero_de_Expediente_AT { get; set; }
         public int? Numero_de_Expediente_MP { get; set; }
@@ -82,14 +76,10 @@ namespace Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo
         public string Motivo_de_Rechazo { get; set; }
         public string Observaciones_Autorizacion { get; set; }
 
-        [ForeignKey("Folio_del_Caso")]
-        public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Folio_del_Caso_Modulo_Atencion_Inicial { get; set; }
-        [ForeignKey("Tipo_de_Servicio")]
-        public virtual Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo.Tipo_de_Servicio_de_Apoyo Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo { get; set; }
-        [ForeignKey("Compareciente")]
-        public virtual Spartane.Core.Domain.Compareciente.Compareciente Compareciente_Compareciente { get; set; }
         [ForeignKey("Usuario_que_Solicita")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Solicita_Spartan_User { get; set; }
+        [ForeignKey("Region")]
+        public virtual Spartane.Core.Domain.Region.Region Region_Region { get; set; }
         [ForeignKey("Origen")]
         public virtual Spartane.Core.Domain.Origen_de_Invitacion.Origen_de_Invitacion Origen_Origen_de_Invitacion { get; set; }
         [ForeignKey("Numero_de_Expediente_AT")]
@@ -127,15 +117,11 @@ namespace Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo
 	
 	public class Solicitud_de_Servicios_de_Apoyo_Datos_Generales
     {
-                public int Clave { get; set; }
-        public int? Folio_del_Caso { get; set; }
-        public int? Tipo_de_Servicio { get; set; }
-        public string Responsable { get; set; }
-        public int? Clave_MR { get; set; }
-        public int? Compareciente { get; set; }
+                public int Folio { get; set; }
         public DateTime? Fecha_de_Solicitud { get; set; }
         public string Hora_de_Solicitud { get; set; }
         public int? Usuario_que_Solicita { get; set; }
+        public int? Region { get; set; }
         public int? Origen { get; set; }
         public int? Numero_de_Expediente_AT { get; set; }
         public int? Numero_de_Expediente_MP { get; set; }
@@ -149,14 +135,10 @@ namespace Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo
         public string Observaciones { get; set; }
         public int? Estatus { get; set; }
 
-		        [ForeignKey("Folio_del_Caso")]
-        public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Folio_del_Caso_Modulo_Atencion_Inicial { get; set; }
-        [ForeignKey("Tipo_de_Servicio")]
-        public virtual Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo.Tipo_de_Servicio_de_Apoyo Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo { get; set; }
-        [ForeignKey("Compareciente")]
-        public virtual Spartane.Core.Domain.Compareciente.Compareciente Compareciente_Compareciente { get; set; }
-        [ForeignKey("Usuario_que_Solicita")]
+		        [ForeignKey("Usuario_que_Solicita")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Solicita_Spartan_User { get; set; }
+        [ForeignKey("Region")]
+        public virtual Spartane.Core.Domain.Region.Region Region_Region { get; set; }
         [ForeignKey("Origen")]
         public virtual Spartane.Core.Domain.Origen_de_Invitacion.Origen_de_Invitacion Origen_Origen_de_Invitacion { get; set; }
         [ForeignKey("Numero_de_Expediente_AT")]
@@ -174,7 +156,7 @@ namespace Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo
 
 	public class Solicitud_de_Servicios_de_Apoyo_Recepcion
     {
-                public int Clave { get; set; }
+                public int Folio { get; set; }
         public DateTime? Fecha_de_Recepcion { get; set; }
         public string Hora_de_Recepcion { get; set; }
         public int? Usuario_que_Recibe { get; set; }
@@ -193,7 +175,7 @@ namespace Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo
 
 	public class Solicitud_de_Servicios_de_Apoyo_Asignacion
     {
-                public int Clave { get; set; }
+                public int Folio { get; set; }
         public DateTime? Fecha_de_Asignacion { get; set; }
         public string Hora_de_Asignacion { get; set; }
         public int? Usuario_que_Asigna { get; set; }
@@ -212,7 +194,7 @@ namespace Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo
 
 	public class Solicitud_de_Servicios_de_Apoyo_Contestacion
     {
-                public int Clave { get; set; }
+                public int Folio { get; set; }
         public DateTime? Fecha_de_Contestacion { get; set; }
         public string Hora_de_Contestacion { get; set; }
         public int? Usuario_que_contesta { get; set; }
@@ -230,7 +212,7 @@ namespace Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo
 
 	public class Solicitud_de_Servicios_de_Apoyo_Autorizacion
     {
-                public int Clave { get; set; }
+                public int Folio { get; set; }
         public DateTime? Fecha_de_Revision { get; set; }
         public string Hora_de_Revision { get; set; }
         public int? Usuario_que_Revisa { get; set; }

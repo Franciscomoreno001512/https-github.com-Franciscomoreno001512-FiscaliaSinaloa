@@ -1560,3 +1560,62 @@ function GetAllTableSQL( query) {
     return res;
 }
 $(".glyphicon-new-window").parent().hide();
+
+function DisableTab(divName) {
+    var selects = $('#tab' + divName).find('select');
+    var inputs = $('#tab' + divName).find('input');
+    var textareas = $('#tab' + divName).find('textarea');
+	var Control;
+	
+	selects.each(function () {
+		Control = $(this);
+		var controlFile = Control.selector + "File";
+		if ($(controlFile).length > 0) {
+			Control = controlFile;
+		}
+
+		if ($(this).data('type') == 'ckEditor') {
+			CKEDITOR.instances['TEXTAREA_NAME'].setReadOnly(disabled);
+			return;
+		}
+		$(Control).prop("disabled", "disabled");
+		if ($(this).hasClass('inputClientRequired')) {
+            $(this).removeClass('inputClientRequired');
+            $(this).addClass('inputClientRequired-hide');
+        }
+    });
+    inputs.each(function () {
+		Control = $(this);
+		var controlFile = Control.selector + "File";
+		if ($(controlFile).length > 0) {
+			Control = controlFile;
+		}
+
+		if ($(this).data('type') == 'ckEditor') {
+			CKEDITOR.instances['TEXTAREA_NAME'].setReadOnly(disabled);
+			return;
+		}
+		$(Control).prop("disabled", "disabled");
+        if ($(this).hasClass('inputClientRequired')) {
+            $(this).removeClass('inputClientRequired');
+            $(this).addClass('inputClientRequired-hide');
+        }		
+    });
+    textareas.each(function () {
+		Control = $(this);
+		var controlFile = Control.selector + "File";
+		if ($(controlFile).length > 0) {
+			Control = controlFile;
+		}
+
+		if ($(this).data('type') == 'ckEditor') {
+			CKEDITOR.instances['TEXTAREA_NAME'].setReadOnly(disabled);
+			return;
+		}
+		$(Control).prop("disabled", "disabled");
+        if ($(this).hasClass('inputClientRequired')) {
+            $(this).removeClass('inputClientRequired');
+            $(this).addClass('inputClientRequired-hide');
+        }		
+    });
+}

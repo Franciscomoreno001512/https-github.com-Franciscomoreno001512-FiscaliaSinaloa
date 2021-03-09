@@ -27,6 +27,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Tipo_de_Documento[Descripcion]":
                 case "Tipo_de_DocumentoDescripcion":
                     return "Tipo_de_Documento.Descripcion";
+                case "SubArea_de_Servicios_de_Apoyo[Descripcion]":
+                case "SubArea_de_Servicios_de_ApoyoDescripcion":
+                    return "SubArea_de_Servicios_de_Apoyo.Descripcion";
                 case "idFormato":
                     return "Documento.idFormato";
                 case "Requerido":

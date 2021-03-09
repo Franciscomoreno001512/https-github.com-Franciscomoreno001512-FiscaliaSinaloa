@@ -3,31 +3,28 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Solicitud_de_Servicios_de_ApoyoAdvanceSearchModel
 @{
-    List<SelectListItem> varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio = null;
-    if (ViewBag.Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio != null)
-    { varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio = (List<SelectListItem>)ViewBag.Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio; }
-    List<SelectListItem> varCompareciente_Compareciente = null;
-    if (ViewBag.Comparecientes_Compareciente != null)
-    { varCompareciente_Compareciente = (List<SelectListItem>)ViewBag.Comparecientes_Compareciente; }
-    List<SelectListItem> varSpartan_User_Usuario_que_Solicita = null;
+ List<SelectListItem> varSpartan_User_Usuario_que_Solicita = null;
     if (ViewBag.Spartan_Users_Usuario_que_Solicita != null)
     { varSpartan_User_Usuario_que_Solicita = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Solicita; }
+    List<SelectListItem> varRegion_Region = null;
+    if (ViewBag.Regions_Region != null)
+    { varRegion_Region = (List<SelectListItem>)ViewBag.Regions_Region; }
     List<SelectListItem> varOrigen_de_Invitacion_Origen = null;
     if (ViewBag.Origen_de_Invitacions_Origen != null)
     { varOrigen_de_Invitacion_Origen = (List<SelectListItem>)ViewBag.Origen_de_Invitacions_Origen; }
-    List<SelectListItem> varModulo_Atencion_Inicial_Numero_de_Expediente_AT = null;
+ List<SelectListItem> varModulo_Atencion_Inicial_Numero_de_Expediente_AT = null;
     if (ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT != null)
     { varModulo_Atencion_Inicial_Numero_de_Expediente_AT = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT; }
-    List<SelectListItem> varexpediente_ministerio_publico_Numero_de_Expediente_MP = null;
+ List<SelectListItem> varexpediente_ministerio_publico_Numero_de_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP != null)
     { varexpediente_ministerio_publico_Numero_de_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP; }
-    List<SelectListItem> varDocumento_Solicitud = null;
+ List<SelectListItem> varDocumento_Solicitud = null;
     if (ViewBag.Documentos_Solicitud != null)
     { varDocumento_Solicitud = (List<SelectListItem>)ViewBag.Documentos_Solicitud; }
     List<SelectListItem> varEstatus_de_Solicitud_de_Apoyo_Estatus = null;
     if (ViewBag.Estatus_de_Solicitud_de_Apoyos_Estatus != null)
     { varEstatus_de_Solicitud_de_Apoyo_Estatus = (List<SelectListItem>)ViewBag.Estatus_de_Solicitud_de_Apoyos_Estatus; }
-    List<SelectListItem> varSpartan_User_Usuario_que_Recibe = null;
+ List<SelectListItem> varSpartan_User_Usuario_que_Recibe = null;
     if (ViewBag.Spartan_Users_Usuario_que_Recibe != null)
     { varSpartan_User_Usuario_que_Recibe = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Recibe; }
     List<SelectListItem> varArea_de_Servicios_de_Apoyo_Area_Asignada = null;
@@ -36,22 +33,22 @@
     List<SelectListItem> varSubArea_de_Servicios_de_Apoyo_SubArea_Asignada = null;
     if (ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_Asignada != null)
     { varSubArea_de_Servicios_de_Apoyo_SubArea_Asignada = (List<SelectListItem>)ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_Asignada; }
-    List<SelectListItem> varSpartan_User_Usuario_que_Asigna = null;
+ List<SelectListItem> varSpartan_User_Usuario_que_Asigna = null;
     if (ViewBag.Spartan_Users_Usuario_que_Asigna != null)
     { varSpartan_User_Usuario_que_Asigna = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Asigna; }
     List<SelectListItem> varTipo_de_Asignacion_de_Apoyo_Tipo_de_Asignacion = null;
     if (ViewBag.Tipo_de_Asignacion_de_Apoyos_Tipo_de_Asignacion != null)
     { varTipo_de_Asignacion_de_Apoyo_Tipo_de_Asignacion = (List<SelectListItem>)ViewBag.Tipo_de_Asignacion_de_Apoyos_Tipo_de_Asignacion; }
-    List<SelectListItem> varSpartan_User_Responsable_Asignado = null;
+ List<SelectListItem> varSpartan_User_Responsable_Asignado = null;
     if (ViewBag.Spartan_Users_Responsable_Asignado != null)
     { varSpartan_User_Responsable_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Responsable_Asignado; }
-    List<SelectListItem> varSpartan_User_Usuario_que_contesta = null;
+ List<SelectListItem> varSpartan_User_Usuario_que_contesta = null;
     if (ViewBag.Spartan_Users_Usuario_que_contesta != null)
     { varSpartan_User_Usuario_que_contesta = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_contesta; }
-    List<SelectListItem> varDocumento_Dictamen = null;
+ List<SelectListItem> varDocumento_Dictamen = null;
     if (ViewBag.Documentos_Dictamen != null)
     { varDocumento_Dictamen = (List<SelectListItem>)ViewBag.Documentos_Dictamen; }
-    List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
+ List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
     if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
     { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
     List<SelectListItem> varResultado_de_Revision_Resultado_de_Autorizacion = null;
@@ -95,76 +92,15 @@
             {
 				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
                 <div class="MarginBottom ">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Clave</h3>
+                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Folio</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.From:</label>
-                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
-                    @Html.ValidationMessageFor(m => m.FromClave)
+                    @Html.TextBoxFor(m => m.FromFolio, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromFolio" })
+                    @Html.ValidationMessageFor(m => m.FromFolio)
                     <label class="">@Resources.Resources.To: </label>
-                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
-                    @Html.ValidationMessageFor(m => m.ToClave)
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Tipo_de_Servicio</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Tipo_de_ServicioFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_ServicioFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Servicio, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Servicio" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTipo_de_ServicioMultiple, varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTipo_de_Servicio"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Responsable</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.ResponsableFilter, filters, new { @class = "form-control", @id = "ddlResponsableFilter" })
-                    @Html.TextBoxFor(m => m.Responsable, new { @class = "form-control", @type = "text", @id = "txtResponsable" })
-                </div>
-                <div class="MarginBottom ">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Clave_MR</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.From:</label>
-                    @Html.TextBoxFor(m => m.FromClave_MR, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave_MR" })
-                    @Html.ValidationMessageFor(m => m.FromClave_MR)
-                    <label class="">@Resources.Resources.To: </label>
-                    @Html.TextBoxFor(m => m.ToClave_MR, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave_MR", @data_min = "txtAdvanceFromClave_MR" })
-                    @Html.ValidationMessageFor(m => m.ToClave_MR)
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Compareciente</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.ComparecienteFilter, filters, new { @class = "form-control", @id = "ddlComparecienteFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceCompareciente, new { @class = "form-control", @type = "text", @id = "txtAdvanceCompareciente" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCompareciente_Compareciente!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceComparecienteMultiple, varCompareciente_Compareciente,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceCompareciente"
-                        });
-                    }
+                    @Html.TextBoxFor(m => m.ToFolio, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToFolio", @data_min = "txtAdvanceFromFolio" })
+                    @Html.ValidationMessageFor(m => m.ToFolio)
                 </div>
         <div class="MarginBottom ">
             <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Solicitud</h3>
@@ -204,24 +140,27 @@
                 </span>
             </div>
         </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Solicita = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Solicita != null)
+    { varSpartan_User_Usuario_que_Solicita = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Solicita; }
                 <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Solicita</h3>
+                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Region</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Usuario_que_SolicitaFilter, filters, new { @class = "form-control", @id = "ddlUsuario_que_SolicitaFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceUsuario_que_Solicita, new { @class = "form-control", @type = "text", @id = "txtAdvanceUsuario_que_Solicita" })
+                    @Html.DropDownListFor(m => m.RegionFilter, filters, new { @class = "form-control", @id = "ddlRegionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceRegion, new { @class = "form-control", @type = "text", @id = "txtAdvanceRegion" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSpartan_User_Usuario_que_Solicita!=null)
+                    @if (varRegion_Region!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceUsuario_que_SolicitaMultiple, varSpartan_User_Usuario_que_Solicita,
+                        @Html.ListBoxFor(m => m.AdvanceRegionMultiple, varRegion_Region,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvanceUsuario_que_Solicita"
+                            @id = "ddlAdvanceRegion"
                         });
                     }
                 </div>
@@ -246,48 +185,12 @@
                         });
                     }
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_AT</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Numero_de_Expediente_ATFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_Expediente_ATFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceNumero_de_Expediente_AT, new { @class = "form-control", @type = "text", @id = "txtAdvanceNumero_de_Expediente_AT" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varModulo_Atencion_Inicial_Numero_de_Expediente_AT!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceNumero_de_Expediente_ATMultiple, varModulo_Atencion_Inicial_Numero_de_Expediente_AT,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceNumero_de_Expediente_AT"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_MP</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Numero_de_Expediente_MPFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_Expediente_MPFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceNumero_de_Expediente_MP, new { @class = "form-control", @type = "text", @id = "txtAdvanceNumero_de_Expediente_MP" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varexpediente_ministerio_publico_Numero_de_Expediente_MP!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceNumero_de_Expediente_MPMultiple, varexpediente_ministerio_publico_Numero_de_Expediente_MP,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceNumero_de_Expediente_MP"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varModulo_Atencion_Inicial_Numero_de_Expediente_AT = null;
+    if (ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT != null)
+    { varModulo_Atencion_Inicial_Numero_de_Expediente_AT = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT; }
+ List<SelectListItem> varexpediente_ministerio_publico_Numero_de_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Numero_de_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP; }
                 <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.NUAT</h3>
                 </div>
@@ -320,27 +223,9 @@
                     @Html.DropDownListFor(m => m.Numero_de_OficioFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_OficioFilter" })
                     @Html.TextBoxFor(m => m.Numero_de_Oficio, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Oficio" })
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.SolicitudFilter, filters, new { @class = "form-control", @id = "ddlSolicitudFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceSolicitud, new { @class = "form-control", @type = "text", @id = "txtAdvanceSolicitud" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDocumento_Solicitud!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceSolicitudMultiple, varDocumento_Solicitud,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceSolicitud"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varDocumento_Solicitud = null;
+    if (ViewBag.Documentos_Solicitud != null)
+    { varDocumento_Solicitud = (List<SelectListItem>)ViewBag.Documentos_Solicitud; }
                 <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones</h3>
                 </div>
@@ -408,27 +293,9 @@
                 </span>
             </div>
         </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Recibe</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Usuario_que_RecibeFilter, filters, new { @class = "form-control", @id = "ddlUsuario_que_RecibeFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceUsuario_que_Recibe, new { @class = "form-control", @type = "text", @id = "txtAdvanceUsuario_que_Recibe" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSpartan_User_Usuario_que_Recibe!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceUsuario_que_RecibeMultiple, varSpartan_User_Usuario_que_Recibe,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceUsuario_que_Recibe"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Recibe = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Recibe != null)
+    { varSpartan_User_Usuario_que_Recibe = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Recibe; }
                 <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Area_Asignada</h3>
                 </div>
@@ -517,27 +384,9 @@
                 </span>
             </div>
         </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Asigna</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Usuario_que_AsignaFilter, filters, new { @class = "form-control", @id = "ddlUsuario_que_AsignaFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceUsuario_que_Asigna, new { @class = "form-control", @type = "text", @id = "txtAdvanceUsuario_que_Asigna" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSpartan_User_Usuario_que_Asigna!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceUsuario_que_AsignaMultiple, varSpartan_User_Usuario_que_Asigna,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceUsuario_que_Asigna"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Asigna = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Asigna != null)
+    { varSpartan_User_Usuario_que_Asigna = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Asigna; }
                 <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Tipo_de_Asignacion</h3>
                 </div>
@@ -559,27 +408,9 @@
                         });
                     }
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Responsable_Asignado</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Responsable_AsignadoFilter, filters, new { @class = "form-control", @id = "ddlResponsable_AsignadoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceResponsable_Asignado, new { @class = "form-control", @type = "text", @id = "txtAdvanceResponsable_Asignado" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSpartan_User_Responsable_Asignado!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceResponsable_AsignadoMultiple, varSpartan_User_Responsable_Asignado,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceResponsable_Asignado"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varSpartan_User_Responsable_Asignado = null;
+    if (ViewBag.Spartan_Users_Responsable_Asignado != null)
+    { varSpartan_User_Responsable_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Responsable_Asignado; }
                 <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Asignacion</h3>
                 </div>
@@ -626,48 +457,12 @@
                 </span>
             </div>
         </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_contesta</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Usuario_que_contestaFilter, filters, new { @class = "form-control", @id = "ddlUsuario_que_contestaFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceUsuario_que_contesta, new { @class = "form-control", @type = "text", @id = "txtAdvanceUsuario_que_contesta" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSpartan_User_Usuario_que_contesta!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceUsuario_que_contestaMultiple, varSpartan_User_Usuario_que_contesta,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceUsuario_que_contesta"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Dictamen</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.DictamenFilter, filters, new { @class = "form-control", @id = "ddlDictamenFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceDictamen, new { @class = "form-control", @type = "text", @id = "txtAdvanceDictamen" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDocumento_Dictamen!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceDictamenMultiple, varDocumento_Dictamen,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceDictamen"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_contesta = null;
+    if (ViewBag.Spartan_Users_Usuario_que_contesta != null)
+    { varSpartan_User_Usuario_que_contesta = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_contesta; }
+ List<SelectListItem> varDocumento_Dictamen = null;
+    if (ViewBag.Documentos_Dictamen != null)
+    { varDocumento_Dictamen = (List<SelectListItem>)ViewBag.Documentos_Dictamen; }
                 <div class="MarginBottom ">
                     <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Archivo</h3>
                 </div>
@@ -725,27 +520,9 @@
                 </span>
             </div>
         </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_Revisa</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Usuario_que_RevisaFilter, filters, new { @class = "form-control", @id = "ddlUsuario_que_RevisaFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceUsuario_que_Revisa, new { @class = "form-control", @type = "text", @id = "txtAdvanceUsuario_que_Revisa" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSpartan_User_Usuario_que_Revisa!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceUsuario_que_RevisaMultiple, varSpartan_User_Usuario_que_Revisa,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceUsuario_que_Revisa"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
+    { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
                 <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Resultado_de_Autorizacion</h3>
                 </div>
@@ -795,50 +572,10 @@
 <script>
     function InitiateAdvanceSearch() {
         var advanceSearch = {}, hasParameter = false;
-        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+        if ($("#txtAdvanceFromFolio").val() != "" || $("#txtAdvanceToFolio").val() != "") {
             hasParameter = true;
-            advanceSearch.Solicitud_de_Servicios_de_ApoyoClaveFrom = $("#txtAdvanceFromClave").val();
-            advanceSearch.Solicitud_de_Servicios_de_ApoyoClaveTo = $("#txtAdvanceToClave").val();
-        }
-        advanceSearch.Tipo_de_ServicioSearchType = 0;
-        if ($('#ddlAdvanceTipo_de_Servicio').val().length > 0 || $("#txtAdvanceTipo_de_Servicio").val() == "") {
-
-
-            if (isSolicitud_de_Servicios_de_ApoyoTextSearch) {
-                advanceSearch.Tipo_de_ServicioName = $("#txtAdvanceTipo_de_Servicio").val();
-                advanceSearch.Tipo_de_ServicioNameSearchType = $("#ddlAdvanceTipo_de_Servicio").val();
-                advanceSearch.Tipo_de_ServicioSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Tipo_de_ServicioToSearch = $("#ddlAdvanceTipo_de_Servicio").val();
-                advanceSearch.Tipo_de_ServicioSearchType = 2;
-            }
-        }
-        if ($("#txtAdvanceResponsable").val() != "") {
-            hasParameter = true;
-            advanceSearch.Solicitud_de_Servicios_de_ApoyoResponsable = $("#txtAdvanceResponsable").val();
-            advanceSearch.Solicitud_de_Servicios_de_ApoyoResponsableSearchType = $("#ddlAdvanceResponsableFilter").val();
-        }
-        if ($("#txtAdvanceFromClave_MR").val() != "" || $("#txtAdvanceToClave_MR").val() != "") {
-            hasParameter = true;
-            advanceSearch.Solicitud_de_Servicios_de_ApoyoClave_MRFrom = $("#txtAdvanceFromClave_MR").val();
-            advanceSearch.Solicitud_de_Servicios_de_ApoyoClave_MRTo = $("#txtAdvanceToClave_MR").val();
-        }
-        advanceSearch.ComparecienteSearchType = 0;
-        if ($('#ddlAdvanceCompareciente').val().length > 0 || $("#txtAdvanceCompareciente").val() == "") {
-
-
-            if (isSolicitud_de_Servicios_de_ApoyoTextSearch) {
-                advanceSearch.ComparecienteName = $("#txtAdvanceCompareciente").val();
-                advanceSearch.ComparecienteNameSearchType = $("#ddlAdvanceCompareciente").val();
-                advanceSearch.ComparecienteSearchType = 1;
-            }
-            else {
-
-                advanceSearch.ComparecienteToSearch = $("#ddlAdvanceCompareciente").val();
-                advanceSearch.ComparecienteSearchType = 2;
-            }
+            advanceSearch.Solicitud_de_Servicios_de_ApoyoFolioFrom = $("#txtAdvanceFromFolio").val();
+            advanceSearch.Solicitud_de_Servicios_de_ApoyoFolioTo = $("#txtAdvanceToFolio").val();
         }
         if ($("#txtAdvanceFromFecha_de_Solicitud").val() != "" || $("#txtAdvanceToFecha_de_Solicitud").val() != "") {
             hasParameter = true;
@@ -863,6 +600,21 @@
 
                 advanceSearch.Usuario_que_SolicitaToSearch = $("#ddlAdvanceUsuario_que_Solicita").val();
                 advanceSearch.Usuario_que_SolicitaSearchType = 2;
+            }
+        }
+        advanceSearch.RegionSearchType = 0;
+        if ($('#ddlAdvanceRegion').val().length > 0 || $("#txtAdvanceRegion").val() == "") {
+
+
+            if (isSolicitud_de_Servicios_de_ApoyoTextSearch) {
+                advanceSearch.RegionName = $("#txtAdvanceRegion").val();
+                advanceSearch.RegionNameSearchType = $("#ddlAdvanceRegion").val();
+                advanceSearch.RegionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.RegionToSearch = $("#ddlAdvanceRegion").val();
+                advanceSearch.RegionSearchType = 2;
             }
         }
         advanceSearch.OrigenSearchType = 0;
@@ -1222,24 +974,6 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
-        $("#txtAdvanceTipo_de_Servicio").keypress(function () {
-            isSolicitud_de_Servicios_de_ApoyoTextSearch = true;
-            $("#ddlAdvanceTipo_de_Servicio").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceTipo_de_Servicio").change(function () {
-            isSolicitud_de_Servicios_de_ApoyoTextSearch = false;
-            $("#txtAdvanceTipo_de_Servicio").val('');
-        });
-        $("#txtAdvanceCompareciente").keypress(function () {
-            isSolicitud_de_Servicios_de_ApoyoTextSearch = true;
-            $("#ddlAdvanceCompareciente").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceCompareciente").change(function () {
-            isSolicitud_de_Servicios_de_ApoyoTextSearch = false;
-            $("#txtAdvanceCompareciente").val('');
-        });
         $("#txtAdvanceUsuario_que_Solicita").keypress(function () {
             isSolicitud_de_Servicios_de_ApoyoTextSearch = true;
             $("#ddlAdvanceUsuario_que_Solicita").val('').trigger("chosen:updated");
@@ -1248,6 +982,15 @@
         $("#ddlAdvanceUsuario_que_Solicita").change(function () {
             isSolicitud_de_Servicios_de_ApoyoTextSearch = false;
             $("#txtAdvanceUsuario_que_Solicita").val('');
+        });
+        $("#txtAdvanceRegion").keypress(function () {
+            isSolicitud_de_Servicios_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceRegion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceRegion").change(function () {
+            isSolicitud_de_Servicios_de_ApoyoTextSearch = false;
+            $("#txtAdvanceRegion").val('');
         });
         $("#txtAdvanceOrigen").keypress(function () {
             isSolicitud_de_Servicios_de_ApoyoTextSearch = true;

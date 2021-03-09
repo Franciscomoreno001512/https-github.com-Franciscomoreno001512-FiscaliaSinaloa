@@ -29,6 +29,18 @@ namespace Spartane.Web.Areas.WebApiConsumer.Registro_de_Usuario
 		ApiResponse<int> Update_Datos_Generales(Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_Generales entity);
 		ApiResponse<Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_Generales> Get_Datos_Generales(string Key);
 
+		ApiResponse<int> Update_Datos_para_Iniciar_Sesion(Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_para_Iniciar_Sesion entity);
+		ApiResponse<Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_para_Iniciar_Sesion> Get_Datos_para_Iniciar_Sesion(string Key);
+
+		ApiResponse<int> Update_Datos_para_validar_tu_cuenta(Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_para_validar_tu_cuenta entity);
+		ApiResponse<Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Datos_para_validar_tu_cuenta> Get_Datos_para_validar_tu_cuenta(string Key);
+
+		ApiResponse<int> Update_Validacion(Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Validacion entity);
+		ApiResponse<Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Validacion> Get_Validacion(string Key);
+
+		ApiResponse<int> Update_Logica(Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Logica entity);
+		ApiResponse<Spartane.Core.Domain.Registro_de_Usuario.Registro_de_Usuario_Logica> Get_Logica(string Key);
+
 
     }
 }

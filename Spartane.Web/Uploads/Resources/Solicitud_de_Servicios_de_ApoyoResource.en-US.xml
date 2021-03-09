@@ -1,14 +1,11 @@
 ﻿<?xml version="1.0" standalone="yes"?>
 <resources>
   <resource culture="en-us" name="Solicitud_de_Servicios_de_Apoyo" value="Solicitud de Servicios de Apoyo"></resource>
-  <resource culture="en-US" name="Clave" value="Clave"></resource>
-  <resource culture="en-US" name="Tipo_de_Servicio" value="Tipo de Servicio"></resource>
-  <resource culture="en-US" name="Responsable" value="Responsable"></resource>
-  <resource culture="en-US" name="Clave_MR" value="Clave MR"></resource>
-  <resource culture="en-US" name="Compareciente" value="Compareciente"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
   <resource culture="en-US" name="Fecha_de_Solicitud" value="Fecha de Solicitud"></resource>
   <resource culture="en-US" name="Hora_de_Solicitud" value="Hora de Solicitud"></resource>
   <resource culture="en-US" name="Usuario_que_Solicita" value="Usuario que Solicita"></resource>
+  <resource culture="en-US" name="Region" value="Región"></resource>
   <resource culture="en-US" name="Origen" value="Origen"></resource>
   <resource culture="en-US" name="Numero_de_Expediente_AT" value="Número de Expediente AT"></resource>
   <resource culture="en-US" name="Numero_de_Expediente_MP" value="Número de Expediente MP"></resource>
@@ -25,26 +22,26 @@
   <resource culture="en-US" name="Usuario_que_Recibe" value="Usuario que Recibe"></resource>
   <resource culture="en-US" name="Area_Asignada" value="Area Asignada"></resource>
   <resource culture="en-US" name="SubArea_Asignada" value="SubArea Asignada"></resource>
-  <resource culture="en-US" name="Observaciones_Recepcion" value="Observaciones Recepcion"></resource>
+  <resource culture="en-US" name="Observaciones_Recepcion" value="Observaciones"></resource>
   <resource culture="en-US" name="Fecha_de_Asignacion" value="Fecha de Asignación"></resource>
   <resource culture="en-US" name="Hora_de_Asignacion" value="Hora de Asignación"></resource>
   <resource culture="en-US" name="Usuario_que_Asigna" value="Usuario que Asigna"></resource>
   <resource culture="en-US" name="Tipo_de_Asignacion" value="Tipo de Asignación"></resource>
   <resource culture="en-US" name="Responsable_Asignado" value="Responsable Asignado"></resource>
-  <resource culture="en-US" name="Observaciones_Asignacion" value="Observaciones Asignacion"></resource>
+  <resource culture="en-US" name="Observaciones_Asignacion" value="Observaciones"></resource>
   <resource culture="en-US" name="Fecha_de_Contestacion" value="Fecha de Contestación"></resource>
   <resource culture="en-US" name="Hora_de_Contestacion" value="Hora de Contestación"></resource>
   <resource culture="en-US" name="Usuario_que_contesta" value="Usuario que contesta"></resource>
   <resource culture="en-US" name="Dictamen" value="Dictamen"></resource>
   <resource culture="en-US" name="Enviar_Contestacion" value="Enviar Contestación"></resource>
   <resource culture="en-US" name="Archivo" value="Archivo"></resource>
-  <resource culture="en-US" name="Observaciones_Contestacion" value="Observaciones Contestacion"></resource>
+  <resource culture="en-US" name="Observaciones_Contestacion" value="Observaciones"></resource>
   <resource culture="en-US" name="Fecha_de_Revision" value="Fecha de Revisión"></resource>
   <resource culture="en-US" name="Hora_de_Revision" value="Hora de Revisión"></resource>
   <resource culture="en-US" name="Usuario_que_Revisa" value="Usuario que Revisa"></resource>
   <resource culture="en-US" name="Resultado_de_Autorizacion" value="Resultado de Autorización"></resource>
   <resource culture="en-US" name="Motivo_de_Rechazo" value="Motivo de Rechazo"></resource>
-  <resource culture="en-US" name="Observaciones_Autorizacion" value="Observaciones Autorizacion"></resource>
+  <resource culture="en-US" name="Observaciones_Autorizacion" value="Observaciones"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 <resource culture="en-US" name="TabRecepcion" value="Recepción"></resource>

@@ -204,34 +204,7 @@
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divTipo_de_Solicitud">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Tipo_de_Solicitud</label>
-                                <div class="col-sm-8" data-field-id="Tipo_de_Solicitud" data-attribute="269373" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Tipo_de_Solicitud">
-                                    <select class="form-control Datos_de_los_hechos" data-val="true" data-val-number="The field Tipo de Solicitud must be a number." data-val-required="The Tipo de Solicitud field is required." id="Tipo_de_Solicitud" name="Tipo_de_Solicitud">
-                                        <option value=""></option>
-                                        @if (varTipo_de_Solicitud_Tipo_de_Solicitud != null){ 
-                                            foreach (var itemTipo_de_Solicitud in varTipo_de_Solicitud_Tipo_de_Solicitud)
-                                            {
-                                                if (itemTipo_de_Solicitud.Value == Convert.ToString(Model.Tipo_de_Solicitud))
-                                                {
-                                                    <option value="@itemTipo_de_Solicitud.Value" selected>@itemTipo_de_Solicitud.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTipo_de_Solicitud.Value">@itemTipo_de_Solicitud.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Solicitud" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269373).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Solicitud', 'Tipo_de_Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
+                           
                             <div class="form-group" id="divTitulo_del_Hecho">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Titulo_del_Hecho</label>
                                 <div class="col-sm-8" data-field-id="Titulo_del_Hecho" data-attribute="269224" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Titulo_del_Hecho">
@@ -348,6 +321,15 @@
                                 </div>
                                 }
                             </div>
+							@*fjmore*@
+                                        <div class="form-group" id="divMapa">
+                                            <label class="col-sm-2 control-label" style="color:white!important;">Mapa</label>
+                                            <div class="col-sm-8">
+                                                <a href="#" class="btn btn-info btn-lg" style="float:right!important;" id="btnOpenMapa">
+                                                    <span class="glyphicon glyphicon-map-marker"></span> Ver Mapa
+                                                </a>
+                                            </div>
+                                        </div>
 				<div class="form-group" id="divPais">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Pais</label>
                                 <div class="col-sm-8" data-field-id="Pais" data-attribute="269229" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Pais">
@@ -534,7 +516,8 @@
                                         <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
                                     }
                                 }
-
+								<input type="button" value="Anterior" id="Datos_de_los_Hechos_PCAnterior" class="btn btn-w-m btn-primary btn_save" />
+                                <input type="button" value="Siguiente" id="Datos_de_los_Hechos_PCSiguiente" class="btn btn-w-m btn-primary btn_save" />
                                 <input type="hidden" id="hdnConfigureType" />
 								<input type="hidden" id="hdnDatos_de_los_Hechos_PCBusinessRuleFieldId" />
                                 <input type="hidden" id="hdnDatos_de_los_Hechos_PCBusinessRuleFieldName" />
@@ -555,7 +538,51 @@
     </div>
 </div>
 <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+  <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg hidden" data-toggle="modal" id="modalMapa" data-target="#myModal">Ver Mapa</button>
 
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
+        <div class="modal-dialog" style="width: 90%;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Seleccionar Dirección</h4>
+					<p>Al seleccionar la ubicación aquí se llenarán los datos en la ventana correspondiente.</p>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <label>Escriba la dirección</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" style="width:100%" id="address" name="address" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="button" id="BucarDireccion" value="Buscar">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:12px;">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <!-- <div id="gmap" style="height:100%; width:100%;"></div> -->
+                                <div id="gmap" style="height: 400px"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 @section Styles {
 <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
     @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
@@ -918,7 +945,7 @@
 
 <script type="text/javascript">
 
-
+var roleActivo = @Session["USERROLEID"];
    function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
         if (!isMR)
             var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
@@ -957,7 +984,7 @@
 		
     }
 
-
+var newIDInv=0;
         function SendDatos_de_los_Hechos_PCData(callBack) {
 			
 					
@@ -991,7 +1018,7 @@
             {
                 id = CreateID();
             }
-			
+			newIDInv=id;
 			
 			if (Tab_Datos_de_los_hechos)
 				Save_Datos_de_los_hechos(id);
@@ -1342,6 +1369,29 @@
 		}
 
 
+    //fjmore
+    $("body").on("click", "#btnOpenMapa", function () {
+
+        $("#modalMapa").click();
+
+    });
+    $('#myModal').on('shown.bs.modal', function () {
+        var lat = $("#Latitud").val();
+        var long = $("#Longitud").val();
+        if (lat != "" && long != "") {
+            $("#address").val(lat + "," + long);
+        }
+        CargaGoogleMaps();
+    });
+
+    $('#myModal').on('hidden.bs.modal', function () {
+
+    });
+    $("body").on("click", "#BucarDireccion", function () {
+
+
+        CargaGoogleMaps();
+    });
     </script>
 }
     <input type="hidden" id="FieldId" name="FieldId" value="" />
@@ -1350,4 +1400,4 @@
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
      <input type="hidden" id="Datos_de_los_Hechos_PC_cmbLabelSelect" name="Datos_de_los_Hechos_PC_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
-
+    <script src='https://maps.googleapis.com/maps/api/js?key=@System.Configuration.ConfigurationManager.AppSettings["GoogleMapsApyKey"]' type='text/javascript'></script>

@@ -33,6 +33,9 @@
     List<SelectListItem> varSpartan_User_Usuario_que_Solicita = null;
     if (ViewBag.Spartan_Users_Usuario_que_Solicita != null)
     { varSpartan_User_Usuario_que_Solicita = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Solicita; }
+    List<SelectListItem> varRegion_Region = null;
+    if (ViewBag.Regions_Region != null)
+    { varRegion_Region = (List<SelectListItem>)ViewBag.Regions_Region; }
     List<SelectListItem> varOrigen_de_Invitacion_Origen = null;
     if (ViewBag.Origen_de_Invitacions_Origen != null)
     { varOrigen_de_Invitacion_Origen = (List<SelectListItem>)ViewBag.Origen_de_Invitacions_Origen; }
@@ -294,6 +297,27 @@
 					else
 					{
 						<option value="@itemUsuario_que_Solicita.Value">@itemUsuario_que_Solicita.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divRegion">
+	<label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Region</label>
+	<div class="col-sm-8" data-field-id="Region" data-attribute="273132" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Region">
+		<select class="form-control" data-val="true" data-val-number="The field Región must be a number." data-val-required="The Región field is required." id="Solicitud_de_Servicios_de_ApoyoRegion" name="Solicitud_de_Servicios_de_ApoyoRegion">
+			<option value=""></option>
+			@if (varRegion_Region != null){ 
+				foreach (var itemRegion in varRegion_Region)
+				{
+					if (itemRegion.Value == Convert.ToString(Model.Region))
+					{
+						<option value="@itemRegion.Value" selected>@itemRegion.Text</option>
+					}
+					else
+					{
+						<option value="@itemRegion.Value">@itemRegion.Text</option>
 					}
 				}
 			}

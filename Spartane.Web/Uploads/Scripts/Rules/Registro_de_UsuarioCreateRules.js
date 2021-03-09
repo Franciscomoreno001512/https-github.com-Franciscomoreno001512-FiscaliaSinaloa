@@ -496,7 +496,7 @@ $("#Registro_de_UsuarioSiguiente").on("click", function() {
 			if(seEnvioCorreo){
 				enviarCorreoRegistro(correo1,username2);
 			}
-			window.location="../../Account/Login";
+			window.location="../../Account/Login?returnUrl='LoginPC'";
 		}
 		else{
 			alertas("¡Código incorrecto!");

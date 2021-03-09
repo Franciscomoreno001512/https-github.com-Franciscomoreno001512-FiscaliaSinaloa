@@ -367,7 +367,7 @@
                                         <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
                                     }
                                 }
-
+								<input type="button" value="Anterior" id="Solicitud_de_Denuncia_CiudadanaAnterior" class="btn btn-w-m btn-primary btn_save" />
                                 <input type="hidden" id="hdnConfigureType" />
 								<input type="hidden" id="hdnSolicitud_de_Denuncia_CiudadanaBusinessRuleFieldId" />
                                 <input type="hidden" id="hdnSolicitud_de_Denuncia_CiudadanaBusinessRuleFieldName" />
@@ -582,7 +582,7 @@
 
 <script type="text/javascript">
 
-
+var roleActivo = @Session["USERROLEID"];
    function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
         if (!isMR)
             var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";

@@ -76,6 +76,16 @@ namespace Resources
             }
         }
 
+        /// <summary>SubArea_de_Servicios_de_Apoyo</summary>
+        public static string SubArea_de_Servicios_de_Apoyo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDocumento.GetResource("SubArea_de_Servicios_de_Apoyo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>idFormato</summary>
         public static string idFormato
         {

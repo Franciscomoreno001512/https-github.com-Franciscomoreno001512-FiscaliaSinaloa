@@ -12,6 +12,9 @@
     List<SelectListItem> varTipo_de_Documento_Tipo_de_Documento = null;
     if (ViewBag.Tipo_de_Documentos_Tipo_de_Documento != null)
     { varTipo_de_Documento_Tipo_de_Documento = (List<SelectListItem>)ViewBag.Tipo_de_Documentos_Tipo_de_Documento; }
+    List<SelectListItem> varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo = null;
+    if (ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo != null)
+    { varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo = (List<SelectListItem>)ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -131,6 +134,27 @@
                         });
                     }
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DocumentoResources.SubArea_de_Servicios_de_Apoyo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.SubArea_de_Servicios_de_ApoyoFilter, filters, new { @class = "form-control", @id = "ddlSubArea_de_Servicios_de_ApoyoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceSubArea_de_Servicios_de_Apoyo, new { @class = "form-control", @type = "text", @id = "txtAdvanceSubArea_de_Servicios_de_Apoyo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceSubArea_de_Servicios_de_ApoyoMultiple, varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceSubArea_de_Servicios_de_Apoyo"
+                        });
+                    }
+                </div>
                 <div class="MarginBottom ">
                     <h3>@Resources.DocumentoResources.idFormato</h3>
                 </div>
@@ -209,6 +233,21 @@
                 advanceSearch.Tipo_de_DocumentoSearchType = 2;
             }
         }
+        advanceSearch.SubArea_de_Servicios_de_ApoyoSearchType = 0;
+        if ($('#ddlAdvanceSubArea_de_Servicios_de_Apoyo').val().length > 0 || $("#txtAdvanceSubArea_de_Servicios_de_Apoyo").val() == "") {
+
+
+            if (isDocumentoTextSearch) {
+                advanceSearch.SubArea_de_Servicios_de_ApoyoName = $("#txtAdvanceSubArea_de_Servicios_de_Apoyo").val();
+                advanceSearch.SubArea_de_Servicios_de_ApoyoNameSearchType = $("#ddlAdvanceSubArea_de_Servicios_de_Apoyo").val();
+                advanceSearch.SubArea_de_Servicios_de_ApoyoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.SubArea_de_Servicios_de_ApoyoToSearch = $("#ddlAdvanceSubArea_de_Servicios_de_Apoyo").val();
+                advanceSearch.SubArea_de_Servicios_de_ApoyoSearchType = 2;
+            }
+        }
         if ($("#txtAdvanceFromidFormato").val() != "" || $("#txtAdvanceToidFormato").val() != "") {
             hasParameter = true;
             advanceSearch.DocumentoidFormatoFrom = $("#txtAdvanceFromidFormato").val();
@@ -278,6 +317,15 @@
         $("#ddlAdvanceTipo_de_Documento").change(function () {
             isDocumentoTextSearch = false;
             $("#txtAdvanceTipo_de_Documento").val('');
+        });
+        $("#txtAdvanceSubArea_de_Servicios_de_Apoyo").keypress(function () {
+            isDocumentoTextSearch = true;
+            $("#ddlAdvanceSubArea_de_Servicios_de_Apoyo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSubArea_de_Servicios_de_Apoyo").change(function () {
+            isDocumentoTextSearch = false;
+            $("#txtAdvanceSubArea_de_Servicios_de_Apoyo").val('');
         });
 
     });

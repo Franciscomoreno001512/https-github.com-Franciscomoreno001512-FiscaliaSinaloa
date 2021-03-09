@@ -19,6 +19,9 @@
     List<SelectListItem> varTipo_de_Documento_Tipo_de_Documento = null;
     if (ViewBag.Tipo_de_Documentos_Tipo_de_Documento != null)
     { varTipo_de_Documento_Tipo_de_Documento = (List<SelectListItem>)ViewBag.Tipo_de_Documentos_Tipo_de_Documento; }
+    List<SelectListItem> varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo = null;
+    if (ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo != null)
+    { varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo = (List<SelectListItem>)ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo; }
 
 
     Permission permission = ViewBag.Permission;
@@ -167,7 +170,7 @@
                             <div class="form-group" id="divDescripcion">
                                 <label class="col-sm-2 control-label">@Resources.DocumentoResources.Descripcion</label>
                                 <div class="col-sm-8" data-field-id="Descripcion" data-attribute="266634" data-field-name="@Resources.DocumentoResources.Descripcion">
-                                    <input class="form-control Datos_Generales" id="Descripcion" name="Descripcion" type="text" value="@Model.Descripcion">
+                                    <textarea id="Descripcion" name="Descripcion" class="form-control Datos_Generales" rows="4" cols="50">@Model.Descripcion</textarea>
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
@@ -252,6 +255,34 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Documento', 'Tipo_de_Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divSubArea_de_Servicios_de_Apoyo">
+                                <label class="col-sm-2 control-label">@Resources.DocumentoResources.SubArea_de_Servicios_de_Apoyo</label>
+                                <div class="col-sm-8" data-field-id="SubArea_de_Servicios_de_Apoyo" data-attribute="273133" data-field-name="@Resources.DocumentoResources.SubArea_de_Servicios_de_Apoyo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field SubArea de Servicios de Apoyo must be a number." data-val-required="The SubArea de Servicios de Apoyo field is required." id="SubArea_de_Servicios_de_Apoyo" name="SubArea_de_Servicios_de_Apoyo">
+                                        <option value=""></option>
+                                        @if (varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo != null){ 
+                                            foreach (var itemSubArea_de_Servicios_de_Apoyo in varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo)
+                                            {
+                                                if (itemSubArea_de_Servicios_de_Apoyo.Value == Convert.ToString(Model.SubArea_de_Servicios_de_Apoyo))
+                                                {
+                                                    <option value="@itemSubArea_de_Servicios_de_Apoyo.Value" selected>@itemSubArea_de_Servicios_de_Apoyo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemSubArea_de_Servicios_de_Apoyo.Value">@itemSubArea_de_Servicios_de_Apoyo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="SubArea_de_Servicios_de_Apoyo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273133).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('SubArea_de_Servicios_de_Apoyo', 'SubArea_de_Servicios_de_Apoyo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -728,6 +759,7 @@
                     $('#Diligencia').val(result.data.Diligencia);
                     $('#Origen').val(result.data.Origen);
                     $('#Tipo_de_Documento').val(result.data.Tipo_de_Documento);
+                    $('#SubArea_de_Servicios_de_Apoyo').val(result.data.SubArea_de_Servicios_de_Apoyo);
                     $('#idFormato').val(result.data.idFormato);
                     $('#Requerido').prop('checked', result.data.Requerido);
                     $('#Solicitante').prop('checked', result.data.Solicitante);
@@ -749,6 +781,7 @@
                 data.append('Diligencia', $('#Diligencia').val());
                 data.append('Origen', $('#Origen').val());
                 data.append('Tipo_de_Documento', $('#Tipo_de_Documento').val());
+                data.append('SubArea_de_Servicios_de_Apoyo', $('#SubArea_de_Servicios_de_Apoyo').val());
                 data.append('idFormato', $('#idFormato').val());
                 data.append('Requerido', $('#Requerido').prop('checked'));
                 data.append('Solicitante', $('#Solicitante').prop('checked'));

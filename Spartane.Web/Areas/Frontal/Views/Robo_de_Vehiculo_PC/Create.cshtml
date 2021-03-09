@@ -187,7 +187,7 @@
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divTipo_de_Solicitud">
+                                  <div class="form-group" id="divTipo_de_Solicitud">
                                 <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Solicitud</label>
                                 <div class="col-sm-8" data-field-id="Tipo_de_Solicitud" data-attribute="269375" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Solicitud">
                                     <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Solicitud must be a number." data-val-required="The Tipo de Solicitud field is required." id="Tipo_de_Solicitud" name="Tipo_de_Solicitud">
@@ -379,7 +379,8 @@
                                         <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
                                     }
                                 }
-
+								<input type="button" value="Anterior" id="Robo_de_Vehiculo_PCAnterior" class="btn btn-w-m btn-primary btn_save" />
+                                <input type="button" value="Siguiente" id="Robo_de_Vehiculo_PCSiguiente" class="btn btn-w-m btn-primary btn_save" />
                                 <input type="hidden" id="hdnConfigureType" />
 								<input type="hidden" id="hdnRobo_de_Vehiculo_PCBusinessRuleFieldId" />
                                 <input type="hidden" id="hdnRobo_de_Vehiculo_PCBusinessRuleFieldName" />
@@ -579,7 +580,7 @@
     </script>
 
 <script type="text/javascript">
-
+var roleActivo = @Session["USERROLEID"];
 
    function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
         if (!isMR)
@@ -619,7 +620,7 @@
 		
     }
 
-
+var newIDInv=0;
         function SendRobo_de_Vehiculo_PCData(callBack) {
 			
 					
@@ -649,7 +650,7 @@
             {
                 id = CreateID();
             }
-			
+			newIDInv=id;
 			
 			if (Tab_Datos_Generales)
 				Save_Datos_Generales(id);

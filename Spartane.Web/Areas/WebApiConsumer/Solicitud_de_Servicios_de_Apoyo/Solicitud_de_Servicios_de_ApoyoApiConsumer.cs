@@ -78,8 +78,8 @@ namespace Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Servicios_de_Apoyo
             try
             {
                     var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_ApoyoPagingModel>(baseApi, ApiControllerUrl + "/ListaSelAll?startRowIndex=1&maximumRows=1" 
-                        + "&Where=Solicitud_de_Servicios_de_Apoyo.Clave='" + Key.ToString() + "'"
-                        + "&Order=Solicitud_de_Servicios_de_Apoyo.Clave ASC",
+                        + "&Where=Solicitud_de_Servicios_de_Apoyo.Folio='" + Key.ToString() + "'"
+                        + "&Order=Solicitud_de_Servicios_de_Apoyo.Folio ASC",
                      Method.GET, ApiHeader);
 
                 return new ApiResponse<Core.Domain.Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Servicios_de_ApoyoPagingModel>(true, varRecords);
@@ -125,7 +125,7 @@ namespace Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Servicios_de_Apoyo
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put?Id=" + entity.Clave,
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put?Id=" + entity.Folio,
                       Method.PUT, ApiHeader, entity);
 
                 return new ApiResponse<int>(true, result);

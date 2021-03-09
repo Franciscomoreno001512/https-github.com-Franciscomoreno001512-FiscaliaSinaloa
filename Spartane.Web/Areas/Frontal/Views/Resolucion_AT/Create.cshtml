@@ -31,7 +31,7 @@
  List<SelectListItem> varDetalle_de_Relaciones_Relacion = null;
     if (ViewBag.Detalle_de_Relacioness_Relacion != null)
     { varDetalle_de_Relaciones_Relacion = (List<SelectListItem>)ViewBag.Detalle_de_Relacioness_Relacion; }
-    List<SelectListItem> varSpartan_User_Dictaminador = null;
+ List<SelectListItem> varSpartan_User_Dictaminador = null;
     if (ViewBag.Spartan_Users_Dictaminador != null)
     { varSpartan_User_Dictaminador = (List<SelectListItem>)ViewBag.Spartan_Users_Dictaminador; }
  List<SelectListItem> varResolucion_Resultado_de_Validacion = null;
@@ -341,28 +341,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="divDictaminador">
+				<div class="form-group" id="divDictaminador">
                                 <label class="col-sm-2 control-label">@Resources.Resolucion_ATResources.Dictaminador</label>
                                 <div class="col-sm-8" data-field-id="Dictaminador" data-attribute="273047" data-field-name="@Resources.Resolucion_ATResources.Dictaminador">
-                                    <select class="form-control Dictaminacion" data-val="true" data-val-number="The field Dictaminador must be a number." data-val-required="The Dictaminador field is required." id="Dictaminador" name="Dictaminador">
-                                        <option value=""></option>
-                                        @if (varSpartan_User_Dictaminador != null){ 
-                                            foreach (var itemDictaminador in varSpartan_User_Dictaminador)
-                                            {
-                                                if (itemDictaminador.Value == Convert.ToString(Model.Dictaminador))
-                                                {
-                                                    <option value="@itemDictaminador.Value" selected>@itemDictaminador.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemDictaminador.Value">@itemDictaminador.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteResolucion_AT_Dictaminador form-control select2-dropdown Dictaminacion' data-val="true" id="Dictaminador" name="Dictaminador">
+                                        <option value="@Model.Dictaminador">@(Model.DictaminadorName??Model.DictaminadorName)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Dictaminador" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273047).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273047).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Dictaminador');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -622,6 +608,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteResolucion_AT_Relacion");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteDictaminadorData =[];
+       $(".AutoCompleteResolucion_AT_Dictaminador").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Resolucion_AT/GetResolucion_AT_Dictaminador_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteResolucion_AT_Dictaminador_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteResolucion_AT_Dictaminador");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -1026,7 +1045,15 @@
                                         $('#Clave').val(result.data.Clave);
                     $('#Fecha_de_Validacion').val(result.data.Fecha_de_Validacion);
                     $('#Hora_de_Validacion').val(result.data.Hora_de_Validacion);
-                    $('#Dictaminador').val(result.data.Dictaminador);
+                    var control = $('#Dictaminador');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Dictaminador).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Dictaminador).trigger('change');
+                    }, 3000);
                     var control = $('#Resultado_de_Validacion');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Resultado_de_Validacion).trigger('keyup');

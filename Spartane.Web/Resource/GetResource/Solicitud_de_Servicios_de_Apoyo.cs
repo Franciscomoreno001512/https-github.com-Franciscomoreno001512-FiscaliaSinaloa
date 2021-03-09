@@ -26,53 +26,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Clave</summary>
-        public static string Clave
+        /// <summary>Folio</summary>
+        public static string Folio
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Clave", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Tipo_de_Servicio</summary>
-        public static string Tipo_de_Servicio
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Tipo_de_Servicio", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Responsable</summary>
-        public static string Responsable
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Responsable", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Clave_MR</summary>
-        public static string Clave_MR
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Clave_MR", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Compareciente</summary>
-        public static string Compareciente
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Compareciente", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Folio", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -103,6 +63,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Usuario_que_Solicita", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Region</summary>
+        public static string Region
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Region", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

@@ -230,13 +230,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Resolucion_de_AT", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Spartan_Users_Dictaminador = _ISpartan_UserApiConsumer.SelAll(true);
-            if (Spartan_Users_Dictaminador != null && Spartan_Users_Dictaminador.Resource != null)
-                ViewBag.Spartan_Users_Dictaminador = Spartan_Users_Dictaminador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
-                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -347,13 +340,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Resolucion_de_AT", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Spartan_Users_Dictaminador = _ISpartan_UserApiConsumer.SelAll(true);
-            if (Spartan_Users_Dictaminador != null && Spartan_Users_Dictaminador.Resource != null)
-                ViewBag.Spartan_Users_Dictaminador = Spartan_Users_Dictaminador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
-                }).ToList();
 
 
             return PartialView("AddResolucion_AT", varResolucion_AT);
@@ -388,27 +374,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT")?? m.NUAT,
                     Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetSpartan_UserAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
-                    Value = Convert.ToString(m.Id_User)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
@@ -479,6 +444,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+		[HttpGet]
+        public ActionResult GetSpartan_UserAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Name).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
+                    Value = Convert.ToString(m.Id_User)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -533,13 +519,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Resolucion_de_AT", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Spartan_Users_Dictaminador = _ISpartan_UserApiConsumer.SelAll(true);
-            if (Spartan_Users_Dictaminador != null && Spartan_Users_Dictaminador.Resource != null)
-                ViewBag.Spartan_Users_Dictaminador = Spartan_Users_Dictaminador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
-                }).ToList();
 
 
             return View(model);  
@@ -571,13 +550,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Estatus_de_Resolucion_de_ATs_Estatus = Estatus_de_Resolucion_de_ATs_Estatus.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Resolucion_de_AT", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Spartan_Users_Dictaminador = _ISpartan_UserApiConsumer.SelAll(true);
-            if (Spartan_Users_Dictaminador != null && Spartan_Users_Dictaminador.Resource != null)
-                ViewBag.Spartan_Users_Dictaminador = Spartan_Users_Dictaminador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
                 }).ToList();
 
 
@@ -626,7 +598,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
                         ,Fecha_de_Validacion = (m.Fecha_de_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Validacion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Validacion = m.Hora_de_Validacion
-                        ,DictaminadorName = CultureHelper.GetTraduction(m.Dictaminador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Dictaminador_Spartan_User.Name
+                        ,DictaminadorName = CultureHelper.GetTraduction(m.Dictaminador_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Dictaminador_Spartan_User.Name
                         ,Resultado_de_ValidacionDescripcion = CultureHelper.GetTraduction(m.Resultado_de_Validacion_Resolucion.Clave.ToString(), "Resolucion") ?? (string)m.Resultado_de_Validacion_Resolucion.Descripcion
 			,Observaciones_Dictaminador = m.Observaciones_Dictaminador
 
@@ -752,7 +724,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
                         ,Fecha_de_Validacion = (m.Fecha_de_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Validacion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Validacion = m.Hora_de_Validacion
-                        ,DictaminadorName = CultureHelper.GetTraduction(m.Dictaminador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Dictaminador_Spartan_User.Name
+                        ,DictaminadorName = CultureHelper.GetTraduction(m.Dictaminador_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Dictaminador_Spartan_User.Name
                         ,Resultado_de_ValidacionDescripcion = CultureHelper.GetTraduction(m.Resultado_de_Validacion_Resolucion.Clave.ToString(), "Resolucion") ?? (string)m.Resultado_de_Validacion_Resolucion.Descripcion
 			,Observaciones_Dictaminador = m.Observaciones_Dictaminador
 
@@ -812,6 +784,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.Descripcion =trans ??item.Descripcion;
                 }
                 return Json(result.Detalle_de_Relacioness.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetResolucion_AT_Dictaminador_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -1599,7 +1598,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
                         ,Fecha_de_Validacion = (m.Fecha_de_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Validacion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Validacion = m.Hora_de_Validacion
-                        ,DictaminadorName = CultureHelper.GetTraduction(m.Dictaminador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Dictaminador_Spartan_User.Name
+                        ,DictaminadorName = CultureHelper.GetTraduction(m.Dictaminador_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Dictaminador_Spartan_User.Name
                         ,Resultado_de_ValidacionDescripcion = CultureHelper.GetTraduction(m.Resultado_de_Validacion_Resolucion.Clave.ToString(), "Resolucion") ?? (string)m.Resultado_de_Validacion_Resolucion.Descripcion
 			,Observaciones_Dictaminador = m.Observaciones_Dictaminador
 
@@ -1684,7 +1683,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
                         ,Fecha_de_Validacion = (m.Fecha_de_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Validacion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Validacion = m.Hora_de_Validacion
-                        ,DictaminadorName = CultureHelper.GetTraduction(m.Dictaminador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Dictaminador_Spartan_User.Name
+                        ,DictaminadorName = CultureHelper.GetTraduction(m.Dictaminador_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Dictaminador_Spartan_User.Name
                         ,Resultado_de_ValidacionDescripcion = CultureHelper.GetTraduction(m.Resultado_de_Validacion_Resolucion.Clave.ToString(), "Resolucion") ?? (string)m.Resultado_de_Validacion_Resolucion.Descripcion
 			,Observaciones_Dictaminador = m.Observaciones_Dictaminador
 
@@ -1835,7 +1834,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Validacion = (m.Fecha_de_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Validacion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Validacion = m.Hora_de_Validacion
                         ,Dictaminador = m.Dictaminador
-                        ,DictaminadorName = CultureHelper.GetTraduction(m.Dictaminador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Dictaminador_Spartan_User.Name
+                        ,DictaminadorName = CultureHelper.GetTraduction(m.Dictaminador_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Dictaminador_Spartan_User.Name
                         ,Resultado_de_Validacion = m.Resultado_de_Validacion
                         ,Resultado_de_ValidacionDescripcion = CultureHelper.GetTraduction(m.Resultado_de_Validacion_Resolucion.Clave.ToString(), "Resolucion") ?? (string)m.Resultado_de_Validacion_Resolucion.Descripcion
 			,Observaciones_Dictaminador = m.Observaciones_Dictaminador

@@ -18,5 +18,9 @@
   <resource culture="es-es" name="El_Celular_fue_Validado" value="¿El Celular fue Validado?"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabDatos_para_Iniciar_Sesion" value="Datos para Iniciar Sesión"></resource>
+<resource culture="es-es" name="TabDatos_para_validar_tu_cuenta" value="Datos para validar tu cuenta"></resource>
+<resource culture="es-es" name="TabValidacion" value="Validación"></resource>
+<resource culture="es-es" name="TabLogica" value="Lógica"></resource>
 
 </resources>
