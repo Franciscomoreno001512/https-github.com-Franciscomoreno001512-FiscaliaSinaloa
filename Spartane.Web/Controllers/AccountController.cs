@@ -123,9 +123,16 @@ namespace Spartane.Web.Controllers
             if (ConfigurationManager.AppSettings["ActivateValidation"] != null && Convert.ToBoolean(ConfigurationManager.AppSettings["ActivateValidation"]))
                 ViewBag.VersionError = versionError;
 
-            if (returnUrl != null && returnUrl.Contains("LoginPC"))
+            if (returnUrl != null && (returnUrl.Contains("LoginPC") || returnUrl.Contains("Involucrados_PC") || returnUrl.Contains("Queja_Sugerencia_Ciudadana") || returnUrl.Contains("Quejas_de_MP")))
+            {
+                ViewBag.urlToRedirect = returnUrl.Replace("'", "");
                 return View("LoginPC", oLoginViewModel);
-            return View(oLoginViewModel);
+
+            }
+            else
+            {
+                return View(oLoginViewModel);
+            }
         }
 
 
@@ -299,10 +306,12 @@ namespace Spartane.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult ValidateLogin3(string username, string password)
+        public ActionResult ValidateLogin3(string username, string password, bool isConsultaDenunciaAnonima = false)
         {
+            int useridLogueado = -1;
             try
             {
+
                 username = ConfigurationManager.AppSettings["userTemp2"].ToString();
                 password = ConfigurationManager.AppSettings["pwdTemp2"].ToString();
                 var result1 = ValidateLogin(ConfigurationManager.AppSettings["userTemp2"].ToString(), ConfigurationManager.AppSettings["pwdTemp2"].ToString());
@@ -373,7 +382,7 @@ namespace Spartane.Web.Controllers
                         Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
                         Session["LANGUAGEID"] = 1;
                         SessionHelper.Relogin = false;
-
+                        useridLogueado = user.IdUsuario;
                         // return RedirectToLocal();
                     }
                 }
@@ -382,7 +391,14 @@ namespace Spartane.Web.Controllers
             {
                 return Json(new { valor = "" });
             }
-            return Json(new { valor = "../Frontal/Involucrados_PC/Create" });
+            if (isConsultaDenunciaAnonima)
+            {
+                return Json(new { valor = useridLogueado });
+            }
+            else
+            {
+                return Json(new { valor = "../Frontal/Involucrados_PC/Create" });
+            }
         }
 
         [AllowAnonymous]
@@ -485,7 +501,7 @@ namespace Spartane.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(LoginViewModel model, string returnUrl = "")
         {
-
+            int iduserlogueado = -1;
             Session["BlockUser"] = null;
             if (ModelState.ContainsKey("LanguageList"))
             { ModelState["LanguageList"].Errors.Clear(); }
@@ -522,10 +538,21 @@ namespace Spartane.Web.Controllers
                     ModelState.AddModelError("", Resources.LoginResources.InvalidUserPassword);
                     model.LanguageList = GetLanguage();
                     SessionHelper.Relogin = false;
-                    if (returnUrl != null && returnUrl.Contains("LoginPC"))
+
+
+                    if (returnUrl != null && (returnUrl.Contains("LoginPC") || returnUrl.Contains("Involucrados_PC") || returnUrl.Contains("Queja_Sugerencia_Ciudadana") || returnUrl.Contains("Quejas_de_MP")))
+                    {
+                        ViewBag.urlToRedirect = returnUrl.Replace("'", "");
                         return View("LoginPC", model);
 
-                    return View(model);
+                    }
+                    else
+                    {
+                        return View(model);
+                    }
+
+
+
                 }
                 // Call Validate User API for user Exists in application
                 Spartan_User_Core UserDetails = _IUseroApiConsumer.ValidateUser(1, 10, "Username = '" + model.UserName + "'  COLLATE SQL_Latin1_General_CP1_CS_AS And Password = '" + EncryptHelper.CalculateMD5Hash(model.Password) + "'  COLLATE SQL_Latin1_General_CP1_CS_AS").Resource;
@@ -593,8 +620,41 @@ namespace Spartane.Web.Controllers
                         Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
                         Session["LANGUAGEID"] = (model.SelectedLanguage.HasValue) ? model.SelectedLanguage.Value : 1;
                         SessionHelper.Relogin = false;
+                        iduserlogueado = user.IdUsuario;
+                        var urlpaso = returnUrl.Replace("'", "");
+                        var r = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id;
+                        if (urlpaso == "")
+                        {
 
-                        return RedirectToLocal("~/Frontal/Home/Index");
+                            if (r == 108 || r == 110)
+                            {
+                                return RedirectToLocal("~/inicio.html");
+                            }
+
+                            return RedirectToLocal("~/Frontal/Home/Index");
+                        }
+                        else if (urlpaso == "Involucrados_PC")
+                        {
+                            return RedirectToLocal("~/Frontal/Involucrados_PC/Create");
+                        }
+                        else if (urlpaso == "Queja_Sugerencia_Ciudadana")
+                        {
+                            return RedirectToLocal("~/Frontal/Queja_Sugerencia_Ciudadana/Create");
+                        }
+                        else if (urlpaso == "Quejas_de_MP")
+                        {
+                            return RedirectToLocal("~/Frontal/Quejas_de_MP/Create");
+                        }
+                        else
+                        {
+                            if (r == 108 || r == 110)
+                            {
+                                return RedirectToLocal("~/home/ConsultarEstatus?userid=" + iduserlogueado);
+                            }
+                            return RedirectToLocal("~/Frontal/Home/Index");
+
+                        }
+
                     }
                     else
                     {
@@ -640,6 +700,11 @@ namespace Spartane.Web.Controllers
 
             return View(model);
         }
+
+
+
+
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -738,7 +803,7 @@ namespace Spartane.Web.Controllers
 
         // POST: /Account/LogOff
         [HttpPost]
-        public ActionResult LogOff()
+        public ActionResult LogOff(string redirectTo = null)
         {
 
             Spartan_Session_Log oSessionLog = new Spartan_Session_Log();
@@ -757,10 +822,39 @@ namespace Spartane.Web.Controllers
             HttpContext.Response.Cache.SetNoServerCaching();
             HttpContext.Response.Cache.SetNoStore();
 
+            if (redirectTo != null)
+            {
+                return RedirectToLocal("~/inicio.html");
+            }
             return RedirectToAction("Login", "Account");
         }
 
+        [AllowAnonymous]
+        public ActionResult LogOff2(string redirectTo = null)
+        {
 
+            Spartan_Session_Log oSessionLog = new Spartan_Session_Log();
+            SetSessionLogging(ref oSessionLog, (short)Event_Type.Login, (short)Event_Type.LogOut, Convert.ToInt32(Request.Cookies["UserSettings"]["SecurityLogId"]), CurrentUser.CurrentUser.Id_User, CurrentUser.CurrentUser.Role, (short)Result_Type.Granted);
+            _ISpartanSessionApiConsumer.Insert(oSessionLog);
+
+            FormsAuthentication.SignOut();
+
+            // clear all session
+            Session.Abandon();
+            // Clear authentication cookie.
+            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+            cookie.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie);
+            HttpContext.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            HttpContext.Response.Cache.SetNoServerCaching();
+            HttpContext.Response.Cache.SetNoStore();
+
+            if (redirectTo != null)
+            {
+                return RedirectToLocal("~/inicio.html");
+            }
+            return RedirectToAction("Login", "Account");
+        }
         #endregion Login / Logout
 
         #region "Forgot password"
@@ -1122,6 +1216,26 @@ namespace Spartane.Web.Controllers
                 return null;
             }
         }
+        [HttpGet]
+        public JsonResult RemainingTimeOut()
+        {
+            return Json(new
+            {
+                timeout = FormsAuthentication.Timeout.TotalMilliseconds
+            },
+                        JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public JsonResult ResetTimeOut()
+        {
+            return Json(new
+            {
+                timeout = FormsAuthentication.Timeout.TotalMilliseconds
+            },
+                        JsonRequestBehavior.AllowGet);
+        }
 
         [AllowAnonymous]
         [HttpPost]
@@ -1146,6 +1260,15 @@ namespace Spartane.Web.Controllers
                     histPasswordApi.SetAuthHeader(_tokenManager.Token);
 
                     var histUser = histPasswordApi.ListaSelAll(0, 9999, "Spartan_User_Historical_Password.Usuario=" + UserDetails.Spartan_Users[0].Id_User, "").Resource;
+
+                    //fjmore
+                    int roll = UserDetails.Spartan_Users[0].Role;
+
+                    if (roll == 108 || roll == 110)
+                    {
+                        //inicia sesion normalmente
+                        return Json(new { valor = 2 });
+                    }
 
                     //validacion de cantidades de logins realizados
                     if (histUser.RowCount > 0)

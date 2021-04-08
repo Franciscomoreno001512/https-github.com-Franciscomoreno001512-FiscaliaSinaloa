@@ -21,6 +21,7 @@ namespace Spartane.Core.Domain.Detalle_de_Documentos_Mandamiento_Judicial
         public int? Registro_de_Orden_de_Aprehension { get; set; }
         public int? Documentos { get; set; }
         public string Documentos_URL { get; set; }
+        public string Descripcion { get; set; }
 
         [ForeignKey("Registro_de_Orden_de_Aprehension")]
         public virtual Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial Registro_de_Orden_de_Aprehension_Registro_de_Mandamiento_Judicial { get; set; }
@@ -35,6 +36,7 @@ namespace Spartane.Core.Domain.Detalle_de_Documentos_Mandamiento_Judicial
         public int? Registro_de_Orden_de_Aprehension { get; set; }
         public int? Documentos { get; set; }
         public string Documentos_URL { get; set; }
+        public string Descripcion { get; set; }
 
 		        [ForeignKey("Registro_de_Orden_de_Aprehension")]
         public virtual Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial Registro_de_Orden_de_Aprehension_Registro_de_Mandamiento_Judicial { get; set; }

@@ -11,7 +11,9 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public Involucrados_PCAdvanceSearchModel()
         {
+            Desea_indicar_datos_adicionales = RadioOptions.NoApply;
             Fotografia_de_la_identificacion = RadioOptions.NoApply;
+            Existieron_testigos = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -24,9 +26,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceSolicitud { set; get; }
         public int[] AdvanceSolicitudMultiple { set; get; }
 
-        public Filters Tipo_de_SolicitudFilter { set; get; }
-        public string AdvanceTipo_de_Solicitud { set; get; }
-        public int[] AdvanceTipo_de_SolicitudMultiple { set; get; }
+        public RadioOptions Desea_indicar_datos_adicionales { set; get; }
 
         public Filters Usuario_que_RegistraFilter { set; get; }
         public string AdvanceUsuario_que_Registra { set; get; }
@@ -35,6 +35,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Tipo_de_ComparecienteFilter { set; get; }
         public string AdvanceTipo_de_Compareciente { set; get; }
         public int[] AdvanceTipo_de_ComparecienteMultiple { set; get; }
+
+        public Filters Tipo_de_VictimaFilter { set; get; }
+        public string AdvanceTipo_de_Victima { set; get; }
+        public int[] AdvanceTipo_de_VictimaMultiple { set; get; }
 
         public Filters NombresFilter { set; get; }
         public string Nombres { set; get; }
@@ -86,6 +90,8 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters Originario_deFilter { set; get; }
         public string Originario_de { set; get; }
+
+        public RadioOptions Existieron_testigos { set; get; }
 
         public Filters PaisFilter { set; get; }
         public string AdvancePais { set; get; }

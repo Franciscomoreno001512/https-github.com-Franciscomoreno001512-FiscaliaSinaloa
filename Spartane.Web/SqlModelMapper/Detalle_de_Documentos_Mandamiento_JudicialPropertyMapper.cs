@@ -16,6 +16,11 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Detalle_de_Documentos_Mandamiento_Judicial.Clave";
+                case "Registro_de_Orden_de_Aprehension[Numero_de_Mandamiento]":
+                case "Registro_de_Orden_de_AprehensionNumero_de_Mandamiento":
+                    return "Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento";
+                case "Descripcion":
+                    return "Detalle_de_Documentos_Mandamiento_Judicial.Descripcion";
 
                 default:
                     return propertyName;

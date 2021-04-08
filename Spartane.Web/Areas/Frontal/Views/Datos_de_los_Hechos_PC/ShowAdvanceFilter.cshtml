@@ -6,9 +6,6 @@
  List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud = null;
     if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
     { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
-    List<SelectListItem> varTipo_de_Solicitud_Tipo_de_Solicitud = null;
-    if (ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud != null)
-    { varTipo_de_Solicitud_Tipo_de_Solicitud = (List<SelectListItem>)ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud; }
     List<SelectListItem> varRespuesta_Fosa_clandestina = null;
     if (ViewBag.Respuestas_Fosa_clandestina != null)
     { varRespuesta_Fosa_clandestina = (List<SelectListItem>)ViewBag.Respuestas_Fosa_clandestina; }
@@ -84,27 +81,6 @@
  List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud = null;
     if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
     { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
-                <div class="MarginBottom">
-                    <h3>@Resources.Datos_de_los_Hechos_PCResources.Tipo_de_Solicitud</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Tipo_de_SolicitudFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_SolicitudFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Solicitud, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Solicitud" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_de_Solicitud_Tipo_de_Solicitud!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTipo_de_SolicitudMultiple, varTipo_de_Solicitud_Tipo_de_Solicitud,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTipo_de_Solicitud"
-                        });
-                    }
-                </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Datos_de_los_Hechos_PCResources.Titulo_del_Hecho</h3>
                 </div>
@@ -344,21 +320,6 @@
                 advanceSearch.SolicitudSearchType = 2;
             }
         }
-        advanceSearch.Tipo_de_SolicitudSearchType = 0;
-        if ($('#ddlAdvanceTipo_de_Solicitud').val().length > 0 || $("#txtAdvanceTipo_de_Solicitud").val() == "") {
-
-
-            if (isDatos_de_los_Hechos_PCTextSearch) {
-                advanceSearch.Tipo_de_SolicitudName = $("#txtAdvanceTipo_de_Solicitud").val();
-                advanceSearch.Tipo_de_SolicitudNameSearchType = $("#ddlAdvanceTipo_de_Solicitud").val();
-                advanceSearch.Tipo_de_SolicitudSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Tipo_de_SolicitudToSearch = $("#ddlAdvanceTipo_de_Solicitud").val();
-                advanceSearch.Tipo_de_SolicitudSearchType = 2;
-            }
-        }
         if ($("#txtAdvanceTitulo_del_Hecho").val() != "") {
             hasParameter = true;
             advanceSearch.Datos_de_los_Hechos_PCTitulo_del_Hecho = $("#txtAdvanceTitulo_del_Hecho").val();
@@ -585,15 +546,6 @@
         $("#ddlAdvanceSolicitud").change(function () {
             isDatos_de_los_Hechos_PCTextSearch = false;
             $("#txtAdvanceSolicitud").val('');
-        });
-        $("#txtAdvanceTipo_de_Solicitud").keypress(function () {
-            isDatos_de_los_Hechos_PCTextSearch = true;
-            $("#ddlAdvanceTipo_de_Solicitud").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceTipo_de_Solicitud").change(function () {
-            isDatos_de_los_Hechos_PCTextSearch = false;
-            $("#txtAdvanceTipo_de_Solicitud").val('');
         });
         $("#txtAdvanceFosa_clandestina").keypress(function () {
             isDatos_de_los_Hechos_PCTextSearch = true;

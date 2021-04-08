@@ -1994,6 +1994,42 @@ using Spartane.Web.Areas.WebApiConsumer.Asignacion_responsable_servicios_apoyo;
 using Spartane.Services.Detalle_subareas_responsable_servicio_apoyo;
 using Spartane.Core.Domain.Detalle_subareas_responsable_servicio_apoyo;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_subareas_responsable_servicio_apoyo;
+using Spartane.Services.Solicitud_de_Apoyo_Externa;
+using Spartane.Core.Domain.Solicitud_de_Apoyo_Externa;
+using Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Apoyo_Externa;
+using Spartane.Services.Autoridad_Externa;
+using Spartane.Core.Domain.Autoridad_Externa;
+using Spartane.Web.Areas.WebApiConsumer.Autoridad_Externa;
+using Spartane.Services.Estatus_de_Apoyo_Externo;
+using Spartane.Core.Domain.Estatus_de_Apoyo_Externo;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_de_Apoyo_Externo;
+using Spartane.Services.Estatus_de_Mandamiento_Judicial;
+using Spartane.Core.Domain.Estatus_de_Mandamiento_Judicial;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_de_Mandamiento_Judicial;
+using Spartane.Services.Tipo_de_Victima;
+using Spartane.Core.Domain.Tipo_de_Victima;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Victima;
+using Spartane.Services.Detalle_de_Personas_a_Incluir;
+using Spartane.Core.Domain.Detalle_de_Personas_a_Incluir;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Personas_a_Incluir;
+using Spartane.Services.Fuente_de_Mandamiento_Judicial;
+using Spartane.Core.Domain.Fuente_de_Mandamiento_Judicial;
+using Spartane.Web.Areas.WebApiConsumer.Fuente_de_Mandamiento_Judicial;
+using Spartane.Services.Registro_de_Cumplimiento;
+using Spartane.Core.Domain.Registro_de_Cumplimiento;
+using Spartane.Web.Areas.WebApiConsumer.Registro_de_Cumplimiento;
+using Spartane.Services.Resolucion_de_Mandamiento_Judicial;
+using Spartane.Core.Domain.Resolucion_de_Mandamiento_Judicial;
+using Spartane.Web.Areas.WebApiConsumer.Resolucion_de_Mandamiento_Judicial;
+using Spartane.Services.Partida_que_Cumplimenta;
+using Spartane.Core.Domain.Partida_que_Cumplimenta;
+using Spartane.Web.Areas.WebApiConsumer.Partida_que_Cumplimenta;
+using Spartane.Services.Area_envia_Cumplimiento;
+using Spartane.Core.Domain.Area_envia_Cumplimiento;
+using Spartane.Web.Areas.WebApiConsumer.Area_envia_Cumplimiento;
+using Spartane.Services.Personas_donde_se_ejecuto_mandamiento;
+using Spartane.Core.Domain.Personas_donde_se_ejecuto_mandamiento;
+using Spartane.Web.Areas.WebApiConsumer.Personas_donde_se_ejecuto_mandamiento;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3446,6 +3482,30 @@ builder.RegisterType<Asignacion_responsable_servicios_apoyoService>().As<IAsigna
 builder.RegisterType<Asignacion_responsable_servicios_apoyoApiConsumer>().As<IAsignacion_responsable_servicios_apoyoApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Detalle_subareas_responsable_servicio_apoyoService>().As<IDetalle_subareas_responsable_servicio_apoyoService>().InstancePerLifetimeScope();
 builder.RegisterType<Detalle_subareas_responsable_servicio_apoyoApiConsumer>().As<IDetalle_subareas_responsable_servicio_apoyoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Solicitud_de_Apoyo_ExternaService>().As<ISolicitud_de_Apoyo_ExternaService>().InstancePerLifetimeScope();
+builder.RegisterType<Solicitud_de_Apoyo_ExternaApiConsumer>().As<ISolicitud_de_Apoyo_ExternaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Autoridad_ExternaService>().As<IAutoridad_ExternaService>().InstancePerLifetimeScope();
+builder.RegisterType<Autoridad_ExternaApiConsumer>().As<IAutoridad_ExternaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_Apoyo_ExternoService>().As<IEstatus_de_Apoyo_ExternoService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_Apoyo_ExternoApiConsumer>().As<IEstatus_de_Apoyo_ExternoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_Mandamiento_JudicialService>().As<IEstatus_de_Mandamiento_JudicialService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_Mandamiento_JudicialApiConsumer>().As<IEstatus_de_Mandamiento_JudicialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_VictimaService>().As<ITipo_de_VictimaService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_VictimaApiConsumer>().As<ITipo_de_VictimaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Personas_a_IncluirService>().As<IDetalle_de_Personas_a_IncluirService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Personas_a_IncluirApiConsumer>().As<IDetalle_de_Personas_a_IncluirApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Fuente_de_Mandamiento_JudicialService>().As<IFuente_de_Mandamiento_JudicialService>().InstancePerLifetimeScope();
+builder.RegisterType<Fuente_de_Mandamiento_JudicialApiConsumer>().As<IFuente_de_Mandamiento_JudicialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Registro_de_CumplimientoService>().As<IRegistro_de_CumplimientoService>().InstancePerLifetimeScope();
+builder.RegisterType<Registro_de_CumplimientoApiConsumer>().As<IRegistro_de_CumplimientoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Resolucion_de_Mandamiento_JudicialService>().As<IResolucion_de_Mandamiento_JudicialService>().InstancePerLifetimeScope();
+builder.RegisterType<Resolucion_de_Mandamiento_JudicialApiConsumer>().As<IResolucion_de_Mandamiento_JudicialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Partida_que_CumplimentaService>().As<IPartida_que_CumplimentaService>().InstancePerLifetimeScope();
+builder.RegisterType<Partida_que_CumplimentaApiConsumer>().As<IPartida_que_CumplimentaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Area_envia_CumplimientoService>().As<IArea_envia_CumplimientoService>().InstancePerLifetimeScope();
+builder.RegisterType<Area_envia_CumplimientoApiConsumer>().As<IArea_envia_CumplimientoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Personas_donde_se_ejecuto_mandamientoService>().As<IPersonas_donde_se_ejecuto_mandamientoService>().InstancePerLifetimeScope();
+builder.RegisterType<Personas_donde_se_ejecuto_mandamientoApiConsumer>().As<IPersonas_donde_se_ejecuto_mandamientoApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3626,6 +3686,64 @@ builder.RegisterType<Detalle_subareas_responsable_servicio_apoyoApiConsumer>().A
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -6,6 +6,192 @@ $(document).ready(function () {
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:4927, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4927, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4927, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4927, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4927, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4927, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4928, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4928, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4928, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4928, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4928, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4928, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4929, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4929, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4929, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4929, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4929, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4929, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4931, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4931, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4931, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4931, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4931, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:4931, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -179,3 +365,31 @@ function EjecutarValidacionesEditRowMRDetalle_de_Documentos_Mandamiento_Judicial
     return result;
 }
 
+
+function EjecutarValidacionesAntesDeGuardarMRDetalle_de_Personas_a_Incluir(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_BEFORESAVINGMR_Detalle_de_Personas_a_Incluir// 
+ return result; 
+} 
+
+function EjecutarValidacionesDespuesDeGuardarMRDetalle_de_Personas_a_Incluir(nameOfTable, rowIndex){ 
+//NEWBUSINESSRULE_AFTERSAVINGMR_Detalle_de_Personas_a_Incluir// 
+} 
+
+function EjecutarValidacionesAlEliminarMRDetalle_de_Personas_a_Incluir(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_DELETEMR_Detalle_de_Personas_a_Incluir// 
+ return result; 
+} 
+
+function EjecutarValidacionesNewRowMRDetalle_de_Personas_a_Incluir(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_NEWROWMR_Detalle_de_Personas_a_Incluir// 
+  return result; 
+} 
+
+function EjecutarValidacionesEditRowMRDetalle_de_Personas_a_Incluir(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_EDITROWMR_Detalle_de_Personas_a_Incluir// 
+ return result; 
+} 

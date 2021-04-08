@@ -58,6 +58,15 @@
                 @Resources.Quejas_de_MPResources.Clave
             </td>
             <td class="column1">
+                @Resources.Quejas_de_MPResources.Fecha_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Hora_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Usuario_que_Registra
+            </td>
+            <td class="column1">
                 @Resources.Quejas_de_MPResources.Nombres
             </td>
             <td class="column1">
@@ -68,6 +77,12 @@
             </td>
             <td class="column1">
                 @Resources.Quejas_de_MPResources.Nombre_Completo
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Correo_Electronico
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Celular
             </td>
             <td class="column1">
                 @Resources.Quejas_de_MPResources.Estatus
@@ -181,58 +196,40 @@
                 @Resources.Quejas_de_MPResources.Descripcion_de_los_Hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.CURP
+                @Resources.Quejas_de_MPResources.Fecha_de_los_Hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Genero
+                @Resources.Quejas_de_MPResources.Hora_de_los_Hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Fecha_de_Nacimiento
+                @Resources.Quejas_de_MPResources.Municipio_hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Nacionalidad
+                @Resources.Quejas_de_MPResources.Poblacion_hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Entidad_de_Nacimiento
+                @Resources.Quejas_de_MPResources.Colonia_hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Nombres_Hechos
+                @Resources.Quejas_de_MPResources.Calle_hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Apellido_Paterno_Hechos
+                @Resources.Quejas_de_MPResources.Entre_Calle_hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Apellido_Materno_Hechos
+                @Resources.Quejas_de_MPResources.Y_Calle_hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Fecha_de_Nacimiento_Hechos
+                @Resources.Quejas_de_MPResources.Numero_Exterior_hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Edad_Hechos
+                @Resources.Quejas_de_MPResources.Numero_Interior_hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Genero_Hechos
+                @Resources.Quejas_de_MPResources.Codigo_Postal_hechos
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Celular_Hechos
-            </td>
-            <td class="column1">
-                @Resources.Quejas_de_MPResources.Correo_Hechos
-            </td>
-            <td class="column1">
-                @Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Hechos
-            </td>
-            <td class="column1">
-                @Resources.Quejas_de_MPResources.Numero_Identificacion_Hechos
-            </td>
-            <td class="column1">
-                @Resources.Quejas_de_MPResources.Fotografia_Identificacion
-            </td>
-            <td class="column1">
-                @Resources.Quejas_de_MPResources.Nacionalidad_Hechos
-            </td>
-            <td class="column1">
-                @Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Hechos
+                @Resources.Quejas_de_MPResources.Referencia
             </td>
             <td class="column1">
                 @Resources.Quejas_de_MPResources.CURP_Identificacion
@@ -245,6 +242,9 @@
             </td>
             <td class="column1">
                 @Resources.Quejas_de_MPResources.Apellido_Materno_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Alias
             </td>
             <td class="column1">
                 @Resources.Quejas_de_MPResources.Fecha_Nacimiento_Identificacion
@@ -274,16 +274,10 @@
                 @Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Identificacion
             </td>
             <td class="column1">
-                @Resources.Quejas_de_MPResources.Pais
-            </td>
-            <td class="column1">
-                @Resources.Quejas_de_MPResources.Estado
-            </td>
-            <td class="column1">
-                @Resources.Quejas_de_MPResources.Codigo_Postal
-            </td>
-            <td class="column1">
                 @Resources.Quejas_de_MPResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Quejas_de_MPResources.Poblacion
             </td>
             <td class="column1">
                 @Resources.Quejas_de_MPResources.Colonia
@@ -304,6 +298,9 @@
                 @Resources.Quejas_de_MPResources.Numero_Interior
             </td>
             <td class="column1">
+                @Resources.Quejas_de_MPResources.Codigo_Postal
+            </td>
+            <td class="column1">
                 @Resources.Quejas_de_MPResources.Referencias_de_domicilio
             </td>
 
@@ -321,6 +318,15 @@
                         @item.Clave
                     </td>
                     <td>
+                        @item.Fecha_de_Registro
+                    </td>
+                    <td>
+                        @item.Hora_de_Registro
+                    </td>
+                    <td>
+                        @item.Usuario_que_Registra
+                    </td>
+                    <td>
                         @item.Nombres
                     </td>
                     <td>
@@ -331,6 +337,12 @@
                     </td>
                     <td>
                         @item.Nombre_Completo
+                    </td>
+                    <td>
+                        @item.Correo_Electronico
+                    </td>
+                    <td>
+                        @item.Celular
                     </td>
                     <td>
                         @item.EstatusDescripcion
@@ -444,58 +456,40 @@
                         @item.Descripcion_de_los_Hechos
                     </td>
                     <td>
-                        @item.CURP
+                        @item.Fecha_de_los_Hechos
                     </td>
                     <td>
-                        @item.GeneroDescripcion
+                        @item.Hora_de_los_Hechos
                     </td>
                     <td>
-                        @item.Fecha_de_Nacimiento
+                        @item.Municipio_hechos
                     </td>
                     <td>
-                        @item.NacionalidadNacionalidadC
+                        @item.Poblacion_hechos
                     </td>
                     <td>
-                        @item.Entidad_de_Nacimiento
+                        @item.Colonia_hechos
                     </td>
                     <td>
-                        @item.Nombres_Hechos
+                        @item.Calle_hechos
                     </td>
                     <td>
-                        @item.Apellido_Paterno_Hechos
+                        @item.Entre_Calle_hechos
                     </td>
                     <td>
-                        @item.Apellido_Materno_Hechos
+                        @item.Y_Calle_hechos
                     </td>
                     <td>
-                        @item.Fecha_de_Nacimiento_Hechos
+                        @item.Numero_Exterior_hechos
                     </td>
                     <td>
-                        @item.Edad_Hechos
+                        @item.Numero_Interior_hechos
                     </td>
                     <td>
-                        @item.Genero_HechosDescripcion
+                        @item.Codigo_Postal_hechos
                     </td>
                     <td>
-                        @item.Celular_Hechos
-                    </td>
-                    <td>
-                        @item.Correo_Hechos
-                    </td>
-                    <td>
-                        @item.Tipo_de_Identificacion_HechosNombre
-                    </td>
-                    <td>
-                        @item.Numero_Identificacion_Hechos
-                    </td>
-                    <td>
-                        @item.Fotografia_Identificacion
-                    </td>
-                    <td>
-                        @item.Nacionalidad_HechosNacionalidadC
-                    </td>
-                    <td>
-                        @item.Entidad_de_Nacimiento_HechosNombre
+                        @item.Referencia
                     </td>
                     <td>
                         @item.CURP_Identificacion
@@ -508,6 +502,9 @@
                     </td>
                     <td>
                         @item.Apellido_Materno_Identificacion
+                    </td>
+                    <td>
+                        @item.Alias
                     </td>
                     <td>
                         @item.Fecha_Nacimiento_Identificacion
@@ -531,22 +528,16 @@
                         @item.Numero_Identificacion_Identificacion
                     </td>
                     <td>
-                        @item.Nacionalidad_IdentificacionNacionalidadC
+                        @item.Nacionalidad_Identificacion
                     </td>
                     <td>
                         @item.Entidad_de_Nacimiento_Identificacion
                     </td>
                     <td>
-                        @item.Pais
-                    </td>
-                    <td>
-                        @item.Estado
-                    </td>
-                    <td>
-                        @item.Codigo_Postal
-                    </td>
-                    <td>
                         @item.Municipio
+                    </td>
+                    <td>
+                        @item.Poblacion
                     </td>
                     <td>
                         @item.Colonia
@@ -565,6 +556,9 @@
                     </td>
                     <td>
                         @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
                     </td>
                     <td>
                         @item.Referencias_de_domicilio

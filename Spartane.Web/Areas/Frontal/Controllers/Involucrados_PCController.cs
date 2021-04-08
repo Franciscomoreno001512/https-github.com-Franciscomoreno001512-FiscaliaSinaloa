@@ -3,9 +3,9 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Involucrados_PC;
 using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
-using Spartane.Core.Domain.Tipo_de_Solicitud;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Compareciente;
+using Spartane.Core.Domain.Tipo_de_Victima;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
@@ -26,9 +26,9 @@ using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Involucrados_PC;
 using Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Denuncia_Ciudadana;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Compareciente;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Victima;
 using Spartane.Web.Areas.WebApiConsumer.Genero;
 using Spartane.Web.Areas.WebApiConsumer.Estado_Civil;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Identificacion;
@@ -75,9 +75,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IInvolucrados_PCService service = null;
         private IInvolucrados_PCApiConsumer _IInvolucrados_PCApiConsumer;
         private ISolicitud_de_Denuncia_CiudadanaApiConsumer _ISolicitud_de_Denuncia_CiudadanaApiConsumer;
-        private ITipo_de_SolicitudApiConsumer _ITipo_de_SolicitudApiConsumer;
         private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
         private ITipo_de_ComparecienteApiConsumer _ITipo_de_ComparecienteApiConsumer;
+        private ITipo_de_VictimaApiConsumer _ITipo_de_VictimaApiConsumer;
         private IGeneroApiConsumer _IGeneroApiConsumer;
         private IEstado_CivilApiConsumer _IEstado_CivilApiConsumer;
         private ITipo_de_IdentificacionApiConsumer _ITipo_de_IdentificacionApiConsumer;
@@ -103,7 +103,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Involucrados_PCController(IInvolucrados_PCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IInvolucrados_PCApiConsumer Involucrados_PCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer , ITipo_de_SolicitudApiConsumer Tipo_de_SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_ComparecienteApiConsumer Tipo_de_ComparecienteApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer )
+        public Involucrados_PCController(IInvolucrados_PCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IInvolucrados_PCApiConsumer Involucrados_PCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_ComparecienteApiConsumer Tipo_de_ComparecienteApiConsumer , ITipo_de_VictimaApiConsumer Tipo_de_VictimaApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -118,9 +118,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._ISolicitud_de_Denuncia_CiudadanaApiConsumer = Solicitud_de_Denuncia_CiudadanaApiConsumer;
-            this._ITipo_de_SolicitudApiConsumer = Tipo_de_SolicitudApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._ITipo_de_ComparecienteApiConsumer = Tipo_de_ComparecienteApiConsumer;
+            this._ITipo_de_VictimaApiConsumer = Tipo_de_VictimaApiConsumer;
             this._IGeneroApiConsumer = GeneroApiConsumer;
             this._IEstado_CivilApiConsumer = Estado_CivilApiConsumer;
             this._ITipo_de_IdentificacionApiConsumer = Tipo_de_IdentificacionApiConsumer;
@@ -207,12 +207,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Involucrados_PCData.Clave 
 	                    ,Solicitud = Involucrados_PCData.Solicitud
                     ,SolicitudFolio = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Solicitud), "Solicitud_de_Denuncia_Ciudadana") ??  (string)Involucrados_PCData.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                    ,Tipo_de_Solicitud = Involucrados_PCData.Tipo_de_Solicitud
-                    ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Tipo_de_Solicitud), "Tipo_de_Solicitud") ??  (string)Involucrados_PCData.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
+                    ,Desea_indicar_datos_adicionales = Involucrados_PCData.Desea_indicar_datos_adicionales.GetValueOrDefault()
                     ,Usuario_que_Registra = Involucrados_PCData.Usuario_que_Registra
                     ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Usuario_que_Registra), "Spartan_User") ??  (string)Involucrados_PCData.Usuario_que_Registra_Spartan_User.Name
                     ,Tipo_de_Compareciente = Involucrados_PCData.Tipo_de_Compareciente
                     ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Tipo_de_Compareciente), "Tipo_de_Compareciente") ??  (string)Involucrados_PCData.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+                    ,Tipo_de_Victima = Involucrados_PCData.Tipo_de_Victima
+                    ,Tipo_de_VictimaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Tipo_de_Victima), "Tipo_de_Victima") ??  (string)Involucrados_PCData.Tipo_de_Victima_Tipo_de_Victima.Descripcion
                     ,Nombres = Involucrados_PCData.Nombres
                     ,Apellido_Paterno = Involucrados_PCData.Apellido_Paterno
                     ,Apellido_Materno = Involucrados_PCData.Apellido_Materno
@@ -231,6 +232,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Nacionalidad = Involucrados_PCData.Nacionalidad
                     ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Nacionalidad), "Nacionalidad") ??  (string)Involucrados_PCData.Nacionalidad_Nacionalidad.NacionalidadC
                     ,Originario_de = Involucrados_PCData.Originario_de
+                    ,Existieron_testigos = Involucrados_PCData.Existieron_testigos.GetValueOrDefault()
                     ,Pais = Involucrados_PCData.Pais
                     ,PaisNombre = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Pais), "Pais") ??  (string)Involucrados_PCData.Pais_Pais.Nombre
                     ,Estado = Involucrados_PCData.Estado
@@ -262,13 +264,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Usuario_que_Registra = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Usuario_que_Registra != null && Spartan_Users_Usuario_que_Registra.Resource != null)
@@ -282,6 +277,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente = Tipo_de_Comparecientes_Tipo_de_Compareciente.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Compareciente", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_VictimaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Victimas_Tipo_de_Victima = _ITipo_de_VictimaApiConsumer.SelAll(true);
+            if (Tipo_de_Victimas_Tipo_de_Victima != null && Tipo_de_Victimas_Tipo_de_Victima.Resource != null)
+                ViewBag.Tipo_de_Victimas_Tipo_de_Victima = Tipo_de_Victimas_Tipo_de_Victima.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Victima", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
@@ -368,12 +370,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Involucrados_PCData.Clave 
 	                    ,Solicitud = Involucrados_PCData.Solicitud
                     ,SolicitudFolio = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Solicitud), "Solicitud_de_Denuncia_Ciudadana") ??  (string)Involucrados_PCData.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                    ,Tipo_de_Solicitud = Involucrados_PCData.Tipo_de_Solicitud
-                    ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Tipo_de_Solicitud), "Tipo_de_Solicitud") ??  (string)Involucrados_PCData.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
+                    ,Desea_indicar_datos_adicionales = Involucrados_PCData.Desea_indicar_datos_adicionales.GetValueOrDefault()
                     ,Usuario_que_Registra = Involucrados_PCData.Usuario_que_Registra
                     ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Usuario_que_Registra), "Spartan_User") ??  (string)Involucrados_PCData.Usuario_que_Registra_Spartan_User.Name
                     ,Tipo_de_Compareciente = Involucrados_PCData.Tipo_de_Compareciente
                     ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Tipo_de_Compareciente), "Tipo_de_Compareciente") ??  (string)Involucrados_PCData.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+                    ,Tipo_de_Victima = Involucrados_PCData.Tipo_de_Victima
+                    ,Tipo_de_VictimaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Tipo_de_Victima), "Tipo_de_Victima") ??  (string)Involucrados_PCData.Tipo_de_Victima_Tipo_de_Victima.Descripcion
                     ,Nombres = Involucrados_PCData.Nombres
                     ,Apellido_Paterno = Involucrados_PCData.Apellido_Paterno
                     ,Apellido_Materno = Involucrados_PCData.Apellido_Materno
@@ -392,6 +395,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Nacionalidad = Involucrados_PCData.Nacionalidad
                     ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Nacionalidad), "Nacionalidad") ??  (string)Involucrados_PCData.Nacionalidad_Nacionalidad.NacionalidadC
                     ,Originario_de = Involucrados_PCData.Originario_de
+                    ,Existieron_testigos = Involucrados_PCData.Existieron_testigos.GetValueOrDefault()
                     ,Pais = Involucrados_PCData.Pais
                     ,PaisNombre = CultureHelper.GetTraduction(Convert.ToString(Involucrados_PCData.Pais), "Pais") ??  (string)Involucrados_PCData.Pais_Pais.Nombre
                     ,Estado = Involucrados_PCData.Estado
@@ -421,13 +425,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Usuario_que_Registra = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Usuario_que_Registra != null && Spartan_Users_Usuario_que_Registra.Resource != null)
@@ -441,6 +438,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente = Tipo_de_Comparecientes_Tipo_de_Compareciente.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Compareciente", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_VictimaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Victimas_Tipo_de_Victima = _ITipo_de_VictimaApiConsumer.SelAll(true);
+            if (Tipo_de_Victimas_Tipo_de_Victima != null && Tipo_de_Victimas_Tipo_de_Victima.Resource != null)
+                ViewBag.Tipo_de_Victimas_Tipo_de_Victima = Tipo_de_Victimas_Tipo_de_Victima.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Victima", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
@@ -505,27 +509,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public ActionResult GetTipo_de_SolicitudAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_SolicitudApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
         public ActionResult GetSpartan_UserAll()
         {
             try
@@ -559,6 +542,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Compareciente", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetTipo_de_VictimaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_VictimaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_VictimaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Victima", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -768,13 +772,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Usuario_que_Registra = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Usuario_que_Registra != null && Spartan_Users_Usuario_que_Registra.Resource != null)
@@ -788,6 +785,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente = Tipo_de_Comparecientes_Tipo_de_Compareciente.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Compareciente", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_VictimaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Victimas_Tipo_de_Victima = _ITipo_de_VictimaApiConsumer.SelAll(true);
+            if (Tipo_de_Victimas_Tipo_de_Victima != null && Tipo_de_Victimas_Tipo_de_Victima.Resource != null)
+                ViewBag.Tipo_de_Victimas_Tipo_de_Victima = Tipo_de_Victimas_Tipo_de_Victima.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Victima", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
@@ -821,13 +825,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Usuario_que_Registra = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Usuario_que_Registra != null && Spartan_Users_Usuario_que_Registra.Resource != null)
@@ -841,6 +838,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente = Tipo_de_Comparecientes_Tipo_de_Compareciente.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Compareciente", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_VictimaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Victimas_Tipo_de_Victima = _ITipo_de_VictimaApiConsumer.SelAll(true);
+            if (Tipo_de_Victimas_Tipo_de_Victima != null && Tipo_de_Victimas_Tipo_de_Victima.Resource != null)
+                ViewBag.Tipo_de_Victimas_Tipo_de_Victima = Tipo_de_Victimas_Tipo_de_Victima.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Victima", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
@@ -902,9 +906,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
+			,Desea_indicar_datos_adicionales = m.Desea_indicar_datos_adicionales
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Compareciente_Tipo_de_Compareciente.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+                        ,Tipo_de_VictimaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Victima_Tipo_de_Victima.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Victima_Tipo_de_Victima.Descripcion
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
@@ -919,6 +924,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,CURP = m.CURP
                         ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
 			,Originario_de = m.Originario_de
+			,Existieron_testigos = m.Existieron_testigos
                         ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
@@ -1048,9 +1054,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
+			,Desea_indicar_datos_adicionales = m.Desea_indicar_datos_adicionales
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Compareciente_Tipo_de_Compareciente.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+                        ,Tipo_de_VictimaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Victima_Tipo_de_Victima.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Victima_Tipo_de_Victima.Descripcion
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
@@ -1065,6 +1072,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,CURP = m.CURP
                         ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
 			,Originario_de = m.Originario_de
+			,Existieron_testigos = m.Existieron_testigos
                         ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
@@ -1322,33 +1330,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Involucrados_PC.Solicitud In (" + SolicitudIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Solicitud))
-            {
-                switch (filter.Tipo_de_SolicitudFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Tipo_de_Solicitud.Descripcion LIKE '" + filter.AdvanceTipo_de_Solicitud + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Tipo_de_Solicitud.Descripcion LIKE '%" + filter.AdvanceTipo_de_Solicitud + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Tipo_de_Solicitud.Descripcion = '" + filter.AdvanceTipo_de_Solicitud + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Tipo_de_Solicitud.Descripcion LIKE '%" + filter.AdvanceTipo_de_Solicitud + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceTipo_de_SolicitudMultiple != null && filter.AdvanceTipo_de_SolicitudMultiple.Count() > 0)
-            {
-                var Tipo_de_SolicitudIds = string.Join(",", filter.AdvanceTipo_de_SolicitudMultiple);
-
-                where += " AND Involucrados_PC.Tipo_de_Solicitud In (" + Tipo_de_SolicitudIds + ")";
-            }
+            if (filter.Desea_indicar_datos_adicionales != RadioOptions.NoApply)
+                where += " AND Involucrados_PC.Desea_indicar_datos_adicionales = " + Convert.ToInt32(filter.Desea_indicar_datos_adicionales);
 
             if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_Registra))
             {
@@ -1404,6 +1387,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Tipo_de_ComparecienteIds = string.Join(",", filter.AdvanceTipo_de_ComparecienteMultiple);
 
                 where += " AND Involucrados_PC.Tipo_de_Compareciente In (" + Tipo_de_ComparecienteIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Victima))
+            {
+                switch (filter.Tipo_de_VictimaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Victima.Descripcion LIKE '" + filter.AdvanceTipo_de_Victima + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Victima.Descripcion LIKE '%" + filter.AdvanceTipo_de_Victima + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Victima.Descripcion = '" + filter.AdvanceTipo_de_Victima + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Victima.Descripcion LIKE '%" + filter.AdvanceTipo_de_Victima + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipo_de_VictimaMultiple != null && filter.AdvanceTipo_de_VictimaMultiple.Count() > 0)
+            {
+                var Tipo_de_VictimaIds = string.Join(",", filter.AdvanceTipo_de_VictimaMultiple);
+
+                where += " AND Involucrados_PC.Tipo_de_Victima In (" + Tipo_de_VictimaIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.Nombres))
@@ -1695,6 +1706,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         break;
                 }
             }
+
+            if (filter.Existieron_testigos != RadioOptions.NoApply)
+                where += " AND Involucrados_PC.Existieron_testigos = " + Convert.ToInt32(filter.Existieron_testigos);
 
             if (!string.IsNullOrEmpty(filter.AdvancePais))
             {
@@ -2092,9 +2106,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varInvolucrados_PC.Clave
                         ,Solicitud = varInvolucrados_PC.Solicitud
-                        ,Tipo_de_Solicitud = varInvolucrados_PC.Tipo_de_Solicitud
+                        ,Desea_indicar_datos_adicionales = varInvolucrados_PC.Desea_indicar_datos_adicionales
                         ,Usuario_que_Registra = varInvolucrados_PC.Usuario_que_Registra
                         ,Tipo_de_Compareciente = varInvolucrados_PC.Tipo_de_Compareciente
+                        ,Tipo_de_Victima = varInvolucrados_PC.Tipo_de_Victima
                         ,Nombres = varInvolucrados_PC.Nombres
                         ,Apellido_Paterno = varInvolucrados_PC.Apellido_Paterno
                         ,Apellido_Materno = varInvolucrados_PC.Apellido_Materno
@@ -2110,6 +2125,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,CURP = varInvolucrados_PC.CURP
                         ,Nacionalidad = varInvolucrados_PC.Nacionalidad
                         ,Originario_de = varInvolucrados_PC.Originario_de
+                        ,Existieron_testigos = varInvolucrados_PC.Existieron_testigos
                         ,Pais = varInvolucrados_PC.Pais
                         ,Estado = varInvolucrados_PC.Estado
                         ,Municipio = varInvolucrados_PC.Municipio
@@ -2512,9 +2528,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
+			,Desea_indicar_datos_adicionales = m.Desea_indicar_datos_adicionales
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Compareciente_Tipo_de_Compareciente.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+                        ,Tipo_de_VictimaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Victima_Tipo_de_Victima.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Victima_Tipo_de_Victima.Descripcion
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
@@ -2529,6 +2546,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,CURP = m.CURP
                         ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
 			,Originario_de = m.Originario_de
+			,Existieron_testigos = m.Existieron_testigos
                         ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
@@ -2617,9 +2635,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
+			,Desea_indicar_datos_adicionales = m.Desea_indicar_datos_adicionales
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Compareciente_Tipo_de_Compareciente.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+                        ,Tipo_de_VictimaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Victima_Tipo_de_Victima.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Victima_Tipo_de_Victima.Descripcion
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
@@ -2634,6 +2653,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,CURP = m.CURP
                         ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
 			,Originario_de = m.Originario_de
+			,Existieron_testigos = m.Existieron_testigos
                         ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
@@ -2704,9 +2724,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varInvolucrados_PC.Clave
                                             ,Solicitud = varInvolucrados_PC.Solicitud
-                        ,Tipo_de_Solicitud = varInvolucrados_PC.Tipo_de_Solicitud
+                        ,Desea_indicar_datos_adicionales = varInvolucrados_PC.Desea_indicar_datos_adicionales
                         ,Usuario_que_Registra = varInvolucrados_PC.Usuario_que_Registra
                         ,Tipo_de_Compareciente = varInvolucrados_PC.Tipo_de_Compareciente
+                        ,Tipo_de_Victima = varInvolucrados_PC.Tipo_de_Victima
                         ,Nombres = varInvolucrados_PC.Nombres
                         ,Apellido_Paterno = varInvolucrados_PC.Apellido_Paterno
                         ,Apellido_Materno = varInvolucrados_PC.Apellido_Materno
@@ -2722,6 +2743,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,CURP = varInvolucrados_PC.CURP
                         ,Nacionalidad = varInvolucrados_PC.Nacionalidad
                         ,Originario_de = varInvolucrados_PC.Originario_de
+                        ,Existieron_testigos = varInvolucrados_PC.Existieron_testigos
                     
                 };
 
@@ -2752,12 +2774,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Solicitud = m.Solicitud
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_Solicitud = m.Tipo_de_Solicitud
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
+			,Desea_indicar_datos_adicionales = m.Desea_indicar_datos_adicionales
                         ,Usuario_que_Registra = m.Usuario_que_Registra
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_Compareciente = m.Tipo_de_Compareciente
                         ,Tipo_de_ComparecienteDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Compareciente_Tipo_de_Compareciente.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Compareciente_Tipo_de_Compareciente.Descripcion
+                        ,Tipo_de_Victima = m.Tipo_de_Victima
+                        ,Tipo_de_VictimaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Victima_Tipo_de_Victima.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Victima_Tipo_de_Victima.Descripcion
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
@@ -2776,6 +2799,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Nacionalidad = m.Nacionalidad
                         ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
 			,Originario_de = m.Originario_de
+			,Existieron_testigos = m.Existieron_testigos
 
                     
                 };

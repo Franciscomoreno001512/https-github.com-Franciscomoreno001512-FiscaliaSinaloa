@@ -17,9 +17,6 @@
  List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud = null;
     if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
     { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
-    List<SelectListItem> varTipo_de_Solicitud_Tipo_de_Solicitud = null;
-    if (ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud != null)
-    { varTipo_de_Solicitud_Tipo_de_Solicitud = (List<SelectListItem>)ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud; }
     List<SelectListItem> varRespuesta_Fosa_clandestina = null;
     if (ViewBag.Respuestas_Fosa_clandestina != null)
     { varRespuesta_Fosa_clandestina = (List<SelectListItem>)ViewBag.Respuestas_Fosa_clandestina; }
@@ -53,6 +50,12 @@
        Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
    }
 }
+@*fjmore portal*@
+<style>
+    #page-wrapper {
+        margin: 0px !important;
+    }
+</style>
 <div class="loading style-2"><div class="loading-wheel"></div></div>
 <div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
     <div class="modal-dialog">
@@ -88,25 +91,26 @@
                     </a>
                 </button>
             </h2>
-            <ol class="breadcrumb">
+            @*fjmore portal*@
+            @*<ol class="breadcrumb">
                 <li>
                     <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
                 </li>
-                <li class="active">
+             <li id="tituloINV2" class="active">
                 @if (Session["PhaseName"] != null)
                 {
                     <strong>@Session["PhaseName"].ToString()</strong>
                 }
                 else
                 {
-                    <strong>@Resources.Datos_de_los_Hechos_PCResources.Datos_de_los_Hechos_PC</strong>
+                <strong>Proporcione los datos de la Víctima</strong>
                 }
-                
+
             </li>
                 <li class="active">
                     <strong>@Resources.Resources.Create</strong>
                 </li>
-            </ol>
+        </ol>*@
         </div>
         <div class="col-lg-2">
 
@@ -169,7 +173,7 @@
 			<div class="tabs-container">
                         	<ul class="nav nav-tabs">
 <li class="active"><a data-toggle="tab" href="#tabDatos_de_los_hechos"> @Resources.Datos_de_los_Hechos_PCResources.TabDatos_de_los_hechos</a></li>
-<li class=""><a data-toggle="tab" href="#tabDomicilio_de_los_Hechos"> @Resources.Datos_de_los_Hechos_PCResources.TabDomicilio_de_los_Hechos</a></li>
+<li class=""><a data-toggle="tab" href="#tabLugar_de_los_Hechos"> @Resources.Datos_de_los_Hechos_PCResources.TabLugar_de_los_Hechos</a></li>
 
                         	</ul>
 	                	<div class="tab-content">
@@ -204,7 +208,6 @@
                                 </div>
                                 }
                             </div>
-                           
                             <div class="form-group" id="divTitulo_del_Hecho">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Titulo_del_Hecho</label>
                                 <div class="col-sm-8" data-field-id="Titulo_del_Hecho" data-attribute="269224" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Titulo_del_Hecho">
@@ -291,12 +294,12 @@
                                 </div>
 
 
-                            <div id="tabDomicilio_de_los_Hechos" class="tab-pane">
+                            <div id="tabLugar_de_los_Hechos" class="tab-pane">
                                 <div class="panel-body">
                             <div class="form-group" id="divConoce_la_direccion">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Conoce_la_direccion</label>
                                 <div class="col-sm-8" data-field-id="Conoce_la_direccion" data-attribute="269374" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Conoce_la_direccion">
-                                    <select class="form-control Domicilio_de_los_Hechos" data-val="true" data-val-number="The field ¿Conoce la dirección donde sucedieron los hechos? must be a number." data-val-required="The ¿Conoce la dirección donde sucedieron los hechos? field is required." id="Conoce_la_direccion" name="Conoce_la_direccion">
+                                    <select class="form-control Lugar_de_los_Hechos" data-val="true" data-val-number="The field ¿Conoce la dirección donde sucedieron los hechos? must be a number." data-val-required="The ¿Conoce la dirección donde sucedieron los hechos? field is required." id="Conoce_la_direccion" name="Conoce_la_direccion">
                                         <option value=""></option>
                                         @if (varRespuesta_Conoce_la_direccion != null){ 
                                             foreach (var itemConoce_la_direccion in varRespuesta_Conoce_la_direccion)
@@ -321,7 +324,7 @@
                                 </div>
                                 }
                             </div>
-							@*fjmore*@
+                                        @*fjmore*@
                                         <div class="form-group" id="divMapa">
                                             <label class="col-sm-2 control-label" style="color:white!important;">Mapa</label>
                                             <div class="col-sm-8">
@@ -333,7 +336,7 @@
 				<div class="form-group" id="divPais">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Pais</label>
                                 <div class="col-sm-8" data-field-id="Pais" data-attribute="269229" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Pais">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Pais form-control select2-dropdown Domicilio_de_los_Hechos' data-val="true" id="Pais" name="Pais">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Pais form-control select2-dropdown Lugar_de_los_Hechos' data-val="true" id="Pais" name="Pais">
                                         <option value="@Model.Pais">@(Model.PaisNombre??Model.PaisNombre)</option>
                                     </select>
                                 </div>
@@ -347,7 +350,7 @@
 				<div class="form-group" id="divEstado">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Estado</label>
                                 <div class="col-sm-8" data-field-id="Estado" data-attribute="269230" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Estado">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Estado form-control select2-dropdown Domicilio_de_los_Hechos' data-val="true" id="Estado" name="Estado">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Estado form-control select2-dropdown Lugar_de_los_Hechos' data-val="true" id="Estado" name="Estado">
                                         <option value="@Model.Estado">@(Model.EstadoNombre??Model.EstadoNombre)</option>
                                     </select>
                                 </div>
@@ -361,7 +364,7 @@
 				<div class="form-group" id="divMunicipio">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Municipio</label>
                                 <div class="col-sm-8" data-field-id="Municipio" data-attribute="269231" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Municipio">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Municipio form-control select2-dropdown Domicilio_de_los_Hechos' data-val="true" id="Municipio" name="Municipio">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Municipio form-control select2-dropdown Lugar_de_los_Hechos' data-val="true" id="Municipio" name="Municipio">
                                         <option value="@Model.Municipio">@(Model.MunicipioNombre??Model.MunicipioNombre)</option>
                                     </select>
                                 </div>
@@ -375,7 +378,7 @@
 				<div class="form-group" id="divPoblacion">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Poblacion</label>
                                 <div class="col-sm-8" data-field-id="Poblacion" data-attribute="269232" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Poblacion">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Poblacion form-control select2-dropdown Domicilio_de_los_Hechos' data-val="true" id="Poblacion" name="Poblacion">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Poblacion form-control select2-dropdown Lugar_de_los_Hechos' data-val="true" id="Poblacion" name="Poblacion">
                                         <option value="@Model.Poblacion">@(Model.PoblacionNombre??Model.PoblacionNombre)</option>
                                     </select>
                                 </div>
@@ -389,7 +392,7 @@
 				<div class="form-group" id="divColonia">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Colonia</label>
                                 <div class="col-sm-8" data-field-id="Colonia" data-attribute="269233" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Colonia">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Colonia form-control select2-dropdown Domicilio_de_los_Hechos' data-val="true" id="Colonia" name="Colonia">
+                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_PC_Colonia form-control select2-dropdown Lugar_de_los_Hechos' data-val="true" id="Colonia" name="Colonia">
                                         <option value="@Model.Colonia">@(Model.ColoniaNombre??Model.ColoniaNombre)</option>
                                     </select>
                                 </div>
@@ -403,70 +406,70 @@
                             <div class="form-group" id="divCodigo_Postal">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Codigo_Postal</label>
                                 <div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="269234" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Codigo_Postal">
-                                    <input class="form-control inputNumber Domicilio_de_los_Hechos" id="Codigo_Postal" name="Codigo_Postal" type="text" value="@Model.Codigo_Postal">
+                                    <input class="form-control inputNumber Lugar_de_los_Hechos" id="Codigo_Postal" name="Codigo_Postal" type="text" value="@Model.Codigo_Postal">
                                     @*<span class="field-validation-valid" data-valmsg-for="Codigo_Postal" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divCalle">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Calle</label>
                                 <div class="col-sm-8" data-field-id="Calle" data-attribute="269235" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Calle">
-                                    <input class="form-control Domicilio_de_los_Hechos" id="Calle" name="Calle" type="text" value="@Model.Calle">
+                                    <input class="form-control Lugar_de_los_Hechos" id="Calle" name="Calle" type="text" value="@Model.Calle">
                                     @*<span class="field-validation-valid" data-valmsg-for="Calle" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divEntre_Calle">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Entre_Calle</label>
                                 <div class="col-sm-8" data-field-id="Entre_Calle" data-attribute="269236" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Entre_Calle">
-                                    <input class="form-control Domicilio_de_los_Hechos" id="Entre_Calle" name="Entre_Calle" type="text" value="@Model.Entre_Calle">
+                                    <input class="form-control Lugar_de_los_Hechos" id="Entre_Calle" name="Entre_Calle" type="text" value="@Model.Entre_Calle">
                                     @*<span class="field-validation-valid" data-valmsg-for="Entre_Calle" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divY_Calle">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Y_Calle</label>
                                 <div class="col-sm-8" data-field-id="Y_Calle" data-attribute="269237" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Y_Calle">
-                                    <input class="form-control Domicilio_de_los_Hechos" id="Y_Calle" name="Y_Calle" type="text" value="@Model.Y_Calle">
+                                    <input class="form-control Lugar_de_los_Hechos" id="Y_Calle" name="Y_Calle" type="text" value="@Model.Y_Calle">
                                     @*<span class="field-validation-valid" data-valmsg-for="Y_Calle" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divNumero_Exterior">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Numero_Exterior</label>
                                 <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="269238" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Numero_Exterior">
-                                    <input class="form-control Domicilio_de_los_Hechos" id="Numero_Exterior" name="Numero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                    <input class="form-control Lugar_de_los_Hechos" id="Numero_Exterior" name="Numero_Exterior" type="text" value="@Model.Numero_Exterior">
                                     @*<span class="field-validation-valid" data-valmsg-for="Numero_Exterior" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divNumero_Interior">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Numero_Interior</label>
                                 <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="269239" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Numero_Interior">
-                                    <input class="form-control Domicilio_de_los_Hechos" id="Numero_Interior" name="Numero_Interior" type="text" value="@Model.Numero_Interior">
+                                    <input class="form-control Lugar_de_los_Hechos" id="Numero_Interior" name="Numero_Interior" type="text" value="@Model.Numero_Interior">
                                     @*<span class="field-validation-valid" data-valmsg-for="Numero_Interior" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divReferencia">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Referencia</label>
                                 <div class="col-sm-8" data-field-id="Referencia" data-attribute="269240" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Referencia">
-                                    <input class="form-control Domicilio_de_los_Hechos" id="Referencia" name="Referencia" type="text" value="@Model.Referencia">
+                                    <input class="form-control Lugar_de_los_Hechos" id="Referencia" name="Referencia" type="text" value="@Model.Referencia">
                                     @*<span class="field-validation-valid" data-valmsg-for="Referencia" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divLatitud">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Latitud</label>
                                 <div class="col-sm-8" data-field-id="Latitud" data-attribute="269241" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Latitud">
-                                    <input class="form-control Domicilio_de_los_Hechos" id="Latitud" name="Latitud" type="text" value="@Model.Latitud">
+                                    <input class="form-control Lugar_de_los_Hechos" id="Latitud" name="Latitud" type="text" value="@Model.Latitud">
                                     @*<span class="field-validation-valid" data-valmsg-for="Latitud" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divLongitud">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Longitud</label>
                                 <div class="col-sm-8" data-field-id="Longitud" data-attribute="269242" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Longitud">
-                                    <input class="form-control Domicilio_de_los_Hechos" id="Longitud" name="Longitud" type="text" value="@Model.Longitud">
+                                    <input class="form-control Lugar_de_los_Hechos" id="Longitud" name="Longitud" type="text" value="@Model.Longitud">
                                     @*<span class="field-validation-valid" data-valmsg-for="Longitud" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divEs_una_direccion_exacta_o_aproximada">
                                 <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_PCResources.Es_una_direccion_exacta_o_aproximada</label>
                                 <div class="col-sm-8" data-field-id="Es_una_direccion_exacta_o_aproximada" data-attribute="269352" data-field-name="@Resources.Datos_de_los_Hechos_PCResources.Es_una_direccion_exacta_o_aproximada">
-                                    <select class="form-control Domicilio_de_los_Hechos" data-val="true" data-val-number="The field ¿Es una dirección exacta o apróximada? must be a number." data-val-required="The ¿Es una dirección exacta o apróximada? field is required." id="Es_una_direccion_exacta_o_aproximada" name="Es_una_direccion_exacta_o_aproximada">
+                                    <select class="form-control Lugar_de_los_Hechos" data-val="true" data-val-number="The field ¿Es una dirección exacta o apróximada? must be a number." data-val-required="The ¿Es una dirección exacta o apróximada? field is required." id="Es_una_direccion_exacta_o_aproximada" name="Es_una_direccion_exacta_o_aproximada">
                                         <option value=""></option>
                                         @if (varDireccion_Exacta_Es_una_direccion_exacta_o_aproximada != null){ 
                                             foreach (var itemEs_una_direccion_exacta_o_aproximada in varDireccion_Exacta_Es_una_direccion_exacta_o_aproximada)
@@ -516,7 +519,7 @@
                                         <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
                                     }
                                 }
-								<input type="button" value="Anterior" id="Datos_de_los_Hechos_PCAnterior" class="btn btn-w-m btn-primary btn_save" />
+                                <input type="button" value="Anterior" id="Datos_de_los_Hechos_PCAnterior" class="btn btn-w-m btn-primary btn_save" />
                                 <input type="button" value="Siguiente" id="Datos_de_los_Hechos_PCSiguiente" class="btn btn-w-m btn-primary btn_save" />
                                 <input type="hidden" id="hdnConfigureType" />
 								<input type="hidden" id="hdnDatos_de_los_Hechos_PCBusinessRuleFieldId" />
@@ -538,51 +541,7 @@
     </div>
 </div>
 <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
-  <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg hidden" data-toggle="modal" id="modalMapa" data-target="#myModal">Ver Mapa</button>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
-        <div class="modal-dialog" style="width: 90%;">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Seleccionar Dirección</h4>
-					<p>Al seleccionar la ubicación aquí se llenarán los datos en la ventana correspondiente.</p>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <label>Escriba la dirección</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" style="width:100%" id="address" name="address" />
-                            </div>
-                            <div class="col-md-3">
-                                <input type="button" id="BucarDireccion" value="Buscar">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top:12px;">
-                        <div class="col-md-12">
-                            <div class="col-md-12">
-                                <!-- <div id="gmap" style="height:100%; width:100%;"></div> -->
-                                <div id="gmap" style="height: 400px"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
 @section Styles {
 <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
     @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
@@ -671,13 +630,16 @@
 		var nameAttribute = '@ViewBag.nameAttribute';
 		var Tab_Datos_de_los_hechos = true;
 
-		var Tab_Domicilio_de_los_Hechos = true;
+		var Tab_Lugar_de_los_Hechos = true;
 
 
         $(document).ready(function () {
             $('#ObjectId').val('45711');
-		    
-		   
+
+            //fjmore portal
+            $(".fa-bars").parent().hide();
+
+
                         $('#Fecha_del_Hecho').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -912,8 +874,8 @@
 				if (Tab_Datos_de_los_hechos)
 					Fill_Datos_de_los_hechos();
 
-				if (Tab_Domicilio_de_los_Hechos)
-					Fill_Domicilio_de_los_Hechos();
+				if (Tab_Lugar_de_los_Hechos)
+					Fill_Lugar_de_los_Hechos();
 
 
                 </text>
@@ -943,7 +905,7 @@
 
     </script>
 
-<script type="text/javascript">
+        <script type="text/javascript">
 
 var roleActivo = @Session["USERROLEID"];
    function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
@@ -981,7 +943,7 @@ var roleActivo = @Session["USERROLEID"];
 					showNotification("@Resources.Resources.ErrorContactingServer", "error");
 				}
 			});
-		
+
     }
 
 var newIDInv=0;
@@ -1008,7 +970,7 @@ var newIDInv=0;
 				return false;
 			}						
 
-			if (Tab_Domicilio_de_los_Hechos && !checkClientValidate('Datos_de_los_Hechos_PCCreateForm', 'Domicilio_de_los_Hechos')) {
+			if (Tab_Lugar_de_los_Hechos && !checkClientValidate('Datos_de_los_Hechos_PCCreateForm', 'Lugar_de_los_Hechos')) {
 				return false;
 			}						
 
@@ -1019,12 +981,12 @@ var newIDInv=0;
                 id = CreateID();
             }
 			newIDInv=id;
-			
+
 			if (Tab_Datos_de_los_hechos)
 				Save_Datos_de_los_hechos(id);
 
-			if (Tab_Domicilio_de_los_Hechos)
-				Save_Domicilio_de_los_Hechos(id);
+			if (Tab_Lugar_de_los_Hechos)
+				Save_Lugar_de_los_Hechos(id);
 
 
 			showNotification("@Resources.Resources.SaveSuccess", "success");
@@ -1200,7 +1162,6 @@ var newIDInv=0;
 	                    control.select2({ data: data });
 	                    control.val(result.data.Solicitud).trigger('change');
                     }, 3000);
-                    $('#Tipo_de_Solicitud').val(result.data.Tipo_de_Solicitud);
                     $('#Titulo_del_Hecho').val(result.data.Titulo_del_Hecho);
                     $('#Narrativa_Breve_de_los_Hechos').val(result.data.Narrativa_Breve_de_los_Hechos);
                     $('#Fecha_del_Hecho').val(result.data.Fecha_del_Hecho);
@@ -1219,7 +1180,6 @@ var newIDInv=0;
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Solicitud', $('#Solicitud').val());
-                data.append('Tipo_de_Solicitud', $('#Tipo_de_Solicitud').val());
                 data.append('Titulo_del_Hecho', $('#Titulo_del_Hecho').val());
                 data.append('Narrativa_Breve_de_los_Hechos', $('#Narrativa_Breve_de_los_Hechos').val());
                 data.append('Fecha_del_Hecho', $('#Fecha_del_Hecho').val());
@@ -1252,10 +1212,10 @@ var newIDInv=0;
 			});
 		}
 
-		function Fill_Domicilio_de_los_Hechos()
+		function Fill_Lugar_de_los_Hechos()
         {
             $.ajax({
-                url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/Get_Domicilio_de_los_Hechos")?Id=" + $("#ReferenceClave").val(),
+                url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/Get_Lugar_de_los_Hechos")?Id=" + $("#ReferenceClave").val(),
                 type: 'GET',
                 dataType: "json",
                 async: false,
@@ -1325,7 +1285,7 @@ var newIDInv=0;
             });
         }
 		
-		function Save_Domicilio_de_los_Hechos(newId) {
+		function Save_Lugar_de_los_Hechos(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Conoce_la_direccion', $('#Conoce_la_direccion').val());
@@ -1346,7 +1306,7 @@ var newIDInv=0;
                 data.append('Es_una_direccion_exacta_o_aproximada', $('#Es_una_direccion_exacta_o_aproximada').val());
 
 			$.ajax({
-				url: '@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/Post_Domicilio_de_los_Hechos")',
+				url: '@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/Post_Lugar_de_los_Hechos")',
 				type: 'POST',
 				data: data,
 				async: false,
@@ -1355,14 +1315,14 @@ var newIDInv=0;
 				processData: false,
 				success: function (result) {
 					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Domicilio_de_los_Hechos");
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Lugar_de_los_Hechos");
 					} else {
 						newId = result;
                     
 					}
 				},
 				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Domicilio_de_los_Hechos");
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Lugar_de_los_Hechos");
 				},
 				cache: false
 			});

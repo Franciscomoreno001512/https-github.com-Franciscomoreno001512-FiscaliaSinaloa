@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
-using Spartane.Core.Domain.Tipo_de_Solicitud;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Compareciente;
+using Spartane.Core.Domain.Tipo_de_Victima;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
@@ -31,9 +31,10 @@ namespace Spartane.Core.Domain.Involucrados_PC
     {
         public int Clave { get; set; }
         public int? Solicitud { get; set; }
-        public int? Tipo_de_Solicitud { get; set; }
+        public bool? Desea_indicar_datos_adicionales { get; set; }
         public int? Usuario_que_Registra { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
+        public int? Tipo_de_Victima { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
@@ -49,6 +50,7 @@ namespace Spartane.Core.Domain.Involucrados_PC
         public string CURP { get; set; }
         public int? Nacionalidad { get; set; }
         public string Originario_de { get; set; }
+        public bool? Existieron_testigos { get; set; }
         public int? Pais { get; set; }
         public int? Estado { get; set; }
         public int? Municipio { get; set; }
@@ -66,12 +68,12 @@ namespace Spartane.Core.Domain.Involucrados_PC
 
         [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Solicitud_Solicitud_de_Denuncia_Ciudadana { get; set; }
-        [ForeignKey("Tipo_de_Solicitud")]
-        public virtual Spartane.Core.Domain.Tipo_de_Solicitud.Tipo_de_Solicitud Tipo_de_Solicitud_Tipo_de_Solicitud { get; set; }
         [ForeignKey("Usuario_que_Registra")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Registra_Spartan_User { get; set; }
         [ForeignKey("Tipo_de_Compareciente")]
         public virtual Spartane.Core.Domain.Tipo_de_Compareciente.Tipo_de_Compareciente Tipo_de_Compareciente_Tipo_de_Compareciente { get; set; }
+        [ForeignKey("Tipo_de_Victima")]
+        public virtual Spartane.Core.Domain.Tipo_de_Victima.Tipo_de_Victima Tipo_de_Victima_Tipo_de_Victima { get; set; }
         [ForeignKey("Sexo")]
         public virtual Spartane.Core.Domain.Genero.Genero Sexo_Genero { get; set; }
         [ForeignKey("Estado_Civil")]
@@ -99,9 +101,10 @@ namespace Spartane.Core.Domain.Involucrados_PC
     {
                 public int Clave { get; set; }
         public int? Solicitud { get; set; }
-        public int? Tipo_de_Solicitud { get; set; }
+        public bool? Desea_indicar_datos_adicionales { get; set; }
         public int? Usuario_que_Registra { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
+        public int? Tipo_de_Victima { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
@@ -117,15 +120,16 @@ namespace Spartane.Core.Domain.Involucrados_PC
         public string CURP { get; set; }
         public int? Nacionalidad { get; set; }
         public string Originario_de { get; set; }
+        public bool? Existieron_testigos { get; set; }
 
 		        [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Solicitud_Solicitud_de_Denuncia_Ciudadana { get; set; }
-        [ForeignKey("Tipo_de_Solicitud")]
-        public virtual Spartane.Core.Domain.Tipo_de_Solicitud.Tipo_de_Solicitud Tipo_de_Solicitud_Tipo_de_Solicitud { get; set; }
         [ForeignKey("Usuario_que_Registra")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Registra_Spartan_User { get; set; }
         [ForeignKey("Tipo_de_Compareciente")]
         public virtual Spartane.Core.Domain.Tipo_de_Compareciente.Tipo_de_Compareciente Tipo_de_Compareciente_Tipo_de_Compareciente { get; set; }
+        [ForeignKey("Tipo_de_Victima")]
+        public virtual Spartane.Core.Domain.Tipo_de_Victima.Tipo_de_Victima Tipo_de_Victima_Tipo_de_Victima { get; set; }
         [ForeignKey("Sexo")]
         public virtual Spartane.Core.Domain.Genero.Genero Sexo_Genero { get; set; }
         [ForeignKey("Estado_Civil")]

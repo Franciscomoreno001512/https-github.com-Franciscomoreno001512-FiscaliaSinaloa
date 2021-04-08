@@ -58,12 +58,12 @@
   <Role culture="es-es" Id="106" value="Encuesta"></Role>
   <Role culture="en-us" Id="107" value="Dictaminador"></Role>
   <Role culture="es-es" Id="107" value="Dictaminador"></Role>
-  <Role culture="en-us" Id="108" value="Denuncia"></Role>
-  <Role culture="es-es" Id="108" value="Denuncia"></Role>
-  <Role culture="en-us" Id="109" value="Portal Ciudadano"></Role>
-  <Role culture="es-es" Id="109" value="Portal Ciudadano"></Role>
-  <Role culture="en-us" Id="110" value="Denuncia Anónima"></Role>
-  <Role culture="es-es" Id="110" value="Denuncia Anónima"></Role>
+  <Role culture="en-us" Id="108" value="Ciudadano Registrado (Portal Ciudadano)"></Role>
+  <Role culture="es-es" Id="108" value="Ciudadano Registrado (Portal Ciudadano)"></Role>
+  <Role culture="en-us" Id="109" value="Dirección de Vinculación Comunitaria"></Role>
+  <Role culture="es-es" Id="109" value="Dirección de Vinculación Comunitaria"></Role>
+  <Role culture="en-us" Id="110" value="Ciudadano Anónimo (Portal Ciudadano)"></Role>
+  <Role culture="es-es" Id="110" value="Ciudadano Anónimo (Portal Ciudadano)"></Role>
   <Role culture="en-us" Id="111" value="ViceFiscal"></Role>
   <Role culture="es-es" Id="111" value="ViceFiscal"></Role>
   <Role culture="en-us" Id="112" value="Director de Carpetas de Investigación"></Role>
@@ -80,4 +80,6 @@
   <Role culture="es-es" Id="117" value="Especialista de Servicios de Apoyo"></Role>
   <Role culture="en-us" Id="118" value="-"></Role>
   <Role culture="es-es" Id="118" value="-"></Role>
+  <Role culture="en-us" Id="119" value="Mandamientos Judiciales"></Role>
+  <Role culture="es-es" Id="119" value="Mandamientos Judiciales"></Role>
 </Roles>

@@ -13,7 +13,7 @@ if(roleActivo==110 || roleActivo==108){
 	$("#Datos_de_los_Hechos_PCSiguiente").addClass("hidden");
 	$("#Datos_de_los_Hechos_PCAnterior").addClass("hidden");	
 }
-if(roleActivo==110){
+if(roleActivo==110 || roleActivo == 108){
 	$("#side-menu").addClass("hidden");
 	$("#logoutForm").addClass("hidden");
 }
@@ -31,14 +31,7 @@ $("form#CreateDatos_de_los_Hechos_PC").on('change', '#Estado', function () {
 
 
 
-//BusinessRuleId:3088, Attribute:269231, Operation:Field, Event:None
-$("form#CreateDatos_de_los_Hechos_PC").on('change', '#Municipio', function () {
-	nameOfTable='';
-	rowIndex='';
- var valor = $('#' + nameOfTable + 'Poblacion' + rowIndex).val();   $('#' + nameOfTable + 'Poblacion' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Poblacion' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Poblacion' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE MUNICIPIO = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Poblacion' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE MUNICIPIO = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Poblacion' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Poblacion' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Colonia' + rowIndex).val();   $('#' + nameOfTable + 'Colonia' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Colonia' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE MUNICIPIO = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE MUNICIPIO = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Colonia' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Colonia' + rowIndex).val(valor).trigger('change');
-});
-
-//BusinessRuleId:3088, Attribute:269231, Operation:Field, Event:None
+
 
 //BusinessRuleId:3092, Attribute:269374, Operation:Field, Event:None
 $("form#CreateDatos_de_los_Hechos_PC").on('change', '#Conoce_la_direccion', function () {
@@ -59,6 +52,24 @@ if( GetValueByControlType($('#' + nameOfTable + 'Conoce_la_direccion' + rowIndex
 });
 
 //BusinessRuleId:3093, Attribute:269374, Operation:Field, Event:None
+
+//BusinessRuleId:3088, Attribute:269231, Operation:Field, Event:None
+$("form#CreateDatos_de_los_Hechos_PC").on('change', '#Municipio', function () {
+	nameOfTable='';
+	rowIndex='';
+ var valor = $('#' + nameOfTable + 'Poblacion' + rowIndex).val();   $('#' + nameOfTable + 'Poblacion' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Poblacion' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Poblacion' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE MUNICIPIO = FLD[Municipio] AND Tipo = 2 AND Estatus = 'v'", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Poblacion' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE MUNICIPIO = FLD[Municipio] AND Tipo = 2 AND Estatus = 'v'", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Poblacion' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Poblacion' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Colonia' + rowIndex).val();   $('#' + nameOfTable + 'Colonia' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Colonia' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE MUNICIPIO = FLD[Municipio] AND Tipo = 1 AND Estatus = 'v'", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE MUNICIPIO = FLD[Municipio] AND Tipo = 1 AND Estatus = 'v'", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Colonia' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Colonia' + rowIndex).val(valor).trigger('change');
+});
+
+//BusinessRuleId:3088, Attribute:269231, Operation:Field, Event:None
+
+//BusinessRuleId:4802, Attribute:269232, Operation:Field, Event:None
+$("form#CreateDatos_de_los_Hechos_PC").on('change', '#Poblacion', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Poblacion' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') ) { var valor = $('#' + nameOfTable + 'Colonia' + rowIndex).val();   $('#' + nameOfTable + 'Colonia' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Colonia' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE poblacion = FLD[Poblacion] AND Tipo = 1 AND Estatus = 'v'", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE poblacion = FLD[Poblacion] AND Tipo = 1 AND Estatus = 'v'", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Colonia' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Colonia' + rowIndex).val(valor).trigger('change');} else {}
+});
+
+//BusinessRuleId:4802, Attribute:269232, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -451,6 +462,7 @@ if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt(
 //BusinessRuleId:3195, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
+ValidaArchivos('#Tiene_alguna_Foto_o_EvidenciaFile',['pdf','jpg','jpeg','pnf','gift'], 4); //selector, extensions, filesize
 }
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
@@ -544,10 +556,8 @@ function CambiaColonia(deesc) {
         control.val(valorPaisId).trigger('change');
 }
 
-
 function CargaGoogleMaps() {
-    
-  debugger;
+   
    
     debugger;
     $("#Codigo_Postal").val(("")); 
@@ -592,6 +602,84 @@ function CargaGoogleMaps() {
                 }
             }
         });
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            placeMarker(event.latLng);
+            geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        debugger;
+                      //  for (var i = results[0].address_components.length; i < 0 ; i--) {
+							 for (var i=results[0].address_components.length -1; i>=0; i--) {
+
+                            if (results[0].address_components[i].types[0] == "postal_code") {
+                                $("#Codigo_Postal").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "country") {
+                                debugger;
+                                CambiaPais(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Pais' + rowIndex), results[0].address_components[i].long_name);
+
+                              
+                            }
+
+                            if (results[0].address_components[i].types[0] == "administrative_area_level_1") {
+                                CambiaEstado(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Estado' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+                            if (results[0].address_components[i].types[0] == "locality") {
+                                CambiaMunicipio(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+
+                            if (results[0].address_components[i].types[0] == "political") { // segun spartanMetadata poblacion es igual a colonia
+								
+								CambiaPoblacion(results[0].address_components[i].long_name);
+								CambiaColonia(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Colonia' + rowIndex), results[0].address_components[i].long_name);
+                                //AsignarValor($('#' + nameOfTable + 'Poblacion' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+                            
+
+                            if (results[0].address_components[i].types[0] == "route") {
+                                $("#Calle").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "street_number") {
+                                $("#Numero_Exterior").val((results[0].address_components[i].long_name));
+                            }
+                            
+
+
+                        }
+                        $('#Latitud').val(marker.getPosition().lat());
+                        $('#Longitud').val(marker.getPosition().lng());
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    }
+                }
+            });
+
+        });
+        function placeMarker(location) {
+
+            if (marker == null) {
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+            else {
+                marker.setPosition(location);
+            }
+
+
+        }
+
 
         // Evento que se dispara cuando se mueve el marcador en en el mapa (es el Marcador de posicion de color Rojo)
         // cada pixel que se mueve o se arrastra se recalcula la latitud y la longitud
@@ -686,4 +774,5 @@ function CargaGoogleMaps() {
                 return;
             }
         });
+		//updated
 }

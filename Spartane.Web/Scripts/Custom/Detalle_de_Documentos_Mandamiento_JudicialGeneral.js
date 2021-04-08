@@ -10,6 +10,17 @@ $(function () {
 
 });
 
+var AutoCompleteRegistro_de_Orden_de_AprehensionData = [];
+function GetAutoCompleteDetalle_de_Documentos_Mandamiento_Judicial_Registro_de_Orden_de_Aprehension_Registro_de_Mandamiento_JudicialData(data) {
+	AutoCompleteRegistro_de_Orden_de_AprehensionData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteRegistro_de_Orden_de_AprehensionData.push({
+            id: data[i].Clave,
+            text: data[i].Numero_de_Mandamiento
+        });
+    }
+    return AutoCompleteRegistro_de_Orden_de_AprehensionData;
+}
 
 
 function getDropdown(elementKey) {
@@ -47,6 +58,9 @@ function ClearControls() {
     $('#CreateDetalle_de_Documentos_Mandamiento_Judicial')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
+    $('#Registro_de_Orden_de_Aprehension').empty();
+    $("#Registro_de_Orden_de_Aprehension").append('<option value=""></option>');
+    $('#Registro_de_Orden_de_Aprehension').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -176,7 +190,10 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendDetalle_de_Documentos_Mandamiento_JudicialData(function (currentId) {
 					$("#ClaveId").val("0");
-	
+	    $('#Registro_de_Orden_de_Aprehension').empty();
+    $("#Registro_de_Orden_de_Aprehension").append('<option value=""></option>');
+    $('#Registro_de_Orden_de_Aprehension').val('0').trigger('change');
+
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
 	

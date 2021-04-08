@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Registro_de_Cumplimiento" value="Registro de Cumplimiento"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Mandamiento_Judicial" value="Mandamiento Judicial"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="Usuario_de_Registro" value="Usuario de Registro"></resource>
+  <resource culture="en-US" name="Resolucion" value="Resolución"></resource>
+  <resource culture="en-US" name="Fecha_de_Resolucion" value="Fecha de Resolución"></resource>
+  <resource culture="en-US" name="Numero_de_Oficio" value="Número de Oficio"></resource>
+  <resource culture="en-US" name="Radiograma" value="Radiograma"></resource>
+  <resource culture="en-US" name="Partida_que_cumplimenta" value="Partida que cumplimenta"></resource>
+  <resource culture="en-US" name="Area_que_envia_cumplimiento" value="Area que envía cumplimiento"></resource>
+  <resource culture="en-US" name="Estado" value="Estado"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Poblacion" value="Población"></resource>
+  <resource culture="en-US" name="Colonia" value="Colonia"></resource>
+  <resource culture="en-US" name="Observaciones_del_Cumplimiento" value="Observaciones del Cumplimiento"></resource>
+  <resource culture="en-US" name="Personas_donde_se_ejecuto_mandamiento" value="Personas donde se ejecutó mandamiento"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

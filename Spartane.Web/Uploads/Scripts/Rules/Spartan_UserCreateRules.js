@@ -2,11 +2,6 @@
 var nameOfTable = '';
 var rowIndex = '';
 $(document).ready(function () {
-	//CONVERTIR A MAYUSCULAS AL BLUR
-    $('input[type="text"],textarea').blur(function () {
-        this.value = this.value.toUpperCase();
-    });
-    //END CONVERTIR A MAYUSCULAS AL BLUR
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {

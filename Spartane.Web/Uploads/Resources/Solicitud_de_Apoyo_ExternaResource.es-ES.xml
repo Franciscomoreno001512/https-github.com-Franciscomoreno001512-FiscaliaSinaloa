@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Solicitud_de_Apoyo_Externa" value="Solicitud de Apoyo Externa"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_registro" value="Hora de registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Region" value="Región"></resource>
+  <resource culture="es-es" name="Unidad" value="Unidad"></resource>
+  <resource culture="es-es" name="Anio" value="Año"></resource>
+  <resource culture="es-es" name="Fecha_de_Solicitud" value="Fecha de Solicitud"></resource>
+  <resource culture="es-es" name="Numero_de_Oficio_Externo" value="Número de Oficio Externo "></resource>
+  <resource culture="es-es" name="Solicitante" value="Solicitante"></resource>
+  <resource culture="es-es" name="Rango" value="Rango / Nombramiento"></resource>
+  <resource culture="es-es" name="Autoridad_Externa" value="Autoridad Externa"></resource>
+  <resource culture="es-es" name="Narracion_Solicitud" value="Narración Solicitud"></resource>
+  <resource culture="es-es" name="Archivo_Adjunto" value="Archivo Adjunto"></resource>
+  <resource culture="es-es" name="Area_Asignada" value="Area Asignada"></resource>
+  <resource culture="es-es" name="SubArea_Asignada" value="SubArea Asignada"></resource>
+  <resource culture="es-es" name="Dictamen_Solicitado" value="Dictamen Solicitado"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+  <resource culture="es-es" name="Fecha_de_Contestacion" value="Fecha de Contestación"></resource>
+  <resource culture="es-es" name="Hora_de_Contestacion" value="Hora de Contestación"></resource>
+  <resource culture="es-es" name="Responsable_que_Contesta" value="Responsable que Contesta"></resource>
+  <resource culture="es-es" name="No__Contestacion" value="No. Contestación"></resource>
+  <resource culture="es-es" name="Dictamen" value="Dictamen"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Ver_Documento" value="Ver Documento"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabContestacion" value="Contestación"></resource>
+
+</resources>

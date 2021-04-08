@@ -18,16 +18,18 @@
     <link href="Content/portal-ciudadano.css" rel="stylesheet">
     <link href="Content/fontello.css" rel="stylesheet">
 
+
     <!-- JS Files -->
-    <script src="Scripts/jquery-2.1.1.js"></script>        
+    <script src="Scripts/jquery-2.1.1.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+
 </head>
 <body class="fondo-azul">
     <div class="container">
         <header>
             <div class="row" style="margin-top: 3.0rem;">
                 <div id="logo" class="col-xs-12 col-md-4">
-                    <img src="Images/Logo-white1.png" alt="Logotipo Fiscalia">
+                    <img src="Images/Logo-whitePortal.png" alt="Logotipo Fiscalia">
                 </div>
                 <div class="text-center col-xs-12 col-md-4 txt-blanco" style="margin-top: 2.0rem;">
                     <h1 class="pildora">Bienvenido</h1>
@@ -46,123 +48,235 @@
                 </div>
             </div>
             <div class="row display-flex " style="margin-top: 3.0rem;">
-                <div class="col-xs-6 col-md-4">
-                    <a href="#" onclick="Finalizar()">
+
+                <div class="col-xs-6">
+                    <a href="#" onclick="LoginUsuarioRegistradoInvolucrados_PC()" >
                         <div class="card card-blanca">
-                            <div class="card-icon"><i class="icon-denuncia"></i></div>
-                            <div class="card-title">Denuncia</div>
-                            <div class="card-body">Aquí puedes realizar tu denuncia. Estamos para ayudarte.</div>
+                            <table>
+                                <td class="col-xs-12 col-md-4">
+                                    <div class="card-icon"><i class="icon-denuncia"></i></div>
+                                    <div class="card-title">Denuncia</div>
+                                </td>
+                                <td class="col-xs-12 col-md-9">
+                                    <div class="card-body">Aquí puedes realizar tu denuncia. Estamos para ayudarte.</div>
+                                </td>
+                            </table>
                         </div>
                     </a>
                 </div>
-                <div class="col-xs-6 col-md-4 ">
-                    <a href="#" onclick="DenunciaAnonima()">
-                        <div class="card card-blanca">
-                            <div class="card-icon"><i class="icon-denunciaanonima"></i></div>
-                            <div class="card-title">Denuncia Anónima</div>
-                            <div class="card-body">Aquí puedes realizar tu denuncia de forma anónima. Tus datos  están seguros.</div>
+
+                <div class="col-xs-6">
+                    <a href="#" onclick="DenunciaAnonima()"> <!--anonima-->
+                        <div class="card card-blanca card-anonima">
+                            <table>
+                                <td class="col-xs-12 col-md-4">
+                                    <div class="card-icon"><i class="icon-denunciaanonima"></i></div>
+                                    <div class="card-title">Denuncia <span>Anónima</span></div>
+                                </td>
+                                <td class="col-xs-12 col-md-8">
+                                    <div class="card-body">Aquí puedes realizar tu denuncia de forma anónima. <strong>Tus datos  están seguros.</strong> </div>
+                                </td>
+                            </table>
                         </div>
                     </a>
                 </div>
-                <div class="col-xs-6 col-md-4">
+
+                <div class="col-xs-6">
+                    <a href="#" onclick="LoginUsuarioRegistradoQueja_Sugerencia_Ciudadana()">
+                        <div class="card card-blanca">
+                            <table>
+                                <td class="col-xs-12 col-md-3">
+                                    <div class="card-icon"><i class="icon-queja"></i></div>
+                                    <div class="card-title">Queja/Sugerencia</div>
+                                </td>
+                                <td class="col-xs-12 col-md-9">
+                                    <div class="card-body">Déjanos tus comentarios sobre nuestros servicios. Tu opinión es importante para nosotros.</div>
+                                </td>
+                            </table>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-6">
+                    <a href="#" onclick="QuejasSugerencias()"> <!--anonima-->
+                        <div class="card card-blanca card-anonima">
+                            <table>
+                                <td class="col-xs-12 col-md-3">
+                                    <div class="card-icon"><i class="icon-queja"></i></div>
+                                    <div class="card-title">Queja/Sugerencia <span>Anónima</span></div>
+                                </td>
+                                <td class="col-xs-12 col-md-9">
+                                    <div class="card-body">Déjanos tus comentarios sobre nuestros servicios. Tu opinión es importante para nosotros. <strong>Tus datos  están seguros.</strong></div>
+                                </td>
+                            </table>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="col-xs-6">
+                    <a href="#" onclick="LoginUsuarioRegistradoQuejas_de_MP()">
+                        <div class="card card-blanca">
+                            <table>
+                                <td class="col-xs-12 col-md-4">
+                                    <div class="card-icon"><i class="icon-quejafuncionario"></i></div>
+                                    <div class="card-title">Queja/Sugerencia Sobre Servidor Público</div>
+                                </td>
+                                <td class="col-xs-12 col-md-8">
+                                    <div class="card-body">
+                                        Aquí puedes presentar una queja o denuncia de un servidore público perteneciente a la Fiscalia General del Estado de Sinaloa.
+                                    </div>
+                                </td>
+                            </table>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6">
+                    <a href="#" onclick="QuejasSugerenciasServidorPublico()"> <!--anonima-->
+                        <div class="card card-blanca card-anonima">
+                            <table>
+                                <td class="col-xs-12 col-md-4">
+                                    <div class="card-icon"><i class="icon-quejafuncionario"></i></div>
+                                    <div class="card-title">Queja/Sugerencia <span>Anónima</span> Sobre Servidor Público</div>
+                                </td>
+                                <td class="col-xs-12 col-md-8">
+                                    <div class="card-body">Aquí puedes presentar una queja o denuncia de un servidore público perteneciente a la Fiscalia General del Estado de Sinaloa. <strong>Tus datos  están seguros.</strong></div>
+                                </td>
+                            </table>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-6" style="margin: 0 auto;">
                     <a href="#" onclick="ConsultaEstatus()">
                         <div class="card card-blanca">
-                           <div class="card-icon"><i class="icon-estatus"></i></div>
-                            <div class="card-title">Consultar Estatus</div>
-                            <div class="card-body">Aquí puedes revisar el estatus del proceso de tu denuncia.</div>
+                            <table>
+                                <td class="col-xs-12 col-md-3">
+                                    <div class="card-icon"><i class="icon-estatus"></i></div>
+                                    <div class="card-title">Consultar Estatus</div>
+                                </td>
+                                <td class="col-xs-12 col-md-9">
+                                    <div class="card-body">Aquí puedes revisar el estatus del proceso de tu denuncia.</div>
+                                </td>
+                            </table>
                         </div>
                     </a>
                 </div>
-                <div class="col-xs-6 col-md-4">
-                    <a href="#" onclick="QuejasSugerencias()">
-                        <div class="card card-blanca">
-                            <div class="card-icon"><i class="icon-queja"></i></div>
-                            <div class="card-title">Quejas y Sugerencias</div>
-                            <div class="card-body">Déjanos tus comentarios sobre nuestros servicios. Tu opinión es importante para nosotros.</div>
-                        </div>
-                    </a>
-                </div>
-				
-				<div class="col-xs-6 col-md-4">
-                    <a href="#"  onclick="Finalizar()">
-                        <div class="card card-blanca">
-                            <div class="card-icon"><i class="icon-quejafuncionario"></i></div>
-                            <div class="card-title">Quejas o Denuncia Sobre Servidor Público</div>
-                            <div class="card-body">Aquí puedes presentar una queja o denuncia de un servidor público perteneciente a la Fiscalía General del Estado de Sinaloa.
-                            </div>
-                        </div>
-                    </a>
-                </div>
-				
+
+
+
+
+
+
             </div>
         </main>
     </div>
 
-    <script type="text/javascript">
 
-        function Finalizar() {       
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
             debugger;
-			localStorage.setItem("OrigenPC", "0");				
+            localStorage.clear();
+        });
+        function Finalizar() {
+            debugger;
+            localStorage.setItem("OrigenPC", "0");
             window.location.href = "Account/Login?returnUrl='LoginPC'";
+        }
+
+        function LoginUsuarioRegistradoInvolucrados_PC() {
+            window.location.href = "Account/Login?returnUrl='Involucrados_PC'";
+        }
+        function LoginUsuarioRegistradoQueja_Sugerencia_Ciudadana() {
+            window.location.href = "Account/Login?returnUrl='Queja_Sugerencia_Ciudadana'";
+        }
+        function LoginUsuarioRegistradoQuejas_de_MP() {
+            window.location.href = "Account/Login?returnUrl='Quejas_de_MP'";
         }
         function DenunciaAnonima() {
             debugger;
-			 $.ajax({
-                    url: 'Account/ValidateLogin3',
-                    type: 'POST',
-                    data: {
-                        username: '',
-                        password: ''
-                    },
-                    cache: false,
-                    dataType: "json",
-                    async: false,
-                    success: function (result) {
-                        debugger;
-						localStorage.setItem("OrigenPC", "1");		
-						localStorage.setItem("EsTestigo", "0");	
-						try {
-							localStorage.setItem("IdVictima", null);
-							localStorage.setItem("IdTestigo", null);
-							localStorage.setItem("IdHechos", null);
-							localStorage.setItem("IdProbable", null);						
-						} catch (error) {
-									
-						}						
-						
-                        window.location = "Frontal/Involucrados_PC/Create";
-                    },
-                    error: function (result) {
-                        showNotification("Error desconocido", "error");
+            $.ajax({
+                url: 'Account/ValidateLogin3',
+                type: 'POST',
+                data: {
+                    username: '',
+                    password: ''
+                },
+                cache: false,
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    debugger;
+                    localStorage.setItem("OrigenPC", "1");
+                    localStorage.setItem("EsTestigo", "0");
+                    try {
+                        localStorage.setItem("IdVictima", null);
+                        localStorage.setItem("IdTestigo", null);
+                        localStorage.setItem("IdHechos", null);
+                        localStorage.setItem("IdProbable", null);
+                    } catch (error) {
+
+                    }
+
+                    window.location = "Frontal/Involucrados_PC/Create";
+                },
+                error: function (result) {
+                    showNotification("Error desconocido", "error");
                 }
             });
-		}
-		function ConsultaEstatus() {       
-			localStorage.setItem("OrigenPC", "2");				
+        }
+        function ConsultaEstatus() {
+            localStorage.setItem("OrigenPC", "2");
             window.location.href = "consultaciudadana.html";
         }
-		
-		function QuejasSugerencias() {
-			$.ajax({
-                    url: 'Account/ValidateLogin3',
-                    type: 'POST',
-                    data: {
-                        username: '',
-                        password: ''
-                    },
-                    cache: false,
-                    dataType: "json",
-                    async: false,
-                    success: function (result) {
-                        debugger;
-						localStorage.setItem("OrigenPC", "3");											
-                        window.location = "Frontal/Queja_Sugerencia_Ciudadana/Create";
-                    },
-                    error: function (result) {
-                        showNotification("Error desconocido", "error");
+
+        function QuejasSugerencias() {
+            $.ajax({
+                url: 'Account/ValidateLogin3',
+                type: 'POST',
+                data: {
+                    username: '',
+                    password: ''
+                },
+                cache: false,
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    debugger;
+                    localStorage.setItem("OrigenPC", "3");
+                    window.location = "Frontal/Queja_Sugerencia_Ciudadana/Create";
+                },
+                error: function (result) {
+                    showNotification("Error desconocido", "error");
                 }
             });
-		}
+        }
+
+        function QuejasSugerenciasServidorPublico() {
+            $.ajax({
+                url: 'Account/ValidateLogin3',
+                type: 'POST',
+                data: {
+                    username: '',
+                    password: ''
+                },
+                cache: false,
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    debugger;
+                    localStorage.setItem("OrigenPC", "3");
+                    window.location = "Frontal/Quejas_de_MP/Create";
+                },
+                error: function (result) {
+                    showNotification("Error desconocido", "error");
+                }
+            });
+        }
 
     </script>
-</body ></html >
+
+
+</body>

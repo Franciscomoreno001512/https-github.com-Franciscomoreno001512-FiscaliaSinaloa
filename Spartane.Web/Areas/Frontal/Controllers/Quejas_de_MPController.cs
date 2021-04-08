@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Quejas_de_MP;
+using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Estatus_Quejas_MP;
 using Spartane.Core.Domain.Forma_Cara;
 using Spartane.Core.Domain.Cejas;
@@ -33,20 +34,15 @@ using Spartane.Core.Domain.Tipo_Lobulo;
 using Spartane.Core.Domain.Bigote;
 using Spartane.Core.Domain.Senas_Particulares;
 using Spartane.Core.Domain.Situacion_Fisica;
-using Spartane.Core.Domain.Genero;
-using Spartane.Core.Domain.Nacionalidad;
-using Spartane.Core.Domain.Estado;
-using Spartane.Core.Domain.Genero;
-using Spartane.Core.Domain.Tipo_de_Identificacion;
-using Spartane.Core.Domain.Nacionalidad;
-using Spartane.Core.Domain.Estado;
+using Spartane.Core.Domain.Municipio;
+using Spartane.Core.Domain.Colonia;
+using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
 using Spartane.Core.Domain.Nacionalidad;
-using Spartane.Core.Domain.Estado;
-using Spartane.Core.Domain.Pais;
 using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
+using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
 
 using Spartane.Core.Enums;
@@ -58,6 +54,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Quejas_de_MP;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Estatus_Quejas_MP;
 using Spartane.Web.Areas.WebApiConsumer.Forma_Cara;
 using Spartane.Web.Areas.WebApiConsumer.Cejas;
@@ -89,20 +86,15 @@ using Spartane.Web.Areas.WebApiConsumer.Tipo_Lobulo;
 using Spartane.Web.Areas.WebApiConsumer.Bigote;
 using Spartane.Web.Areas.WebApiConsumer.Senas_Particulares;
 using Spartane.Web.Areas.WebApiConsumer.Situacion_Fisica;
-using Spartane.Web.Areas.WebApiConsumer.Genero;
-using Spartane.Web.Areas.WebApiConsumer.Nacionalidad;
-using Spartane.Web.Areas.WebApiConsumer.Estado;
-using Spartane.Web.Areas.WebApiConsumer.Genero;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Identificacion;
-using Spartane.Web.Areas.WebApiConsumer.Nacionalidad;
-using Spartane.Web.Areas.WebApiConsumer.Estado;
+using Spartane.Web.Areas.WebApiConsumer.Municipio;
+using Spartane.Web.Areas.WebApiConsumer.Colonia;
+using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Genero;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Identificacion;
 using Spartane.Web.Areas.WebApiConsumer.Nacionalidad;
-using Spartane.Web.Areas.WebApiConsumer.Estado;
-using Spartane.Web.Areas.WebApiConsumer.Pais;
 using Spartane.Web.Areas.WebApiConsumer.Estado;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
+using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 
 using Spartane.Web.AuthFilters;
@@ -140,6 +132,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IQuejas_de_MPService service = null;
         private IQuejas_de_MPApiConsumer _IQuejas_de_MPApiConsumer;
+        private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
         private IEstatus_Quejas_MPApiConsumer _IEstatus_Quejas_MPApiConsumer;
         private IForma_CaraApiConsumer _IForma_CaraApiConsumer;
         private ICejasApiConsumer _ICejasApiConsumer;
@@ -171,13 +164,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IBigoteApiConsumer _IBigoteApiConsumer;
         private ISenas_ParticularesApiConsumer _ISenas_ParticularesApiConsumer;
         private ISituacion_FisicaApiConsumer _ISituacion_FisicaApiConsumer;
-        private IGeneroApiConsumer _IGeneroApiConsumer;
-        private INacionalidadApiConsumer _INacionalidadApiConsumer;
-        private IEstadoApiConsumer _IEstadoApiConsumer;
-        private ITipo_de_IdentificacionApiConsumer _ITipo_de_IdentificacionApiConsumer;
-        private IPaisApiConsumer _IPaisApiConsumer;
         private IMunicipioApiConsumer _IMunicipioApiConsumer;
         private IColoniaApiConsumer _IColoniaApiConsumer;
+        private IGeneroApiConsumer _IGeneroApiConsumer;
+        private ITipo_de_IdentificacionApiConsumer _ITipo_de_IdentificacionApiConsumer;
+        private INacionalidadApiConsumer _INacionalidadApiConsumer;
+        private IEstadoApiConsumer _IEstadoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -195,7 +187,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Quejas_de_MPController(IQuejas_de_MPService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IQuejas_de_MPApiConsumer Quejas_de_MPApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IEstatus_Quejas_MPApiConsumer Estatus_Quejas_MPApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IForma_OjosApiConsumer Forma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , INariz_BaseApiConsumer Nariz_BaseApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , IGeneroApiConsumer GeneroApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IEstadoApiConsumer EstadoApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer )
+        public Quejas_de_MPController(IQuejas_de_MPService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IQuejas_de_MPApiConsumer Quejas_de_MPApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IEstatus_Quejas_MPApiConsumer Estatus_Quejas_MPApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IForma_OjosApiConsumer Forma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , INariz_BaseApiConsumer Nariz_BaseApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IGeneroApiConsumer GeneroApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IEstadoApiConsumer EstadoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -209,6 +201,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._IEstatus_Quejas_MPApiConsumer = Estatus_Quejas_MPApiConsumer;
             this._IForma_CaraApiConsumer = Forma_CaraApiConsumer;
             this._ICejasApiConsumer = CejasApiConsumer;
@@ -240,20 +233,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IBigoteApiConsumer = BigoteApiConsumer;
             this._ISenas_ParticularesApiConsumer = Senas_ParticularesApiConsumer;
             this._ISituacion_FisicaApiConsumer = Situacion_FisicaApiConsumer;
-            this._IGeneroApiConsumer = GeneroApiConsumer;
-            this._INacionalidadApiConsumer = NacionalidadApiConsumer;
-            this._IEstadoApiConsumer = EstadoApiConsumer;
-            this._IGeneroApiConsumer = GeneroApiConsumer;
-            this._ITipo_de_IdentificacionApiConsumer = Tipo_de_IdentificacionApiConsumer;
-            this._INacionalidadApiConsumer = NacionalidadApiConsumer;
-            this._IEstadoApiConsumer = EstadoApiConsumer;
+            this._IMunicipioApiConsumer = MunicipioApiConsumer;
+            this._IColoniaApiConsumer = ColoniaApiConsumer;
+            this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IGeneroApiConsumer = GeneroApiConsumer;
             this._ITipo_de_IdentificacionApiConsumer = Tipo_de_IdentificacionApiConsumer;
             this._INacionalidadApiConsumer = NacionalidadApiConsumer;
-            this._IEstadoApiConsumer = EstadoApiConsumer;
-            this._IPaisApiConsumer = PaisApiConsumer;
             this._IEstadoApiConsumer = EstadoApiConsumer;
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
+            this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
 
         }
@@ -330,10 +318,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varQuejas_de_MP= new Quejas_de_MPModel
 					{
 						Clave  = Quejas_de_MPData.Clave 
-	                    ,Nombres = Quejas_de_MPData.Nombres
+	                    ,Fecha_de_Registro = (Quejas_de_MPData.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(Quejas_de_MPData.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Registro = Quejas_de_MPData.Hora_de_Registro
+                    ,Usuario_que_Registra = Quejas_de_MPData.Usuario_que_Registra
+                    ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Usuario_que_Registra), "Spartan_User") ??  (string)Quejas_de_MPData.Usuario_que_Registra_Spartan_User.Name
+                    ,Nombres = Quejas_de_MPData.Nombres
                     ,Apellido_Paterno = Quejas_de_MPData.Apellido_Paterno
                     ,Apellido_Materno = Quejas_de_MPData.Apellido_Materno
                     ,Nombre_Completo = Quejas_de_MPData.Nombre_Completo
+                    ,Correo_Electronico = Quejas_de_MPData.Correo_Electronico
+                    ,Celular = Quejas_de_MPData.Celular
                     ,Estatus = Quejas_de_MPData.Estatus
                     ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Estatus), "Estatus_Quejas_MP") ??  (string)Quejas_de_MPData.Estatus_Estatus_Quejas_MP.Descripcion
                     ,Peso = Quejas_de_MPData.Peso
@@ -402,35 +396,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Situacion_FisicaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Situacion_Fisica), "Situacion_Fisica") ??  (string)Quejas_de_MPData.Situacion_Fisica_Situacion_Fisica.Descripcion
                     ,Otras_Senas_Particulares = Quejas_de_MPData.Otras_Senas_Particulares
                     ,Descripcion_de_los_Hechos = Quejas_de_MPData.Descripcion_de_los_Hechos
-                    ,CURP = Quejas_de_MPData.CURP
-                    ,Genero = Quejas_de_MPData.Genero
-                    ,GeneroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Genero), "Genero") ??  (string)Quejas_de_MPData.Genero_Genero.Descripcion
-                    ,Fecha_de_Nacimiento = (Quejas_de_MPData.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(Quejas_de_MPData.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                    ,Nacionalidad = Quejas_de_MPData.Nacionalidad
-                    ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Nacionalidad), "Nacionalidad") ??  (string)Quejas_de_MPData.Nacionalidad_Nacionalidad.NacionalidadC
-                    ,Entidad_de_Nacimiento = Quejas_de_MPData.Entidad_de_Nacimiento
-                    ,Entidad_de_NacimientoNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Entidad_de_Nacimiento), "Estado") ??  (string)Quejas_de_MPData.Entidad_de_Nacimiento_Estado.Nombre
-                    ,Nombres_Hechos = Quejas_de_MPData.Nombres_Hechos
-                    ,Apellido_Paterno_Hechos = Quejas_de_MPData.Apellido_Paterno_Hechos
-                    ,Apellido_Materno_Hechos = Quejas_de_MPData.Apellido_Materno_Hechos
-                    ,Fecha_de_Nacimiento_Hechos = (Quejas_de_MPData.Fecha_de_Nacimiento_Hechos == null ? string.Empty : Convert.ToDateTime(Quejas_de_MPData.Fecha_de_Nacimiento_Hechos).ToString(ConfigurationProperty.DateFormat))
-                    ,Edad_Hechos = Quejas_de_MPData.Edad_Hechos
-                    ,Genero_Hechos = Quejas_de_MPData.Genero_Hechos
-                    ,Genero_HechosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Genero_Hechos), "Genero") ??  (string)Quejas_de_MPData.Genero_Hechos_Genero.Descripcion
-                    ,Celular_Hechos = Quejas_de_MPData.Celular_Hechos
-                    ,Correo_Hechos = Quejas_de_MPData.Correo_Hechos
-                    ,Tipo_de_Identificacion_Hechos = Quejas_de_MPData.Tipo_de_Identificacion_Hechos
-                    ,Tipo_de_Identificacion_HechosNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Tipo_de_Identificacion_Hechos), "Tipo_de_Identificacion") ??  (string)Quejas_de_MPData.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Nombre
-                    ,Numero_Identificacion_Hechos = Quejas_de_MPData.Numero_Identificacion_Hechos
-                    ,Fotografia_Identificacion = Quejas_de_MPData.Fotografia_Identificacion
-                    ,Nacionalidad_Hechos = Quejas_de_MPData.Nacionalidad_Hechos
-                    ,Nacionalidad_HechosNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Nacionalidad_Hechos), "Nacionalidad") ??  (string)Quejas_de_MPData.Nacionalidad_Hechos_Nacionalidad.NacionalidadC
-                    ,Entidad_de_Nacimiento_Hechos = Quejas_de_MPData.Entidad_de_Nacimiento_Hechos
-                    ,Entidad_de_Nacimiento_HechosNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Entidad_de_Nacimiento_Hechos), "Estado") ??  (string)Quejas_de_MPData.Entidad_de_Nacimiento_Hechos_Estado.Nombre
+                    ,Fecha_de_los_Hechos = (Quejas_de_MPData.Fecha_de_los_Hechos == null ? string.Empty : Convert.ToDateTime(Quejas_de_MPData.Fecha_de_los_Hechos).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_los_Hechos = Quejas_de_MPData.Hora_de_los_Hechos
+                    ,Municipio_hechos = Quejas_de_MPData.Municipio_hechos
+                    ,Municipio_hechosNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Municipio_hechos), "Municipio") ??  (string)Quejas_de_MPData.Municipio_hechos_Municipio.Nombre
+                    ,Poblacion_hechos = Quejas_de_MPData.Poblacion_hechos
+                    ,Poblacion_hechosNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Poblacion_hechos), "Colonia") ??  (string)Quejas_de_MPData.Poblacion_hechos_Colonia.Nombre
+                    ,Colonia_hechos = Quejas_de_MPData.Colonia_hechos
+                    ,Colonia_hechosNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Colonia_hechos), "Colonia") ??  (string)Quejas_de_MPData.Colonia_hechos_Colonia.Nombre
+                    ,Calle_hechos = Quejas_de_MPData.Calle_hechos
+                    ,Entre_Calle_hechos = Quejas_de_MPData.Entre_Calle_hechos
+                    ,Y_Calle_hechos = Quejas_de_MPData.Y_Calle_hechos
+                    ,Numero_Exterior_hechos = Quejas_de_MPData.Numero_Exterior_hechos
+                    ,Numero_Interior_hechos = Quejas_de_MPData.Numero_Interior_hechos
+                    ,Codigo_Postal_hechos = Quejas_de_MPData.Codigo_Postal_hechos
+                    ,Referencia = Quejas_de_MPData.Referencia
                     ,CURP_Identificacion = Quejas_de_MPData.CURP_Identificacion
                     ,Nombres_Identificacion = Quejas_de_MPData.Nombres_Identificacion
                     ,Apellido_Paterno_Identificacion = Quejas_de_MPData.Apellido_Paterno_Identificacion
                     ,Apellido_Materno_Identificacion = Quejas_de_MPData.Apellido_Materno_Identificacion
+                    ,Alias = Quejas_de_MPData.Alias
                     ,Fecha_Nacimiento_Identificacion = (Quejas_de_MPData.Fecha_Nacimiento_Identificacion == null ? string.Empty : Convert.ToDateTime(Quejas_de_MPData.Fecha_Nacimiento_Identificacion).ToString(ConfigurationProperty.DateFormat))
                     ,Edad_Identificacion = Quejas_de_MPData.Edad_Identificacion
                     ,Genero_Identificacion = Quejas_de_MPData.Genero_Identificacion
@@ -444,13 +429,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Nacionalidad_Identificacion), "Nacionalidad") ??  (string)Quejas_de_MPData.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
                     ,Entidad_de_Nacimiento_Identificacion = Quejas_de_MPData.Entidad_de_Nacimiento_Identificacion
                     ,Entidad_de_Nacimiento_IdentificacionNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Entidad_de_Nacimiento_Identificacion), "Estado") ??  (string)Quejas_de_MPData.Entidad_de_Nacimiento_Identificacion_Estado.Nombre
-                    ,Pais = Quejas_de_MPData.Pais
-                    ,PaisNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Pais), "Pais") ??  (string)Quejas_de_MPData.Pais_Pais.Nombre
-                    ,Estado = Quejas_de_MPData.Estado
-                    ,EstadoNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Estado), "Estado") ??  (string)Quejas_de_MPData.Estado_Estado.Nombre
-                    ,Codigo_Postal = Quejas_de_MPData.Codigo_Postal
                     ,Municipio = Quejas_de_MPData.Municipio
                     ,MunicipioNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Municipio), "Municipio") ??  (string)Quejas_de_MPData.Municipio_Municipio.Nombre
+                    ,Poblacion = Quejas_de_MPData.Poblacion
+                    ,PoblacionNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Poblacion), "Colonia") ??  (string)Quejas_de_MPData.Poblacion_Colonia.Nombre
                     ,Colonia = Quejas_de_MPData.Colonia
                     ,ColoniaNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Colonia), "Colonia") ??  (string)Quejas_de_MPData.Colonia_Colonia.Nombre
                     ,Calle = Quejas_de_MPData.Calle
@@ -458,6 +440,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Y_Calle = Quejas_de_MPData.Y_Calle
                     ,Numero_Exterior = Quejas_de_MPData.Numero_Exterior
                     ,Numero_Interior = Quejas_de_MPData.Numero_Interior
+                    ,Codigo_Postal = Quejas_de_MPData.Codigo_Postal
                     ,Referencias_de_domicilio = Quejas_de_MPData.Referencias_de_domicilio
 
 					};
@@ -465,8 +448,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 				
 				                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
                 ViewBag.Imagen_TatuajeSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varQuejas_de_MP.Imagen_Tatuaje).Resource;
-                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                ViewBag.Fotografia_IdentificacionSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varQuejas_de_MP.Fotografia_Identificacion).Resource;
 
 				
             }
@@ -691,48 +672,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Situacion_Fisica", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Genero = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Genero != null && Generos_Genero.Resource != null)
-                ViewBag.Generos_Genero = Generos_Genero.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad != null && Nacionalidads_Nacionalidad.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad = Nacionalidads_Nacionalidad.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Genero_Hechos = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Genero_Hechos != null && Generos_Genero_Hechos.Resource != null)
-                ViewBag.Generos_Genero_Hechos = Generos_Genero_Hechos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos = _ITipo_de_IdentificacionApiConsumer.SelAll(true);
-            if (Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos != null && Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos.Resource != null)
-                ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos = Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad_Hechos = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad_Hechos != null && Nacionalidads_Nacionalidad_Hechos.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad_Hechos = Nacionalidads_Nacionalidad_Hechos.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estados_Entidad_de_Nacimiento_Hechos = _IEstadoApiConsumer.SelAll(true);
-            if (Estados_Entidad_de_Nacimiento_Hechos != null && Estados_Entidad_de_Nacimiento_Hechos.Resource != null)
-                ViewBag.Estados_Entidad_de_Nacimiento_Hechos = Estados_Entidad_de_Nacimiento_Hechos.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Genero_Identificacion = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Genero_Identificacion != null && Generos_Genero_Identificacion.Resource != null)
                 ViewBag.Generos_Genero_Identificacion = Generos_Genero_Identificacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
@@ -745,13 +684,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion = Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad_Identificacion = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad_Identificacion != null && Nacionalidads_Nacionalidad_Identificacion.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad_Identificacion = Nacionalidads_Nacionalidad_Identificacion.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -815,10 +747,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varQuejas_de_MP= new Quejas_de_MPModel
 					{
 						Clave  = Quejas_de_MPData.Clave 
-	                    ,Nombres = Quejas_de_MPData.Nombres
+	                    ,Fecha_de_Registro = (Quejas_de_MPData.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(Quejas_de_MPData.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Registro = Quejas_de_MPData.Hora_de_Registro
+                    ,Usuario_que_Registra = Quejas_de_MPData.Usuario_que_Registra
+                    ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Usuario_que_Registra), "Spartan_User") ??  (string)Quejas_de_MPData.Usuario_que_Registra_Spartan_User.Name
+                    ,Nombres = Quejas_de_MPData.Nombres
                     ,Apellido_Paterno = Quejas_de_MPData.Apellido_Paterno
                     ,Apellido_Materno = Quejas_de_MPData.Apellido_Materno
                     ,Nombre_Completo = Quejas_de_MPData.Nombre_Completo
+                    ,Correo_Electronico = Quejas_de_MPData.Correo_Electronico
+                    ,Celular = Quejas_de_MPData.Celular
                     ,Estatus = Quejas_de_MPData.Estatus
                     ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Estatus), "Estatus_Quejas_MP") ??  (string)Quejas_de_MPData.Estatus_Estatus_Quejas_MP.Descripcion
                     ,Peso = Quejas_de_MPData.Peso
@@ -887,35 +825,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Situacion_FisicaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Situacion_Fisica), "Situacion_Fisica") ??  (string)Quejas_de_MPData.Situacion_Fisica_Situacion_Fisica.Descripcion
                     ,Otras_Senas_Particulares = Quejas_de_MPData.Otras_Senas_Particulares
                     ,Descripcion_de_los_Hechos = Quejas_de_MPData.Descripcion_de_los_Hechos
-                    ,CURP = Quejas_de_MPData.CURP
-                    ,Genero = Quejas_de_MPData.Genero
-                    ,GeneroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Genero), "Genero") ??  (string)Quejas_de_MPData.Genero_Genero.Descripcion
-                    ,Fecha_de_Nacimiento = (Quejas_de_MPData.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(Quejas_de_MPData.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                    ,Nacionalidad = Quejas_de_MPData.Nacionalidad
-                    ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Nacionalidad), "Nacionalidad") ??  (string)Quejas_de_MPData.Nacionalidad_Nacionalidad.NacionalidadC
-                    ,Entidad_de_Nacimiento = Quejas_de_MPData.Entidad_de_Nacimiento
-                    ,Entidad_de_NacimientoNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Entidad_de_Nacimiento), "Estado") ??  (string)Quejas_de_MPData.Entidad_de_Nacimiento_Estado.Nombre
-                    ,Nombres_Hechos = Quejas_de_MPData.Nombres_Hechos
-                    ,Apellido_Paterno_Hechos = Quejas_de_MPData.Apellido_Paterno_Hechos
-                    ,Apellido_Materno_Hechos = Quejas_de_MPData.Apellido_Materno_Hechos
-                    ,Fecha_de_Nacimiento_Hechos = (Quejas_de_MPData.Fecha_de_Nacimiento_Hechos == null ? string.Empty : Convert.ToDateTime(Quejas_de_MPData.Fecha_de_Nacimiento_Hechos).ToString(ConfigurationProperty.DateFormat))
-                    ,Edad_Hechos = Quejas_de_MPData.Edad_Hechos
-                    ,Genero_Hechos = Quejas_de_MPData.Genero_Hechos
-                    ,Genero_HechosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Genero_Hechos), "Genero") ??  (string)Quejas_de_MPData.Genero_Hechos_Genero.Descripcion
-                    ,Celular_Hechos = Quejas_de_MPData.Celular_Hechos
-                    ,Correo_Hechos = Quejas_de_MPData.Correo_Hechos
-                    ,Tipo_de_Identificacion_Hechos = Quejas_de_MPData.Tipo_de_Identificacion_Hechos
-                    ,Tipo_de_Identificacion_HechosNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Tipo_de_Identificacion_Hechos), "Tipo_de_Identificacion") ??  (string)Quejas_de_MPData.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Nombre
-                    ,Numero_Identificacion_Hechos = Quejas_de_MPData.Numero_Identificacion_Hechos
-                    ,Fotografia_Identificacion = Quejas_de_MPData.Fotografia_Identificacion
-                    ,Nacionalidad_Hechos = Quejas_de_MPData.Nacionalidad_Hechos
-                    ,Nacionalidad_HechosNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Nacionalidad_Hechos), "Nacionalidad") ??  (string)Quejas_de_MPData.Nacionalidad_Hechos_Nacionalidad.NacionalidadC
-                    ,Entidad_de_Nacimiento_Hechos = Quejas_de_MPData.Entidad_de_Nacimiento_Hechos
-                    ,Entidad_de_Nacimiento_HechosNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Entidad_de_Nacimiento_Hechos), "Estado") ??  (string)Quejas_de_MPData.Entidad_de_Nacimiento_Hechos_Estado.Nombre
+                    ,Fecha_de_los_Hechos = (Quejas_de_MPData.Fecha_de_los_Hechos == null ? string.Empty : Convert.ToDateTime(Quejas_de_MPData.Fecha_de_los_Hechos).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_los_Hechos = Quejas_de_MPData.Hora_de_los_Hechos
+                    ,Municipio_hechos = Quejas_de_MPData.Municipio_hechos
+                    ,Municipio_hechosNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Municipio_hechos), "Municipio") ??  (string)Quejas_de_MPData.Municipio_hechos_Municipio.Nombre
+                    ,Poblacion_hechos = Quejas_de_MPData.Poblacion_hechos
+                    ,Poblacion_hechosNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Poblacion_hechos), "Colonia") ??  (string)Quejas_de_MPData.Poblacion_hechos_Colonia.Nombre
+                    ,Colonia_hechos = Quejas_de_MPData.Colonia_hechos
+                    ,Colonia_hechosNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Colonia_hechos), "Colonia") ??  (string)Quejas_de_MPData.Colonia_hechos_Colonia.Nombre
+                    ,Calle_hechos = Quejas_de_MPData.Calle_hechos
+                    ,Entre_Calle_hechos = Quejas_de_MPData.Entre_Calle_hechos
+                    ,Y_Calle_hechos = Quejas_de_MPData.Y_Calle_hechos
+                    ,Numero_Exterior_hechos = Quejas_de_MPData.Numero_Exterior_hechos
+                    ,Numero_Interior_hechos = Quejas_de_MPData.Numero_Interior_hechos
+                    ,Codigo_Postal_hechos = Quejas_de_MPData.Codigo_Postal_hechos
+                    ,Referencia = Quejas_de_MPData.Referencia
                     ,CURP_Identificacion = Quejas_de_MPData.CURP_Identificacion
                     ,Nombres_Identificacion = Quejas_de_MPData.Nombres_Identificacion
                     ,Apellido_Paterno_Identificacion = Quejas_de_MPData.Apellido_Paterno_Identificacion
                     ,Apellido_Materno_Identificacion = Quejas_de_MPData.Apellido_Materno_Identificacion
+                    ,Alias = Quejas_de_MPData.Alias
                     ,Fecha_Nacimiento_Identificacion = (Quejas_de_MPData.Fecha_Nacimiento_Identificacion == null ? string.Empty : Convert.ToDateTime(Quejas_de_MPData.Fecha_Nacimiento_Identificacion).ToString(ConfigurationProperty.DateFormat))
                     ,Edad_Identificacion = Quejas_de_MPData.Edad_Identificacion
                     ,Genero_Identificacion = Quejas_de_MPData.Genero_Identificacion
@@ -929,13 +858,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Nacionalidad_Identificacion), "Nacionalidad") ??  (string)Quejas_de_MPData.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
                     ,Entidad_de_Nacimiento_Identificacion = Quejas_de_MPData.Entidad_de_Nacimiento_Identificacion
                     ,Entidad_de_Nacimiento_IdentificacionNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Entidad_de_Nacimiento_Identificacion), "Estado") ??  (string)Quejas_de_MPData.Entidad_de_Nacimiento_Identificacion_Estado.Nombre
-                    ,Pais = Quejas_de_MPData.Pais
-                    ,PaisNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Pais), "Pais") ??  (string)Quejas_de_MPData.Pais_Pais.Nombre
-                    ,Estado = Quejas_de_MPData.Estado
-                    ,EstadoNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Estado), "Estado") ??  (string)Quejas_de_MPData.Estado_Estado.Nombre
-                    ,Codigo_Postal = Quejas_de_MPData.Codigo_Postal
                     ,Municipio = Quejas_de_MPData.Municipio
                     ,MunicipioNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Municipio), "Municipio") ??  (string)Quejas_de_MPData.Municipio_Municipio.Nombre
+                    ,Poblacion = Quejas_de_MPData.Poblacion
+                    ,PoblacionNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Poblacion), "Colonia") ??  (string)Quejas_de_MPData.Poblacion_Colonia.Nombre
                     ,Colonia = Quejas_de_MPData.Colonia
                     ,ColoniaNombre = CultureHelper.GetTraduction(Convert.ToString(Quejas_de_MPData.Colonia), "Colonia") ??  (string)Quejas_de_MPData.Colonia_Colonia.Nombre
                     ,Calle = Quejas_de_MPData.Calle
@@ -943,14 +869,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Y_Calle = Quejas_de_MPData.Y_Calle
                     ,Numero_Exterior = Quejas_de_MPData.Numero_Exterior
                     ,Numero_Interior = Quejas_de_MPData.Numero_Interior
+                    ,Codigo_Postal = Quejas_de_MPData.Codigo_Postal
                     ,Referencias_de_domicilio = Quejas_de_MPData.Referencias_de_domicilio
 
 					};
 				}
                 _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
                 ViewBag.Imagen_TatuajeSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varQuejas_de_MP.Imagen_Tatuaje).Resource;
-                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                ViewBag.Fotografia_IdentificacionSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varQuejas_de_MP.Fotografia_Identificacion).Resource;
 
             }
             if (!_tokenManager.GenerateToken())
@@ -1174,48 +1099,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Situacion_Fisica", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Genero = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Genero != null && Generos_Genero.Resource != null)
-                ViewBag.Generos_Genero = Generos_Genero.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad != null && Nacionalidads_Nacionalidad.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad = Nacionalidads_Nacionalidad.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Genero_Hechos = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Genero_Hechos != null && Generos_Genero_Hechos.Resource != null)
-                ViewBag.Generos_Genero_Hechos = Generos_Genero_Hechos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos = _ITipo_de_IdentificacionApiConsumer.SelAll(true);
-            if (Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos != null && Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos.Resource != null)
-                ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos = Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad_Hechos = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad_Hechos != null && Nacionalidads_Nacionalidad_Hechos.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad_Hechos = Nacionalidads_Nacionalidad_Hechos.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estados_Entidad_de_Nacimiento_Hechos = _IEstadoApiConsumer.SelAll(true);
-            if (Estados_Entidad_de_Nacimiento_Hechos != null && Estados_Entidad_de_Nacimiento_Hechos.Resource != null)
-                ViewBag.Estados_Entidad_de_Nacimiento_Hechos = Estados_Entidad_de_Nacimiento_Hechos.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Genero_Identificacion = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Genero_Identificacion != null && Generos_Genero_Identificacion.Resource != null)
                 ViewBag.Generos_Genero_Identificacion = Generos_Genero_Identificacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
@@ -1228,13 +1111,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion = Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad_Identificacion = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad_Identificacion != null && Nacionalidads_Nacionalidad_Identificacion.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad_Identificacion = Nacionalidads_Nacionalidad_Identificacion.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -1256,6 +1132,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+		[HttpGet]
+        public ActionResult GetSpartan_UserAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Name).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
+                    Value = Convert.ToString(m.Id_User)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetEstatus_Quejas_MPAll()
         {
@@ -1907,112 +1804,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
-        public ActionResult GetGeneroAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IGeneroApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetNacionalidadAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _INacionalidadApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC")?? m.NacionalidadC,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-		
-        [HttpGet]
-        public ActionResult GetTipo_de_IdentificacionAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_IdentificacionApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre")?? m.Nombre,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetEstadoAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IEstadoApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre")?? m.Nombre,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-		[HttpGet]
-        public ActionResult GetPaisAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IPaisApiConsumer.SelAll(false).Resource;
-				
-                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Pais", "Nombre")?? m.Nombre,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 		[HttpGet]
         public ActionResult GetMunicipioAll()
         {
@@ -2047,6 +1838,90 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre")?? m.Nombre,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetGeneroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IGeneroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetTipo_de_IdentificacionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_IdentificacionApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre")?? m.Nombre,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetNacionalidadAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _INacionalidadApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC")?? m.NacionalidadC,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetEstadoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IEstadoApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre")?? m.Nombre,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -2306,48 +2181,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Situacion_Fisica", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Genero = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Genero != null && Generos_Genero.Resource != null)
-                ViewBag.Generos_Genero = Generos_Genero.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad != null && Nacionalidads_Nacionalidad.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad = Nacionalidads_Nacionalidad.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Genero_Hechos = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Genero_Hechos != null && Generos_Genero_Hechos.Resource != null)
-                ViewBag.Generos_Genero_Hechos = Generos_Genero_Hechos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos = _ITipo_de_IdentificacionApiConsumer.SelAll(true);
-            if (Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos != null && Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos.Resource != null)
-                ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos = Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad_Hechos = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad_Hechos != null && Nacionalidads_Nacionalidad_Hechos.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad_Hechos = Nacionalidads_Nacionalidad_Hechos.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estados_Entidad_de_Nacimiento_Hechos = _IEstadoApiConsumer.SelAll(true);
-            if (Estados_Entidad_de_Nacimiento_Hechos != null && Estados_Entidad_de_Nacimiento_Hechos.Resource != null)
-                ViewBag.Estados_Entidad_de_Nacimiento_Hechos = Estados_Entidad_de_Nacimiento_Hechos.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Genero_Identificacion = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Genero_Identificacion != null && Generos_Genero_Identificacion.Resource != null)
                 ViewBag.Generos_Genero_Identificacion = Generos_Genero_Identificacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
@@ -2360,13 +2193,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion = Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad_Identificacion = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad_Identificacion != null && Nacionalidads_Nacionalidad_Identificacion.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad_Identificacion = Nacionalidads_Nacionalidad_Identificacion.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -2597,48 +2423,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Situacion_Fisica", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Genero = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Genero != null && Generos_Genero.Resource != null)
-                ViewBag.Generos_Genero = Generos_Genero.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad != null && Nacionalidads_Nacionalidad.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad = Nacionalidads_Nacionalidad.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Genero_Hechos = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Genero_Hechos != null && Generos_Genero_Hechos.Resource != null)
-                ViewBag.Generos_Genero_Hechos = Generos_Genero_Hechos.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos = _ITipo_de_IdentificacionApiConsumer.SelAll(true);
-            if (Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos != null && Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos.Resource != null)
-                ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos = Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad_Hechos = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad_Hechos != null && Nacionalidads_Nacionalidad_Hechos.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad_Hechos = Nacionalidads_Nacionalidad_Hechos.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estados_Entidad_de_Nacimiento_Hechos = _IEstadoApiConsumer.SelAll(true);
-            if (Estados_Entidad_de_Nacimiento_Hechos != null && Estados_Entidad_de_Nacimiento_Hechos.Resource != null)
-                ViewBag.Estados_Entidad_de_Nacimiento_Hechos = Estados_Entidad_de_Nacimiento_Hechos.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Genero_Identificacion = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Genero_Identificacion != null && Generos_Genero_Identificacion.Resource != null)
                 ViewBag.Generos_Genero_Identificacion = Generos_Genero_Identificacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
@@ -2651,13 +2435,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion = Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Nacionalidads_Nacionalidad_Identificacion = _INacionalidadApiConsumer.SelAll(true);
-            if (Nacionalidads_Nacionalidad_Identificacion != null && Nacionalidads_Nacionalidad_Identificacion.Resource != null)
-                ViewBag.Nacionalidads_Nacionalidad_Identificacion = Nacionalidads_Nacionalidad_Identificacion.Resource.Where(m => m.NacionalidadC != null).OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC") ?? m.NacionalidadC.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -2697,10 +2474,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Quejas_de_MPs.Select(m => new Quejas_de_MPGridModel
                     {
                     Clave = m.Clave
+                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Registro = m.Hora_de_Registro
+                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
 			,Nombre_Completo = m.Nombre_Completo
+			,Correo_Electronico = m.Correo_Electronico
+			,Celular = m.Celular
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Quejas_MP.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Quejas_MP.Descripcion
 			,Peso = m.Peso
 			,Estatura = m.Estatura
@@ -2738,28 +2520,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Situacion_FisicaDescripcion = CultureHelper.GetTraduction(m.Situacion_Fisica_Situacion_Fisica.Clave.ToString(), "Descripcion") ?? (string)m.Situacion_Fisica_Situacion_Fisica.Descripcion
 			,Otras_Senas_Particulares = m.Otras_Senas_Particulares
 			,Descripcion_de_los_Hechos = m.Descripcion_de_los_Hechos
-			,CURP = m.CURP
-                        ,GeneroDescripcion = CultureHelper.GetTraduction(m.Genero_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Genero.Descripcion
-                        ,Fecha_de_Nacimiento = (m.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
-                        ,Entidad_de_NacimientoNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Entidad_de_Nacimiento_Estado.Nombre
-			,Nombres_Hechos = m.Nombres_Hechos
-			,Apellido_Paterno_Hechos = m.Apellido_Paterno_Hechos
-			,Apellido_Materno_Hechos = m.Apellido_Materno_Hechos
-                        ,Fecha_de_Nacimiento_Hechos = (m.Fecha_de_Nacimiento_Hechos == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento_Hechos).ToString(ConfigurationProperty.DateFormat))
-			,Edad_Hechos = m.Edad_Hechos
-                        ,Genero_HechosDescripcion = CultureHelper.GetTraduction(m.Genero_Hechos_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Hechos_Genero.Descripcion
-			,Celular_Hechos = m.Celular_Hechos
-			,Correo_Hechos = m.Correo_Hechos
-                        ,Tipo_de_Identificacion_HechosNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Nombre
-			,Numero_Identificacion_Hechos = m.Numero_Identificacion_Hechos
-			,Fotografia_Identificacion = m.Fotografia_Identificacion
-                        ,Nacionalidad_HechosNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Hechos_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Hechos_Nacionalidad.NacionalidadC
-                        ,Entidad_de_Nacimiento_HechosNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Hechos_Estado.Clave.ToString(), "Nombre") ?? (string)m.Entidad_de_Nacimiento_Hechos_Estado.Nombre
+                        ,Fecha_de_los_Hechos = (m.Fecha_de_los_Hechos == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_los_Hechos).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_los_Hechos = m.Hora_de_los_Hechos
+                        ,Municipio_hechosNombre = CultureHelper.GetTraduction(m.Municipio_hechos_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_hechos_Municipio.Nombre
+                        ,Poblacion_hechosNombre = CultureHelper.GetTraduction(m.Poblacion_hechos_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_hechos_Colonia.Nombre
+                        ,Colonia_hechosNombre = CultureHelper.GetTraduction(m.Colonia_hechos_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_hechos_Colonia.Nombre
+			,Calle_hechos = m.Calle_hechos
+			,Entre_Calle_hechos = m.Entre_Calle_hechos
+			,Y_Calle_hechos = m.Y_Calle_hechos
+			,Numero_Exterior_hechos = m.Numero_Exterior_hechos
+			,Numero_Interior_hechos = m.Numero_Interior_hechos
+			,Codigo_Postal_hechos = m.Codigo_Postal_hechos
+			,Referencia = m.Referencia
 			,CURP_Identificacion = m.CURP_Identificacion
 			,Nombres_Identificacion = m.Nombres_Identificacion
 			,Apellido_Paterno_Identificacion = m.Apellido_Paterno_Identificacion
 			,Apellido_Materno_Identificacion = m.Apellido_Materno_Identificacion
+			,Alias = m.Alias
                         ,Fecha_Nacimiento_Identificacion = (m.Fecha_Nacimiento_Identificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Nacimiento_Identificacion).ToString(ConfigurationProperty.DateFormat))
 			,Edad_Identificacion = m.Edad_Identificacion
                         ,Genero_IdentificacionDescripcion = CultureHelper.GetTraduction(m.Genero_Identificacion_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Identificacion_Genero.Descripcion
@@ -2767,18 +2544,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Identificacion = m.Correo_Identificacion
                         ,Tipo_de_Identificacion_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Identificacion_Tipo_de_Identificacion.Nombre
 			,Numero_Identificacion_Identificacion = m.Numero_Identificacion_Identificacion
-                        ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Identificacion_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
+                        ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Identificacion_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
                         ,Entidad_de_Nacimiento_IdentificacionNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Identificacion_Estado.Clave.ToString(), "Estado") ?? (string)m.Entidad_de_Nacimiento_Identificacion_Estado.Nombre
-                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
-                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
-			,Codigo_Postal = m.Codigo_Postal
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_Colonia.Nombre
 			,Calle = m.Calle
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
 			,Numero_Interior = m.Numero_Interior
+			,Codigo_Postal = m.Codigo_Postal
 			,Referencias_de_domicilio = m.Referencias_de_domicilio
 
                     }).ToList(),
@@ -2894,10 +2670,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 aaData = result.Quejas_de_MPs.Select(m => new Quejas_de_MPGridModel
             {
                     Clave = m.Clave
+                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Registro = m.Hora_de_Registro
+                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
 			,Nombre_Completo = m.Nombre_Completo
+			,Correo_Electronico = m.Correo_Electronico
+			,Celular = m.Celular
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Quejas_MP.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Quejas_MP.Descripcion
 			,Peso = m.Peso
 			,Estatura = m.Estatura
@@ -2935,28 +2716,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Situacion_FisicaDescripcion = CultureHelper.GetTraduction(m.Situacion_Fisica_Situacion_Fisica.Clave.ToString(), "Descripcion") ?? (string)m.Situacion_Fisica_Situacion_Fisica.Descripcion
 			,Otras_Senas_Particulares = m.Otras_Senas_Particulares
 			,Descripcion_de_los_Hechos = m.Descripcion_de_los_Hechos
-			,CURP = m.CURP
-                        ,GeneroDescripcion = CultureHelper.GetTraduction(m.Genero_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Genero.Descripcion
-                        ,Fecha_de_Nacimiento = (m.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
-                        ,Entidad_de_NacimientoNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Entidad_de_Nacimiento_Estado.Nombre
-			,Nombres_Hechos = m.Nombres_Hechos
-			,Apellido_Paterno_Hechos = m.Apellido_Paterno_Hechos
-			,Apellido_Materno_Hechos = m.Apellido_Materno_Hechos
-                        ,Fecha_de_Nacimiento_Hechos = (m.Fecha_de_Nacimiento_Hechos == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento_Hechos).ToString(ConfigurationProperty.DateFormat))
-			,Edad_Hechos = m.Edad_Hechos
-                        ,Genero_HechosDescripcion = CultureHelper.GetTraduction(m.Genero_Hechos_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Hechos_Genero.Descripcion
-			,Celular_Hechos = m.Celular_Hechos
-			,Correo_Hechos = m.Correo_Hechos
-                        ,Tipo_de_Identificacion_HechosNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Nombre
-			,Numero_Identificacion_Hechos = m.Numero_Identificacion_Hechos
-			,Fotografia_Identificacion = m.Fotografia_Identificacion
-                        ,Nacionalidad_HechosNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Hechos_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Hechos_Nacionalidad.NacionalidadC
-                        ,Entidad_de_Nacimiento_HechosNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Hechos_Estado.Clave.ToString(), "Nombre") ?? (string)m.Entidad_de_Nacimiento_Hechos_Estado.Nombre
+                        ,Fecha_de_los_Hechos = (m.Fecha_de_los_Hechos == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_los_Hechos).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_los_Hechos = m.Hora_de_los_Hechos
+                        ,Municipio_hechosNombre = CultureHelper.GetTraduction(m.Municipio_hechos_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_hechos_Municipio.Nombre
+                        ,Poblacion_hechosNombre = CultureHelper.GetTraduction(m.Poblacion_hechos_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_hechos_Colonia.Nombre
+                        ,Colonia_hechosNombre = CultureHelper.GetTraduction(m.Colonia_hechos_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_hechos_Colonia.Nombre
+			,Calle_hechos = m.Calle_hechos
+			,Entre_Calle_hechos = m.Entre_Calle_hechos
+			,Y_Calle_hechos = m.Y_Calle_hechos
+			,Numero_Exterior_hechos = m.Numero_Exterior_hechos
+			,Numero_Interior_hechos = m.Numero_Interior_hechos
+			,Codigo_Postal_hechos = m.Codigo_Postal_hechos
+			,Referencia = m.Referencia
 			,CURP_Identificacion = m.CURP_Identificacion
 			,Nombres_Identificacion = m.Nombres_Identificacion
 			,Apellido_Paterno_Identificacion = m.Apellido_Paterno_Identificacion
 			,Apellido_Materno_Identificacion = m.Apellido_Materno_Identificacion
+			,Alias = m.Alias
                         ,Fecha_Nacimiento_Identificacion = (m.Fecha_Nacimiento_Identificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Nacimiento_Identificacion).ToString(ConfigurationProperty.DateFormat))
 			,Edad_Identificacion = m.Edad_Identificacion
                         ,Genero_IdentificacionDescripcion = CultureHelper.GetTraduction(m.Genero_Identificacion_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Identificacion_Genero.Descripcion
@@ -2964,18 +2740,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Identificacion = m.Correo_Identificacion
                         ,Tipo_de_Identificacion_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Identificacion_Tipo_de_Identificacion.Nombre
 			,Numero_Identificacion_Identificacion = m.Numero_Identificacion_Identificacion
-                        ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Identificacion_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
+                        ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Identificacion_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
                         ,Entidad_de_Nacimiento_IdentificacionNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Identificacion_Estado.Clave.ToString(), "Estado") ?? (string)m.Entidad_de_Nacimiento_Identificacion_Estado.Nombre
-                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
-                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
-			,Codigo_Postal = m.Codigo_Postal
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_Colonia.Nombre
 			,Calle = m.Calle
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
 			,Numero_Interior = m.Numero_Interior
+			,Codigo_Postal = m.Codigo_Postal
 			,Referencias_de_domicilio = m.Referencias_de_domicilio
 
                 }).ToList(),
@@ -2987,7 +2762,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
         [HttpGet]
-        public JsonResult GetQuejas_de_MP_Entidad_de_Nacimiento_Estado(string query, string where)
+        public JsonResult GetQuejas_de_MP_Usuario_que_Registra_Spartan_User(string query, string where)
         {
             try
             {
@@ -2995,18 +2770,126 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where = "";
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Estado.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IEstadoApiConsumer.ListaSelAll(1, 20,elWhere , " Estado.Nombre ASC ").Resource;
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
                
-                foreach (var item in result.Estados)
+                foreach (var item in result.Spartan_Users)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Estado", "Nombre");
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetQuejas_de_MP_Municipio_hechos_Municipio(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Municipio.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IMunicipioApiConsumer.ListaSelAll(1, 20,elWhere , " Municipio.Nombre ASC ").Resource;
+               
+                foreach (var item in result.Municipios)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Municipio", "Nombre");
                     item.Nombre =trans ??item.Nombre;
                 }
-                return Json(result.Estados.ToArray(), JsonRequestBehavior.AllowGet);
+                return Json(result.Municipios.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetQuejas_de_MP_Poblacion_hechos_Colonia(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
+               
+                foreach (var item in result.Colonias)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Colonia", "Nombre");
+                    item.Nombre =trans ??item.Nombre;
+                }
+                return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetQuejas_de_MP_Colonia_hechos_Colonia(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
+               
+                foreach (var item in result.Colonias)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Colonia", "Nombre");
+                    item.Nombre =trans ??item.Nombre;
+                }
+                return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetQuejas_de_MP_Nacionalidad_Identificacion_Nacionalidad(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Nacionalidad.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Nacionalidad.NacionalidadC as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _INacionalidadApiConsumer.ListaSelAll(1, 20,elWhere , " Nacionalidad.NacionalidadC ASC ").Resource;
+               
+                foreach (var item in result.Nacionalidads)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Nacionalidad", "NacionalidadC");
+                    item.NacionalidadC =trans ??item.NacionalidadC;
+                }
+                return Json(result.Nacionalidads.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -3015,60 +2898,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
         [HttpGet]
         public JsonResult GetQuejas_de_MP_Entidad_de_Nacimiento_Identificacion_Estado(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Estado.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IEstadoApiConsumer.ListaSelAll(1, 20,elWhere , " Estado.Nombre ASC ").Resource;
-               
-                foreach (var item in result.Estados)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Estado", "Nombre");
-                    item.Nombre =trans ??item.Nombre;
-                }
-                return Json(result.Estados.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public JsonResult GetQuejas_de_MP_Pais_Pais(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Pais.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IPaisApiConsumer.ListaSelAll(1, 20,elWhere , " Pais.Nombre ASC ").Resource;
-               
-                foreach (var item in result.Paiss)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Pais", "Nombre");
-                    item.Nombre =trans ??item.Nombre;
-                }
-                return Json(result.Paiss.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public JsonResult GetQuejas_de_MP_Estado_Estado(string query, string where)
         {
             try
             {
@@ -3122,6 +2951,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
+        public JsonResult GetQuejas_de_MP_Poblacion_Colonia(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
+               
+                foreach (var item in result.Colonias)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Colonia", "Nombre");
+                    item.Nombre =trans ??item.Nombre;
+                }
+                return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public JsonResult GetQuejas_de_MP_Colonia_Colonia(string query, string where)
         {
             try
@@ -3163,6 +3019,55 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Quejas_de_MP.Clave >= " + filter.FromClave;
                 if (!string.IsNullOrEmpty(filter.ToClave))
                     where += " AND Quejas_de_MP.Clave <= " + filter.ToClave;
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromFecha_de_Registro) || !string.IsNullOrEmpty(filter.ToFecha_de_Registro))
+            {
+                var Fecha_de_RegistroFrom = DateTime.ParseExact(filter.FromFecha_de_Registro, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_de_RegistroTo = DateTime.ParseExact(filter.ToFecha_de_Registro, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_de_Registro))
+                    where += " AND Quejas_de_MP.Fecha_de_Registro >= '" + Fecha_de_RegistroFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_de_Registro))
+                    where += " AND Quejas_de_MP.Fecha_de_Registro <= '" + Fecha_de_RegistroTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_de_Registro) || !string.IsNullOrEmpty(filter.ToHora_de_Registro))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_de_Registro))
+                    where += " AND Convert(TIME,Quejas_de_MP.Hora_de_Registro) >='" + filter.FromHora_de_Registro + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_de_Registro))
+                    where += " AND Convert(TIME,Quejas_de_MP.Hora_de_Registro) <='" + filter.ToHora_de_Registro + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_Registra))
+            {
+                switch (filter.Usuario_que_RegistraFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_Registra + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Registra + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_Registra + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Registra + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceUsuario_que_RegistraMultiple != null && filter.AdvanceUsuario_que_RegistraMultiple.Count() > 0)
+            {
+                var Usuario_que_RegistraIds = string.Join(",", filter.AdvanceUsuario_que_RegistraMultiple);
+
+                where += " AND Quejas_de_MP.Usuario_que_Registra In (" + Usuario_que_RegistraIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.Nombres))
@@ -3249,6 +3154,50 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                     case Models.Filters.Contains:
                         where += " AND Quejas_de_MP.Nombre_Completo LIKE '%" + filter.Nombre_Completo + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Correo_Electronico))
+            {
+                switch (filter.Correo_ElectronicoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Quejas_de_MP.Correo_Electronico LIKE '" + filter.Correo_Electronico + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Quejas_de_MP.Correo_Electronico LIKE '%" + filter.Correo_Electronico + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Quejas_de_MP.Correo_Electronico = '" + filter.Correo_Electronico + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Quejas_de_MP.Correo_Electronico LIKE '%" + filter.Correo_Electronico + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Celular))
+            {
+                switch (filter.CelularFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Quejas_de_MP.Celular LIKE '" + filter.Celular + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Quejas_de_MP.Celular LIKE '%" + filter.Celular + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Quejas_de_MP.Celular = '" + filter.Celular + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Quejas_de_MP.Celular LIKE '%" + filter.Celular + "%'";
                         break;
                 }
             }
@@ -4234,391 +4183,249 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.CURP))
+            if (!string.IsNullOrEmpty(filter.FromFecha_de_los_Hechos) || !string.IsNullOrEmpty(filter.ToFecha_de_los_Hechos))
             {
-                switch (filter.CURPFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Quejas_de_MP.CURP LIKE '" + filter.CURP + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Quejas_de_MP.CURP LIKE '%" + filter.CURP + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Quejas_de_MP.CURP = '" + filter.CURP + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Quejas_de_MP.CURP LIKE '%" + filter.CURP + "%'";
-                        break;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceGenero))
-            {
-                switch (filter.GeneroFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Genero.Descripcion LIKE '" + filter.AdvanceGenero + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Genero.Descripcion LIKE '%" + filter.AdvanceGenero + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Genero.Descripcion = '" + filter.AdvanceGenero + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Genero.Descripcion LIKE '%" + filter.AdvanceGenero + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceGeneroMultiple != null && filter.AdvanceGeneroMultiple.Count() > 0)
-            {
-                var GeneroIds = string.Join(",", filter.AdvanceGeneroMultiple);
-
-                where += " AND Quejas_de_MP.Genero In (" + GeneroIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.FromFecha_de_Nacimiento) || !string.IsNullOrEmpty(filter.ToFecha_de_Nacimiento))
-            {
-                var Fecha_de_NacimientoFrom = DateTime.ParseExact(filter.FromFecha_de_Nacimiento, ConfigurationProperty.DateFormat,
+                var Fecha_de_los_HechosFrom = DateTime.ParseExact(filter.FromFecha_de_los_Hechos, ConfigurationProperty.DateFormat,
                     CultureInfo.InvariantCulture as IFormatProvider);
-                var Fecha_de_NacimientoTo = DateTime.ParseExact(filter.ToFecha_de_Nacimiento, ConfigurationProperty.DateFormat,
+                var Fecha_de_los_HechosTo = DateTime.ParseExact(filter.ToFecha_de_los_Hechos, ConfigurationProperty.DateFormat,
                   CultureInfo.InvariantCulture as IFormatProvider);
 
-                if (!string.IsNullOrEmpty(filter.FromFecha_de_Nacimiento))
-                    where += " AND Quejas_de_MP.Fecha_de_Nacimiento >= '" + Fecha_de_NacimientoFrom.ToString("MM-dd-yyyy") + "'";
-                if (!string.IsNullOrEmpty(filter.ToFecha_de_Nacimiento))
-                    where += " AND Quejas_de_MP.Fecha_de_Nacimiento <= '" + Fecha_de_NacimientoTo.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.FromFecha_de_los_Hechos))
+                    where += " AND Quejas_de_MP.Fecha_de_los_Hechos >= '" + Fecha_de_los_HechosFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_de_los_Hechos))
+                    where += " AND Quejas_de_MP.Fecha_de_los_Hechos <= '" + Fecha_de_los_HechosTo.ToString("MM-dd-yyyy") + "'";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceNacionalidad))
+            if (!string.IsNullOrEmpty(filter.FromHora_de_los_Hechos) || !string.IsNullOrEmpty(filter.ToHora_de_los_Hechos))
             {
-                switch (filter.NacionalidadFilter)
+                if (!string.IsNullOrEmpty(filter.FromHora_de_los_Hechos))
+                    where += " AND Convert(TIME,Quejas_de_MP.Hora_de_los_Hechos) >='" + filter.FromHora_de_los_Hechos + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_de_los_Hechos))
+                    where += " AND Convert(TIME,Quejas_de_MP.Hora_de_los_Hechos) <='" + filter.ToHora_de_los_Hechos + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceMunicipio_hechos))
+            {
+                switch (filter.Municipio_hechosFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Nacionalidad.NacionalidadC LIKE '" + filter.AdvanceNacionalidad + "%'";
+                        where += " AND Municipio.Nombre LIKE '" + filter.AdvanceMunicipio_hechos + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Nacionalidad.NacionalidadC LIKE '%" + filter.AdvanceNacionalidad + "'";
+                        where += " AND Municipio.Nombre LIKE '%" + filter.AdvanceMunicipio_hechos + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Nacionalidad.NacionalidadC = '" + filter.AdvanceNacionalidad + "'";
+                        where += " AND Municipio.Nombre = '" + filter.AdvanceMunicipio_hechos + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Nacionalidad.NacionalidadC LIKE '%" + filter.AdvanceNacionalidad + "%'";
+                        where += " AND Municipio.Nombre LIKE '%" + filter.AdvanceMunicipio_hechos + "%'";
                         break;
                 }
             }
-            else if (filter.AdvanceNacionalidadMultiple != null && filter.AdvanceNacionalidadMultiple.Count() > 0)
+            else if (filter.AdvanceMunicipio_hechosMultiple != null && filter.AdvanceMunicipio_hechosMultiple.Count() > 0)
             {
-                var NacionalidadIds = string.Join(",", filter.AdvanceNacionalidadMultiple);
+                var Municipio_hechosIds = string.Join(",", filter.AdvanceMunicipio_hechosMultiple);
 
-                where += " AND Quejas_de_MP.Nacionalidad In (" + NacionalidadIds + ")";
+                where += " AND Quejas_de_MP.Municipio_hechos In (" + Municipio_hechosIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceEntidad_de_Nacimiento))
+            if (!string.IsNullOrEmpty(filter.AdvancePoblacion_hechos))
             {
-                switch (filter.Entidad_de_NacimientoFilter)
+                switch (filter.Poblacion_hechosFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Estado.Nombre LIKE '" + filter.AdvanceEntidad_de_Nacimiento + "%'";
+                        where += " AND Colonia.Nombre LIKE '" + filter.AdvancePoblacion_hechos + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEntidad_de_Nacimiento + "'";
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvancePoblacion_hechos + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Estado.Nombre = '" + filter.AdvanceEntidad_de_Nacimiento + "'";
+                        where += " AND Colonia.Nombre = '" + filter.AdvancePoblacion_hechos + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEntidad_de_Nacimiento + "%'";
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvancePoblacion_hechos + "%'";
                         break;
                 }
             }
-            else if (filter.AdvanceEntidad_de_NacimientoMultiple != null && filter.AdvanceEntidad_de_NacimientoMultiple.Count() > 0)
+            else if (filter.AdvancePoblacion_hechosMultiple != null && filter.AdvancePoblacion_hechosMultiple.Count() > 0)
             {
-                var Entidad_de_NacimientoIds = string.Join(",", filter.AdvanceEntidad_de_NacimientoMultiple);
+                var Poblacion_hechosIds = string.Join(",", filter.AdvancePoblacion_hechosMultiple);
 
-                where += " AND Quejas_de_MP.Entidad_de_Nacimiento In (" + Entidad_de_NacimientoIds + ")";
+                where += " AND Quejas_de_MP.Poblacion_hechos In (" + Poblacion_hechosIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.Nombres_Hechos))
+            if (!string.IsNullOrEmpty(filter.AdvanceColonia_hechos))
             {
-                switch (filter.Nombres_HechosFilter)
+                switch (filter.Colonia_hechosFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Quejas_de_MP.Nombres_Hechos LIKE '" + filter.Nombres_Hechos + "%'";
+                        where += " AND Colonia.Nombre LIKE '" + filter.AdvanceColonia_hechos + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Quejas_de_MP.Nombres_Hechos LIKE '%" + filter.Nombres_Hechos + "'";
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvanceColonia_hechos + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Quejas_de_MP.Nombres_Hechos = '" + filter.Nombres_Hechos + "'";
+                        where += " AND Colonia.Nombre = '" + filter.AdvanceColonia_hechos + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Quejas_de_MP.Nombres_Hechos LIKE '%" + filter.Nombres_Hechos + "%'";
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvanceColonia_hechos + "%'";
                         break;
                 }
             }
-
-            if (!string.IsNullOrEmpty(filter.Apellido_Paterno_Hechos))
+            else if (filter.AdvanceColonia_hechosMultiple != null && filter.AdvanceColonia_hechosMultiple.Count() > 0)
             {
-                switch (filter.Apellido_Paterno_HechosFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Quejas_de_MP.Apellido_Paterno_Hechos LIKE '" + filter.Apellido_Paterno_Hechos + "%'";
-                        break;
+                var Colonia_hechosIds = string.Join(",", filter.AdvanceColonia_hechosMultiple);
 
-                    case Models.Filters.EndWith:
-                        where += " AND Quejas_de_MP.Apellido_Paterno_Hechos LIKE '%" + filter.Apellido_Paterno_Hechos + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Quejas_de_MP.Apellido_Paterno_Hechos = '" + filter.Apellido_Paterno_Hechos + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Quejas_de_MP.Apellido_Paterno_Hechos LIKE '%" + filter.Apellido_Paterno_Hechos + "%'";
-                        break;
-                }
+                where += " AND Quejas_de_MP.Colonia_hechos In (" + Colonia_hechosIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.Apellido_Materno_Hechos))
+            if (!string.IsNullOrEmpty(filter.Calle_hechos))
             {
-                switch (filter.Apellido_Materno_HechosFilter)
+                switch (filter.Calle_hechosFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Quejas_de_MP.Apellido_Materno_Hechos LIKE '" + filter.Apellido_Materno_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Calle_hechos LIKE '" + filter.Calle_hechos + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Quejas_de_MP.Apellido_Materno_Hechos LIKE '%" + filter.Apellido_Materno_Hechos + "'";
+                        where += " AND Quejas_de_MP.Calle_hechos LIKE '%" + filter.Calle_hechos + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Quejas_de_MP.Apellido_Materno_Hechos = '" + filter.Apellido_Materno_Hechos + "'";
+                        where += " AND Quejas_de_MP.Calle_hechos = '" + filter.Calle_hechos + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Quejas_de_MP.Apellido_Materno_Hechos LIKE '%" + filter.Apellido_Materno_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Calle_hechos LIKE '%" + filter.Calle_hechos + "%'";
                         break;
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.FromFecha_de_Nacimiento_Hechos) || !string.IsNullOrEmpty(filter.ToFecha_de_Nacimiento_Hechos))
+            if (!string.IsNullOrEmpty(filter.Entre_Calle_hechos))
             {
-                var Fecha_de_Nacimiento_HechosFrom = DateTime.ParseExact(filter.FromFecha_de_Nacimiento_Hechos, ConfigurationProperty.DateFormat,
-                    CultureInfo.InvariantCulture as IFormatProvider);
-                var Fecha_de_Nacimiento_HechosTo = DateTime.ParseExact(filter.ToFecha_de_Nacimiento_Hechos, ConfigurationProperty.DateFormat,
-                  CultureInfo.InvariantCulture as IFormatProvider);
-
-                if (!string.IsNullOrEmpty(filter.FromFecha_de_Nacimiento_Hechos))
-                    where += " AND Quejas_de_MP.Fecha_de_Nacimiento_Hechos >= '" + Fecha_de_Nacimiento_HechosFrom.ToString("MM-dd-yyyy") + "'";
-                if (!string.IsNullOrEmpty(filter.ToFecha_de_Nacimiento_Hechos))
-                    where += " AND Quejas_de_MP.Fecha_de_Nacimiento_Hechos <= '" + Fecha_de_Nacimiento_HechosTo.ToString("MM-dd-yyyy") + "'";
-            }
-
-            if (!string.IsNullOrEmpty(filter.FromEdad_Hechos) || !string.IsNullOrEmpty(filter.ToEdad_Hechos))
-            {
-                if (!string.IsNullOrEmpty(filter.FromEdad_Hechos))
-                    where += " AND Quejas_de_MP.Edad_Hechos >= " + filter.FromEdad_Hechos;
-                if (!string.IsNullOrEmpty(filter.ToEdad_Hechos))
-                    where += " AND Quejas_de_MP.Edad_Hechos <= " + filter.ToEdad_Hechos;
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceGenero_Hechos))
-            {
-                switch (filter.Genero_HechosFilter)
+                switch (filter.Entre_Calle_hechosFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Genero.Descripcion LIKE '" + filter.AdvanceGenero_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Entre_Calle_hechos LIKE '" + filter.Entre_Calle_hechos + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Genero.Descripcion LIKE '%" + filter.AdvanceGenero_Hechos + "'";
+                        where += " AND Quejas_de_MP.Entre_Calle_hechos LIKE '%" + filter.Entre_Calle_hechos + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Genero.Descripcion = '" + filter.AdvanceGenero_Hechos + "'";
+                        where += " AND Quejas_de_MP.Entre_Calle_hechos = '" + filter.Entre_Calle_hechos + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Genero.Descripcion LIKE '%" + filter.AdvanceGenero_Hechos + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceGenero_HechosMultiple != null && filter.AdvanceGenero_HechosMultiple.Count() > 0)
-            {
-                var Genero_HechosIds = string.Join(",", filter.AdvanceGenero_HechosMultiple);
-
-                where += " AND Quejas_de_MP.Genero_Hechos In (" + Genero_HechosIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.Celular_Hechos))
-            {
-                switch (filter.Celular_HechosFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Quejas_de_MP.Celular_Hechos LIKE '" + filter.Celular_Hechos + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Quejas_de_MP.Celular_Hechos LIKE '%" + filter.Celular_Hechos + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Quejas_de_MP.Celular_Hechos = '" + filter.Celular_Hechos + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Quejas_de_MP.Celular_Hechos LIKE '%" + filter.Celular_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Entre_Calle_hechos LIKE '%" + filter.Entre_Calle_hechos + "%'";
                         break;
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.Correo_Hechos))
+            if (!string.IsNullOrEmpty(filter.Y_Calle_hechos))
             {
-                switch (filter.Correo_HechosFilter)
+                switch (filter.Y_Calle_hechosFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Quejas_de_MP.Correo_Hechos LIKE '" + filter.Correo_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Y_Calle_hechos LIKE '" + filter.Y_Calle_hechos + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Quejas_de_MP.Correo_Hechos LIKE '%" + filter.Correo_Hechos + "'";
+                        where += " AND Quejas_de_MP.Y_Calle_hechos LIKE '%" + filter.Y_Calle_hechos + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Quejas_de_MP.Correo_Hechos = '" + filter.Correo_Hechos + "'";
+                        where += " AND Quejas_de_MP.Y_Calle_hechos = '" + filter.Y_Calle_hechos + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Quejas_de_MP.Correo_Hechos LIKE '%" + filter.Correo_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Y_Calle_hechos LIKE '%" + filter.Y_Calle_hechos + "%'";
                         break;
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Identificacion_Hechos))
+            if (!string.IsNullOrEmpty(filter.Numero_Exterior_hechos))
             {
-                switch (filter.Tipo_de_Identificacion_HechosFilter)
+                switch (filter.Numero_Exterior_hechosFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Tipo_de_Identificacion.Nombre LIKE '" + filter.AdvanceTipo_de_Identificacion_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Numero_Exterior_hechos LIKE '" + filter.Numero_Exterior_hechos + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Tipo_de_Identificacion.Nombre LIKE '%" + filter.AdvanceTipo_de_Identificacion_Hechos + "'";
+                        where += " AND Quejas_de_MP.Numero_Exterior_hechos LIKE '%" + filter.Numero_Exterior_hechos + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Tipo_de_Identificacion.Nombre = '" + filter.AdvanceTipo_de_Identificacion_Hechos + "'";
+                        where += " AND Quejas_de_MP.Numero_Exterior_hechos = '" + filter.Numero_Exterior_hechos + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Tipo_de_Identificacion.Nombre LIKE '%" + filter.AdvanceTipo_de_Identificacion_Hechos + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceTipo_de_Identificacion_HechosMultiple != null && filter.AdvanceTipo_de_Identificacion_HechosMultiple.Count() > 0)
-            {
-                var Tipo_de_Identificacion_HechosIds = string.Join(",", filter.AdvanceTipo_de_Identificacion_HechosMultiple);
-
-                where += " AND Quejas_de_MP.Tipo_de_Identificacion_Hechos In (" + Tipo_de_Identificacion_HechosIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.Numero_Identificacion_Hechos))
-            {
-                switch (filter.Numero_Identificacion_HechosFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Quejas_de_MP.Numero_Identificacion_Hechos LIKE '" + filter.Numero_Identificacion_Hechos + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Quejas_de_MP.Numero_Identificacion_Hechos LIKE '%" + filter.Numero_Identificacion_Hechos + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Quejas_de_MP.Numero_Identificacion_Hechos = '" + filter.Numero_Identificacion_Hechos + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Quejas_de_MP.Numero_Identificacion_Hechos LIKE '%" + filter.Numero_Identificacion_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Numero_Exterior_hechos LIKE '%" + filter.Numero_Exterior_hechos + "%'";
                         break;
                 }
             }
 
-            if (filter.Fotografia_Identificacion != RadioOptions.NoApply)
-                where += " AND Quejas_de_MP.Fotografia_Identificacion " + (filter.Fotografia_Identificacion == RadioOptions.Yes ? ">" : "==") + " 0";
-
-            if (!string.IsNullOrEmpty(filter.AdvanceNacionalidad_Hechos))
+            if (!string.IsNullOrEmpty(filter.Numero_Interior_hechos))
             {
-                switch (filter.Nacionalidad_HechosFilter)
+                switch (filter.Numero_Interior_hechosFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Nacionalidad.NacionalidadC LIKE '" + filter.AdvanceNacionalidad_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Numero_Interior_hechos LIKE '" + filter.Numero_Interior_hechos + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Nacionalidad.NacionalidadC LIKE '%" + filter.AdvanceNacionalidad_Hechos + "'";
+                        where += " AND Quejas_de_MP.Numero_Interior_hechos LIKE '%" + filter.Numero_Interior_hechos + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Nacionalidad.NacionalidadC = '" + filter.AdvanceNacionalidad_Hechos + "'";
+                        where += " AND Quejas_de_MP.Numero_Interior_hechos = '" + filter.Numero_Interior_hechos + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Nacionalidad.NacionalidadC LIKE '%" + filter.AdvanceNacionalidad_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Numero_Interior_hechos LIKE '%" + filter.Numero_Interior_hechos + "%'";
                         break;
                 }
             }
-            else if (filter.AdvanceNacionalidad_HechosMultiple != null && filter.AdvanceNacionalidad_HechosMultiple.Count() > 0)
-            {
-                var Nacionalidad_HechosIds = string.Join(",", filter.AdvanceNacionalidad_HechosMultiple);
 
-                where += " AND Quejas_de_MP.Nacionalidad_Hechos In (" + Nacionalidad_HechosIds + ")";
+            if (!string.IsNullOrEmpty(filter.FromCodigo_Postal_hechos) || !string.IsNullOrEmpty(filter.ToCodigo_Postal_hechos))
+            {
+                if (!string.IsNullOrEmpty(filter.FromCodigo_Postal_hechos))
+                    where += " AND Quejas_de_MP.Codigo_Postal_hechos >= " + filter.FromCodigo_Postal_hechos;
+                if (!string.IsNullOrEmpty(filter.ToCodigo_Postal_hechos))
+                    where += " AND Quejas_de_MP.Codigo_Postal_hechos <= " + filter.ToCodigo_Postal_hechos;
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceEntidad_de_Nacimiento_Hechos))
+            if (!string.IsNullOrEmpty(filter.Referencia))
             {
-                switch (filter.Entidad_de_Nacimiento_HechosFilter)
+                switch (filter.ReferenciaFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Estado.Nombre LIKE '" + filter.AdvanceEntidad_de_Nacimiento_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Referencia LIKE '" + filter.Referencia + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEntidad_de_Nacimiento_Hechos + "'";
+                        where += " AND Quejas_de_MP.Referencia LIKE '%" + filter.Referencia + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Estado.Nombre = '" + filter.AdvanceEntidad_de_Nacimiento_Hechos + "'";
+                        where += " AND Quejas_de_MP.Referencia = '" + filter.Referencia + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEntidad_de_Nacimiento_Hechos + "%'";
+                        where += " AND Quejas_de_MP.Referencia LIKE '%" + filter.Referencia + "%'";
                         break;
                 }
-            }
-            else if (filter.AdvanceEntidad_de_Nacimiento_HechosMultiple != null && filter.AdvanceEntidad_de_Nacimiento_HechosMultiple.Count() > 0)
-            {
-                var Entidad_de_Nacimiento_HechosIds = string.Join(",", filter.AdvanceEntidad_de_Nacimiento_HechosMultiple);
-
-                where += " AND Quejas_de_MP.Entidad_de_Nacimiento_Hechos In (" + Entidad_de_Nacimiento_HechosIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.CURP_Identificacion))
@@ -4705,6 +4512,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                     case Models.Filters.Contains:
                         where += " AND Quejas_de_MP.Apellido_Materno_Identificacion LIKE '%" + filter.Apellido_Materno_Identificacion + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Alias))
+            {
+                switch (filter.AliasFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Quejas_de_MP.Alias LIKE '" + filter.Alias + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Quejas_de_MP.Alias LIKE '%" + filter.Alias + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Quejas_de_MP.Alias = '" + filter.Alias + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Quejas_de_MP.Alias LIKE '%" + filter.Alias + "%'";
                         break;
                 }
             }
@@ -4908,84 +4737,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Quejas_de_MP.Entidad_de_Nacimiento_Identificacion In (" + Entidad_de_Nacimiento_IdentificacionIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvancePais))
-            {
-                switch (filter.PaisFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Pais.Nombre LIKE '" + filter.AdvancePais + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Pais.Nombre LIKE '%" + filter.AdvancePais + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Pais.Nombre = '" + filter.AdvancePais + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Pais.Nombre LIKE '%" + filter.AdvancePais + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvancePaisMultiple != null && filter.AdvancePaisMultiple.Count() > 0)
-            {
-                var PaisIds = string.Join(",", filter.AdvancePaisMultiple);
-
-                where += " AND Quejas_de_MP.Pais In (" + PaisIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceEstado))
-            {
-                switch (filter.EstadoFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Estado.Nombre LIKE '" + filter.AdvanceEstado + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEstado + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Estado.Nombre = '" + filter.AdvanceEstado + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEstado + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceEstadoMultiple != null && filter.AdvanceEstadoMultiple.Count() > 0)
-            {
-                var EstadoIds = string.Join(",", filter.AdvanceEstadoMultiple);
-
-                where += " AND Quejas_de_MP.Estado In (" + EstadoIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.Codigo_Postal))
-            {
-                switch (filter.Codigo_PostalFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Quejas_de_MP.Codigo_Postal LIKE '" + filter.Codigo_Postal + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Quejas_de_MP.Codigo_Postal LIKE '%" + filter.Codigo_Postal + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Quejas_de_MP.Codigo_Postal = '" + filter.Codigo_Postal + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Quejas_de_MP.Codigo_Postal LIKE '%" + filter.Codigo_Postal + "%'";
-                        break;
-                }
-            }
-
             if (!string.IsNullOrEmpty(filter.AdvanceMunicipio))
             {
                 switch (filter.MunicipioFilter)
@@ -5012,6 +4763,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var MunicipioIds = string.Join(",", filter.AdvanceMunicipioMultiple);
 
                 where += " AND Quejas_de_MP.Municipio In (" + MunicipioIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvancePoblacion))
+            {
+                switch (filter.PoblacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Colonia.Nombre LIKE '" + filter.AdvancePoblacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvancePoblacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Colonia.Nombre = '" + filter.AdvancePoblacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvancePoblacion + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvancePoblacionMultiple != null && filter.AdvancePoblacionMultiple.Count() > 0)
+            {
+                var PoblacionIds = string.Join(",", filter.AdvancePoblacionMultiple);
+
+                where += " AND Quejas_de_MP.Poblacion In (" + PoblacionIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceColonia))
@@ -5152,6 +4931,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Codigo_Postal))
+            {
+                switch (filter.Codigo_PostalFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Quejas_de_MP.Codigo_Postal LIKE '" + filter.Codigo_Postal + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Quejas_de_MP.Codigo_Postal LIKE '%" + filter.Codigo_Postal + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Quejas_de_MP.Codigo_Postal = '" + filter.Codigo_Postal + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Quejas_de_MP.Codigo_Postal LIKE '%" + filter.Codigo_Postal + "%'";
+                        break;
+                }
+            }
+
             if (!string.IsNullOrEmpty(filter.Referencias_de_domicilio))
             {
                 switch (filter.Referencias_de_domicilioFilter)
@@ -5239,32 +5040,21 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                             File_Size = fileAsBytes.Length
                         }).Resource;
                     }
-                    if (varQuejas_de_MP.Fotografia_IdentificacionRemoveAttachment != 0 && varQuejas_de_MP.Fotografia_IdentificacionFile == null)
-                    {
-                        varQuejas_de_MP.Fotografia_Identificacion = 0;
-                    }
-
-                    if (varQuejas_de_MP.Fotografia_IdentificacionFile != null)
-                    {
-                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varQuejas_de_MP.Fotografia_IdentificacionFile);
-                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                        varQuejas_de_MP.Fotografia_Identificacion = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
-                        {
-                            File = fileAsBytes,
-                            Description = varQuejas_de_MP.Fotografia_IdentificacionFile.FileName,
-                            File_Size = fileAsBytes.Length
-                        }).Resource;
-                    }
 
                     
                     var result = "";
                     var Quejas_de_MPInfo = new Quejas_de_MP
                     {
                         Clave = varQuejas_de_MP.Clave
+                        ,Fecha_de_Registro = (!String.IsNullOrEmpty(varQuejas_de_MP.Fecha_de_Registro)) ? DateTime.ParseExact(varQuejas_de_MP.Fecha_de_Registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Registro = varQuejas_de_MP.Hora_de_Registro
+                        ,Usuario_que_Registra = varQuejas_de_MP.Usuario_que_Registra
                         ,Nombres = varQuejas_de_MP.Nombres
                         ,Apellido_Paterno = varQuejas_de_MP.Apellido_Paterno
                         ,Apellido_Materno = varQuejas_de_MP.Apellido_Materno
                         ,Nombre_Completo = varQuejas_de_MP.Nombre_Completo
+                        ,Correo_Electronico = varQuejas_de_MP.Correo_Electronico
+                        ,Celular = varQuejas_de_MP.Celular
                         ,Estatus = varQuejas_de_MP.Estatus
                         ,Peso = varQuejas_de_MP.Peso
                         ,Estatura = varQuejas_de_MP.Estatura
@@ -5303,29 +5093,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Situacion_Fisica = varQuejas_de_MP.Situacion_Fisica
                         ,Otras_Senas_Particulares = varQuejas_de_MP.Otras_Senas_Particulares
                         ,Descripcion_de_los_Hechos = varQuejas_de_MP.Descripcion_de_los_Hechos
-                        ,CURP = varQuejas_de_MP.CURP
-                        ,Genero = varQuejas_de_MP.Genero
-                        ,Fecha_de_Nacimiento = (!String.IsNullOrEmpty(varQuejas_de_MP.Fecha_de_Nacimiento)) ? DateTime.ParseExact(varQuejas_de_MP.Fecha_de_Nacimiento, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Nacionalidad = varQuejas_de_MP.Nacionalidad
-                        ,Entidad_de_Nacimiento = varQuejas_de_MP.Entidad_de_Nacimiento
-                        ,Nombres_Hechos = varQuejas_de_MP.Nombres_Hechos
-                        ,Apellido_Paterno_Hechos = varQuejas_de_MP.Apellido_Paterno_Hechos
-                        ,Apellido_Materno_Hechos = varQuejas_de_MP.Apellido_Materno_Hechos
-                        ,Fecha_de_Nacimiento_Hechos = (!String.IsNullOrEmpty(varQuejas_de_MP.Fecha_de_Nacimiento_Hechos)) ? DateTime.ParseExact(varQuejas_de_MP.Fecha_de_Nacimiento_Hechos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Edad_Hechos = varQuejas_de_MP.Edad_Hechos
-                        ,Genero_Hechos = varQuejas_de_MP.Genero_Hechos
-                        ,Celular_Hechos = varQuejas_de_MP.Celular_Hechos
-                        ,Correo_Hechos = varQuejas_de_MP.Correo_Hechos
-                        ,Tipo_de_Identificacion_Hechos = varQuejas_de_MP.Tipo_de_Identificacion_Hechos
-                        ,Numero_Identificacion_Hechos = varQuejas_de_MP.Numero_Identificacion_Hechos
-                        ,Fotografia_Identificacion = (varQuejas_de_MP.Fotografia_Identificacion.HasValue && varQuejas_de_MP.Fotografia_Identificacion != 0) ? ((int?)Convert.ToInt32(varQuejas_de_MP.Fotografia_Identificacion.Value)) : null
-
-                        ,Nacionalidad_Hechos = varQuejas_de_MP.Nacionalidad_Hechos
-                        ,Entidad_de_Nacimiento_Hechos = varQuejas_de_MP.Entidad_de_Nacimiento_Hechos
+                        ,Fecha_de_los_Hechos = (!String.IsNullOrEmpty(varQuejas_de_MP.Fecha_de_los_Hechos)) ? DateTime.ParseExact(varQuejas_de_MP.Fecha_de_los_Hechos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_los_Hechos = varQuejas_de_MP.Hora_de_los_Hechos
+                        ,Municipio_hechos = varQuejas_de_MP.Municipio_hechos
+                        ,Poblacion_hechos = varQuejas_de_MP.Poblacion_hechos
+                        ,Colonia_hechos = varQuejas_de_MP.Colonia_hechos
+                        ,Calle_hechos = varQuejas_de_MP.Calle_hechos
+                        ,Entre_Calle_hechos = varQuejas_de_MP.Entre_Calle_hechos
+                        ,Y_Calle_hechos = varQuejas_de_MP.Y_Calle_hechos
+                        ,Numero_Exterior_hechos = varQuejas_de_MP.Numero_Exterior_hechos
+                        ,Numero_Interior_hechos = varQuejas_de_MP.Numero_Interior_hechos
+                        ,Codigo_Postal_hechos = varQuejas_de_MP.Codigo_Postal_hechos
+                        ,Referencia = varQuejas_de_MP.Referencia
                         ,CURP_Identificacion = varQuejas_de_MP.CURP_Identificacion
                         ,Nombres_Identificacion = varQuejas_de_MP.Nombres_Identificacion
                         ,Apellido_Paterno_Identificacion = varQuejas_de_MP.Apellido_Paterno_Identificacion
                         ,Apellido_Materno_Identificacion = varQuejas_de_MP.Apellido_Materno_Identificacion
+                        ,Alias = varQuejas_de_MP.Alias
                         ,Fecha_Nacimiento_Identificacion = (!String.IsNullOrEmpty(varQuejas_de_MP.Fecha_Nacimiento_Identificacion)) ? DateTime.ParseExact(varQuejas_de_MP.Fecha_Nacimiento_Identificacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Edad_Identificacion = varQuejas_de_MP.Edad_Identificacion
                         ,Genero_Identificacion = varQuejas_de_MP.Genero_Identificacion
@@ -5335,16 +5119,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Numero_Identificacion_Identificacion = varQuejas_de_MP.Numero_Identificacion_Identificacion
                         ,Nacionalidad_Identificacion = varQuejas_de_MP.Nacionalidad_Identificacion
                         ,Entidad_de_Nacimiento_Identificacion = varQuejas_de_MP.Entidad_de_Nacimiento_Identificacion
-                        ,Pais = varQuejas_de_MP.Pais
-                        ,Estado = varQuejas_de_MP.Estado
-                        ,Codigo_Postal = varQuejas_de_MP.Codigo_Postal
                         ,Municipio = varQuejas_de_MP.Municipio
+                        ,Poblacion = varQuejas_de_MP.Poblacion
                         ,Colonia = varQuejas_de_MP.Colonia
                         ,Calle = varQuejas_de_MP.Calle
                         ,Entre_Calle = varQuejas_de_MP.Entre_Calle
                         ,Y_Calle = varQuejas_de_MP.Y_Calle
                         ,Numero_Exterior = varQuejas_de_MP.Numero_Exterior
                         ,Numero_Interior = varQuejas_de_MP.Numero_Interior
+                        ,Codigo_Postal = varQuejas_de_MP.Codigo_Postal
                         ,Referencias_de_domicilio = varQuejas_de_MP.Referencias_de_domicilio
 
                     };
@@ -5733,10 +5516,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Quejas_de_MPs.Select(m => new Quejas_de_MPGridModel
             {
                 Clave = m.Clave
+                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Registro = m.Hora_de_Registro
+                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
 			,Nombre_Completo = m.Nombre_Completo
+			,Correo_Electronico = m.Correo_Electronico
+			,Celular = m.Celular
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Quejas_MP.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Quejas_MP.Descripcion
 			,Peso = m.Peso
 			,Estatura = m.Estatura
@@ -5774,28 +5562,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Situacion_FisicaDescripcion = CultureHelper.GetTraduction(m.Situacion_Fisica_Situacion_Fisica.Clave.ToString(), "Descripcion") ?? (string)m.Situacion_Fisica_Situacion_Fisica.Descripcion
 			,Otras_Senas_Particulares = m.Otras_Senas_Particulares
 			,Descripcion_de_los_Hechos = m.Descripcion_de_los_Hechos
-			,CURP = m.CURP
-                        ,GeneroDescripcion = CultureHelper.GetTraduction(m.Genero_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Genero.Descripcion
-                        ,Fecha_de_Nacimiento = (m.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
-                        ,Entidad_de_NacimientoNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Entidad_de_Nacimiento_Estado.Nombre
-			,Nombres_Hechos = m.Nombres_Hechos
-			,Apellido_Paterno_Hechos = m.Apellido_Paterno_Hechos
-			,Apellido_Materno_Hechos = m.Apellido_Materno_Hechos
-                        ,Fecha_de_Nacimiento_Hechos = (m.Fecha_de_Nacimiento_Hechos == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento_Hechos).ToString(ConfigurationProperty.DateFormat))
-			,Edad_Hechos = m.Edad_Hechos
-                        ,Genero_HechosDescripcion = CultureHelper.GetTraduction(m.Genero_Hechos_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Hechos_Genero.Descripcion
-			,Celular_Hechos = m.Celular_Hechos
-			,Correo_Hechos = m.Correo_Hechos
-                        ,Tipo_de_Identificacion_HechosNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Nombre
-			,Numero_Identificacion_Hechos = m.Numero_Identificacion_Hechos
-			,Fotografia_Identificacion = m.Fotografia_Identificacion
-                        ,Nacionalidad_HechosNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Hechos_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Hechos_Nacionalidad.NacionalidadC
-                        ,Entidad_de_Nacimiento_HechosNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Hechos_Estado.Clave.ToString(), "Nombre") ?? (string)m.Entidad_de_Nacimiento_Hechos_Estado.Nombre
+                        ,Fecha_de_los_Hechos = (m.Fecha_de_los_Hechos == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_los_Hechos).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_los_Hechos = m.Hora_de_los_Hechos
+                        ,Municipio_hechosNombre = CultureHelper.GetTraduction(m.Municipio_hechos_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_hechos_Municipio.Nombre
+                        ,Poblacion_hechosNombre = CultureHelper.GetTraduction(m.Poblacion_hechos_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_hechos_Colonia.Nombre
+                        ,Colonia_hechosNombre = CultureHelper.GetTraduction(m.Colonia_hechos_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_hechos_Colonia.Nombre
+			,Calle_hechos = m.Calle_hechos
+			,Entre_Calle_hechos = m.Entre_Calle_hechos
+			,Y_Calle_hechos = m.Y_Calle_hechos
+			,Numero_Exterior_hechos = m.Numero_Exterior_hechos
+			,Numero_Interior_hechos = m.Numero_Interior_hechos
+			,Codigo_Postal_hechos = m.Codigo_Postal_hechos
+			,Referencia = m.Referencia
 			,CURP_Identificacion = m.CURP_Identificacion
 			,Nombres_Identificacion = m.Nombres_Identificacion
 			,Apellido_Paterno_Identificacion = m.Apellido_Paterno_Identificacion
 			,Apellido_Materno_Identificacion = m.Apellido_Materno_Identificacion
+			,Alias = m.Alias
                         ,Fecha_Nacimiento_Identificacion = (m.Fecha_Nacimiento_Identificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Nacimiento_Identificacion).ToString(ConfigurationProperty.DateFormat))
 			,Edad_Identificacion = m.Edad_Identificacion
                         ,Genero_IdentificacionDescripcion = CultureHelper.GetTraduction(m.Genero_Identificacion_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Identificacion_Genero.Descripcion
@@ -5803,18 +5586,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Identificacion = m.Correo_Identificacion
                         ,Tipo_de_Identificacion_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Identificacion_Tipo_de_Identificacion.Nombre
 			,Numero_Identificacion_Identificacion = m.Numero_Identificacion_Identificacion
-                        ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Identificacion_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
+                        ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Identificacion_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
                         ,Entidad_de_Nacimiento_IdentificacionNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Identificacion_Estado.Clave.ToString(), "Estado") ?? (string)m.Entidad_de_Nacimiento_Identificacion_Estado.Nombre
-                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
-                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
-			,Codigo_Postal = m.Codigo_Postal
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_Colonia.Nombre
 			,Calle = m.Calle
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
 			,Numero_Interior = m.Numero_Interior
+			,Codigo_Postal = m.Codigo_Postal
 			,Referencias_de_domicilio = m.Referencias_de_domicilio
 
             }).ToList();
@@ -5889,10 +5671,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Quejas_de_MPs.Select(m => new Quejas_de_MPGridModel
             {
                 Clave = m.Clave
+                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Registro = m.Hora_de_Registro
+                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
 			,Nombre_Completo = m.Nombre_Completo
+			,Correo_Electronico = m.Correo_Electronico
+			,Celular = m.Celular
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Quejas_MP.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Quejas_MP.Descripcion
 			,Peso = m.Peso
 			,Estatura = m.Estatura
@@ -5930,28 +5717,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Situacion_FisicaDescripcion = CultureHelper.GetTraduction(m.Situacion_Fisica_Situacion_Fisica.Clave.ToString(), "Descripcion") ?? (string)m.Situacion_Fisica_Situacion_Fisica.Descripcion
 			,Otras_Senas_Particulares = m.Otras_Senas_Particulares
 			,Descripcion_de_los_Hechos = m.Descripcion_de_los_Hechos
-			,CURP = m.CURP
-                        ,GeneroDescripcion = CultureHelper.GetTraduction(m.Genero_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Genero.Descripcion
-                        ,Fecha_de_Nacimiento = (m.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
-                        ,Entidad_de_NacimientoNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Entidad_de_Nacimiento_Estado.Nombre
-			,Nombres_Hechos = m.Nombres_Hechos
-			,Apellido_Paterno_Hechos = m.Apellido_Paterno_Hechos
-			,Apellido_Materno_Hechos = m.Apellido_Materno_Hechos
-                        ,Fecha_de_Nacimiento_Hechos = (m.Fecha_de_Nacimiento_Hechos == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento_Hechos).ToString(ConfigurationProperty.DateFormat))
-			,Edad_Hechos = m.Edad_Hechos
-                        ,Genero_HechosDescripcion = CultureHelper.GetTraduction(m.Genero_Hechos_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Hechos_Genero.Descripcion
-			,Celular_Hechos = m.Celular_Hechos
-			,Correo_Hechos = m.Correo_Hechos
-                        ,Tipo_de_Identificacion_HechosNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Nombre
-			,Numero_Identificacion_Hechos = m.Numero_Identificacion_Hechos
-			,Fotografia_Identificacion = m.Fotografia_Identificacion
-                        ,Nacionalidad_HechosNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Hechos_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Hechos_Nacionalidad.NacionalidadC
-                        ,Entidad_de_Nacimiento_HechosNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Hechos_Estado.Clave.ToString(), "Nombre") ?? (string)m.Entidad_de_Nacimiento_Hechos_Estado.Nombre
+                        ,Fecha_de_los_Hechos = (m.Fecha_de_los_Hechos == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_los_Hechos).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_los_Hechos = m.Hora_de_los_Hechos
+                        ,Municipio_hechosNombre = CultureHelper.GetTraduction(m.Municipio_hechos_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_hechos_Municipio.Nombre
+                        ,Poblacion_hechosNombre = CultureHelper.GetTraduction(m.Poblacion_hechos_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_hechos_Colonia.Nombre
+                        ,Colonia_hechosNombre = CultureHelper.GetTraduction(m.Colonia_hechos_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_hechos_Colonia.Nombre
+			,Calle_hechos = m.Calle_hechos
+			,Entre_Calle_hechos = m.Entre_Calle_hechos
+			,Y_Calle_hechos = m.Y_Calle_hechos
+			,Numero_Exterior_hechos = m.Numero_Exterior_hechos
+			,Numero_Interior_hechos = m.Numero_Interior_hechos
+			,Codigo_Postal_hechos = m.Codigo_Postal_hechos
+			,Referencia = m.Referencia
 			,CURP_Identificacion = m.CURP_Identificacion
 			,Nombres_Identificacion = m.Nombres_Identificacion
 			,Apellido_Paterno_Identificacion = m.Apellido_Paterno_Identificacion
 			,Apellido_Materno_Identificacion = m.Apellido_Materno_Identificacion
+			,Alias = m.Alias
                         ,Fecha_Nacimiento_Identificacion = (m.Fecha_Nacimiento_Identificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Nacimiento_Identificacion).ToString(ConfigurationProperty.DateFormat))
 			,Edad_Identificacion = m.Edad_Identificacion
                         ,Genero_IdentificacionDescripcion = CultureHelper.GetTraduction(m.Genero_Identificacion_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Identificacion_Genero.Descripcion
@@ -5959,18 +5741,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Correo_Identificacion = m.Correo_Identificacion
                         ,Tipo_de_Identificacion_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Identificacion_Tipo_de_Identificacion.Nombre
 			,Numero_Identificacion_Identificacion = m.Numero_Identificacion_Identificacion
-                        ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Identificacion_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
+                        ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Identificacion_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
                         ,Entidad_de_Nacimiento_IdentificacionNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Identificacion_Estado.Clave.ToString(), "Estado") ?? (string)m.Entidad_de_Nacimiento_Identificacion_Estado.Nombre
-                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
-                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
-			,Codigo_Postal = m.Codigo_Postal
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_Colonia.Nombre
 			,Calle = m.Calle
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
 			,Numero_Interior = m.Numero_Interior
+			,Codigo_Postal = m.Codigo_Postal
 			,Referencias_de_domicilio = m.Referencias_de_domicilio
 
             }).ToList();
@@ -6011,10 +5792,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Quejas_de_MP_Datos_GeneralesInfo = new Quejas_de_MP_Datos_Generales
                 {
                     Clave = varQuejas_de_MP.Clave
-                                            ,Nombres = varQuejas_de_MP.Nombres
+                                            ,Fecha_de_Registro = (!String.IsNullOrEmpty(varQuejas_de_MP.Fecha_de_Registro)) ? DateTime.ParseExact(varQuejas_de_MP.Fecha_de_Registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Registro = varQuejas_de_MP.Hora_de_Registro
+                        ,Usuario_que_Registra = varQuejas_de_MP.Usuario_que_Registra
+                        ,Nombres = varQuejas_de_MP.Nombres
                         ,Apellido_Paterno = varQuejas_de_MP.Apellido_Paterno
                         ,Apellido_Materno = varQuejas_de_MP.Apellido_Materno
                         ,Nombre_Completo = varQuejas_de_MP.Nombre_Completo
+                        ,Correo_Electronico = varQuejas_de_MP.Correo_Electronico
+                        ,Celular = varQuejas_de_MP.Celular
                         ,Estatus = varQuejas_de_MP.Estatus
                     
                 };
@@ -6044,10 +5830,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var result = new Quejas_de_MP_Datos_GeneralesModel
                 {
                     Clave = m.Clave
+                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Registro = m.Hora_de_Registro
+                        ,Usuario_que_Registra = m.Usuario_que_Registra
+                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
 			,Nombre_Completo = m.Nombre_Completo
+			,Correo_Electronico = m.Correo_Electronico
+			,Celular = m.Celular
                         ,Estatus = m.Estatus
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Quejas_MP.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Quejas_MP.Descripcion
 
@@ -6064,7 +5856,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 		[HttpPost]
-        public ActionResult Post_Datos_de_Media_Filiacion(Quejas_de_MP_Datos_de_Media_FiliacionModel varQuejas_de_MP)
+        public ActionResult Post_Rasgos_Fisicos(Quejas_de_MP_Rasgos_FisicosModel varQuejas_de_MP)
         {
             try
             {
@@ -6089,7 +5881,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     }
 
                 var result = "";
-                var Quejas_de_MP_Datos_de_Media_FiliacionInfo = new Quejas_de_MP_Datos_de_Media_Filiacion
+                var Quejas_de_MP_Rasgos_FisicosInfo = new Quejas_de_MP_Rasgos_Fisicos
                 {
                     Clave = varQuejas_de_MP.Clave
                                             ,Peso = varQuejas_de_MP.Peso
@@ -6131,7 +5923,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     
                 };
 
-                result = _IQuejas_de_MPApiConsumer.Update_Datos_de_Media_Filiacion(Quejas_de_MP_Datos_de_Media_FiliacionInfo).Resource.ToString();
+                result = _IQuejas_de_MPApiConsumer.Update_Rasgos_Fisicos(Quejas_de_MP_Rasgos_FisicosInfo).Resource.ToString();
                 Session["KeyValueInserted"] = result;
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -6142,18 +5934,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 		
 		[HttpGet]
-        public JsonResult Get_Datos_de_Media_Filiacion(string Id)
+        public JsonResult Get_Rasgos_Fisicos(string Id)
         {     
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
             {                
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IQuejas_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var m = _IQuejas_de_MPApiConsumer.Get_Datos_de_Media_Filiacion(Id).Resource;
+                var m = _IQuejas_de_MPApiConsumer.Get_Rasgos_Fisicos(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
 				
-                var result = new Quejas_de_MP_Datos_de_Media_FiliacionModel
+                var result = new Quejas_de_MP_Rasgos_FisicosModel
                 {
                     Clave = m.Clave
 			,Peso = m.Peso
@@ -6235,58 +6027,35 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 		[HttpPost]
-        public ActionResult Post_Datos_de_los_Hechos(Quejas_de_MP_Datos_de_los_HechosModel varQuejas_de_MP)
+        public ActionResult Post_Hechos_Sucedidos(Quejas_de_MP_Hechos_SucedidosModel varQuejas_de_MP)
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IQuejas_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
-				                    if (varQuejas_de_MP.Fotografia_IdentificacionRemoveAttachment != 0 && varQuejas_de_MP.Fotografia_IdentificacionFile == null)
-                    {
-                        varQuejas_de_MP.Fotografia_Identificacion = 0;
-                    }
-
-                    if (varQuejas_de_MP.Fotografia_IdentificacionFile != null)
-                    {
-                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varQuejas_de_MP.Fotografia_IdentificacionFile);
-                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                        varQuejas_de_MP.Fotografia_Identificacion = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
-                        {
-                            File = fileAsBytes,
-                            Description = varQuejas_de_MP.Fotografia_IdentificacionFile.FileName,
-                            File_Size = fileAsBytes.Length
-                        }).Resource;
-                    }
-
+				
                 var result = "";
-                var Quejas_de_MP_Datos_de_los_HechosInfo = new Quejas_de_MP_Datos_de_los_Hechos
+                var Quejas_de_MP_Hechos_SucedidosInfo = new Quejas_de_MP_Hechos_Sucedidos
                 {
                     Clave = varQuejas_de_MP.Clave
                                             ,Descripcion_de_los_Hechos = varQuejas_de_MP.Descripcion_de_los_Hechos
-                        ,CURP = varQuejas_de_MP.CURP
-                        ,Genero = varQuejas_de_MP.Genero
-                        ,Fecha_de_Nacimiento = (!String.IsNullOrEmpty(varQuejas_de_MP.Fecha_de_Nacimiento)) ? DateTime.ParseExact(varQuejas_de_MP.Fecha_de_Nacimiento, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Nacionalidad = varQuejas_de_MP.Nacionalidad
-                        ,Entidad_de_Nacimiento = varQuejas_de_MP.Entidad_de_Nacimiento
-                        ,Nombres_Hechos = varQuejas_de_MP.Nombres_Hechos
-                        ,Apellido_Paterno_Hechos = varQuejas_de_MP.Apellido_Paterno_Hechos
-                        ,Apellido_Materno_Hechos = varQuejas_de_MP.Apellido_Materno_Hechos
-                        ,Fecha_de_Nacimiento_Hechos = (!String.IsNullOrEmpty(varQuejas_de_MP.Fecha_de_Nacimiento_Hechos)) ? DateTime.ParseExact(varQuejas_de_MP.Fecha_de_Nacimiento_Hechos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Edad_Hechos = varQuejas_de_MP.Edad_Hechos
-                        ,Genero_Hechos = varQuejas_de_MP.Genero_Hechos
-                        ,Celular_Hechos = varQuejas_de_MP.Celular_Hechos
-                        ,Correo_Hechos = varQuejas_de_MP.Correo_Hechos
-                        ,Tipo_de_Identificacion_Hechos = varQuejas_de_MP.Tipo_de_Identificacion_Hechos
-                        ,Numero_Identificacion_Hechos = varQuejas_de_MP.Numero_Identificacion_Hechos
-                        ,Fotografia_Identificacion = (varQuejas_de_MP.Fotografia_Identificacion.HasValue && varQuejas_de_MP.Fotografia_Identificacion != 0) ? ((int?)Convert.ToInt32(varQuejas_de_MP.Fotografia_Identificacion.Value)) : null
-
-                        ,Nacionalidad_Hechos = varQuejas_de_MP.Nacionalidad_Hechos
-                        ,Entidad_de_Nacimiento_Hechos = varQuejas_de_MP.Entidad_de_Nacimiento_Hechos
+                        ,Fecha_de_los_Hechos = (!String.IsNullOrEmpty(varQuejas_de_MP.Fecha_de_los_Hechos)) ? DateTime.ParseExact(varQuejas_de_MP.Fecha_de_los_Hechos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_los_Hechos = varQuejas_de_MP.Hora_de_los_Hechos
+                        ,Municipio_hechos = varQuejas_de_MP.Municipio_hechos
+                        ,Poblacion_hechos = varQuejas_de_MP.Poblacion_hechos
+                        ,Colonia_hechos = varQuejas_de_MP.Colonia_hechos
+                        ,Calle_hechos = varQuejas_de_MP.Calle_hechos
+                        ,Entre_Calle_hechos = varQuejas_de_MP.Entre_Calle_hechos
+                        ,Y_Calle_hechos = varQuejas_de_MP.Y_Calle_hechos
+                        ,Numero_Exterior_hechos = varQuejas_de_MP.Numero_Exterior_hechos
+                        ,Numero_Interior_hechos = varQuejas_de_MP.Numero_Interior_hechos
+                        ,Codigo_Postal_hechos = varQuejas_de_MP.Codigo_Postal_hechos
+                        ,Referencia = varQuejas_de_MP.Referencia
                     
                 };
 
-                result = _IQuejas_de_MPApiConsumer.Update_Datos_de_los_Hechos(Quejas_de_MP_Datos_de_los_HechosInfo).Resource.ToString();
+                result = _IQuejas_de_MPApiConsumer.Update_Hechos_Sucedidos(Quejas_de_MP_Hechos_SucedidosInfo).Resource.ToString();
                 Session["KeyValueInserted"] = result;
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -6297,46 +6066,36 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 		
 		[HttpGet]
-        public JsonResult Get_Datos_de_los_Hechos(string Id)
+        public JsonResult Get_Hechos_Sucedidos(string Id)
         {     
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
             {                
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IQuejas_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var m = _IQuejas_de_MPApiConsumer.Get_Datos_de_los_Hechos(Id).Resource;
+                var m = _IQuejas_de_MPApiConsumer.Get_Hechos_Sucedidos(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
 				
-                var result = new Quejas_de_MP_Datos_de_los_HechosModel
+                var result = new Quejas_de_MP_Hechos_SucedidosModel
                 {
                     Clave = m.Clave
 			,Descripcion_de_los_Hechos = m.Descripcion_de_los_Hechos
-			,CURP = m.CURP
-                        ,Genero = m.Genero
-                        ,GeneroDescripcion = CultureHelper.GetTraduction(m.Genero_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Genero.Descripcion
-                        ,Fecha_de_Nacimiento = (m.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,Nacionalidad = m.Nacionalidad
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
-                        ,Entidad_de_Nacimiento = m.Entidad_de_Nacimiento
-                        ,Entidad_de_NacimientoNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Estado.Clave.ToString(), "Estado") ?? (string)m.Entidad_de_Nacimiento_Estado.Nombre
-			,Nombres_Hechos = m.Nombres_Hechos
-			,Apellido_Paterno_Hechos = m.Apellido_Paterno_Hechos
-			,Apellido_Materno_Hechos = m.Apellido_Materno_Hechos
-                        ,Fecha_de_Nacimiento_Hechos = (m.Fecha_de_Nacimiento_Hechos == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento_Hechos).ToString(ConfigurationProperty.DateFormat))
-			,Edad_Hechos = m.Edad_Hechos
-                        ,Genero_Hechos = m.Genero_Hechos
-                        ,Genero_HechosDescripcion = CultureHelper.GetTraduction(m.Genero_Hechos_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Genero_Hechos_Genero.Descripcion
-			,Celular_Hechos = m.Celular_Hechos
-			,Correo_Hechos = m.Correo_Hechos
-                        ,Tipo_de_Identificacion_Hechos = m.Tipo_de_Identificacion_Hechos
-                        ,Tipo_de_Identificacion_HechosNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion.Nombre
-			,Numero_Identificacion_Hechos = m.Numero_Identificacion_Hechos
-			,Fotografia_Identificacion = m.Fotografia_Identificacion
-                        ,Nacionalidad_Hechos = m.Nacionalidad_Hechos
-                        ,Nacionalidad_HechosNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Hechos_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Hechos_Nacionalidad.NacionalidadC
-                        ,Entidad_de_Nacimiento_Hechos = m.Entidad_de_Nacimiento_Hechos
-                        ,Entidad_de_Nacimiento_HechosNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Hechos_Estado.Clave.ToString(), "Nombre") ?? (string)m.Entidad_de_Nacimiento_Hechos_Estado.Nombre
+                        ,Fecha_de_los_Hechos = (m.Fecha_de_los_Hechos == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_los_Hechos).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_los_Hechos = m.Hora_de_los_Hechos
+                        ,Municipio_hechos = m.Municipio_hechos
+                        ,Municipio_hechosNombre = CultureHelper.GetTraduction(m.Municipio_hechos_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_hechos_Municipio.Nombre
+                        ,Poblacion_hechos = m.Poblacion_hechos
+                        ,Poblacion_hechosNombre = CultureHelper.GetTraduction(m.Poblacion_hechos_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_hechos_Colonia.Nombre
+                        ,Colonia_hechos = m.Colonia_hechos
+                        ,Colonia_hechosNombre = CultureHelper.GetTraduction(m.Colonia_hechos_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_hechos_Colonia.Nombre
+			,Calle_hechos = m.Calle_hechos
+			,Entre_Calle_hechos = m.Entre_Calle_hechos
+			,Y_Calle_hechos = m.Y_Calle_hechos
+			,Numero_Exterior_hechos = m.Numero_Exterior_hechos
+			,Numero_Interior_hechos = m.Numero_Interior_hechos
+			,Codigo_Postal_hechos = m.Codigo_Postal_hechos
+			,Referencia = m.Referencia
 
                     
                 };
@@ -6351,7 +6110,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 		[HttpPost]
-        public ActionResult Post_Datos_de_Identificacion(Quejas_de_MP_Datos_de_IdentificacionModel varQuejas_de_MP)
+        public ActionResult Post_Identificacion_del_Servidor_Publico(Quejas_de_MP_Identificacion_del_Servidor_PublicoModel varQuejas_de_MP)
         {
             try
             {
@@ -6360,13 +6119,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 _IQuejas_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
 				
                 var result = "";
-                var Quejas_de_MP_Datos_de_IdentificacionInfo = new Quejas_de_MP_Datos_de_Identificacion
+                var Quejas_de_MP_Identificacion_del_Servidor_PublicoInfo = new Quejas_de_MP_Identificacion_del_Servidor_Publico
                 {
                     Clave = varQuejas_de_MP.Clave
                                             ,CURP_Identificacion = varQuejas_de_MP.CURP_Identificacion
                         ,Nombres_Identificacion = varQuejas_de_MP.Nombres_Identificacion
                         ,Apellido_Paterno_Identificacion = varQuejas_de_MP.Apellido_Paterno_Identificacion
                         ,Apellido_Materno_Identificacion = varQuejas_de_MP.Apellido_Materno_Identificacion
+                        ,Alias = varQuejas_de_MP.Alias
                         ,Fecha_Nacimiento_Identificacion = (!String.IsNullOrEmpty(varQuejas_de_MP.Fecha_Nacimiento_Identificacion)) ? DateTime.ParseExact(varQuejas_de_MP.Fecha_Nacimiento_Identificacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Edad_Identificacion = varQuejas_de_MP.Edad_Identificacion
                         ,Genero_Identificacion = varQuejas_de_MP.Genero_Identificacion
@@ -6379,7 +6139,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     
                 };
 
-                result = _IQuejas_de_MPApiConsumer.Update_Datos_de_Identificacion(Quejas_de_MP_Datos_de_IdentificacionInfo).Resource.ToString();
+                result = _IQuejas_de_MPApiConsumer.Update_Identificacion_del_Servidor_Publico(Quejas_de_MP_Identificacion_del_Servidor_PublicoInfo).Resource.ToString();
                 Session["KeyValueInserted"] = result;
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -6390,24 +6150,25 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 		
 		[HttpGet]
-        public JsonResult Get_Datos_de_Identificacion(string Id)
+        public JsonResult Get_Identificacion_del_Servidor_Publico(string Id)
         {     
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
             {                
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IQuejas_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var m = _IQuejas_de_MPApiConsumer.Get_Datos_de_Identificacion(Id).Resource;
+                var m = _IQuejas_de_MPApiConsumer.Get_Identificacion_del_Servidor_Publico(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
 				
-                var result = new Quejas_de_MP_Datos_de_IdentificacionModel
+                var result = new Quejas_de_MP_Identificacion_del_Servidor_PublicoModel
                 {
                     Clave = m.Clave
 			,CURP_Identificacion = m.CURP_Identificacion
 			,Nombres_Identificacion = m.Nombres_Identificacion
 			,Apellido_Paterno_Identificacion = m.Apellido_Paterno_Identificacion
 			,Apellido_Materno_Identificacion = m.Apellido_Materno_Identificacion
+			,Alias = m.Alias
                         ,Fecha_Nacimiento_Identificacion = (m.Fecha_Nacimiento_Identificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Nacimiento_Identificacion).ToString(ConfigurationProperty.DateFormat))
 			,Edad_Identificacion = m.Edad_Identificacion
                         ,Genero_Identificacion = m.Genero_Identificacion
@@ -6418,7 +6179,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Identificacion_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Identificacion_Tipo_de_Identificacion.Nombre
 			,Numero_Identificacion_Identificacion = m.Numero_Identificacion_Identificacion
                         ,Nacionalidad_Identificacion = m.Nacionalidad_Identificacion
-                        ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Identificacion_Nacionalidad.Clave.ToString(), "NacionalidadC") ?? (string)m.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
+                        ,Nacionalidad_IdentificacionNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Identificacion_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Identificacion_Nacionalidad.NacionalidadC
                         ,Entidad_de_Nacimiento_Identificacion = m.Entidad_de_Nacimiento_Identificacion
                         ,Entidad_de_Nacimiento_IdentificacionNombre = CultureHelper.GetTraduction(m.Entidad_de_Nacimiento_Identificacion_Estado.Clave.ToString(), "Estado") ?? (string)m.Entidad_de_Nacimiento_Identificacion_Estado.Nombre
 
@@ -6435,7 +6196,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 		[HttpPost]
-        public ActionResult Post_Datos_de_Domicilio(Quejas_de_MP_Datos_de_DomicilioModel varQuejas_de_MP)
+        public ActionResult Post_Domicilio_del_Servidor_Publico(Quejas_de_MP_Domicilio_del_Servidor_PublicoModel varQuejas_de_MP)
         {
             try
             {
@@ -6444,24 +6205,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 _IQuejas_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
 				
                 var result = "";
-                var Quejas_de_MP_Datos_de_DomicilioInfo = new Quejas_de_MP_Datos_de_Domicilio
+                var Quejas_de_MP_Domicilio_del_Servidor_PublicoInfo = new Quejas_de_MP_Domicilio_del_Servidor_Publico
                 {
                     Clave = varQuejas_de_MP.Clave
-                                            ,Pais = varQuejas_de_MP.Pais
-                        ,Estado = varQuejas_de_MP.Estado
-                        ,Codigo_Postal = varQuejas_de_MP.Codigo_Postal
-                        ,Municipio = varQuejas_de_MP.Municipio
+                                            ,Municipio = varQuejas_de_MP.Municipio
+                        ,Poblacion = varQuejas_de_MP.Poblacion
                         ,Colonia = varQuejas_de_MP.Colonia
                         ,Calle = varQuejas_de_MP.Calle
                         ,Entre_Calle = varQuejas_de_MP.Entre_Calle
                         ,Y_Calle = varQuejas_de_MP.Y_Calle
                         ,Numero_Exterior = varQuejas_de_MP.Numero_Exterior
                         ,Numero_Interior = varQuejas_de_MP.Numero_Interior
+                        ,Codigo_Postal = varQuejas_de_MP.Codigo_Postal
                         ,Referencias_de_domicilio = varQuejas_de_MP.Referencias_de_domicilio
                     
                 };
 
-                result = _IQuejas_de_MPApiConsumer.Update_Datos_de_Domicilio(Quejas_de_MP_Datos_de_DomicilioInfo).Resource.ToString();
+                result = _IQuejas_de_MPApiConsumer.Update_Domicilio_del_Servidor_Publico(Quejas_de_MP_Domicilio_del_Servidor_PublicoInfo).Resource.ToString();
                 Session["KeyValueInserted"] = result;
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -6472,27 +6232,24 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 		
 		[HttpGet]
-        public JsonResult Get_Datos_de_Domicilio(string Id)
+        public JsonResult Get_Domicilio_del_Servidor_Publico(string Id)
         {     
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
             {                
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IQuejas_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var m = _IQuejas_de_MPApiConsumer.Get_Datos_de_Domicilio(Id).Resource;
+                var m = _IQuejas_de_MPApiConsumer.Get_Domicilio_del_Servidor_Publico(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
 				
-                var result = new Quejas_de_MP_Datos_de_DomicilioModel
+                var result = new Quejas_de_MP_Domicilio_del_Servidor_PublicoModel
                 {
                     Clave = m.Clave
-                        ,Pais = m.Pais
-                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
-                        ,Estado = m.Estado
-                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
-			,Codigo_Postal = m.Codigo_Postal
                         ,Municipio = m.Municipio
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,Poblacion = m.Poblacion
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,Colonia = m.Colonia
                         ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Colonia_Colonia.Nombre
 			,Calle = m.Calle
@@ -6500,6 +6257,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
 			,Numero_Interior = m.Numero_Interior
+			,Codigo_Postal = m.Codigo_Postal
 			,Referencias_de_domicilio = m.Referencias_de_domicilio
 
                     

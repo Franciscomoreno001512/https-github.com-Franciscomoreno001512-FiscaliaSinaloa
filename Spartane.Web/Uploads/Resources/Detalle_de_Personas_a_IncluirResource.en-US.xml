@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Personas_a_Incluir" value="Detalle de Personas a Incluir"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Persona" value="Persona"></resource>
+  <resource culture="en-US" name="Seleccionar" value="Seleccionar"></resource>
+  <resource culture="en-US" name="PersonaId" value="PersonaId"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

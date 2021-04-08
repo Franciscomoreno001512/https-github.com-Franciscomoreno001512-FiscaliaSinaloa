@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" standalone="yes"?>
 <resources>
-  <resource culture="es-es" name="Datos_de_los_Hechos_PC" value="Datos de los Hechos PC"></resource>
+  <resource culture="es-es" name="Datos_de_los_Hechos_PC" value="Proporcione los datos de los hechos"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
-  <resource culture="es-es" name="Solicitud" value="Solicitud"></resource>
-  <resource culture="es-es" name="Tipo_de_Solicitud" value="Tipo de Solicitud"></resource>
+  <resource culture="es-es" name="Solicitud" value="Pre-denuncia"></resource>
   <resource culture="es-es" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>
   <resource culture="es-es" name="Narrativa_Breve_de_los_Hechos" value="Narrativa Breve de los Hechos"></resource>
   <resource culture="es-es" name="Fecha_del_Hecho" value="Fecha del Hecho"></resource>
@@ -28,6 +27,6 @@
   <resource culture="es-es" name="Es_una_direccion_exacta_o_aproximada" value="¿Es una dirección exacta o apróximada?"></resource>
 
 <resource culture="es-es" name="TabDatos_de_los_hechos" value="Datos de los hechos"></resource>
-<resource culture="es-es" name="TabDomicilio_de_los_Hechos" value="Domicilio de los Hechos"></resource>
+<resource culture="es-es" name="TabLugar_de_los_Hechos" value="Lugar de los Hechos"></resource>
 
 </resources>

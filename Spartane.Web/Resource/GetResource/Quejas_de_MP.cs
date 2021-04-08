@@ -36,6 +36,36 @@ namespace Resources
             }
         }
 
+        /// <summary>Fecha_de_Registro</summary>
+        public static string Fecha_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderQuejas_de_MP.GetResource("Fecha_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_de_Registro</summary>
+        public static string Hora_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderQuejas_de_MP.GetResource("Hora_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Usuario_que_Registra</summary>
+        public static string Usuario_que_Registra
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderQuejas_de_MP.GetResource("Usuario_que_Registra", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Nombres</summary>
         public static string Nombres
         {
@@ -73,6 +103,26 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderQuejas_de_MP.GetResource("Nombre_Completo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Correo_Electronico</summary>
+        public static string Correo_Electronico
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderQuejas_de_MP.GetResource("Correo_Electronico", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Celular</summary>
+        public static string Celular
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderQuejas_de_MP.GetResource("Celular", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -446,183 +496,123 @@ namespace Resources
             }
         }
 
-        /// <summary>CURP</summary>
-        public static string CURP
+        /// <summary>Fecha_de_los_Hechos</summary>
+        public static string Fecha_de_los_Hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("CURP", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Fecha_de_los_Hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Genero</summary>
-        public static string Genero
+        /// <summary>Hora_de_los_Hechos</summary>
+        public static string Hora_de_los_Hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Genero", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Hora_de_los_Hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Fecha_de_Nacimiento</summary>
-        public static string Fecha_de_Nacimiento
+        /// <summary>Municipio_hechos</summary>
+        public static string Municipio_hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Fecha_de_Nacimiento", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Municipio_hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Nacionalidad</summary>
-        public static string Nacionalidad
+        /// <summary>Poblacion_hechos</summary>
+        public static string Poblacion_hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Nacionalidad", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Poblacion_hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Entidad_de_Nacimiento</summary>
-        public static string Entidad_de_Nacimiento
+        /// <summary>Colonia_hechos</summary>
+        public static string Colonia_hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Entidad_de_Nacimiento", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Colonia_hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Nombres_Hechos</summary>
-        public static string Nombres_Hechos
+        /// <summary>Calle_hechos</summary>
+        public static string Calle_hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Nombres_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Calle_hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Apellido_Paterno_Hechos</summary>
-        public static string Apellido_Paterno_Hechos
+        /// <summary>Entre_Calle_hechos</summary>
+        public static string Entre_Calle_hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Apellido_Paterno_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Entre_Calle_hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Apellido_Materno_Hechos</summary>
-        public static string Apellido_Materno_Hechos
+        /// <summary>Y_Calle_hechos</summary>
+        public static string Y_Calle_hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Apellido_Materno_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Y_Calle_hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Fecha_de_Nacimiento_Hechos</summary>
-        public static string Fecha_de_Nacimiento_Hechos
+        /// <summary>Numero_Exterior_hechos</summary>
+        public static string Numero_Exterior_hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Fecha_de_Nacimiento_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Numero_Exterior_hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Edad_Hechos</summary>
-        public static string Edad_Hechos
+        /// <summary>Numero_Interior_hechos</summary>
+        public static string Numero_Interior_hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Edad_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Numero_Interior_hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Genero_Hechos</summary>
-        public static string Genero_Hechos
+        /// <summary>Codigo_Postal_hechos</summary>
+        public static string Codigo_Postal_hechos
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Genero_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Codigo_Postal_hechos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Celular_Hechos</summary>
-        public static string Celular_Hechos
+        /// <summary>Referencia</summary>
+        public static string Referencia
         {
             get
             {
                 SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Celular_Hechos", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Correo_Hechos</summary>
-        public static string Correo_Hechos
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Correo_Hechos", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Tipo_de_Identificacion_Hechos</summary>
-        public static string Tipo_de_Identificacion_Hechos
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Tipo_de_Identificacion_Hechos", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Numero_Identificacion_Hechos</summary>
-        public static string Numero_Identificacion_Hechos
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Numero_Identificacion_Hechos", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Fotografia_Identificacion</summary>
-        public static string Fotografia_Identificacion
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Fotografia_Identificacion", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Nacionalidad_Hechos</summary>
-        public static string Nacionalidad_Hechos
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Nacionalidad_Hechos", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Entidad_de_Nacimiento_Hechos</summary>
-        public static string Entidad_de_Nacimiento_Hechos
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Entidad_de_Nacimiento_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderQuejas_de_MP.GetResource("Referencia", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -663,6 +653,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderQuejas_de_MP.GetResource("Apellido_Materno_Identificacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Alias</summary>
+        public static string Alias
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderQuejas_de_MP.GetResource("Alias", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -756,36 +756,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Pais</summary>
-        public static string Pais
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Pais", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Estado</summary>
-        public static string Estado
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Estado", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Codigo_Postal</summary>
-        public static string Codigo_Postal
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderQuejas_de_MP.GetResource("Codigo_Postal", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Municipio</summary>
         public static string Municipio
         {
@@ -793,6 +763,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderQuejas_de_MP.GetResource("Municipio", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Poblacion</summary>
+        public static string Poblacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderQuejas_de_MP.GetResource("Poblacion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -856,6 +836,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Codigo_Postal</summary>
+        public static string Codigo_Postal
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderQuejas_de_MP.GetResource("Codigo_Postal", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Referencias_de_domicilio</summary>
         public static string Referencias_de_domicilio
         {
@@ -868,10 +858,10 @@ namespace Resources
 
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderQuejas_de_MP.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Datos de Media Filiación</summary>	public static string TabDatos_de_Media_Filiacion 	{		get		{			SetPath();  			return resourceProviderQuejas_de_MP.GetResource("TabDatos_de_Media_Filiacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Datos de los Hechos</summary>	public static string TabDatos_de_los_Hechos 	{		get		{			SetPath();  			return resourceProviderQuejas_de_MP.GetResource("TabDatos_de_los_Hechos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Datos de Identificación</summary>	public static string TabDatos_de_Identificacion 	{		get		{			SetPath();  			return resourceProviderQuejas_de_MP.GetResource("TabDatos_de_Identificacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Datos de Domicilio</summary>	public static string TabDatos_de_Domicilio 	{		get		{			SetPath();  			return resourceProviderQuejas_de_MP.GetResource("TabDatos_de_Domicilio", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Rasgos Físicos</summary>	public static string TabRasgos_Fisicos 	{		get		{			SetPath();  			return resourceProviderQuejas_de_MP.GetResource("TabRasgos_Fisicos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Hechos Sucedidos</summary>	public static string TabHechos_Sucedidos 	{		get		{			SetPath();  			return resourceProviderQuejas_de_MP.GetResource("TabHechos_Sucedidos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Identificación del Servidor Público</summary>	public static string TabIdentificacion_del_Servidor_Publico 	{		get		{			SetPath();  			return resourceProviderQuejas_de_MP.GetResource("TabIdentificacion_del_Servidor_Publico", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Domicilio del Servidor Público</summary>	public static string TabDomicilio_del_Servidor_Publico 	{		get		{			SetPath();  			return resourceProviderQuejas_de_MP.GetResource("TabDomicilio_del_Servidor_Publico", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
     }
 }

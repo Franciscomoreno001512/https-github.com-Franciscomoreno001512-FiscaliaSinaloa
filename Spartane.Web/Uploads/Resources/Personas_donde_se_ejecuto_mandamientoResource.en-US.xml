@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Personas_donde_se_ejecuto_mandamiento" value="Personas donde se ejecutó mandamiento"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Persona" value="Persona"></resource>
+  <resource culture="en-US" name="Seleccionar" value="Seleccionar"></resource>
+  <resource culture="en-US" name="PersonaId" value="PersonaId"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

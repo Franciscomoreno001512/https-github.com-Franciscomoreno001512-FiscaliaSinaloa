@@ -150,6 +150,12 @@
        Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
    }
 }
+@*fjmore portal*@
+<style>
+    #page-wrapper {
+        margin: 0px !important;
+    }
+</style>
 <div class="loading style-2"><div class="loading-wheel"></div></div>
 <div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
     <div class="modal-dialog">
@@ -185,7 +191,8 @@
                     </a>
                 </button>
             </h2>
-            <ol class="breadcrumb">
+            @*fjmore portal*@
+            @*<ol class="breadcrumb">
                 <li>
                     <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
                 </li>
@@ -198,12 +205,12 @@
                 {
                     <strong>@Resources.Probable_Responsable_PCResources.Probable_Responsable_PC</strong>
                 }
-                
+
             </li>
                 <li class="active">
                     <strong>@Resources.Resources.Create</strong>
                 </li>
-            </ol>
+        </ol>*@
         </div>
         <div class="col-lg-2">
 
@@ -1771,8 +1778,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45714');
-		    
-		   
+            //fjmore portal
+            $(".fa-bars").parent().hide();
+
                         $('#Fecha_de_Nacimiento').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,

@@ -5475,8 +5475,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Pais.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
+                //var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Pais.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+
+                //fjmore
+                var elWhere = " (cast(Pais.Clave as nvarchar(max)) COLLATE Latin1_general_CI_AI LIKE '%" + query.Trim() + "%' COLLATE Latin1_general_CI_AI or cast((Pais.Nombre) as nvarchar(max)) COLLATE Latin1_general_CI_AI LIKE '%" + query.Trim() + "%' COLLATE Latin1_general_CI_AI) " + where;
+
+                elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IPaisApiConsumer.ListaSelAll(1, 20,elWhere , " Pais.Nombre ASC ").Resource;
                
                 foreach (var item in result.Paiss)

@@ -12,10 +12,16 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public string Fecha_de_Registro { get; set; }
+        public string Hora_de_Registro { get; set; }
+        public int? Usuario_que_Registra { get; set; }
+        public string Usuario_que_RegistraName { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
         public string Nombre_Completo { get; set; }
+        public string Correo_Electronico { get; set; }
+        public string Celular { get; set; }
         public int? Estatus { get; set; }
         public string EstatusDescripcion { get; set; }
         public string Peso { get; set; }
@@ -86,38 +92,27 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Situacion_FisicaDescripcion { get; set; }
         public string Otras_Senas_Particulares { get; set; }
         public string Descripcion_de_los_Hechos { get; set; }
-        public string CURP { get; set; }
-        public int? Genero { get; set; }
-        public string GeneroDescripcion { get; set; }
-        public string Fecha_de_Nacimiento { get; set; }
-        public int? Nacionalidad { get; set; }
-        public string NacionalidadNacionalidadC { get; set; }
-        public int? Entidad_de_Nacimiento { get; set; }
-        public string Entidad_de_NacimientoNombre { get; set; }
-        public string Nombres_Hechos { get; set; }
-        public string Apellido_Paterno_Hechos { get; set; }
-        public string Apellido_Materno_Hechos { get; set; }
-        public string Fecha_de_Nacimiento_Hechos { get; set; }
+        public string Fecha_de_los_Hechos { get; set; }
+        public string Hora_de_los_Hechos { get; set; }
+        public int? Municipio_hechos { get; set; }
+        public string Municipio_hechosNombre { get; set; }
+        public int? Poblacion_hechos { get; set; }
+        public string Poblacion_hechosNombre { get; set; }
+        public int? Colonia_hechos { get; set; }
+        public string Colonia_hechosNombre { get; set; }
+        public string Calle_hechos { get; set; }
+        public string Entre_Calle_hechos { get; set; }
+        public string Y_Calle_hechos { get; set; }
+        public string Numero_Exterior_hechos { get; set; }
+        public string Numero_Interior_hechos { get; set; }
         [Range(0, 9999999999)]
-        public int? Edad_Hechos { get; set; }
-        public int? Genero_Hechos { get; set; }
-        public string Genero_HechosDescripcion { get; set; }
-        public string Celular_Hechos { get; set; }
-        public string Correo_Hechos { get; set; }
-        public int? Tipo_de_Identificacion_Hechos { get; set; }
-        public string Tipo_de_Identificacion_HechosNombre { get; set; }
-        public string Numero_Identificacion_Hechos { get; set; }
-        public int? Fotografia_Identificacion { get; set; }
-        public HttpPostedFileBase Fotografia_IdentificacionFile { set; get; }
-        public int Fotografia_IdentificacionRemoveAttachment { set; get; }
-        public int? Nacionalidad_Hechos { get; set; }
-        public string Nacionalidad_HechosNacionalidadC { get; set; }
-        public int? Entidad_de_Nacimiento_Hechos { get; set; }
-        public string Entidad_de_Nacimiento_HechosNombre { get; set; }
+        public int? Codigo_Postal_hechos { get; set; }
+        public string Referencia { get; set; }
         public string CURP_Identificacion { get; set; }
         public string Nombres_Identificacion { get; set; }
         public string Apellido_Paterno_Identificacion { get; set; }
         public string Apellido_Materno_Identificacion { get; set; }
+        public string Alias { get; set; }
         public string Fecha_Nacimiento_Identificacion { get; set; }
         [Range(0, 9999999999)]
         public int? Edad_Identificacion { get; set; }
@@ -132,13 +127,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Nacionalidad_IdentificacionNacionalidadC { get; set; }
         public int? Entidad_de_Nacimiento_Identificacion { get; set; }
         public string Entidad_de_Nacimiento_IdentificacionNombre { get; set; }
-        public int? Pais { get; set; }
-        public string PaisNombre { get; set; }
-        public int? Estado { get; set; }
-        public string EstadoNombre { get; set; }
-        public string Codigo_Postal { get; set; }
         public int? Municipio { get; set; }
         public string MunicipioNombre { get; set; }
+        public int? Poblacion { get; set; }
+        public string PoblacionNombre { get; set; }
         public int? Colonia { get; set; }
         public string ColoniaNombre { get; set; }
         public string Calle { get; set; }
@@ -146,6 +138,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Y_Calle { get; set; }
         public string Numero_Exterior { get; set; }
         public string Numero_Interior { get; set; }
+        public string Codigo_Postal { get; set; }
         public string Referencias_de_domicilio { get; set; }
 
     }
@@ -154,16 +147,22 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public string Fecha_de_Registro { get; set; }
+        public string Hora_de_Registro { get; set; }
+        public int? Usuario_que_Registra { get; set; }
+        public string Usuario_que_RegistraName { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
         public string Nombre_Completo { get; set; }
+        public string Correo_Electronico { get; set; }
+        public string Celular { get; set; }
         public int? Estatus { get; set; }
         public string EstatusDescripcion { get; set; }
 
     }
 
-	public class Quejas_de_MP_Datos_de_Media_FiliacionModel
+	public class Quejas_de_MP_Rasgos_FisicosModel
     {
         [Required]
         public int Clave { get; set; }
@@ -237,43 +236,31 @@ namespace Spartane.Web.Areas.Frontal.Models
 
     }
 
-	public class Quejas_de_MP_Datos_de_los_HechosModel
+	public class Quejas_de_MP_Hechos_SucedidosModel
     {
         [Required]
         public int Clave { get; set; }
         public string Descripcion_de_los_Hechos { get; set; }
-        public string CURP { get; set; }
-        public int? Genero { get; set; }
-        public string GeneroDescripcion { get; set; }
-        public string Fecha_de_Nacimiento { get; set; }
-        public int? Nacionalidad { get; set; }
-        public string NacionalidadNacionalidadC { get; set; }
-        public int? Entidad_de_Nacimiento { get; set; }
-        public string Entidad_de_NacimientoNombre { get; set; }
-        public string Nombres_Hechos { get; set; }
-        public string Apellido_Paterno_Hechos { get; set; }
-        public string Apellido_Materno_Hechos { get; set; }
-        public string Fecha_de_Nacimiento_Hechos { get; set; }
+        public string Fecha_de_los_Hechos { get; set; }
+        public string Hora_de_los_Hechos { get; set; }
+        public int? Municipio_hechos { get; set; }
+        public string Municipio_hechosNombre { get; set; }
+        public int? Poblacion_hechos { get; set; }
+        public string Poblacion_hechosNombre { get; set; }
+        public int? Colonia_hechos { get; set; }
+        public string Colonia_hechosNombre { get; set; }
+        public string Calle_hechos { get; set; }
+        public string Entre_Calle_hechos { get; set; }
+        public string Y_Calle_hechos { get; set; }
+        public string Numero_Exterior_hechos { get; set; }
+        public string Numero_Interior_hechos { get; set; }
         [Range(0, 9999999999)]
-        public int? Edad_Hechos { get; set; }
-        public int? Genero_Hechos { get; set; }
-        public string Genero_HechosDescripcion { get; set; }
-        public string Celular_Hechos { get; set; }
-        public string Correo_Hechos { get; set; }
-        public int? Tipo_de_Identificacion_Hechos { get; set; }
-        public string Tipo_de_Identificacion_HechosNombre { get; set; }
-        public string Numero_Identificacion_Hechos { get; set; }
-        public int? Fotografia_Identificacion { get; set; }
-        public HttpPostedFileBase Fotografia_IdentificacionFile { set; get; }
-        public int Fotografia_IdentificacionRemoveAttachment { set; get; }
-        public int? Nacionalidad_Hechos { get; set; }
-        public string Nacionalidad_HechosNacionalidadC { get; set; }
-        public int? Entidad_de_Nacimiento_Hechos { get; set; }
-        public string Entidad_de_Nacimiento_HechosNombre { get; set; }
+        public int? Codigo_Postal_hechos { get; set; }
+        public string Referencia { get; set; }
 
     }
 
-	public class Quejas_de_MP_Datos_de_IdentificacionModel
+	public class Quejas_de_MP_Identificacion_del_Servidor_PublicoModel
     {
         [Required]
         public int Clave { get; set; }
@@ -281,6 +268,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Nombres_Identificacion { get; set; }
         public string Apellido_Paterno_Identificacion { get; set; }
         public string Apellido_Materno_Identificacion { get; set; }
+        public string Alias { get; set; }
         public string Fecha_Nacimiento_Identificacion { get; set; }
         [Range(0, 9999999999)]
         public int? Edad_Identificacion { get; set; }
@@ -298,17 +286,14 @@ namespace Spartane.Web.Areas.Frontal.Models
 
     }
 
-	public class Quejas_de_MP_Datos_de_DomicilioModel
+	public class Quejas_de_MP_Domicilio_del_Servidor_PublicoModel
     {
         [Required]
         public int Clave { get; set; }
-        public int? Pais { get; set; }
-        public string PaisNombre { get; set; }
-        public int? Estado { get; set; }
-        public string EstadoNombre { get; set; }
-        public string Codigo_Postal { get; set; }
         public int? Municipio { get; set; }
         public string MunicipioNombre { get; set; }
+        public int? Poblacion { get; set; }
+        public string PoblacionNombre { get; set; }
         public int? Colonia { get; set; }
         public string ColoniaNombre { get; set; }
         public string Calle { get; set; }
@@ -316,6 +301,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Y_Calle { get; set; }
         public string Numero_Exterior { get; set; }
         public string Numero_Interior { get; set; }
+        public string Codigo_Postal { get; set; }
         public string Referencias_de_domicilio { get; set; }
 
     }

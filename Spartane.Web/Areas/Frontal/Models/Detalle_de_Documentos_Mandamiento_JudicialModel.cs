@@ -12,9 +12,12 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public int? Registro_de_Orden_de_Aprehension { get; set; }
+        public string Registro_de_Orden_de_AprehensionNumero_de_Mandamiento { get; set; }
         public int? Documentos { get; set; }
         public HttpPostedFileBase DocumentosFile { set; get; }
         public int DocumentosRemoveAttachment { set; get; }
+        public string Descripcion { get; set; }
 
     }
 	
@@ -22,9 +25,12 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public int? Registro_de_Orden_de_Aprehension { get; set; }
+        public string Registro_de_Orden_de_AprehensionNumero_de_Mandamiento { get; set; }
         public int? Documentos { get; set; }
         public HttpPostedFileBase DocumentosFile { set; get; }
         public int DocumentosRemoveAttachment { set; get; }
+        public string Descripcion { get; set; }
 
     }
 

@@ -12,7 +12,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Quejas_de_MPAdvanceSearchModel()
         {
             Imagen_Tatuaje = RadioOptions.NoApply;
-            Fotografia_Identificacion = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -20,6 +19,19 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
         [IsNumberAfterAttribute("FromClave", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToClave { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_de_Registro { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_de_Registro", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_de_Registro { set; get; }
+
+        public string ToHora_de_Registro { set; get; }
+        public string FromHora_de_Registro { set; get; }
+
+        public Filters Usuario_que_RegistraFilter { set; get; }
+        public string AdvanceUsuario_que_Registra { set; get; }
+        public int[] AdvanceUsuario_que_RegistraMultiple { set; get; }
 
         public Filters NombresFilter { set; get; }
         public string Nombres { set; get; }
@@ -32,6 +44,12 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters Nombre_CompletoFilter { set; get; }
         public string Nombre_Completo { set; get; }
+
+        public Filters Correo_ElectronicoFilter { set; get; }
+        public string Correo_Electronico { set; get; }
+
+        public Filters CelularFilter { set; get; }
+        public string Celular { set; get; }
 
         public Filters EstatusFilter { set; get; }
         public string AdvanceEstatus { set; get; }
@@ -174,74 +192,50 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Descripcion_de_los_HechosFilter { set; get; }
         public string Descripcion_de_los_Hechos { set; get; }
 
-        public Filters CURPFilter { set; get; }
-        public string CURP { set; get; }
-
-        public Filters GeneroFilter { set; get; }
-        public string AdvanceGenero { set; get; }
-        public int[] AdvanceGeneroMultiple { set; get; }
-
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_Nacimiento { set; get; }
+        public string FromFecha_de_los_Hechos { set; get; }
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_Nacimiento", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_Nacimiento { set; get; }
+        [IsDateAfter("FromFecha_de_los_Hechos", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_de_los_Hechos { set; get; }
 
-        public Filters NacionalidadFilter { set; get; }
-        public string AdvanceNacionalidad { set; get; }
-        public int[] AdvanceNacionalidadMultiple { set; get; }
+        public string ToHora_de_los_Hechos { set; get; }
+        public string FromHora_de_los_Hechos { set; get; }
 
-        public Filters Entidad_de_NacimientoFilter { set; get; }
-        public string AdvanceEntidad_de_Nacimiento { set; get; }
-        public int[] AdvanceEntidad_de_NacimientoMultiple { set; get; }
+        public Filters Municipio_hechosFilter { set; get; }
+        public string AdvanceMunicipio_hechos { set; get; }
+        public int[] AdvanceMunicipio_hechosMultiple { set; get; }
 
-        public Filters Nombres_HechosFilter { set; get; }
-        public string Nombres_Hechos { set; get; }
+        public Filters Poblacion_hechosFilter { set; get; }
+        public string AdvancePoblacion_hechos { set; get; }
+        public int[] AdvancePoblacion_hechosMultiple { set; get; }
 
-        public Filters Apellido_Paterno_HechosFilter { set; get; }
-        public string Apellido_Paterno_Hechos { set; get; }
+        public Filters Colonia_hechosFilter { set; get; }
+        public string AdvanceColonia_hechos { set; get; }
+        public int[] AdvanceColonia_hechosMultiple { set; get; }
 
-        public Filters Apellido_Materno_HechosFilter { set; get; }
-        public string Apellido_Materno_Hechos { set; get; }
+        public Filters Calle_hechosFilter { set; get; }
+        public string Calle_hechos { set; get; }
 
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_Nacimiento_Hechos { set; get; }
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_Nacimiento_Hechos", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_Nacimiento_Hechos { set; get; }
+        public Filters Entre_Calle_hechosFilter { set; get; }
+        public string Entre_Calle_hechos { set; get; }
+
+        public Filters Y_Calle_hechosFilter { set; get; }
+        public string Y_Calle_hechos { set; get; }
+
+        public Filters Numero_Exterior_hechosFilter { set; get; }
+        public string Numero_Exterior_hechos { set; get; }
+
+        public Filters Numero_Interior_hechosFilter { set; get; }
+        public string Numero_Interior_hechos { set; get; }
 
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        public string FromEdad_Hechos { set; get; }
+        public string FromCodigo_Postal_hechos { set; get; }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        [IsNumberAfterAttribute("FromEdad_Hechos", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToEdad_Hechos { set; get; }
+        [IsNumberAfterAttribute("FromCodigo_Postal_hechos", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToCodigo_Postal_hechos { set; get; }
 
-        public Filters Genero_HechosFilter { set; get; }
-        public string AdvanceGenero_Hechos { set; get; }
-        public int[] AdvanceGenero_HechosMultiple { set; get; }
-
-        public Filters Celular_HechosFilter { set; get; }
-        public string Celular_Hechos { set; get; }
-
-        public Filters Correo_HechosFilter { set; get; }
-        public string Correo_Hechos { set; get; }
-
-        public Filters Tipo_de_Identificacion_HechosFilter { set; get; }
-        public string AdvanceTipo_de_Identificacion_Hechos { set; get; }
-        public int[] AdvanceTipo_de_Identificacion_HechosMultiple { set; get; }
-
-        public Filters Numero_Identificacion_HechosFilter { set; get; }
-        public string Numero_Identificacion_Hechos { set; get; }
-
-        public RadioOptions Fotografia_Identificacion { set; get; }
-
-        public Filters Nacionalidad_HechosFilter { set; get; }
-        public string AdvanceNacionalidad_Hechos { set; get; }
-        public int[] AdvanceNacionalidad_HechosMultiple { set; get; }
-
-        public Filters Entidad_de_Nacimiento_HechosFilter { set; get; }
-        public string AdvanceEntidad_de_Nacimiento_Hechos { set; get; }
-        public int[] AdvanceEntidad_de_Nacimiento_HechosMultiple { set; get; }
+        public Filters ReferenciaFilter { set; get; }
+        public string Referencia { set; get; }
 
         public Filters CURP_IdentificacionFilter { set; get; }
         public string CURP_Identificacion { set; get; }
@@ -254,6 +248,9 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters Apellido_Materno_IdentificacionFilter { set; get; }
         public string Apellido_Materno_Identificacion { set; get; }
+
+        public Filters AliasFilter { set; get; }
+        public string Alias { set; get; }
 
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string FromFecha_Nacimiento_Identificacion { set; get; }
@@ -292,20 +289,13 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceEntidad_de_Nacimiento_Identificacion { set; get; }
         public int[] AdvanceEntidad_de_Nacimiento_IdentificacionMultiple { set; get; }
 
-        public Filters PaisFilter { set; get; }
-        public string AdvancePais { set; get; }
-        public int[] AdvancePaisMultiple { set; get; }
-
-        public Filters EstadoFilter { set; get; }
-        public string AdvanceEstado { set; get; }
-        public int[] AdvanceEstadoMultiple { set; get; }
-
-        public Filters Codigo_PostalFilter { set; get; }
-        public string Codigo_Postal { set; get; }
-
         public Filters MunicipioFilter { set; get; }
         public string AdvanceMunicipio { set; get; }
         public int[] AdvanceMunicipioMultiple { set; get; }
+
+        public Filters PoblacionFilter { set; get; }
+        public string AdvancePoblacion { set; get; }
+        public int[] AdvancePoblacionMultiple { set; get; }
 
         public Filters ColoniaFilter { set; get; }
         public string AdvanceColonia { set; get; }
@@ -325,6 +315,9 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters Numero_InteriorFilter { set; get; }
         public string Numero_Interior { set; get; }
+
+        public Filters Codigo_PostalFilter { set; get; }
+        public string Codigo_Postal { set; get; }
 
         public Filters Referencias_de_domicilioFilter { set; get; }
         public string Referencias_de_domicilio { set; get; }

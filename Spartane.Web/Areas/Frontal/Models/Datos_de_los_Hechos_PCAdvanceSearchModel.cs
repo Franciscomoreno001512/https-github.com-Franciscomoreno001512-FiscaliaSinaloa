@@ -24,10 +24,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceSolicitud { set; get; }
         public int[] AdvanceSolicitudMultiple { set; get; }
 
-        public Filters Tipo_de_SolicitudFilter { set; get; }
-        public string AdvanceTipo_de_Solicitud { set; get; }
-        public int[] AdvanceTipo_de_SolicitudMultiple { set; get; }
-
         public Filters Titulo_del_HechoFilter { set; get; }
         public string Titulo_del_Hecho { set; get; }
 

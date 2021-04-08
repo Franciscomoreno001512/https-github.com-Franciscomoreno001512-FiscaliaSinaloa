@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Registro_de_Orden_de_Aprehension</summary>
+        public static string Registro_de_Orden_de_Aprehension
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_Mandamiento_Judicial.GetResource("Registro_de_Orden_de_Aprehension", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Documentos</summary>
         public static string Documentos
         {
@@ -43,6 +53,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Documentos_Mandamiento_Judicial.GetResource("Documentos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Descripcion</summary>
+        public static string Descripcion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_Mandamiento_Judicial.GetResource("Descripcion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

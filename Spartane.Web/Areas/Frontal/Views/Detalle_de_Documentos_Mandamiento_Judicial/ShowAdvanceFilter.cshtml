@@ -3,6 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_de_Documentos_Mandamiento_JudicialAdvanceSearchModel
 @{
+ List<SelectListItem> varRegistro_de_Mandamiento_Judicial_Registro_de_Orden_de_Aprehension = null;
+    if (ViewBag.Registro_de_Mandamiento_Judicials_Registro_de_Orden_de_Aprehension != null)
+    { varRegistro_de_Mandamiento_Judicial_Registro_de_Orden_de_Aprehension = (List<SelectListItem>)ViewBag.Registro_de_Mandamiento_Judicials_Registro_de_Orden_de_Aprehension; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -51,6 +54,17 @@
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
+ List<SelectListItem> varRegistro_de_Mandamiento_Judicial_Registro_de_Orden_de_Aprehension = null;
+    if (ViewBag.Registro_de_Mandamiento_Judicials_Registro_de_Orden_de_Aprehension != null)
+    { varRegistro_de_Mandamiento_Judicial_Registro_de_Orden_de_Aprehension = (List<SelectListItem>)ViewBag.Registro_de_Mandamiento_Judicials_Registro_de_Orden_de_Aprehension; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Documentos_Mandamiento_JudicialResources.Descripcion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
+                    @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_de_Documentos_Mandamiento_Judicial/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -68,6 +82,21 @@
             advanceSearch.Detalle_de_Documentos_Mandamiento_JudicialClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_de_Documentos_Mandamiento_JudicialClaveTo = $("#txtAdvanceToClave").val();
         }
+        advanceSearch.Registro_de_Orden_de_AprehensionSearchType = 0;
+        if ($('#ddlAdvanceRegistro_de_Orden_de_Aprehension').val().length > 0 || $("#txtAdvanceRegistro_de_Orden_de_Aprehension").val() == "") {
+
+
+            if (isDetalle_de_Documentos_Mandamiento_JudicialTextSearch) {
+                advanceSearch.Registro_de_Orden_de_AprehensionName = $("#txtAdvanceRegistro_de_Orden_de_Aprehension").val();
+                advanceSearch.Registro_de_Orden_de_AprehensionNameSearchType = $("#ddlAdvanceRegistro_de_Orden_de_Aprehension").val();
+                advanceSearch.Registro_de_Orden_de_AprehensionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Registro_de_Orden_de_AprehensionToSearch = $("#ddlAdvanceRegistro_de_Orden_de_Aprehension").val();
+                advanceSearch.Registro_de_Orden_de_AprehensionSearchType = 2;
+            }
+        }
         advanceSearch.DocumentosSearchType = 0;
         if ($('#ddlAdvanceDocumentos').val().length > 0 || $("#txtAdvanceDocumentos").val() == "") {
 
@@ -82,6 +111,11 @@
                 advanceSearch.DocumentosToSearch = $("#ddlAdvanceDocumentos").val();
                 advanceSearch.DocumentosSearchType = 2;
             }
+        }
+        if ($("#txtAdvanceDescripcion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Documentos_Mandamiento_JudicialDescripcion = $("#txtAdvanceDescripcion").val();
+            advanceSearch.Detalle_de_Documentos_Mandamiento_JudicialDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
@@ -101,6 +135,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceRegistro_de_Orden_de_Aprehension").keypress(function () {
+            isDetalle_de_Documentos_Mandamiento_JudicialTextSearch = true;
+            $("#ddlAdvanceRegistro_de_Orden_de_Aprehension").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceRegistro_de_Orden_de_Aprehension").change(function () {
+            isDetalle_de_Documentos_Mandamiento_JudicialTextSearch = false;
+            $("#txtAdvanceRegistro_de_Orden_de_Aprehension").val('');
+        });
 
     });
 </script>

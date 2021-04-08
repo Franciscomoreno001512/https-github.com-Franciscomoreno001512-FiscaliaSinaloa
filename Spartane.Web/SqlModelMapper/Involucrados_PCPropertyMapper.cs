@@ -19,15 +19,17 @@ namespace Spartane.Web.SqlModelMapper
                 case "Solicitud[Folio]":
                 case "SolicitudFolio":
                     return "Solicitud_de_Denuncia_Ciudadana.Folio";
-                case "Tipo_de_Solicitud[Descripcion]":
-                case "Tipo_de_SolicitudDescripcion":
-                    return "Tipo_de_Solicitud.Descripcion";
+                case "Desea_indicar_datos_adicionales":
+                    return "Involucrados_PC.Desea_indicar_datos_adicionales";
                 case "Usuario_que_Registra[Name]":
                 case "Usuario_que_RegistraName":
                     return "Spartan_User.Name";
                 case "Tipo_de_Compareciente[Descripcion]":
                 case "Tipo_de_ComparecienteDescripcion":
                     return "Tipo_de_Compareciente.Descripcion";
+                case "Tipo_de_Victima[Descripcion]":
+                case "Tipo_de_VictimaDescripcion":
+                    return "Tipo_de_Victima.Descripcion";
                 case "Nombres":
                     return "Involucrados_PC.Nombres";
                 case "Apellido_Paterno":
@@ -58,6 +60,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Nacionalidad.NacionalidadC";
                 case "Originario_de":
                     return "Involucrados_PC.Originario_de";
+                case "Existieron_testigos":
+                    return "Involucrados_PC.Existieron_testigos";
                 case "Pais[Nombre]":
                 case "PaisNombre":
                     return "Pais.Nombre";
@@ -108,6 +112,10 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
+            if (columnName == "Desea_indicar_datos_adicionales")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
             if (columnName == "Fecha_de_Nacimiento")
             {
                 try
@@ -118,6 +126,10 @@ namespace Spartane.Web.SqlModelMapper
                 {
 
                 }
+            }
+            if (columnName == "Existieron_testigos")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
 
 

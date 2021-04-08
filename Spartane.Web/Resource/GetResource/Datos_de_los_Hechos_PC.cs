@@ -46,16 +46,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Tipo_de_Solicitud</summary>
-        public static string Tipo_de_Solicitud
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDatos_de_los_Hechos_PC.GetResource("Tipo_de_Solicitud", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Titulo_del_Hecho</summary>
         public static string Titulo_del_Hecho
         {
@@ -278,7 +268,7 @@ namespace Resources
 
 
 	/// <summary>Datos de los hechos</summary>	public static string TabDatos_de_los_hechos 	{		get		{			SetPath();  			return resourceProviderDatos_de_los_Hechos_PC.GetResource("TabDatos_de_los_hechos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Domicilio de los Hechos</summary>	public static string TabDomicilio_de_los_Hechos 	{		get		{			SetPath();  			return resourceProviderDatos_de_los_Hechos_PC.GetResource("TabDomicilio_de_los_Hechos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Lugar de los Hechos</summary>	public static string TabLugar_de_los_Hechos 	{		get		{			SetPath();  			return resourceProviderDatos_de_los_Hechos_PC.GetResource("TabLugar_de_los_Hechos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
     }
 }

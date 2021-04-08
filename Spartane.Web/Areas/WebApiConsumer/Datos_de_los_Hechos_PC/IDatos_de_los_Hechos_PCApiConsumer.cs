@@ -29,8 +29,8 @@ namespace Spartane.Web.Areas.WebApiConsumer.Datos_de_los_Hechos_PC
 		ApiResponse<int> Update_Datos_de_los_hechos(Spartane.Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Datos_de_los_hechos entity);
 		ApiResponse<Spartane.Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Datos_de_los_hechos> Get_Datos_de_los_hechos(string Key);
 
-		ApiResponse<int> Update_Domicilio_de_los_Hechos(Spartane.Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Domicilio_de_los_Hechos entity);
-		ApiResponse<Spartane.Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Domicilio_de_los_Hechos> Get_Domicilio_de_los_Hechos(string Key);
+		ApiResponse<int> Update_Lugar_de_los_Hechos(Spartane.Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Lugar_de_los_Hechos entity);
+		ApiResponse<Spartane.Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Lugar_de_los_Hechos> Get_Lugar_de_los_Hechos(string Key);
 
 
     }

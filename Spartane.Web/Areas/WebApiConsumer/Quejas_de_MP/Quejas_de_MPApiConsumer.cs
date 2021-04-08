@@ -221,11 +221,11 @@ public ApiResponse<int> Update_Datos_Generales(Quejas_de_MP_Datos_Generales enti
             }
         }
 
-public ApiResponse<int> Update_Datos_de_Media_Filiacion(Quejas_de_MP_Datos_de_Media_Filiacion entity)
+public ApiResponse<int> Update_Rasgos_Fisicos(Quejas_de_MP_Rasgos_Fisicos entity)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_de_Media_Filiacion",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Rasgos_Fisicos",
                       Method.PUT, ApiHeader, entity);
 
                 return new ApiResponse<int>(true, result);
@@ -236,26 +236,26 @@ public ApiResponse<int> Update_Datos_de_Media_Filiacion(Quejas_de_MP_Datos_de_Me
             }
         }
 
-        public ApiResponse<Quejas_de_MP_Datos_de_Media_Filiacion> Get_Datos_de_Media_Filiacion(string Key)
+        public ApiResponse<Quejas_de_MP_Rasgos_Fisicos> Get_Rasgos_Fisicos(string Key)
         {
             try
             {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Media_Filiacion>(baseApi, ApiControllerUrl + "/Get_Datos_de_Media_Filiacion?id=" + Key,
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Rasgos_Fisicos>(baseApi, ApiControllerUrl + "/Get_Rasgos_Fisicos?id=" + Key,
                       Method.GET, ApiHeader);
 
-                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Media_Filiacion>(true, varRecords);
+                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Rasgos_Fisicos>(true, varRecords);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Media_Filiacion>(false, null);
+                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Rasgos_Fisicos>(false, null);
             }
         }
 
-public ApiResponse<int> Update_Datos_de_los_Hechos(Quejas_de_MP_Datos_de_los_Hechos entity)
+public ApiResponse<int> Update_Hechos_Sucedidos(Quejas_de_MP_Hechos_Sucedidos entity)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_de_los_Hechos",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Hechos_Sucedidos",
                       Method.PUT, ApiHeader, entity);
 
                 return new ApiResponse<int>(true, result);
@@ -266,26 +266,26 @@ public ApiResponse<int> Update_Datos_de_los_Hechos(Quejas_de_MP_Datos_de_los_Hec
             }
         }
 
-        public ApiResponse<Quejas_de_MP_Datos_de_los_Hechos> Get_Datos_de_los_Hechos(string Key)
+        public ApiResponse<Quejas_de_MP_Hechos_Sucedidos> Get_Hechos_Sucedidos(string Key)
         {
             try
             {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_los_Hechos>(baseApi, ApiControllerUrl + "/Get_Datos_de_los_Hechos?id=" + Key,
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Hechos_Sucedidos>(baseApi, ApiControllerUrl + "/Get_Hechos_Sucedidos?id=" + Key,
                       Method.GET, ApiHeader);
 
-                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_los_Hechos>(true, varRecords);
+                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Hechos_Sucedidos>(true, varRecords);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_los_Hechos>(false, null);
+                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Hechos_Sucedidos>(false, null);
             }
         }
 
-public ApiResponse<int> Update_Datos_de_Identificacion(Quejas_de_MP_Datos_de_Identificacion entity)
+public ApiResponse<int> Update_Identificacion_del_Servidor_Publico(Quejas_de_MP_Identificacion_del_Servidor_Publico entity)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_de_Identificacion",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Identificacion_del_Servidor_Publico",
                       Method.PUT, ApiHeader, entity);
 
                 return new ApiResponse<int>(true, result);
@@ -296,26 +296,26 @@ public ApiResponse<int> Update_Datos_de_Identificacion(Quejas_de_MP_Datos_de_Ide
             }
         }
 
-        public ApiResponse<Quejas_de_MP_Datos_de_Identificacion> Get_Datos_de_Identificacion(string Key)
+        public ApiResponse<Quejas_de_MP_Identificacion_del_Servidor_Publico> Get_Identificacion_del_Servidor_Publico(string Key)
         {
             try
             {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Identificacion>(baseApi, ApiControllerUrl + "/Get_Datos_de_Identificacion?id=" + Key,
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Identificacion_del_Servidor_Publico>(baseApi, ApiControllerUrl + "/Get_Identificacion_del_Servidor_Publico?id=" + Key,
                       Method.GET, ApiHeader);
 
-                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Identificacion>(true, varRecords);
+                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Identificacion_del_Servidor_Publico>(true, varRecords);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Identificacion>(false, null);
+                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Identificacion_del_Servidor_Publico>(false, null);
             }
         }
 
-public ApiResponse<int> Update_Datos_de_Domicilio(Quejas_de_MP_Datos_de_Domicilio entity)
+public ApiResponse<int> Update_Domicilio_del_Servidor_Publico(Quejas_de_MP_Domicilio_del_Servidor_Publico entity)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_de_Domicilio",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Domicilio_del_Servidor_Publico",
                       Method.PUT, ApiHeader, entity);
 
                 return new ApiResponse<int>(true, result);
@@ -326,18 +326,18 @@ public ApiResponse<int> Update_Datos_de_Domicilio(Quejas_de_MP_Datos_de_Domicili
             }
         }
 
-        public ApiResponse<Quejas_de_MP_Datos_de_Domicilio> Get_Datos_de_Domicilio(string Key)
+        public ApiResponse<Quejas_de_MP_Domicilio_del_Servidor_Publico> Get_Domicilio_del_Servidor_Publico(string Key)
         {
             try
             {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Domicilio>(baseApi, ApiControllerUrl + "/Get_Datos_de_Domicilio?id=" + Key,
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Domicilio_del_Servidor_Publico>(baseApi, ApiControllerUrl + "/Get_Domicilio_del_Servidor_Publico?id=" + Key,
                       Method.GET, ApiHeader);
 
-                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Domicilio>(true, varRecords);
+                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Domicilio_del_Servidor_Publico>(true, varRecords);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Domicilio>(false, null);
+                return new ApiResponse<Core.Domain.Quejas_de_MP.Quejas_de_MP_Domicilio_del_Servidor_Publico>(false, null);
             }
         }
 

@@ -57,7 +57,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             Session["Management"] = management;
             ViewBag.UrlImage = ConfigurationManager.AppSettings["urlpublicaimagenes"];
 
-            if (p!=null)
+            if (p != null)
             {
                 _faseid = p;
             }
@@ -195,9 +195,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += WhereWF;
                 }
             }
+            _tokenManager.GenerateToken();
+
 
             //EJECUTO QUERY
-            _tokenManager.GenerateToken();
             //_service.SetAuthHeader(_tokenManager.Token);
             _ISpartaneQueryApiConsumer.SetAuthHeader(_tokenManager.Token);
             var management = (Spartan_Record_Detail_Management)Session["Management"];// _service.GetByKey(ID, false).Resource;
@@ -209,7 +210,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where = " WHERE " + where;
             }
 
+
             string queryResult = management.Search_Result_Query + where;
+
+            _ISpartaneQueryApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+            var OrderByQuery = string.Format("select OrderBy from Spartan_Record_Detail_Management where Process_Id = {0}", management.Process_Id);
+            //Obtener Where de la fase del workflow
+            var OrderBy = _ISpartaneQueryApiConsumer.ExecuteQuery(OrderByQuery).Resource;
+            queryResult += " " + OrderBy ?? OrderBy.ToString();
             //Aplicar reemplazo de variables de sesión
             queryResult = Helper.ReplaceGlobalQuery(queryResult);
             var dataTableJson = _ISpartaneQueryApiConsumer.ExecuteRawQuery(HttpUtility.UrlEncode(queryResult)).Resource;
@@ -381,15 +390,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     aux = new ResultGeneralDetail();
                     aux.ObjectId = item.Object_Name.Value;
-					string fase="";
-					if (Session["Phase"]!=null)
-					{
-						if (Session["Phase"].ToString() !="")
-								fase = "," + Session["Phase"].ToString();
-					}
+                    string fase = "";
+                    if (Session["Phase"] != null)
+                    {
+                        if (Session["Phase"].ToString() != "")
+                            fase = "," + Session["Phase"].ToString();
+                    }
                     //aqui
                     string faseStringPaso = (_faseid == null ? "null" : _faseid.ToString());
-                  
+
 
 
                     var counter = _ISpartaneQueryApiConsumer.ExecuteQuery(item.Count_Query.Replace("@@LLAVE@@", id).Replace("@@FASE@@", faseStringPaso).Replace("@@FASE@@", faseStringPaso)).Resource;

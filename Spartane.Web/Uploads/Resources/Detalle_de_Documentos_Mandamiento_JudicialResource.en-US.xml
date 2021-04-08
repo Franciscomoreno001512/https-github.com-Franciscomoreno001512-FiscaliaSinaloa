@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" standalone="yes"?>
 <resources>
-  <resource culture="en-us" name="Detalle_de_Documentos_Mandamiento_Judicial" value="Detalle de Documentos Mandamiento Judicial"></resource>
+  <resource culture="en-us" name="Detalle_de_Documentos_Mandamiento_Judicial" value="Archivos Adjuntos"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
-  <resource culture="en-US" name="Documentos" value="Documentos"></resource>
+  <resource culture="en-US" name="Registro_de_Orden_de_Aprehension" value="Registro de Orden de Aprehension"></resource>
+  <resource culture="en-US" name="Documentos" value="Archivo Adjunto"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

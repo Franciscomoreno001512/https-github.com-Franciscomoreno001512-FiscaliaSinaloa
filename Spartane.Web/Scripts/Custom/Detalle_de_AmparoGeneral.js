@@ -6,6 +6,17 @@ $(function () {
 
 });
 
+var AutoCompleteOrden_de_AprehensionData = [];
+function GetAutoCompleteDetalle_de_Amparo_Orden_de_Aprehension_Registro_de_Mandamiento_JudicialData(data) {
+	AutoCompleteOrden_de_AprehensionData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteOrden_de_AprehensionData.push({
+            id: data[i].Clave,
+            text: data[i].Numero_de_Mandamiento
+        });
+    }
+    return AutoCompleteOrden_de_AprehensionData;
+}
 var AutoCompleteEntidad_que_Emitio_AmparoData = [];
 function GetAutoCompleteDetalle_de_Amparo_Entidad_que_Emitio_Amparo_EstadoData(data) {
 	AutoCompleteEntidad_que_Emitio_AmparoData = [];
@@ -54,6 +65,9 @@ function ClearControls() {
     $('#CreateDetalle_de_Amparo')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
+    $('#Orden_de_Aprehension').empty();
+    $("#Orden_de_Aprehension").append('<option value=""></option>');
+    $('#Orden_de_Aprehension').val('0').trigger('change');
     $('#Entidad_que_Emitio_Amparo').empty();
     $("#Entidad_que_Emitio_Amparo").append('<option value=""></option>');
     $('#Entidad_que_Emitio_Amparo').val('0').trigger('change');
@@ -186,7 +200,10 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendDetalle_de_AmparoData(function (currentId) {
 					$("#ClaveId").val("0");
-	    $('#Entidad_que_Emitio_Amparo').empty();
+	    $('#Orden_de_Aprehension').empty();
+    $("#Orden_de_Aprehension").append('<option value=""></option>');
+    $('#Orden_de_Aprehension').val('0').trigger('change');
+    $('#Entidad_que_Emitio_Amparo').empty();
     $("#Entidad_que_Emitio_Amparo").append('<option value=""></option>');
     $('#Entidad_que_Emitio_Amparo').val('0').trigger('change');
 

@@ -144,18 +144,37 @@ function EjecutarValidacionesDespuesDeGuardar(){
 //BusinessRuleId:2041, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
  EvaluaQuery("EXEC usp_InsertHistorialControlDeDocumentos FLDD[lblFolio], GLOBAL[USERID]", rowIndex, nameOfTable);
-
+
+
 }
 //BusinessRuleId:2041, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:2046, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
  EvaluaQuery(" EXEC usp_InsertHistorialControlDeDocumentos GLOBAL[KeyValueInserted], GLOBAL[USERID]", rowIndex, nameOfTable);
-
+
+
 }
 //BusinessRuleId:2046, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
+
+
+    debugger;
+
+    //fjmore 
+    var colosee = $("#closeafterload").val();
+    if (colosee == "TRUE") {
+        var clavePAre = $("#keyinserted").val();
+        var keyi = EvaluaQuery(" select GLOBAL[KeyValueInserted]");
+
+
+        GeneratePDFFromControlDocumentos(keyi);
+
+
+        var upd = EvaluaQuery("update Detalle_Resumen_Denuncia set Archivo = " + keyi + " where clave=" + clavePAre);
+    }
+
 }
 
 function EjecutarValidacionesAntesDeGuardarMRDetalle_Historial_Control_de_Documentos(nameOfTable, rowIndex){

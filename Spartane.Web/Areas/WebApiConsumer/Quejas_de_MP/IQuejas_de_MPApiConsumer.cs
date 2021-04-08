@@ -29,17 +29,17 @@ namespace Spartane.Web.Areas.WebApiConsumer.Quejas_de_MP
 		ApiResponse<int> Update_Datos_Generales(Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_Generales entity);
 		ApiResponse<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_Generales> Get_Datos_Generales(string Key);
 
-		ApiResponse<int> Update_Datos_de_Media_Filiacion(Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Media_Filiacion entity);
-		ApiResponse<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Media_Filiacion> Get_Datos_de_Media_Filiacion(string Key);
+		ApiResponse<int> Update_Rasgos_Fisicos(Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Rasgos_Fisicos entity);
+		ApiResponse<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Rasgos_Fisicos> Get_Rasgos_Fisicos(string Key);
 
-		ApiResponse<int> Update_Datos_de_los_Hechos(Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_los_Hechos entity);
-		ApiResponse<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_los_Hechos> Get_Datos_de_los_Hechos(string Key);
+		ApiResponse<int> Update_Hechos_Sucedidos(Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Hechos_Sucedidos entity);
+		ApiResponse<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Hechos_Sucedidos> Get_Hechos_Sucedidos(string Key);
 
-		ApiResponse<int> Update_Datos_de_Identificacion(Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Identificacion entity);
-		ApiResponse<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Identificacion> Get_Datos_de_Identificacion(string Key);
+		ApiResponse<int> Update_Identificacion_del_Servidor_Publico(Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Identificacion_del_Servidor_Publico entity);
+		ApiResponse<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Identificacion_del_Servidor_Publico> Get_Identificacion_del_Servidor_Publico(string Key);
 
-		ApiResponse<int> Update_Datos_de_Domicilio(Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Domicilio entity);
-		ApiResponse<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Datos_de_Domicilio> Get_Datos_de_Domicilio(string Key);
+		ApiResponse<int> Update_Domicilio_del_Servidor_Publico(Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Domicilio_del_Servidor_Publico entity);
+		ApiResponse<Spartane.Core.Domain.Quejas_de_MP.Quejas_de_MP_Domicilio_del_Servidor_Publico> Get_Domicilio_del_Servidor_Publico(string Key);
 
 
     }

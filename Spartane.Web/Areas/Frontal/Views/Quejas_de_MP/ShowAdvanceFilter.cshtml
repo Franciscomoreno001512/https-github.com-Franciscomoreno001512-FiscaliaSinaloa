@@ -3,6 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Quejas_de_MPAdvanceSearchModel
 @{
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
     List<SelectListItem> varEstatus_Quejas_MP_Estatus = null;
     if (ViewBag.Estatus_Quejas_MPs_Estatus != null)
     { varEstatus_Quejas_MP_Estatus = (List<SelectListItem>)ViewBag.Estatus_Quejas_MPs_Estatus; }
@@ -96,48 +99,33 @@
     List<SelectListItem> varSituacion_Fisica_Situacion_Fisica = null;
     if (ViewBag.Situacion_Fisicas_Situacion_Fisica != null)
     { varSituacion_Fisica_Situacion_Fisica = (List<SelectListItem>)ViewBag.Situacion_Fisicas_Situacion_Fisica; }
-    List<SelectListItem> varGenero_Genero = null;
-    if (ViewBag.Generos_Genero != null)
-    { varGenero_Genero = (List<SelectListItem>)ViewBag.Generos_Genero; }
-    List<SelectListItem> varNacionalidad_Nacionalidad = null;
-    if (ViewBag.Nacionalidads_Nacionalidad != null)
-    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
- List<SelectListItem> varEstado_Entidad_de_Nacimiento = null;
-    if (ViewBag.Estados_Entidad_de_Nacimiento != null)
-    { varEstado_Entidad_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento; }
-    List<SelectListItem> varGenero_Genero_Hechos = null;
-    if (ViewBag.Generos_Genero_Hechos != null)
-    { varGenero_Genero_Hechos = (List<SelectListItem>)ViewBag.Generos_Genero_Hechos; }
-    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos = null;
-    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos != null)
-    { varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos; }
-    List<SelectListItem> varNacionalidad_Nacionalidad_Hechos = null;
-    if (ViewBag.Nacionalidads_Nacionalidad_Hechos != null)
-    { varNacionalidad_Nacionalidad_Hechos = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_Hechos; }
-    List<SelectListItem> varEstado_Entidad_de_Nacimiento_Hechos = null;
-    if (ViewBag.Estados_Entidad_de_Nacimiento_Hechos != null)
-    { varEstado_Entidad_de_Nacimiento_Hechos = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento_Hechos; }
+ List<SelectListItem> varMunicipio_Municipio_hechos = null;
+    if (ViewBag.Municipios_Municipio_hechos != null)
+    { varMunicipio_Municipio_hechos = (List<SelectListItem>)ViewBag.Municipios_Municipio_hechos; }
+ List<SelectListItem> varColonia_Poblacion_hechos = null;
+    if (ViewBag.Colonias_Poblacion_hechos != null)
+    { varColonia_Poblacion_hechos = (List<SelectListItem>)ViewBag.Colonias_Poblacion_hechos; }
+ List<SelectListItem> varColonia_Colonia_hechos = null;
+    if (ViewBag.Colonias_Colonia_hechos != null)
+    { varColonia_Colonia_hechos = (List<SelectListItem>)ViewBag.Colonias_Colonia_hechos; }
     List<SelectListItem> varGenero_Genero_Identificacion = null;
     if (ViewBag.Generos_Genero_Identificacion != null)
     { varGenero_Genero_Identificacion = (List<SelectListItem>)ViewBag.Generos_Genero_Identificacion; }
     List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_Identificacion = null;
     if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion != null)
     { varTipo_de_Identificacion_Tipo_de_Identificacion_Identificacion = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion; }
-    List<SelectListItem> varNacionalidad_Nacionalidad_Identificacion = null;
+ List<SelectListItem> varNacionalidad_Nacionalidad_Identificacion = null;
     if (ViewBag.Nacionalidads_Nacionalidad_Identificacion != null)
     { varNacionalidad_Nacionalidad_Identificacion = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_Identificacion; }
  List<SelectListItem> varEstado_Entidad_de_Nacimiento_Identificacion = null;
     if (ViewBag.Estados_Entidad_de_Nacimiento_Identificacion != null)
     { varEstado_Entidad_de_Nacimiento_Identificacion = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento_Identificacion; }
- List<SelectListItem> varPais_Pais = null;
-    if (ViewBag.Paiss_Pais != null)
-    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
- List<SelectListItem> varEstado_Estado = null;
-    if (ViewBag.Estados_Estado != null)
-    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
  List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
  List<SelectListItem> varColonia_Colonia = null;
     if (ViewBag.Colonias_Colonia != null)
     { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
@@ -189,6 +177,47 @@
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Quejas_de_MPResources.Fecha_de_Registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Registro" name="FromFecha_de_Registro" type="text" value="@Model.FromFecha_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Registro" name="ToFecha_de_Registro" type="text" value="@Model.ToFecha_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Quejas_de_MPResources.Hora_de_Registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Registro" name="FromHora_de_Registro" type="text" value="@Model.FromHora_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Registro" name="ToHora_de_Registro" type="text" value="@Model.ToHora_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
                 <div class="MarginBottom">
                     <h3>@Resources.Quejas_de_MPResources.Nombres</h3>
                 </div>
@@ -220,6 +249,22 @@
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Nombre_CompletoFilter, filters, new { @class = "form-control", @id = "ddlNombre_CompletoFilter" })
                     @Html.TextBoxFor(m => m.Nombre_Completo, new { @class = "form-control", @type = "text", @id = "txtNombre_Completo" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Correo_Electronico</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Correo_ElectronicoFilter, filters, new { @class = "form-control", @id = "ddlCorreo_ElectronicoFilter" })
+                    @Html.TextBoxFor(m => m.Correo_Electronico, new { @class = "form-control", @type = "text", @id = "txtCorreo_Electronico" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Celular</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CelularFilter, filters, new { @class = "form-control", @id = "ddlCelularFilter" })
+                    @Html.TextBoxFor(m => m.Celular, new { @class = "form-control", @type = "text", @id = "txtCelular" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Quejas_de_MPResources.Estatus</h3>
@@ -912,239 +957,111 @@
                     @Html.DropDownListFor(m => m.Descripcion_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlDescripcion_de_los_HechosFilter" })
                     @Html.TextBoxFor(m => m.Descripcion_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtDescripcion_de_los_Hechos" })
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.CURP</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.CURPFilter, filters, new { @class = "form-control", @id = "ddlCURPFilter" })
-                    @Html.TextBoxFor(m => m.CURP, new { @class = "form-control", @type = "text", @id = "txtCURP" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Genero</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.GeneroFilter, filters, new { @class = "form-control", @id = "ddlGeneroFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceGenero, new { @class = "form-control", @type = "text", @id = "txtAdvanceGenero" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varGenero_Genero!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceGeneroMultiple, varGenero_Genero,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceGenero"
-                        });
-                    }
-                </div>
         <div class="MarginBottom ">
-            <h3>@Resources.Quejas_de_MPResources.Fecha_de_Nacimiento</h3>
+            <h3>@Resources.Quejas_de_MPResources.Fecha_de_los_Hechos</h3>
         </div>
         <div class="MarginBottom form-inline">
             <label class="">@Resources.Resources.From:</label>
             <div class="input-group date">
-                <input class="form-control" id="txtAdvanceFromFecha_de_Nacimiento" name="FromFecha_de_Nacimiento" type="text" value="@Model.FromFecha_de_Nacimiento" />
+                <input class="form-control" id="txtAdvanceFromFecha_de_los_Hechos" name="FromFecha_de_los_Hechos" type="text" value="@Model.FromFecha_de_los_Hechos" />
                 <span class="form-inline input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
             <label class="">@Resources.Resources.To: </label>
             <div class="input-group date">
-                <input class="form-control" id="txtAdvanceToFecha_de_Nacimiento" name="ToFecha_de_Nacimiento" type="text" value="@Model.ToFecha_de_Nacimiento" />
+                <input class="form-control" id="txtAdvanceToFecha_de_los_Hechos" name="ToFecha_de_los_Hechos" type="text" value="@Model.ToFecha_de_los_Hechos" />
                 <span class="form-inline input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Nacionalidad</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.NacionalidadFilter, filters, new { @class = "form-control", @id = "ddlNacionalidadFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceNacionalidad, new { @class = "form-control", @type = "text", @id = "txtAdvanceNacionalidad" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varNacionalidad_Nacionalidad!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceNacionalidadMultiple, varNacionalidad_Nacionalidad,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceNacionalidad"
-                        });
-                    }
-                </div>
- List<SelectListItem> varEstado_Entidad_de_Nacimiento = null;
-    if (ViewBag.Estados_Entidad_de_Nacimiento != null)
-    { varEstado_Entidad_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento; }
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Nombres_Hechos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Nombres_HechosFilter, filters, new { @class = "form-control", @id = "ddlNombres_HechosFilter" })
-                    @Html.TextBoxFor(m => m.Nombres_Hechos, new { @class = "form-control", @type = "text", @id = "txtNombres_Hechos" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Apellido_Paterno_Hechos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Apellido_Paterno_HechosFilter, filters, new { @class = "form-control", @id = "ddlApellido_Paterno_HechosFilter" })
-                    @Html.TextBoxFor(m => m.Apellido_Paterno_Hechos, new { @class = "form-control", @type = "text", @id = "txtApellido_Paterno_Hechos" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Apellido_Materno_Hechos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Apellido_Materno_HechosFilter, filters, new { @class = "form-control", @id = "ddlApellido_Materno_HechosFilter" })
-                    @Html.TextBoxFor(m => m.Apellido_Materno_Hechos, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno_Hechos" })
-                </div>
         <div class="MarginBottom ">
-            <h3>@Resources.Quejas_de_MPResources.Fecha_de_Nacimiento_Hechos</h3>
+            <h3>@Resources.Quejas_de_MPResources.Hora_de_los_Hechos</h3>
         </div>
         <div class="MarginBottom form-inline">
             <label class="">@Resources.Resources.From:</label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceFromFecha_de_Nacimiento_Hechos" name="FromFecha_de_Nacimiento_Hechos" type="text" value="@Model.FromFecha_de_Nacimiento_Hechos" />
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_los_Hechos" name="FromHora_de_los_Hechos" type="text" value="@Model.FromHora_de_los_Hechos" />
                 <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
             <label class="">@Resources.Resources.To: </label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceToFecha_de_Nacimiento_Hechos" name="ToFecha_de_Nacimiento_Hechos" type="text" value="@Model.ToFecha_de_Nacimiento_Hechos" />
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_los_Hechos" name="ToHora_de_los_Hechos" type="text" value="@Model.ToHora_de_los_Hechos" />
                 <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
         </div>
+ List<SelectListItem> varMunicipio_Municipio_hechos = null;
+    if (ViewBag.Municipios_Municipio_hechos != null)
+    { varMunicipio_Municipio_hechos = (List<SelectListItem>)ViewBag.Municipios_Municipio_hechos; }
+ List<SelectListItem> varColonia_Poblacion_hechos = null;
+    if (ViewBag.Colonias_Poblacion_hechos != null)
+    { varColonia_Poblacion_hechos = (List<SelectListItem>)ViewBag.Colonias_Poblacion_hechos; }
+ List<SelectListItem> varColonia_Colonia_hechos = null;
+    if (ViewBag.Colonias_Colonia_hechos != null)
+    { varColonia_Colonia_hechos = (List<SelectListItem>)ViewBag.Colonias_Colonia_hechos; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Calle_hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Calle_hechosFilter, filters, new { @class = "form-control", @id = "ddlCalle_hechosFilter" })
+                    @Html.TextBoxFor(m => m.Calle_hechos, new { @class = "form-control", @type = "text", @id = "txtCalle_hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Entre_Calle_hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Entre_Calle_hechosFilter, filters, new { @class = "form-control", @id = "ddlEntre_Calle_hechosFilter" })
+                    @Html.TextBoxFor(m => m.Entre_Calle_hechos, new { @class = "form-control", @type = "text", @id = "txtEntre_Calle_hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Y_Calle_hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Y_Calle_hechosFilter, filters, new { @class = "form-control", @id = "ddlY_Calle_hechosFilter" })
+                    @Html.TextBoxFor(m => m.Y_Calle_hechos, new { @class = "form-control", @type = "text", @id = "txtY_Calle_hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Numero_Exterior_hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Exterior_hechosFilter, filters, new { @class = "form-control", @id = "ddlNumero_Exterior_hechosFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Exterior_hechos, new { @class = "form-control", @type = "text", @id = "txtNumero_Exterior_hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Numero_Interior_hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Interior_hechosFilter, filters, new { @class = "form-control", @id = "ddlNumero_Interior_hechosFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Interior_hechos, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior_hechos" })
+                </div>
                 <div class="MarginBottom ">
-                    <h3>@Resources.Quejas_de_MPResources.Edad_Hechos</h3>
+                    <h3>@Resources.Quejas_de_MPResources.Codigo_Postal_hechos</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.From:</label>
-                    @Html.TextBoxFor(m => m.FromEdad_Hechos, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromEdad_Hechos" })
-                    @Html.ValidationMessageFor(m => m.FromEdad_Hechos)
+                    @Html.TextBoxFor(m => m.FromCodigo_Postal_hechos, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCodigo_Postal_hechos" })
+                    @Html.ValidationMessageFor(m => m.FromCodigo_Postal_hechos)
                     <label class="">@Resources.Resources.To: </label>
-                    @Html.TextBoxFor(m => m.ToEdad_Hechos, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToEdad_Hechos", @data_min = "txtAdvanceFromEdad_Hechos" })
-                    @Html.ValidationMessageFor(m => m.ToEdad_Hechos)
+                    @Html.TextBoxFor(m => m.ToCodigo_Postal_hechos, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCodigo_Postal_hechos", @data_min = "txtAdvanceFromCodigo_Postal_hechos" })
+                    @Html.ValidationMessageFor(m => m.ToCodigo_Postal_hechos)
                 </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Genero_Hechos</h3>
+                    <h3>@Resources.Quejas_de_MPResources.Referencia</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Genero_HechosFilter, filters, new { @class = "form-control", @id = "ddlGenero_HechosFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceGenero_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceGenero_Hechos" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varGenero_Genero_Hechos!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceGenero_HechosMultiple, varGenero_Genero_Hechos,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceGenero_Hechos"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Celular_Hechos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Celular_HechosFilter, filters, new { @class = "form-control", @id = "ddlCelular_HechosFilter" })
-                    @Html.TextBoxFor(m => m.Celular_Hechos, new { @class = "form-control", @type = "text", @id = "txtCelular_Hechos" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Correo_Hechos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Correo_HechosFilter, filters, new { @class = "form-control", @id = "ddlCorreo_HechosFilter" })
-                    @Html.TextBoxFor(m => m.Correo_Hechos, new { @class = "form-control", @type = "text", @id = "txtCorreo_Hechos" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Hechos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Tipo_de_Identificacion_HechosFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Identificacion_HechosFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Identificacion_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Identificacion_Hechos" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Identificacion_HechosMultiple, varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTipo_de_Identificacion_Hechos"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Numero_Identificacion_Hechos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Numero_Identificacion_HechosFilter, filters, new { @class = "form-control", @id = "ddlNumero_Identificacion_HechosFilter" })
-                    @Html.TextBoxFor(m => m.Numero_Identificacion_Hechos, new { @class = "form-control", @type = "text", @id = "txtNumero_Identificacion_Hechos" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Nacionalidad_Hechos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Nacionalidad_HechosFilter, filters, new { @class = "form-control", @id = "ddlNacionalidad_HechosFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceNacionalidad_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceNacionalidad_Hechos" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varNacionalidad_Nacionalidad_Hechos!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceNacionalidad_HechosMultiple, varNacionalidad_Nacionalidad_Hechos,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceNacionalidad_Hechos"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Hechos</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Entidad_de_Nacimiento_HechosFilter, filters, new { @class = "form-control", @id = "ddlEntidad_de_Nacimiento_HechosFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceEntidad_de_Nacimiento_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceEntidad_de_Nacimiento_Hechos" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varEstado_Entidad_de_Nacimiento_Hechos!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceEntidad_de_Nacimiento_HechosMultiple, varEstado_Entidad_de_Nacimiento_Hechos,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceEntidad_de_Nacimiento_Hechos"
-                        });
-                    }
+                    @Html.DropDownListFor(m => m.ReferenciaFilter, filters, new { @class = "form-control", @id = "ddlReferenciaFilter" })
+                    @Html.TextBoxFor(m => m.Referencia, new { @class = "form-control", @type = "text", @id = "txtReferencia" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Quejas_de_MPResources.CURP_Identificacion</h3>
@@ -1177,6 +1094,14 @@
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Apellido_Materno_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlApellido_Materno_IdentificacionFilter" })
                     @Html.TextBoxFor(m => m.Apellido_Materno_Identificacion, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno_Identificacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Alias</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AliasFilter, filters, new { @class = "form-control", @id = "ddlAliasFilter" })
+                    @Html.TextBoxFor(m => m.Alias, new { @class = "form-control", @type = "text", @id = "txtAlias" })
                 </div>
         <div class="MarginBottom ">
             <h3>@Resources.Quejas_de_MPResources.Fecha_Nacimiento_Identificacion</h3>
@@ -1274,47 +1199,18 @@
                     @Html.DropDownListFor(m => m.Numero_Identificacion_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlNumero_Identificacion_IdentificacionFilter" })
                     @Html.TextBoxFor(m => m.Numero_Identificacion_Identificacion, new { @class = "form-control", @type = "text", @id = "txtNumero_Identificacion_Identificacion" })
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Nacionalidad_Identificacion</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Nacionalidad_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlNacionalidad_IdentificacionFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceNacionalidad_Identificacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceNacionalidad_Identificacion" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varNacionalidad_Nacionalidad_Identificacion!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceNacionalidad_IdentificacionMultiple, varNacionalidad_Nacionalidad_Identificacion,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceNacionalidad_Identificacion"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varNacionalidad_Nacionalidad_Identificacion = null;
+    if (ViewBag.Nacionalidads_Nacionalidad_Identificacion != null)
+    { varNacionalidad_Nacionalidad_Identificacion = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_Identificacion; }
  List<SelectListItem> varEstado_Entidad_de_Nacimiento_Identificacion = null;
     if (ViewBag.Estados_Entidad_de_Nacimiento_Identificacion != null)
     { varEstado_Entidad_de_Nacimiento_Identificacion = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento_Identificacion; }
- List<SelectListItem> varPais_Pais = null;
-    if (ViewBag.Paiss_Pais != null)
-    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
- List<SelectListItem> varEstado_Estado = null;
-    if (ViewBag.Estados_Estado != null)
-    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
-                <div class="MarginBottom">
-                    <h3>@Resources.Quejas_de_MPResources.Codigo_Postal</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Codigo_PostalFilter, filters, new { @class = "form-control", @id = "ddlCodigo_PostalFilter" })
-                    @Html.TextBoxFor(m => m.Codigo_Postal, new { @class = "form-control", @type = "text", @id = "txtCodigo_Postal" })
-                </div>
  List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
  List<SelectListItem> varColonia_Colonia = null;
     if (ViewBag.Colonias_Colonia != null)
     { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
@@ -1359,6 +1255,14 @@
                     @Html.TextBoxFor(m => m.Numero_Interior, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior" })
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Quejas_de_MPResources.Codigo_Postal</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Codigo_PostalFilter, filters, new { @class = "form-control", @id = "ddlCodigo_PostalFilter" })
+                    @Html.TextBoxFor(m => m.Codigo_Postal, new { @class = "form-control", @type = "text", @id = "txtCodigo_Postal" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Quejas_de_MPResources.Referencias_de_domicilio</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -1383,6 +1287,31 @@
             advanceSearch.Quejas_de_MPClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Quejas_de_MPClaveTo = $("#txtAdvanceToClave").val();
         }
+        if ($("#txtAdvanceFromFecha_de_Registro").val() != "" || $("#txtAdvanceToFecha_de_Registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPFecha_de_RegistroFrom = $("#txtAdvanceFromFecha_de_Registro").val();
+            advanceSearch.Quejas_de_MPFecha_de_RegistroTo = $("#txtAdvanceToFecha_de_Registro").val();
+        }
+        if ($("#txtAdvanceHora_de_Registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPHora_de_Registro = $("#txtAdvanceHora_de_Registro").val();
+            advanceSearch.Quejas_de_MPHora_de_RegistroSearchType = $("#ddlAdvanceHora_de_RegistroFilter").val();
+        }
+        advanceSearch.Usuario_que_RegistraSearchType = 0;
+        if ($('#ddlAdvanceUsuario_que_Registra').val().length > 0 || $("#txtAdvanceUsuario_que_Registra").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.Usuario_que_RegistraName = $("#txtAdvanceUsuario_que_Registra").val();
+                advanceSearch.Usuario_que_RegistraNameSearchType = $("#ddlAdvanceUsuario_que_Registra").val();
+                advanceSearch.Usuario_que_RegistraSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_que_RegistraToSearch = $("#ddlAdvanceUsuario_que_Registra").val();
+                advanceSearch.Usuario_que_RegistraSearchType = 2;
+            }
+        }
         if ($("#txtAdvanceNombres").val() != "") {
             hasParameter = true;
             advanceSearch.Quejas_de_MPNombres = $("#txtAdvanceNombres").val();
@@ -1402,6 +1331,16 @@
             hasParameter = true;
             advanceSearch.Quejas_de_MPNombre_Completo = $("#txtAdvanceNombre_Completo").val();
             advanceSearch.Quejas_de_MPNombre_CompletoSearchType = $("#ddlAdvanceNombre_CompletoFilter").val();
+        }
+        if ($("#txtAdvanceCorreo_Electronico").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCorreo_Electronico = $("#txtAdvanceCorreo_Electronico").val();
+            advanceSearch.Quejas_de_MPCorreo_ElectronicoSearchType = $("#ddlAdvanceCorreo_ElectronicoFilter").val();
+        }
+        if ($("#txtAdvanceCelular").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCelular = $("#txtAdvanceCelular").val();
+            advanceSearch.Quejas_de_MPCelularSearchType = $("#ddlAdvanceCelularFilter").val();
         }
         advanceSearch.EstatusSearchType = 0;
         if ($('#ddlAdvanceEstatus').val().length > 0 || $("#txtAdvanceEstatus").val() == "") {
@@ -1908,175 +1847,95 @@
             advanceSearch.Quejas_de_MPDescripcion_de_los_Hechos = $("#txtAdvanceDescripcion_de_los_Hechos").val();
             advanceSearch.Quejas_de_MPDescripcion_de_los_HechosSearchType = $("#ddlAdvanceDescripcion_de_los_HechosFilter").val();
         }
-        if ($("#txtAdvanceCURP").val() != "") {
+        if ($("#txtAdvanceFromFecha_de_los_Hechos").val() != "" || $("#txtAdvanceToFecha_de_los_Hechos").val() != "") {
             hasParameter = true;
-            advanceSearch.Quejas_de_MPCURP = $("#txtAdvanceCURP").val();
-            advanceSearch.Quejas_de_MPCURPSearchType = $("#ddlAdvanceCURPFilter").val();
+            advanceSearch.Quejas_de_MPFecha_de_los_HechosFrom = $("#txtAdvanceFromFecha_de_los_Hechos").val();
+            advanceSearch.Quejas_de_MPFecha_de_los_HechosTo = $("#txtAdvanceToFecha_de_los_Hechos").val();
         }
-        advanceSearch.GeneroSearchType = 0;
-        if ($('#ddlAdvanceGenero').val().length > 0 || $("#txtAdvanceGenero").val() == "") {
+        if ($("#txtAdvanceHora_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPHora_de_los_Hechos = $("#txtAdvanceHora_de_los_Hechos").val();
+            advanceSearch.Quejas_de_MPHora_de_los_HechosSearchType = $("#ddlAdvanceHora_de_los_HechosFilter").val();
+        }
+        advanceSearch.Municipio_hechosSearchType = 0;
+        if ($('#ddlAdvanceMunicipio_hechos').val().length > 0 || $("#txtAdvanceMunicipio_hechos").val() == "") {
 
 
             if (isQuejas_de_MPTextSearch) {
-                advanceSearch.GeneroName = $("#txtAdvanceGenero").val();
-                advanceSearch.GeneroNameSearchType = $("#ddlAdvanceGenero").val();
-                advanceSearch.GeneroSearchType = 1;
+                advanceSearch.Municipio_hechosName = $("#txtAdvanceMunicipio_hechos").val();
+                advanceSearch.Municipio_hechosNameSearchType = $("#ddlAdvanceMunicipio_hechos").val();
+                advanceSearch.Municipio_hechosSearchType = 1;
             }
             else {
 
-                advanceSearch.GeneroToSearch = $("#ddlAdvanceGenero").val();
-                advanceSearch.GeneroSearchType = 2;
+                advanceSearch.Municipio_hechosToSearch = $("#ddlAdvanceMunicipio_hechos").val();
+                advanceSearch.Municipio_hechosSearchType = 2;
             }
         }
-        if ($("#txtAdvanceFromFecha_de_Nacimiento").val() != "" || $("#txtAdvanceToFecha_de_Nacimiento").val() != "") {
-            hasParameter = true;
-            advanceSearch.Quejas_de_MPFecha_de_NacimientoFrom = $("#txtAdvanceFromFecha_de_Nacimiento").val();
-            advanceSearch.Quejas_de_MPFecha_de_NacimientoTo = $("#txtAdvanceToFecha_de_Nacimiento").val();
-        }
-        advanceSearch.NacionalidadSearchType = 0;
-        if ($('#ddlAdvanceNacionalidad').val().length > 0 || $("#txtAdvanceNacionalidad").val() == "") {
+        advanceSearch.Poblacion_hechosSearchType = 0;
+        if ($('#ddlAdvancePoblacion_hechos').val().length > 0 || $("#txtAdvancePoblacion_hechos").val() == "") {
 
 
             if (isQuejas_de_MPTextSearch) {
-                advanceSearch.NacionalidadName = $("#txtAdvanceNacionalidad").val();
-                advanceSearch.NacionalidadNameSearchType = $("#ddlAdvanceNacionalidad").val();
-                advanceSearch.NacionalidadSearchType = 1;
+                advanceSearch.Poblacion_hechosName = $("#txtAdvancePoblacion_hechos").val();
+                advanceSearch.Poblacion_hechosNameSearchType = $("#ddlAdvancePoblacion_hechos").val();
+                advanceSearch.Poblacion_hechosSearchType = 1;
             }
             else {
 
-                advanceSearch.NacionalidadToSearch = $("#ddlAdvanceNacionalidad").val();
-                advanceSearch.NacionalidadSearchType = 2;
+                advanceSearch.Poblacion_hechosToSearch = $("#ddlAdvancePoblacion_hechos").val();
+                advanceSearch.Poblacion_hechosSearchType = 2;
             }
         }
-        advanceSearch.Entidad_de_NacimientoSearchType = 0;
-        if ($('#ddlAdvanceEntidad_de_Nacimiento').val().length > 0 || $("#txtAdvanceEntidad_de_Nacimiento").val() == "") {
+        advanceSearch.Colonia_hechosSearchType = 0;
+        if ($('#ddlAdvanceColonia_hechos').val().length > 0 || $("#txtAdvanceColonia_hechos").val() == "") {
 
 
             if (isQuejas_de_MPTextSearch) {
-                advanceSearch.Entidad_de_NacimientoName = $("#txtAdvanceEntidad_de_Nacimiento").val();
-                advanceSearch.Entidad_de_NacimientoNameSearchType = $("#ddlAdvanceEntidad_de_Nacimiento").val();
-                advanceSearch.Entidad_de_NacimientoSearchType = 1;
+                advanceSearch.Colonia_hechosName = $("#txtAdvanceColonia_hechos").val();
+                advanceSearch.Colonia_hechosNameSearchType = $("#ddlAdvanceColonia_hechos").val();
+                advanceSearch.Colonia_hechosSearchType = 1;
             }
             else {
 
-                advanceSearch.Entidad_de_NacimientoToSearch = $("#ddlAdvanceEntidad_de_Nacimiento").val();
-                advanceSearch.Entidad_de_NacimientoSearchType = 2;
+                advanceSearch.Colonia_hechosToSearch = $("#ddlAdvanceColonia_hechos").val();
+                advanceSearch.Colonia_hechosSearchType = 2;
             }
         }
-        if ($("#txtAdvanceNombres_Hechos").val() != "") {
+        if ($("#txtAdvanceCalle_hechos").val() != "") {
             hasParameter = true;
-            advanceSearch.Quejas_de_MPNombres_Hechos = $("#txtAdvanceNombres_Hechos").val();
-            advanceSearch.Quejas_de_MPNombres_HechosSearchType = $("#ddlAdvanceNombres_HechosFilter").val();
+            advanceSearch.Quejas_de_MPCalle_hechos = $("#txtAdvanceCalle_hechos").val();
+            advanceSearch.Quejas_de_MPCalle_hechosSearchType = $("#ddlAdvanceCalle_hechosFilter").val();
         }
-        if ($("#txtAdvanceApellido_Paterno_Hechos").val() != "") {
+        if ($("#txtAdvanceEntre_Calle_hechos").val() != "") {
             hasParameter = true;
-            advanceSearch.Quejas_de_MPApellido_Paterno_Hechos = $("#txtAdvanceApellido_Paterno_Hechos").val();
-            advanceSearch.Quejas_de_MPApellido_Paterno_HechosSearchType = $("#ddlAdvanceApellido_Paterno_HechosFilter").val();
+            advanceSearch.Quejas_de_MPEntre_Calle_hechos = $("#txtAdvanceEntre_Calle_hechos").val();
+            advanceSearch.Quejas_de_MPEntre_Calle_hechosSearchType = $("#ddlAdvanceEntre_Calle_hechosFilter").val();
         }
-        if ($("#txtAdvanceApellido_Materno_Hechos").val() != "") {
+        if ($("#txtAdvanceY_Calle_hechos").val() != "") {
             hasParameter = true;
-            advanceSearch.Quejas_de_MPApellido_Materno_Hechos = $("#txtAdvanceApellido_Materno_Hechos").val();
-            advanceSearch.Quejas_de_MPApellido_Materno_HechosSearchType = $("#ddlAdvanceApellido_Materno_HechosFilter").val();
+            advanceSearch.Quejas_de_MPY_Calle_hechos = $("#txtAdvanceY_Calle_hechos").val();
+            advanceSearch.Quejas_de_MPY_Calle_hechosSearchType = $("#ddlAdvanceY_Calle_hechosFilter").val();
         }
-        if ($("#txtAdvanceFromFecha_de_Nacimiento_Hechos").val() != "" || $("#txtAdvanceToFecha_de_Nacimiento_Hechos").val() != "") {
+        if ($("#txtAdvanceNumero_Exterior_hechos").val() != "") {
             hasParameter = true;
-            advanceSearch.Quejas_de_MPFecha_de_Nacimiento_HechosFrom = $("#txtAdvanceFromFecha_de_Nacimiento_Hechos").val();
-            advanceSearch.Quejas_de_MPFecha_de_Nacimiento_HechosTo = $("#txtAdvanceToFecha_de_Nacimiento_Hechos").val();
+            advanceSearch.Quejas_de_MPNumero_Exterior_hechos = $("#txtAdvanceNumero_Exterior_hechos").val();
+            advanceSearch.Quejas_de_MPNumero_Exterior_hechosSearchType = $("#ddlAdvanceNumero_Exterior_hechosFilter").val();
         }
-        if ($("#txtAdvanceFromEdad_Hechos").val() != "" || $("#txtAdvanceToEdad_Hechos").val() != "") {
+        if ($("#txtAdvanceNumero_Interior_hechos").val() != "") {
             hasParameter = true;
-            advanceSearch.Quejas_de_MPEdad_HechosFrom = $("#txtAdvanceFromEdad_Hechos").val();
-            advanceSearch.Quejas_de_MPEdad_HechosTo = $("#txtAdvanceToEdad_Hechos").val();
+            advanceSearch.Quejas_de_MPNumero_Interior_hechos = $("#txtAdvanceNumero_Interior_hechos").val();
+            advanceSearch.Quejas_de_MPNumero_Interior_hechosSearchType = $("#ddlAdvanceNumero_Interior_hechosFilter").val();
         }
-        advanceSearch.Genero_HechosSearchType = 0;
-        if ($('#ddlAdvanceGenero_Hechos').val().length > 0 || $("#txtAdvanceGenero_Hechos").val() == "") {
-
-
-            if (isQuejas_de_MPTextSearch) {
-                advanceSearch.Genero_HechosName = $("#txtAdvanceGenero_Hechos").val();
-                advanceSearch.Genero_HechosNameSearchType = $("#ddlAdvanceGenero_Hechos").val();
-                advanceSearch.Genero_HechosSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Genero_HechosToSearch = $("#ddlAdvanceGenero_Hechos").val();
-                advanceSearch.Genero_HechosSearchType = 2;
-            }
-        }
-        if ($("#txtAdvanceCelular_Hechos").val() != "") {
+        if ($("#txtAdvanceFromCodigo_Postal_hechos").val() != "" || $("#txtAdvanceToCodigo_Postal_hechos").val() != "") {
             hasParameter = true;
-            advanceSearch.Quejas_de_MPCelular_Hechos = $("#txtAdvanceCelular_Hechos").val();
-            advanceSearch.Quejas_de_MPCelular_HechosSearchType = $("#ddlAdvanceCelular_HechosFilter").val();
+            advanceSearch.Quejas_de_MPCodigo_Postal_hechosFrom = $("#txtAdvanceFromCodigo_Postal_hechos").val();
+            advanceSearch.Quejas_de_MPCodigo_Postal_hechosTo = $("#txtAdvanceToCodigo_Postal_hechos").val();
         }
-        if ($("#txtAdvanceCorreo_Hechos").val() != "") {
+        if ($("#txtAdvanceReferencia").val() != "") {
             hasParameter = true;
-            advanceSearch.Quejas_de_MPCorreo_Hechos = $("#txtAdvanceCorreo_Hechos").val();
-            advanceSearch.Quejas_de_MPCorreo_HechosSearchType = $("#ddlAdvanceCorreo_HechosFilter").val();
-        }
-        advanceSearch.Tipo_de_Identificacion_HechosSearchType = 0;
-        if ($('#ddlAdvanceTipo_de_Identificacion_Hechos').val().length > 0 || $("#txtAdvanceTipo_de_Identificacion_Hechos").val() == "") {
-
-
-            if (isQuejas_de_MPTextSearch) {
-                advanceSearch.Tipo_de_Identificacion_HechosName = $("#txtAdvanceTipo_de_Identificacion_Hechos").val();
-                advanceSearch.Tipo_de_Identificacion_HechosNameSearchType = $("#ddlAdvanceTipo_de_Identificacion_Hechos").val();
-                advanceSearch.Tipo_de_Identificacion_HechosSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Tipo_de_Identificacion_HechosToSearch = $("#ddlAdvanceTipo_de_Identificacion_Hechos").val();
-                advanceSearch.Tipo_de_Identificacion_HechosSearchType = 2;
-            }
-        }
-        if ($("#txtAdvanceNumero_Identificacion_Hechos").val() != "") {
-            hasParameter = true;
-            advanceSearch.Quejas_de_MPNumero_Identificacion_Hechos = $("#txtAdvanceNumero_Identificacion_Hechos").val();
-            advanceSearch.Quejas_de_MPNumero_Identificacion_HechosSearchType = $("#ddlAdvanceNumero_Identificacion_HechosFilter").val();
-        }
-        advanceSearch.Fotografia_IdentificacionSearchType = 0;
-        if ($('#ddlAdvanceFotografia_Identificacion').val().length > 0 || $("#txtAdvanceFotografia_Identificacion").val() == "") {
-
-
-            if (isQuejas_de_MPTextSearch) {
-                advanceSearch.Fotografia_IdentificacionName = $("#txtAdvanceFotografia_Identificacion").val();
-                advanceSearch.Fotografia_IdentificacionNameSearchType = $("#ddlAdvanceFotografia_Identificacion").val();
-                advanceSearch.Fotografia_IdentificacionSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Fotografia_IdentificacionToSearch = $("#ddlAdvanceFotografia_Identificacion").val();
-                advanceSearch.Fotografia_IdentificacionSearchType = 2;
-            }
-        }
-        advanceSearch.Nacionalidad_HechosSearchType = 0;
-        if ($('#ddlAdvanceNacionalidad_Hechos').val().length > 0 || $("#txtAdvanceNacionalidad_Hechos").val() == "") {
-
-
-            if (isQuejas_de_MPTextSearch) {
-                advanceSearch.Nacionalidad_HechosName = $("#txtAdvanceNacionalidad_Hechos").val();
-                advanceSearch.Nacionalidad_HechosNameSearchType = $("#ddlAdvanceNacionalidad_Hechos").val();
-                advanceSearch.Nacionalidad_HechosSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Nacionalidad_HechosToSearch = $("#ddlAdvanceNacionalidad_Hechos").val();
-                advanceSearch.Nacionalidad_HechosSearchType = 2;
-            }
-        }
-        advanceSearch.Entidad_de_Nacimiento_HechosSearchType = 0;
-        if ($('#ddlAdvanceEntidad_de_Nacimiento_Hechos').val().length > 0 || $("#txtAdvanceEntidad_de_Nacimiento_Hechos").val() == "") {
-
-
-            if (isQuejas_de_MPTextSearch) {
-                advanceSearch.Entidad_de_Nacimiento_HechosName = $("#txtAdvanceEntidad_de_Nacimiento_Hechos").val();
-                advanceSearch.Entidad_de_Nacimiento_HechosNameSearchType = $("#ddlAdvanceEntidad_de_Nacimiento_Hechos").val();
-                advanceSearch.Entidad_de_Nacimiento_HechosSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Entidad_de_Nacimiento_HechosToSearch = $("#ddlAdvanceEntidad_de_Nacimiento_Hechos").val();
-                advanceSearch.Entidad_de_Nacimiento_HechosSearchType = 2;
-            }
+            advanceSearch.Quejas_de_MPReferencia = $("#txtAdvanceReferencia").val();
+            advanceSearch.Quejas_de_MPReferenciaSearchType = $("#ddlAdvanceReferenciaFilter").val();
         }
         if ($("#txtAdvanceCURP_Identificacion").val() != "") {
             hasParameter = true;
@@ -2097,6 +1956,11 @@
             hasParameter = true;
             advanceSearch.Quejas_de_MPApellido_Materno_Identificacion = $("#txtAdvanceApellido_Materno_Identificacion").val();
             advanceSearch.Quejas_de_MPApellido_Materno_IdentificacionSearchType = $("#ddlAdvanceApellido_Materno_IdentificacionFilter").val();
+        }
+        if ($("#txtAdvanceAlias").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPAlias = $("#txtAdvanceAlias").val();
+            advanceSearch.Quejas_de_MPAliasSearchType = $("#ddlAdvanceAliasFilter").val();
         }
         if ($("#txtAdvanceFromFecha_Nacimiento_Identificacion").val() != "" || $("#txtAdvanceToFecha_Nacimiento_Identificacion").val() != "") {
             hasParameter = true;
@@ -2183,41 +2047,6 @@
                 advanceSearch.Entidad_de_Nacimiento_IdentificacionSearchType = 2;
             }
         }
-        advanceSearch.PaisSearchType = 0;
-        if ($('#ddlAdvancePais').val().length > 0 || $("#txtAdvancePais").val() == "") {
-
-
-            if (isQuejas_de_MPTextSearch) {
-                advanceSearch.PaisName = $("#txtAdvancePais").val();
-                advanceSearch.PaisNameSearchType = $("#ddlAdvancePais").val();
-                advanceSearch.PaisSearchType = 1;
-            }
-            else {
-
-                advanceSearch.PaisToSearch = $("#ddlAdvancePais").val();
-                advanceSearch.PaisSearchType = 2;
-            }
-        }
-        advanceSearch.EstadoSearchType = 0;
-        if ($('#ddlAdvanceEstado').val().length > 0 || $("#txtAdvanceEstado").val() == "") {
-
-
-            if (isQuejas_de_MPTextSearch) {
-                advanceSearch.EstadoName = $("#txtAdvanceEstado").val();
-                advanceSearch.EstadoNameSearchType = $("#ddlAdvanceEstado").val();
-                advanceSearch.EstadoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.EstadoToSearch = $("#ddlAdvanceEstado").val();
-                advanceSearch.EstadoSearchType = 2;
-            }
-        }
-        if ($("#txtAdvanceCodigo_Postal").val() != "") {
-            hasParameter = true;
-            advanceSearch.Quejas_de_MPCodigo_Postal = $("#txtAdvanceCodigo_Postal").val();
-            advanceSearch.Quejas_de_MPCodigo_PostalSearchType = $("#ddlAdvanceCodigo_PostalFilter").val();
-        }
         advanceSearch.MunicipioSearchType = 0;
         if ($('#ddlAdvanceMunicipio').val().length > 0 || $("#txtAdvanceMunicipio").val() == "") {
 
@@ -2231,6 +2060,21 @@
 
                 advanceSearch.MunicipioToSearch = $("#ddlAdvanceMunicipio").val();
                 advanceSearch.MunicipioSearchType = 2;
+            }
+        }
+        advanceSearch.PoblacionSearchType = 0;
+        if ($('#ddlAdvancePoblacion').val().length > 0 || $("#txtAdvancePoblacion").val() == "") {
+
+
+            if (isQuejas_de_MPTextSearch) {
+                advanceSearch.PoblacionName = $("#txtAdvancePoblacion").val();
+                advanceSearch.PoblacionNameSearchType = $("#ddlAdvancePoblacion").val();
+                advanceSearch.PoblacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.PoblacionToSearch = $("#ddlAdvancePoblacion").val();
+                advanceSearch.PoblacionSearchType = 2;
             }
         }
         advanceSearch.ColoniaSearchType = 0;
@@ -2273,6 +2117,11 @@
             advanceSearch.Quejas_de_MPNumero_Interior = $("#txtAdvanceNumero_Interior").val();
             advanceSearch.Quejas_de_MPNumero_InteriorSearchType = $("#ddlAdvanceNumero_InteriorFilter").val();
         }
+        if ($("#txtAdvanceCodigo_Postal").val() != "") {
+            hasParameter = true;
+            advanceSearch.Quejas_de_MPCodigo_Postal = $("#txtAdvanceCodigo_Postal").val();
+            advanceSearch.Quejas_de_MPCodigo_PostalSearchType = $("#ddlAdvanceCodigo_PostalFilter").val();
+        }
         if ($("#txtAdvanceReferencias_de_domicilio").val() != "") {
             hasParameter = true;
             advanceSearch.Quejas_de_MPReferencias_de_domicilio = $("#txtAdvanceReferencias_de_domicilio").val();
@@ -2296,6 +2145,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceUsuario_que_Registra").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvanceUsuario_que_Registra").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUsuario_que_Registra").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvanceUsuario_que_Registra").val('');
+        });
         $("#txtAdvanceEstatus").keypress(function () {
             isQuejas_de_MPTextSearch = true;
             $("#ddlAdvanceEstatus").val('').trigger("chosen:updated");
@@ -2575,68 +2433,32 @@
             isQuejas_de_MPTextSearch = false;
             $("#txtAdvanceSituacion_Fisica").val('');
         });
-        $("#txtAdvanceGenero").keypress(function () {
+        $("#txtAdvanceMunicipio_hechos").keypress(function () {
             isQuejas_de_MPTextSearch = true;
-            $("#ddlAdvanceGenero").val('').trigger("chosen:updated");
+            $("#ddlAdvanceMunicipio_hechos").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceGenero").change(function () {
+        $("#ddlAdvanceMunicipio_hechos").change(function () {
             isQuejas_de_MPTextSearch = false;
-            $("#txtAdvanceGenero").val('');
+            $("#txtAdvanceMunicipio_hechos").val('');
         });
-        $("#txtAdvanceNacionalidad").keypress(function () {
+        $("#txtAdvancePoblacion_hechos").keypress(function () {
             isQuejas_de_MPTextSearch = true;
-            $("#ddlAdvanceNacionalidad").val('').trigger("chosen:updated");
+            $("#ddlAdvancePoblacion_hechos").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceNacionalidad").change(function () {
+        $("#ddlAdvancePoblacion_hechos").change(function () {
             isQuejas_de_MPTextSearch = false;
-            $("#txtAdvanceNacionalidad").val('');
+            $("#txtAdvancePoblacion_hechos").val('');
         });
-        $("#txtAdvanceEntidad_de_Nacimiento").keypress(function () {
+        $("#txtAdvanceColonia_hechos").keypress(function () {
             isQuejas_de_MPTextSearch = true;
-            $("#ddlAdvanceEntidad_de_Nacimiento").val('').trigger("chosen:updated");
+            $("#ddlAdvanceColonia_hechos").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceEntidad_de_Nacimiento").change(function () {
+        $("#ddlAdvanceColonia_hechos").change(function () {
             isQuejas_de_MPTextSearch = false;
-            $("#txtAdvanceEntidad_de_Nacimiento").val('');
-        });
-        $("#txtAdvanceGenero_Hechos").keypress(function () {
-            isQuejas_de_MPTextSearch = true;
-            $("#ddlAdvanceGenero_Hechos").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceGenero_Hechos").change(function () {
-            isQuejas_de_MPTextSearch = false;
-            $("#txtAdvanceGenero_Hechos").val('');
-        });
-        $("#txtAdvanceTipo_de_Identificacion_Hechos").keypress(function () {
-            isQuejas_de_MPTextSearch = true;
-            $("#ddlAdvanceTipo_de_Identificacion_Hechos").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceTipo_de_Identificacion_Hechos").change(function () {
-            isQuejas_de_MPTextSearch = false;
-            $("#txtAdvanceTipo_de_Identificacion_Hechos").val('');
-        });
-        $("#txtAdvanceNacionalidad_Hechos").keypress(function () {
-            isQuejas_de_MPTextSearch = true;
-            $("#ddlAdvanceNacionalidad_Hechos").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceNacionalidad_Hechos").change(function () {
-            isQuejas_de_MPTextSearch = false;
-            $("#txtAdvanceNacionalidad_Hechos").val('');
-        });
-        $("#txtAdvanceEntidad_de_Nacimiento_Hechos").keypress(function () {
-            isQuejas_de_MPTextSearch = true;
-            $("#ddlAdvanceEntidad_de_Nacimiento_Hechos").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceEntidad_de_Nacimiento_Hechos").change(function () {
-            isQuejas_de_MPTextSearch = false;
-            $("#txtAdvanceEntidad_de_Nacimiento_Hechos").val('');
+            $("#txtAdvanceColonia_hechos").val('');
         });
         $("#txtAdvanceGenero_Identificacion").keypress(function () {
             isQuejas_de_MPTextSearch = true;
@@ -2674,24 +2496,6 @@
             isQuejas_de_MPTextSearch = false;
             $("#txtAdvanceEntidad_de_Nacimiento_Identificacion").val('');
         });
-        $("#txtAdvancePais").keypress(function () {
-            isQuejas_de_MPTextSearch = true;
-            $("#ddlAdvancePais").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvancePais").change(function () {
-            isQuejas_de_MPTextSearch = false;
-            $("#txtAdvancePais").val('');
-        });
-        $("#txtAdvanceEstado").keypress(function () {
-            isQuejas_de_MPTextSearch = true;
-            $("#ddlAdvanceEstado").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceEstado").change(function () {
-            isQuejas_de_MPTextSearch = false;
-            $("#txtAdvanceEstado").val('');
-        });
         $("#txtAdvanceMunicipio").keypress(function () {
             isQuejas_de_MPTextSearch = true;
             $("#ddlAdvanceMunicipio").val('').trigger("chosen:updated");
@@ -2700,6 +2504,15 @@
         $("#ddlAdvanceMunicipio").change(function () {
             isQuejas_de_MPTextSearch = false;
             $("#txtAdvanceMunicipio").val('');
+        });
+        $("#txtAdvancePoblacion").keypress(function () {
+            isQuejas_de_MPTextSearch = true;
+            $("#ddlAdvancePoblacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePoblacion").change(function () {
+            isQuejas_de_MPTextSearch = false;
+            $("#txtAdvancePoblacion").val('');
         });
         $("#txtAdvanceColonia").keypress(function () {
             isQuejas_de_MPTextSearch = true;

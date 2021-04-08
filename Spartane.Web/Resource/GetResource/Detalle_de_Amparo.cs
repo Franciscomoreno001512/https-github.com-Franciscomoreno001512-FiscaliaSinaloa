@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Orden_de_Aprehension</summary>
+        public static string Orden_de_Aprehension
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Amparo.GetResource("Orden_de_Aprehension", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Tipo_de_Amparo</summary>
         public static string Tipo_de_Amparo
         {

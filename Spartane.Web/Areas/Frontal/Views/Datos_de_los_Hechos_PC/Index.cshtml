@@ -2,7 +2,6 @@
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Datos_de_los_Hechos_PC;
 @using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
-@using Spartane.Core.Domain.Tipo_de_Solicitud;
 @using Spartane.Core.Domain.Respuesta;
 @using Spartane.Core.Domain.Respuesta;
 @using Spartane.Core.Domain.Pais;
@@ -208,7 +207,6 @@
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Datos_de_los_Hechos_PCResources.Clave</th>
                                     <th>@Resources.Datos_de_los_Hechos_PCResources.Solicitud</th>
-                                    <th>@Resources.Datos_de_los_Hechos_PCResources.Tipo_de_Solicitud</th>
                                     <th>@Resources.Datos_de_los_Hechos_PCResources.Titulo_del_Hecho</th>
                                     <th>@Resources.Datos_de_los_Hechos_PCResources.Narrativa_Breve_de_los_Hechos</th>
                                     <th>@Resources.Datos_de_los_Hechos_PCResources.Fecha_del_Hecho</th>
@@ -237,7 +235,6 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -377,7 +374,6 @@
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -403,7 +399,6 @@
 
         var queryString = "&Clave=" + Clave 
         + "&Solicitud=" + Solicitud
-        + "&Tipo_de_Solicitud=" + Tipo_de_Solicitud
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
         + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
         + "&Fecha_del_Hecho=" + Fecha_del_Hecho
@@ -440,7 +435,6 @@
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -466,7 +460,6 @@
 
         return "&Clave=" + Clave 
         + "&Solicitud=" + Solicitud
-        + "&Tipo_de_Solicitud=" + Tipo_de_Solicitud
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
         + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
         + "&Fecha_del_Hecho=" + Fecha_del_Hecho
@@ -586,7 +579,7 @@
 
     function SetTitle(printWindow) {
         if (printWindow.document) {
-            printWindow.document.title = "Datos de los Hechos PC Print";
+            printWindow.document.title = "Proporcione los datos de los hechos Print";
         } else {
             setTimeout(SetTitle, 10);
         }
@@ -668,11 +661,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -737,7 +730,6 @@
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "SolicitudFolio", "orderable": true, "name": "SolicitudFolio"}
-                ,{ "data": "Tipo_de_SolicitudDescripcion", "orderable": true, "name": "Tipo_de_SolicitudDescripcion" }
                 ,{ "data": "Titulo_del_Hecho", "orderable": true, "name": "Titulo_del_Hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Narrativa_Breve_de_los_Hechos", "orderable": true, "name": "Narrativa_Breve_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_del_Hecho", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Hecho" }

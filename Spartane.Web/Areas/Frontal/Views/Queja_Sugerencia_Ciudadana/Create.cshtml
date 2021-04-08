@@ -31,6 +31,11 @@
        Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
    }
 }
+<style>
+    #page-wrapper {
+        margin: 0px !important;
+    }
+</style>
 <div class="loading style-2"><div class="loading-wheel"></div></div>
 <div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
     <div class="modal-dialog">
@@ -53,7 +58,38 @@
         </div>
     </div>
 </div>
+<div id="divmodalaux" class="hidden" style="border: 2px solid lightgray; border-radius: 4px; z-index: 99999; position: absolute; width: 1800px; height: 1200px; background: rgba(192,192,192,0.5)!important; top: -300px; left: -300px;">
+    <div id="modalaux" style="top:400px;left:-100px;" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-4">
+                        <img class="logo-fiscalia logo-modal" src="~/Images/logotipos/fiscalia200px.png" alt="Logotipo Fiscalia Sinaloa">
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-sm-12 b-r">
+                        <h2 id="modalauxtit" class="m-t-none m-b text-capitalize">Aviso Importante</h2>
+                        <p style="font-size:16px;" id="modalauxtxt">Parrafo con infomación</p>
+
+                        <!-- DIV DE ERROR. Solo si se requiere-->
+                        <div class="form-group">
+                            <div id="error-old-password"></div>
+                        </div>
+                        <!-- FIN: DIV DE ERROR-->
+                        <!-- DIV DE BOTONES DE ACEPTAR Y CANCELAR. Solo si se requiere-->
+                        <div style="text-align:right;" class="form-group">
+                            <button id="saveaux" type="button" class="btn btn-w-m btn-primary btn_save">Aceptar</button>
+                        </div>
+                        <!-- FIN: DIV DE BOTONES DE GUARDAD/ACEPTAR Y CANCELAR-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row wrapper border-bottom white-bg page-heading">
 
     <div class="row">
@@ -66,7 +102,7 @@
                     </a>
                 </button>
             </h2>
-            <ol class="breadcrumb">
+            @*<ol class="breadcrumb">
                 <li>
                     <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
                 </li>
@@ -84,7 +120,7 @@
                 <li class="active">
                     <strong>@Resources.Resources.Create</strong>
                 </li>
-            </ol>
+            </ol>*@
         </div>
         <div class="col-lg-2">
 
@@ -418,11 +454,13 @@
 		var nameAttribute = '@ViewBag.nameAttribute';
 		var Tab_Datos_Generales = true;
 
-
+        var roleActivo = @Session["USERROLEID"];
         $(document).ready(function () {
             $('#ObjectId').val('45729');
-		    
-		   
+
+           
+
+            $(".fa-bars").parent().hide();
                         $('#Fecha_de_Registro').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,

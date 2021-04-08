@@ -1,5 +1,41 @@
-﻿
-$('.modal').on('hidden.bs.modal', function (e) {
+﻿// AGREGAR VALIDACIONES DE ENTRADA EN INPUTS - OMAR MARTINEZ
+    /* 
+    PARAMETROS
+        TIPO: 1: Alfanumerico, 2: Numerico, 3: Alfabetico
+        ARREGLOID: Arreglo de strings con los ids de los inputs a los que se le aplicara la validacion
+    */
+const AddValidacionesOnInput = function (tipo, arregloID){
+    let tipos = [1,2,3];
+
+    if(!Array.isArray(arregloID) || !tipos.includes(tipo) )
+        return;
+
+    let regex = '';
+    switch (tipo) {
+        case 1:
+            regex = '/[^ña-zÑA-Z áéíóúÁÉÍÓÚ 0-9]/g';
+        break;
+        case 2:
+            regex = '/[^0-9]/g';
+        break;
+        case 3:
+            regex = '/[^ña-zÑA-Z áéíóúÁÉÍÓÚ]/g';
+        break;
+        default:
+            break;
+    }
+
+    arregloID.forEach(element => { 
+        if(!element.startsWith('#'))
+            element = '#' + element;
+        
+        let selector = $(element);
+        selector.attr("oninput", "this.value = this.value.replace(" + regex + ", '');");
+    });
+}
+// END AGREGAR VALIDACIONES DE ENTRADA EN INPUTS - OMAR MARTINEZ
+
+$('.modal').on('hidden.bs.modal', function(e) {
 
     if ($('.modal').hasClass('in')) {
         $('body').addClass('modal-open');
@@ -10,12 +46,74 @@ $('.modal').on('hidden.bs.modal', function (e) {
 
 });
 
-var controlDocumentoDynamiSeach = false; 								 
-$(function () {
+//CONVERTIR A MAYUSCULAS AL BLUR - FELIPE RODRIGUEZ
+$('input[type="text"],textarea').blur(function() {
+    let dimissed_ids = ["Usuario","Correo","Password","Email","Username", "myInput"];
+    let id = this.id;
+    if(!dimissed_ids.includes(id))
+        this.value = this.value.toUpperCase();
+});
+//END CONVERTIR A MAYUSCULAS AL BLUR
 
-    //$('#datetimepicker1 > input').mask("00-00-0000", { clearIfNotMatch: true });
-    // display focus in and out as per validation
-    $('.inputclientrequired').blur(function () {
+//CAMBIAR TAMAÑO DE LETRA PARA QUE SE VEAN LAS TILDES  - FELIPE RODRIGUEZ
+$('input[type="text"],textarea').css("font-size", "15px");
+//END CAMBIAR TAMAÑO DE LETRA PARA QUE SE VEAN LAS TILDES
+
+var controlDocumentoDynamiSeach = false;
+$(function() {
+
+    $('#Fecha_de_Nacimiento').parent().datepicker({
+        format: "dd-mm-yyyy",
+        //endDate: '-1d'
+    });
+
+    $('#Fecha_del_Hecho').parent().datepicker({
+        format: "dd-mm-yyyy",
+        //endDate: '-1d'
+    });
+
+
+    $('#Fecha_de_Nacimiento').blur(function() {
+        var regex = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+        if (regex.test($(this).val())) {
+            return true;
+        } else {
+            $(this).val('');
+            return false;
+        }
+    });
+
+    $('#Fecha_del_Hecho').blur(function() {
+        var regex = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+        if (regex.test($(this).val())) {
+            return true;
+        } else {
+            $(this).val('');
+            return false;
+        }
+    });
+
+    $('#Fecha_de_Nacimiento').inputmask("datetime", {
+        mask: "1-2-y",
+        placeholder: "__-__-____",
+        leapday: "-02-29",
+        separator: "-",
+        alias: "dd/mm/yyyy"
+    });
+
+    $('#Fecha_del_Hecho').inputmask("datetime", {
+        mask: "1-2-y",
+        placeholder: "__-__-____",
+        leapday: "-02-29",
+        separator: "-",
+        alias: "dd/mm/yyyy"
+    });
+
+    $('.input-group.date').datepicker({
+        format: "dd-mm-yyyy"
+    });
+
+    $('.inputclientrequired').blur(function() {
         if ($(this).val() == '') {
             $(this).parent().closest('.form-group').addclass('has-error');
         } else {
@@ -26,7 +124,7 @@ $(function () {
 
 function setDynamicRenderElement() {
     //display focus in and out as per validation
-    $('.inputClientRequired').blur(function () {
+    $('.inputClientRequired').blur(function() {
         if ($(this).val() == '') {
             $(this).addClass('has-error');
         } else {
@@ -53,12 +151,10 @@ function setInputEntityAttributes(inpuElementArray, selectorType, elementType) {
                     for (var j = 0; j < element.length; j++) {
                         SetRequiredToControl(element[j].id);
                     }
-                }
-                else {
+                } else {
                     SetRequiredToControl(element);
                 }
-            }
-            else {
+            } else {
                 SetNotRequiredToControl(element);
             }
             if (element.val() != undefined) {
@@ -109,7 +205,7 @@ function closeOpenAllNodes(jsTree) {
     jsTree.jstree('close_all');
 }
 
-String.format = function () {
+String.format = function() {
     var s = arguments[0];
     for (var i = 0; i < arguments.length - 1; i++) {
         var reg = new RegExp("\\{" + i + "\\}", "gm");
@@ -120,11 +216,11 @@ String.format = function () {
 }
 
 
-String.prototype.endsWith = function (suffix) {
+String.prototype.endsWith = function(suffix) {
     return (this.substr(this.length - suffix.length) === suffix);
 }
 
-String.prototype.startsWith = function (prefix) {
+String.prototype.startsWith = function(prefix) {
     return (this.substr(0, prefix.length) === prefix);
 }
 
@@ -150,7 +246,7 @@ function checkClientValidate(formSelector) {
 
     $('#textRequired').empty();
     var elementValid = true;
-    $('.' + formSelector + ' .inputClientRequired').each(function () {
+    $('.' + formSelector + ' .inputClientRequired').each(function() {
         if (this.nodeName.toString().toLowerCase() == 'select') {
             if ($(this).val() == '') {
                 $(this).parent().closest('.form-group').addClass('has-error');
@@ -159,8 +255,7 @@ function checkClientValidate(formSelector) {
             } else {
                 $(this).parent().closest('.form-group').removeClass('has-error');
             }
-        }
-        else if (this.nodeName.toString().toLowerCase() == 'textarea' && $(this).data('type') == 'ckEditor') {
+        } else if (this.nodeName.toString().toLowerCase() == 'textarea' && $(this).data('type') == 'ckEditor') {
             if (CKEDITOR.instances[this.name].getData() == '') {
                 $(this).parent().closest('.form-group').addClass('has-error');
                 showMessageRequired($(this));
@@ -169,8 +264,7 @@ function checkClientValidate(formSelector) {
                 $("textarea#" + this.name).val(htmlEncode(CKEDITOR.instances[this.name].getData()));
                 $(this).parent().closest('.form-group').removeClass('has-error');
             }
-        }
-        else if (this.nodeName.toString().toLowerCase() == 'input' && $(this).prop("type") == 'file') {
+        } else if (this.nodeName.toString().toLowerCase() == 'input' && $(this).prop("type") == 'file') {
             if ($(this).val() == '' || $(this).val() == null) {
                 var hndFile = '#hdnAttached' + this.name.replace('File', '');
                 var hndFileRemoved = '#hdnRemove' + this.name.replace('File', '');
@@ -178,17 +272,13 @@ function checkClientValidate(formSelector) {
                     $(this).parent().closest('.form-group').addClass('has-error');
                     showMessageRequired($(this));
                     elementValid = false;
-                }
-                else {
+                } else {
                     $(this).parent().closest('.form-group').removeClass('has-error');
                 }
-            }
-            else {
+            } else {
                 $(this).parent().closest('.form-group').removeClass('has-error');
             }
-        }
-
-        else {
+        } else {
             if ($(this).val() == '' || $(this).val() == null) {
                 $(this).parent().closest('.form-group').addClass('has-error');
                 showMessageRequired($(this));
@@ -202,21 +292,22 @@ function checkClientValidate(formSelector) {
     if (elementValid === true)
         $('#controlsRequerid').hide();
     else
-        //$('#controlsRequerid').show();
+    //$('#controlsRequerid').show();
 
-        if (elementValid === true)
-            $('#controlsRequerid').hide();
-        else
-            $('#controlsRequerid').show();
+    if (elementValid === true)
+        $('#controlsRequerid').hide();
+    else
+        $('#controlsRequerid').show();
 
     $('html,body').animate({
         scrollTop: $('#viewmodeledit').offset().top
     }, '4000');
     return elementValid;
 }
+
 function dynamicFieldValidation(formSelector) {
     var elementValid = true;
-    $('.' + formSelector + ' .inputClientRequired').each(function () {
+    $('.' + formSelector + ' .inputClientRequired').each(function() {
         if ($(this).css('display') != 'none') {
             if (this.nodeName.toString().toLowerCase() == 'select') {
                 if ($(this).val() == '' || $(this).val() == $(this).next().val()) {
@@ -242,7 +333,7 @@ function dynamicFieldValidation(formSelector) {
     return elementValid;
 }
 
-$('body').on('keydown', '.inputNumber', function (e) {
+$('body').on('keydown', '.inputNumber', function(e) {
     // Allow: backspace, delete, tab, escape, enter and .
     if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
         // Allow: Ctrl+A, Command+A
@@ -338,10 +429,9 @@ function ReplaceFLD(text, rowIndex, nameOfTable) {
                 if (valueOfVar === null || valueOfVar == "null" || valueOfVar == "") //fjmore inicio
                 {
                     valueOfVar = 0;
-                }
-                else {
+                } else {
                     valueOfVar = valueOfVar.replace(/,/g, '')
-                    // valueOfVar = valueOfVar.replace(',', '');
+                        // valueOfVar = valueOfVar.replace(',', '');
                 } //fjmore fin
             }
         }
@@ -441,10 +531,10 @@ function EvaluaQuery(query, rowIndex, nameOfTable) {
         dataType: "json",
         async: false,
         data: data,
-        success: function (result) {
+        success: function(result) {
             res = result;
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error ejecutando query", "error");
         }
     });
@@ -469,10 +559,10 @@ function GetSessionValue(name) {
         cache: false,
         dataType: "json",
         async: false,
-        success: function (result) {
+        success: function(result) {
             res = result;
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error buscando variable", "error");
         }
     });
@@ -487,10 +577,10 @@ function ResetSessionValue(valor) {
         cache: false,
         dataType: "json",
         async: false,
-        success: function (result) {
+        success: function(result) {
             res = result;
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error buscando variable", "error");
         }
     });
@@ -508,10 +598,10 @@ function CreateSessionVar(name, value) {
         cache: false,
         dataType: "json",
         async: false,
-        success: function (result) {
+        success: function(result) {
             return result;
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error creando variable", "error");
         }
     });
@@ -521,16 +611,17 @@ function CreateSessionVar(name, value) {
 function ShowHideTextbox(idForm, idField, blockOrNone) {
     $("form#" + idForm + " #div" + idField).css('display', blockOrNone);
 }
+
 function EnableDisableTextbox(idForm, idField, disabledOrEmpty) {
     $("form#" + idForm + " #" + idField).prop('disabled', disabledOrEmpty);
 }
+
 function DefaultValueTextbox(idForm, idField, val, isQuery) {
     if (isQuery == true) {
-        EvaluaQuery(val, function (result) {
+        EvaluaQuery(val, function(result) {
             $("form#" + idForm + " #" + idField).val(result);
         });
-    }
-    else {
+    } else {
         $("form#" + idForm + " #" + idField).val(val);
     }
 }
@@ -539,16 +630,17 @@ function DefaultValueTextbox(idForm, idField, val, isQuery) {
 function ShowHideDropdown(idForm, idField, blockOrNone) {
     $("form#" + idForm + " #div" + idField).css('display', blockOrNone);
 }
+
 function EnableDisableDropdown(idForm, idField, disabledOrEmpty) {
     $("form#" + idForm + " #" + idField).prop('disabled', disabledOrEmpty);
 }
+
 function DefaultValueDropdown(idForm, idField, val, isQuery) {
     if (isQuery == true) {
-        EvaluaQuery(val, function (result) {
+        EvaluaQuery(val, function(result) {
             $("form#" + idForm + " #" + idField).val(result);
         });
-    }
-    else {
+    } else {
         $("form#" + idForm + " #" + idField).val(val);
     }
 }
@@ -556,16 +648,17 @@ function DefaultValueDropdown(idForm, idField, val, isQuery) {
 function ShowHideHTMLEditor(idForm, idField, blockOrNone) {
     $("form#" + idForm + " #div" + idField).css('display', blockOrNone);
 }
+
 function EnableDisableHTMLEditor(idField, trueOrFalse) {
     CKEDITOR.instances['JobDescription'].config.readOnly = !trueOrFalse;
 }
+
 function DefaultValueHTMLEditor(idField, val, isQuery) {
     if (isQuery == true) {
-        EvaluaQuery(val, function (result) {
+        EvaluaQuery(val, function(result) {
             CKEDITOR.instances[idField].insertText(result);
         });
-    }
-    else {
+    } else {
         CKEDITOR.instances[idField].insertText(val);
     }
 }
@@ -573,16 +666,17 @@ function DefaultValueHTMLEditor(idField, val, isQuery) {
 function ShowHideCheckbox(idForm, idField, blockOrNone) {
     $("form#" + idForm + " #div" + idField).css('display', blockOrNone);
 }
+
 function EnableDisableCheckbox(idForm, idField, trueOrFalse) {
     $("form#" + idForm + " #" + idField).prop('disabled', trueOrFalse);
 }
+
 function DefaultValueCheckbox(idForm, idField, val, isQuery) {
     if (isQuery == true) {
-        EvaluaQuery(val, function (result) {
+        EvaluaQuery(val, function(result) {
             $("form#" + idForm + " #" + idField).prop('checked', result);
         });
-    }
-    else {
+    } else {
         $("form#" + idForm + " #" + idField).prop('checked', val);
     }
 }
@@ -590,20 +684,21 @@ function DefaultValueCheckbox(idForm, idField, val, isQuery) {
 function ShowHideAutocomplete(idForm, idField, blockOrNone) {
     $("form#" + idForm + " #div" + idField).css('display', blockOrNone);
 }
+
 function EnableDisableAutocomplete(idForm, idField, trueOrFalse) {
     $("form#" + idForm + " #" + idField).prop('disabled', !trueOrFalse);
 }
-function DefaultValueAutocomplete(idForm, idField, valId, text/*Aqui deberia ir la query*/, isQuery) {
+
+function DefaultValueAutocomplete(idForm, idField, valId, text /*Aqui deberia ir la query*/ , isQuery) {
     if (isQuery == true) {
-        EvaluaQuery(val, function (result) {
+        EvaluaQuery(val, function(result) {
             $("form#" + idForm + " #" + idField).append($('<option>', {
                 value: valId,
                 text: result
             }));
             $("form#" + idForm + " #" + idField).val(valId).trigger("change");
         });
-    }
-    else {
+    } else {
         $("form#" + idForm + " #" + idField).append($('<option>', {
             value: valId,
             text: text
@@ -615,16 +710,17 @@ function DefaultValueAutocomplete(idForm, idField, valId, text/*Aqui deberia ir 
 function ShowHideRadiobutton(idForm, idField, blockOrNone) {
     $("form#" + idForm + " #div" + idField).css('display', blockOrNone);
 }
+
 function EnableDisableRadiobutton(idForm, idField, disabledOrEmpty) {
     $("form#" + idForm + " #" + idField).prop('disabled', disabledOrEmpty);
 }
+
 function DefaultValueRadiobutton(idForm, idField, val, isQuery) {
     if (isQuery == true) {
-        EvaluaQuery(val, function (result) {
+        EvaluaQuery(val, function(result) {
             $("form#" + idForm + " #" + idField).filter('[value="' + result + '"]').attr('checked', true);
         });
-    }
-    else {
+    } else {
         $("form#" + idForm + " #" + idField).filter('[value="' + val + '"]').attr('checked', true);
     }
 }
@@ -633,20 +729,21 @@ function DefaultValueRadiobutton(idForm, idField, val, isQuery) {
 function ShowHideFileupload(idForm, idField, blockOrNone) {
     $("form#" + idForm + " #div" + idField).css('display', blockOrNone);
 }
+
 function EnableDisableFileupload(idForm, idField, disabledOrEmpty) {
     $("form#" + idForm + " #" + idField + "File").prop('disabled', disabledOrEmpty);
 }
+
 function DefaultValueFileupload(idForm, idField, val, isQuery) {
     if (isQuery == true) {
-        EvaluaQuery(val, function (result) {
-            getFileNameById(result, function (name) {
+        EvaluaQuery(val, function(result) {
+            getFileNameById(result, function(name) {
                 $("form#" + idForm + " #DefaultName" + idField).text('Default: ' + name);
             });
             $("form#" + idForm + " #Default" + idField).val(result);
         });
-    }
-    else {
-        getFileNameById(val, function (name) {
+    } else {
+        getFileNameById(val, function(name) {
             $("form#" + idForm + " #DefaultName" + idField).text('Default: ' + name);
         });
         $("form#" + idForm + " #Default" + idField).val(val);
@@ -660,10 +757,10 @@ function getFileNameById(id, callbak) {
         cache: false,
         dataType: "json",
         async: false,
-        success: function (result) {
+        success: function(result) {
             return callbak(result);
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error buscando file", "error");
         }
     });
@@ -750,10 +847,10 @@ function SendEmail(to, subject, body) {
         data: JSON.stringify(data),
         dataType: 'json',
         async: true,
-        success: function (result) {
+        success: function(result) {
 
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error enviando correo", "error");
         },
         cache: false,
@@ -783,10 +880,10 @@ function SendEmailQuery(subject, to, body, rowIndex, nameOfTable) {
         data: JSON.stringify(data),
         dataType: 'json',
         async: true,
-        success: function (result) {
+        success: function(result) {
 
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error enviando correo", "error");
         },
         cache: false,
@@ -812,19 +909,19 @@ function fillMRFromQuery(nameOfTable, query) {
         cache: false,
         async: false,
         data: data,
-        success: function (result) {
+        success: function(result) {
             var jsonObj = $.parseJSON(result);
             var table = nameOfTable + 'Table';
             var data = eval(table);
             data.fnClearTable();
-            $.each(jsonObj, function (index, element) {
+            $.each(jsonObj, function(index, element) {
                 data.fnAddData(element, true);
                 jQuery.globalEval(nameOfTable + 'EditRow(' + index + ', null, false)');
                 jQuery.globalEval(nameOfTable + 'InsertRow(' + index + ')');
             });
             res = result;
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error ejecutando query", "error");
         }
     });
@@ -848,10 +945,10 @@ function EvaluaQueryDictionary(query, rowIndex, nameOfTable) {
         cache: false,
         async: false,
         data: data,
-        success: function (result) {
+        success: function(result) {
             res = result;
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error ejecutando query", "error");
         }
     });
@@ -875,15 +972,16 @@ function EvaluaQueryEnumerable(query, rowIndex, nameOfTable) {
         cache: false,
         async: false,
         data: data,
-        success: function (result) {
+        success: function(result) {
             res = result;
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error ejecutando query", "error");
         }
     });
     return res;
 }
+
 function ReplaceQuery(query, rowIndex, nameOfTable) {
     query = ReplaceFLD(query, rowIndex, nameOfTable);
     query = ReplaceFLDD(query, rowIndex, nameOfTable);
@@ -900,7 +998,7 @@ function sortSelect(selElem) {
     var valor = selElem.val();
     var my_options = $(selElem.selector + "  option");
 
-    my_options.sort(function (a, b) {
+    my_options.sort(function(a, b) {
         if (a.text > b.text) return 1;
         if (a.text < b.text) return -1;
         return 0
@@ -940,11 +1038,11 @@ function GetListOfColumns(query) {
         dataType: "json",
         async: false,
         data: data,
-        success: function (result) {
+        success: function(result) {
             var jsonObj = $.parseJSON(result);
             res = jsonObj['Root']['Data'];
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error ejecutando query", "error");
         }
     });
@@ -955,19 +1053,19 @@ function RemoveRequiredElementsIntoTab(divName) {
     var selects = $('#tab' + divName).find('select');
     var inputs = $('#tab' + divName).find('input');
     var textareas = $('#tab' + divName).find('textarea');
-    selects.each(function () {
+    selects.each(function() {
         if ($(this).hasClass('inputClientRequired')) {
             $(this).removeClass('inputClientRequired');
             $(this).addClass('inputClientRequired-hide');
         }
     });
-    inputs.each(function () {
+    inputs.each(function() {
         if ($(this).hasClass('inputClientRequired')) {
             $(this).removeClass('inputClientRequired');
             $(this).addClass('inputClientRequired-hide');
         }
     });
-    textareas.each(function () {
+    textareas.each(function() {
         if ($(this).hasClass('inputClientRequired')) {
             $(this).removeClass('inputClientRequired');
             $(this).addClass('inputClientRequired-hide');
@@ -979,19 +1077,19 @@ function AddRequiredElementsIntoTab(divName) {
     var selects = $('#tab' + divName).find('select');
     var inputs = $('#tab' + divName).find('input');
     var textareas = $('#tab' + divName).find('textarea');
-    selects.each(function () {
+    selects.each(function() {
         if ($(this).hasClass('inputClientRequired-hide')) {
             $(this).removeClass('inputClientRequired-hide');
             $(this).addClass('inputClientRequired');
         }
     });
-    inputs.each(function () {
+    inputs.each(function() {
         if ($(this).hasClass('inputClientRequired')) {
             $(this).removeClass('inputClientRequired-hide');
             $(this).addClass('inputClientRequired');
         }
     });
-    textareas.each(function () {
+    textareas.each(function() {
         if ($(this).hasClass('inputClientRequired')) {
             $(this).removeClass('inputClientRequired-hide');
             $(this).addClass('inputClientRequired');
@@ -1020,8 +1118,7 @@ function GetValueByControlType(control, nameOfTable, rowIndex) {
         nameOfTable = nameOfTable.slice(0, -1) + 'Table';
         var data = eval(nameOfTable);
         valueOfVar = data.fnGetData(rowIndex)[controlName];
-    }
-    else if ($(control.selector + "File").is('input:file')) {
+    } else if ($(control.selector + "File").is('input:file')) {
         valueOfVar = $(control.selector + "File").val();
     }
 
@@ -1048,8 +1145,7 @@ function SetDefectValue(control, val) {
     var c = nameOfTable + control + rowIndex;
     if ($('#' + c).is('input:checkbox')) {
         $('#' + c).prop('checked', val == 'true');
-    }
-    else {
+    } else {
         $('#' + c).val(val);
     }
 }
@@ -1066,7 +1162,7 @@ function GetFile(id) {
         cache: false,
         dataType: "json",
         async: false,
-        success: function (result) {
+        success: function(result) {
             var description = result.Description;
             var id = result.File_Id;
             var url = url_content + 'Frontal/Client_Registration/GetFile?id=' + id;
@@ -1074,7 +1170,7 @@ function GetFile(id) {
             res.name = description;
             res.url = url;
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error obteniendo File", "error");
         }
     });
@@ -1090,15 +1186,15 @@ function AsignarValor(nameOfControl, val) {
         var file = GetFile(val)
         if ($('#' + nameOfControl).length) {
             $('#' + nameOfControl).val(587);
-        }
-        else {
+        } else {
             controlFile.parent().append('<input type="hidden" id="' + nameOfControl + '" name="' + nameOfControl + '" value="' + file.id + '" />')
         }
         controlFile.parent().append('<a href="' + file.url + '">' + file.name + '</a>');
-    }
-    else {
+    } else {
         if (control.is('input:checkbox')) {
-            var arrayTrue = ["true", "si", "yes", "1", "verdadero"]; var value = val.toString().toLowerCase().replace('"', ''); control.prop('checked', arrayTrue.indexOf(value) > -1).trigger('change');
+            var arrayTrue = ["true", "si", "yes", "1", "verdadero"];
+            var value = val.toString().toLowerCase().replace('"', '');
+            control.prop('checked', arrayTrue.indexOf(value) > -1).trigger('change');
         }
         if (control.is('input:text') || control.is('textarea')) {
             control.val(val);
@@ -1113,15 +1209,15 @@ function AsignarValor(nameOfControl, val) {
             control.select2('close');
             var data = eval('AutoComplete' + control.selector.replace(nameOfTable, '').replace(rowIndex, '').replace('#', '') + 'Data');
             control.select2({ data: data });
-            setTimeout(function () {
+            setTimeout(function() {
                 var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
                 control.select2({ data: data });
-                $.each(data, function (key, value) {
+                $.each(data, function(key, value) {
                     if (value.text == val)
                         control.val(value.id).trigger('change');
                 });
             }, 2000);
-			/*control.select2('open');
+            /*control.select2('open');
 			 $('.select2-search__field').val('Ad').trigger('keyup');	
 			 control.select2('close'); 
 			
@@ -1150,15 +1246,15 @@ function AsignarValor2(nameOfControl, val) {
         var file = GetFile(val)
         if ($('#' + nameOfControl).length) {
             $('#' + nameOfControl).val(587);
-        }
-        else {
+        } else {
             controlFile.parent().append('<input type="hidden" id="' + nameOfControl + '" name="' + nameOfControl + '" value="' + file.id + '" />')
         }
         controlFile.parent().append('<a href="' + file.url + '">' + file.name + '</a>');
-    }
-    else {
+    } else {
         if (control.is('input:checkbox')) {
-            var arrayTrue = ["true", "si", "yes", "1", "verdadero"]; var value = val.toString().toLowerCase().replace('"', ''); control.prop('checked', arrayTrue.indexOf(value) > -1).trigger('change');
+            var arrayTrue = ["true", "si", "yes", "1", "verdadero"];
+            var value = val.toString().toLowerCase().replace('"', '');
+            control.prop('checked', arrayTrue.indexOf(value) > -1).trigger('change');
         }
         if (control.is('input:text') || control.is('textarea')) {
             control.val(val);
@@ -1171,17 +1267,17 @@ function AsignarValor2(nameOfControl, val) {
             control.select2('open');
             $('.select2-search__field').val(val).trigger('keyup');
             control.select2('close');
-            var data =  eval("AutoCompleteusuario_que_realiza_observacionData");
+            var data = eval("AutoCompleteusuario_que_realiza_observacionData");
             control.select2({ data: data });
-            setTimeout(function () {
+            setTimeout(function() {
                 var data = eval("AutoCompleteusuario_que_realiza_observacionData");
                 control.select2({ data: data });
-                $.each(data, function (key, value) {
+                $.each(data, function(key, value) {
                     if (value.text == val)
                         control.val(value.id).trigger('change');
                 });
             }, 2000);
-			/*control.select2('open');
+            /*control.select2('open');
 			 $('.select2-search__field').val('Ad').trigger('keyup');	
 			 control.select2('close'); 
 			
@@ -1256,14 +1352,14 @@ function filterCombo(control, dictionary) {
     $(control).empty();
     if (!$(control).hasClass('AutoComplete')) {
         $(control).append($("<option selected />").val("").text(""));
-        $.each(dictionary, function (index, value) {
+        $.each(dictionary, function(index, value) {
             $(control).append($("<option />").val(value.Clave).text(value.Description));
         });
         $(control).val(valor);
-    }
-    else {
-        var selectData = []; selectData.push({ id: "", text: "" });
-        $.each(dictionary, function (index, value) {
+    } else {
+        var selectData = [];
+        selectData.push({ id: "", text: "" });
+        $.each(dictionary, function(index, value) {
             selectData.push({ id: value.Clave, text: value.Description });
         });
         $(control).select2({ data: selectData })
@@ -1278,7 +1374,7 @@ function filterCombo(control, dictionary) {
 function addItemsToSelect(control, items) {
     control.empty();
     $(control).append($('<option />', { value: '', text: '' }));
-    $.each(items, function (i, item) {
+    $.each(items, function(i, item) {
         $(control).append($('<option>', {
             value: item.Value,
             text: item.Text
@@ -1306,10 +1402,10 @@ function GetRoleObjectPermision(objectId) {
         cache: false,
         dataType: "json",
         async: false,
-        success: function (result) {
+        success: function(result) {
             res = result;
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error ", "error");
         }
     });
@@ -1343,7 +1439,8 @@ var RolUsuarioTemp;
 var DocumentoIdTemp;
 var iseditTemp;
 var ObjectIdFilterTemp;
-function OpenPrintFormats(ObjectId, RolUsuario, query, isedit, ObjectIdFilter, formatoID) {
+
+function OpenPrintFormats(ObjectId, RolUsuario, query, isedit, ObjectIdFilter, formatoID, closeAfterLoaded) {
     debugger;
     ResetSessionValue("");
     var DocumentoId = EvaluaQuery(query);
@@ -1352,9 +1449,10 @@ function OpenPrintFormats(ObjectId, RolUsuario, query, isedit, ObjectIdFilter, f
     DocumentoIdTemp = DocumentoId;
     RolUsuarioTemp = RolUsuario;
     ObjectIdFilterTemp = ObjectIdFilter;
-
+    var guid = GetHtmlAsString(formatoID, ObjectIdTemp);
     if (isedit) {
-        var url = url_content + "Frontal/Control_de_Documentos/Create?id=" + ObjectId + "&Module_Id=1&isPartial=true&nameAttribute=AttributoNombre"; // "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        var url = url_content + "Frontal/Control_de_Documentos/Create?id=" + ObjectIdTemp + "&Module_Id=1&isPartial=true&nameAttribute=AttributoNombre&guid=" + guid + "&closeAfterLoaded=" + closeAfterLoaded; // "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        //var url = url_content + "Frontal/Control_de_Documentos/Create?id=" + ObjectId + "&Module_Id=1&isPartial=true&nameAttribute=AttributoNombre"; // "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
         var params = [
             'height=' + screen.height,
             'width=' + screen.width,
@@ -1363,10 +1461,9 @@ function OpenPrintFormats(ObjectId, RolUsuario, query, isedit, ObjectIdFilter, f
         timerInterval1 = setInterval('ReadSesionVar()', 1000);
         window.open(url, '_blank', params);
 
-    }
-    else {
+    } else {
         var guid = GetHtmlAsString(formatoID, ObjectIdTemp);
-        GetCatalogPopupTest(guid, iseditTemp, ObjectIdTemp);
+        GetCatalogPopupTest(guid, iseditTemp, ObjectIdTemp, closeAfterLoaded);
     }
 
 
@@ -1375,15 +1472,15 @@ function OpenPrintFormats(ObjectId, RolUsuario, query, isedit, ObjectIdFilter, f
 
 
 var timerInterval1;
-function GetCatalogPopupTest(guid, isedit, ObjectIdTemp) {
+
+function GetCatalogPopupTest(guid, isedit, ObjectIdTemp, closeAfterLoaded) {
     debugger;
     var url = "";
     if (!isedit) {
-        url = url_content + "Frontal/Control_de_Documentos/Create?Module_Id=1&isPartial=true&nameAttribute=AttributoNombre&guid=" + guid + "&isCallFromCatalogoPopupTest=TRUE"; // "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        url = url_content + "Frontal/Control_de_Documentos/Create?Module_Id=1&isPartial=true&nameAttribute=AttributoNombre&guid=" + guid + "&closeAfterLoaded=" + closeAfterLoaded + "&keyinserted=" + ObjectIdTemp; // "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
 
-    }
-    else {
-        url = url_content + "Frontal/Control_de_Documentos/Create?id=" + ObjectIdTemp + "&Module_Id=1&isPartial=true&nameAttribute=AttributoNombre&guid=" + guid + "&isCallFromCatalogoPopupTest=TRUE"; // "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+    } else {
+        url = url_content + "Frontal/Control_de_Documentos/Create?id=" + ObjectIdTemp + "&Module_Id=1&isPartial=true&nameAttribute=AttributoNombre&guid=" + guid + "&closeAfterLoaded=" + closeAfterLoaded; // "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
 
     }
 
@@ -1403,15 +1500,15 @@ function utf8_to_b64(str) {
 }
 
 function ReadSesionVar() {
-   
+
 
 
     var data = localStorage.getItem('controlDocumentoDynamiSeach');
-    if (data != "true" ) {
-        controlDocumentoDynamiSeach = false; 
-        localStorage.setItem('controlDocumentoDynamiSeach', "");
+    if (data != "true") {
+        controlDocumentoDynamiSeach = false;
+        localStorage.setItem('controlDocumentoDynamiSeach', "false");
     }
-  
+
     var FolioControlDocumentos = GetSessionValue("KeyValueInserted");
     if (FolioControlDocumentos != "-1" && FolioControlDocumentos != "") {
 
@@ -1431,11 +1528,11 @@ function GetHtmlAsString(idFormat, RecordId) {
         cache: false,
         dataType: "json",
         async: false,
-        success: function (result) {
+        success: function(result) {
             debugger;
             res = result;
         },
-        error: function (result) {
+        error: function(result) {
             debugger;
             showNotification("Error GetHtmlAsString", "error");
         }
@@ -1446,10 +1543,9 @@ function GetHtmlAsString(idFormat, RecordId) {
 
 function ShowMessageRequired(field) {
 
-    if (typeof (field) != "undefined") {
+    if (typeof(field) != "undefined") {
         return "El campo " + field + " es requerido";
-    }
-    else {
+    } else {
         return "";
     }
 }
@@ -1463,7 +1559,7 @@ function GeneratePDFFromControlDocumentos(FolioControlDocumentos) {
         cache: false,
         dataType: "json",
         async: false,
-        success: function (result) {
+        success: function(result) {
 
             res = result;
             var spartanfileId = "";
@@ -1484,7 +1580,7 @@ function GeneratePDFFromControlDocumentos(FolioControlDocumentos) {
 
             }
         },
-        error: function (result) {
+        error: function(result) {
             debugger;
             showNotification(result, "error");
         }
@@ -1499,8 +1595,7 @@ function HasValidaPersmisoX(objSelected, role, function_Id) {
 
     if (Object.keys(resulttado).length > 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 
@@ -1516,22 +1611,23 @@ function GetSpartanFileAndPost(SpartanFileId) {
         cache: false,
         dataType: "json",
         async: false,
-        success: function (result) {
+        success: function(result) {
             debugger;
             var sp = result.split('_');
             if (sp != null && sp[1] != null) {
                 res = parseInt(sp[1]);
             }
-           
+
         },
-        error: function (result) {
+        error: function(result) {
             debugger;
             showNotification("Error obteniendo File", "error");
         }
     });
     return res;
 }
-function GetAllTableSQL( query) {
+
+function GetAllTableSQL(query) {
     var res = null;
     query = ReplaceFLD(query, '', '');
     query = ReplaceFLDD(query, '', '');
@@ -1547,13 +1643,13 @@ function GetAllTableSQL( query) {
         cache: false,
         async: false,
         data: data,
-        success: function (result) {
-           
+        success: function(result) {
+
             var jsonObj = $.parseJSON(result);
-            
+
             res = jsonObj;
         },
-        error: function (result) {
+        error: function(result) {
             showNotification("Error ejecutando query", "error");
         }
     });
@@ -1561,61 +1657,59 @@ function GetAllTableSQL( query) {
 }
 $(".glyphicon-new-window").parent().hide();
 
-function DisableTab(divName) {
-    var selects = $('#tab' + divName).find('select');
-    var inputs = $('#tab' + divName).find('input');
-    var textareas = $('#tab' + divName).find('textarea');
-	var Control;
-	
-	selects.each(function () {
-		Control = $(this);
-		var controlFile = Control.selector + "File";
-		if ($(controlFile).length > 0) {
-			Control = controlFile;
-		}
+function ValidaArchivos(selector, allowext, filesize) {
+    //Validate file type
+    $(selector).attr("accept", "." + allowext.join(',.'));
+    $(selector).checkFileType({
+        allowedExtensions: allowext,
+        success: function() {
 
-		if ($(this).data('type') == 'ckEditor') {
-			CKEDITOR.instances['TEXTAREA_NAME'].setReadOnly(disabled);
-			return;
-		}
-		$(Control).prop("disabled", "disabled");
-		if ($(this).hasClass('inputClientRequired')) {
-            $(this).removeClass('inputClientRequired');
-            $(this).addClass('inputClientRequired-hide');
+        },
+        error: function() {
+            alert('Solo se aceptan archivos en formato ' + allowext.join(', '));
+
         }
     });
-    inputs.each(function () {
-		Control = $(this);
-		var controlFile = Control.selector + "File";
-		if ($(controlFile).length > 0) {
-			Control = controlFile;
-		}
 
-		if ($(this).data('type') == 'ckEditor') {
-			CKEDITOR.instances['TEXTAREA_NAME'].setReadOnly(disabled);
-			return;
-		}
-		$(Control).prop("disabled", "disabled");
-        if ($(this).hasClass('inputClientRequired')) {
-            $(this).removeClass('inputClientRequired');
-            $(this).addClass('inputClientRequired-hide');
-        }		
-    });
-    textareas.each(function () {
-		Control = $(this);
-		var controlFile = Control.selector + "File";
-		if ($(controlFile).length > 0) {
-			Control = controlFile;
-		}
-
-		if ($(this).data('type') == 'ckEditor') {
-			CKEDITOR.instances['TEXTAREA_NAME'].setReadOnly(disabled);
-			return;
-		}
-		$(Control).prop("disabled", "disabled");
-        if ($(this).hasClass('inputClientRequired')) {
-            $(this).removeClass('inputClientRequired');
-            $(this).addClass('inputClientRequired-hide');
-        }		
+    //Validate file size
+    $(selector).on('change', function() {
+        var numb = $(this)[0].files[0].size / 1024 / 1024;
+        numb = numb.toFixed(2);
+        if (numb > filesize) {
+            alert('Solo se pueden subir archivos de hasta ' + filesize + 'MB');
+            $(selector).val(null);
+        }
     });
 }
+
+(function($) {
+    $.fn.checkFileType = function(options) {
+        var defaults = {
+            allowedExtensions: [],
+            success: function() {},
+            error: function() {}
+        };
+        options = $.extend(defaults, options);
+        return this.each(function() {
+
+            $(this).on('change', function() {
+                var value = $(this).val(),
+                    file = value.toLowerCase(),
+                    extension = file.substring(file.lastIndexOf('.') + 1);
+                //debugger;
+                if ($.inArray(extension, options.allowedExtensions) == -1 && value != '') {
+                    options.error();
+
+
+                    $(this).focus();
+                    $(this).replaceWith($(this).val('').clone(true));
+                } else {
+                    options.success();
+
+                }
+
+            });
+
+        });
+    };
+})(jQuery);

@@ -7,20 +7,22 @@
 @model Spartane.Web.Areas.Frontal.Models.Quejas_de_MPModel
 @{
     Spartane_File attachedFileImagen_Tatuaje = (Spartane_File)ViewBag.Imagen_TatuajeSpartane_File;
-    Spartane_File attachedFileFotografia_Identificacion = (Spartane_File)ViewBag.Fotografia_IdentificacionSpartane_File;
 
 /*
-    string Fecha_de_Nacimiento = "";
-    if (Model.Fecha_de_Nacimiento == "")
-    { Model.Fecha_de_Nacimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-    string Fecha_de_Nacimiento_Hechos = "";
-    if (Model.Fecha_de_Nacimiento_Hechos == "")
-    { Model.Fecha_de_Nacimiento_Hechos = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Registro = "";
+    if (Model.Fecha_de_Registro == "")
+    { Model.Fecha_de_Registro = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_los_Hechos = "";
+    if (Model.Fecha_de_los_Hechos == "")
+    { Model.Fecha_de_los_Hechos = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string Fecha_Nacimiento_Identificacion = "";
     if (Model.Fecha_Nacimiento_Identificacion == "")
     { Model.Fecha_Nacimiento_Identificacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
 */
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
     List<SelectListItem> varEstatus_Quejas_MP_Estatus = null;
     if (ViewBag.Estatus_Quejas_MPs_Estatus != null)
     { varEstatus_Quejas_MP_Estatus = (List<SelectListItem>)ViewBag.Estatus_Quejas_MPs_Estatus; }
@@ -114,48 +116,33 @@
     List<SelectListItem> varSituacion_Fisica_Situacion_Fisica = null;
     if (ViewBag.Situacion_Fisicas_Situacion_Fisica != null)
     { varSituacion_Fisica_Situacion_Fisica = (List<SelectListItem>)ViewBag.Situacion_Fisicas_Situacion_Fisica; }
-    List<SelectListItem> varGenero_Genero = null;
-    if (ViewBag.Generos_Genero != null)
-    { varGenero_Genero = (List<SelectListItem>)ViewBag.Generos_Genero; }
-    List<SelectListItem> varNacionalidad_Nacionalidad = null;
-    if (ViewBag.Nacionalidads_Nacionalidad != null)
-    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
- List<SelectListItem> varEstado_Entidad_de_Nacimiento = null;
-    if (ViewBag.Estados_Entidad_de_Nacimiento != null)
-    { varEstado_Entidad_de_Nacimiento = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento; }
-    List<SelectListItem> varGenero_Genero_Hechos = null;
-    if (ViewBag.Generos_Genero_Hechos != null)
-    { varGenero_Genero_Hechos = (List<SelectListItem>)ViewBag.Generos_Genero_Hechos; }
-    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos = null;
-    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos != null)
-    { varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Hechos; }
-    List<SelectListItem> varNacionalidad_Nacionalidad_Hechos = null;
-    if (ViewBag.Nacionalidads_Nacionalidad_Hechos != null)
-    { varNacionalidad_Nacionalidad_Hechos = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_Hechos; }
-    List<SelectListItem> varEstado_Entidad_de_Nacimiento_Hechos = null;
-    if (ViewBag.Estados_Entidad_de_Nacimiento_Hechos != null)
-    { varEstado_Entidad_de_Nacimiento_Hechos = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento_Hechos; }
+ List<SelectListItem> varMunicipio_Municipio_hechos = null;
+    if (ViewBag.Municipios_Municipio_hechos != null)
+    { varMunicipio_Municipio_hechos = (List<SelectListItem>)ViewBag.Municipios_Municipio_hechos; }
+ List<SelectListItem> varColonia_Poblacion_hechos = null;
+    if (ViewBag.Colonias_Poblacion_hechos != null)
+    { varColonia_Poblacion_hechos = (List<SelectListItem>)ViewBag.Colonias_Poblacion_hechos; }
+ List<SelectListItem> varColonia_Colonia_hechos = null;
+    if (ViewBag.Colonias_Colonia_hechos != null)
+    { varColonia_Colonia_hechos = (List<SelectListItem>)ViewBag.Colonias_Colonia_hechos; }
     List<SelectListItem> varGenero_Genero_Identificacion = null;
     if (ViewBag.Generos_Genero_Identificacion != null)
     { varGenero_Genero_Identificacion = (List<SelectListItem>)ViewBag.Generos_Genero_Identificacion; }
     List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_Identificacion = null;
     if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion != null)
     { varTipo_de_Identificacion_Tipo_de_Identificacion_Identificacion = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_Identificacion; }
-    List<SelectListItem> varNacionalidad_Nacionalidad_Identificacion = null;
+ List<SelectListItem> varNacionalidad_Nacionalidad_Identificacion = null;
     if (ViewBag.Nacionalidads_Nacionalidad_Identificacion != null)
     { varNacionalidad_Nacionalidad_Identificacion = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_Identificacion; }
  List<SelectListItem> varEstado_Entidad_de_Nacimiento_Identificacion = null;
     if (ViewBag.Estados_Entidad_de_Nacimiento_Identificacion != null)
     { varEstado_Entidad_de_Nacimiento_Identificacion = (List<SelectListItem>)ViewBag.Estados_Entidad_de_Nacimiento_Identificacion; }
- List<SelectListItem> varPais_Pais = null;
-    if (ViewBag.Paiss_Pais != null)
-    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
- List<SelectListItem> varEstado_Estado = null;
-    if (ViewBag.Estados_Estado != null)
-    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
  List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
  List<SelectListItem> varColonia_Colonia = null;
     if (ViewBag.Colonias_Colonia != null)
     { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
@@ -168,6 +155,11 @@
        Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
    }
 }
+<style>
+    #page-wrapper {
+        margin: 0px !important;
+    }
+</style>
 <div class="loading style-2"><div class="loading-wheel"></div></div>
 <div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
     <div class="modal-dialog">
@@ -203,7 +195,7 @@
                     </a>
                 </button>
             </h2>
-            <ol class="breadcrumb">
+            @*<ol class="breadcrumb">
                 <li>
                     <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
                 </li>
@@ -221,7 +213,7 @@
                 <li class="active">
                     <strong>@Resources.Resources.Create</strong>
                 </li>
-            </ol>
+            </ol>*@
         </div>
         <div class="col-lg-2">
 
@@ -284,10 +276,10 @@
 			<div class="tabs-container">
                         	<ul class="nav nav-tabs">
 <li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Quejas_de_MPResources.TabDatos_Generales</a></li>
-<li class=""><a data-toggle="tab" href="#tabDatos_de_Media_Filiacion"> @Resources.Quejas_de_MPResources.TabDatos_de_Media_Filiacion</a></li>
-<li class=""><a data-toggle="tab" href="#tabDatos_de_los_Hechos"> @Resources.Quejas_de_MPResources.TabDatos_de_los_Hechos</a></li>
-<li class=""><a data-toggle="tab" href="#tabDatos_de_Identificacion"> @Resources.Quejas_de_MPResources.TabDatos_de_Identificacion</a></li>
-<li class=""><a data-toggle="tab" href="#tabDatos_de_Domicilio"> @Resources.Quejas_de_MPResources.TabDatos_de_Domicilio</a></li>
+<li class=""><a data-toggle="tab" href="#tabRasgos_Fisicos"> @Resources.Quejas_de_MPResources.TabRasgos_Fisicos</a></li>
+<li class=""><a data-toggle="tab" href="#tabHechos_Sucedidos"> @Resources.Quejas_de_MPResources.TabHechos_Sucedidos</a></li>
+<li class=""><a data-toggle="tab" href="#tabIdentificacion_del_Servidor_Publico"> @Resources.Quejas_de_MPResources.TabIdentificacion_del_Servidor_Publico</a></li>
+<li class=""><a data-toggle="tab" href="#tabDomicilio_del_Servidor_Publico"> @Resources.Quejas_de_MPResources.TabDomicilio_del_Servidor_Publico</a></li>
 
                         	</ul>
 	                	<div class="tab-content">
@@ -307,6 +299,42 @@
                                         }
                                     </label>
                                 </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Fecha_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Registro" data-attribute="273353" data-field-name="@Resources.Quejas_de_MPResources.Fecha_de_Registro">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Registro"  name="Fecha_de_Registro" type="text" value="@Model.Fecha_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Hora_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Registro" data-attribute="273354" data-field-name="@Resources.Quejas_de_MPResources.Hora_de_Registro">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_de_Registro"  name="Hora_de_Registro" type="text" data-autoclose="true" value="@Model.Hora_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Registra">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Usuario_que_Registra</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="273355" data-field-name="@Resources.Quejas_de_MPResources.Usuario_que_Registra">
+                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Usuario_que_Registra form-control select2-dropdown Datos_Generales' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
+                                        <option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName??Model.Usuario_que_RegistraName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273355).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             <div class="form-group" id="divNombres">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Nombres</label>
@@ -334,6 +362,20 @@
                                 <div class="col-sm-8" data-field-id="Nombre_Completo" data-attribute="269642" data-field-name="@Resources.Quejas_de_MPResources.Nombre_Completo">
                                     <textarea id="Nombre_Completo" name="Nombre_Completo" class="form-control Datos_Generales" rows="4" cols="50">@Model.Nombre_Completo</textarea>
                                     @*<span class="field-validation-valid" data-valmsg-for="Nombre_Completo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCorreo_Electronico">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Correo_Electronico</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico" data-attribute="273356" data-field-name="@Resources.Quejas_de_MPResources.Correo_Electronico">
+                                    <input class="form-control Datos_Generales" id="Correo_Electronico" name="Correo_Electronico" type="text" value="@Model.Correo_Electronico">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Correo_Electronico" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCelular">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Celular</label>
+                                <div class="col-sm-8" data-field-id="Celular" data-attribute="273357" data-field-name="@Resources.Quejas_de_MPResources.Celular">
+                                    <input class="form-control Datos_Generales" id="Celular" name="Celular" type="text" value="@Model.Celular">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Celular" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divEstatus">
@@ -368,33 +410,33 @@
                                 </div>
 
 
-                            <div id="tabDatos_de_Media_Filiacion" class="tab-pane">
+                            <div id="tabRasgos_Fisicos" class="tab-pane">
                                 <div class="panel-body">
                             <div class="form-group" id="divPeso">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Peso</label>
                                 <div class="col-sm-8" data-field-id="Peso" data-attribute="269560" data-field-name="@Resources.Quejas_de_MPResources.Peso">
-                                    <input class="form-control Datos_de_Media_Filiacion" id="Peso" name="Peso" type="text" value="@Model.Peso">
+                                    <input class="form-control Rasgos_Fisicos" id="Peso" name="Peso" type="text" value="@Model.Peso">
                                     @*<span class="field-validation-valid" data-valmsg-for="Peso" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divEstatura">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Estatura</label>
                                 <div class="col-sm-8" data-field-id="Estatura" data-attribute="269561" data-field-name="@Resources.Quejas_de_MPResources.Estatura">
-                                    <input class="form-control Datos_de_Media_Filiacion" id="Estatura" name="Estatura" type="text" value="@Model.Estatura">
+                                    <input class="form-control Rasgos_Fisicos" id="Estatura" name="Estatura" type="text" value="@Model.Estatura">
                                     @*<span class="field-validation-valid" data-valmsg-for="Estatura" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divPadecimiento_de_Enfermedad">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Padecimiento_de_Enfermedad</label>
                                 <div class="col-sm-8" data-field-id="Padecimiento_de_Enfermedad" data-attribute="269562" data-field-name="@Resources.Quejas_de_MPResources.Padecimiento_de_Enfermedad">
-                                    <input class="form-control Datos_de_Media_Filiacion" id="Padecimiento_de_Enfermedad" name="Padecimiento_de_Enfermedad" type="text" value="@Model.Padecimiento_de_Enfermedad">
+                                    <input class="form-control Rasgos_Fisicos" id="Padecimiento_de_Enfermedad" name="Padecimiento_de_Enfermedad" type="text" value="@Model.Padecimiento_de_Enfermedad">
                                     @*<span class="field-validation-valid" data-valmsg-for="Padecimiento_de_Enfermedad" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divForma_Cara">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Forma_Cara</label>
                                 <div class="col-sm-8" data-field-id="Forma_Cara" data-attribute="269563" data-field-name="@Resources.Quejas_de_MPResources.Forma_Cara">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Forma Cara must be a number." data-val-required="The Forma Cara field is required." id="Forma_Cara" name="Forma_Cara">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Forma Cara must be a number." data-val-required="The Forma Cara field is required." id="Forma_Cara" name="Forma_Cara">
                                         <option value=""></option>
                                         @if (varForma_Cara_Forma_Cara != null){ 
                                             foreach (var itemForma_Cara in varForma_Cara_Forma_Cara)
@@ -422,7 +464,7 @@
                             <div class="form-group" id="divTipo_de_Cejas">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Tipo_de_Cejas</label>
                                 <div class="col-sm-8" data-field-id="Tipo_de_Cejas" data-attribute="269564" data-field-name="@Resources.Quejas_de_MPResources.Tipo_de_Cejas">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Tipo de Cejas must be a number." data-val-required="The Tipo de Cejas field is required." id="Tipo_de_Cejas" name="Tipo_de_Cejas">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Tipo de Cejas must be a number." data-val-required="The Tipo de Cejas field is required." id="Tipo_de_Cejas" name="Tipo_de_Cejas">
                                         <option value=""></option>
                                         @if (varCejas_Tipo_de_Cejas != null){ 
                                             foreach (var itemTipo_de_Cejas in varCejas_Tipo_de_Cejas)
@@ -450,7 +492,7 @@
                             <div class="form-group" id="divTamano_de_Cejas">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Tamano_de_Cejas</label>
                                 <div class="col-sm-8" data-field-id="Tamano_de_Cejas" data-attribute="269565" data-field-name="@Resources.Quejas_de_MPResources.Tamano_de_Cejas">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Tamaño de Cejas must be a number." data-val-required="The Tamaño de Cejas field is required." id="Tamano_de_Cejas" name="Tamano_de_Cejas">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Tamaño de Cejas must be a number." data-val-required="The Tamaño de Cejas field is required." id="Tamano_de_Cejas" name="Tamano_de_Cejas">
                                         <option value=""></option>
                                         @if (varTamano_de_Cejas_Tamano_de_Cejas != null){ 
                                             foreach (var itemTamano_de_Cejas in varTamano_de_Cejas_Tamano_de_Cejas)
@@ -478,7 +520,7 @@
                             <div class="form-group" id="divLargo_de_Cabello">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Largo_de_Cabello</label>
                                 <div class="col-sm-8" data-field-id="Largo_de_Cabello" data-attribute="269566" data-field-name="@Resources.Quejas_de_MPResources.Largo_de_Cabello">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Largo de Cabello must be a number." data-val-required="The Largo de Cabello field is required." id="Largo_de_Cabello" name="Largo_de_Cabello">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Largo de Cabello must be a number." data-val-required="The Largo de Cabello field is required." id="Largo_de_Cabello" name="Largo_de_Cabello">
                                         <option value=""></option>
                                         @if (varLargo_de_Cabello_Largo_de_Cabello != null){ 
                                             foreach (var itemLargo_de_Cabello in varLargo_de_Cabello_Largo_de_Cabello)
@@ -506,7 +548,7 @@
                             <div class="form-group" id="divCantidad_Cabello">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Cantidad_Cabello</label>
                                 <div class="col-sm-8" data-field-id="Cantidad_Cabello" data-attribute="269567" data-field-name="@Resources.Quejas_de_MPResources.Cantidad_Cabello">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Cantidad Cabello must be a number." data-val-required="The Cantidad Cabello field is required." id="Cantidad_Cabello" name="Cantidad_Cabello">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Cantidad Cabello must be a number." data-val-required="The Cantidad Cabello field is required." id="Cantidad_Cabello" name="Cantidad_Cabello">
                                         <option value=""></option>
                                         @if (varCantidad_Cabello_Cantidad_Cabello != null){ 
                                             foreach (var itemCantidad_Cabello in varCantidad_Cabello_Cantidad_Cabello)
@@ -534,7 +576,7 @@
                             <div class="form-group" id="divImplantacion_Cabello">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Implantacion_Cabello</label>
                                 <div class="col-sm-8" data-field-id="Implantacion_Cabello" data-attribute="269568" data-field-name="@Resources.Quejas_de_MPResources.Implantacion_Cabello">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Implantacion Cabello must be a number." data-val-required="The Implantacion Cabello field is required." id="Implantacion_Cabello" name="Implantacion_Cabello">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Implantacion Cabello must be a number." data-val-required="The Implantacion Cabello field is required." id="Implantacion_Cabello" name="Implantacion_Cabello">
                                         <option value=""></option>
                                         @if (varImplantacion_Cabello_Implantacion_Cabello != null){ 
                                             foreach (var itemImplantacion_Cabello in varImplantacion_Cabello_Implantacion_Cabello)
@@ -562,7 +604,7 @@
                             <div class="form-group" id="divComplexion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Complexion</label>
                                 <div class="col-sm-8" data-field-id="Complexion" data-attribute="269569" data-field-name="@Resources.Quejas_de_MPResources.Complexion">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Complexión must be a number." data-val-required="The Complexión field is required." id="Complexion" name="Complexion">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Complexión must be a number." data-val-required="The Complexión field is required." id="Complexion" name="Complexion">
                                         <option value=""></option>
                                         @if (varComplexion_Complexion != null){ 
                                             foreach (var itemComplexion in varComplexion_Complexion)
@@ -590,7 +632,7 @@
                             <div class="form-group" id="divColor_Piel">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Color_Piel</label>
                                 <div class="col-sm-8" data-field-id="Color_Piel" data-attribute="269570" data-field-name="@Resources.Quejas_de_MPResources.Color_Piel">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Color Piel must be a number." data-val-required="The Color Piel field is required." id="Color_Piel" name="Color_Piel">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Color Piel must be a number." data-val-required="The Color Piel field is required." id="Color_Piel" name="Color_Piel">
                                         <option value=""></option>
                                         @if (varColor_Piel_Color_Piel != null){ 
                                             foreach (var itemColor_Piel in varColor_Piel_Color_Piel)
@@ -618,7 +660,7 @@
                             <div class="form-group" id="divFrente">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Frente</label>
                                 <div class="col-sm-8" data-field-id="Frente" data-attribute="269571" data-field-name="@Resources.Quejas_de_MPResources.Frente">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Frente must be a number." data-val-required="The Frente field is required." id="Frente" name="Frente">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Frente must be a number." data-val-required="The Frente field is required." id="Frente" name="Frente">
                                         <option value=""></option>
                                         @if (varFrente_Frente != null){ 
                                             foreach (var itemFrente in varFrente_Frente)
@@ -646,7 +688,7 @@
                             <div class="form-group" id="divForma_Cabello">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Forma_Cabello</label>
                                 <div class="col-sm-8" data-field-id="Forma_Cabello" data-attribute="269572" data-field-name="@Resources.Quejas_de_MPResources.Forma_Cabello">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Forma Cabello must be a number." data-val-required="The Forma Cabello field is required." id="Forma_Cabello" name="Forma_Cabello">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Forma Cabello must be a number." data-val-required="The Forma Cabello field is required." id="Forma_Cabello" name="Forma_Cabello">
                                         <option value=""></option>
                                         @if (varForma_Cabello_Forma_Cabello != null){ 
                                             foreach (var itemForma_Cabello in varForma_Cabello_Forma_Cabello)
@@ -674,7 +716,7 @@
                             <div class="form-group" id="divColor_Cabello">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Color_Cabello</label>
                                 <div class="col-sm-8" data-field-id="Color_Cabello" data-attribute="269573" data-field-name="@Resources.Quejas_de_MPResources.Color_Cabello">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Color Cabello must be a number." data-val-required="The Color Cabello field is required." id="Color_Cabello" name="Color_Cabello">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Color Cabello must be a number." data-val-required="The Color Cabello field is required." id="Color_Cabello" name="Color_Cabello">
                                         <option value=""></option>
                                         @if (varColor_de_Cabello_Color_Cabello != null){ 
                                             foreach (var itemColor_Cabello in varColor_de_Cabello_Color_Cabello)
@@ -702,7 +744,7 @@
                             <div class="form-group" id="divCalvicie">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Calvicie</label>
                                 <div class="col-sm-8" data-field-id="Calvicie" data-attribute="269574" data-field-name="@Resources.Quejas_de_MPResources.Calvicie">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Calvicie must be a number." data-val-required="The Calvicie field is required." id="Calvicie" name="Calvicie">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Calvicie must be a number." data-val-required="The Calvicie field is required." id="Calvicie" name="Calvicie">
                                         <option value=""></option>
                                         @if (varCalvicie_Calvicie != null){ 
                                             foreach (var itemCalvicie in varCalvicie_Calvicie)
@@ -730,7 +772,7 @@
                             <div class="form-group" id="divColor_Ojos">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Color_Ojos</label>
                                 <div class="col-sm-8" data-field-id="Color_Ojos" data-attribute="269575" data-field-name="@Resources.Quejas_de_MPResources.Color_Ojos">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Color Ojos must be a number." data-val-required="The Color Ojos field is required." id="Color_Ojos" name="Color_Ojos">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Color Ojos must be a number." data-val-required="The Color Ojos field is required." id="Color_Ojos" name="Color_Ojos">
                                         <option value=""></option>
                                         @if (varColor_Ojos_Color_Ojos != null){ 
                                             foreach (var itemColor_Ojos in varColor_Ojos_Color_Ojos)
@@ -758,7 +800,7 @@
                             <div class="form-group" id="divTamano_de_Ojos">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Tamano_de_Ojos</label>
                                 <div class="col-sm-8" data-field-id="Tamano_de_Ojos" data-attribute="269576" data-field-name="@Resources.Quejas_de_MPResources.Tamano_de_Ojos">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Tamaño de Ojos must be a number." data-val-required="The Tamaño de Ojos field is required." id="Tamano_de_Ojos" name="Tamano_de_Ojos">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Tamaño de Ojos must be a number." data-val-required="The Tamaño de Ojos field is required." id="Tamano_de_Ojos" name="Tamano_de_Ojos">
                                         <option value=""></option>
                                         @if (varOjos_Tamano_de_Ojos != null){ 
                                             foreach (var itemTamano_de_Ojos in varOjos_Tamano_de_Ojos)
@@ -786,7 +828,7 @@
                             <div class="form-group" id="divForma_Ojos">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Forma_Ojos</label>
                                 <div class="col-sm-8" data-field-id="Forma_Ojos" data-attribute="269577" data-field-name="@Resources.Quejas_de_MPResources.Forma_Ojos">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Forma Ojos must be a number." data-val-required="The Forma Ojos field is required." id="Forma_Ojos" name="Forma_Ojos">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Forma Ojos must be a number." data-val-required="The Forma Ojos field is required." id="Forma_Ojos" name="Forma_Ojos">
                                         <option value=""></option>
                                         @if (varForma_Ojos_Forma_Ojos != null){ 
                                             foreach (var itemForma_Ojos in varForma_Ojos_Forma_Ojos)
@@ -814,7 +856,7 @@
                             <div class="form-group" id="divAnteojos">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Anteojos</label>
                                 <div class="col-sm-8" data-field-id="Anteojos" data-attribute="269578" data-field-name="@Resources.Quejas_de_MPResources.Anteojos">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Anteojos must be a number." data-val-required="The Anteojos field is required." id="Anteojos" name="Anteojos">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Anteojos must be a number." data-val-required="The Anteojos field is required." id="Anteojos" name="Anteojos">
                                         <option value=""></option>
                                         @if (varAnteojos_Anteojos != null){ 
                                             foreach (var itemAnteojos in varAnteojos_Anteojos)
@@ -842,7 +884,7 @@
                             <div class="form-group" id="divForma_de_Nariz">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Forma_de_Nariz</label>
                                 <div class="col-sm-8" data-field-id="Forma_de_Nariz" data-attribute="269579" data-field-name="@Resources.Quejas_de_MPResources.Forma_de_Nariz">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Forma de Nariz must be a number." data-val-required="The Forma de Nariz field is required." id="Forma_de_Nariz" name="Forma_de_Nariz">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Forma de Nariz must be a number." data-val-required="The Forma de Nariz field is required." id="Forma_de_Nariz" name="Forma_de_Nariz">
                                         <option value=""></option>
                                         @if (varForma_de_Nariz_Forma_de_Nariz != null){ 
                                             foreach (var itemForma_de_Nariz in varForma_de_Nariz_Forma_de_Nariz)
@@ -870,7 +912,7 @@
                             <div class="form-group" id="divTamano_Nariz">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Tamano_Nariz</label>
                                 <div class="col-sm-8" data-field-id="Tamano_Nariz" data-attribute="269580" data-field-name="@Resources.Quejas_de_MPResources.Tamano_Nariz">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Tamaño Nariz must be a number." data-val-required="The Tamaño Nariz field is required." id="Tamano_Nariz" name="Tamano_Nariz">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Tamaño Nariz must be a number." data-val-required="The Tamaño Nariz field is required." id="Tamano_Nariz" name="Tamano_Nariz">
                                         <option value=""></option>
                                         @if (varNariz_Base_Tamano_Nariz != null){ 
                                             foreach (var itemTamano_Nariz in varNariz_Base_Tamano_Nariz)
@@ -898,7 +940,7 @@
                             <div class="form-group" id="divLabios">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Labios</label>
                                 <div class="col-sm-8" data-field-id="Labios" data-attribute="269581" data-field-name="@Resources.Quejas_de_MPResources.Labios">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Labios must be a number." data-val-required="The Labios field is required." id="Labios" name="Labios">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Labios must be a number." data-val-required="The Labios field is required." id="Labios" name="Labios">
                                         <option value=""></option>
                                         @if (varLabios_Labios != null){ 
                                             foreach (var itemLabios in varLabios_Labios)
@@ -926,7 +968,7 @@
                             <div class="form-group" id="divBoca">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Boca</label>
                                 <div class="col-sm-8" data-field-id="Boca" data-attribute="269582" data-field-name="@Resources.Quejas_de_MPResources.Boca">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Boca must be a number." data-val-required="The Boca field is required." id="Boca" name="Boca">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Boca must be a number." data-val-required="The Boca field is required." id="Boca" name="Boca">
                                         <option value=""></option>
                                         @if (varBoca_Boca != null){ 
                                             foreach (var itemBoca in varBoca_Boca)
@@ -954,7 +996,7 @@
                             <div class="form-group" id="divGrosor_de_Labios">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Grosor_de_Labios</label>
                                 <div class="col-sm-8" data-field-id="Grosor_de_Labios" data-attribute="269583" data-field-name="@Resources.Quejas_de_MPResources.Grosor_de_Labios">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Grosor de Labios must be a number." data-val-required="The Grosor de Labios field is required." id="Grosor_de_Labios" name="Grosor_de_Labios">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Grosor de Labios must be a number." data-val-required="The Grosor de Labios field is required." id="Grosor_de_Labios" name="Grosor_de_Labios">
                                         <option value=""></option>
                                         @if (varGrosor_de_Labios_Grosor_de_Labios != null){ 
                                             foreach (var itemGrosor_de_Labios in varGrosor_de_Labios_Grosor_de_Labios)
@@ -982,7 +1024,7 @@
                             <div class="form-group" id="divMenton">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Menton</label>
                                 <div class="col-sm-8" data-field-id="Menton" data-attribute="269584" data-field-name="@Resources.Quejas_de_MPResources.Menton">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Mentón must be a number." data-val-required="The Mentón field is required." id="Menton" name="Menton">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Mentón must be a number." data-val-required="The Mentón field is required." id="Menton" name="Menton">
                                         <option value=""></option>
                                         @if (varMenton_Menton != null){ 
                                             foreach (var itemMenton in varMenton_Menton)
@@ -1010,7 +1052,7 @@
                             <div class="form-group" id="divForma_de_Menton">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Forma_de_Menton</label>
                                 <div class="col-sm-8" data-field-id="Forma_de_Menton" data-attribute="269585" data-field-name="@Resources.Quejas_de_MPResources.Forma_de_Menton">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Forma de Mentón must be a number." data-val-required="The Forma de Mentón field is required." id="Forma_de_Menton" name="Forma_de_Menton">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Forma de Mentón must be a number." data-val-required="The Forma de Mentón field is required." id="Forma_de_Menton" name="Forma_de_Menton">
                                         <option value=""></option>
                                         @if (varForma_de_Menton_Forma_de_Menton != null){ 
                                             foreach (var itemForma_de_Menton in varForma_de_Menton_Forma_de_Menton)
@@ -1038,7 +1080,7 @@
                             <div class="form-group" id="divBarba">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Barba</label>
                                 <div class="col-sm-8" data-field-id="Barba" data-attribute="269586" data-field-name="@Resources.Quejas_de_MPResources.Barba">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Barba must be a number." data-val-required="The Barba field is required." id="Barba" name="Barba">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Barba must be a number." data-val-required="The Barba field is required." id="Barba" name="Barba">
                                         <option value=""></option>
                                         @if (varBarba_Barba != null){ 
                                             foreach (var itemBarba in varBarba_Barba)
@@ -1066,7 +1108,7 @@
                             <div class="form-group" id="divForma_Orejas">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Forma_Orejas</label>
                                 <div class="col-sm-8" data-field-id="Forma_Orejas" data-attribute="269587" data-field-name="@Resources.Quejas_de_MPResources.Forma_Orejas">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Forma Orejas must be a number." data-val-required="The Forma Orejas field is required." id="Forma_Orejas" name="Forma_Orejas">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Forma Orejas must be a number." data-val-required="The Forma Orejas field is required." id="Forma_Orejas" name="Forma_Orejas">
                                         <option value=""></option>
                                         @if (varForma_Orejas_Forma_Orejas != null){ 
                                             foreach (var itemForma_Orejas in varForma_Orejas_Forma_Orejas)
@@ -1094,7 +1136,7 @@
                             <div class="form-group" id="divTamano_Orejas">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Tamano_Orejas</label>
                                 <div class="col-sm-8" data-field-id="Tamano_Orejas" data-attribute="269588" data-field-name="@Resources.Quejas_de_MPResources.Tamano_Orejas">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Tamaño Orejas must be a number." data-val-required="The Tamaño Orejas field is required." id="Tamano_Orejas" name="Tamano_Orejas">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Tamaño Orejas must be a number." data-val-required="The Tamaño Orejas field is required." id="Tamano_Orejas" name="Tamano_Orejas">
                                         <option value=""></option>
                                         @if (varTamano_Orejas_Tamano_Orejas != null){ 
                                             foreach (var itemTamano_Orejas in varTamano_Orejas_Tamano_Orejas)
@@ -1122,7 +1164,7 @@
                             <div class="form-group" id="divTipo_Lobulo">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Tipo_Lobulo</label>
                                 <div class="col-sm-8" data-field-id="Tipo_Lobulo" data-attribute="269589" data-field-name="@Resources.Quejas_de_MPResources.Tipo_Lobulo">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Tipo Lóbulo must be a number." data-val-required="The Tipo Lóbulo field is required." id="Tipo_Lobulo" name="Tipo_Lobulo">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Tipo Lóbulo must be a number." data-val-required="The Tipo Lóbulo field is required." id="Tipo_Lobulo" name="Tipo_Lobulo">
                                         <option value=""></option>
                                         @if (varTipo_Lobulo_Tipo_Lobulo != null){ 
                                             foreach (var itemTipo_Lobulo in varTipo_Lobulo_Tipo_Lobulo)
@@ -1150,7 +1192,7 @@
                             <div class="form-group" id="divBigote">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Bigote</label>
                                 <div class="col-sm-8" data-field-id="Bigote" data-attribute="269590" data-field-name="@Resources.Quejas_de_MPResources.Bigote">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Bigote must be a number." data-val-required="The Bigote field is required." id="Bigote" name="Bigote">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Bigote must be a number." data-val-required="The Bigote field is required." id="Bigote" name="Bigote">
                                         <option value=""></option>
                                         @if (varBigote_Bigote != null){ 
                                             foreach (var itemBigote in varBigote_Bigote)
@@ -1178,7 +1220,7 @@
                             <div class="form-group" id="divSenas_Particulares">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Senas_Particulares</label>
                                 <div class="col-sm-8" data-field-id="Senas_Particulares" data-attribute="269591" data-field-name="@Resources.Quejas_de_MPResources.Senas_Particulares">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Señas Particulares must be a number." data-val-required="The Señas Particulares field is required." id="Senas_Particulares" name="Senas_Particulares">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Señas Particulares must be a number." data-val-required="The Señas Particulares field is required." id="Senas_Particulares" name="Senas_Particulares">
                                         <option value=""></option>
                                         @if (varSenas_Particulares_Senas_Particulares != null){ 
                                             foreach (var itemSenas_Particulares in varSenas_Particulares_Senas_Particulares)
@@ -1207,12 +1249,12 @@
                             {
                                 <div class="form-group" id="divAttachmentImagen_Tatuaje">
                                     <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
-                                    <div class="col-sm-8 Datos_de_Media_Filiacion" data-field-id="Imagen_Tatuaje" data-attribute="269592" data-field-name="@Resources.Quejas_de_MPResources.Imagen_Tatuaje">
+                                    <div class="col-sm-8 Rasgos_Fisicos" data-field-id="Imagen_Tatuaje" data-attribute="269592" data-field-name="@Resources.Quejas_de_MPResources.Imagen_Tatuaje">
                                         <a href="@Url.Content("~/Frontal/Quejas_de_MP/GetFile")?id=@attachedFileImagen_Tatuaje.File_Id" target="_blank">@attachedFileImagen_Tatuaje.Description</a>
                                         <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainImagen_Tatuaje('@attachedFileImagen_Tatuaje.File_Id')" />
                                     </div>
                                     <input id="hdnRemoveImagen_Tatuaje" name="RemoveImagen_Tatuaje" value="0" type="hidden" />
-                                    <input class="form-control col-md-12 Datos_de_Media_Filiacion" id="hdnAttachedImagen_Tatuaje" type="hidden" name="Imagen_Tatuaje" value="@Model.Imagen_Tatuaje">
+                                    <input class="form-control col-md-12 Rasgos_Fisicos" id="hdnAttachedImagen_Tatuaje" type="hidden" name="Imagen_Tatuaje" value="@Model.Imagen_Tatuaje">
                                 </div>
                             }
                             <div class="form-group" id="divImagen_Tatuaje">
@@ -1224,7 +1266,7 @@
                             <div class="form-group" id="divSituacion_Fisica">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Situacion_Fisica</label>
                                 <div class="col-sm-8" data-field-id="Situacion_Fisica" data-attribute="269593" data-field-name="@Resources.Quejas_de_MPResources.Situacion_Fisica">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Situación Física must be a number." data-val-required="The Situación Física field is required." id="Situacion_Fisica" name="Situacion_Fisica">
+                                    <select class="form-control Rasgos_Fisicos" data-val="true" data-val-number="The field Situación Física must be a number." data-val-required="The Situación Física field is required." id="Situacion_Fisica" name="Situacion_Fisica">
                                         <option value=""></option>
                                         @if (varSituacion_Fisica_Situacion_Fisica != null){ 
                                             foreach (var itemSituacion_Fisica in varSituacion_Fisica_Situacion_Fisica)
@@ -1252,7 +1294,7 @@
                             <div class="form-group" id="divOtras_Senas_Particulares">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Otras_Senas_Particulares</label>
                                 <div class="col-sm-8" data-field-id="Otras_Senas_Particulares" data-attribute="269594" data-field-name="@Resources.Quejas_de_MPResources.Otras_Senas_Particulares">
-                                    <textarea id="Otras_Senas_Particulares" name="Otras_Senas_Particulares" class="form-control Datos_de_Media_Filiacion" rows="4" cols="50">@Model.Otras_Senas_Particulares</textarea>
+                                    <textarea id="Otras_Senas_Particulares" name="Otras_Senas_Particulares" class="form-control Rasgos_Fisicos" rows="4" cols="50">@Model.Otras_Senas_Particulares</textarea>
                                     @*<span class="field-validation-valid" data-valmsg-for="Otras_Senas_Particulares" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
@@ -1260,332 +1302,174 @@
                                 </div>
 
 
-                            <div id="tabDatos_de_los_Hechos" class="tab-pane">
+                            <div id="tabHechos_Sucedidos" class="tab-pane">
                                 <div class="panel-body">
                             <div class="form-group" id="divDescripcion_de_los_Hechos">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Descripcion_de_los_Hechos</label>
                                 <div class="col-sm-8" data-field-id="Descripcion_de_los_Hechos" data-attribute="269595" data-field-name="@Resources.Quejas_de_MPResources.Descripcion_de_los_Hechos">
-                                    <textarea id="Descripcion_de_los_Hechos" name="Descripcion_de_los_Hechos" class="form-control Datos_de_los_Hechos" rows="4" cols="50">@Model.Descripcion_de_los_Hechos</textarea>
+                                    <textarea id="Descripcion_de_los_Hechos" name="Descripcion_de_los_Hechos" class="form-control Hechos_Sucedidos" rows="4" cols="50">@Model.Descripcion_de_los_Hechos</textarea>
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion_de_los_Hechos" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-                            <div class="form-group" id="divCURP">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.CURP</label>
-                                <div class="col-sm-8" data-field-id="CURP" data-attribute="269596" data-field-name="@Resources.Quejas_de_MPResources.CURP">
-                                    <input class="form-control Datos_de_los_Hechos" id="CURP" name="CURP" type="text" value="@Model.CURP">
-                                    @*<span class="field-validation-valid" data-valmsg-for="CURP" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divGenero">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Genero</label>
-                                <div class="col-sm-8" data-field-id="Genero" data-attribute="269597" data-field-name="@Resources.Quejas_de_MPResources.Genero">
-                                    <select class="form-control Datos_de_los_Hechos" data-val="true" data-val-number="The field Género must be a number." data-val-required="The Género field is required." id="Genero" name="Genero">
-                                        <option value=""></option>
-                                        @if (varGenero_Genero != null){ 
-                                            foreach (var itemGenero in varGenero_Genero)
-                                            {
-                                                if (itemGenero.Value == Convert.ToString(Model.Genero))
-                                                {
-                                                    <option value="@itemGenero.Value" selected>@itemGenero.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemGenero.Value">@itemGenero.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Genero" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269597).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Genero', 'Genero');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divFecha_de_Nacimiento">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Fecha_de_Nacimiento</label>
-                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimiento" data-attribute="269598" data-field-name="@Resources.Quejas_de_MPResources.Fecha_de_Nacimiento">
+                            <div class="form-group" id="divFecha_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Fecha_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_los_Hechos" data-attribute="273359" data-field-name="@Resources.Quejas_de_MPResources.Fecha_de_los_Hechos">
                                     <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Datos_de_los_Hechos" id="Fecha_de_Nacimiento"  name="Fecha_de_Nacimiento" type="text" value="@Model.Fecha_de_Nacimiento">
+                                        <input class="form-control col-md-12 Hechos_Sucedidos" id="Fecha_de_los_Hechos"  name="Fecha_de_los_Hechos" type="text" value="@Model.Fecha_de_los_Hechos">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="divNacionalidad">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Nacionalidad</label>
-                                <div class="col-sm-8" data-field-id="Nacionalidad" data-attribute="269599" data-field-name="@Resources.Quejas_de_MPResources.Nacionalidad">
-                                    <select class="form-control Datos_de_los_Hechos" data-val="true" data-val-number="The field Nacionalidad must be a number." data-val-required="The Nacionalidad field is required." id="Nacionalidad" name="Nacionalidad">
-                                        <option value=""></option>
-                                        @if (varNacionalidad_Nacionalidad != null){ 
-                                            foreach (var itemNacionalidad in varNacionalidad_Nacionalidad)
-                                            {
-                                                if (itemNacionalidad.Value == Convert.ToString(Model.Nacionalidad))
-                                                {
-                                                    <option value="@itemNacionalidad.Value" selected>@itemNacionalidad.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemNacionalidad.Value">@itemNacionalidad.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Nacionalidad" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269599).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Nacionalidad', 'Nacionalidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divEntidad_de_Nacimiento">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento</label>
-                                <div class="col-sm-8" data-field-id="Entidad_de_Nacimiento" data-attribute="269600" data-field-name="@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento">
-                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Entidad_de_Nacimiento form-control select2-dropdown Datos_de_los_Hechos' data-val="true" id="Entidad_de_Nacimiento" name="Entidad_de_Nacimiento">
-                                        <option value="@Model.Entidad_de_Nacimiento">@(Model.Entidad_de_NacimientoNombre??Model.Entidad_de_NacimientoNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269600).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Entidad_de_Nacimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divNombres_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Nombres_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Nombres_Hechos" data-attribute="269601" data-field-name="@Resources.Quejas_de_MPResources.Nombres_Hechos">
-                                    <input class="form-control Datos_de_los_Hechos" id="Nombres_Hechos" name="Nombres_Hechos" type="text" value="@Model.Nombres_Hechos">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Nombres_Hechos" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divApellido_Paterno_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Apellido_Paterno_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Apellido_Paterno_Hechos" data-attribute="269602" data-field-name="@Resources.Quejas_de_MPResources.Apellido_Paterno_Hechos">
-                                    <input class="form-control Datos_de_los_Hechos" id="Apellido_Paterno_Hechos" name="Apellido_Paterno_Hechos" type="text" value="@Model.Apellido_Paterno_Hechos">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Apellido_Paterno_Hechos" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divApellido_Materno_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Apellido_Materno_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Apellido_Materno_Hechos" data-attribute="269603" data-field-name="@Resources.Quejas_de_MPResources.Apellido_Materno_Hechos">
-                                    <input class="form-control Datos_de_los_Hechos" id="Apellido_Materno_Hechos" name="Apellido_Materno_Hechos" type="text" value="@Model.Apellido_Materno_Hechos">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Apellido_Materno_Hechos" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divFecha_de_Nacimiento_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Fecha_de_Nacimiento_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimiento_Hechos" data-attribute="269604" data-field-name="@Resources.Quejas_de_MPResources.Fecha_de_Nacimiento_Hechos">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Datos_de_los_Hechos" id="Fecha_de_Nacimiento_Hechos"  name="Fecha_de_Nacimiento_Hechos" type="text" value="@Model.Fecha_de_Nacimiento_Hechos">
+                            <div class="form-group" id="divHora_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Hora_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_los_Hechos" data-attribute="273360" data-field-name="@Resources.Quejas_de_MPResources.Hora_de_los_Hechos">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Hechos_Sucedidos" id="Hora_de_los_Hechos"  name="Hora_de_los_Hechos" type="text" data-autoclose="true" value="@Model.Hora_de_los_Hechos">
                                         <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
+                                            <span class="glyphicon glyphicon-time"></span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="divEdad_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Edad_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Edad_Hechos" data-attribute="269605" data-field-name="@Resources.Quejas_de_MPResources.Edad_Hechos">
-                                    <input class="form-control inputNumber Datos_de_los_Hechos" id="Edad_Hechos" name="Edad_Hechos" type="text" value="@Model.Edad_Hechos">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Edad_Hechos" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divGenero_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Genero_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Genero_Hechos" data-attribute="269606" data-field-name="@Resources.Quejas_de_MPResources.Genero_Hechos">
-                                    <select class="form-control Datos_de_los_Hechos" data-val="true" data-val-number="The field Género Hechos must be a number." data-val-required="The Género Hechos field is required." id="Genero_Hechos" name="Genero_Hechos">
-                                        <option value=""></option>
-                                        @if (varGenero_Genero_Hechos != null){ 
-                                            foreach (var itemGenero_Hechos in varGenero_Genero_Hechos)
-                                            {
-                                                if (itemGenero_Hechos.Value == Convert.ToString(Model.Genero_Hechos))
-                                                {
-                                                    <option value="@itemGenero_Hechos.Value" selected>@itemGenero_Hechos.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemGenero_Hechos.Value">@itemGenero_Hechos.Text</option>
-                                                }
-                                            }
-                                        }
+				<div class="form-group" id="divMunicipio_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Municipio_hechos</label>
+                                <div class="col-sm-8" data-field-id="Municipio_hechos" data-attribute="273361" data-field-name="@Resources.Quejas_de_MPResources.Municipio_hechos">
+                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Municipio_hechos form-control select2-dropdown Hechos_Sucedidos' data-val="true" id="Municipio_hechos" name="Municipio_hechos">
+                                        <option value="@Model.Municipio_hechos">@(Model.Municipio_hechosNombre??Model.Municipio_hechosNombre)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Genero_Hechos" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269606).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273361).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Genero', 'Genero_Hechos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio_hechos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divCelular_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Celular_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Celular_Hechos" data-attribute="269607" data-field-name="@Resources.Quejas_de_MPResources.Celular_Hechos">
-                                    <input class="form-control Datos_de_los_Hechos" id="Celular_Hechos" name="Celular_Hechos" type="text" value="@Model.Celular_Hechos">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Celular_Hechos" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divCorreo_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Correo_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Correo_Hechos" data-attribute="269608" data-field-name="@Resources.Quejas_de_MPResources.Correo_Hechos">
-                                    <input class="form-control Datos_de_los_Hechos" id="Correo_Hechos" name="Correo_Hechos" type="text" value="@Model.Correo_Hechos">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Correo_Hechos" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divTipo_de_Identificacion_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Tipo_de_Identificacion_Hechos" data-attribute="269609" data-field-name="@Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Hechos">
-                                    <select class="form-control Datos_de_los_Hechos" data-val="true" data-val-number="The field Tipo de Identificación Hechos must be a number." data-val-required="The Tipo de Identificación Hechos field is required." id="Tipo_de_Identificacion_Hechos" name="Tipo_de_Identificacion_Hechos">
-                                        <option value=""></option>
-                                        @if (varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos != null){ 
-                                            foreach (var itemTipo_de_Identificacion_Hechos in varTipo_de_Identificacion_Tipo_de_Identificacion_Hechos)
-                                            {
-                                                if (itemTipo_de_Identificacion_Hechos.Value == Convert.ToString(Model.Tipo_de_Identificacion_Hechos))
-                                                {
-                                                    <option value="@itemTipo_de_Identificacion_Hechos.Value" selected>@itemTipo_de_Identificacion_Hechos.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTipo_de_Identificacion_Hechos.Value">@itemTipo_de_Identificacion_Hechos.Text</option>
-                                                }
-                                            }
-                                        }
+				<div class="form-group" id="divPoblacion_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Poblacion_hechos</label>
+                                <div class="col-sm-8" data-field-id="Poblacion_hechos" data-attribute="273362" data-field-name="@Resources.Quejas_de_MPResources.Poblacion_hechos">
+                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Poblacion_hechos form-control select2-dropdown Hechos_Sucedidos' data-val="true" id="Poblacion_hechos" name="Poblacion_hechos">
+                                        <option value="@Model.Poblacion_hechos">@(Model.Poblacion_hechosNombre??Model.Poblacion_hechosNombre)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Identificacion_Hechos" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269609).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273362).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Identificacion', 'Tipo_de_Identificacion_Hechos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Poblacion_hechos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divNumero_Identificacion_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Numero_Identificacion_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Numero_Identificacion_Hechos" data-attribute="269610" data-field-name="@Resources.Quejas_de_MPResources.Numero_Identificacion_Hechos">
-                                    <input class="form-control Datos_de_los_Hechos" id="Numero_Identificacion_Hechos" name="Numero_Identificacion_Hechos" type="text" value="@Model.Numero_Identificacion_Hechos">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Identificacion_Hechos" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            @if (attachedFileFotografia_Identificacion != null && attachedFileFotografia_Identificacion.File_Id > 0)
-                            {
-                                <div class="form-group" id="divAttachmentFotografia_Identificacion">
-                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
-                                    <div class="col-sm-8 Datos_de_los_Hechos" data-field-id="Fotografia_Identificacion" data-attribute="269611" data-field-name="@Resources.Quejas_de_MPResources.Fotografia_Identificacion">
-                                        <a href="@Url.Content("~/Frontal/Quejas_de_MP/GetFile")?id=@attachedFileFotografia_Identificacion.File_Id" target="_blank">@attachedFileFotografia_Identificacion.Description</a>
-                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainFotografia_Identificacion('@attachedFileFotografia_Identificacion.File_Id')" />
-                                    </div>
-                                    <input id="hdnRemoveFotografia_Identificacion" name="RemoveFotografia_Identificacion" value="0" type="hidden" />
-                                    <input class="form-control col-md-12 Datos_de_los_Hechos" id="hdnAttachedFotografia_Identificacion" type="hidden" name="Fotografia_Identificacion" value="@Model.Fotografia_Identificacion">
-                                </div>
-                            }
-                            <div class="form-group" id="divFotografia_Identificacion">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Fotografia_Identificacion</label>
-                                <div class="col-sm-8" data-field-id="Fotografia_Identificacion" data-attribute="269611" data-field-name="@Resources.Quejas_de_MPResources.Fotografia_Identificacion">
-                                    <input type="file" name="Fotografia_IdentificacionFile" id="Fotografia_IdentificacionFile" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group" id="divNacionalidad_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Nacionalidad_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Nacionalidad_Hechos" data-attribute="269612" data-field-name="@Resources.Quejas_de_MPResources.Nacionalidad_Hechos">
-                                    <select class="form-control Datos_de_los_Hechos" data-val="true" data-val-number="The field Nacionalidad Hechos must be a number." data-val-required="The Nacionalidad Hechos field is required." id="Nacionalidad_Hechos" name="Nacionalidad_Hechos">
-                                        <option value=""></option>
-                                        @if (varNacionalidad_Nacionalidad_Hechos != null){ 
-                                            foreach (var itemNacionalidad_Hechos in varNacionalidad_Nacionalidad_Hechos)
-                                            {
-                                                if (itemNacionalidad_Hechos.Value == Convert.ToString(Model.Nacionalidad_Hechos))
-                                                {
-                                                    <option value="@itemNacionalidad_Hechos.Value" selected>@itemNacionalidad_Hechos.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemNacionalidad_Hechos.Value">@itemNacionalidad_Hechos.Text</option>
-                                                }
-                                            }
-                                        }
+				<div class="form-group" id="divColonia_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Colonia_hechos</label>
+                                <div class="col-sm-8" data-field-id="Colonia_hechos" data-attribute="273363" data-field-name="@Resources.Quejas_de_MPResources.Colonia_hechos">
+                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Colonia_hechos form-control select2-dropdown Hechos_Sucedidos' data-val="true" id="Colonia_hechos" name="Colonia_hechos">
+                                        <option value="@Model.Colonia_hechos">@(Model.Colonia_hechosNombre??Model.Colonia_hechosNombre)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Nacionalidad_Hechos" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269612).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273363).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Nacionalidad', 'Nacionalidad_Hechos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Colonia_hechos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divEntidad_de_Nacimiento_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Entidad_de_Nacimiento_Hechos" data-attribute="269613" data-field-name="@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Hechos">
-                                    <select class="form-control Datos_de_los_Hechos" data-val="true" data-val-number="The field Entidad de Nacimiento Hechos must be a number." data-val-required="The Entidad de Nacimiento Hechos field is required." id="Entidad_de_Nacimiento_Hechos" name="Entidad_de_Nacimiento_Hechos">
-                                        <option value=""></option>
-                                        @if (varEstado_Entidad_de_Nacimiento_Hechos != null){ 
-                                            foreach (var itemEntidad_de_Nacimiento_Hechos in varEstado_Entidad_de_Nacimiento_Hechos)
-                                            {
-                                                if (itemEntidad_de_Nacimiento_Hechos.Value == Convert.ToString(Model.Entidad_de_Nacimiento_Hechos))
-                                                {
-                                                    <option value="@itemEntidad_de_Nacimiento_Hechos.Value" selected>@itemEntidad_de_Nacimiento_Hechos.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemEntidad_de_Nacimiento_Hechos.Value">@itemEntidad_de_Nacimiento_Hechos.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Entidad_de_Nacimiento_Hechos" data-valmsg-replace="true"></span>*@
+                            <div class="form-group" id="divCalle_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Calle_hechos</label>
+                                <div class="col-sm-8" data-field-id="Calle_hechos" data-attribute="273364" data-field-name="@Resources.Quejas_de_MPResources.Calle_hechos">
+                                    <input class="form-control Hechos_Sucedidos" id="Calle_hechos" name="Calle_hechos" type="text" value="@Model.Calle_hechos">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Calle_hechos" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269613).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Entidad_de_Nacimiento_Hechos');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                            </div>
+                            <div class="form-group" id="divEntre_Calle_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Entre_Calle_hechos</label>
+                                <div class="col-sm-8" data-field-id="Entre_Calle_hechos" data-attribute="273365" data-field-name="@Resources.Quejas_de_MPResources.Entre_Calle_hechos">
+                                    <input class="form-control Hechos_Sucedidos" id="Entre_Calle_hechos" name="Entre_Calle_hechos" type="text" value="@Model.Entre_Calle_hechos">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Entre_Calle_hechos" data-valmsg-replace="true"></span>*@
                                 </div>
-                                }
+                            </div>
+                            <div class="form-group" id="divY_Calle_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Y_Calle_hechos</label>
+                                <div class="col-sm-8" data-field-id="Y_Calle_hechos" data-attribute="273366" data-field-name="@Resources.Quejas_de_MPResources.Y_Calle_hechos">
+                                    <input class="form-control Hechos_Sucedidos" id="Y_Calle_hechos" name="Y_Calle_hechos" type="text" value="@Model.Y_Calle_hechos">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Y_Calle_hechos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_Exterior_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Numero_Exterior_hechos</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior_hechos" data-attribute="273367" data-field-name="@Resources.Quejas_de_MPResources.Numero_Exterior_hechos">
+                                    <input class="form-control Hechos_Sucedidos" id="Numero_Exterior_hechos" name="Numero_Exterior_hechos" type="text" value="@Model.Numero_Exterior_hechos">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Exterior_hechos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_Interior_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Numero_Interior_hechos</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior_hechos" data-attribute="273368" data-field-name="@Resources.Quejas_de_MPResources.Numero_Interior_hechos">
+                                    <input class="form-control Hechos_Sucedidos" id="Numero_Interior_hechos" name="Numero_Interior_hechos" type="text" value="@Model.Numero_Interior_hechos">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Interior_hechos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCodigo_Postal_hechos">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Codigo_Postal_hechos</label>
+                                <div class="col-sm-8" data-field-id="Codigo_Postal_hechos" data-attribute="273369" data-field-name="@Resources.Quejas_de_MPResources.Codigo_Postal_hechos">
+                                    <input class="form-control inputNumber Hechos_Sucedidos" id="Codigo_Postal_hechos" name="Codigo_Postal_hechos" type="text" value="@Model.Codigo_Postal_hechos">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Postal_hechos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divReferencia">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Referencia</label>
+                                <div class="col-sm-8" data-field-id="Referencia" data-attribute="273370" data-field-name="@Resources.Quejas_de_MPResources.Referencia">
+                                    <input class="form-control Hechos_Sucedidos" id="Referencia" name="Referencia" type="text" value="@Model.Referencia">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Referencia" data-valmsg-replace="true"></span>*@
+                                </div>
                             </div>
                             </div>
                                 </div>
 
 
-                            <div id="tabDatos_de_Identificacion" class="tab-pane">
+                            <div id="tabIdentificacion_del_Servidor_Publico" class="tab-pane">
                                 <div class="panel-body">
                             <div class="form-group" id="divCURP_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.CURP_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="CURP_Identificacion" data-attribute="269617" data-field-name="@Resources.Quejas_de_MPResources.CURP_Identificacion">
-                                    <input class="form-control Datos_de_Identificacion" id="CURP_Identificacion" name="CURP_Identificacion" type="text" value="@Model.CURP_Identificacion">
+                                    <input class="form-control Identificacion_del_Servidor_Publico" id="CURP_Identificacion" name="CURP_Identificacion" type="text" value="@Model.CURP_Identificacion">
                                     @*<span class="field-validation-valid" data-valmsg-for="CURP_Identificacion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divNombres_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Nombres_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Nombres_Identificacion" data-attribute="269618" data-field-name="@Resources.Quejas_de_MPResources.Nombres_Identificacion">
-                                    <input class="form-control Datos_de_Identificacion" id="Nombres_Identificacion" name="Nombres_Identificacion" type="text" value="@Model.Nombres_Identificacion">
+                                    <input class="form-control Identificacion_del_Servidor_Publico" id="Nombres_Identificacion" name="Nombres_Identificacion" type="text" value="@Model.Nombres_Identificacion">
                                     @*<span class="field-validation-valid" data-valmsg-for="Nombres_Identificacion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divApellido_Paterno_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Apellido_Paterno_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Apellido_Paterno_Identificacion" data-attribute="269619" data-field-name="@Resources.Quejas_de_MPResources.Apellido_Paterno_Identificacion">
-                                    <input class="form-control Datos_de_Identificacion" id="Apellido_Paterno_Identificacion" name="Apellido_Paterno_Identificacion" type="text" value="@Model.Apellido_Paterno_Identificacion">
+                                    <input class="form-control Identificacion_del_Servidor_Publico" id="Apellido_Paterno_Identificacion" name="Apellido_Paterno_Identificacion" type="text" value="@Model.Apellido_Paterno_Identificacion">
                                     @*<span class="field-validation-valid" data-valmsg-for="Apellido_Paterno_Identificacion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divApellido_Materno_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Apellido_Materno_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Apellido_Materno_Identificacion" data-attribute="269620" data-field-name="@Resources.Quejas_de_MPResources.Apellido_Materno_Identificacion">
-                                    <input class="form-control Datos_de_Identificacion" id="Apellido_Materno_Identificacion" name="Apellido_Materno_Identificacion" type="text" value="@Model.Apellido_Materno_Identificacion">
+                                    <input class="form-control Identificacion_del_Servidor_Publico" id="Apellido_Materno_Identificacion" name="Apellido_Materno_Identificacion" type="text" value="@Model.Apellido_Materno_Identificacion">
                                     @*<span class="field-validation-valid" data-valmsg-for="Apellido_Materno_Identificacion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divAlias">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Alias</label>
+                                <div class="col-sm-8" data-field-id="Alias" data-attribute="273403" data-field-name="@Resources.Quejas_de_MPResources.Alias">
+                                    <input class="form-control Identificacion_del_Servidor_Publico" id="Alias" name="Alias" type="text" value="@Model.Alias">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Alias" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divFecha_Nacimiento_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Fecha_Nacimiento_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Fecha_Nacimiento_Identificacion" data-attribute="269621" data-field-name="@Resources.Quejas_de_MPResources.Fecha_Nacimiento_Identificacion">
                                     <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Datos_de_Identificacion" id="Fecha_Nacimiento_Identificacion"  name="Fecha_Nacimiento_Identificacion" type="text" value="@Model.Fecha_Nacimiento_Identificacion">
+                                        <input class="form-control col-md-12 Identificacion_del_Servidor_Publico" id="Fecha_Nacimiento_Identificacion"  name="Fecha_Nacimiento_Identificacion" type="text" value="@Model.Fecha_Nacimiento_Identificacion">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -1595,14 +1479,14 @@
                             <div class="form-group" id="divEdad_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Edad_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Edad_Identificacion" data-attribute="269622" data-field-name="@Resources.Quejas_de_MPResources.Edad_Identificacion">
-                                    <input class="form-control inputNumber Datos_de_Identificacion" id="Edad_Identificacion" name="Edad_Identificacion" type="text" value="@Model.Edad_Identificacion">
+                                    <input class="form-control inputNumber Identificacion_del_Servidor_Publico" id="Edad_Identificacion" name="Edad_Identificacion" type="text" value="@Model.Edad_Identificacion">
                                     @*<span class="field-validation-valid" data-valmsg-for="Edad_Identificacion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divGenero_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Genero_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Genero_Identificacion" data-attribute="269623" data-field-name="@Resources.Quejas_de_MPResources.Genero_Identificacion">
-                                    <select class="form-control Datos_de_Identificacion" data-val="true" data-val-number="The field Género Identificación must be a number." data-val-required="The Género Identificación field is required." id="Genero_Identificacion" name="Genero_Identificacion">
+                                    <select class="form-control Identificacion_del_Servidor_Publico" data-val="true" data-val-number="The field Género must be a number." data-val-required="The Género field is required." id="Genero_Identificacion" name="Genero_Identificacion">
                                         <option value=""></option>
                                         @if (varGenero_Genero_Identificacion != null){ 
                                             foreach (var itemGenero_Identificacion in varGenero_Genero_Identificacion)
@@ -1630,21 +1514,21 @@
                             <div class="form-group" id="divCelular_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Celular_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Celular_Identificacion" data-attribute="269624" data-field-name="@Resources.Quejas_de_MPResources.Celular_Identificacion">
-                                    <input class="form-control Datos_de_Identificacion" id="Celular_Identificacion" name="Celular_Identificacion" type="text" value="@Model.Celular_Identificacion">
+                                    <input class="form-control Identificacion_del_Servidor_Publico" id="Celular_Identificacion" name="Celular_Identificacion" type="text" value="@Model.Celular_Identificacion">
                                     @*<span class="field-validation-valid" data-valmsg-for="Celular_Identificacion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divCorreo_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Correo_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Correo_Identificacion" data-attribute="269625" data-field-name="@Resources.Quejas_de_MPResources.Correo_Identificacion">
-                                    <input class="form-control Datos_de_Identificacion" id="Correo_Identificacion" name="Correo_Identificacion" type="text" value="@Model.Correo_Identificacion">
+                                    <input class="form-control Identificacion_del_Servidor_Publico" id="Correo_Identificacion" name="Correo_Identificacion" type="text" value="@Model.Correo_Identificacion">
                                     @*<span class="field-validation-valid" data-valmsg-for="Correo_Identificacion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divTipo_de_Identificacion_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Tipo_de_Identificacion_Identificacion" data-attribute="269626" data-field-name="@Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Identificacion">
-                                    <select class="form-control Datos_de_Identificacion" data-val="true" data-val-number="The field Tipo de Identificación Identificación must be a number." data-val-required="The Tipo de Identificación Identificación field is required." id="Tipo_de_Identificacion_Identificacion" name="Tipo_de_Identificacion_Identificacion">
+                                    <select class="form-control Identificacion_del_Servidor_Publico" data-val="true" data-val-number="The field Tipo de Identificación must be a number." data-val-required="The Tipo de Identificación field is required." id="Tipo_de_Identificacion_Identificacion" name="Tipo_de_Identificacion_Identificacion">
                                         <option value=""></option>
                                         @if (varTipo_de_Identificacion_Tipo_de_Identificacion_Identificacion != null){ 
                                             foreach (var itemTipo_de_Identificacion_Identificacion in varTipo_de_Identificacion_Tipo_de_Identificacion_Identificacion)
@@ -1672,32 +1556,18 @@
                             <div class="form-group" id="divNumero_Identificacion_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Numero_Identificacion_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Numero_Identificacion_Identificacion" data-attribute="269627" data-field-name="@Resources.Quejas_de_MPResources.Numero_Identificacion_Identificacion">
-                                    <input class="form-control Datos_de_Identificacion" id="Numero_Identificacion_Identificacion" name="Numero_Identificacion_Identificacion" type="text" value="@Model.Numero_Identificacion_Identificacion">
+                                    <input class="form-control Identificacion_del_Servidor_Publico" id="Numero_Identificacion_Identificacion" name="Numero_Identificacion_Identificacion" type="text" value="@Model.Numero_Identificacion_Identificacion">
                                     @*<span class="field-validation-valid" data-valmsg-for="Numero_Identificacion_Identificacion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-                            <div class="form-group" id="divNacionalidad_Identificacion">
+				<div class="form-group" id="divNacionalidad_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Nacionalidad_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Nacionalidad_Identificacion" data-attribute="269629" data-field-name="@Resources.Quejas_de_MPResources.Nacionalidad_Identificacion">
-                                    <select class="form-control Datos_de_Identificacion" data-val="true" data-val-number="The field Nacionalidad Identificación must be a number." data-val-required="The Nacionalidad Identificación field is required." id="Nacionalidad_Identificacion" name="Nacionalidad_Identificacion">
-                                        <option value=""></option>
-                                        @if (varNacionalidad_Nacionalidad_Identificacion != null){ 
-                                            foreach (var itemNacionalidad_Identificacion in varNacionalidad_Nacionalidad_Identificacion)
-                                            {
-                                                if (itemNacionalidad_Identificacion.Value == Convert.ToString(Model.Nacionalidad_Identificacion))
-                                                {
-                                                    <option value="@itemNacionalidad_Identificacion.Value" selected>@itemNacionalidad_Identificacion.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemNacionalidad_Identificacion.Value">@itemNacionalidad_Identificacion.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Nacionalidad_Identificacion form-control select2-dropdown Identificacion_del_Servidor_Publico' data-val="true" id="Nacionalidad_Identificacion" name="Nacionalidad_Identificacion">
+                                        <option value="@Model.Nacionalidad_Identificacion">@(Model.Nacionalidad_IdentificacionNacionalidadC??Model.Nacionalidad_IdentificacionNacionalidadC)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Nacionalidad_Identificacion" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269629).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269629).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Nacionalidad', 'Nacionalidad_Identificacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -1707,7 +1577,7 @@
 				<div class="form-group" id="divEntidad_de_Nacimiento_Identificacion">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Identificacion</label>
                                 <div class="col-sm-8" data-field-id="Entidad_de_Nacimiento_Identificacion" data-attribute="269630" data-field-name="@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Identificacion">
-                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Entidad_de_Nacimiento_Identificacion form-control select2-dropdown Datos_de_Identificacion' data-val="true" id="Entidad_de_Nacimiento_Identificacion" name="Entidad_de_Nacimiento_Identificacion">
+                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Entidad_de_Nacimiento_Identificacion form-control select2-dropdown Identificacion_del_Servidor_Publico' data-val="true" id="Entidad_de_Nacimiento_Identificacion" name="Entidad_de_Nacimiento_Identificacion">
                                         <option value="@Model.Entidad_de_Nacimiento_Identificacion">@(Model.Entidad_de_Nacimiento_IdentificacionNombre??Model.Entidad_de_Nacimiento_IdentificacionNombre)</option>
                                     </select>
                                 </div>
@@ -1722,47 +1592,12 @@
                                 </div>
 
 
-                            <div id="tabDatos_de_Domicilio" class="tab-pane">
+                            <div id="tabDomicilio_del_Servidor_Publico" class="tab-pane">
                                 <div class="panel-body">
-				<div class="form-group" id="divPais">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Pais</label>
-                                <div class="col-sm-8" data-field-id="Pais" data-attribute="269631" data-field-name="@Resources.Quejas_de_MPResources.Pais">
-                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Pais form-control select2-dropdown Datos_de_Domicilio' data-val="true" id="Pais" name="Pais">
-                                        <option value="@Model.Pais">@(Model.PaisNombre??Model.PaisNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269631).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Pais', 'Pais');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divEstado">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Estado</label>
-                                <div class="col-sm-8" data-field-id="Estado" data-attribute="269632" data-field-name="@Resources.Quejas_de_MPResources.Estado">
-                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Estado form-control select2-dropdown Datos_de_Domicilio' data-val="true" id="Estado" name="Estado">
-                                        <option value="@Model.Estado">@(Model.EstadoNombre??Model.EstadoNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269632).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Estado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divCodigo_Postal">
-                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Codigo_Postal</label>
-                                <div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="269633" data-field-name="@Resources.Quejas_de_MPResources.Codigo_Postal">
-                                    <input class="form-control Datos_de_Domicilio" id="Codigo_Postal" name="Codigo_Postal" type="text" value="@Model.Codigo_Postal">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Postal" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
 				<div class="form-group" id="divMunicipio">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Municipio</label>
                                 <div class="col-sm-8" data-field-id="Municipio" data-attribute="269634" data-field-name="@Resources.Quejas_de_MPResources.Municipio">
-                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Municipio form-control select2-dropdown Datos_de_Domicilio' data-val="true" id="Municipio" name="Municipio">
+                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Municipio form-control select2-dropdown Domicilio_del_Servidor_Publico' data-val="true" id="Municipio" name="Municipio">
                                         <option value="@Model.Municipio">@(Model.MunicipioNombre??Model.MunicipioNombre)</option>
                                     </select>
                                 </div>
@@ -1773,10 +1608,24 @@
                                 </div>
                                 }
                             </div>
+				<div class="form-group" id="divPoblacion">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Poblacion</label>
+                                <div class="col-sm-8" data-field-id="Poblacion" data-attribute="273395" data-field-name="@Resources.Quejas_de_MPResources.Poblacion">
+                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Poblacion form-control select2-dropdown Domicilio_del_Servidor_Publico' data-val="true" id="Poblacion" name="Poblacion">
+                                        <option value="@Model.Poblacion">@(Model.PoblacionNombre??Model.PoblacionNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273395).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Poblacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
 				<div class="form-group" id="divColonia">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Colonia</label>
                                 <div class="col-sm-8" data-field-id="Colonia" data-attribute="269635" data-field-name="@Resources.Quejas_de_MPResources.Colonia">
-                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Colonia form-control select2-dropdown Datos_de_Domicilio' data-val="true" id="Colonia" name="Colonia">
+                                    <select class='fullWidth AutoComplete AutoCompleteQuejas_de_MP_Colonia form-control select2-dropdown Domicilio_del_Servidor_Publico' data-val="true" id="Colonia" name="Colonia">
                                         <option value="@Model.Colonia">@(Model.ColoniaNombre??Model.ColoniaNombre)</option>
                                     </select>
                                 </div>
@@ -1790,42 +1639,49 @@
                             <div class="form-group" id="divCalle">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Calle</label>
                                 <div class="col-sm-8" data-field-id="Calle" data-attribute="269636" data-field-name="@Resources.Quejas_de_MPResources.Calle">
-                                    <input class="form-control Datos_de_Domicilio" id="Calle" name="Calle" type="text" value="@Model.Calle">
+                                    <input class="form-control Domicilio_del_Servidor_Publico" id="Calle" name="Calle" type="text" value="@Model.Calle">
                                     @*<span class="field-validation-valid" data-valmsg-for="Calle" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divEntre_Calle">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Entre_Calle</label>
                                 <div class="col-sm-8" data-field-id="Entre_Calle" data-attribute="269637" data-field-name="@Resources.Quejas_de_MPResources.Entre_Calle">
-                                    <input class="form-control Datos_de_Domicilio" id="Entre_Calle" name="Entre_Calle" type="text" value="@Model.Entre_Calle">
+                                    <input class="form-control Domicilio_del_Servidor_Publico" id="Entre_Calle" name="Entre_Calle" type="text" value="@Model.Entre_Calle">
                                     @*<span class="field-validation-valid" data-valmsg-for="Entre_Calle" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divY_Calle">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Y_Calle</label>
                                 <div class="col-sm-8" data-field-id="Y_Calle" data-attribute="269638" data-field-name="@Resources.Quejas_de_MPResources.Y_Calle">
-                                    <input class="form-control Datos_de_Domicilio" id="Y_Calle" name="Y_Calle" type="text" value="@Model.Y_Calle">
+                                    <input class="form-control Domicilio_del_Servidor_Publico" id="Y_Calle" name="Y_Calle" type="text" value="@Model.Y_Calle">
                                     @*<span class="field-validation-valid" data-valmsg-for="Y_Calle" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divNumero_Exterior">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Numero_Exterior</label>
                                 <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="269639" data-field-name="@Resources.Quejas_de_MPResources.Numero_Exterior">
-                                    <input class="form-control Datos_de_Domicilio" id="Numero_Exterior" name="Numero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                    <input class="form-control Domicilio_del_Servidor_Publico" id="Numero_Exterior" name="Numero_Exterior" type="text" value="@Model.Numero_Exterior">
                                     @*<span class="field-validation-valid" data-valmsg-for="Numero_Exterior" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divNumero_Interior">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Numero_Interior</label>
                                 <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="269640" data-field-name="@Resources.Quejas_de_MPResources.Numero_Interior">
-                                    <input class="form-control Datos_de_Domicilio" id="Numero_Interior" name="Numero_Interior" type="text" value="@Model.Numero_Interior">
+                                    <input class="form-control Domicilio_del_Servidor_Publico" id="Numero_Interior" name="Numero_Interior" type="text" value="@Model.Numero_Interior">
                                     @*<span class="field-validation-valid" data-valmsg-for="Numero_Interior" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCodigo_Postal">
+                                <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Codigo_Postal</label>
+                                <div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="269633" data-field-name="@Resources.Quejas_de_MPResources.Codigo_Postal">
+                                    <input class="form-control Domicilio_del_Servidor_Publico" id="Codigo_Postal" name="Codigo_Postal" type="text" value="@Model.Codigo_Postal">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Postal" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divReferencias_de_domicilio">
                                 <label class="col-sm-2 control-label">@Resources.Quejas_de_MPResources.Referencias_de_domicilio</label>
                                 <div class="col-sm-8" data-field-id="Referencias_de_domicilio" data-attribute="269641" data-field-name="@Resources.Quejas_de_MPResources.Referencias_de_domicilio">
-                                    <input class="form-control Datos_de_Domicilio" id="Referencias_de_domicilio" name="Referencias_de_domicilio" type="text" value="@Model.Referencias_de_domicilio">
+                                    <input class="form-control Domicilio_del_Servidor_Publico" id="Referencias_de_domicilio" name="Referencias_de_domicilio" type="text" value="@Model.Referencias_de_domicilio">
                                     @*<span class="field-validation-valid" data-valmsg-for="Referencias_de_domicilio" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
@@ -1924,10 +1780,6 @@
             $("#hdnRemoveImagen_Tatuaje").val("1");
             $("#divAttachmentImagen_Tatuaje").hide();
         }
-        function RemoveAttachmentMainFotografia_Identificacion () {
-            $("#hdnRemoveFotografia_Identificacion").val("1");
-            $("#divAttachmentFotografia_Identificacion").hide();
-        }
 
 
 	function GetTraduction(text) {
@@ -1968,20 +1820,20 @@
 		var nameAttribute = '@ViewBag.nameAttribute';
 		var Tab_Datos_Generales = true;
 
-		var Tab_Datos_de_Media_Filiacion = true;
+		var Tab_Rasgos_Fisicos = true;
 
-		var Tab_Datos_de_los_Hechos = true;
+		var Tab_Hechos_Sucedidos = true;
 
-		var Tab_Datos_de_Identificacion = true;
+		var Tab_Identificacion_del_Servidor_Publico = true;
 
-		var Tab_Datos_de_Domicilio = true;
+		var Tab_Domicilio_del_Servidor_Publico = true;
 
-
+         var roleActivo = @Session["USERROLEID"];
         $(document).ready(function () {
             $('#ObjectId').val('45738');
-		    
+            $(".fa-bars").parent().hide();
 		   
-                        $('#Fecha_de_Nacimiento').datepicker({
+                        $('#Fecha_de_Registro').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
                 forceParse: false,
@@ -1989,7 +1841,8 @@
                 autoclose: true,
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
-            $('#Fecha_de_Nacimiento_Hechos').datepicker({
+            $('#Hora_de_Registro').clockpicker();
+            $('#Fecha_de_los_Hechos').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
                 forceParse: false,
@@ -1997,6 +1850,7 @@
                 autoclose: true,
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
+            $('#Hora_de_los_Hechos').clockpicker();
             $('#Fecha_Nacimiento_Identificacion').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -2020,11 +1874,11 @@
             }
 
 			
-			       var AutoCompleteEntidad_de_NacimientoData =[];
-       $(".AutoCompleteQuejas_de_MP_Entidad_de_Nacimiento").select2({
+			       var AutoCompleteUsuario_que_RegistraData =[];
+       $(".AutoCompleteQuejas_de_MP_Usuario_que_Registra").select2({
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
-                url: "@Url.Content("~/Frontal/Quejas_de_MP/GetQuejas_de_MP_Entidad_de_Nacimiento_Estado")",
+                url: "@Url.Content("~/Frontal/Quejas_de_MP/GetQuejas_de_MP_Usuario_que_Registra_Spartan_User")",
 		cache: false,
                 dataType: 'json',
                 async: true,
@@ -2038,7 +1892,7 @@
                     params.page = params.page || 1;
 
                     return {
-                        results: GetAutoCompleteQuejas_de_MP_Entidad_de_Nacimiento_EstadoData(data),
+                        results: GetAutoCompleteQuejas_de_MP_Usuario_que_Registra_Spartan_UserData(data),
                         pagination: {
                             more: false 
                         }
@@ -2048,7 +1902,139 @@
             escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
-        var $eventExternal = $(".AutoCompleteQuejas_de_MP_Entidad_de_Nacimiento");
+        var $eventExternal = $(".AutoCompleteQuejas_de_MP_Usuario_que_Registra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteMunicipio_hechosData =[];
+       $(".AutoCompleteQuejas_de_MP_Municipio_hechos").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Quejas_de_MP/GetQuejas_de_MP_Municipio_hechos_Municipio")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteQuejas_de_MP_Municipio_hechos_MunicipioData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteQuejas_de_MP_Municipio_hechos");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompletePoblacion_hechosData =[];
+       $(".AutoCompleteQuejas_de_MP_Poblacion_hechos").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Quejas_de_MP/GetQuejas_de_MP_Poblacion_hechos_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteQuejas_de_MP_Poblacion_hechos_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteQuejas_de_MP_Poblacion_hechos");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteColonia_hechosData =[];
+       $(".AutoCompleteQuejas_de_MP_Colonia_hechos").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Quejas_de_MP/GetQuejas_de_MP_Colonia_hechos_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteQuejas_de_MP_Colonia_hechos_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteQuejas_de_MP_Colonia_hechos");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteNacionalidad_IdentificacionData =[];
+       $(".AutoCompleteQuejas_de_MP_Nacionalidad_Identificacion").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Quejas_de_MP/GetQuejas_de_MP_Nacionalidad_Identificacion_Nacionalidad")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteQuejas_de_MP_Nacionalidad_Identificacion_NacionalidadData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteQuejas_de_MP_Nacionalidad_Identificacion");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -2086,72 +2072,6 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
-       var AutoCompletePaisData =[];
-       $(".AutoCompleteQuejas_de_MP_Pais").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Quejas_de_MP/GetQuejas_de_MP_Pais_Pais")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteQuejas_de_MP_Pais_PaisData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteQuejas_de_MP_Pais");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
-       var AutoCompleteEstadoData =[];
-       $(".AutoCompleteQuejas_de_MP_Estado").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Quejas_de_MP/GetQuejas_de_MP_Estado_Estado")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteQuejas_de_MP_Estado_EstadoData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteQuejas_de_MP_Estado");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
        var AutoCompleteMunicipioData =[];
        $(".AutoCompleteQuejas_de_MP_Municipio").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -2181,6 +2101,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteQuejas_de_MP_Municipio");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompletePoblacionData =[];
+       $(".AutoCompleteQuejas_de_MP_Poblacion").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Quejas_de_MP/GetQuejas_de_MP_Poblacion_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteQuejas_de_MP_Poblacion_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteQuejas_de_MP_Poblacion");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -2230,17 +2183,17 @@
 				if (Tab_Datos_Generales)
 					Fill_Datos_Generales();
 
-				if (Tab_Datos_de_Media_Filiacion)
-					Fill_Datos_de_Media_Filiacion();
+				if (Tab_Rasgos_Fisicos)
+					Fill_Rasgos_Fisicos();
 
-				if (Tab_Datos_de_los_Hechos)
-					Fill_Datos_de_los_Hechos();
+				if (Tab_Hechos_Sucedidos)
+					Fill_Hechos_Sucedidos();
 
-				if (Tab_Datos_de_Identificacion)
-					Fill_Datos_de_Identificacion();
+				if (Tab_Identificacion_del_Servidor_Publico)
+					Fill_Identificacion_del_Servidor_Publico();
 
-				if (Tab_Datos_de_Domicilio)
-					Fill_Datos_de_Domicilio();
+				if (Tab_Domicilio_del_Servidor_Publico)
+					Fill_Domicilio_del_Servidor_Publico();
 
 
                 </text>
@@ -2335,19 +2288,19 @@
 				return false;
 			}						
 
-			if (Tab_Datos_de_Media_Filiacion && !checkClientValidate('Quejas_de_MPCreateForm', 'Datos_de_Media_Filiacion')) {
+			if (Tab_Rasgos_Fisicos && !checkClientValidate('Quejas_de_MPCreateForm', 'Rasgos_Fisicos')) {
 				return false;
 			}						
 
-			if (Tab_Datos_de_los_Hechos && !checkClientValidate('Quejas_de_MPCreateForm', 'Datos_de_los_Hechos')) {
+			if (Tab_Hechos_Sucedidos && !checkClientValidate('Quejas_de_MPCreateForm', 'Hechos_Sucedidos')) {
 				return false;
 			}						
 
-			if (Tab_Datos_de_Identificacion && !checkClientValidate('Quejas_de_MPCreateForm', 'Datos_de_Identificacion')) {
+			if (Tab_Identificacion_del_Servidor_Publico && !checkClientValidate('Quejas_de_MPCreateForm', 'Identificacion_del_Servidor_Publico')) {
 				return false;
 			}						
 
-			if (Tab_Datos_de_Domicilio && !checkClientValidate('Quejas_de_MPCreateForm', 'Datos_de_Domicilio')) {
+			if (Tab_Domicilio_del_Servidor_Publico && !checkClientValidate('Quejas_de_MPCreateForm', 'Domicilio_del_Servidor_Publico')) {
 				return false;
 			}						
 
@@ -2362,17 +2315,17 @@
 			if (Tab_Datos_Generales)
 				Save_Datos_Generales(id);
 
-			if (Tab_Datos_de_Media_Filiacion)
-				Save_Datos_de_Media_Filiacion(id);
+			if (Tab_Rasgos_Fisicos)
+				Save_Rasgos_Fisicos(id);
 
-			if (Tab_Datos_de_los_Hechos)
-				Save_Datos_de_los_Hechos(id);
+			if (Tab_Hechos_Sucedidos)
+				Save_Hechos_Sucedidos(id);
 
-			if (Tab_Datos_de_Identificacion)
-				Save_Datos_de_Identificacion(id);
+			if (Tab_Identificacion_del_Servidor_Publico)
+				Save_Identificacion_del_Servidor_Publico(id);
 
-			if (Tab_Datos_de_Domicilio)
-				Save_Datos_de_Domicilio(id);
+			if (Tab_Domicilio_del_Servidor_Publico)
+				Save_Domicilio_del_Servidor_Publico(id);
 
 
 			showNotification("@Resources.Resources.SaveSuccess", "success");
@@ -2539,10 +2492,23 @@
                 async: false,
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
+                    $('#Fecha_de_Registro').val(result.data.Fecha_de_Registro);
+                    $('#Hora_de_Registro').val(result.data.Hora_de_Registro);
+                    var control = $('#Usuario_que_Registra');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Registra).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Registra).trigger('change');
+                    }, 3000);
                     $('#Nombres').val(result.data.Nombres);
                     $('#Apellido_Paterno').val(result.data.Apellido_Paterno);
                     $('#Apellido_Materno').val(result.data.Apellido_Materno);
                     $('#Nombre_Completo').val(result.data.Nombre_Completo);
+                    $('#Correo_Electronico').val(result.data.Correo_Electronico);
+                    $('#Celular').val(result.data.Celular);
                     $('#Estatus').val(result.data.Estatus);
 
                 },
@@ -2555,10 +2521,15 @@
 		function Save_Datos_Generales(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
-			                data.append('Nombres', $('#Nombres').val());
+			                data.append('Fecha_de_Registro', $('#Fecha_de_Registro').val());
+                data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
+                data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
+                data.append('Nombres', $('#Nombres').val());
                 data.append('Apellido_Paterno', $('#Apellido_Paterno').val());
                 data.append('Apellido_Materno', $('#Apellido_Materno').val());
                 data.append('Nombre_Completo', $('#Nombre_Completo').val());
+                data.append('Correo_Electronico', $('#Correo_Electronico').val());
+                data.append('Celular', $('#Celular').val());
                 data.append('Estatus', $('#Estatus').val());
 
 			$.ajax({
@@ -2584,10 +2555,10 @@
 			});
 		}
 
-		function Fill_Datos_de_Media_Filiacion()
+		function Fill_Rasgos_Fisicos()
         {
             $.ajax({
-                url: "@Url.Content("~/Frontal/Quejas_de_MP/Get_Datos_de_Media_Filiacion")?Id=" + $("#ReferenceClave").val(),
+                url: "@Url.Content("~/Frontal/Quejas_de_MP/Get_Rasgos_Fisicos")?Id=" + $("#ReferenceClave").val(),
                 type: 'GET',
                 dataType: "json",
                 async: false,
@@ -2636,7 +2607,7 @@
             });
         }
 		
-		function Save_Datos_de_Media_Filiacion(newId) {
+		function Save_Rasgos_Fisicos(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Peso', $('#Peso').val());
@@ -2678,7 +2649,7 @@
                 data.append('Otras_Senas_Particulares', $('#Otras_Senas_Particulares').val());
 
 			$.ajax({
-				url: '@Url.Content("~/Frontal/Quejas_de_MP/Post_Datos_de_Media_Filiacion")',
+				url: '@Url.Content("~/Frontal/Quejas_de_MP/Post_Rasgos_Fisicos")',
 				type: 'POST',
 				data: data,
 				async: false,
@@ -2687,55 +2658,65 @@
 				processData: false,
 				success: function (result) {
 					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_de_Media_Filiacion");
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Rasgos_Fisicos");
 					} else {
 						newId = result;
                     
 					}
 				},
 				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_de_Media_Filiacion");
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Rasgos_Fisicos");
 				},
 				cache: false
 			});
 		}
 
-		function Fill_Datos_de_los_Hechos()
+		function Fill_Hechos_Sucedidos()
         {
             $.ajax({
-                url: "@Url.Content("~/Frontal/Quejas_de_MP/Get_Datos_de_los_Hechos")?Id=" + $("#ReferenceClave").val(),
+                url: "@Url.Content("~/Frontal/Quejas_de_MP/Get_Hechos_Sucedidos")?Id=" + $("#ReferenceClave").val(),
                 type: 'GET',
                 dataType: "json",
                 async: false,
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Descripcion_de_los_Hechos').val(result.data.Descripcion_de_los_Hechos);
-                    $('#CURP').val(result.data.CURP);
-                    $('#Genero').val(result.data.Genero);
-                    $('#Fecha_de_Nacimiento').val(result.data.Fecha_de_Nacimiento);
-                    $('#Nacionalidad').val(result.data.Nacionalidad);
-                    var control = $('#Entidad_de_Nacimiento');
+                    $('#Fecha_de_los_Hechos').val(result.data.Fecha_de_los_Hechos);
+                    $('#Hora_de_los_Hechos').val(result.data.Hora_de_los_Hechos);
+                    var control = $('#Municipio_hechos');
                     control.select2('open');
-                    $('.select2-search__field').val(result.data.Entidad_de_Nacimiento).trigger('keyup');
+                    $('.select2-search__field').val(result.data.Municipio_hechos).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
 	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
 	                    control.select2({ data: data });
-	                    control.val(result.data.Entidad_de_Nacimiento).trigger('change');
+	                    control.val(result.data.Municipio_hechos).trigger('change');
                     }, 3000);
-                    $('#Nombres_Hechos').val(result.data.Nombres_Hechos);
-                    $('#Apellido_Paterno_Hechos').val(result.data.Apellido_Paterno_Hechos);
-                    $('#Apellido_Materno_Hechos').val(result.data.Apellido_Materno_Hechos);
-                    $('#Fecha_de_Nacimiento_Hechos').val(result.data.Fecha_de_Nacimiento_Hechos);
-                    $('#Edad_Hechos').val(result.data.Edad_Hechos);
-                    $('#Genero_Hechos').val(result.data.Genero_Hechos);
-                    $('#Celular_Hechos').val(result.data.Celular_Hechos);
-                    $('#Correo_Hechos').val(result.data.Correo_Hechos);
-                    $('#Tipo_de_Identificacion_Hechos').val(result.data.Tipo_de_Identificacion_Hechos);
-                    $('#Numero_Identificacion_Hechos').val(result.data.Numero_Identificacion_Hechos);
-                    $('#Fotografia_Identificacion').val(result.data.Fotografia_Identificacion);
-                    $('#Nacionalidad_Hechos').val(result.data.Nacionalidad_Hechos);
-                    $('#Entidad_de_Nacimiento_Hechos').val(result.data.Entidad_de_Nacimiento_Hechos);
+                    var control = $('#Poblacion_hechos');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Poblacion_hechos).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Poblacion_hechos).trigger('change');
+                    }, 3000);
+                    var control = $('#Colonia_hechos');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Colonia_hechos).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Colonia_hechos).trigger('change');
+                    }, 3000);
+                    $('#Calle_hechos').val(result.data.Calle_hechos);
+                    $('#Entre_Calle_hechos').val(result.data.Entre_Calle_hechos);
+                    $('#Y_Calle_hechos').val(result.data.Y_Calle_hechos);
+                    $('#Numero_Exterior_hechos').val(result.data.Numero_Exterior_hechos);
+                    $('#Numero_Interior_hechos').val(result.data.Numero_Interior_hechos);
+                    $('#Codigo_Postal_hechos').val(result.data.Codigo_Postal_hechos);
+                    $('#Referencia').val(result.data.Referencia);
 
                 },
                 error: function (result) {
@@ -2744,33 +2725,25 @@
             });
         }
 		
-		function Save_Datos_de_los_Hechos(newId) {
+		function Save_Hechos_Sucedidos(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Descripcion_de_los_Hechos', $('#Descripcion_de_los_Hechos').val());
-                data.append('CURP', $('#CURP').val());
-                data.append('Genero', $('#Genero').val());
-                data.append('Fecha_de_Nacimiento', $('#Fecha_de_Nacimiento').val());
-                data.append('Nacionalidad', $('#Nacionalidad').val());
-                data.append('Entidad_de_Nacimiento', $('#Entidad_de_Nacimiento').val());
-                data.append('Nombres_Hechos', $('#Nombres_Hechos').val());
-                data.append('Apellido_Paterno_Hechos', $('#Apellido_Paterno_Hechos').val());
-                data.append('Apellido_Materno_Hechos', $('#Apellido_Materno_Hechos').val());
-                data.append('Fecha_de_Nacimiento_Hechos', $('#Fecha_de_Nacimiento_Hechos').val());
-                data.append('Edad_Hechos', $('#Edad_Hechos').val());
-                data.append('Genero_Hechos', $('#Genero_Hechos').val());
-                data.append('Celular_Hechos', $('#Celular_Hechos').val());
-                data.append('Correo_Hechos', $('#Correo_Hechos').val());
-                data.append('Tipo_de_Identificacion_Hechos', $('#Tipo_de_Identificacion_Hechos').val());
-                data.append('Numero_Identificacion_Hechos', $('#Numero_Identificacion_Hechos').val());
-                data.append('Fotografia_Identificacion', $('#hdnAttachedFotografia_Identificacion').val());
-                data.append('Fotografia_IdentificacionFile', $('#Fotografia_IdentificacionFile')[0].files[0]);
-                data.append('Fotografia_IdentificacionRemoveAttachment', $('#hdnRemoveFotografia_Identificacion').val());
-                data.append('Nacionalidad_Hechos', $('#Nacionalidad_Hechos').val());
-                data.append('Entidad_de_Nacimiento_Hechos', $('#Entidad_de_Nacimiento_Hechos').val());
+                data.append('Fecha_de_los_Hechos', $('#Fecha_de_los_Hechos').val());
+                data.append('Hora_de_los_Hechos', $('#Hora_de_los_Hechos').val());
+                data.append('Municipio_hechos', $('#Municipio_hechos').val());
+                data.append('Poblacion_hechos', $('#Poblacion_hechos').val());
+                data.append('Colonia_hechos', $('#Colonia_hechos').val());
+                data.append('Calle_hechos', $('#Calle_hechos').val());
+                data.append('Entre_Calle_hechos', $('#Entre_Calle_hechos').val());
+                data.append('Y_Calle_hechos', $('#Y_Calle_hechos').val());
+                data.append('Numero_Exterior_hechos', $('#Numero_Exterior_hechos').val());
+                data.append('Numero_Interior_hechos', $('#Numero_Interior_hechos').val());
+                data.append('Codigo_Postal_hechos', $('#Codigo_Postal_hechos').val());
+                data.append('Referencia', $('#Referencia').val());
 
 			$.ajax({
-				url: '@Url.Content("~/Frontal/Quejas_de_MP/Post_Datos_de_los_Hechos")',
+				url: '@Url.Content("~/Frontal/Quejas_de_MP/Post_Hechos_Sucedidos")',
 				type: 'POST',
 				data: data,
 				async: false,
@@ -2779,23 +2752,23 @@
 				processData: false,
 				success: function (result) {
 					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_de_los_Hechos");
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Hechos_Sucedidos");
 					} else {
 						newId = result;
                     
 					}
 				},
 				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_de_los_Hechos");
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Hechos_Sucedidos");
 				},
 				cache: false
 			});
 		}
 
-		function Fill_Datos_de_Identificacion()
+		function Fill_Identificacion_del_Servidor_Publico()
         {
             $.ajax({
-                url: "@Url.Content("~/Frontal/Quejas_de_MP/Get_Datos_de_Identificacion")?Id=" + $("#ReferenceClave").val(),
+                url: "@Url.Content("~/Frontal/Quejas_de_MP/Get_Identificacion_del_Servidor_Publico")?Id=" + $("#ReferenceClave").val(),
                 type: 'GET',
                 dataType: "json",
                 async: false,
@@ -2805,6 +2778,7 @@
                     $('#Nombres_Identificacion').val(result.data.Nombres_Identificacion);
                     $('#Apellido_Paterno_Identificacion').val(result.data.Apellido_Paterno_Identificacion);
                     $('#Apellido_Materno_Identificacion').val(result.data.Apellido_Materno_Identificacion);
+                    $('#Alias').val(result.data.Alias);
                     $('#Fecha_Nacimiento_Identificacion').val(result.data.Fecha_Nacimiento_Identificacion);
                     $('#Edad_Identificacion').val(result.data.Edad_Identificacion);
                     $('#Genero_Identificacion').val(result.data.Genero_Identificacion);
@@ -2812,7 +2786,15 @@
                     $('#Correo_Identificacion').val(result.data.Correo_Identificacion);
                     $('#Tipo_de_Identificacion_Identificacion').val(result.data.Tipo_de_Identificacion_Identificacion);
                     $('#Numero_Identificacion_Identificacion').val(result.data.Numero_Identificacion_Identificacion);
-                    $('#Nacionalidad_Identificacion').val(result.data.Nacionalidad_Identificacion);
+                    var control = $('#Nacionalidad_Identificacion');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Nacionalidad_Identificacion).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Nacionalidad_Identificacion).trigger('change');
+                    }, 3000);
                     var control = $('#Entidad_de_Nacimiento_Identificacion');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Entidad_de_Nacimiento_Identificacion).trigger('keyup');
@@ -2830,13 +2812,14 @@
             });
         }
 		
-		function Save_Datos_de_Identificacion(newId) {
+		function Save_Identificacion_del_Servidor_Publico(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('CURP_Identificacion', $('#CURP_Identificacion').val());
                 data.append('Nombres_Identificacion', $('#Nombres_Identificacion').val());
                 data.append('Apellido_Paterno_Identificacion', $('#Apellido_Paterno_Identificacion').val());
                 data.append('Apellido_Materno_Identificacion', $('#Apellido_Materno_Identificacion').val());
+                data.append('Alias', $('#Alias').val());
                 data.append('Fecha_Nacimiento_Identificacion', $('#Fecha_Nacimiento_Identificacion').val());
                 data.append('Edad_Identificacion', $('#Edad_Identificacion').val());
                 data.append('Genero_Identificacion', $('#Genero_Identificacion').val());
@@ -2848,7 +2831,7 @@
                 data.append('Entidad_de_Nacimiento_Identificacion', $('#Entidad_de_Nacimiento_Identificacion').val());
 
 			$.ajax({
-				url: '@Url.Content("~/Frontal/Quejas_de_MP/Post_Datos_de_Identificacion")',
+				url: '@Url.Content("~/Frontal/Quejas_de_MP/Post_Identificacion_del_Servidor_Publico")',
 				type: 'POST',
 				data: data,
 				async: false,
@@ -2857,47 +2840,28 @@
 				processData: false,
 				success: function (result) {
 					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_de_Identificacion");
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Identificacion_del_Servidor_Publico");
 					} else {
 						newId = result;
                     
 					}
 				},
 				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_de_Identificacion");
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Identificacion_del_Servidor_Publico");
 				},
 				cache: false
 			});
 		}
 
-		function Fill_Datos_de_Domicilio()
+		function Fill_Domicilio_del_Servidor_Publico()
         {
             $.ajax({
-                url: "@Url.Content("~/Frontal/Quejas_de_MP/Get_Datos_de_Domicilio")?Id=" + $("#ReferenceClave").val(),
+                url: "@Url.Content("~/Frontal/Quejas_de_MP/Get_Domicilio_del_Servidor_Publico")?Id=" + $("#ReferenceClave").val(),
                 type: 'GET',
                 dataType: "json",
                 async: false,
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
-                    var control = $('#Pais');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Pais).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Pais).trigger('change');
-                    }, 3000);
-                    var control = $('#Estado');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Estado).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Estado).trigger('change');
-                    }, 3000);
-                    $('#Codigo_Postal').val(result.data.Codigo_Postal);
                     var control = $('#Municipio');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Municipio).trigger('keyup');
@@ -2906,6 +2870,15 @@
 	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
 	                    control.select2({ data: data });
 	                    control.val(result.data.Municipio).trigger('change');
+                    }, 3000);
+                    var control = $('#Poblacion');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Poblacion).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Poblacion).trigger('change');
                     }, 3000);
                     var control = $('#Colonia');
                     control.select2('open');
@@ -2921,6 +2894,7 @@
                     $('#Y_Calle').val(result.data.Y_Calle);
                     $('#Numero_Exterior').val(result.data.Numero_Exterior);
                     $('#Numero_Interior').val(result.data.Numero_Interior);
+                    $('#Codigo_Postal').val(result.data.Codigo_Postal);
                     $('#Referencias_de_domicilio').val(result.data.Referencias_de_domicilio);
 
                 },
@@ -2930,23 +2904,22 @@
             });
         }
 		
-		function Save_Datos_de_Domicilio(newId) {
+		function Save_Domicilio_del_Servidor_Publico(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
-			                data.append('Pais', $('#Pais').val());
-                data.append('Estado', $('#Estado').val());
-                data.append('Codigo_Postal', $('#Codigo_Postal').val());
-                data.append('Municipio', $('#Municipio').val());
+			                data.append('Municipio', $('#Municipio').val());
+                data.append('Poblacion', $('#Poblacion').val());
                 data.append('Colonia', $('#Colonia').val());
                 data.append('Calle', $('#Calle').val());
                 data.append('Entre_Calle', $('#Entre_Calle').val());
                 data.append('Y_Calle', $('#Y_Calle').val());
                 data.append('Numero_Exterior', $('#Numero_Exterior').val());
                 data.append('Numero_Interior', $('#Numero_Interior').val());
+                data.append('Codigo_Postal', $('#Codigo_Postal').val());
                 data.append('Referencias_de_domicilio', $('#Referencias_de_domicilio').val());
 
 			$.ajax({
-				url: '@Url.Content("~/Frontal/Quejas_de_MP/Post_Datos_de_Domicilio")',
+				url: '@Url.Content("~/Frontal/Quejas_de_MP/Post_Domicilio_del_Servidor_Publico")',
 				type: 'POST',
 				data: data,
 				async: false,
@@ -2955,14 +2928,14 @@
 				processData: false,
 				success: function (result) {
 					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_de_Domicilio");
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Domicilio_del_Servidor_Publico");
 					} else {
 						newId = result;
                     
 					}
 				},
 				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_de_Domicilio");
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Domicilio_del_Servidor_Publico");
 				},
 				cache: false
 			});

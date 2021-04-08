@@ -16,6 +16,13 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Quejas_de_MP.Clave";
+                case "Fecha_de_Registro":
+                    return "Quejas_de_MP.Fecha_de_Registro";
+                case "Hora_de_Registro":
+                    return "Quejas_de_MP.Hora_de_Registro";
+                case "Usuario_que_Registra[Name]":
+                case "Usuario_que_RegistraName":
+                    return "Spartan_User.Name";
                 case "Nombres":
                     return "Quejas_de_MP.Nombres";
                 case "Apellido_Paterno":
@@ -24,6 +31,10 @@ namespace Spartane.Web.SqlModelMapper
                     return "Quejas_de_MP.Apellido_Materno";
                 case "Nombre_Completo":
                     return "Quejas_de_MP.Nombre_Completo";
+                case "Correo_Electronico":
+                    return "Quejas_de_MP.Correo_Electronico";
+                case "Celular":
+                    return "Quejas_de_MP.Celular";
                 case "Estatus[Descripcion]":
                 case "EstatusDescripcion":
                     return "Estatus_Quejas_MP.Descripcion";
@@ -127,47 +138,33 @@ namespace Spartane.Web.SqlModelMapper
                     return "Quejas_de_MP.Otras_Senas_Particulares";
                 case "Descripcion_de_los_Hechos":
                     return "Quejas_de_MP.Descripcion_de_los_Hechos";
-                case "CURP":
-                    return "Quejas_de_MP.CURP";
-                case "Genero[Descripcion]":
-                case "GeneroDescripcion":
-                    return "Genero.Descripcion";
-                case "Fecha_de_Nacimiento":
-                    return "Quejas_de_MP.Fecha_de_Nacimiento";
-                case "Nacionalidad[NacionalidadC]":
-                case "NacionalidadNacionalidadC":
-                    return "Nacionalidad.NacionalidadC";
-                case "Entidad_de_Nacimiento[Nombre]":
-                case "Entidad_de_NacimientoNombre":
-                    return "Estado.Nombre";
-                case "Nombres_Hechos":
-                    return "Quejas_de_MP.Nombres_Hechos";
-                case "Apellido_Paterno_Hechos":
-                    return "Quejas_de_MP.Apellido_Paterno_Hechos";
-                case "Apellido_Materno_Hechos":
-                    return "Quejas_de_MP.Apellido_Materno_Hechos";
-                case "Fecha_de_Nacimiento_Hechos":
-                    return "Quejas_de_MP.Fecha_de_Nacimiento_Hechos";
-                case "Edad_Hechos":
-                    return "Quejas_de_MP.Edad_Hechos";
-                case "Genero_Hechos[Descripcion]":
-                case "Genero_HechosDescripcion":
-                    return "Genero.Descripcion";
-                case "Celular_Hechos":
-                    return "Quejas_de_MP.Celular_Hechos";
-                case "Correo_Hechos":
-                    return "Quejas_de_MP.Correo_Hechos";
-                case "Tipo_de_Identificacion_Hechos[Nombre]":
-                case "Tipo_de_Identificacion_HechosNombre":
-                    return "Tipo_de_Identificacion.Nombre";
-                case "Numero_Identificacion_Hechos":
-                    return "Quejas_de_MP.Numero_Identificacion_Hechos";
-                case "Nacionalidad_Hechos[NacionalidadC]":
-                case "Nacionalidad_HechosNacionalidadC":
-                    return "Nacionalidad.NacionalidadC";
-                case "Entidad_de_Nacimiento_Hechos[Nombre]":
-                case "Entidad_de_Nacimiento_HechosNombre":
-                    return "Estado.Nombre";
+                case "Fecha_de_los_Hechos":
+                    return "Quejas_de_MP.Fecha_de_los_Hechos";
+                case "Hora_de_los_Hechos":
+                    return "Quejas_de_MP.Hora_de_los_Hechos";
+                case "Municipio_hechos[Nombre]":
+                case "Municipio_hechosNombre":
+                    return "Municipio.Nombre";
+                case "Poblacion_hechos[Nombre]":
+                case "Poblacion_hechosNombre":
+                    return "Colonia.Nombre";
+                case "Colonia_hechos[Nombre]":
+                case "Colonia_hechosNombre":
+                    return "Colonia.Nombre";
+                case "Calle_hechos":
+                    return "Quejas_de_MP.Calle_hechos";
+                case "Entre_Calle_hechos":
+                    return "Quejas_de_MP.Entre_Calle_hechos";
+                case "Y_Calle_hechos":
+                    return "Quejas_de_MP.Y_Calle_hechos";
+                case "Numero_Exterior_hechos":
+                    return "Quejas_de_MP.Numero_Exterior_hechos";
+                case "Numero_Interior_hechos":
+                    return "Quejas_de_MP.Numero_Interior_hechos";
+                case "Codigo_Postal_hechos":
+                    return "Quejas_de_MP.Codigo_Postal_hechos";
+                case "Referencia":
+                    return "Quejas_de_MP.Referencia";
                 case "CURP_Identificacion":
                     return "Quejas_de_MP.CURP_Identificacion";
                 case "Nombres_Identificacion":
@@ -176,6 +173,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Quejas_de_MP.Apellido_Paterno_Identificacion";
                 case "Apellido_Materno_Identificacion":
                     return "Quejas_de_MP.Apellido_Materno_Identificacion";
+                case "Alias":
+                    return "Quejas_de_MP.Alias";
                 case "Fecha_Nacimiento_Identificacion":
                     return "Quejas_de_MP.Fecha_Nacimiento_Identificacion";
                 case "Edad_Identificacion":
@@ -198,17 +197,12 @@ namespace Spartane.Web.SqlModelMapper
                 case "Entidad_de_Nacimiento_Identificacion[Nombre]":
                 case "Entidad_de_Nacimiento_IdentificacionNombre":
                     return "Estado.Nombre";
-                case "Pais[Nombre]":
-                case "PaisNombre":
-                    return "Pais.Nombre";
-                case "Estado[Nombre]":
-                case "EstadoNombre":
-                    return "Estado.Nombre";
-                case "Codigo_Postal":
-                    return "Quejas_de_MP.Codigo_Postal";
                 case "Municipio[Nombre]":
                 case "MunicipioNombre":
                     return "Municipio.Nombre";
+                case "Poblacion[Nombre]":
+                case "PoblacionNombre":
+                    return "Colonia.Nombre";
                 case "Colonia[Nombre]":
                 case "ColoniaNombre":
                     return "Colonia.Nombre";
@@ -222,6 +216,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Quejas_de_MP.Numero_Exterior";
                 case "Numero_Interior":
                     return "Quejas_de_MP.Numero_Interior";
+                case "Codigo_Postal":
+                    return "Quejas_de_MP.Codigo_Postal";
                 case "Referencias_de_domicilio":
                     return "Quejas_de_MP.Referencias_de_domicilio";
 
@@ -241,7 +237,7 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
-            if (columnName == "Fecha_de_Nacimiento")
+            if (columnName == "Fecha_de_Registro")
             {
                 try
                 {
@@ -252,7 +248,7 @@ namespace Spartane.Web.SqlModelMapper
 
                 }
             }
-            if (columnName == "Fecha_de_Nacimiento_Hechos")
+            if (columnName == "Fecha_de_los_Hechos")
             {
                 try
                 {

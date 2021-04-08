@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Estatus_Quejas_MP;
 using Spartane.Core.Domain.Forma_Cara;
 using Spartane.Core.Domain.Cejas;
@@ -35,21 +36,15 @@ using Spartane.Core.Domain.Bigote;
 using Spartane.Core.Domain.Senas_Particulares;
 using Spartane.Core.Domain.Spartane_File;
 using Spartane.Core.Domain.Situacion_Fisica;
-using Spartane.Core.Domain.Genero;
-using Spartane.Core.Domain.Nacionalidad;
-using Spartane.Core.Domain.Estado;
-using Spartane.Core.Domain.Genero;
-using Spartane.Core.Domain.Tipo_de_Identificacion;
-using Spartane.Core.Domain.Spartane_File;
-using Spartane.Core.Domain.Nacionalidad;
-using Spartane.Core.Domain.Estado;
+using Spartane.Core.Domain.Municipio;
+using Spartane.Core.Domain.Colonia;
+using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
 using Spartane.Core.Domain.Nacionalidad;
-using Spartane.Core.Domain.Estado;
-using Spartane.Core.Domain.Pais;
 using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
+using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
 
 using System.ComponentModel.DataAnnotations;
@@ -64,10 +59,15 @@ namespace Spartane.Core.Domain.Quejas_de_MP
     public class Quejas_de_MP: BaseEntity
     {
         public int Clave { get; set; }
+        public DateTime? Fecha_de_Registro { get; set; }
+        public string Hora_de_Registro { get; set; }
+        public int? Usuario_que_Registra { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
         public string Nombre_Completo { get; set; }
+        public string Correo_Electronico { get; set; }
+        public string Celular { get; set; }
         public int? Estatus { get; set; }
         public string Peso { get; set; }
         public string Estatura { get; set; }
@@ -106,29 +106,23 @@ namespace Spartane.Core.Domain.Quejas_de_MP
         public int? Situacion_Fisica { get; set; }
         public string Otras_Senas_Particulares { get; set; }
         public string Descripcion_de_los_Hechos { get; set; }
-        public string CURP { get; set; }
-        public int? Genero { get; set; }
-        public DateTime? Fecha_de_Nacimiento { get; set; }
-        public int? Nacionalidad { get; set; }
-        public int? Entidad_de_Nacimiento { get; set; }
-        public string Nombres_Hechos { get; set; }
-        public string Apellido_Paterno_Hechos { get; set; }
-        public string Apellido_Materno_Hechos { get; set; }
-        public DateTime? Fecha_de_Nacimiento_Hechos { get; set; }
-        public int? Edad_Hechos { get; set; }
-        public int? Genero_Hechos { get; set; }
-        public string Celular_Hechos { get; set; }
-        public string Correo_Hechos { get; set; }
-        public int? Tipo_de_Identificacion_Hechos { get; set; }
-        public string Numero_Identificacion_Hechos { get; set; }
-        public int? Fotografia_Identificacion { get; set; }
-        public string Fotografia_Identificacion_URL { get; set; }
-        public int? Nacionalidad_Hechos { get; set; }
-        public int? Entidad_de_Nacimiento_Hechos { get; set; }
+        public DateTime? Fecha_de_los_Hechos { get; set; }
+        public string Hora_de_los_Hechos { get; set; }
+        public int? Municipio_hechos { get; set; }
+        public int? Poblacion_hechos { get; set; }
+        public int? Colonia_hechos { get; set; }
+        public string Calle_hechos { get; set; }
+        public string Entre_Calle_hechos { get; set; }
+        public string Y_Calle_hechos { get; set; }
+        public string Numero_Exterior_hechos { get; set; }
+        public string Numero_Interior_hechos { get; set; }
+        public int? Codigo_Postal_hechos { get; set; }
+        public string Referencia { get; set; }
         public string CURP_Identificacion { get; set; }
         public string Nombres_Identificacion { get; set; }
         public string Apellido_Paterno_Identificacion { get; set; }
         public string Apellido_Materno_Identificacion { get; set; }
+        public string Alias { get; set; }
         public DateTime? Fecha_Nacimiento_Identificacion { get; set; }
         public int? Edad_Identificacion { get; set; }
         public int? Genero_Identificacion { get; set; }
@@ -138,18 +132,19 @@ namespace Spartane.Core.Domain.Quejas_de_MP
         public string Numero_Identificacion_Identificacion { get; set; }
         public int? Nacionalidad_Identificacion { get; set; }
         public int? Entidad_de_Nacimiento_Identificacion { get; set; }
-        public int? Pais { get; set; }
-        public int? Estado { get; set; }
-        public string Codigo_Postal { get; set; }
         public int? Municipio { get; set; }
+        public int? Poblacion { get; set; }
         public int? Colonia { get; set; }
         public string Calle { get; set; }
         public string Entre_Calle { get; set; }
         public string Y_Calle { get; set; }
         public string Numero_Exterior { get; set; }
         public string Numero_Interior { get; set; }
+        public string Codigo_Postal { get; set; }
         public string Referencias_de_domicilio { get; set; }
 
+        [ForeignKey("Usuario_que_Registra")]
+        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Registra_Spartan_User { get; set; }
         [ForeignKey("Estatus")]
         public virtual Spartane.Core.Domain.Estatus_Quejas_MP.Estatus_Quejas_MP Estatus_Estatus_Quejas_MP { get; set; }
         [ForeignKey("Forma_Cara")]
@@ -214,22 +209,12 @@ namespace Spartane.Core.Domain.Quejas_de_MP
         public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Imagen_Tatuaje_Spartane_File { get; set; }
         [ForeignKey("Situacion_Fisica")]
         public virtual Spartane.Core.Domain.Situacion_Fisica.Situacion_Fisica Situacion_Fisica_Situacion_Fisica { get; set; }
-        [ForeignKey("Genero")]
-        public virtual Spartane.Core.Domain.Genero.Genero Genero_Genero { get; set; }
-        [ForeignKey("Nacionalidad")]
-        public virtual Spartane.Core.Domain.Nacionalidad.Nacionalidad Nacionalidad_Nacionalidad { get; set; }
-        [ForeignKey("Entidad_de_Nacimiento")]
-        public virtual Spartane.Core.Domain.Estado.Estado Entidad_de_Nacimiento_Estado { get; set; }
-        [ForeignKey("Genero_Hechos")]
-        public virtual Spartane.Core.Domain.Genero.Genero Genero_Hechos_Genero { get; set; }
-        [ForeignKey("Tipo_de_Identificacion_Hechos")]
-        public virtual Spartane.Core.Domain.Tipo_de_Identificacion.Tipo_de_Identificacion Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion { get; set; }
-        [ForeignKey("Fotografia_Identificacion")]
-        public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Fotografia_Identificacion_Spartane_File { get; set; }
-        [ForeignKey("Nacionalidad_Hechos")]
-        public virtual Spartane.Core.Domain.Nacionalidad.Nacionalidad Nacionalidad_Hechos_Nacionalidad { get; set; }
-        [ForeignKey("Entidad_de_Nacimiento_Hechos")]
-        public virtual Spartane.Core.Domain.Estado.Estado Entidad_de_Nacimiento_Hechos_Estado { get; set; }
+        [ForeignKey("Municipio_hechos")]
+        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_hechos_Municipio { get; set; }
+        [ForeignKey("Poblacion_hechos")]
+        public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_hechos_Colonia { get; set; }
+        [ForeignKey("Colonia_hechos")]
+        public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_hechos_Colonia { get; set; }
         [ForeignKey("Genero_Identificacion")]
         public virtual Spartane.Core.Domain.Genero.Genero Genero_Identificacion_Genero { get; set; }
         [ForeignKey("Tipo_de_Identificacion_Identificacion")]
@@ -238,12 +223,10 @@ namespace Spartane.Core.Domain.Quejas_de_MP
         public virtual Spartane.Core.Domain.Nacionalidad.Nacionalidad Nacionalidad_Identificacion_Nacionalidad { get; set; }
         [ForeignKey("Entidad_de_Nacimiento_Identificacion")]
         public virtual Spartane.Core.Domain.Estado.Estado Entidad_de_Nacimiento_Identificacion_Estado { get; set; }
-        [ForeignKey("Pais")]
-        public virtual Spartane.Core.Domain.Pais.Pais Pais_Pais { get; set; }
-        [ForeignKey("Estado")]
-        public virtual Spartane.Core.Domain.Estado.Estado Estado_Estado { get; set; }
         [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }
+        [ForeignKey("Poblacion")]
+        public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("Colonia")]
         public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_Colonia { get; set; }
 
@@ -252,18 +235,25 @@ namespace Spartane.Core.Domain.Quejas_de_MP
 	public class Quejas_de_MP_Datos_Generales
     {
                 public int Clave { get; set; }
+        public DateTime? Fecha_de_Registro { get; set; }
+        public string Hora_de_Registro { get; set; }
+        public int? Usuario_que_Registra { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
         public string Nombre_Completo { get; set; }
+        public string Correo_Electronico { get; set; }
+        public string Celular { get; set; }
         public int? Estatus { get; set; }
 
-		        [ForeignKey("Estatus")]
+		        [ForeignKey("Usuario_que_Registra")]
+        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Registra_Spartan_User { get; set; }
+        [ForeignKey("Estatus")]
         public virtual Spartane.Core.Domain.Estatus_Quejas_MP.Estatus_Quejas_MP Estatus_Estatus_Quejas_MP { get; set; }
 
     }
 
-	public class Quejas_de_MP_Datos_de_Media_Filiacion
+	public class Quejas_de_MP_Rasgos_Fisicos
     {
                 public int Clave { get; set; }
         public string Peso { get; set; }
@@ -368,56 +358,40 @@ namespace Spartane.Core.Domain.Quejas_de_MP
 
     }
 
-	public class Quejas_de_MP_Datos_de_los_Hechos
+	public class Quejas_de_MP_Hechos_Sucedidos
     {
                 public int Clave { get; set; }
         public string Descripcion_de_los_Hechos { get; set; }
-        public string CURP { get; set; }
-        public int? Genero { get; set; }
-        public DateTime? Fecha_de_Nacimiento { get; set; }
-        public int? Nacionalidad { get; set; }
-        public int? Entidad_de_Nacimiento { get; set; }
-        public string Nombres_Hechos { get; set; }
-        public string Apellido_Paterno_Hechos { get; set; }
-        public string Apellido_Materno_Hechos { get; set; }
-        public DateTime? Fecha_de_Nacimiento_Hechos { get; set; }
-        public int? Edad_Hechos { get; set; }
-        public int? Genero_Hechos { get; set; }
-        public string Celular_Hechos { get; set; }
-        public string Correo_Hechos { get; set; }
-        public int? Tipo_de_Identificacion_Hechos { get; set; }
-        public string Numero_Identificacion_Hechos { get; set; }
-        public int? Fotografia_Identificacion { get; set; }
-        public string Fotografia_Identificacion_URL { get; set; }
-        public int? Nacionalidad_Hechos { get; set; }
-        public int? Entidad_de_Nacimiento_Hechos { get; set; }
+        public DateTime? Fecha_de_los_Hechos { get; set; }
+        public string Hora_de_los_Hechos { get; set; }
+        public int? Municipio_hechos { get; set; }
+        public int? Poblacion_hechos { get; set; }
+        public int? Colonia_hechos { get; set; }
+        public string Calle_hechos { get; set; }
+        public string Entre_Calle_hechos { get; set; }
+        public string Y_Calle_hechos { get; set; }
+        public string Numero_Exterior_hechos { get; set; }
+        public string Numero_Interior_hechos { get; set; }
+        public int? Codigo_Postal_hechos { get; set; }
+        public string Referencia { get; set; }
 
-		        [ForeignKey("Genero")]
-        public virtual Spartane.Core.Domain.Genero.Genero Genero_Genero { get; set; }
-        [ForeignKey("Nacionalidad")]
-        public virtual Spartane.Core.Domain.Nacionalidad.Nacionalidad Nacionalidad_Nacionalidad { get; set; }
-        [ForeignKey("Entidad_de_Nacimiento")]
-        public virtual Spartane.Core.Domain.Estado.Estado Entidad_de_Nacimiento_Estado { get; set; }
-        [ForeignKey("Genero_Hechos")]
-        public virtual Spartane.Core.Domain.Genero.Genero Genero_Hechos_Genero { get; set; }
-        [ForeignKey("Tipo_de_Identificacion_Hechos")]
-        public virtual Spartane.Core.Domain.Tipo_de_Identificacion.Tipo_de_Identificacion Tipo_de_Identificacion_Hechos_Tipo_de_Identificacion { get; set; }
-        [ForeignKey("Fotografia_Identificacion")]
-        public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Fotografia_Identificacion_Spartane_File { get; set; }
-        [ForeignKey("Nacionalidad_Hechos")]
-        public virtual Spartane.Core.Domain.Nacionalidad.Nacionalidad Nacionalidad_Hechos_Nacionalidad { get; set; }
-        [ForeignKey("Entidad_de_Nacimiento_Hechos")]
-        public virtual Spartane.Core.Domain.Estado.Estado Entidad_de_Nacimiento_Hechos_Estado { get; set; }
+		        [ForeignKey("Municipio_hechos")]
+        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_hechos_Municipio { get; set; }
+        [ForeignKey("Poblacion_hechos")]
+        public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_hechos_Colonia { get; set; }
+        [ForeignKey("Colonia_hechos")]
+        public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_hechos_Colonia { get; set; }
 
     }
 
-	public class Quejas_de_MP_Datos_de_Identificacion
+	public class Quejas_de_MP_Identificacion_del_Servidor_Publico
     {
                 public int Clave { get; set; }
         public string CURP_Identificacion { get; set; }
         public string Nombres_Identificacion { get; set; }
         public string Apellido_Paterno_Identificacion { get; set; }
         public string Apellido_Materno_Identificacion { get; set; }
+        public string Alias { get; set; }
         public DateTime? Fecha_Nacimiento_Identificacion { get; set; }
         public int? Edad_Identificacion { get; set; }
         public int? Genero_Identificacion { get; set; }
@@ -439,27 +413,24 @@ namespace Spartane.Core.Domain.Quejas_de_MP
 
     }
 
-	public class Quejas_de_MP_Datos_de_Domicilio
+	public class Quejas_de_MP_Domicilio_del_Servidor_Publico
     {
                 public int Clave { get; set; }
-        public int? Pais { get; set; }
-        public int? Estado { get; set; }
-        public string Codigo_Postal { get; set; }
         public int? Municipio { get; set; }
+        public int? Poblacion { get; set; }
         public int? Colonia { get; set; }
         public string Calle { get; set; }
         public string Entre_Calle { get; set; }
         public string Y_Calle { get; set; }
         public string Numero_Exterior { get; set; }
         public string Numero_Interior { get; set; }
+        public string Codigo_Postal { get; set; }
         public string Referencias_de_domicilio { get; set; }
 
-		        [ForeignKey("Pais")]
-        public virtual Spartane.Core.Domain.Pais.Pais Pais_Pais { get; set; }
-        [ForeignKey("Estado")]
-        public virtual Spartane.Core.Domain.Estado.Estado Estado_Estado { get; set; }
-        [ForeignKey("Municipio")]
+		        [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }
+        [ForeignKey("Poblacion")]
+        public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("Colonia")]
         public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_Colonia { get; set; }
 

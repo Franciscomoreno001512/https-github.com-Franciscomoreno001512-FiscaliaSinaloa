@@ -1,0 +1,1569 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Solicitud_de_Denuncia_CiudadanaModel
+@{
+
+/*
+    string Fecha_de_Registro = "";
+    if (Model.Fecha_de_Registro == "")
+    { Model.Fecha_de_Registro = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Revision = "";
+    if (Model.Fecha_de_Revision == "")
+    { Model.Fecha_de_Revision = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Asignacion = "";
+    if (Model.Fecha_de_Asignacion == "")
+    { Model.Fecha_de_Asignacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Atencion = "";
+    if (Model.Fecha_de_Atencion == "")
+    { Model.Fecha_de_Atencion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
+    List<SelectListItem> varTipo_de_Solicitud_Tipo_de_Solicitud = null;
+    if (ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud != null)
+    { varTipo_de_Solicitud_Tipo_de_Solicitud = (List<SelectListItem>)ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud; }
+    List<SelectListItem> varEstatus_de_Solicitud_Estatus_de_Solicitud = null;
+    if (ViewBag.Estatus_de_Solicituds_Estatus_de_Solicitud != null)
+    { varEstatus_de_Solicitud_Estatus_de_Solicitud = (List<SelectListItem>)ViewBag.Estatus_de_Solicituds_Estatus_de_Solicitud; }
+    List<SelectListItem> varPC_CanalizarA_Canalizar_a = null;
+    if (ViewBag.PC_CanalizarAs_Canalizar_a != null)
+    { varPC_CanalizarA_Canalizar_a = (List<SelectListItem>)ViewBag.PC_CanalizarAs_Canalizar_a; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
+    { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
+    List<SelectListItem> varTipo_Resolucion_Portal_Ciudadano_Tipo_de_Resolucion = null;
+    if (ViewBag.Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion != null)
+    { varTipo_Resolucion_Portal_Ciudadano_Tipo_de_Resolucion = (List<SelectListItem>)ViewBag.Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion; }
+    List<SelectListItem> varRegion_Region = null;
+    if (ViewBag.Regions_Region != null)
+    { varRegion_Region = (List<SelectListItem>)ViewBag.Regions_Region; }
+    List<SelectListItem> varUnidad_Unidad_canaliza = null;
+    if (ViewBag.Unidads_Unidad_canaliza != null)
+    { varUnidad_Unidad_canaliza = (List<SelectListItem>)ViewBag.Unidads_Unidad_canaliza; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Asigna = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Asigna != null)
+    { varSpartan_User_Usuario_que_Asigna = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Asigna; }
+ List<SelectListItem> varSpartan_User_Responsable_Asignado = null;
+    if (ViewBag.Spartan_Users_Responsable_Asignado != null)
+    { varSpartan_User_Responsable_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Responsable_Asignado; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Atiende = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Atiende != null)
+    { varSpartan_User_Usuario_que_Atiende = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Atiende; }
+    List<SelectListItem> varContestacion_de_Portal_Ciudadano_Atencion_Realizada = null;
+    if (ViewBag.Contestacion_de_Portal_Ciudadanos_Atencion_Realizada != null)
+    { varContestacion_de_Portal_Ciudadano_Atencion_Realizada = (List<SelectListItem>)ViewBag.Contestacion_de_Portal_Ciudadanos_Atencion_Realizada; }
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Solicitud_de_Denuncia_CiudadanaResources.Solicitud_de_Denuncia_Ciudadana
+                <button onclick="Solicitud_de_Denuncia_CiudadanaGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Solicitud_de_Denuncia_CiudadanaBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Solicitud_de_Denuncia_Ciudadana</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Solicitud_de_Denuncia_CiudadanaDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Solicitud_de_Denuncia_CiudadanaPropertyBusinessModal" id="Solicitud_de_Denuncia_CiudadanaPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Solicitud_de_Denuncia_CiudadanaBusinessRule-form" onclick="Solicitud_de_Denuncia_CiudadanaGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Solicitud_de_Denuncia_CiudadanaBusinessRuleModal" id="Solicitud_de_Denuncia_CiudadanaBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Solicitud_de_Denuncia_Ciudadana", FormMethod.Post, new { id = "CreateSolicitud_de_Denuncia_Ciudadana", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Solicitud_de_Denuncia_CiudadanaCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_de_la_Solicitud"> @Resources.Solicitud_de_Denuncia_CiudadanaResources.TabDatos_de_la_Solicitud</a></li>
+<li class=""><a data-toggle="tab" href="#tabResolucion"> @Resources.Solicitud_de_Denuncia_CiudadanaResources.TabResolucion</a></li>
+<li class=""><a data-toggle="tab" href="#tabAsignar_Responsable_de_Atencion"> @Resources.Solicitud_de_Denuncia_CiudadanaResources.TabAsignar_Responsable_de_Atencion</a></li>
+<li class=""><a data-toggle="tab" href="#tabAtencion"> @Resources.Solicitud_de_Denuncia_CiudadanaResources.TabAtencion</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_de_la_Solicitud" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="269213" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFolio">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Folio</label>
+                                <div class="col-sm-8" data-field-id="Folio" data-attribute="269214" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Folio">
+                                    <input class="form-control Datos_de_la_Solicitud" id="Folio" name="Folio" type="text" value="@Model.Folio">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Folio" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divContrasena">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Contrasena</label>
+                                <div class="col-sm-8" data-field-id="Contrasena" data-attribute="269351" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Contrasena">
+                                    <input class="form-control Datos_de_la_Solicitud" id="Contrasena" name="Contrasena" type="text" value="@Model.Contrasena">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Contrasena" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Registro" data-attribute="269215" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Registro">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_de_la_Solicitud" id="Fecha_de_Registro"  name="Fecha_de_Registro" type="text" value="@Model.Fecha_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Registro" data-attribute="269216" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Registro">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_de_la_Solicitud" id="Hora_de_Registro"  name="Hora_de_Registro" type="text" data-autoclose="true" value="@Model.Hora_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Registra">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Registra</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="269217" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Registra">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Registra form-control select2-dropdown Datos_de_la_Solicitud' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
+                                        <option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName??Model.Usuario_que_RegistraName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269217).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Tipo_de_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Solicitud" data-attribute="269218" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Tipo_de_Solicitud">
+                                    <select class="form-control Datos_de_la_Solicitud" data-val="true" data-val-number="The field Tipo de Solicitud must be a number." data-val-required="The Tipo de Solicitud field is required." id="Tipo_de_Solicitud" name="Tipo_de_Solicitud">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Solicitud_Tipo_de_Solicitud != null){ 
+                                            foreach (var itemTipo_de_Solicitud in varTipo_de_Solicitud_Tipo_de_Solicitud)
+                                            {
+                                                if (itemTipo_de_Solicitud.Value == Convert.ToString(Model.Tipo_de_Solicitud))
+                                                {
+                                                    <option value="@itemTipo_de_Solicitud.Value" selected>@itemTipo_de_Solicitud.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Solicitud.Value">@itemTipo_de_Solicitud.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Solicitud" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269218).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Solicitud', 'Tipo_de_Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divEstatus_de_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Estatus_de_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Estatus_de_Solicitud" data-attribute="269219" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Estatus_de_Solicitud">
+                                    <select class="form-control Datos_de_la_Solicitud" data-val="true" data-val-number="The field Estatus de Solicitud must be a number." data-val-required="The Estatus de Solicitud field is required." id="Estatus_de_Solicitud" name="Estatus_de_Solicitud">
+                                        <option value=""></option>
+                                        @if (varEstatus_de_Solicitud_Estatus_de_Solicitud != null){ 
+                                            foreach (var itemEstatus_de_Solicitud in varEstatus_de_Solicitud_Estatus_de_Solicitud)
+                                            {
+                                                if (itemEstatus_de_Solicitud.Value == Convert.ToString(Model.Estatus_de_Solicitud))
+                                                {
+                                                    <option value="@itemEstatus_de_Solicitud.Value" selected>@itemEstatus_de_Solicitud.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemEstatus_de_Solicitud.Value">@itemEstatus_de_Solicitud.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Estatus_de_Solicitud" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269219).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Estatus_de_Solicitud', 'Estatus_de_Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabResolucion" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divMotivo">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Motivo</label>
+                                <div class="col-sm-8" data-field-id="Motivo" data-attribute="269443" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Motivo">
+                                    <textarea id="Motivo" name="Motivo" class="form-control Resolucion" rows="4" cols="50">@Model.Motivo</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCanalizar_a">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Canalizar_a</label>
+                                <div class="col-sm-8" data-field-id="Canalizar_a" data-attribute="269411" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Canalizar_a">
+                                    <select class="form-control Resolucion" data-val="true" data-val-number="The field Canalizar a must be a number." data-val-required="The Canalizar a field is required." id="Canalizar_a" name="Canalizar_a">
+                                        <option value=""></option>
+                                        @if (varPC_CanalizarA_Canalizar_a != null){ 
+                                            foreach (var itemCanalizar_a in varPC_CanalizarA_Canalizar_a)
+                                            {
+                                                if (itemCanalizar_a.Value == Convert.ToString(Model.Canalizar_a))
+                                                {
+                                                    <option value="@itemCanalizar_a.Value" selected>@itemCanalizar_a.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemCanalizar_a.Value">@itemCanalizar_a.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Canalizar_a" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269411).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('PC_CanalizarA', 'Canalizar_a');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha_de_Revision">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Revision</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Revision" data-attribute="273371" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Revision">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Resolucion" id="Fecha_de_Revision"  name="Fecha_de_Revision" type="text" value="@Model.Fecha_de_Revision">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Revision">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Revision</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Revision" data-attribute="273372" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Revision">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Resolucion" id="Hora_de_Revision"  name="Hora_de_Revision" type="text" data-autoclose="true" value="@Model.Hora_de_Revision">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Revisa">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Revisa</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Revisa" data-attribute="273373" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Revisa">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Revisa form-control select2-dropdown Resolucion' data-val="true" id="Usuario_que_Revisa" name="Usuario_que_Revisa">
+                                        <option value="@Model.Usuario_que_Revisa">@(Model.Usuario_que_RevisaName??Model.Usuario_que_RevisaName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273373).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Revisa');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Resolucion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Tipo_de_Resolucion</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Resolucion" data-attribute="273376" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Tipo_de_Resolucion">
+                                    <select class="form-control Resolucion" data-val="true" data-val-number="The field Tipo de Resolución must be a number." data-val-required="The Tipo de Resolución field is required." id="Tipo_de_Resolucion" name="Tipo_de_Resolucion">
+                                        <option value=""></option>
+                                        @if (varTipo_Resolucion_Portal_Ciudadano_Tipo_de_Resolucion != null){ 
+                                            foreach (var itemTipo_de_Resolucion in varTipo_Resolucion_Portal_Ciudadano_Tipo_de_Resolucion)
+                                            {
+                                                if (itemTipo_de_Resolucion.Value == Convert.ToString(Model.Tipo_de_Resolucion))
+                                                {
+                                                    <option value="@itemTipo_de_Resolucion.Value" selected>@itemTipo_de_Resolucion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Resolucion.Value">@itemTipo_de_Resolucion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Resolucion" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273376).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_Resolucion_Portal_Ciudadano', 'Tipo_de_Resolucion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divRegion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Region</label>
+                                <div class="col-sm-8" data-field-id="Region" data-attribute="273377" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Region">
+                                    <select class="form-control Resolucion" data-val="true" data-val-number="The field Región must be a number." data-val-required="The Región field is required." id="Region" name="Region">
+                                        <option value=""></option>
+                                        @if (varRegion_Region != null){ 
+                                            foreach (var itemRegion in varRegion_Region)
+                                            {
+                                                if (itemRegion.Value == Convert.ToString(Model.Region))
+                                                {
+                                                    <option value="@itemRegion.Value" selected>@itemRegion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemRegion.Value">@itemRegion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Region" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273377).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Region', 'Region');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divUnidad_canaliza">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Unidad_canaliza</label>
+                                <div class="col-sm-8" data-field-id="Unidad_canaliza" data-attribute="269412" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Unidad_canaliza">
+                                    <select class="form-control Resolucion" data-val="true" data-val-number="The field Unidad must be a number." data-val-required="The Unidad field is required." id="Unidad_canaliza" name="Unidad_canaliza">
+                                        <option value=""></option>
+                                        @if (varUnidad_Unidad_canaliza != null){ 
+                                            foreach (var itemUnidad_canaliza in varUnidad_Unidad_canaliza)
+                                            {
+                                                if (itemUnidad_canaliza.Value == Convert.ToString(Model.Unidad_canaliza))
+                                                {
+                                                    <option value="@itemUnidad_canaliza.Value" selected>@itemUnidad_canaliza.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemUnidad_canaliza.Value">@itemUnidad_canaliza.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Unidad_canaliza" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269412).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Unidad', 'Unidad_canaliza');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divContestacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Contestacion</label>
+                                <div class="col-sm-8" data-field-id="Contestacion" data-attribute="273378" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Contestacion">
+                                    <textarea id="Contestacion" name="Contestacion" class="form-control Resolucion" rows="4" cols="50">@Model.Contestacion</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Contestacion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones_resolucion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_resolucion</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_resolucion" data-attribute="273379" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_resolucion">
+                                    <textarea id="Observaciones_resolucion" name="Observaciones_resolucion" class="form-control Resolucion" rows="4" cols="50">@Model.Observaciones_resolucion</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_resolucion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabAsignar_Responsable_de_Atencion" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_de_Asignacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Asignacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Asignacion" data-attribute="273380" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Asignacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Asignar_Responsable_de_Atencion" id="Fecha_de_Asignacion"  name="Fecha_de_Asignacion" type="text" value="@Model.Fecha_de_Asignacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Asignacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Asignacion</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Asignacion" data-attribute="273381" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Asignacion">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Asignar_Responsable_de_Atencion" id="Hora_de_Asignacion"  name="Hora_de_Asignacion" type="text" data-autoclose="true" value="@Model.Hora_de_Asignacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Asigna">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Asigna</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Asigna" data-attribute="273382" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Asigna">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Asigna form-control select2-dropdown Asignar_Responsable_de_Atencion' data-val="true" id="Usuario_que_Asigna" name="Usuario_que_Asigna">
+                                        <option value="@Model.Usuario_que_Asigna">@(Model.Usuario_que_AsignaName??Model.Usuario_que_AsignaName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273382).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Asigna');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divResponsable_Asignado">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Responsable_Asignado</label>
+                                <div class="col-sm-8" data-field-id="Responsable_Asignado" data-attribute="273383" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Responsable_Asignado">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_de_Denuncia_Ciudadana_Responsable_Asignado form-control select2-dropdown Asignar_Responsable_de_Atencion' data-val="true" id="Responsable_Asignado" name="Responsable_Asignado">
+                                        <option value="@Model.Responsable_Asignado">@(Model.Responsable_AsignadoName??Model.Responsable_AsignadoName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273383).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Responsable_Asignado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divObservaciones_responsable">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_responsable</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_responsable" data-attribute="273384" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_responsable">
+                                    <textarea id="Observaciones_responsable" name="Observaciones_responsable" class="form-control Asignar_Responsable_de_Atencion" rows="4" cols="50">@Model.Observaciones_responsable</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_responsable" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabAtencion" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_de_Atencion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Atencion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Atencion" data-attribute="273385" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Atencion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Atencion" id="Fecha_de_Atencion"  name="Fecha_de_Atencion" type="text" value="@Model.Fecha_de_Atencion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Atencion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Atencion</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Atencion" data-attribute="273386" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Atencion">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Atencion" id="Hora_de_Atencion"  name="Hora_de_Atencion" type="text" data-autoclose="true" value="@Model.Hora_de_Atencion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Atiende">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Atiende</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Atiende" data-attribute="273387" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Atiende">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Atiende form-control select2-dropdown Atencion' data-val="true" id="Usuario_que_Atiende" name="Usuario_que_Atiende">
+                                        <option value="@Model.Usuario_que_Atiende">@(Model.Usuario_que_AtiendeName??Model.Usuario_que_AtiendeName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273387).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Atiende');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divAtencion_Realizada">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Atencion_Realizada</label>
+                                <div class="col-sm-8" data-field-id="Atencion_Realizada" data-attribute="273390" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Atencion_Realizada">
+                                    <select class="form-control Atencion" data-val="true" data-val-number="The field Atención Realizada must be a number." data-val-required="The Atención Realizada field is required." id="Atencion_Realizada" name="Atencion_Realizada">
+                                        <option value=""></option>
+                                        @if (varContestacion_de_Portal_Ciudadano_Atencion_Realizada != null){ 
+                                            foreach (var itemAtencion_Realizada in varContestacion_de_Portal_Ciudadano_Atencion_Realizada)
+                                            {
+                                                if (itemAtencion_Realizada.Value == Convert.ToString(Model.Atencion_Realizada))
+                                                {
+                                                    <option value="@itemAtencion_Realizada.Value" selected>@itemAtencion_Realizada.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemAtencion_Realizada.Value">@itemAtencion_Realizada.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Atencion_Realizada" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273390).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Contestacion_de_Portal_Ciudadano', 'Atencion_Realizada');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divObservaciones_atencion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_atencion</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_atencion" data-attribute="273391" data-field-name="@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_atencion">
+                                    <textarea id="Observaciones_atencion" name="Observaciones_atencion" class="form-control Atencion" rows="4" cols="50">@Model.Observaciones_atencion</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_atencion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Solicitud_de_Denuncia_CiudadanaGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Solicitud_de_Denuncia_CiudadanaCreateForm');"  />
+									<button onclick="Solicitud_de_Denuncia_CiudadanaGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Solicitud_de_Denuncia_CiudadanaBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Solicitud_de_Denuncia_CiudadanaGuardarYNuevo" onclick="return checkClientValidate('Solicitud_de_Denuncia_CiudadanaCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Solicitud_de_Denuncia_CiudadanaGuardarYCopia" onclick="return checkClientValidate('Solicitud_de_Denuncia_CiudadanaCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnSolicitud_de_Denuncia_CiudadanaBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnSolicitud_de_Denuncia_CiudadanaBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnSolicitud_de_Denuncia_CiudadanaBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Solicitud_de_Denuncia_CiudadanaCancelar" name="Solicitud_de_Denuncia_CiudadanaCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Solicitud_de_Denuncia_CiudadanaGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Solicitud_de_Denuncia_CiudadanaBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Solicitud_de_Denuncia_Ciudadana.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Solicitud_de_Denuncia_CiudadanaGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Solicitud_de_Denuncia_CiudadanaCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_de_la_Solicitud = true;
+
+		var Tab_Resolucion = true;
+
+		var Tab_Asignar_Responsable_de_Atencion = true;
+
+		var Tab_Atencion = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45710');
+		    
+		   
+                        $('#Fecha_de_Registro').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Registro').clockpicker();
+            $('#Fecha_de_Revision').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Revision').clockpicker();
+            $('#Fecha_de_Asignacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Asignacion').clockpicker();
+            $('#Fecha_de_Atencion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Atencion').clockpicker();
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Solicitud_de_Denuncia_CiudadanaGuardarYNuevo').hide();
+                $('#Solicitud_de_Denuncia_CiudadanaGuardarYCopia').hide();
+                $('#Solicitud_de_Denuncia_CiudadanaCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Solicitud_de_Denuncia_CiudadanaGuardar').val('Actualizar Seccion ' + '@Resources.Solicitud_de_Denuncia_CiudadanaResources.Solicitud_de_Denuncia_Ciudadana' )
+            }
+
+			
+			       var AutoCompleteUsuario_que_RegistraData =[];
+       $(".AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Registra").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/GetSolicitud_de_Denuncia_Ciudadana_Usuario_que_Registra_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Registra_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Registra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_RevisaData =[];
+       $(".AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Revisa").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/GetSolicitud_de_Denuncia_Ciudadana_Usuario_que_Revisa_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Revisa_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Revisa");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_AsignaData =[];
+       $(".AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Asigna").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/GetSolicitud_de_Denuncia_Ciudadana_Usuario_que_Asigna_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Asigna_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Asigna");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteResponsable_AsignadoData =[];
+       $(".AutoCompleteSolicitud_de_Denuncia_Ciudadana_Responsable_Asignado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/GetSolicitud_de_Denuncia_Ciudadana_Responsable_Asignado_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_de_Denuncia_Ciudadana_Responsable_Asignado_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_de_Denuncia_Ciudadana_Responsable_Asignado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_AtiendeData =[];
+       $(".AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Atiende").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/GetSolicitud_de_Denuncia_Ciudadana_Usuario_que_Atiende_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Atiende_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Atiende");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_de_la_Solicitud)
+					Fill_Datos_de_la_Solicitud();
+
+				if (Tab_Resolucion)
+					Fill_Resolucion();
+
+				if (Tab_Asignar_Responsable_de_Atencion)
+					Fill_Asignar_Responsable_de_Atencion();
+
+				if (Tab_Atencion)
+					Fill_Atencion();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendSolicitud_de_Denuncia_CiudadanaData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateSolicitud_de_Denuncia_Ciudadana").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateSolicitud_de_Denuncia_Ciudadana")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_de_la_Solicitud && !checkClientValidate('Solicitud_de_Denuncia_CiudadanaCreateForm', 'Datos_de_la_Solicitud')) {
+				return false;
+			}						
+
+			if (Tab_Resolucion && !checkClientValidate('Solicitud_de_Denuncia_CiudadanaCreateForm', 'Resolucion')) {
+				return false;
+			}						
+
+			if (Tab_Asignar_Responsable_de_Atencion && !checkClientValidate('Solicitud_de_Denuncia_CiudadanaCreateForm', 'Asignar_Responsable_de_Atencion')) {
+				return false;
+			}						
+
+			if (Tab_Atencion && !checkClientValidate('Solicitud_de_Denuncia_CiudadanaCreateForm', 'Atencion')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_de_la_Solicitud)
+				Save_Datos_de_la_Solicitud(id);
+
+			if (Tab_Resolucion)
+				Save_Resolucion(id);
+
+			if (Tab_Asignar_Responsable_de_Atencion)
+				Save_Asignar_Responsable_de_Atencion(id);
+
+			if (Tab_Atencion)
+				Save_Atencion(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Solicitud_de_Denuncia_CiudadanaBusinessRuleModal").html(data);
+			});
+		}
+                function Solicitud_de_Denuncia_CiudadanaGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45710');
+			$('#Screen').val('Solicitud_de_Denuncia_Ciudadana');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Solicitud_de_Denuncia_CiudadanaBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateSolicitud_de_Denuncia_Ciudadana').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Solicitud_de_Denuncia_CiudadanaGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_de_la_Solicitud()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/Get_Datos_de_la_Solicitud")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Folio').val(result.data.Folio);
+                    $('#Contrasena').val(result.data.Contrasena);
+                    $('#Fecha_de_Registro').val(result.data.Fecha_de_Registro);
+                    $('#Hora_de_Registro').val(result.data.Hora_de_Registro);
+                    var control = $('#Usuario_que_Registra');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Registra).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Registra).trigger('change');
+                    }, 3000);
+                    $('#Tipo_de_Solicitud').val(result.data.Tipo_de_Solicitud);
+                    $('#Estatus_de_Solicitud').val(result.data.Estatus_de_Solicitud);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_de_la_Solicitud(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Folio', $('#Folio').val());
+                data.append('Contrasena', $('#Contrasena').val());
+                data.append('Fecha_de_Registro', $('#Fecha_de_Registro').val());
+                data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
+                data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
+                data.append('Tipo_de_Solicitud', $('#Tipo_de_Solicitud').val());
+                data.append('Estatus_de_Solicitud', $('#Estatus_de_Solicitud').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/Post_Datos_de_la_Solicitud")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_de_la_Solicitud");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_de_la_Solicitud");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Resolucion()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/Get_Resolucion")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Motivo').val(result.data.Motivo);
+                    $('#Canalizar_a').val(result.data.Canalizar_a);
+                    $('#Fecha_de_Revision').val(result.data.Fecha_de_Revision);
+                    $('#Hora_de_Revision').val(result.data.Hora_de_Revision);
+                    var control = $('#Usuario_que_Revisa');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Revisa).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Revisa).trigger('change');
+                    }, 3000);
+                    $('#Tipo_de_Resolucion').val(result.data.Tipo_de_Resolucion);
+                    $('#Region').val(result.data.Region);
+                    $('#Unidad_canaliza').val(result.data.Unidad_canaliza);
+                    $('#Contestacion').val(result.data.Contestacion);
+                    $('#Observaciones_resolucion').val(result.data.Observaciones_resolucion);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Resolucion(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Motivo', $('#Motivo').val());
+                data.append('Canalizar_a', $('#Canalizar_a').val());
+                data.append('Fecha_de_Revision', $('#Fecha_de_Revision').val());
+                data.append('Hora_de_Revision', $('#Hora_de_Revision').val());
+                data.append('Usuario_que_Revisa', $('#Usuario_que_Revisa').val());
+                data.append('Tipo_de_Resolucion', $('#Tipo_de_Resolucion').val());
+                data.append('Region', $('#Region').val());
+                data.append('Unidad_canaliza', $('#Unidad_canaliza').val());
+                data.append('Contestacion', $('#Contestacion').val());
+                data.append('Observaciones_resolucion', $('#Observaciones_resolucion').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/Post_Resolucion")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Resolucion");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Resolucion");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Asignar_Responsable_de_Atencion()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/Get_Asignar_Responsable_de_Atencion")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Fecha_de_Asignacion').val(result.data.Fecha_de_Asignacion);
+                    $('#Hora_de_Asignacion').val(result.data.Hora_de_Asignacion);
+                    var control = $('#Usuario_que_Asigna');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Asigna).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Asigna).trigger('change');
+                    }, 3000);
+                    var control = $('#Responsable_Asignado');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Responsable_Asignado).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Responsable_Asignado).trigger('change');
+                    }, 3000);
+                    $('#Observaciones_responsable').val(result.data.Observaciones_responsable);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Asignar_Responsable_de_Atencion(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Fecha_de_Asignacion', $('#Fecha_de_Asignacion').val());
+                data.append('Hora_de_Asignacion', $('#Hora_de_Asignacion').val());
+                data.append('Usuario_que_Asigna', $('#Usuario_que_Asigna').val());
+                data.append('Responsable_Asignado', $('#Responsable_Asignado').val());
+                data.append('Observaciones_responsable', $('#Observaciones_responsable').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/Post_Asignar_Responsable_de_Atencion")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Asignar_Responsable_de_Atencion");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Asignar_Responsable_de_Atencion");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Atencion()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/Get_Atencion")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Fecha_de_Atencion').val(result.data.Fecha_de_Atencion);
+                    $('#Hora_de_Atencion').val(result.data.Hora_de_Atencion);
+                    var control = $('#Usuario_que_Atiende');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Atiende).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Atiende).trigger('change');
+                    }, 3000);
+                    $('#Atencion_Realizada').val(result.data.Atencion_Realizada);
+                    $('#Observaciones_atencion').val(result.data.Observaciones_atencion);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Atencion(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Fecha_de_Atencion', $('#Fecha_de_Atencion').val());
+                data.append('Hora_de_Atencion', $('#Hora_de_Atencion').val());
+                data.append('Usuario_que_Atiende', $('#Usuario_que_Atiende').val());
+                data.append('Atencion_Realizada', $('#Atencion_Realizada').val());
+                data.append('Observaciones_atencion', $('#Observaciones_atencion').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/Post_Atencion")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Atencion");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Atencion");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Solicitud_de_Denuncia_Ciudadana_cmbLabelSelect" name="Solicitud_de_Denuncia_Ciudadana_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

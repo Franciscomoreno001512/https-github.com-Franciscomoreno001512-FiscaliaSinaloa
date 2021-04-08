@@ -3,7 +3,6 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Datos_de_los_Hechos_PC;
 using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
-using Spartane.Core.Domain.Tipo_de_Solicitud;
 using Spartane.Core.Domain.Respuesta;
 using Spartane.Core.Domain.Respuesta;
 using Spartane.Core.Domain.Pais;
@@ -23,7 +22,6 @@ using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Datos_de_los_Hechos_PC;
 using Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Denuncia_Ciudadana;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Respuesta;
 using Spartane.Web.Areas.WebApiConsumer.Respuesta;
 using Spartane.Web.Areas.WebApiConsumer.Pais;
@@ -69,7 +67,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDatos_de_los_Hechos_PCService service = null;
         private IDatos_de_los_Hechos_PCApiConsumer _IDatos_de_los_Hechos_PCApiConsumer;
         private ISolicitud_de_Denuncia_CiudadanaApiConsumer _ISolicitud_de_Denuncia_CiudadanaApiConsumer;
-        private ITipo_de_SolicitudApiConsumer _ITipo_de_SolicitudApiConsumer;
         private IRespuestaApiConsumer _IRespuestaApiConsumer;
         private IPaisApiConsumer _IPaisApiConsumer;
         private IEstadoApiConsumer _IEstadoApiConsumer;
@@ -93,7 +90,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Datos_de_los_Hechos_PCController(IDatos_de_los_Hechos_PCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDatos_de_los_Hechos_PCApiConsumer Datos_de_los_Hechos_PCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer , ITipo_de_SolicitudApiConsumer Tipo_de_SolicitudApiConsumer , IRespuestaApiConsumer RespuestaApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IDireccion_ExactaApiConsumer Direccion_ExactaApiConsumer )
+        public Datos_de_los_Hechos_PCController(IDatos_de_los_Hechos_PCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDatos_de_los_Hechos_PCApiConsumer Datos_de_los_Hechos_PCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer , IRespuestaApiConsumer RespuestaApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IDireccion_ExactaApiConsumer Direccion_ExactaApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -108,7 +105,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._ISolicitud_de_Denuncia_CiudadanaApiConsumer = Solicitud_de_Denuncia_CiudadanaApiConsumer;
-            this._ITipo_de_SolicitudApiConsumer = Tipo_de_SolicitudApiConsumer;
             this._IRespuestaApiConsumer = RespuestaApiConsumer;
             this._IRespuestaApiConsumer = RespuestaApiConsumer;
             this._IPaisApiConsumer = PaisApiConsumer;
@@ -194,8 +190,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Datos_de_los_Hechos_PCData.Clave 
 	                    ,Solicitud = Datos_de_los_Hechos_PCData.Solicitud
                     ,SolicitudFolio = CultureHelper.GetTraduction(Convert.ToString(Datos_de_los_Hechos_PCData.Solicitud), "Solicitud_de_Denuncia_Ciudadana") ??  (string)Datos_de_los_Hechos_PCData.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                    ,Tipo_de_Solicitud = Datos_de_los_Hechos_PCData.Tipo_de_Solicitud
-                    ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Datos_de_los_Hechos_PCData.Tipo_de_Solicitud), "Tipo_de_Solicitud") ??  (string)Datos_de_los_Hechos_PCData.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                     ,Titulo_del_Hecho = Datos_de_los_Hechos_PCData.Titulo_del_Hecho
                     ,Narrativa_Breve_de_los_Hechos = Datos_de_los_Hechos_PCData.Narrativa_Breve_de_los_Hechos
                     ,Fecha_del_Hecho = (Datos_de_los_Hechos_PCData.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(Datos_de_los_Hechos_PCData.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -238,13 +232,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IRespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Respuestas_Fosa_clandestina = _IRespuestaApiConsumer.SelAll(true);
             if (Respuestas_Fosa_clandestina != null && Respuestas_Fosa_clandestina.Resource != null)
@@ -330,8 +317,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Datos_de_los_Hechos_PCData.Clave 
 	                    ,Solicitud = Datos_de_los_Hechos_PCData.Solicitud
                     ,SolicitudFolio = CultureHelper.GetTraduction(Convert.ToString(Datos_de_los_Hechos_PCData.Solicitud), "Solicitud_de_Denuncia_Ciudadana") ??  (string)Datos_de_los_Hechos_PCData.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                    ,Tipo_de_Solicitud = Datos_de_los_Hechos_PCData.Tipo_de_Solicitud
-                    ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Datos_de_los_Hechos_PCData.Tipo_de_Solicitud), "Tipo_de_Solicitud") ??  (string)Datos_de_los_Hechos_PCData.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                     ,Titulo_del_Hecho = Datos_de_los_Hechos_PCData.Titulo_del_Hecho
                     ,Narrativa_Breve_de_los_Hechos = Datos_de_los_Hechos_PCData.Narrativa_Breve_de_los_Hechos
                     ,Fecha_del_Hecho = (Datos_de_los_Hechos_PCData.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(Datos_de_los_Hechos_PCData.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -372,13 +357,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IRespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Respuestas_Fosa_clandestina = _IRespuestaApiConsumer.SelAll(true);
             if (Respuestas_Fosa_clandestina != null && Respuestas_Fosa_clandestina.Resource != null)
@@ -433,27 +411,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Folio).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud_de_Denuncia_Ciudadana", "Folio")?? m.Folio,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetTipo_de_SolicitudAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_SolicitudApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -621,13 +578,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IRespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Respuestas_Fosa_clandestina = _IRespuestaApiConsumer.SelAll(true);
             if (Respuestas_Fosa_clandestina != null && Respuestas_Fosa_clandestina.Resource != null)
@@ -660,13 +610,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IRespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Respuestas_Fosa_clandestina = _IRespuestaApiConsumer.SelAll(true);
             if (Respuestas_Fosa_clandestina != null && Respuestas_Fosa_clandestina.Resource != null)
@@ -727,7 +670,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
 			,Titulo_del_Hecho = m.Titulo_del_Hecho
 			,Narrativa_Breve_de_los_Hechos = m.Narrativa_Breve_de_los_Hechos
                         ,Fecha_del_Hecho = (m.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -865,7 +807,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
 			,Titulo_del_Hecho = m.Titulo_del_Hecho
 			,Narrativa_Breve_de_los_Hechos = m.Narrativa_Breve_de_los_Hechos
                         ,Fecha_del_Hecho = (m.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -1102,34 +1043,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var SolicitudIds = string.Join(",", filter.AdvanceSolicitudMultiple);
 
                 where += " AND Datos_de_los_Hechos_PC.Solicitud In (" + SolicitudIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Solicitud))
-            {
-                switch (filter.Tipo_de_SolicitudFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Tipo_de_Solicitud.Descripcion LIKE '" + filter.AdvanceTipo_de_Solicitud + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Tipo_de_Solicitud.Descripcion LIKE '%" + filter.AdvanceTipo_de_Solicitud + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Tipo_de_Solicitud.Descripcion = '" + filter.AdvanceTipo_de_Solicitud + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Tipo_de_Solicitud.Descripcion LIKE '%" + filter.AdvanceTipo_de_Solicitud + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceTipo_de_SolicitudMultiple != null && filter.AdvanceTipo_de_SolicitudMultiple.Count() > 0)
-            {
-                var Tipo_de_SolicitudIds = string.Join(",", filter.AdvanceTipo_de_SolicitudMultiple);
-
-                where += " AND Datos_de_los_Hechos_PC.Tipo_de_Solicitud In (" + Tipo_de_SolicitudIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.Titulo_del_Hecho))
@@ -1680,7 +1593,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varDatos_de_los_Hechos_PC.Clave
                         ,Solicitud = varDatos_de_los_Hechos_PC.Solicitud
-                        ,Tipo_de_Solicitud = varDatos_de_los_Hechos_PC.Tipo_de_Solicitud
                         ,Titulo_del_Hecho = varDatos_de_los_Hechos_PC.Titulo_del_Hecho
                         ,Narrativa_Breve_de_los_Hechos = varDatos_de_los_Hechos_PC.Narrativa_Breve_de_los_Hechos
                         ,Fecha_del_Hecho = (!String.IsNullOrEmpty(varDatos_de_los_Hechos_PC.Fecha_del_Hecho)) ? DateTime.ParseExact(varDatos_de_los_Hechos_PC.Fecha_del_Hecho, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
@@ -2092,7 +2004,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
 			,Titulo_del_Hecho = m.Titulo_del_Hecho
 			,Narrativa_Breve_de_los_Hechos = m.Narrativa_Breve_de_los_Hechos
                         ,Fecha_del_Hecho = (m.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -2189,7 +2100,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
 			,Titulo_del_Hecho = m.Titulo_del_Hecho
 			,Narrativa_Breve_de_los_Hechos = m.Narrativa_Breve_de_los_Hechos
                         ,Fecha_del_Hecho = (m.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -2268,7 +2178,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varDatos_de_los_Hechos_PC.Clave
                                             ,Solicitud = varDatos_de_los_Hechos_PC.Solicitud
-                        ,Tipo_de_Solicitud = varDatos_de_los_Hechos_PC.Tipo_de_Solicitud
                         ,Titulo_del_Hecho = varDatos_de_los_Hechos_PC.Titulo_del_Hecho
                         ,Narrativa_Breve_de_los_Hechos = varDatos_de_los_Hechos_PC.Narrativa_Breve_de_los_Hechos
                         ,Fecha_del_Hecho = (!String.IsNullOrEmpty(varDatos_de_los_Hechos_PC.Fecha_del_Hecho)) ? DateTime.ParseExact(varDatos_de_los_Hechos_PC.Fecha_del_Hecho, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
@@ -2306,8 +2215,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Solicitud = m.Solicitud
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_Solicitud = m.Tipo_de_Solicitud
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
 			,Titulo_del_Hecho = m.Titulo_del_Hecho
 			,Narrativa_Breve_de_los_Hechos = m.Narrativa_Breve_de_los_Hechos
                         ,Fecha_del_Hecho = (m.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -2329,7 +2236,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 		[HttpPost]
-        public ActionResult Post_Domicilio_de_los_Hechos(Datos_de_los_Hechos_PC_Domicilio_de_los_HechosModel varDatos_de_los_Hechos_PC)
+        public ActionResult Post_Lugar_de_los_Hechos(Datos_de_los_Hechos_PC_Lugar_de_los_HechosModel varDatos_de_los_Hechos_PC)
         {
             try
             {
@@ -2338,7 +2245,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 _IDatos_de_los_Hechos_PCApiConsumer.SetAuthHeader(_tokenManager.Token);
 				
                 var result = "";
-                var Datos_de_los_Hechos_PC_Domicilio_de_los_HechosInfo = new Datos_de_los_Hechos_PC_Domicilio_de_los_Hechos
+                var Datos_de_los_Hechos_PC_Lugar_de_los_HechosInfo = new Datos_de_los_Hechos_PC_Lugar_de_los_Hechos
                 {
                     Clave = varDatos_de_los_Hechos_PC.Clave
                                             ,Conoce_la_direccion = varDatos_de_los_Hechos_PC.Conoce_la_direccion
@@ -2360,7 +2267,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     
                 };
 
-                result = _IDatos_de_los_Hechos_PCApiConsumer.Update_Domicilio_de_los_Hechos(Datos_de_los_Hechos_PC_Domicilio_de_los_HechosInfo).Resource.ToString();
+                result = _IDatos_de_los_Hechos_PCApiConsumer.Update_Lugar_de_los_Hechos(Datos_de_los_Hechos_PC_Lugar_de_los_HechosInfo).Resource.ToString();
                 Session["KeyValueInserted"] = result;
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -2371,18 +2278,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 		
 		[HttpGet]
-        public JsonResult Get_Domicilio_de_los_Hechos(string Id)
+        public JsonResult Get_Lugar_de_los_Hechos(string Id)
         {     
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
             {                
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDatos_de_los_Hechos_PCApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var m = _IDatos_de_los_Hechos_PCApiConsumer.Get_Domicilio_de_los_Hechos(Id).Resource;
+                var m = _IDatos_de_los_Hechos_PCApiConsumer.Get_Lugar_de_los_Hechos(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
 				
-                var result = new Datos_de_los_Hechos_PC_Domicilio_de_los_HechosModel
+                var result = new Datos_de_los_Hechos_PC_Lugar_de_los_HechosModel
                 {
                     Clave = m.Clave
                         ,Conoce_la_direccion = m.Conoce_la_direccion

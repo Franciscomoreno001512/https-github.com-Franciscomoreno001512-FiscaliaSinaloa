@@ -1,0 +1,167 @@
+﻿@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>PORTAL CIUDADANO | FGE-SINALOA</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- CSS Files -->
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/style-red.css" rel="stylesheet" />
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+
+    <!-- CSS File Detalles Envio-->
+    <link href="~/Content/portal-ciudadano.css" rel="stylesheet" />
+    <link href="~/Content/fontello.css" rel="stylesheet" />
+    <!-- JS Files -->
+    @*<script src="assets/jquery/jquery.min.js"></script>
+        <script src="assets/bootstrap/js/popper.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>*@
+
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+</head>
+<body class="fondo-azul">
+    <div class="container">
+        <header>
+            <div class="row" style="margin-top: 3.0rem;">
+                <div id="logo" class="col-xs-12 col-md-4">
+                    <img src="~/Images/Logo-whitePortal.png" alt="Logotipo Fiscalia" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-center col-xs-12 col-md-offset-3 col-md-6 txt-blanco">
+                    <h1 class="pildora">Estatus De Tus Denuncias</h1>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="row text-center" style="margin-top: 3.0rem;">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <p class="txt-blanco">Aquí podrás consultar el estatus de tus consultas previamente realizadas. Los datos registrados están debidamente protegidos de acuerdo a lo establecido en la Ley General de Protección de Datos personales en Posesión de Sujetos Obligados, así como en la Ley Federal de Acceso a la Información Pública.</p>
+                </div>
+                <div class="col-xs-6 col-xs-offset-6 col-md-4 col-md-offset-8 ">
+                    <a href="#" id="btnBack" class="btn btn-registrarme" onclick="RegresaInicio();"><i class="glyphicon glyphicon-log-out espejo" aria-hidden="true"> </i> Regresar</a>
+                </div>
+            </div>
+
+            <div class="row display-flex " style="margin-top: 1.0rem;">
+                <table id="excelDataTable" class="table tabla-estatus col-xs-12">
+                
+                </table>
+            </div>
+    </div>
+    </main>
+    </div>
+
+
+    <script type="text/javascript">
+
+        var myList;
+        $(document).ready(function () {
+            debugger;
+            @if (ViewBag.userid == -1)
+            {
+                 <text>
+            FillTable(-1, "@ViewBag.folio", "@ViewBag.contrasena");
+             </text>
+            }
+            else
+            {
+                <text>
+                FillTable(@ViewBag.userid, "", "");
+                 </text>
+            }
+
+
+        });
+        var url_content;
+        function FillTable(userid, folio, contra) {
+            debugger;
+             url_content = "@Url.Content("~/")";
+
+            var query = "exec usp_GetSolicitud_de_Denuncia_CiudadanaGridInicio " + userid + ", '" + folio + "', '" + contra + "'";
+            var data = {
+                query: query
+            };
+            $.ajax({
+                url: url_content + "Frontal/General/ExecuteQueryTable",
+                type: 'POST',
+                cache: false,
+                dataType: "json",
+                async: false,
+                data: data,
+                success: function (result) {
+                    var jsonObj = $.parseJSON(result);
+
+                    myList = jsonObj;
+                },
+                error: function (result) {
+
+                }
+            });
+            var ele = $("#excelDataTable");
+            buildHtmlTable(ele);
+
+        }
+        // Builds the HTML Table out of myList.
+        function buildHtmlTable(selector) {
+            var columns = addAllColumnHeaders(myList, selector);
+
+            for (var i = 0; i < myList.length; i++) {
+                var row$ = $('<tr/>');
+                for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+                    var cellValue = myList[i][columns[colIndex]];
+                    if (cellValue == null) cellValue = "";
+                    row$.append($('<td/>').html(cellValue));
+                }
+                $(selector).append(row$);
+            }
+        }
+
+        // Adds a header row to the table and returns the set of columns.
+        // Need to do union of keys from all records as some records may not contain
+        // all records.
+        function addAllColumnHeaders(myList, selector) {
+            var columnSet = [];
+            var headerTr$ = $('<tr/>');
+
+            for (var i = 0; i < myList.length; i++) {
+                var rowHash = myList[i];
+                for (var key in rowHash) {
+                    if ($.inArray(key, columnSet) == -1) {
+                        columnSet.push(key);
+                        headerTr$.append($('<th/>').attr("scope","col").html(key));
+                    }
+                }
+            }
+            $(selector).append(headerTr$);
+
+            return columnSet;
+        }
+
+        function RegresaInicio() {
+            debugger;
+           // window.location = "../../inicio.html";
+
+            window.location =  url_content+ "/inicio.html";
+        }
+
+    </script>
+
+
+
+
+</body>

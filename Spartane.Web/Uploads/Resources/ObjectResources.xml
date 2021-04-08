@@ -8,6 +8,10 @@
   <Object Id="6" culture="es-es" value="Gestión de Expedientes AT" />
   <Object Id="7" culture="en-us" value="Gestión de Expedientes MP" />
   <Object Id="7" culture="es-es" value="Gestión de Expedientes MP" />  
+  <Object Id="8" culture="en-us" value="Gestión de Portal Ciudadano" />
+  <Object Id="8" culture="es-es" value="Gestión de Portal Ciudadano" />  
+  <Object Id="9" culture="en-us" value="Gestión de Mandamientos Judiciales" />
+  <Object Id="9" culture="es-es" value="Gestión de Mandamientos Judiciales" />      
   <Object Id="31754" culture="en-us" value="Formats List" />
   <Object Id="31754" culture="es-es" value="Listado de Formatos" />
   <Object Id="10" culture="en-us" value="Format Permissions" />
@@ -1202,12 +1206,12 @@
 <Object Id="45684" culture="es-es" value="Registro Usuarios" />
 <Object Id="45664" culture="en-us" value="Consulta de Mandamientos Judiciales" />
 <Object Id="45664" culture="es-es" value="Consulta de Mandamientos Judiciales" />
-<Object Id="45663" culture="en-us" value="Detalle de Amparo" />
-<Object Id="45663" culture="es-es" value="Detalle de Amparo" />
+<Object Id="45663" culture="en-us" value="Amparos" />
+<Object Id="45663" culture="es-es" value="Amparos" />
 <Object Id="45665" culture="en-us" value="Detalle de Delito Mandamiento Judicial" />
 <Object Id="45665" culture="es-es" value="Detalle de Delito Mandamiento Judicial" />
-<Object Id="45679" culture="en-us" value="Detalle de Documentos Mandamiento Judicial" />
-<Object Id="45679" culture="es-es" value="Detalle de Documentos Mandamiento Judicial" />
+<Object Id="45679" culture="en-us" value="Archivos Adjuntos" />
+<Object Id="45679" culture="es-es" value="Archivos Adjuntos" />
 <Object Id="45668" culture="en-us" value="Detalle de Domicilio" />
 <Object Id="45668" culture="es-es" value="Detalle de Domicilio" />
 <Object Id="45669" culture="en-us" value="Detalle de Fotos" />
@@ -1262,12 +1266,12 @@
 <Object Id="45709" culture="es-es" value="Estatus de Solicitud" />
 <Object Id="45710" culture="en-us" value="Solicitud de Denuncia Ciudadana" />
 <Object Id="45710" culture="es-es" value="Solicitud de Denuncia Ciudadana" />
-<Object Id="45711" culture="en-us" value="Datos de los Hechos PC" />
-<Object Id="45711" culture="es-es" value="Datos de los Hechos PC" />
+<Object Id="45711" culture="en-us" value="Proporcione los datos de los hechos" />
+<Object Id="45711" culture="es-es" value="Proporcione los datos de los hechos" />
 <Object Id="45712" culture="en-us" value="Robo de Vehículo PC" />
 <Object Id="45712" culture="es-es" value="Robo de Vehículo PC" />
-<Object Id="45713" culture="en-us" value="Involucrados PC" />
-<Object Id="45713" culture="es-es" value="Involucrados PC" />
+<Object Id="45713" culture="en-us" value="Proporcione los datos de la Víctima" />
+<Object Id="45713" culture="es-es" value="Proporcione los datos de la Víctima" />
 <Object Id="45714" culture="en-us" value="Probable Responsable PC" />
 <Object Id="45714" culture="es-es" value="Probable Responsable PC" />
 <Object Id="45719" culture="en-us" value="Tipo Encuesta" />
@@ -1338,8 +1342,90 @@
 <Object Id="46226" culture="es-es" value="Asignación de Responsable de Servicios de Apoyo" />
 <Object Id="46227" culture="en-us" value="Detalle SubÁreas Responsable" />
 <Object Id="46227" culture="es-es" value="Detalle SubÁreas Responsable" />
+<Object Id="46249" culture="en-us" value="Solicitud de Apoyo Externa" />
+<Object Id="46249" culture="es-es" value="Solicitud de Apoyo Externa" />
+<Object Id="46248" culture="en-us" value="Autoridad Externa" />
+<Object Id="46248" culture="es-es" value="Autoridad Externa" />
+<Object Id="46253" culture="en-us" value="Estatus de Apoyo Externo" />
+<Object Id="46253" culture="es-es" value="Estatus de Apoyo Externo" />
+<Object Id="46294" culture="en-us" value="Estatus de Mandamiento Judicial" />
+<Object Id="46294" culture="es-es" value="Estatus de Mandamiento Judicial" />
+<Object Id="45726" culture="en-us" value="Tipo de Víctima" />
+<Object Id="45726" culture="es-es" value="Tipo de Víctima" />
+<Object Id="46300" culture="en-us" value="Detalle de Personas a Incluir" />
+<Object Id="46300" culture="es-es" value="Detalle de Personas a Incluir" />
+<Object Id="46298" culture="en-us" value="Fuente de Mandamiento Judicial" />
+<Object Id="46298" culture="es-es" value="Fuente de Mandamiento Judicial" />
+<Object Id="46299" culture="en-us" value="Registro de Cumplimiento" />
+<Object Id="46299" culture="es-es" value="Registro de Cumplimiento" />
+<Object Id="46301" culture="en-us" value="Resolución de Mandamiento Judicial" />
+<Object Id="46301" culture="es-es" value="Resolución de Mandamiento Judicial" />
+<Object Id="46302" culture="en-us" value="Partida que Cumplimenta" />
+<Object Id="46302" culture="es-es" value="Partida que Cumplimenta" />
+<Object Id="46303" culture="en-us" value="Area envia Cumplimiento" />
+<Object Id="46303" culture="es-es" value="Area envia Cumplimiento" />
+<Object Id="46304" culture="en-us" value="Personas donde se ejecutó mandamiento" />
+<Object Id="46304" culture="es-es" value="Personas donde se ejecutó mandamiento" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 ﻿@using System.Collections.Generic
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Quejas_de_MP;
+@using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Estatus_Quejas_MP;
 @using Spartane.Core.Domain.Forma_Cara;
 @using Spartane.Core.Domain.Cejas;
@@ -32,20 +33,15 @@
 @using Spartane.Core.Domain.Bigote;
 @using Spartane.Core.Domain.Senas_Particulares;
 @using Spartane.Core.Domain.Situacion_Fisica;
-@using Spartane.Core.Domain.Genero;
-@using Spartane.Core.Domain.Nacionalidad;
-@using Spartane.Core.Domain.Estado;
-@using Spartane.Core.Domain.Genero;
-@using Spartane.Core.Domain.Tipo_de_Identificacion;
-@using Spartane.Core.Domain.Nacionalidad;
-@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Genero;
 @using Spartane.Core.Domain.Tipo_de_Identificacion;
 @using Spartane.Core.Domain.Nacionalidad;
-@using Spartane.Core.Domain.Estado;
-@using Spartane.Core.Domain.Pais;
 @using Spartane.Core.Domain.Estado;
 @using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Colonia;
 
 @using Spartane.Core.Domain.Permission
@@ -243,10 +239,15 @@
                                 <tr>
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Quejas_de_MPResources.Clave</th>
+                                    <th>@Resources.Quejas_de_MPResources.Fecha_de_Registro</th>
+                                    <th>@Resources.Quejas_de_MPResources.Hora_de_Registro</th>
+                                    <th>@Resources.Quejas_de_MPResources.Usuario_que_Registra</th>
                                     <th>@Resources.Quejas_de_MPResources.Nombres</th>
                                     <th>@Resources.Quejas_de_MPResources.Apellido_Paterno</th>
                                     <th>@Resources.Quejas_de_MPResources.Apellido_Materno</th>
                                     <th>@Resources.Quejas_de_MPResources.Nombre_Completo</th>
+                                    <th>@Resources.Quejas_de_MPResources.Correo_Electronico</th>
+                                    <th>@Resources.Quejas_de_MPResources.Celular</th>
                                     <th>@Resources.Quejas_de_MPResources.Estatus</th>
                                     <th>@Resources.Quejas_de_MPResources.Peso</th>
                                     <th>@Resources.Quejas_de_MPResources.Estatura</th>
@@ -283,27 +284,23 @@
                                     <th>@Resources.Quejas_de_MPResources.Situacion_Fisica</th>
                                     <th>@Resources.Quejas_de_MPResources.Otras_Senas_Particulares</th>
                                     <th>@Resources.Quejas_de_MPResources.Descripcion_de_los_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.CURP</th>
-                                    <th>@Resources.Quejas_de_MPResources.Genero</th>
-                                    <th>@Resources.Quejas_de_MPResources.Fecha_de_Nacimiento</th>
-                                    <th>@Resources.Quejas_de_MPResources.Nacionalidad</th>
-                                    <th>@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento</th>
-                                    <th>@Resources.Quejas_de_MPResources.Nombres_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Apellido_Paterno_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Apellido_Materno_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Fecha_de_Nacimiento_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Edad_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Genero_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Celular_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Correo_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Tipo_de_Identificacion_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Numero_Identificacion_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Nacionalidad_Hechos</th>
-                                    <th>@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Fecha_de_los_Hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Hora_de_los_Hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Municipio_hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Poblacion_hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Colonia_hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Calle_hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Entre_Calle_hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Y_Calle_hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Numero_Exterior_hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Numero_Interior_hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Codigo_Postal_hechos</th>
+                                    <th>@Resources.Quejas_de_MPResources.Referencia</th>
                                     <th>@Resources.Quejas_de_MPResources.CURP_Identificacion</th>
                                     <th>@Resources.Quejas_de_MPResources.Nombres_Identificacion</th>
                                     <th>@Resources.Quejas_de_MPResources.Apellido_Paterno_Identificacion</th>
                                     <th>@Resources.Quejas_de_MPResources.Apellido_Materno_Identificacion</th>
+                                    <th>@Resources.Quejas_de_MPResources.Alias</th>
                                     <th>@Resources.Quejas_de_MPResources.Fecha_Nacimiento_Identificacion</th>
                                     <th>@Resources.Quejas_de_MPResources.Edad_Identificacion</th>
                                     <th>@Resources.Quejas_de_MPResources.Genero_Identificacion</th>
@@ -313,16 +310,15 @@
                                     <th>@Resources.Quejas_de_MPResources.Numero_Identificacion_Identificacion</th>
                                     <th>@Resources.Quejas_de_MPResources.Nacionalidad_Identificacion</th>
                                     <th>@Resources.Quejas_de_MPResources.Entidad_de_Nacimiento_Identificacion</th>
-                                    <th>@Resources.Quejas_de_MPResources.Pais</th>
-                                    <th>@Resources.Quejas_de_MPResources.Estado</th>
-                                    <th>@Resources.Quejas_de_MPResources.Codigo_Postal</th>
                                     <th>@Resources.Quejas_de_MPResources.Municipio</th>
+                                    <th>@Resources.Quejas_de_MPResources.Poblacion</th>
                                     <th>@Resources.Quejas_de_MPResources.Colonia</th>
                                     <th>@Resources.Quejas_de_MPResources.Calle</th>
                                     <th>@Resources.Quejas_de_MPResources.Entre_Calle</th>
                                     <th>@Resources.Quejas_de_MPResources.Y_Calle</th>
                                     <th>@Resources.Quejas_de_MPResources.Numero_Exterior</th>
                                     <th>@Resources.Quejas_de_MPResources.Numero_Interior</th>
+                                    <th>@Resources.Quejas_de_MPResources.Codigo_Postal</th>
                                     <th>@Resources.Quejas_de_MPResources.Referencias_de_domicilio</th>
 
                                 </tr>
@@ -331,6 +327,9 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -374,12 +373,15 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -387,14 +389,8 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -528,10 +524,15 @@
         var queryString = GetQueryString();
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Correo_Electronico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Celular =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Peso =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatura =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -568,27 +569,23 @@
         var Situacion_Fisica =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Otras_Senas_Particulares =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var CURP =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Genero =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Nacimiento = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Entidad_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nombres_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Paterno_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Materno_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Nacimiento_Hechos = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Edad_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Genero_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Celular_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Correo_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Identificacion_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_Identificacion_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nacionalidad_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Entidad_de_Nacimiento_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_los_Hechos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_los_Hechos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Y_Calle_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var CURP_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Alias =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_Nacimiento_Identificacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Edad_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Genero_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -598,24 +595,28 @@
         var Numero_Identificacion_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nacionalidad_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Entidad_de_Nacimiento_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Entre_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_Exterior =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_Interior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Referencias_de_domicilio =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Hora_de_Registro=" + Hora_de_Registro
+        + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Nombres=" + Nombres
         + "&Apellido_Paterno=" + Apellido_Paterno
         + "&Apellido_Materno=" + Apellido_Materno
         + "&Nombre_Completo=" + Nombre_Completo
+        + "&Correo_Electronico=" + Correo_Electronico
+        + "&Celular=" + Celular
         + "&Estatus=" + Estatus
         + "&Peso=" + Peso
         + "&Estatura=" + Estatura
@@ -652,27 +653,23 @@
         + "&Situacion_Fisica=" + Situacion_Fisica
         + "&Otras_Senas_Particulares=" + Otras_Senas_Particulares
         + "&Descripcion_de_los_Hechos=" + Descripcion_de_los_Hechos
-        + "&CURP=" + CURP
-        + "&Genero=" + Genero
-        + "&Fecha_de_Nacimiento=" + Fecha_de_Nacimiento
-        + "&Nacionalidad=" + Nacionalidad
-        + "&Entidad_de_Nacimiento=" + Entidad_de_Nacimiento
-        + "&Nombres_Hechos=" + Nombres_Hechos
-        + "&Apellido_Paterno_Hechos=" + Apellido_Paterno_Hechos
-        + "&Apellido_Materno_Hechos=" + Apellido_Materno_Hechos
-        + "&Fecha_de_Nacimiento_Hechos=" + Fecha_de_Nacimiento_Hechos
-        + "&Edad_Hechos=" + Edad_Hechos
-        + "&Genero_Hechos=" + Genero_Hechos
-        + "&Celular_Hechos=" + Celular_Hechos
-        + "&Correo_Hechos=" + Correo_Hechos
-        + "&Tipo_de_Identificacion_Hechos=" + Tipo_de_Identificacion_Hechos
-        + "&Numero_Identificacion_Hechos=" + Numero_Identificacion_Hechos
-        + "&Nacionalidad_Hechos=" + Nacionalidad_Hechos
-        + "&Entidad_de_Nacimiento_Hechos=" + Entidad_de_Nacimiento_Hechos
+        + "&Fecha_de_los_Hechos=" + Fecha_de_los_Hechos
+        + "&Hora_de_los_Hechos=" + Hora_de_los_Hechos
+        + "&Municipio_hechos=" + Municipio_hechos
+        + "&Poblacion_hechos=" + Poblacion_hechos
+        + "&Colonia_hechos=" + Colonia_hechos
+        + "&Calle_hechos=" + Calle_hechos
+        + "&Entre_Calle_hechos=" + Entre_Calle_hechos
+        + "&Y_Calle_hechos=" + Y_Calle_hechos
+        + "&Numero_Exterior_hechos=" + Numero_Exterior_hechos
+        + "&Numero_Interior_hechos=" + Numero_Interior_hechos
+        + "&Codigo_Postal_hechos=" + Codigo_Postal_hechos
+        + "&Referencia=" + Referencia
         + "&CURP_Identificacion=" + CURP_Identificacion
         + "&Nombres_Identificacion=" + Nombres_Identificacion
         + "&Apellido_Paterno_Identificacion=" + Apellido_Paterno_Identificacion
         + "&Apellido_Materno_Identificacion=" + Apellido_Materno_Identificacion
+        + "&Alias=" + Alias
         + "&Fecha_Nacimiento_Identificacion=" + Fecha_Nacimiento_Identificacion
         + "&Edad_Identificacion=" + Edad_Identificacion
         + "&Genero_Identificacion=" + Genero_Identificacion
@@ -682,16 +679,15 @@
         + "&Numero_Identificacion_Identificacion=" + Numero_Identificacion_Identificacion
         + "&Nacionalidad_Identificacion=" + Nacionalidad_Identificacion
         + "&Entidad_de_Nacimiento_Identificacion=" + Entidad_de_Nacimiento_Identificacion
-        + "&Pais=" + Pais
-        + "&Estado=" + Estado
-        + "&Codigo_Postal=" + Codigo_Postal
         + "&Municipio=" + Municipio
+        + "&Poblacion=" + Poblacion
         + "&Colonia=" + Colonia
         + "&Calle=" + Calle
         + "&Entre_Calle=" + Entre_Calle
         + "&Y_Calle=" + Y_Calle
         + "&Numero_Exterior=" + Numero_Exterior
         + "&Numero_Interior=" + Numero_Interior
+        + "&Codigo_Postal=" + Codigo_Postal
         + "&Referencias_de_domicilio=" + Referencias_de_domicilio
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
@@ -707,10 +703,15 @@
 	
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Correo_Electronico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Celular =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Peso =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatura =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -747,27 +748,23 @@
         var Situacion_Fisica =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Otras_Senas_Particulares =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var CURP =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Genero =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Nacimiento = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Entidad_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nombres_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Paterno_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Materno_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Nacimiento_Hechos = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Edad_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Genero_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Celular_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Correo_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Identificacion_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_Identificacion_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nacionalidad_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Entidad_de_Nacimiento_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_los_Hechos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_los_Hechos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Y_Calle_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var CURP_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Alias =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_Nacimiento_Identificacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Edad_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Genero_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -777,24 +774,28 @@
         var Numero_Identificacion_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nacionalidad_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Entidad_de_Nacimiento_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Entre_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_Exterior =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_Interior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Referencias_de_domicilio =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Hora_de_Registro=" + Hora_de_Registro
+        + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Nombres=" + Nombres
         + "&Apellido_Paterno=" + Apellido_Paterno
         + "&Apellido_Materno=" + Apellido_Materno
         + "&Nombre_Completo=" + Nombre_Completo
+        + "&Correo_Electronico=" + Correo_Electronico
+        + "&Celular=" + Celular
         + "&Estatus=" + Estatus
         + "&Peso=" + Peso
         + "&Estatura=" + Estatura
@@ -831,27 +832,23 @@
         + "&Situacion_Fisica=" + Situacion_Fisica
         + "&Otras_Senas_Particulares=" + Otras_Senas_Particulares
         + "&Descripcion_de_los_Hechos=" + Descripcion_de_los_Hechos
-        + "&CURP=" + CURP
-        + "&Genero=" + Genero
-        + "&Fecha_de_Nacimiento=" + Fecha_de_Nacimiento
-        + "&Nacionalidad=" + Nacionalidad
-        + "&Entidad_de_Nacimiento=" + Entidad_de_Nacimiento
-        + "&Nombres_Hechos=" + Nombres_Hechos
-        + "&Apellido_Paterno_Hechos=" + Apellido_Paterno_Hechos
-        + "&Apellido_Materno_Hechos=" + Apellido_Materno_Hechos
-        + "&Fecha_de_Nacimiento_Hechos=" + Fecha_de_Nacimiento_Hechos
-        + "&Edad_Hechos=" + Edad_Hechos
-        + "&Genero_Hechos=" + Genero_Hechos
-        + "&Celular_Hechos=" + Celular_Hechos
-        + "&Correo_Hechos=" + Correo_Hechos
-        + "&Tipo_de_Identificacion_Hechos=" + Tipo_de_Identificacion_Hechos
-        + "&Numero_Identificacion_Hechos=" + Numero_Identificacion_Hechos
-        + "&Nacionalidad_Hechos=" + Nacionalidad_Hechos
-        + "&Entidad_de_Nacimiento_Hechos=" + Entidad_de_Nacimiento_Hechos
+        + "&Fecha_de_los_Hechos=" + Fecha_de_los_Hechos
+        + "&Hora_de_los_Hechos=" + Hora_de_los_Hechos
+        + "&Municipio_hechos=" + Municipio_hechos
+        + "&Poblacion_hechos=" + Poblacion_hechos
+        + "&Colonia_hechos=" + Colonia_hechos
+        + "&Calle_hechos=" + Calle_hechos
+        + "&Entre_Calle_hechos=" + Entre_Calle_hechos
+        + "&Y_Calle_hechos=" + Y_Calle_hechos
+        + "&Numero_Exterior_hechos=" + Numero_Exterior_hechos
+        + "&Numero_Interior_hechos=" + Numero_Interior_hechos
+        + "&Codigo_Postal_hechos=" + Codigo_Postal_hechos
+        + "&Referencia=" + Referencia
         + "&CURP_Identificacion=" + CURP_Identificacion
         + "&Nombres_Identificacion=" + Nombres_Identificacion
         + "&Apellido_Paterno_Identificacion=" + Apellido_Paterno_Identificacion
         + "&Apellido_Materno_Identificacion=" + Apellido_Materno_Identificacion
+        + "&Alias=" + Alias
         + "&Fecha_Nacimiento_Identificacion=" + Fecha_Nacimiento_Identificacion
         + "&Edad_Identificacion=" + Edad_Identificacion
         + "&Genero_Identificacion=" + Genero_Identificacion
@@ -861,16 +858,15 @@
         + "&Numero_Identificacion_Identificacion=" + Numero_Identificacion_Identificacion
         + "&Nacionalidad_Identificacion=" + Nacionalidad_Identificacion
         + "&Entidad_de_Nacimiento_Identificacion=" + Entidad_de_Nacimiento_Identificacion
-        + "&Pais=" + Pais
-        + "&Estado=" + Estado
-        + "&Codigo_Postal=" + Codigo_Postal
         + "&Municipio=" + Municipio
+        + "&Poblacion=" + Poblacion
         + "&Colonia=" + Colonia
         + "&Calle=" + Calle
         + "&Entre_Calle=" + Entre_Calle
         + "&Y_Calle=" + Y_Calle
         + "&Numero_Exterior=" + Numero_Exterior
         + "&Numero_Interior=" + Numero_Interior
+        + "&Codigo_Postal=" + Codigo_Postal
         + "&Referencias_de_domicilio=" + Referencias_de_domicilio
 ;
 
@@ -1120,10 +1116,15 @@
                     }
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
+                ,{ "data": "Hora_de_Registro", "orderable": true, "name": "Hora_de_Registro" }
+                ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName"}
                 ,{ "data": "Nombres", "orderable": true, "name": "Nombres", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Paterno", "orderable": true, "name": "Apellido_Paterno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Materno", "orderable": true, "name": "Apellido_Materno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Nombre_Completo", "orderable": true, "name": "Nombre_Completo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Correo_Electronico", "orderable": true, "name": "Correo_Electronico", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Celular", "orderable": true, "name": "Celular", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "EstatusDescripcion", "orderable": true, "name": "EstatusDescripcion" }
                 ,{ "data": "Peso", "orderable": true, "name": "Peso", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Estatura", "orderable": true, "name": "Estatura", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
@@ -1160,27 +1161,23 @@
                 ,{ "data": "Situacion_FisicaDescripcion", "orderable": true, "name": "Situacion_FisicaDescripcion" }
                 ,{ "data": "Otras_Senas_Particulares", "orderable": true, "name": "Otras_Senas_Particulares", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Descripcion_de_los_Hechos", "orderable": true, "name": "Descripcion_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "CURP", "orderable": true, "name": "CURP", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "GeneroDescripcion", "orderable": true, "name": "GeneroDescripcion" }
-                ,{ "data": "Fecha_de_Nacimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Nacimiento" }
-                ,{ "data": "NacionalidadNacionalidadC", "orderable": true, "name": "NacionalidadNacionalidadC" }
-                ,{ "data": "Entidad_de_NacimientoNombre", "orderable": true, "name": "Entidad_de_NacimientoNombre"}
-                ,{ "data": "Nombres_Hechos", "orderable": true, "name": "Nombres_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Apellido_Paterno_Hechos", "orderable": true, "name": "Apellido_Paterno_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Apellido_Materno_Hechos", "orderable": true, "name": "Apellido_Materno_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_de_Nacimiento_Hechos", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Nacimiento_Hechos" }
-                ,{ "data": "Edad_Hechos","className": "dt-right", "orderable": true, "name": "Edad_Hechos" }
-                ,{ "data": "Genero_HechosDescripcion", "orderable": true, "name": "Genero_HechosDescripcion" }
-                ,{ "data": "Celular_Hechos", "orderable": true, "name": "Celular_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Correo_Hechos", "orderable": true, "name": "Correo_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Tipo_de_Identificacion_HechosNombre", "orderable": true, "name": "Tipo_de_Identificacion_HechosNombre" }
-                ,{ "data": "Numero_Identificacion_Hechos", "orderable": true, "name": "Numero_Identificacion_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Nacionalidad_HechosNacionalidadC", "orderable": true, "name": "Nacionalidad_HechosNacionalidadC" }
-                ,{ "data": "Entidad_de_Nacimiento_HechosNombre", "orderable": true, "name": "Entidad_de_Nacimiento_HechosNombre" }
+                ,{ "data": "Fecha_de_los_Hechos", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_los_Hechos" }
+                ,{ "data": "Hora_de_los_Hechos", "orderable": true, "name": "Hora_de_los_Hechos" }
+                ,{ "data": "Municipio_hechosNombre", "orderable": true, "name": "Municipio_hechosNombre"}
+                ,{ "data": "Poblacion_hechosNombre", "orderable": true, "name": "Poblacion_hechosNombre"}
+                ,{ "data": "Colonia_hechosNombre", "orderable": true, "name": "Colonia_hechosNombre"}
+                ,{ "data": "Calle_hechos", "orderable": true, "name": "Calle_hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Entre_Calle_hechos", "orderable": true, "name": "Entre_Calle_hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Y_Calle_hechos", "orderable": true, "name": "Y_Calle_hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Exterior_hechos", "orderable": true, "name": "Numero_Exterior_hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Interior_hechos", "orderable": true, "name": "Numero_Interior_hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Codigo_Postal_hechos","className": "dt-right", "orderable": true, "name": "Codigo_Postal_hechos" }
+                ,{ "data": "Referencia", "orderable": true, "name": "Referencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "CURP_Identificacion", "orderable": true, "name": "CURP_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Nombres_Identificacion", "orderable": true, "name": "Nombres_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Paterno_Identificacion", "orderable": true, "name": "Apellido_Paterno_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Materno_Identificacion", "orderable": true, "name": "Apellido_Materno_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Alias", "orderable": true, "name": "Alias", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_Nacimiento_Identificacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Nacimiento_Identificacion" }
                 ,{ "data": "Edad_Identificacion","className": "dt-right", "orderable": true, "name": "Edad_Identificacion" }
                 ,{ "data": "Genero_IdentificacionDescripcion", "orderable": true, "name": "Genero_IdentificacionDescripcion" }
@@ -1188,18 +1185,17 @@
                 ,{ "data": "Correo_Identificacion", "orderable": true, "name": "Correo_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Tipo_de_Identificacion_IdentificacionNombre", "orderable": true, "name": "Tipo_de_Identificacion_IdentificacionNombre" }
                 ,{ "data": "Numero_Identificacion_Identificacion", "orderable": true, "name": "Numero_Identificacion_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Nacionalidad_IdentificacionNacionalidadC", "orderable": true, "name": "Nacionalidad_IdentificacionNacionalidadC" }
+                ,{ "data": "Nacionalidad_IdentificacionNacionalidadC", "orderable": true, "name": "Nacionalidad_IdentificacionNacionalidadC"}
                 ,{ "data": "Entidad_de_Nacimiento_IdentificacionNombre", "orderable": true, "name": "Entidad_de_Nacimiento_IdentificacionNombre"}
-                ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre"}
-                ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
-                ,{ "data": "Codigo_Postal", "orderable": true, "name": "Codigo_Postal", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
+                ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre"}
                 ,{ "data": "ColoniaNombre", "orderable": true, "name": "ColoniaNombre"}
                 ,{ "data": "Calle", "orderable": true, "name": "Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Entre_Calle", "orderable": true, "name": "Entre_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Y_Calle", "orderable": true, "name": "Y_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Numero_Exterior", "orderable": true, "name": "Numero_Exterior", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Numero_Interior", "orderable": true, "name": "Numero_Interior", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Codigo_Postal", "orderable": true, "name": "Codigo_Postal", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Referencias_de_domicilio", "orderable": true, "name": "Referencias_de_domicilio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],

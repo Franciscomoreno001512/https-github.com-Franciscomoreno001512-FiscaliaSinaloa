@@ -29,38 +29,11 @@ namespace Spartane.Web.Areas.WebApiConsumer.Registro_de_Mandamiento_Judicial
 		ApiResponse<int> Update_Datos_Generales(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Datos_Generales entity);
 		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Datos_Generales> Get_Datos_Generales(string Key);
 
-		ApiResponse<int> Update_Domicilio(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Domicilio entity);
-		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Domicilio> Get_Domicilio(string Key);
-
-		ApiResponse<int> Update_Telefonos(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Telefonos entity);
-		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Telefonos> Get_Telefonos(string Key);
-
-		ApiResponse<int> Update_Otros_Nombres(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Otros_Nombres entity);
-		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Otros_Nombres> Get_Otros_Nombres(string Key);
-
-		ApiResponse<int> Update_Datos_de_la_Orden(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Datos_de_la_Orden entity);
-		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Datos_de_la_Orden> Get_Datos_de_la_Orden(string Key);
-
-		ApiResponse<int> Update_Delito(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Delito entity);
-		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Delito> Get_Delito(string Key);
-
-		ApiResponse<int> Update_Amparo(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Amparo entity);
-		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Amparo> Get_Amparo(string Key);
-
-		ApiResponse<int> Update_Media_Filiacion(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Media_Filiacion entity);
-		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Media_Filiacion> Get_Media_Filiacion(string Key);
-
 		ApiResponse<int> Update_Proceso(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Proceso entity);
 		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Proceso> Get_Proceso(string Key);
 
-		ApiResponse<int> Update_Fotos(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Fotos entity);
-		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Fotos> Get_Fotos(string Key);
-
-		ApiResponse<int> Update_Documentos(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Documentos entity);
-		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Documentos> Get_Documentos(string Key);
-
-		ApiResponse<int> Update_Huellas_Digitales(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Huellas_Digitales entity);
-		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Huellas_Digitales> Get_Huellas_Digitales(string Key);
+		ApiResponse<int> Update_Expediente(Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Expediente entity);
+		ApiResponse<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Expediente> Get_Expediente(string Key);
 
 
     }

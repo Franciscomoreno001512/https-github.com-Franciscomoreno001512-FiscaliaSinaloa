@@ -19,9 +19,6 @@ namespace Spartane.Web.SqlModelMapper
                 case "Solicitud[Folio]":
                 case "SolicitudFolio":
                     return "Solicitud_de_Denuncia_Ciudadana.Folio";
-                case "Tipo_de_Solicitud[Descripcion]":
-                case "Tipo_de_SolicitudDescripcion":
-                    return "Tipo_de_Solicitud.Descripcion";
                 case "Titulo_del_Hecho":
                     return "Datos_de_los_Hechos_PC.Titulo_del_Hecho";
                 case "Narrativa_Breve_de_los_Hechos":

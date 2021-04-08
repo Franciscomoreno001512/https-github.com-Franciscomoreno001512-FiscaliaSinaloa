@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" standalone="yes"?>
 <resources>
-  <resource culture="en-us" name="Detalle_de_Amparo" value="Detalle de Amparo"></resource>
+  <resource culture="en-us" name="Detalle_de_Amparo" value="Amparos"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Orden_de_Aprehension" value="Orden de Aprehension"></resource>
   <resource culture="en-US" name="Tipo_de_Amparo" value="Tipo de Amparo"></resource>
   <resource culture="en-US" name="Numero_de_Amparo" value="Número de Amparo"></resource>
   <resource culture="en-US" name="Fecha_Amparo" value="Fecha de Amparo"></resource>

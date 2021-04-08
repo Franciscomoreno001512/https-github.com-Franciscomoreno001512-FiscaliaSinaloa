@@ -13,6 +13,11 @@ $("#Registro_de_UsuarioReenviar").addClass("hidden");
 $("#side-menu").addClass("hidden");
 $("#logoutForm").addClass("hidden");
 //Registro_de_UsuarioSiguiente
+$("#Celular").on('input', function (evt) {
+				// Allow only numbers.
+				$(this).val($(this).val().replace(/[^0-9]/g, ''));
+			});
+ $("#Celular").attr('maxlength','10');
 
 //VALIDAR CORREO ELECTRÓNICO
 $('#Correo').change(function(){ 
@@ -32,6 +37,7 @@ function enviarSMS(telefono, numeroaleatorio) {
 }
 
 function enviarCorreo(correo,numeroaleatorio){
+	debugger;
 	if(correo.length>4){
 		SendEmail(correo, "Activa tú cuenta de Portal Ciudadano.", "<!doctype html>"   +
 "		<html>"  +
@@ -123,7 +129,7 @@ function enviarCorreo(correo,numeroaleatorio){
 					 "	  <!-- Email Header : BEGIN -->"+
 					 "		  <table cellspacing='0' cellpadding='0' border='0' align='center' width='100%' style='max-width: 600px;'>"+
 					 "		<tr>"+
-			 "		  <td style='padding: 20px 0; text-align: center'><img src='http://192.168.1.101/MVCfiscaliasinaloa/Images/logo-fiscalia-sinaloa.png' width='108' height='126' alt='alt_text' border='0'></td>"+
+			 "		  <td style='padding: 20px 0; text-align: center'><img src='" + url_content + "/Images/logo-fiscalia-sinaloa.png' width='108' height='126' alt='alt_text' border='0'></td>"+
 			 "		</tr>"+
 			 "	  </table>"+
 				   "	  <!-- Email Header : END --> "+
@@ -197,6 +203,7 @@ function enviarCorreo(correo,numeroaleatorio){
 
 //ENVIA CORREO REGISTRO
 function enviarCorreoRegistro(correo,username2){
+	debugger;
 		SendEmail(correo, "Registro en Portal Ciudadano.", "<!doctype html>"
 		+" <html>"
 		+" <head>"
@@ -286,7 +293,7 @@ function enviarCorreoRegistro(correo,username2){
 		+"    "
 		+"           <table cellspacing='0' cellpadding='0' border='0' align='center' width='100%' style='max-width: 600px;'>"
 		+"             <tr>"
-		+"               <td style='padding: 20px 0; text-align: center'><img src='http://192.168.1.101/MVCfiscaliasinaloa/Images/logo-fiscalia-sinaloa.png' width='108' height='126' alt='alt_text' border='0'></td>"
+	    +"		  <td style='padding: 20px 0; text-align: center'><img src='" + url_content + "/Images/logo-fiscalia-sinaloa.png' width='108' height='126' alt='alt_text' border='0'></td>"
 		+"             </tr>"
 		+"           </table>"
 		+"       "
@@ -311,7 +318,7 @@ function enviarCorreoRegistro(correo,username2){
 		+"                         "
 		+"                         Tu usuario: <br>" + username2
 		+"                         "
-		+"                         Puedes iniciar sesión dando clic aquí. "
+		// +"                         Puedes iniciar sesión dando clic aquí. "
 		+"                         "
 		+"                         <br><br>"
 		+" ​"
@@ -319,11 +326,11 @@ function enviarCorreoRegistro(correo,username2){
 		+"                         "
 		+"                       </p>"
 		+"                       <table cellspacing='0' cellpadding='0' border='0' align='center' style='margin: auto;'>"
-		+"                         <tr>"
-		+"                           <td style='text-align: center;' class='button-td'><a href='http://192.168.1.101/MVCfiscaliasinaloa/Account/Login' style='color: #F64200; font-family: sans-serif; font-size: 22px; line-height: 1.1; text-align: center; text-decoration: underline; display: block; font-weight: bold;' class='button-a'> "
-		+"                             <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Iniciar sesión<!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]--> "
-		+"                             </a></td>"
-		+"                         </tr>"
+		// +"                         <tr>"
+		// +"                           <td style='text-align: center;' class='button-td'><a href='" + url_content + "/inicio.html' style='color: #F64200; font-family: sans-serif; font-size: 22px; line-height: 1.1; text-align: center; text-decoration: underline; display: block; font-weight: bold;' class='button-a'> "
+		// +"                             <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->Iniciar sesión<!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]--> "
+		// +"                             </a></td>"
+		// +"                         </tr>"
 		+"                       </table>"
 		+"                       "
 		+"                       <br>"
@@ -396,14 +403,34 @@ $("#idReenviarCodigoCelular").on("click", function() {
 var seEnvioCelular=false;
 var seEnvioCorreo=false;
 $("#Registro_de_UsuarioSiguiente").on("click", function() {  
+debugger;
 	var destino=0;
 	var guardar=false;
 	var fase = $('.tabs-container').find('.active').data('fase');
 	if(fase == 0){
+	
+	if ($("#Nombres").val().trim() == "" || $("#Apellido_Paterno").val().trim() == "" ||  $("#Apellido_Materno").val().trim() == "" )
+	{
+		alertas("Debe llenar los datos requeridos para poder continuar.");
+			
+			
+			return;		
+	}
+	
 		$("#Registro_de_UsuarioAnterior").removeClass("hidden");
 		$("#Registro_de_UsuarioSiguiente").val("Siguiente");			
 	}
 	if(fase == 1){
+	if ($("#Usuario").val().trim() == "" || $("#Contrasena").val().trim() == "" ||  $("#Confirmar_Contrasena").val().trim() == "" )
+	{
+		alertas("Debe llenar los datos requeridos para poder continuar.");
+			
+			
+			return;		
+	}
+	
+	
+	
 		$("#Registro_de_UsuarioSiguiente").val("Guardar");		
 	}
 	if (fase == 2){
@@ -496,7 +523,7 @@ $("#Registro_de_UsuarioSiguiente").on("click", function() {
 			if(seEnvioCorreo){
 				enviarCorreoRegistro(correo1,username2);
 			}
-			window.location="../../Account/Login?returnUrl='LoginPC'";
+			window.location =  url_content+ "/inicio.html";
 		}
 		else{
 			alertas("¡Código incorrecto!");
@@ -535,6 +562,7 @@ $("#Registro_de_UsuarioSiguiente").on("click", function() {
 });
 
 function alertas(textomostrar){
+debugger;
 	$("#modalauxtxt").html(textomostrar);
 	$("#divmodalaux").removeClass('hidden');	
 }
@@ -638,31 +666,29 @@ function GuardaNuevoCodigo(numeroaleatorio, tipo){
 function ValidaCodigoUser(){
 	debugger;
 	var result = "0";
-	if(seEnvioCelular){
-		var numeroaleatoriov = $("#Codigo_Verificacion_Celular").val();
-		if(numeroaleatoriov.length==0)
-			return "0";
+	var numeroaleatoriov = $("#Codigo_Verificacion_Celular").val();
+	var numeroaleatoriov2 = $("#Codigo_Verificacion_Correo").val();
+	if(seEnvioCelular && numeroaleatoriov.length!=0 ){
 		
 		var query="EXEC spu_ValidaCodigoValidacion " + NuevoIDV + "," + numeroaleatoriov  + "," + "1";
 		result = EvaluaQuery55(query);	
 		if(result != 1){
-			$("#Codigo_Verificacion_Celular").val("");	
-			return result;		
+			$("#Codigo_Verificacion_Celular").val("");		
+		}else{
+		return 1;
 		}
 	}
 			
-	if(seEnvioCorreo){
-		var numeroaleatoriov2 = $("#Codigo_Verificacion_Correo").val();
-		if(numeroaleatoriov2.length==0)
-			return "0";
+	if(seEnvioCorreo && numeroaleatoriov2.length!=0 ){
 		query="EXEC spu_ValidaCodigoValidacion " + NuevoIDV + "," + numeroaleatoriov2  + "," + "2";
 		result = EvaluaQuery55(query);	
 		if(result != 1){
-			$("#Codigo_Verificacion_Correo").val("");	
-			return result;		
+			$("#Codigo_Verificacion_Correo").val("");		
+		}else{
+		return 1;
 		}		
 	}	
-	return result;
+	return 0;
 }
 
 function GenereNumero8(){
@@ -720,7 +746,61 @@ $("form#CreateRegistro_de_Usuario").on('keyup', '#Confirmar_Contrasena', functio
 	if ($(this).val().length > 10) {
 		$(this).val($(this).val().substr(0, 10));
 	}
-});
+    });
+
+
+
+    //fjmore
+
+    $("form#CreateRegistro_de_Usuario").on('blur', '#Contrasena', function () {
+	debugger;
+        var valor = $(this).val();
+        if (valor != "") {
+            if (!checkPassword(valor)) {
+
+                alertas("Es necesario introducir una contraseña segura, mínimo 8 caracteres, con una letra minúscula, una letra mayúscula, un número y un carácter especial.");
+               
+                $("#Contrasena").val("");
+                $("#Confirmar_Contrasena").val("");
+                return;
+            }
+        }
+    });
+
+    $("form#CreateRegistro_de_Usuario").on('blur', '#Confirmar_Contrasena', function () {
+        var valor = $(this).val();
+
+		
+		
+        var valorconrra = $('#Contrasena').val();
+
+		
+		 if (valor.trim() == "") {
+            
+          
+            return;
+        }
+		
+        if (valorconrra.trim() == "") {
+            alertas("Debe de escribir primero una contraseña.");
+            $("#Contrasena").val("");
+            $("#Confirmar_Contrasena").val("");
+            return;
+        }
+		
+
+        if (valorconrra != valor ) {
+            alertas("Las contraseñas no coinciden.");
+            $("#Contrasena").val("");
+            $("#Confirmar_Contrasena").val("");
+            return;
+        }
+    });
+
+
+
+
+	
 
 //COD-MANI INI OCULTAR CONTRASEÑA
 //$("#Contrasena").attr("type","password");

@@ -1,53 +1,19 @@
 ﻿@using System.Collections.Generic
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Registro_de_Mandamiento_Judicial;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Tipo_de_Mandamiento;
+@using Spartane.Core.Domain.Fuente_de_Mandamiento_Judicial;
 @using Spartane.Core.Domain.Pais;
 @using Spartane.Core.Domain.Estado;
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Institucion_Emisora;
 @using Spartane.Core.Domain.Estado;
 @using Spartane.Core.Domain.Juzgado;
-@using Spartane.Core.Domain.Genero;
-@using Spartane.Core.Domain.Estado_Civil;
-@using Spartane.Core.Domain.Tipo_de_Identificacion;
-@using Spartane.Core.Domain.Nacionalidad;
-@using Spartane.Core.Domain.Escolaridad;
-@using Spartane.Core.Domain.Ocupacion;
-@using Spartane.Core.Domain.Pais;
-@using Spartane.Core.Domain.Estado;
-@using Spartane.Core.Domain.Tipo_de_Orden;
-@using Spartane.Core.Domain.Ambito;
-@using Spartane.Core.Domain.Juzgado;
-@using Spartane.Core.Domain.Especialidad_MP;
-@using Spartane.Core.Domain.Tipo_de_Cuantia;
-@using Spartane.Core.Domain.Forma_Cara;
-@using Spartane.Core.Domain.Cejas;
-@using Spartane.Core.Domain.Cantidad_Cabello;
-@using Spartane.Core.Domain.Implantacion_Cabello;
-@using Spartane.Core.Domain.Complexion;
-@using Spartane.Core.Domain.Color_Piel;
-@using Spartane.Core.Domain.Frente;
-@using Spartane.Core.Domain.Forma_Cabello;
-@using Spartane.Core.Domain.Color_de_Cabello;
-@using Spartane.Core.Domain.Calvicie;
-@using Spartane.Core.Domain.Color_Ojos;
-@using Spartane.Core.Domain.Ojos;
-@using Spartane.Core.Domain.Forma_Ojos;
-@using Spartane.Core.Domain.Nariz_Base;
-@using Spartane.Core.Domain.Labios;
-@using Spartane.Core.Domain.Boca;
-@using Spartane.Core.Domain.Menton;
-@using Spartane.Core.Domain.Barba;
-@using Spartane.Core.Domain.Forma_Orejas;
-@using Spartane.Core.Domain.Tamano_Orejas;
-@using Spartane.Core.Domain.Tipo_Lobulo;
-@using Spartane.Core.Domain.Bigote;
-@using Spartane.Core.Domain.Situacion_Fisica;
-@using Spartane.Core.Domain.Fuerzo;
-@using Spartane.Core.Domain.Tipo_de_Mandamiento;
-@using Spartane.Core.Domain.Motivo_de_Cancelacion_del_Proceso;
-@using Spartane.Core.Domain.Tipo_de_Proceso;
-@using Spartane.Core.Domain.Tipo_de_Extradiccion;
+@using Spartane.Core.Domain.Unidad;
+@using Spartane.Core.Domain.Estatus_de_Mandamiento_Judicial;
+@using Spartane.Core.Domain.expediente_ministerio_publico;
+@using Spartane.Core.Domain.Judicializacion;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -244,88 +210,31 @@
                                 <tr>
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Registro_de_Mandamiento_JudicialResources.Clave</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Folio_de_la_Orden_de_Aprehension</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Registro</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Hora_de_Registro</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Usuario_que_Registra</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Mandamiento</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Tipo_Mandato</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fuente</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Solicitud</th>
                                     <th>@Resources.Registro_de_Mandamiento_JudicialResources.Pais_al_que_Pertenece_la_Informacion</th>
                                     <th>@Resources.Registro_de_Mandamiento_JudicialResources.Estado_que_Envia_la_Informacion</th>
                                     <th>@Resources.Registro_de_Mandamiento_JudicialResources.Municipio_que_Envia_la_Informacion</th>
                                     <th>@Resources.Registro_de_Mandamiento_JudicialResources.Institucion_que_Remite</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Dependencia_Autoridad_Remitente</th>
                                     <th>@Resources.Registro_de_Mandamiento_JudicialResources.Entidad_que_Emite_Mandamiento</th>
                                     <th>@Resources.Registro_de_Mandamiento_JudicialResources.Juzgado_que_Emitio_Mandamiento</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Mandamiento</th>
                                     <th>@Resources.Registro_de_Mandamiento_JudicialResources.Oficio_de_Juzgado</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Nombre</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Alias</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Apellido_Paterno</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Apellido_Materno</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Nacimiento</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Edad</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Estatura</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Peso</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Usa_Anteojos</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Sexo</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Estado_Civil</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Tipo_de_Identificacion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Identificacion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Nacionalidad</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Escolaridad</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Ocupacion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Pais_de_Nacimiento</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Estado_de_Nacimiento</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Tipo_de_Orden</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Orden</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Hora_de_Orden</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Dirigida_Por</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Ambito</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Juzgado</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Juez</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Especialidad</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Causa</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Oficio</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Tipo_de_Cuantia</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Area_que_envia_Orden</th>
                                     <th>@Resources.Registro_de_Mandamiento_JudicialResources.Observaciones</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Forma_Cara</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Cejas</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Cantidad_Cabello</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Implantacion_Cabello</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Complexion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Color_Piel</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Frente</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Forma_Cabello</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Color_Cabello</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Calvicie</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Color_Ojos</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Ojos</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Forma_Ojos</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Nariz_Base</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Labios</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Boca</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Menton</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Barba</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Forma_Orejas</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Tamano_Orejas</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Tipo_Lobulo</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Bigote</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Situacion_Fisica</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Libramiento</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fuerzo</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Tipo_Mandato</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Estatus</th>
                                     <th>@Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Proceso_Judicial</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Averiguacion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Captura</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Recepcion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Prescripcion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Cumplimiento</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Oficio_de_Cumplimiento</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Cancelacion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Motivo_de_Cancelacion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Oficio_de_Cancelacion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Tipo_de_Proceso</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Proceso_de_Extradiccion</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Observacionesx</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Huellas_Digitales</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Mano_Izquierda_dedos</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Mano_Derecha_Pulgar</th>
-                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Mano_Derecha_Dedos</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Libramiento</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Oficio_de_Libramiento</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Transcripcion</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Oficio_Transcripcion</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Carpeta_de_Investigacion</th>
+                                    <th>@Resources.Registro_de_Mandamiento_JudicialResources.Causa_Penal</th>
 
                                 </tr>
                             </thead>
@@ -333,56 +242,13 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -397,24 +263,10 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
 
                                 </tr>
                             </tfoot>
@@ -531,173 +383,59 @@
         var queryString = GetQueryString();
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Folio_de_la_Orden_de_Aprehension =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Mandamiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_Mandato =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fuente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
         var Pais_al_que_Pertenece_la_Informacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado_que_Envia_la_Informacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio_que_Envia_la_Informacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Institucion_que_Remite =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Dependencia_Autoridad_Remitente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Entidad_que_Emite_Mandamiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Juzgado_que_Emitio_Mandamiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Mandamiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Oficio_de_Juzgado =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Alias =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Nacimiento = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Edad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estatura =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Peso =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Usa_Anteojos = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Sexo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado_Civil =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Escolaridad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pais_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Orden =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Orden = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Orden = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Dirigida_Por =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ambito =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Juzgado =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Juez =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Especialidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Causa =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Oficio = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Cuantia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Area_que_envia_Orden =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_Cara =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Cejas =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Cantidad_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Implantacion_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Complexion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Color_Piel =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Frente =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Color_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Calvicie =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Color_Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nariz_Base =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Labios =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Boca =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Menton =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Barba =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_Orejas =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tamano_Orejas =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_Lobulo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Bigote =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Situacion_Fisica =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Libramiento = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fuerzo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_Mandato =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Proceso_Judicial =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Averiguacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Captura = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Recepcion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Prescripcion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Oficio_de_Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Cancelacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Motivo_de_Cancelacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Oficio_de_Cancelacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Proceso =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Proceso_de_Extradiccion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Observacionesx =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Huellas_Digitales =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Mano_Izquierda_dedos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Mano_Derecha_Pulgar =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Mano_Derecha_Dedos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Libramiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Oficio_de_Libramiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Transcripcion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Oficio_Transcripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Causa_Penal =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
-        + "&Folio_de_la_Orden_de_Aprehension=" + Folio_de_la_Orden_de_Aprehension
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Hora_de_Registro=" + Hora_de_Registro
+        + "&Usuario_que_Registra=" + Usuario_que_Registra
+        + "&Numero_de_Mandamiento=" + Numero_de_Mandamiento
+        + "&Tipo_Mandato=" + Tipo_Mandato
+        + "&Fuente=" + Fuente
+        + "&Fecha_de_Solicitud=" + Fecha_de_Solicitud
         + "&Pais_al_que_Pertenece_la_Informacion=" + Pais_al_que_Pertenece_la_Informacion
         + "&Estado_que_Envia_la_Informacion=" + Estado_que_Envia_la_Informacion
         + "&Municipio_que_Envia_la_Informacion=" + Municipio_que_Envia_la_Informacion
         + "&Institucion_que_Remite=" + Institucion_que_Remite
+        + "&Dependencia_Autoridad_Remitente=" + Dependencia_Autoridad_Remitente
         + "&Entidad_que_Emite_Mandamiento=" + Entidad_que_Emite_Mandamiento
         + "&Juzgado_que_Emitio_Mandamiento=" + Juzgado_que_Emitio_Mandamiento
-        + "&Numero_de_Mandamiento=" + Numero_de_Mandamiento
         + "&Oficio_de_Juzgado=" + Oficio_de_Juzgado
-        + "&Nombre=" + Nombre
-        + "&Alias=" + Alias
-        + "&Apellido_Paterno=" + Apellido_Paterno
-        + "&Apellido_Materno=" + Apellido_Materno
-        + "&Fecha_de_Nacimiento=" + Fecha_de_Nacimiento
-        + "&Edad=" + Edad
-        + "&Estatura=" + Estatura
-        + "&Peso=" + Peso
-        + "&Usa_Anteojos=" + Usa_Anteojos
-        + "&Sexo=" + Sexo
-        + "&Estado_Civil=" + Estado_Civil
-        + "&Tipo_de_Identificacion=" + Tipo_de_Identificacion
-        + "&Numero_de_Identificacion=" + Numero_de_Identificacion
-        + "&Nacionalidad=" + Nacionalidad
-        + "&Escolaridad=" + Escolaridad
-        + "&Ocupacion=" + Ocupacion
-        + "&Pais_de_Nacimiento=" + Pais_de_Nacimiento
-        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
-        + "&Tipo_de_Orden=" + Tipo_de_Orden
-        + "&Fecha_de_Orden=" + Fecha_de_Orden
-        + "&Hora_de_Orden=" + Hora_de_Orden
-        + "&Dirigida_Por=" + Dirigida_Por
-        + "&Ambito=" + Ambito
-        + "&Juzgado=" + Juzgado
-        + "&Juez=" + Juez
-        + "&Especialidad=" + Especialidad
-        + "&Numero_de_Causa=" + Numero_de_Causa
-        + "&Fecha_de_Oficio=" + Fecha_de_Oficio
-        + "&Tipo_de_Cuantia=" + Tipo_de_Cuantia
+        + "&Area_que_envia_Orden=" + Area_que_envia_Orden
         + "&Observaciones=" + Observaciones
-        + "&Forma_Cara=" + Forma_Cara
-        + "&Cejas=" + Cejas
-        + "&Cantidad_Cabello=" + Cantidad_Cabello
-        + "&Implantacion_Cabello=" + Implantacion_Cabello
-        + "&Complexion=" + Complexion
-        + "&Color_Piel=" + Color_Piel
-        + "&Frente=" + Frente
-        + "&Forma_Cabello=" + Forma_Cabello
-        + "&Color_Cabello=" + Color_Cabello
-        + "&Calvicie=" + Calvicie
-        + "&Color_Ojos=" + Color_Ojos
-        + "&Ojos=" + Ojos
-        + "&Forma_Ojos=" + Forma_Ojos
-        + "&Nariz_Base=" + Nariz_Base
-        + "&Labios=" + Labios
-        + "&Boca=" + Boca
-        + "&Menton=" + Menton
-        + "&Barba=" + Barba
-        + "&Forma_Orejas=" + Forma_Orejas
-        + "&Tamano_Orejas=" + Tamano_Orejas
-        + "&Tipo_Lobulo=" + Tipo_Lobulo
-        + "&Bigote=" + Bigote
-        + "&Situacion_Fisica=" + Situacion_Fisica
-        + "&Fecha_de_Libramiento=" + Fecha_de_Libramiento
-        + "&Fuerzo=" + Fuerzo
-        + "&Tipo_Mandato=" + Tipo_Mandato
+        + "&Estatus=" + Estatus
         + "&Numero_de_Proceso_Judicial=" + Numero_de_Proceso_Judicial
-        + "&Numero_de_Averiguacion=" + Numero_de_Averiguacion
-        + "&Fecha_de_Captura=" + Fecha_de_Captura
-        + "&Fecha_de_Recepcion=" + Fecha_de_Recepcion
-        + "&Fecha_de_Prescripcion=" + Fecha_de_Prescripcion
-        + "&Fecha_de_Cumplimiento=" + Fecha_de_Cumplimiento
-        + "&Oficio_de_Cumplimiento=" + Oficio_de_Cumplimiento
-        + "&Fecha_de_Cancelacion=" + Fecha_de_Cancelacion
-        + "&Motivo_de_Cancelacion=" + Motivo_de_Cancelacion
-        + "&Oficio_de_Cancelacion=" + Oficio_de_Cancelacion
-        + "&Tipo_de_Proceso=" + Tipo_de_Proceso
-        + "&Proceso_de_Extradiccion=" + Proceso_de_Extradiccion
-        + "&Observacionesx=" + Observacionesx
-        + "&Huellas_Digitales=" + Huellas_Digitales
-        + "&Mano_Izquierda_dedos=" + Mano_Izquierda_dedos
-        + "&Mano_Derecha_Pulgar=" + Mano_Derecha_Pulgar
-        + "&Mano_Derecha_Dedos=" + Mano_Derecha_Dedos
+        + "&Fecha_de_Libramiento=" + Fecha_de_Libramiento
+        + "&Oficio_de_Libramiento=" + Oficio_de_Libramiento
+        + "&Fecha_de_Transcripcion=" + Fecha_de_Transcripcion
+        + "&Oficio_Transcripcion=" + Oficio_Transcripcion
+        + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
+        + "&Causa_Penal=" + Causa_Penal
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Registro_de_Mandamiento_Judicial/Export?format=")" + format
@@ -712,173 +450,59 @@
 	
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Folio_de_la_Orden_de_Aprehension =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Mandamiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_Mandato =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fuente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
         var Pais_al_que_Pertenece_la_Informacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado_que_Envia_la_Informacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio_que_Envia_la_Informacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Institucion_que_Remite =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Dependencia_Autoridad_Remitente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Entidad_que_Emite_Mandamiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Juzgado_que_Emitio_Mandamiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Mandamiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Oficio_de_Juzgado =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Alias =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Nacimiento = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Edad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estatura =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Peso =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Usa_Anteojos = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Sexo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado_Civil =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Escolaridad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pais_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Orden =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Orden = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Orden = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Dirigida_Por =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ambito =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Juzgado =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Juez =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Especialidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Causa =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Oficio = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Cuantia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Area_que_envia_Orden =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_Cara =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Cejas =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Cantidad_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Implantacion_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Complexion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Color_Piel =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Frente =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Color_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Calvicie =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Color_Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nariz_Base =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Labios =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Boca =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Menton =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Barba =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_Orejas =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tamano_Orejas =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_Lobulo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Bigote =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Situacion_Fisica =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Libramiento = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fuerzo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_Mandato =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Proceso_Judicial =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Averiguacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Captura = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Recepcion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Prescripcion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Oficio_de_Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Cancelacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Motivo_de_Cancelacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Oficio_de_Cancelacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Proceso =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Proceso_de_Extradiccion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Observacionesx =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Huellas_Digitales =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Mano_Izquierda_dedos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Mano_Derecha_Pulgar =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Mano_Derecha_Dedos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Libramiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Oficio_de_Libramiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Transcripcion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Oficio_Transcripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Causa_Penal =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
-        + "&Folio_de_la_Orden_de_Aprehension=" + Folio_de_la_Orden_de_Aprehension
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Hora_de_Registro=" + Hora_de_Registro
+        + "&Usuario_que_Registra=" + Usuario_que_Registra
+        + "&Numero_de_Mandamiento=" + Numero_de_Mandamiento
+        + "&Tipo_Mandato=" + Tipo_Mandato
+        + "&Fuente=" + Fuente
+        + "&Fecha_de_Solicitud=" + Fecha_de_Solicitud
         + "&Pais_al_que_Pertenece_la_Informacion=" + Pais_al_que_Pertenece_la_Informacion
         + "&Estado_que_Envia_la_Informacion=" + Estado_que_Envia_la_Informacion
         + "&Municipio_que_Envia_la_Informacion=" + Municipio_que_Envia_la_Informacion
         + "&Institucion_que_Remite=" + Institucion_que_Remite
+        + "&Dependencia_Autoridad_Remitente=" + Dependencia_Autoridad_Remitente
         + "&Entidad_que_Emite_Mandamiento=" + Entidad_que_Emite_Mandamiento
         + "&Juzgado_que_Emitio_Mandamiento=" + Juzgado_que_Emitio_Mandamiento
-        + "&Numero_de_Mandamiento=" + Numero_de_Mandamiento
         + "&Oficio_de_Juzgado=" + Oficio_de_Juzgado
-        + "&Nombre=" + Nombre
-        + "&Alias=" + Alias
-        + "&Apellido_Paterno=" + Apellido_Paterno
-        + "&Apellido_Materno=" + Apellido_Materno
-        + "&Fecha_de_Nacimiento=" + Fecha_de_Nacimiento
-        + "&Edad=" + Edad
-        + "&Estatura=" + Estatura
-        + "&Peso=" + Peso
-        + "&Usa_Anteojos=" + Usa_Anteojos
-        + "&Sexo=" + Sexo
-        + "&Estado_Civil=" + Estado_Civil
-        + "&Tipo_de_Identificacion=" + Tipo_de_Identificacion
-        + "&Numero_de_Identificacion=" + Numero_de_Identificacion
-        + "&Nacionalidad=" + Nacionalidad
-        + "&Escolaridad=" + Escolaridad
-        + "&Ocupacion=" + Ocupacion
-        + "&Pais_de_Nacimiento=" + Pais_de_Nacimiento
-        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
-        + "&Tipo_de_Orden=" + Tipo_de_Orden
-        + "&Fecha_de_Orden=" + Fecha_de_Orden
-        + "&Hora_de_Orden=" + Hora_de_Orden
-        + "&Dirigida_Por=" + Dirigida_Por
-        + "&Ambito=" + Ambito
-        + "&Juzgado=" + Juzgado
-        + "&Juez=" + Juez
-        + "&Especialidad=" + Especialidad
-        + "&Numero_de_Causa=" + Numero_de_Causa
-        + "&Fecha_de_Oficio=" + Fecha_de_Oficio
-        + "&Tipo_de_Cuantia=" + Tipo_de_Cuantia
+        + "&Area_que_envia_Orden=" + Area_que_envia_Orden
         + "&Observaciones=" + Observaciones
-        + "&Forma_Cara=" + Forma_Cara
-        + "&Cejas=" + Cejas
-        + "&Cantidad_Cabello=" + Cantidad_Cabello
-        + "&Implantacion_Cabello=" + Implantacion_Cabello
-        + "&Complexion=" + Complexion
-        + "&Color_Piel=" + Color_Piel
-        + "&Frente=" + Frente
-        + "&Forma_Cabello=" + Forma_Cabello
-        + "&Color_Cabello=" + Color_Cabello
-        + "&Calvicie=" + Calvicie
-        + "&Color_Ojos=" + Color_Ojos
-        + "&Ojos=" + Ojos
-        + "&Forma_Ojos=" + Forma_Ojos
-        + "&Nariz_Base=" + Nariz_Base
-        + "&Labios=" + Labios
-        + "&Boca=" + Boca
-        + "&Menton=" + Menton
-        + "&Barba=" + Barba
-        + "&Forma_Orejas=" + Forma_Orejas
-        + "&Tamano_Orejas=" + Tamano_Orejas
-        + "&Tipo_Lobulo=" + Tipo_Lobulo
-        + "&Bigote=" + Bigote
-        + "&Situacion_Fisica=" + Situacion_Fisica
-        + "&Fecha_de_Libramiento=" + Fecha_de_Libramiento
-        + "&Fuerzo=" + Fuerzo
-        + "&Tipo_Mandato=" + Tipo_Mandato
+        + "&Estatus=" + Estatus
         + "&Numero_de_Proceso_Judicial=" + Numero_de_Proceso_Judicial
-        + "&Numero_de_Averiguacion=" + Numero_de_Averiguacion
-        + "&Fecha_de_Captura=" + Fecha_de_Captura
-        + "&Fecha_de_Recepcion=" + Fecha_de_Recepcion
-        + "&Fecha_de_Prescripcion=" + Fecha_de_Prescripcion
-        + "&Fecha_de_Cumplimiento=" + Fecha_de_Cumplimiento
-        + "&Oficio_de_Cumplimiento=" + Oficio_de_Cumplimiento
-        + "&Fecha_de_Cancelacion=" + Fecha_de_Cancelacion
-        + "&Motivo_de_Cancelacion=" + Motivo_de_Cancelacion
-        + "&Oficio_de_Cancelacion=" + Oficio_de_Cancelacion
-        + "&Tipo_de_Proceso=" + Tipo_de_Proceso
-        + "&Proceso_de_Extradiccion=" + Proceso_de_Extradiccion
-        + "&Observacionesx=" + Observacionesx
-        + "&Huellas_Digitales=" + Huellas_Digitales
-        + "&Mano_Izquierda_dedos=" + Mano_Izquierda_dedos
-        + "&Mano_Derecha_Pulgar=" + Mano_Derecha_Pulgar
-        + "&Mano_Derecha_Dedos=" + Mano_Derecha_Dedos
+        + "&Fecha_de_Libramiento=" + Fecha_de_Libramiento
+        + "&Oficio_de_Libramiento=" + Oficio_de_Libramiento
+        + "&Fecha_de_Transcripcion=" + Fecha_de_Transcripcion
+        + "&Oficio_Transcripcion=" + Oficio_Transcripcion
+        + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
+        + "&Causa_Penal=" + Causa_Penal
 ;
 
     }
@@ -1059,11 +683,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -1127,88 +751,31 @@
                     }
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
-                ,{ "data": "Folio_de_la_Orden_de_Aprehension", "orderable": true, "name": "Folio_de_la_Orden_de_Aprehension", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
+                ,{ "data": "Hora_de_Registro", "orderable": true, "name": "Hora_de_Registro" }
+                ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName"}
+                ,{ "data": "Numero_de_Mandamiento", "orderable": true, "name": "Numero_de_Mandamiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Tipo_MandatoDescripcion", "orderable": true, "name": "Tipo_MandatoDescripcion" }
+                ,{ "data": "FuenteDescripcion", "orderable": true, "name": "FuenteDescripcion" }
+                ,{ "data": "Fecha_de_Solicitud", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Solicitud" }
                 ,{ "data": "Pais_al_que_Pertenece_la_InformacionNombre", "orderable": true, "name": "Pais_al_que_Pertenece_la_InformacionNombre"}
                 ,{ "data": "Estado_que_Envia_la_InformacionNombre", "orderable": true, "name": "Estado_que_Envia_la_InformacionNombre"}
                 ,{ "data": "Municipio_que_Envia_la_InformacionNombre", "orderable": true, "name": "Municipio_que_Envia_la_InformacionNombre"}
                 ,{ "data": "Institucion_que_RemiteNombre", "orderable": true, "name": "Institucion_que_RemiteNombre" }
+                ,{ "data": "Dependencia_Autoridad_Remitente", "orderable": true, "name": "Dependencia_Autoridad_Remitente", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Entidad_que_Emite_MandamientoNombre", "orderable": true, "name": "Entidad_que_Emite_MandamientoNombre"}
                 ,{ "data": "Juzgado_que_Emitio_MandamientoNombre", "orderable": true, "name": "Juzgado_que_Emitio_MandamientoNombre" }
-                ,{ "data": "Numero_de_Mandamiento", "orderable": true, "name": "Numero_de_Mandamiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Oficio_de_Juzgado", "orderable": true, "name": "Oficio_de_Juzgado", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Nombre", "orderable": true, "name": "Nombre", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Alias", "orderable": true, "name": "Alias", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Apellido_Paterno", "orderable": true, "name": "Apellido_Paterno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Apellido_Materno", "orderable": true, "name": "Apellido_Materno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_de_Nacimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Nacimiento" }
-                ,{ "data": "Edad","className": "dt-right", "orderable": true, "name": "Edad" }
-                ,{ "data": "Estatura","className": "dt-right", "orderable": true, "name": "Estatura" }
-                ,{ "data": "Peso","className": "dt-right", "orderable": true, "name": "Peso" }
-                ,{ "data": "Usa_Anteojos", "orderable": true, "name": "Usa_Anteojos","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
-                ,{ "data": "SexoDescripcion", "orderable": true, "name": "SexoDescripcion" }
-                ,{ "data": "Estado_CivilDescripcion", "orderable": true, "name": "Estado_CivilDescripcion" }
-                ,{ "data": "Tipo_de_IdentificacionNombre", "orderable": true, "name": "Tipo_de_IdentificacionNombre" }
-                ,{ "data": "Numero_de_Identificacion", "orderable": true, "name": "Numero_de_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "NacionalidadNacionalidadC", "orderable": true, "name": "NacionalidadNacionalidadC"}
-                ,{ "data": "EscolaridadDescripcion", "orderable": true, "name": "EscolaridadDescripcion" }
-                ,{ "data": "OcupacionDescripcion", "orderable": true, "name": "OcupacionDescripcion" }
-                ,{ "data": "Pais_de_NacimientoNombre", "orderable": true, "name": "Pais_de_NacimientoNombre"}
-                ,{ "data": "Estado_de_NacimientoNombre", "orderable": true, "name": "Estado_de_NacimientoNombre"}
-                ,{ "data": "Tipo_de_OrdenTipo_de_Ordenx", "orderable": true, "name": "Tipo_de_OrdenTipo_de_Ordenx" }
-                ,{ "data": "Fecha_de_Orden", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Orden" }
-                ,{ "data": "Hora_de_Orden", "orderable": true, "name": "Hora_de_Orden" }
-                ,{ "data": "Dirigida_Por", "orderable": true, "name": "Dirigida_Por", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "AmbitoAmbitox", "orderable": true, "name": "AmbitoAmbitox" }
-                ,{ "data": "JuzgadoNombre", "orderable": true, "name": "JuzgadoNombre" }
-                ,{ "data": "Juez", "orderable": true, "name": "Juez", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "EspecialidadDescripcion", "orderable": true, "name": "EspecialidadDescripcion" }
-                ,{ "data": "Numero_de_Causa", "orderable": true, "name": "Numero_de_Causa", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_de_Oficio", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Oficio" }
-                ,{ "data": "Tipo_de_CuantiaDescripcion", "orderable": true, "name": "Tipo_de_CuantiaDescripcion" }
+                ,{ "data": "Area_que_envia_OrdenDescripcion", "orderable": true, "name": "Area_que_envia_OrdenDescripcion"}
                 ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Forma_CaraDescripcion", "orderable": true, "name": "Forma_CaraDescripcion" }
-                ,{ "data": "CejasDescripcion", "orderable": true, "name": "CejasDescripcion" }
-                ,{ "data": "Cantidad_CabelloDescripcion", "orderable": true, "name": "Cantidad_CabelloDescripcion" }
-                ,{ "data": "Implantacion_CabelloDescripcion", "orderable": true, "name": "Implantacion_CabelloDescripcion" }
-                ,{ "data": "ComplexionDescripcion", "orderable": true, "name": "ComplexionDescripcion" }
-                ,{ "data": "Color_PielDescrpicion", "orderable": true, "name": "Color_PielDescrpicion" }
-                ,{ "data": "FrenteDescripcion", "orderable": true, "name": "FrenteDescripcion" }
-                ,{ "data": "Forma_CabelloDescripcion", "orderable": true, "name": "Forma_CabelloDescripcion" }
-                ,{ "data": "Color_CabelloDescripcion", "orderable": true, "name": "Color_CabelloDescripcion" }
-                ,{ "data": "CalvicieDescripcion", "orderable": true, "name": "CalvicieDescripcion" }
-                ,{ "data": "Color_OjosDescripcion", "orderable": true, "name": "Color_OjosDescripcion" }
-                ,{ "data": "OjosDescripcion", "orderable": true, "name": "OjosDescripcion" }
-                ,{ "data": "Forma_OjosDescripcion", "orderable": true, "name": "Forma_OjosDescripcion" }
-                ,{ "data": "Nariz_BaseDescripcion", "orderable": true, "name": "Nariz_BaseDescripcion" }
-                ,{ "data": "LabiosDescripcion", "orderable": true, "name": "LabiosDescripcion" }
-                ,{ "data": "BocaDescripcion", "orderable": true, "name": "BocaDescripcion" }
-                ,{ "data": "MentonDescripcion", "orderable": true, "name": "MentonDescripcion" }
-                ,{ "data": "BarbaDescripcion", "orderable": true, "name": "BarbaDescripcion" }
-                ,{ "data": "Forma_OrejasDescripcion", "orderable": true, "name": "Forma_OrejasDescripcion" }
-                ,{ "data": "Tamano_OrejasDescripcion", "orderable": true, "name": "Tamano_OrejasDescripcion" }
-                ,{ "data": "Tipo_LobuloDescripcion", "orderable": true, "name": "Tipo_LobuloDescripcion" }
-                ,{ "data": "BigoteDescripcion", "orderable": true, "name": "BigoteDescripcion" }
-                ,{ "data": "Situacion_FisicaDescripcion", "orderable": true, "name": "Situacion_FisicaDescripcion" }
-                ,{ "data": "Fecha_de_Libramiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Libramiento" }
-                ,{ "data": "FuerzoDescripcion", "orderable": true, "name": "FuerzoDescripcion" }
-                ,{ "data": "Tipo_MandatoDescripcion", "orderable": true, "name": "Tipo_MandatoDescripcion" }
+                ,{ "data": "EstatusDescripcion", "orderable": true, "name": "EstatusDescripcion" }
                 ,{ "data": "Numero_de_Proceso_Judicial", "orderable": true, "name": "Numero_de_Proceso_Judicial", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Numero_de_Averiguacion", "orderable": true, "name": "Numero_de_Averiguacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_de_Captura", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Captura" }
-                ,{ "data": "Fecha_de_Recepcion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Recepcion" }
-                ,{ "data": "Fecha_de_Prescripcion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Prescripcion" }
-                ,{ "data": "Fecha_de_Cumplimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cumplimiento" }
-                ,{ "data": "Oficio_de_Cumplimiento", "orderable": true, "name": "Oficio_de_Cumplimiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_de_Cancelacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cancelacion" }
-                ,{ "data": "Motivo_de_CancelacionDescripcion", "orderable": true, "name": "Motivo_de_CancelacionDescripcion" }
-                ,{ "data": "Oficio_de_Cancelacion", "orderable": true, "name": "Oficio_de_Cancelacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Tipo_de_ProcesoDescripcion", "orderable": true, "name": "Tipo_de_ProcesoDescripcion" }
-                ,{ "data": "Proceso_de_ExtradiccionDescripcion", "orderable": true, "name": "Proceso_de_ExtradiccionDescripcion" }
-                ,{ "data": "Observacionesx", "orderable": true, "name": "Observacionesx", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Huellas_Digitales","className": "dt-right", "orderable": true, "name": "Huellas_Digitales" }
-                ,{ "data": "Mano_Izquierda_dedos","className": "dt-right", "orderable": true, "name": "Mano_Izquierda_dedos" }
-                ,{ "data": "Mano_Derecha_Pulgar","className": "dt-right", "orderable": true, "name": "Mano_Derecha_Pulgar" }
-                ,{ "data": "Mano_Derecha_Dedos","className": "dt-right", "orderable": true, "name": "Mano_Derecha_Dedos" }
+                ,{ "data": "Fecha_de_Libramiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Libramiento" }
+                ,{ "data": "Oficio_de_Libramiento", "orderable": true, "name": "Oficio_de_Libramiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Transcripcion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Transcripcion" }
+                ,{ "data": "Oficio_Transcripcion", "orderable": true, "name": "Oficio_Transcripcion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Carpeta_de_Investigacionnic", "orderable": true, "name": "Carpeta_de_Investigacionnic"}
+                ,{ "data": "Causa_Penalcausa_o_cuadernillo", "orderable": true, "name": "Causa_Penalcausa_o_cuadernillo"}
 
             ],
 			"colReorder": true,

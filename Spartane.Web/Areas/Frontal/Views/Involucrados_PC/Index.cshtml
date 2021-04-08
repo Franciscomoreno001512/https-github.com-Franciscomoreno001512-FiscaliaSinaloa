@@ -2,9 +2,9 @@
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Involucrados_PC;
 @using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
-@using Spartane.Core.Domain.Tipo_de_Solicitud;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Tipo_de_Compareciente;
+@using Spartane.Core.Domain.Tipo_de_Victima;
 @using Spartane.Core.Domain.Genero;
 @using Spartane.Core.Domain.Estado_Civil;
 @using Spartane.Core.Domain.Tipo_de_Identificacion;
@@ -211,9 +211,10 @@
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Involucrados_PCResources.Clave</th>
                                     <th>@Resources.Involucrados_PCResources.Solicitud</th>
-                                    <th>@Resources.Involucrados_PCResources.Tipo_de_Solicitud</th>
+                                    <th>@Resources.Involucrados_PCResources.Desea_indicar_datos_adicionales</th>
                                     <th>@Resources.Involucrados_PCResources.Usuario_que_Registra</th>
                                     <th>@Resources.Involucrados_PCResources.Tipo_de_Compareciente</th>
+                                    <th>@Resources.Involucrados_PCResources.Tipo_de_Victima</th>
                                     <th>@Resources.Involucrados_PCResources.Nombres</th>
                                     <th>@Resources.Involucrados_PCResources.Apellido_Paterno</th>
                                     <th>@Resources.Involucrados_PCResources.Apellido_Materno</th>
@@ -227,6 +228,7 @@
                                     <th>@Resources.Involucrados_PCResources.CURP</th>
                                     <th>@Resources.Involucrados_PCResources.Nacionalidad</th>
                                     <th>@Resources.Involucrados_PCResources.Originario_de</th>
+                                    <th>@Resources.Involucrados_PCResources.Existieron_testigos</th>
                                     <th>@Resources.Involucrados_PCResources.Pais</th>
                                     <th>@Resources.Involucrados_PCResources.Estado</th>
                                     <th>@Resources.Involucrados_PCResources.Municipio</th>
@@ -249,6 +251,7 @@
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -265,6 +268,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -396,9 +400,10 @@
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Desea_indicar_datos_adicionales = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Compareciente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Victima =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -412,6 +417,7 @@
         var CURP =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Originario_de =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Existieron_testigos = $($('table td .filterData.form-control:input')[counter++]).val();
         var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -430,9 +436,10 @@
 
         var queryString = "&Clave=" + Clave 
         + "&Solicitud=" + Solicitud
-        + "&Tipo_de_Solicitud=" + Tipo_de_Solicitud
+        + "&Desea_indicar_datos_adicionales=" + Desea_indicar_datos_adicionales
         + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Tipo_de_Compareciente=" + Tipo_de_Compareciente
+        + "&Tipo_de_Victima=" + Tipo_de_Victima
         + "&Nombres=" + Nombres
         + "&Apellido_Paterno=" + Apellido_Paterno
         + "&Apellido_Materno=" + Apellido_Materno
@@ -446,6 +453,7 @@
         + "&CURP=" + CURP
         + "&Nacionalidad=" + Nacionalidad
         + "&Originario_de=" + Originario_de
+        + "&Existieron_testigos=" + Existieron_testigos
         + "&Pais=" + Pais
         + "&Estado=" + Estado
         + "&Municipio=" + Municipio
@@ -475,9 +483,10 @@
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Desea_indicar_datos_adicionales = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Compareciente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Victima =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -491,6 +500,7 @@
         var CURP =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Originario_de =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Existieron_testigos = $($('table td .filterData.form-control:input')[counter++]).val();
         var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -509,9 +519,10 @@
 
         return "&Clave=" + Clave 
         + "&Solicitud=" + Solicitud
-        + "&Tipo_de_Solicitud=" + Tipo_de_Solicitud
+        + "&Desea_indicar_datos_adicionales=" + Desea_indicar_datos_adicionales
         + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Tipo_de_Compareciente=" + Tipo_de_Compareciente
+        + "&Tipo_de_Victima=" + Tipo_de_Victima
         + "&Nombres=" + Nombres
         + "&Apellido_Paterno=" + Apellido_Paterno
         + "&Apellido_Materno=" + Apellido_Materno
@@ -525,6 +536,7 @@
         + "&CURP=" + CURP
         + "&Nacionalidad=" + Nacionalidad
         + "&Originario_de=" + Originario_de
+        + "&Existieron_testigos=" + Existieron_testigos
         + "&Pais=" + Pais
         + "&Estado=" + Estado
         + "&Municipio=" + Municipio
@@ -637,7 +649,7 @@
 
     function SetTitle(printWindow) {
         if (printWindow.document) {
-            printWindow.document.title = "Involucrados PC Print";
+            printWindow.document.title = "Proporcione los datos de la Víctima Print";
         } else {
             setTimeout(SetTitle, 10);
         }
@@ -719,11 +731,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -788,9 +800,10 @@
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "SolicitudFolio", "orderable": true, "name": "SolicitudFolio"}
-                ,{ "data": "Tipo_de_SolicitudDescripcion", "orderable": true, "name": "Tipo_de_SolicitudDescripcion" }
+                ,{ "data": "Desea_indicar_datos_adicionales", "orderable": true, "name": "Desea_indicar_datos_adicionales","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName" }
                 ,{ "data": "Tipo_de_ComparecienteDescripcion", "orderable": true, "name": "Tipo_de_ComparecienteDescripcion" }
+                ,{ "data": "Tipo_de_VictimaDescripcion", "orderable": true, "name": "Tipo_de_VictimaDescripcion" }
                 ,{ "data": "Nombres", "orderable": true, "name": "Nombres", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Paterno", "orderable": true, "name": "Apellido_Paterno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Materno", "orderable": true, "name": "Apellido_Materno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
@@ -804,6 +817,7 @@
                 ,{ "data": "CURP", "orderable": true, "name": "CURP", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "NacionalidadNacionalidadC", "orderable": true, "name": "NacionalidadNacionalidadC"}
                 ,{ "data": "Originario_de", "orderable": true, "name": "Originario_de", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Existieron_testigos", "orderable": true, "name": "Existieron_testigos","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre"}
                 ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
                 ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}

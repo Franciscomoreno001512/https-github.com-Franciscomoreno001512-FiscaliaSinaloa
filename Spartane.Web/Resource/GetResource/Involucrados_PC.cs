@@ -46,13 +46,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Tipo_de_Solicitud</summary>
-        public static string Tipo_de_Solicitud
+        /// <summary>Desea_indicar_datos_adicionales</summary>
+        public static string Desea_indicar_datos_adicionales
         {
             get
             {
                 SetPath();
-                return resourceProviderInvolucrados_PC.GetResource("Tipo_de_Solicitud", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderInvolucrados_PC.GetResource("Desea_indicar_datos_adicionales", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -73,6 +73,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderInvolucrados_PC.GetResource("Tipo_de_Compareciente", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Tipo_de_Victima</summary>
+        public static string Tipo_de_Victima
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderInvolucrados_PC.GetResource("Tipo_de_Victima", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -213,6 +223,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderInvolucrados_PC.GetResource("Originario_de", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Existieron_testigos</summary>
+        public static string Existieron_testigos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderInvolucrados_PC.GetResource("Existieron_testigos", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

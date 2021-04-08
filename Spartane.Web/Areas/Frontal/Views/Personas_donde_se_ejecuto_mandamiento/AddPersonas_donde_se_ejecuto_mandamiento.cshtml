@@ -1,0 +1,441 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Personas_donde_se_ejecuto_mandamientoModel
+@{
+
+
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Personas donde se ejecutó mandamiento
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Personas_donde_se_ejecuto_mandamientoRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Personas_donde_se_ejecuto_mandamientoPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Personas donde se ejecutó mandamiento
+								<button onclick="Personas_donde_se_ejecuto_mandamientoGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Personas_donde_se_ejecuto_mandamientoBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Personas_donde_se_ejecuto_mandamientoResources.Personas_donde_se_ejecuto_mandamiento</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Personas_donde_se_ejecuto_mandamientoDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Personas_donde_se_ejecuto_mandamientoPropertyBusinessModal" id="Personas_donde_se_ejecuto_mandamientoPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Personas_donde_se_ejecuto_mandamientoBusinessRule-form" onclick="Personas_donde_se_ejecuto_mandamientoGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Personas_donde_se_ejecuto_mandamientoPropertyModal" id="Personas_donde_se_ejecuto_mandamientoPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Personas_donde_se_ejecuto_mandamientoBusinessRuleModal" id="Personas_donde_se_ejecuto_mandamientoBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Personas_donde_se_ejecuto_mandamientoAddBusinessRuleModal" id="Personas_donde_se_ejecuto_mandamientoAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Personas_donde_se_ejecuto_mandamiento", FormMethod.Post, new { id = "CreatePersonas_donde_se_ejecuto_mandamiento", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Personas_donde_se_ejecuto_mandamientoCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divFolio">
+                                <label class="col-sm-2 control-label">@Resources.Personas_donde_se_ejecuto_mandamientoResources.Folio</label>
+                                <div class="col-sm-8" data-field-id="Folio" data-attribute="273761" data-field-name="@Resources.Personas_donde_se_ejecuto_mandamientoResources.Folio">
+                                    <label class="form-control" for="Personas_donde_se_ejecuto_mandamientoFolio" id="Personas_donde_se_ejecuto_mandamientoFolio">@Model.Folio</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divPersona">
+                                <label class="col-sm-2 control-label">@Resources.Personas_donde_se_ejecuto_mandamientoResources.Persona</label>
+                                <div class="col-sm-8" data-field-id="Persona" data-attribute="273763" data-field-name="@Resources.Personas_donde_se_ejecuto_mandamientoResources.Persona">
+                                    <input class="form-control" id="Personas_donde_se_ejecuto_mandamientoPersona" name="Personas_donde_se_ejecuto_mandamientoPersona" type="text" value="@Model.Persona">
+                                </div>
+                            </div>
+<div class="form-group" id="divSeleccionar">
+                                <label class="col-sm-2 control-label">@Resources.Personas_donde_se_ejecuto_mandamientoResources.Seleccionar</label>
+                                <div class="col-sm-8" data-field-id="Seleccionar" data-attribute="273764" data-field-name="@Resources.Personas_donde_se_ejecuto_mandamientoResources.Seleccionar">
+                                    @Html.CheckBoxFor(m => m.Seleccionar, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divPersonaId">
+	<label class="col-sm-2 control-label">@Resources.Personas_donde_se_ejecuto_mandamientoResources.PersonaId</label>
+	<div class="col-sm-8" data-field-id="PersonaId" data-attribute="273765" data-field-name="@Resources.Personas_donde_se_ejecuto_mandamientoResources.PersonaId">
+		<input class="form-control inputNumber" id="Personas_donde_se_ejecuto_mandamientoPersonaId" name="Personas_donde_se_ejecuto_mandamientoPersonaId" type="text" value="@Model.PersonaId">
+	</div>
+</div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Folio" id="ReferenceFolio" />
+												<input type="hidden" value="@Model.Folio" name="Folio" id="FolioId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Personas_donde_se_ejecuto_mandamientoConfigureSave" name="Personas_donde_se_ejecuto_mandamientoConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnPersonas_donde_se_ejecuto_mandamientoConfigureType" />
+												<input type="hidden" id="hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldId" />
+												<input type="hidden" id="hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldName" />
+												<input type="hidden" id="hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Personas_donde_se_ejecuto_mandamientoGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Personas_donde_se_ejecuto_mandamientoBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Personas_donde_se_ejecuto_mandamiento.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Personas_donde_se_ejecuto_mandamientoGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Personas_donde_se_ejecuto_mandamientoCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Registro_de_CumplimientoCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Personas_donde_se_ejecuto_mandamientoRowElement = "Personas_donde_se_ejecuto_mandamientoPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Personas_donde_se_ejecuto_mandamientoRowElement + "')){ Personas_donde_se_ejecuto_mandamientoInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendPersonas_donde_se_ejecuto_mandamientoData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreatePersonas_donde_se_ejecuto_mandamiento").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreatePersonas_donde_se_ejecuto_mandamiento")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Personas_donde_se_ejecuto_mandamientoCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Personas_donde_se_ejecuto_mandamiento/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Personas_donde_se_ejecuto_mandamientoPropertyBag", "Personas_donde_se_ejecuto_mandamiento")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Personas_donde_se_ejecuto_mandamientoGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldId').val(FieldId);
+				$('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldName').val(FieldName);
+				$('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldId').val(), FieldName: $('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldName').val(), ObjectId: '46304', Attribute: $('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleAttribute').val(), Screen: 'Personas_donde_se_ejecuto_mandamiento' }, function (data) {
+                $(".Personas_donde_se_ejecuto_mandamientoBusinessRuleModal").html(data);
+            });
+        }
+        function Personas_donde_se_ejecuto_mandamientoGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldId').val(FieldId);
+				$('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldName').val(FieldName);
+				$('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldId').val(), FieldName: $('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldName').val(), ObjectId: '46304', Attribute: $('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleAttribute').val(), Screen: 'Personas_donde_se_ejecuto_mandamiento' }, function (data) {
+                $(".Personas_donde_se_ejecuto_mandamientoAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldId').val(), FieldName: $('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldName').val(), ObjectId: '46304', Attribute: $('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleAttribute').val(), Screen: 'Personas_donde_se_ejecuto_mandamiento' }, function (data) {
+				$(".Personas_donde_se_ejecuto_mandamientoBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Personas_donde_se_ejecuto_mandamiento/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Personas_donde_se_ejecuto_mandamiento/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Personas_donde_se_ejecuto_mandamiento/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnPersonas_donde_se_ejecuto_mandamientoConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnPersonas_donde_se_ejecuto_mandamientoConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Personas_donde_se_ejecuto_mandamiento/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnPersonas_donde_se_ejecuto_mandamientoConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Personas_donde_se_ejecuto_mandamiento/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Personas_donde_se_ejecuto_mandamiento' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Personas_donde_se_ejecuto_mandamiento' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Personas_donde_se_ejecuto_mandamientoConfigureSave').text('Save Settings');
+                    $('#hdnPersonas_donde_se_ejecuto_mandamientoConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreatePersonas_donde_se_ejecuto_mandamiento').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldId').val(fieldId);
+			$('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleFieldName').val(fieldName);
+			$('#hdnPersonas_donde_se_ejecuto_mandamientoBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

@@ -12,7 +12,9 @@ $(document).ready(function() {
 });
 
 function EjecutarValidacionesAlComienzo() {
-    //NEWBUSINESSRULE_SCREENOPENING//
+    
+
+//NEWBUSINESSRULE_SCREENOPENING//
 }
 
 function EjecutarValidacionesAntesDeGuardar() {

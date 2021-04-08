@@ -6,15 +6,15 @@
  List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud = null;
     if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
     { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
-    List<SelectListItem> varTipo_de_Solicitud_Tipo_de_Solicitud = null;
-    if (ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud != null)
-    { varTipo_de_Solicitud_Tipo_de_Solicitud = (List<SelectListItem>)ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud; }
     List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
     if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
     { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
     List<SelectListItem> varTipo_de_Compareciente_Tipo_de_Compareciente = null;
     if (ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente != null)
     { varTipo_de_Compareciente_Tipo_de_Compareciente = (List<SelectListItem>)ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente; }
+    List<SelectListItem> varTipo_de_Victima_Tipo_de_Victima = null;
+    if (ViewBag.Tipo_de_Victimas_Tipo_de_Victima != null)
+    { varTipo_de_Victima_Tipo_de_Victima = (List<SelectListItem>)ViewBag.Tipo_de_Victimas_Tipo_de_Victima; }
     List<SelectListItem> varGenero_Sexo = null;
     if (ViewBag.Generos_Sexo != null)
     { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
@@ -94,27 +94,6 @@
     if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
     { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
                 <div class="MarginBottom">
-                    <h3>@Resources.Involucrados_PCResources.Tipo_de_Solicitud</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Tipo_de_SolicitudFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_SolicitudFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Solicitud, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Solicitud" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_de_Solicitud_Tipo_de_Solicitud!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTipo_de_SolicitudMultiple, varTipo_de_Solicitud_Tipo_de_Solicitud,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTipo_de_Solicitud"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
                     <h3>@Resources.Involucrados_PCResources.Usuario_que_Registra</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -153,6 +132,27 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceTipo_de_Compareciente"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Involucrados_PCResources.Tipo_de_Victima</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_VictimaFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_VictimaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Victima, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Victima" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Victima_Tipo_de_Victima!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_VictimaMultiple, varTipo_de_Victima_Tipo_de_Victima,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Victima"
                         });
                     }
                 </div>
@@ -430,20 +430,9 @@
                 advanceSearch.SolicitudSearchType = 2;
             }
         }
-        advanceSearch.Tipo_de_SolicitudSearchType = 0;
-        if ($('#ddlAdvanceTipo_de_Solicitud').val().length > 0 || $("#txtAdvanceTipo_de_Solicitud").val() == "") {
-
-
-            if (isInvolucrados_PCTextSearch) {
-                advanceSearch.Tipo_de_SolicitudName = $("#txtAdvanceTipo_de_Solicitud").val();
-                advanceSearch.Tipo_de_SolicitudNameSearchType = $("#ddlAdvanceTipo_de_Solicitud").val();
-                advanceSearch.Tipo_de_SolicitudSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Tipo_de_SolicitudToSearch = $("#ddlAdvanceTipo_de_Solicitud").val();
-                advanceSearch.Tipo_de_SolicitudSearchType = 2;
-            }
+        if ($("#ddlAdvanceDesea_indicar_datos_adicionales").val() != "") {
+            hasParameter = true;
+            advanceSearch.Involucrados_PCDesea_indicar_datos_adicionales = $("#ddlAdvanceDesea_indicar_datos_adicionales").val();
         }
         advanceSearch.Usuario_que_RegistraSearchType = 0;
         if ($('#ddlAdvanceUsuario_que_Registra').val().length > 0 || $("#txtAdvanceUsuario_que_Registra").val() == "") {
@@ -473,6 +462,21 @@
 
                 advanceSearch.Tipo_de_ComparecienteToSearch = $("#ddlAdvanceTipo_de_Compareciente").val();
                 advanceSearch.Tipo_de_ComparecienteSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_VictimaSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Victima').val().length > 0 || $("#txtAdvanceTipo_de_Victima").val() == "") {
+
+
+            if (isInvolucrados_PCTextSearch) {
+                advanceSearch.Tipo_de_VictimaName = $("#txtAdvanceTipo_de_Victima").val();
+                advanceSearch.Tipo_de_VictimaNameSearchType = $("#ddlAdvanceTipo_de_Victima").val();
+                advanceSearch.Tipo_de_VictimaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_VictimaToSearch = $("#ddlAdvanceTipo_de_Victima").val();
+                advanceSearch.Tipo_de_VictimaSearchType = 2;
             }
         }
         if ($("#txtAdvanceNombres").val() != "") {
@@ -594,6 +598,10 @@
             hasParameter = true;
             advanceSearch.Involucrados_PCOriginario_de = $("#txtAdvanceOriginario_de").val();
             advanceSearch.Involucrados_PCOriginario_deSearchType = $("#ddlAdvanceOriginario_deFilter").val();
+        }
+        if ($("#ddlAdvanceExistieron_testigos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Involucrados_PCExistieron_testigos = $("#ddlAdvanceExistieron_testigos").val();
         }
         advanceSearch.PaisSearchType = 0;
         if ($('#ddlAdvancePais').val().length > 0 || $("#txtAdvancePais").val() == "") {
@@ -742,15 +750,6 @@
             isInvolucrados_PCTextSearch = false;
             $("#txtAdvanceSolicitud").val('');
         });
-        $("#txtAdvanceTipo_de_Solicitud").keypress(function () {
-            isInvolucrados_PCTextSearch = true;
-            $("#ddlAdvanceTipo_de_Solicitud").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceTipo_de_Solicitud").change(function () {
-            isInvolucrados_PCTextSearch = false;
-            $("#txtAdvanceTipo_de_Solicitud").val('');
-        });
         $("#txtAdvanceUsuario_que_Registra").keypress(function () {
             isInvolucrados_PCTextSearch = true;
             $("#ddlAdvanceUsuario_que_Registra").val('').trigger("chosen:updated");
@@ -768,6 +767,15 @@
         $("#ddlAdvanceTipo_de_Compareciente").change(function () {
             isInvolucrados_PCTextSearch = false;
             $("#txtAdvanceTipo_de_Compareciente").val('');
+        });
+        $("#txtAdvanceTipo_de_Victima").keypress(function () {
+            isInvolucrados_PCTextSearch = true;
+            $("#ddlAdvanceTipo_de_Victima").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Victima").change(function () {
+            isInvolucrados_PCTextSearch = false;
+            $("#txtAdvanceTipo_de_Victima").val('');
         });
         $("#txtAdvanceSexo").keypress(function () {
             isInvolucrados_PCTextSearch = true;

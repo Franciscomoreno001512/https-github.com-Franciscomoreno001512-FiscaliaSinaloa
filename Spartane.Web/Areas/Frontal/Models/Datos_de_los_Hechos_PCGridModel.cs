@@ -11,8 +11,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public int? Solicitud { get; set; }
         public string SolicitudFolio { get; set; }
-        public int? Tipo_de_Solicitud { get; set; }
-        public string Tipo_de_SolicitudDescripcion { get; set; }
         public string Titulo_del_Hecho { get; set; }
         public string Narrativa_Breve_de_los_Hechos { get; set; }
         public string Fecha_del_Hecho { get; set; }

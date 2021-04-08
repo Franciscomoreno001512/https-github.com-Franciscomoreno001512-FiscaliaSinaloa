@@ -221,216 +221,6 @@ public ApiResponse<int> Update_Datos_Generales(Registro_de_Mandamiento_Judicial_
             }
         }
 
-public ApiResponse<int> Update_Domicilio(Registro_de_Mandamiento_Judicial_Domicilio entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Domicilio",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Registro_de_Mandamiento_Judicial_Domicilio> Get_Domicilio(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Domicilio>(baseApi, ApiControllerUrl + "/Get_Domicilio?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Domicilio>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Domicilio>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Telefonos(Registro_de_Mandamiento_Judicial_Telefonos entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Telefonos",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Registro_de_Mandamiento_Judicial_Telefonos> Get_Telefonos(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Telefonos>(baseApi, ApiControllerUrl + "/Get_Telefonos?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Telefonos>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Telefonos>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Otros_Nombres(Registro_de_Mandamiento_Judicial_Otros_Nombres entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Otros_Nombres",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Registro_de_Mandamiento_Judicial_Otros_Nombres> Get_Otros_Nombres(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Otros_Nombres>(baseApi, ApiControllerUrl + "/Get_Otros_Nombres?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Otros_Nombres>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Otros_Nombres>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Datos_de_la_Orden(Registro_de_Mandamiento_Judicial_Datos_de_la_Orden entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_de_la_Orden",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Registro_de_Mandamiento_Judicial_Datos_de_la_Orden> Get_Datos_de_la_Orden(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Datos_de_la_Orden>(baseApi, ApiControllerUrl + "/Get_Datos_de_la_Orden?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Datos_de_la_Orden>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Datos_de_la_Orden>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Delito(Registro_de_Mandamiento_Judicial_Delito entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Delito",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Registro_de_Mandamiento_Judicial_Delito> Get_Delito(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Delito>(baseApi, ApiControllerUrl + "/Get_Delito?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Delito>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Delito>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Amparo(Registro_de_Mandamiento_Judicial_Amparo entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Amparo",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Registro_de_Mandamiento_Judicial_Amparo> Get_Amparo(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Amparo>(baseApi, ApiControllerUrl + "/Get_Amparo?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Amparo>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Amparo>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Media_Filiacion(Registro_de_Mandamiento_Judicial_Media_Filiacion entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Media_Filiacion",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Registro_de_Mandamiento_Judicial_Media_Filiacion> Get_Media_Filiacion(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Media_Filiacion>(baseApi, ApiControllerUrl + "/Get_Media_Filiacion?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Media_Filiacion>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Media_Filiacion>(false, null);
-            }
-        }
-
 public ApiResponse<int> Update_Proceso(Registro_de_Mandamiento_Judicial_Proceso entity)
         {
             try
@@ -461,11 +251,11 @@ public ApiResponse<int> Update_Proceso(Registro_de_Mandamiento_Judicial_Proceso 
             }
         }
 
-public ApiResponse<int> Update_Fotos(Registro_de_Mandamiento_Judicial_Fotos entity)
+public ApiResponse<int> Update_Expediente(Registro_de_Mandamiento_Judicial_Expediente entity)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Fotos",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Expediente",
                       Method.PUT, ApiHeader, entity);
 
                 return new ApiResponse<int>(true, result);
@@ -476,78 +266,18 @@ public ApiResponse<int> Update_Fotos(Registro_de_Mandamiento_Judicial_Fotos enti
             }
         }
 
-        public ApiResponse<Registro_de_Mandamiento_Judicial_Fotos> Get_Fotos(string Key)
+        public ApiResponse<Registro_de_Mandamiento_Judicial_Expediente> Get_Expediente(string Key)
         {
             try
             {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Fotos>(baseApi, ApiControllerUrl + "/Get_Fotos?id=" + Key,
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Expediente>(baseApi, ApiControllerUrl + "/Get_Expediente?id=" + Key,
                       Method.GET, ApiHeader);
 
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Fotos>(true, varRecords);
+                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Expediente>(true, varRecords);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Fotos>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Documentos(Registro_de_Mandamiento_Judicial_Documentos entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Documentos",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Registro_de_Mandamiento_Judicial_Documentos> Get_Documentos(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Documentos>(baseApi, ApiControllerUrl + "/Get_Documentos?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Documentos>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Documentos>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Huellas_Digitales(Registro_de_Mandamiento_Judicial_Huellas_Digitales entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Huellas_Digitales",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Registro_de_Mandamiento_Judicial_Huellas_Digitales> Get_Huellas_Digitales(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Huellas_Digitales>(baseApi, ApiControllerUrl + "/Get_Huellas_Digitales?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Huellas_Digitales>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Huellas_Digitales>(false, null);
+                return new ApiResponse<Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial_Expediente>(false, null);
             }
         }
 

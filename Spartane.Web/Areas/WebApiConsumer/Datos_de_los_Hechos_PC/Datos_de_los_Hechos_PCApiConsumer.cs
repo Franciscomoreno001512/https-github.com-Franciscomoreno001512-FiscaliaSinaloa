@@ -221,11 +221,11 @@ public ApiResponse<int> Update_Datos_de_los_hechos(Datos_de_los_Hechos_PC_Datos_
             }
         }
 
-public ApiResponse<int> Update_Domicilio_de_los_Hechos(Datos_de_los_Hechos_PC_Domicilio_de_los_Hechos entity)
+public ApiResponse<int> Update_Lugar_de_los_Hechos(Datos_de_los_Hechos_PC_Lugar_de_los_Hechos entity)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Domicilio_de_los_Hechos",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Lugar_de_los_Hechos",
                       Method.PUT, ApiHeader, entity);
 
                 return new ApiResponse<int>(true, result);
@@ -236,18 +236,18 @@ public ApiResponse<int> Update_Domicilio_de_los_Hechos(Datos_de_los_Hechos_PC_Do
             }
         }
 
-        public ApiResponse<Datos_de_los_Hechos_PC_Domicilio_de_los_Hechos> Get_Domicilio_de_los_Hechos(string Key)
+        public ApiResponse<Datos_de_los_Hechos_PC_Lugar_de_los_Hechos> Get_Lugar_de_los_Hechos(string Key)
         {
             try
             {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Domicilio_de_los_Hechos>(baseApi, ApiControllerUrl + "/Get_Domicilio_de_los_Hechos?id=" + Key,
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Lugar_de_los_Hechos>(baseApi, ApiControllerUrl + "/Get_Lugar_de_los_Hechos?id=" + Key,
                       Method.GET, ApiHeader);
 
-                return new ApiResponse<Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Domicilio_de_los_Hechos>(true, varRecords);
+                return new ApiResponse<Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Lugar_de_los_Hechos>(true, varRecords);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Domicilio_de_los_Hechos>(false, null);
+                return new ApiResponse<Core.Domain.Datos_de_los_Hechos_PC.Datos_de_los_Hechos_PC_Lugar_de_los_Hechos>(false, null);
             }
         }
 

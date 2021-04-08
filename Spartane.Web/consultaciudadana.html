@@ -33,7 +33,7 @@
                 <div class="text-center col-xs-12 col-md-4 txt-blanco" style="margin-top: 2.0rem;">
                     <h1 class="pildora">Consultar Denuncia</h1>
                     <br>
-                    <p class="txt-14">Da clic sobre el dipo de Consulta que deseas realizar</p>
+                    <p class="txt-14">Da clic sobre el tipo de Consulta que deseas realizar</p>
                 </div>
             </div>
         </header>
@@ -43,8 +43,8 @@
                     <a href="#" onclick="Finalizar()">
                         <div class="card card-blanca">
                             <div class="card-icon"><i class="icon-consultar-denuncia-normal"></i></div>
-                            <div class="card-title">Consulta una Denuncia</div>
-                            <div class="muted m-b">Con usuario registrado en el portal</div>
+                            <div class="card-title">Ciudadano Registrado</div>
+                            <!--<div class="muted m-b">Con usuario registrado en el portal</div>-->
                             <div class="card-body">Aquí puedes consultar el estatus de tu denuncia que realizaste, solamente ingresa con tus datos.</div>
                         </div>
                     </a>
@@ -53,7 +53,7 @@
                     <a href="#" onclick="ConsultaAnonima()">
                         <div class="card card-blanca">
                             <div class="card-icon"><i class="icon-consultar-denuncia-anonima"></i></div>
-                            <div class="card-title m-b">Consulta una Denuncia Anónima</div>
+                            <div class="card-title m-b">Anónimo</div>
                             <div class="card-body">Aquí puedes consultar el estatus de tu denuncia que realizaste anónimamente desde este portal.</div>
                         </div>
                     </a>
@@ -74,11 +74,36 @@
             </div>
         </main>
     </div>
+    <script src="Scripts/jquery-2.1.1.js"></script>
 	<script type="text/javascript">
 
-        function Finalizar() {       
+        function Finalizar() {
+            debugger;
 			localStorage.setItem("OrigenPC", "0");				
-            window.location.href = "Account/Login?returnUrl='LoginPC'";
+            window.location.href = "Account/Login?returnUrl='ConsultaUsuarioRegistrado'";
+
+   ////         debugger;
+   //         $.ajax({
+   //             url: 'Account/ValidateLogin3',
+   //             type: 'POST',
+   //             data: {
+   //                 username: '',
+   //                 password: '',
+   //                 isConsultaDenunciaAnonima: true
+   //             },
+   //             cache: false,
+   //             dataType: "json",
+   //             async: false,
+   //             success: function (result) {
+   //                 debugger;
+   //                 window.location = "Home/ConsultarEstatus?userid=" + result.valor;
+   //                 return;
+   //             },
+   //             error: function (result) {
+   //                // showNotification("Error desconocido", "error");
+   //             }
+   //         });
+         
         }
 		function ConsultaAnonima(){
 		    window.location.href = "consultaanonima.html";

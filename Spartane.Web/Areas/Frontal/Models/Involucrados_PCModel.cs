@@ -14,12 +14,13 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public int? Solicitud { get; set; }
         public string SolicitudFolio { get; set; }
-        public int? Tipo_de_Solicitud { get; set; }
-        public string Tipo_de_SolicitudDescripcion { get; set; }
+        public bool Desea_indicar_datos_adicionales { get; set; }
         public int? Usuario_que_Registra { get; set; }
         public string Usuario_que_RegistraName { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
         public string Tipo_de_ComparecienteDescripcion { get; set; }
+        public int? Tipo_de_Victima { get; set; }
+        public string Tipo_de_VictimaDescripcion { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
@@ -41,6 +42,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Nacionalidad { get; set; }
         public string NacionalidadNacionalidadC { get; set; }
         public string Originario_de { get; set; }
+        public bool Existieron_testigos { get; set; }
         public int? Pais { get; set; }
         public string PaisNombre { get; set; }
         public int? Estado { get; set; }
@@ -70,12 +72,13 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public int? Solicitud { get; set; }
         public string SolicitudFolio { get; set; }
-        public int? Tipo_de_Solicitud { get; set; }
-        public string Tipo_de_SolicitudDescripcion { get; set; }
+        public bool? Desea_indicar_datos_adicionales { get; set; }
         public int? Usuario_que_Registra { get; set; }
         public string Usuario_que_RegistraName { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
         public string Tipo_de_ComparecienteDescripcion { get; set; }
+        public int? Tipo_de_Victima { get; set; }
+        public string Tipo_de_VictimaDescripcion { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
@@ -97,6 +100,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Nacionalidad { get; set; }
         public string NacionalidadNacionalidadC { get; set; }
         public string Originario_de { get; set; }
+        public bool? Existieron_testigos { get; set; }
 
     }
 

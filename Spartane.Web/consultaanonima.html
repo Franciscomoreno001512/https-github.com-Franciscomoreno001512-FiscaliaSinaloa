@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -112,16 +112,30 @@
     <script src="Scripts/jquery-2.1.1.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>    
     <script type="text/javascript">      
+        var f;
+        var c
 	$("#btnLogin").on("click", function() {  
 		debugger;
 		if($("#idfolio").val().length > 6 &&  $("#idcontra").val().length > 7){
-			var query = "exec usp_ValidaDenunciaAnonima '" + $("#idfolio").val() + "','" + $("#idcontra").val() + "'";
-			var result = EvaluaQuery25(query);
-			if(result=="0")
-				alert("Folio/Contraseña de denuncia anónima incorrecta.");
-			else{
-				SolicitudCiudadana(result);
-			}
+			//var query = "exec usp_ValidaDenunciaAnonima '" + $("#idfolio").val() + "','" + $("#idcontra").val() + "'";
+             f = $("#idfolio").val();
+             c = $("#idcontra").val();
+           // var query = "select isnull(clave,0) from Solicitud_de_Denuncia_Ciudadana where folio = '" + f + "'" + " and contrasena = '" + c + "'";
+			//var result = EvaluaQuery25(query);
+			//if(result=="0")
+			//	alert("Folio/Contraseña de denuncia anónima incorrecta.");
+			//else{
+			//	SolicitudCiudadana(result);
+            
+			//}
+
+           //window.location = "Home/ConsultarEstatus?folio=" + f + "&contrasena=" + c;
+
+            SolicitudCiudadana("");
+
+
+
+
 		}else{
 			alert("Folio/Contraseña de denuncia anónima incorrecta.");
 		}		
@@ -134,14 +148,15 @@
                 type: 'POST',
                 data: {
                     username: '',
-                    password: ''
+                    password: '',
+                    isConsultaDenunciaAnonima :true
                 },
                 cache: false,
                 dataType: "json",
                 async: false,
                 success: function (result) {
                     debugger;													
-                    window.location = "Frontal/Solicitud_de_Denuncia_Ciudadana/Create?Id=" + idSC;
+                    window.location = "Home/ConsultarEstatus?folio=" + f + "&contrasena=" + c;
 					return;
                 },
                 error: function (result) {
@@ -150,29 +165,28 @@
         });
 	}
 	
-	function EvaluaQuery25(query) {
-        var res = "0";
-        var data = {
-            query: query
-        }
-        debugger;
-        $.ajax({
-            url: "/MVCfiscaliasinaloa/Frontal/General/ExecuteQueryTable",
-            type: 'POST',
-            cache: false,
-            dataType: "json",
-            async: false,
-            data: data,
-            success: function (result) {
-				debugger;
-                var resp = JSON.parse(result)
-                res = resp[0].codigo;
-            },
-            error: function (result) {
-                res = "0";
-            }
-        });            
-        return res;
+        function EvaluaQuery25(query) {
+        //    var url_content = window.location.href;
+        //var res = "0";
+        //var data = {
+        //    query: query
+        //}
+        //debugger;
+        //    $.ajax({
+        //        url: url_content + "Frontal/General/ExecuteQuery",
+        //        type: 'POST',
+        //        cache: false,
+        //        dataType: "json",
+        //        async: false,
+        //        data: data,
+        //        success: function (result) {
+        //            res = result;
+        //        },
+        //        error: function (result) {
+
+        //        }
+        //    });          
+        //return res;
     }
 	
         $(document).ready(function () {

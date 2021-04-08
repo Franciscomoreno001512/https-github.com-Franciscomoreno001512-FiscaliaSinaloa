@@ -3,6 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_de_AmparoAdvanceSearchModel
 @{
+ List<SelectListItem> varRegistro_de_Mandamiento_Judicial_Orden_de_Aprehension = null;
+    if (ViewBag.Registro_de_Mandamiento_Judicials_Orden_de_Aprehension != null)
+    { varRegistro_de_Mandamiento_Judicial_Orden_de_Aprehension = (List<SelectListItem>)ViewBag.Registro_de_Mandamiento_Judicials_Orden_de_Aprehension; }
     List<SelectListItem> varTipo_de_Amparo_Tipo_de_Amparo = null;
     if (ViewBag.Tipo_de_Amparos_Tipo_de_Amparo != null)
     { varTipo_de_Amparo_Tipo_de_Amparo = (List<SelectListItem>)ViewBag.Tipo_de_Amparos_Tipo_de_Amparo; }
@@ -60,6 +63,9 @@
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
+ List<SelectListItem> varRegistro_de_Mandamiento_Judicial_Orden_de_Aprehension = null;
+    if (ViewBag.Registro_de_Mandamiento_Judicials_Orden_de_Aprehension != null)
+    { varRegistro_de_Mandamiento_Judicial_Orden_de_Aprehension = (List<SelectListItem>)ViewBag.Registro_de_Mandamiento_Judicials_Orden_de_Aprehension; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_AmparoResources.Tipo_de_Amparo</h3>
                 </div>
@@ -149,6 +155,21 @@
             advanceSearch.Detalle_de_AmparoClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_de_AmparoClaveTo = $("#txtAdvanceToClave").val();
         }
+        advanceSearch.Orden_de_AprehensionSearchType = 0;
+        if ($('#ddlAdvanceOrden_de_Aprehension').val().length > 0 || $("#txtAdvanceOrden_de_Aprehension").val() == "") {
+
+
+            if (isDetalle_de_AmparoTextSearch) {
+                advanceSearch.Orden_de_AprehensionName = $("#txtAdvanceOrden_de_Aprehension").val();
+                advanceSearch.Orden_de_AprehensionNameSearchType = $("#ddlAdvanceOrden_de_Aprehension").val();
+                advanceSearch.Orden_de_AprehensionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Orden_de_AprehensionToSearch = $("#ddlAdvanceOrden_de_Aprehension").val();
+                advanceSearch.Orden_de_AprehensionSearchType = 2;
+            }
+        }
         advanceSearch.Tipo_de_AmparoSearchType = 0;
         if ($('#ddlAdvanceTipo_de_Amparo').val().length > 0 || $("#txtAdvanceTipo_de_Amparo").val() == "") {
 
@@ -222,6 +243,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceOrden_de_Aprehension").keypress(function () {
+            isDetalle_de_AmparoTextSearch = true;
+            $("#ddlAdvanceOrden_de_Aprehension").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceOrden_de_Aprehension").change(function () {
+            isDetalle_de_AmparoTextSearch = false;
+            $("#txtAdvanceOrden_de_Aprehension").val('');
+        });
         $("#txtAdvanceTipo_de_Amparo").keypress(function () {
             isDetalle_de_AmparoTextSearch = true;
             $("#ddlAdvanceTipo_de_Amparo").val('').trigger("chosen:updated");

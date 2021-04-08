@@ -448,7 +448,8 @@ $(document).ready(function () {
                     }
 					else {						
 						if (!isMR)
-							window.opener.RefreshCatalog('Control_de_Documentos', nameAttribute);
+						{}
+							//window.opener.RefreshCatalog('Control_de_Documentos', nameAttribute);
 						else {
 							var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
 							if(!control.hasClass('AutoComplete'))
