@@ -6,17 +6,6 @@ $(function () {
 
 });
 
-var AutoCompleteNacionalidadData = [];
-function GetAutoCompleteDetalle_de_Resultados_Nacionalidad_NacionalidadData(data) {
-	AutoCompleteNacionalidadData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteNacionalidadData.push({
-            id: data[i].Clave,
-            text: data[i].NacionalidadC
-        });
-    }
-    return AutoCompleteNacionalidadData;
-}
 
 
 function getDropdown(elementKey) {
@@ -54,9 +43,6 @@ function ClearControls() {
     $('#CreateDetalle_de_Resultados')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
-    $('#Nacionalidad').empty();
-    $("#Nacionalidad").append('<option value=""></option>');
-    $('#Nacionalidad').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -186,10 +172,7 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendDetalle_de_ResultadosData(function (currentId) {
 					$("#ClaveId").val("0");
-	    $('#Nacionalidad').empty();
-    $("#Nacionalidad").append('<option value=""></option>');
-    $('#Nacionalidad').val('0').trigger('change');
-
+	
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
 	

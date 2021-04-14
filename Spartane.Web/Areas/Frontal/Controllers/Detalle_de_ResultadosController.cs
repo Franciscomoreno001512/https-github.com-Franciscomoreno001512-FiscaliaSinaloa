@@ -2,8 +2,6 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_de_Resultados;
-using Spartane.Core.Domain.Genero;
-using Spartane.Core.Domain.Nacionalidad;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -14,8 +12,6 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Resultados;
-using Spartane.Web.Areas.WebApiConsumer.Genero;
-using Spartane.Web.Areas.WebApiConsumer.Nacionalidad;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -42,8 +38,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_de_ResultadosService service = null;
         private IDetalle_de_ResultadosApiConsumer _IDetalle_de_ResultadosApiConsumer;
-        private IGeneroApiConsumer _IGeneroApiConsumer;
-        private INacionalidadApiConsumer _INacionalidadApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -57,7 +51,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_ResultadosController(IDetalle_de_ResultadosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_ResultadosApiConsumer Detalle_de_ResultadosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IGeneroApiConsumer GeneroApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer )
+        public Detalle_de_ResultadosController(IDetalle_de_ResultadosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_ResultadosApiConsumer Detalle_de_ResultadosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -67,8 +61,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
-            this._IGeneroApiConsumer = GeneroApiConsumer;
-            this._INacionalidadApiConsumer = NacionalidadApiConsumer;
 
         }
 
@@ -117,14 +109,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_de_Resultados = new Detalle_de_ResultadosModel
                 {
                     Clave = (int)Detalle_de_ResultadosData.Clave
+                    ,Fuente = Detalle_de_ResultadosData.Fuente
+                    ,Tipo_de_Mandamiento = Detalle_de_ResultadosData.Tipo_de_Mandamiento
                     ,Nombre = Detalle_de_ResultadosData.Nombre
                     ,Apellido_Paterno = Detalle_de_ResultadosData.Apellido_Paterno
                     ,Apellido_Materno = Detalle_de_ResultadosData.Apellido_Materno
-                    ,Fecha_Nacimiento = (Detalle_de_ResultadosData.Fecha_Nacimiento == null ? string.Empty : Convert.ToDateTime(Detalle_de_ResultadosData.Fecha_Nacimiento).ToString(ConfigurationProperty.DateFormat))
+                    ,Alias = Detalle_de_ResultadosData.Alias
                     ,Sexo = Detalle_de_ResultadosData.Sexo
-                    ,SexoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ResultadosData.Sexo), "Genero") ??  (string)Detalle_de_ResultadosData.Sexo_Genero.Descripcion
-                    ,Nacionalidad = Detalle_de_ResultadosData.Nacionalidad
-                    ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ResultadosData.Nacionalidad), "Nacionalidad") ??  (string)Detalle_de_ResultadosData.Nacionalidad_Nacionalidad.NacionalidadC
+                    ,Pais = Detalle_de_ResultadosData.Pais
+                    ,Estado = Detalle_de_ResultadosData.Estado
+                    ,Municipio = Detalle_de_ResultadosData.Municipio
+                    ,Juzgado = Detalle_de_ResultadosData.Juzgado
+                    ,Oficio_Solicitud_Juzgado = Detalle_de_ResultadosData.Oficio_Solicitud_Juzgado
+                    ,Carpeta_de_Investigacion = Detalle_de_ResultadosData.Carpeta_de_Investigacion
+                    ,Causa_Penal = Detalle_de_ResultadosData.Causa_Penal
 
                 };
 
@@ -132,13 +130,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Sexo != null && Generos_Sexo.Resource != null)
-                ViewBag.Generos_Sexo = Generos_Sexo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -172,14 +163,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_de_Resultados= new Detalle_de_ResultadosModel
 					{
 						Clave  = Detalle_de_ResultadosData.Clave 
-	                    ,Nombre = Detalle_de_ResultadosData.Nombre
+	                    ,Fuente = Detalle_de_ResultadosData.Fuente
+                    ,Tipo_de_Mandamiento = Detalle_de_ResultadosData.Tipo_de_Mandamiento
+                    ,Nombre = Detalle_de_ResultadosData.Nombre
                     ,Apellido_Paterno = Detalle_de_ResultadosData.Apellido_Paterno
                     ,Apellido_Materno = Detalle_de_ResultadosData.Apellido_Materno
-                    ,Fecha_Nacimiento = (Detalle_de_ResultadosData.Fecha_Nacimiento == null ? string.Empty : Convert.ToDateTime(Detalle_de_ResultadosData.Fecha_Nacimiento).ToString(ConfigurationProperty.DateFormat))
+                    ,Alias = Detalle_de_ResultadosData.Alias
                     ,Sexo = Detalle_de_ResultadosData.Sexo
-                    ,SexoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ResultadosData.Sexo), "Genero") ??  (string)Detalle_de_ResultadosData.Sexo_Genero.Descripcion
-                    ,Nacionalidad = Detalle_de_ResultadosData.Nacionalidad
-                    ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ResultadosData.Nacionalidad), "Nacionalidad") ??  (string)Detalle_de_ResultadosData.Nacionalidad_Nacionalidad.NacionalidadC
+                    ,Pais = Detalle_de_ResultadosData.Pais
+                    ,Estado = Detalle_de_ResultadosData.Estado
+                    ,Municipio = Detalle_de_ResultadosData.Municipio
+                    ,Juzgado = Detalle_de_ResultadosData.Juzgado
+                    ,Oficio_Solicitud_Juzgado = Detalle_de_ResultadosData.Oficio_Solicitud_Juzgado
+                    ,Carpeta_de_Investigacion = Detalle_de_ResultadosData.Carpeta_de_Investigacion
+                    ,Causa_Penal = Detalle_de_ResultadosData.Causa_Penal
 
 					};
 				}
@@ -188,13 +185,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Sexo != null && Generos_Sexo.Resource != null)
-                ViewBag.Generos_Sexo = Generos_Sexo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
 
 
             return PartialView("AddDetalle_de_Resultados", varDetalle_de_Resultados);
@@ -215,48 +205,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
-        [HttpGet]
-        public ActionResult GetGeneroAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IGeneroApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-		[HttpGet]
-        public ActionResult GetNacionalidadAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _INacionalidadApiConsumer.SelAll(false).Resource;
-				
-                return Json(result.OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC")?? m.NacionalidadC,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 
 
 
@@ -278,12 +226,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_de_Resultadoss.Select(m => new Detalle_de_ResultadosGridModel
                     {
                     Clave = m.Clave
+			,Fuente = m.Fuente
+			,Tipo_de_Mandamiento = m.Tipo_de_Mandamiento
 			,Nombre = m.Nombre
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
-                        ,Fecha_Nacimiento = (m.Fecha_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
+			,Alias = m.Alias
+			,Sexo = m.Sexo
+			,Pais = m.Pais
+			,Estado = m.Estado
+			,Municipio = m.Municipio
+			,Juzgado = m.Juzgado
+			,Oficio_Solicitud_Juzgado = m.Oficio_Solicitud_Juzgado
+			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
+			,Causa_Penal = m.Causa_Penal
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -291,33 +247,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
-        [HttpGet]
-        public JsonResult GetDetalle_de_Resultados_Nacionalidad_Nacionalidad(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Nacionalidad.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Nacionalidad.NacionalidadC as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _INacionalidadApiConsumer.ListaSelAll(1, 20,elWhere , " Nacionalidad.NacionalidadC ASC ").Resource;
-               
-                foreach (var item in result.Nacionalidads)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Nacionalidad", "NacionalidadC");
-                    item.NacionalidadC =trans ??item.NacionalidadC;
-                }
-                return Json(result.Nacionalidads.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 
 
 
@@ -375,12 +304,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_de_ResultadosInfo = new Detalle_de_Resultados
                     {
                         Clave = varDetalle_de_Resultados.Clave
+                        ,Fuente = varDetalle_de_Resultados.Fuente
+                        ,Tipo_de_Mandamiento = varDetalle_de_Resultados.Tipo_de_Mandamiento
                         ,Nombre = varDetalle_de_Resultados.Nombre
                         ,Apellido_Paterno = varDetalle_de_Resultados.Apellido_Paterno
                         ,Apellido_Materno = varDetalle_de_Resultados.Apellido_Materno
-                        ,Fecha_Nacimiento = (!String.IsNullOrEmpty(varDetalle_de_Resultados.Fecha_Nacimiento)) ? DateTime.ParseExact(varDetalle_de_Resultados.Fecha_Nacimiento, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Alias = varDetalle_de_Resultados.Alias
                         ,Sexo = varDetalle_de_Resultados.Sexo
-                        ,Nacionalidad = varDetalle_de_Resultados.Nacionalidad
+                        ,Pais = varDetalle_de_Resultados.Pais
+                        ,Estado = varDetalle_de_Resultados.Estado
+                        ,Municipio = varDetalle_de_Resultados.Municipio
+                        ,Juzgado = varDetalle_de_Resultados.Juzgado
+                        ,Oficio_Solicitud_Juzgado = varDetalle_de_Resultados.Oficio_Solicitud_Juzgado
+                        ,Carpeta_de_Investigacion = varDetalle_de_Resultados.Carpeta_de_Investigacion
+                        ,Causa_Penal = varDetalle_de_Resultados.Causa_Penal
 
                     };
 
@@ -608,12 +545,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_de_Resultadoss.Select(m => new Detalle_de_ResultadosGridModel
             {
                 Clave = m.Clave
+                ,Fuente = m.Fuente
+                ,Tipo_de_Mandamiento = m.Tipo_de_Mandamiento
                 ,Nombre = m.Nombre
                 ,Apellido_Paterno = m.Apellido_Paterno
                 ,Apellido_Materno = m.Apellido_Materno
-                ,Fecha_Nacimiento = (m.Fecha_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                ,SexoDescripcion = (string)m.Sexo_Genero.Descripcion
-                ,NacionalidadNacionalidadC = (string)m.Nacionalidad_Nacionalidad.NacionalidadC
+                ,Alias = m.Alias
+                ,Sexo = m.Sexo
+                ,Pais = m.Pais
+                ,Estado = m.Estado
+                ,Municipio = m.Municipio
+                ,Juzgado = m.Juzgado
+                ,Oficio_Solicitud_Juzgado = m.Oficio_Solicitud_Juzgado
+                ,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
+                ,Causa_Penal = m.Causa_Penal
 
             }).ToList();
 
@@ -660,12 +605,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_de_Resultadoss.Select(m => new Detalle_de_ResultadosGridModel
             {
                 Clave = m.Clave
+                ,Fuente = m.Fuente
+                ,Tipo_de_Mandamiento = m.Tipo_de_Mandamiento
                 ,Nombre = m.Nombre
                 ,Apellido_Paterno = m.Apellido_Paterno
                 ,Apellido_Materno = m.Apellido_Materno
-                ,Fecha_Nacimiento = (m.Fecha_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                ,SexoDescripcion = (string)m.Sexo_Genero.Descripcion
-                ,NacionalidadNacionalidadC = (string)m.Nacionalidad_Nacionalidad.NacionalidadC
+                ,Alias = m.Alias
+                ,Sexo = m.Sexo
+                ,Pais = m.Pais
+                ,Estado = m.Estado
+                ,Municipio = m.Municipio
+                ,Juzgado = m.Juzgado
+                ,Oficio_Solicitud_Juzgado = m.Oficio_Solicitud_Juzgado
+                ,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
+                ,Causa_Penal = m.Causa_Penal
 
             }).ToList();
 

@@ -7,58 +7,36 @@ var Detalle_de_ResultadoscountRowsChecked = 0;
 
 
 
-function GetDetalle_de_Resultados_GeneroName(Id) {
-    for (var i = 0; i < Detalle_de_Resultados_GeneroItems.length; i++) {
-        if (Detalle_de_Resultados_GeneroItems[i].Clave == Id) {
-            return Detalle_de_Resultados_GeneroItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_de_Resultados_GeneroDropDown() {
-    var Detalle_de_Resultados_GeneroDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_de_Resultados_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_de_Resultados_GeneroDropdown);
-    if(Detalle_de_Resultados_GeneroItems != null)
-    {
-       for (var i = 0; i < Detalle_de_Resultados_GeneroItems.length; i++) {
-           $('<option />', { value: Detalle_de_Resultados_GeneroItems[i].Clave, text:    Detalle_de_Resultados_GeneroItems[i].Descripcion }).appendTo(Detalle_de_Resultados_GeneroDropdown);
-       }
-    }
-    return Detalle_de_Resultados_GeneroDropdown;
-}
-function GetDetalle_de_Resultados_NacionalidadName(Id) {
-    for (var i = 0; i < Detalle_de_Resultados_NacionalidadItems.length; i++) {
-        if (Detalle_de_Resultados_NacionalidadItems[i].Clave == Id) {
-            return Detalle_de_Resultados_NacionalidadItems[i].NacionalidadC;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_de_Resultados_NacionalidadDropDown() {
-    var Detalle_de_Resultados_NacionalidadDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_de_Resultados_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_de_Resultados_NacionalidadDropdown);
 
-    for (var i = 0; i < Detalle_de_Resultados_NacionalidadItems.length; i++) {
-        $('<option />', { value: Detalle_de_Resultados_NacionalidadItems[i].Clave, text: Detalle_de_Resultados_NacionalidadItems[i].NacionalidadC }).appendTo(Detalle_de_Resultados_NacionalidadDropdown);
-    }
-    return Detalle_de_Resultados_NacionalidadDropdown;
-}
+
+
+
+
+
 
 
 function GetInsertDetalle_de_ResultadosRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Nombre Nombre').attr('id', 'Detalle_de_Resultados_Nombre_' + index).attr('data-field', 'Nombre');
-    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Apellido_Paterno Apellido_Paterno').attr('id', 'Detalle_de_Resultados_Apellido_Paterno_' + index).attr('data-field', 'Apellido_Paterno');
-    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Apellido_Materno Apellido_Materno').attr('id', 'Detalle_de_Resultados_Apellido_Materno_' + index).attr('data-field', 'Apellido_Materno');
-    columnData[3] = $($.parseHTML(GetGridDatePicker())).addClass('Detalle_de_Resultados_Fecha_Nacimiento Fecha_Nacimiento').attr('id', 'Detalle_de_Resultados_Fecha_Nacimiento_' + index).attr('data-field', 'Fecha_Nacimiento');
-    columnData[4] = $(GetDetalle_de_Resultados_GeneroDropDown()).addClass('Detalle_de_Resultados_Sexo Sexo').attr('id', 'Detalle_de_Resultados_Sexo_' + index).attr('data-field', 'Sexo').after($.parseHTML(addNew('Detalle_de_Resultados', 'Genero', 'Sexo', 268905)));
-    columnData[5] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_de_Resultados_Nacionalidad'))).addClass('Detalle_de_Resultados_Nacionalidad Nacionalidad').attr('id', 'Detalle_de_Resultados_Nacionalidad_' + index).attr('data-field', 'Nacionalidad').after($.parseHTML(addNew('Detalle_de_Resultados', 'Nacionalidad', 'Nacionalidad', 268906)));
+    columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Fuente Fuente').attr('id', 'Detalle_de_Resultados_Fuente_' + index).attr('data-field', 'Fuente');
+    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Tipo_de_Mandamiento Tipo_de_Mandamiento').attr('id', 'Detalle_de_Resultados_Tipo_de_Mandamiento_' + index).attr('data-field', 'Tipo_de_Mandamiento');
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Nombre Nombre').attr('id', 'Detalle_de_Resultados_Nombre_' + index).attr('data-field', 'Nombre');
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Apellido_Paterno Apellido_Paterno').attr('id', 'Detalle_de_Resultados_Apellido_Paterno_' + index).attr('data-field', 'Apellido_Paterno');
+    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Apellido_Materno Apellido_Materno').attr('id', 'Detalle_de_Resultados_Apellido_Materno_' + index).attr('data-field', 'Apellido_Materno');
+    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Alias Alias').attr('id', 'Detalle_de_Resultados_Alias_' + index).attr('data-field', 'Alias');
+    columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Sexo Sexo').attr('id', 'Detalle_de_Resultados_Sexo_' + index).attr('data-field', 'Sexo');
+    columnData[7] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Pais Pais').attr('id', 'Detalle_de_Resultados_Pais_' + index).attr('data-field', 'Pais');
+    columnData[8] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Estado Estado').attr('id', 'Detalle_de_Resultados_Estado_' + index).attr('data-field', 'Estado');
+    columnData[9] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Municipio Municipio').attr('id', 'Detalle_de_Resultados_Municipio_' + index).attr('data-field', 'Municipio');
+    columnData[10] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Juzgado Juzgado').attr('id', 'Detalle_de_Resultados_Juzgado_' + index).attr('data-field', 'Juzgado');
+    columnData[11] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Oficio_Solicitud_Juzgado Oficio_Solicitud_Juzgado').attr('id', 'Detalle_de_Resultados_Oficio_Solicitud_Juzgado_' + index).attr('data-field', 'Oficio_Solicitud_Juzgado');
+    columnData[12] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Carpeta_de_Investigacion Carpeta_de_Investigacion').attr('id', 'Detalle_de_Resultados_Carpeta_de_Investigacion_' + index).attr('data-field', 'Carpeta_de_Investigacion');
+    columnData[13] = $($.parseHTML(inputData)).addClass('Detalle_de_Resultados_Causa_Penal Causa_Penal').attr('id', 'Detalle_de_Resultados_Causa_Penal_' + index).attr('data-field', 'Causa_Penal');
 
 
     initiateUIControls();
@@ -76,13 +54,20 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_de_Resultados("Detalle_de_Result
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Fuente:  data.childNodes[counter++].childNodes[0].value
+        ,Tipo_de_Mandamiento:  data.childNodes[counter++].childNodes[0].value
         ,Nombre:  data.childNodes[counter++].childNodes[0].value
         ,Apellido_Paterno:  data.childNodes[counter++].childNodes[0].value
         ,Apellido_Materno:  data.childNodes[counter++].childNodes[0].value
-        ,Fecha_Nacimiento:  data.childNodes[counter++].childNodes[0].value
+        ,Alias:  data.childNodes[counter++].childNodes[0].value
         ,Sexo:  data.childNodes[counter++].childNodes[0].value
-        , NacionalidadNacionalidadC:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
-        , Nacionalidad:  data.childNodes[counter++].childNodes[0].value 	
+        ,Pais:  data.childNodes[counter++].childNodes[0].value
+        ,Estado:  data.childNodes[counter++].childNodes[0].value
+        ,Municipio:  data.childNodes[counter++].childNodes[0].value
+        ,Juzgado:  data.childNodes[counter++].childNodes[0].value
+        ,Oficio_Solicitud_Juzgado:  data.childNodes[counter++].childNodes[0].value
+        ,Carpeta_de_Investigacion:  data.childNodes[counter++].childNodes[0].value
+        ,Causa_Penal:  data.childNodes[counter++].childNodes[0].value
 
     }
     Detalle_de_ResultadosTable.fnUpdate(newData, rowIndex, null, true);
@@ -118,12 +103,20 @@ function GetDetalle_de_ResultadosFromDataTable() {
             Detalle_de_ResultadosData.push({
                 Clave: gridData[i].Clave
 
+                ,Fuente: gridData[i].Fuente
+                ,Tipo_de_Mandamiento: gridData[i].Tipo_de_Mandamiento
                 ,Nombre: gridData[i].Nombre
                 ,Apellido_Paterno: gridData[i].Apellido_Paterno
                 ,Apellido_Materno: gridData[i].Apellido_Materno
-                ,Fecha_Nacimiento: gridData[i].Fecha_Nacimiento
+                ,Alias: gridData[i].Alias
                 ,Sexo: gridData[i].Sexo
-                ,Nacionalidad: gridData[i].Nacionalidad
+                ,Pais: gridData[i].Pais
+                ,Estado: gridData[i].Estado
+                ,Municipio: gridData[i].Municipio
+                ,Juzgado: gridData[i].Juzgado
+                ,Oficio_Solicitud_Juzgado: gridData[i].Oficio_Solicitud_Juzgado
+                ,Carpeta_de_Investigacion: gridData[i].Carpeta_de_Investigacion
+                ,Causa_Penal: gridData[i].Causa_Penal
 
                 ,Removed: false
             });
@@ -134,12 +127,20 @@ function GetDetalle_de_ResultadosFromDataTable() {
             Detalle_de_ResultadosData.push({
                 Clave: removedDetalle_de_ResultadosData[i].Clave
 
+                ,Fuente: removedDetalle_de_ResultadosData[i].Fuente
+                ,Tipo_de_Mandamiento: removedDetalle_de_ResultadosData[i].Tipo_de_Mandamiento
                 ,Nombre: removedDetalle_de_ResultadosData[i].Nombre
                 ,Apellido_Paterno: removedDetalle_de_ResultadosData[i].Apellido_Paterno
                 ,Apellido_Materno: removedDetalle_de_ResultadosData[i].Apellido_Materno
-                ,Fecha_Nacimiento: removedDetalle_de_ResultadosData[i].Fecha_Nacimiento
+                ,Alias: removedDetalle_de_ResultadosData[i].Alias
                 ,Sexo: removedDetalle_de_ResultadosData[i].Sexo
-                ,Nacionalidad: removedDetalle_de_ResultadosData[i].Nacionalidad
+                ,Pais: removedDetalle_de_ResultadosData[i].Pais
+                ,Estado: removedDetalle_de_ResultadosData[i].Estado
+                ,Municipio: removedDetalle_de_ResultadosData[i].Municipio
+                ,Juzgado: removedDetalle_de_ResultadosData[i].Juzgado
+                ,Oficio_Solicitud_Juzgado: removedDetalle_de_ResultadosData[i].Oficio_Solicitud_Juzgado
+                ,Carpeta_de_Investigacion: removedDetalle_de_ResultadosData[i].Carpeta_de_Investigacion
+                ,Causa_Penal: removedDetalle_de_ResultadosData[i].Causa_Penal
 
                 , Removed: true
             });
@@ -203,14 +204,30 @@ function Detalle_de_ResultadosEditRowPopup(rowIndex, currentRow) {
     var prevData = Detalle_de_ResultadosTable.fnGetData(rowIndexTable);
     GetAddDetalle_de_ResultadosPopup(rowIndex, 1, prevData.Clave);
 
+    $('#Detalle_de_ResultadosFuente').val(prevData.Fuente);
+    $('#Detalle_de_ResultadosTipo_de_Mandamiento').val(prevData.Tipo_de_Mandamiento);
     $('#Detalle_de_ResultadosNombre').val(prevData.Nombre);
     $('#Detalle_de_ResultadosApellido_Paterno').val(prevData.Apellido_Paterno);
     $('#Detalle_de_ResultadosApellido_Materno').val(prevData.Apellido_Materno);
-    $('#Detalle_de_ResultadosFecha_Nacimiento').val(prevData.Fecha_Nacimiento);
+    $('#Detalle_de_ResultadosAlias').val(prevData.Alias);
     $('#Detalle_de_ResultadosSexo').val(prevData.Sexo);
-    $('#dvDetalle_de_ResultadosNacionalidad').html($($.parseHTML(GetGridAutoComplete(prevData.Nacionalidad.label,'AutoCompleteNacionalidad'))).addClass('Detalle_de_Resultados_Nacionalidad'));
+    $('#Detalle_de_ResultadosPais').val(prevData.Pais);
+    $('#Detalle_de_ResultadosEstado').val(prevData.Estado);
+    $('#Detalle_de_ResultadosMunicipio').val(prevData.Municipio);
+    $('#Detalle_de_ResultadosJuzgado').val(prevData.Juzgado);
+    $('#Detalle_de_ResultadosOficio_Solicitud_Juzgado').val(prevData.Oficio_Solicitud_Juzgado);
+    $('#Detalle_de_ResultadosCarpeta_de_Investigacion').val(prevData.Carpeta_de_Investigacion);
+    $('#Detalle_de_ResultadosCausa_Penal').val(prevData.Causa_Penal);
 
     initiateUIControls();
+
+
+
+
+
+
+
+
 
 
 
@@ -230,12 +247,20 @@ function Detalle_de_ResultadosAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
+        ,Fuente: ""
+        ,Tipo_de_Mandamiento: ""
         ,Nombre: ""
         ,Apellido_Paterno: ""
         ,Apellido_Materno: ""
-        ,Fecha_Nacimiento: ""
+        ,Alias: ""
         ,Sexo: ""
-        ,Nacionalidad: ""
+        ,Pais: ""
+        ,Estado: ""
+        ,Municipio: ""
+        ,Juzgado: ""
+        ,Oficio_Solicitud_Juzgado: ""
+        ,Carpeta_de_Investigacion: ""
+        ,Causa_Penal: ""
 
     }
 }
@@ -267,12 +292,20 @@ function GetDetalle_de_Resultados() {
     for (var i = 0; i < Detalle_de_ResultadosData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_de_ResultadosData[i].Clave);
 
+        form_data.append('[' + i + '].Fuente', Detalle_de_ResultadosData[i].Fuente);
+        form_data.append('[' + i + '].Tipo_de_Mandamiento', Detalle_de_ResultadosData[i].Tipo_de_Mandamiento);
         form_data.append('[' + i + '].Nombre', Detalle_de_ResultadosData[i].Nombre);
         form_data.append('[' + i + '].Apellido_Paterno', Detalle_de_ResultadosData[i].Apellido_Paterno);
         form_data.append('[' + i + '].Apellido_Materno', Detalle_de_ResultadosData[i].Apellido_Materno);
-        form_data.append('[' + i + '].Fecha_Nacimiento', Detalle_de_ResultadosData[i].Fecha_Nacimiento);
+        form_data.append('[' + i + '].Alias', Detalle_de_ResultadosData[i].Alias);
         form_data.append('[' + i + '].Sexo', Detalle_de_ResultadosData[i].Sexo);
-        form_data.append('[' + i + '].Nacionalidad', Detalle_de_ResultadosData[i].Nacionalidad);
+        form_data.append('[' + i + '].Pais', Detalle_de_ResultadosData[i].Pais);
+        form_data.append('[' + i + '].Estado', Detalle_de_ResultadosData[i].Estado);
+        form_data.append('[' + i + '].Municipio', Detalle_de_ResultadosData[i].Municipio);
+        form_data.append('[' + i + '].Juzgado', Detalle_de_ResultadosData[i].Juzgado);
+        form_data.append('[' + i + '].Oficio_Solicitud_Juzgado', Detalle_de_ResultadosData[i].Oficio_Solicitud_Juzgado);
+        form_data.append('[' + i + '].Carpeta_de_Investigacion', Detalle_de_ResultadosData[i].Carpeta_de_Investigacion);
+        form_data.append('[' + i + '].Causa_Penal', Detalle_de_ResultadosData[i].Causa_Penal);
 
         form_data.append('[' + i + '].Removed', Detalle_de_ResultadosData[i].Removed);
     }
@@ -286,12 +319,20 @@ function Detalle_de_ResultadosInsertRowFromPopup(rowIndex) {
         Clave: prevData.Clave,
         IsInsertRow: false
 
+        ,Fuente: $('#Detalle_de_ResultadosFuente').val()
+        ,Tipo_de_Mandamiento: $('#Detalle_de_ResultadosTipo_de_Mandamiento').val()
         ,Nombre: $('#Detalle_de_ResultadosNombre').val()
         ,Apellido_Paterno: $('#Detalle_de_ResultadosApellido_Paterno').val()
         ,Apellido_Materno: $('#Detalle_de_ResultadosApellido_Materno').val()
-        ,Fecha_Nacimiento: $('#Detalle_de_ResultadosFecha_Nacimiento').val()
+        ,Alias: $('#Detalle_de_ResultadosAlias').val()
         ,Sexo: $('#Detalle_de_ResultadosSexo').val()
-        ,Nacionalidad: $('#Detalle_de_ResultadosNacionalidad').val()
+        ,Pais: $('#Detalle_de_ResultadosPais').val()
+        ,Estado: $('#Detalle_de_ResultadosEstado').val()
+        ,Municipio: $('#Detalle_de_ResultadosMunicipio').val()
+        ,Juzgado: $('#Detalle_de_ResultadosJuzgado').val()
+        ,Oficio_Solicitud_Juzgado: $('#Detalle_de_ResultadosOficio_Solicitud_Juzgado').val()
+        ,Carpeta_de_Investigacion: $('#Detalle_de_ResultadosCarpeta_de_Investigacion').val()
+        ,Causa_Penal: $('#Detalle_de_ResultadosCausa_Penal').val()
 
     }
 
@@ -357,29 +398,40 @@ $(function () {
 
 });
 
-var AutoCompleteNacionalidadData = [];
-function GetAutoCompleteConsulta_de_Mandamientos_Judiciales_Nacionalidad_NacionalidadData(data) {
-	AutoCompleteNacionalidadData = [];
+var AutoCompletePaisData = [];
+function GetAutoCompleteConsulta_de_Mandamientos_Judiciales_Pais_PaisData(data) {
+	AutoCompletePaisData = [];
     for (var i = 0; i < data.length; i++) {
-        AutoCompleteNacionalidadData.push({
+        AutoCompletePaisData.push({
             id: data[i].Clave,
-            text: data[i].NacionalidadC
+            text: data[i].Nombre
         });
     }
-    return AutoCompleteNacionalidadData;
+    return AutoCompletePaisData;
+}
+var AutoCompleteEstadoData = [];
+function GetAutoCompleteConsulta_de_Mandamientos_Judiciales_Estado_EstadoData(data) {
+	AutoCompleteEstadoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteEstadoData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteEstadoData;
+}
+var AutoCompleteMunicipioData = [];
+function GetAutoCompleteConsulta_de_Mandamientos_Judiciales_Municipio_MunicipioData(data) {
+	AutoCompleteMunicipioData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteMunicipioData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteMunicipioData;
 }
 //Grid GetAutocomplete
-var AutoCompleteNacionalidadData = [];
-function GetAutoCompleteDetalle_de_Resultados_Nacionalidad_NacionalidadData(data) {
-	AutoCompleteNacionalidadData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteNacionalidadData.push({
-            id: data[i].Clave,
-            text: data[i].NacionalidadC
-        });
-    }
-    return AutoCompleteNacionalidadData;
-}
 
 
 
@@ -418,9 +470,15 @@ function ClearControls() {
     $('#CreateConsulta_de_Mandamientos_Judiciales')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
-    $('#Nacionalidad').empty();
-    $("#Nacionalidad").append('<option value=""></option>');
-    $('#Nacionalidad').val('0').trigger('change');
+    $('#Pais').empty();
+    $("#Pais").append('<option value=""></option>');
+    $('#Pais').val('0').trigger('change');
+    $('#Estado').empty();
+    $("#Estado").append('<option value=""></option>');
+    $('#Estado').val('0').trigger('change');
+    $('#Municipio').empty();
+    $("#Municipio").append('<option value=""></option>');
+    $('#Municipio').val('0').trigger('change');
                 Detalle_de_ResultadosClearGridData();
 
 }
@@ -557,9 +615,15 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendConsulta_de_Mandamientos_JudicialesData(function (currentId) {
 					$("#ClaveId").val("0");
-	    $('#Nacionalidad').empty();
-    $("#Nacionalidad").append('<option value=""></option>');
-    $('#Nacionalidad').val('0').trigger('change');
+	    $('#Pais').empty();
+    $("#Pais").append('<option value=""></option>');
+    $('#Pais').val('0').trigger('change');
+    $('#Estado').empty();
+    $("#Estado").append('<option value=""></option>');
+    $('#Estado').val('0').trigger('change');
+    $('#Municipio').empty();
+    $("#Municipio").append('<option value=""></option>');
+    $('#Municipio').val('0').trigger('change');
                 Detalle_de_ResultadosClearGridData();
 
 					ResetClaveLabel();

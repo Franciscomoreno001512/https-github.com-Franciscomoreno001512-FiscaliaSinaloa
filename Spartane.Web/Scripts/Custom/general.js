@@ -1713,3 +1713,19 @@ function ValidaArchivos(selector, allowext, filesize) {
         });
     };
 })(jQuery);
+
+
+function WriteLabelOnDiv(NombreDiv, etiqueta) {
+    debugger;
+    var ele = "#div" + NombreDiv;
+    var eleJQuery = $(ele);
+    var subtitul = " <div id='subtitulo' class='col-md-12 contenedor-principal'>" +
+        "<h4>" +
+        "<i class='fa fa-caret-right'></i>" +
+        etiqueta +
+        "</h4></div>"; 
+
+    eleJQuery.before(subtitul);
+
+
+}

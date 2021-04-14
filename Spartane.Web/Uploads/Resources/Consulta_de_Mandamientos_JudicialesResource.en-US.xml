@@ -2,12 +2,18 @@
 <resources>
   <resource culture="en-us" name="Consulta_de_Mandamientos_Judiciales" value="Consulta de Mandamientos Judiciales"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="MandamientoJudicialId" value="MandamientoJudicialId"></resource>
   <resource culture="en-US" name="Nombre" value="Nombre(s)"></resource>
   <resource culture="en-US" name="Apellido_Paterno" value="Apellido Paterno"></resource>
   <resource culture="en-US" name="Apellido_Materno" value="Apellido Materno"></resource>
-  <resource culture="en-US" name="Fecha_de_Nacimiento" value="Fecha de Nacimiento"></resource>
-  <resource culture="en-US" name="Sexo" value="Sexo"></resource>
-  <resource culture="en-US" name="Nacionalidad" value="Nacionalidad"></resource>
+  <resource culture="en-US" name="Alias" value="Alias"></resource>
+  <resource culture="en-US" name="Pais" value="Pais"></resource>
+  <resource culture="en-US" name="Estado" value="Estado"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Juzgado" value="Juzgado"></resource>
+  <resource culture="en-US" name="Oficio_Solicitud_Juzgado" value="Oficio de Solicitud de Juzgado"></resource>
+  <resource culture="en-US" name="Carpeta_de_Investigacion" value="Carpeta de Investigación"></resource>
+  <resource culture="en-US" name="Causa_Penal" value="Causa Penal"></resource>
   <resource culture="en-US" name="Resultados" value="Resultados"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>

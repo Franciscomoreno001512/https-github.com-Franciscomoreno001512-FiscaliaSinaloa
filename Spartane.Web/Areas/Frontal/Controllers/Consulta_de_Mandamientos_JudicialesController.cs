@@ -2,16 +2,26 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Consulta_de_Mandamientos_Judiciales;
-using Spartane.Core.Domain.Genero;
-using Spartane.Core.Domain.Nacionalidad;
+using Spartane.Core.Domain.Pais;
+using Spartane.Core.Domain.Estado;
+using Spartane.Core.Domain.Municipio;
+using Spartane.Core.Domain.Juzgado;
 using Spartane.Core.Domain.Detalle_de_Resultados;
 
 
 
 
 
-using Spartane.Core.Domain.Genero;
-using Spartane.Core.Domain.Nacionalidad;
+
+
+
+
+
+
+
+
+
+
 
 
 using Spartane.Core.Enums;
@@ -23,13 +33,12 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Consulta_de_Mandamientos_Judiciales;
-using Spartane.Web.Areas.WebApiConsumer.Genero;
-using Spartane.Web.Areas.WebApiConsumer.Nacionalidad;
+using Spartane.Web.Areas.WebApiConsumer.Pais;
+using Spartane.Web.Areas.WebApiConsumer.Estado;
+using Spartane.Web.Areas.WebApiConsumer.Municipio;
+using Spartane.Web.Areas.WebApiConsumer.Juzgado;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Resultados;
 
-
-using Spartane.Web.Areas.WebApiConsumer.Genero;
-using Spartane.Web.Areas.WebApiConsumer.Nacionalidad;
 
 
 using Spartane.Web.AuthFilters;
@@ -67,10 +76,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IConsulta_de_Mandamientos_JudicialesService service = null;
         private IConsulta_de_Mandamientos_JudicialesApiConsumer _IConsulta_de_Mandamientos_JudicialesApiConsumer;
-        private IGeneroApiConsumer _IGeneroApiConsumer;
-        private INacionalidadApiConsumer _INacionalidadApiConsumer;
+        private IPaisApiConsumer _IPaisApiConsumer;
+        private IEstadoApiConsumer _IEstadoApiConsumer;
+        private IMunicipioApiConsumer _IMunicipioApiConsumer;
+        private IJuzgadoApiConsumer _IJuzgadoApiConsumer;
         private IDetalle_de_ResultadosApiConsumer _IDetalle_de_ResultadosApiConsumer;
-
 
 
 
@@ -90,7 +100,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Consulta_de_Mandamientos_JudicialesController(IConsulta_de_Mandamientos_JudicialesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IConsulta_de_Mandamientos_JudicialesApiConsumer Consulta_de_Mandamientos_JudicialesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IGeneroApiConsumer GeneroApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IDetalle_de_ResultadosApiConsumer Detalle_de_ResultadosApiConsumer  )
+        public Consulta_de_Mandamientos_JudicialesController(IConsulta_de_Mandamientos_JudicialesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IConsulta_de_Mandamientos_JudicialesApiConsumer Consulta_de_Mandamientos_JudicialesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IJuzgadoApiConsumer JuzgadoApiConsumer , IDetalle_de_ResultadosApiConsumer Detalle_de_ResultadosApiConsumer  )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -104,13 +114,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
-            this._IGeneroApiConsumer = GeneroApiConsumer;
-            this._INacionalidadApiConsumer = NacionalidadApiConsumer;
+            this._IPaisApiConsumer = PaisApiConsumer;
+            this._IEstadoApiConsumer = EstadoApiConsumer;
+            this._IMunicipioApiConsumer = MunicipioApiConsumer;
+            this._IJuzgadoApiConsumer = JuzgadoApiConsumer;
             this._IDetalle_de_ResultadosApiConsumer = Detalle_de_ResultadosApiConsumer;
 
-
-            this._IGeneroApiConsumer = GeneroApiConsumer;
-            this._INacionalidadApiConsumer = NacionalidadApiConsumer;
 
 
         }
@@ -189,14 +198,22 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varConsulta_de_Mandamientos_Judiciales= new Consulta_de_Mandamientos_JudicialesModel
 					{
 						Clave  = Consulta_de_Mandamientos_JudicialesData.Clave 
-	                    ,Nombre = Consulta_de_Mandamientos_JudicialesData.Nombre
+	                    ,MandamientoJudicialId = Consulta_de_Mandamientos_JudicialesData.MandamientoJudicialId
+                    ,Nombre = Consulta_de_Mandamientos_JudicialesData.Nombre
                     ,Apellido_Paterno = Consulta_de_Mandamientos_JudicialesData.Apellido_Paterno
                     ,Apellido_Materno = Consulta_de_Mandamientos_JudicialesData.Apellido_Materno
-                    ,Fecha_de_Nacimiento = (Consulta_de_Mandamientos_JudicialesData.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(Consulta_de_Mandamientos_JudicialesData.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                    ,Sexo = Consulta_de_Mandamientos_JudicialesData.Sexo
-                    ,SexoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Sexo), "Genero") ??  (string)Consulta_de_Mandamientos_JudicialesData.Sexo_Genero.Descripcion
-                    ,Nacionalidad = Consulta_de_Mandamientos_JudicialesData.Nacionalidad
-                    ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Nacionalidad), "Nacionalidad") ??  (string)Consulta_de_Mandamientos_JudicialesData.Nacionalidad_Nacionalidad.NacionalidadC
+                    ,Alias = Consulta_de_Mandamientos_JudicialesData.Alias
+                    ,Pais = Consulta_de_Mandamientos_JudicialesData.Pais
+                    ,PaisNombre = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Pais), "Pais") ??  (string)Consulta_de_Mandamientos_JudicialesData.Pais_Pais.Nombre
+                    ,Estado = Consulta_de_Mandamientos_JudicialesData.Estado
+                    ,EstadoNombre = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Estado), "Estado") ??  (string)Consulta_de_Mandamientos_JudicialesData.Estado_Estado.Nombre
+                    ,Municipio = Consulta_de_Mandamientos_JudicialesData.Municipio
+                    ,MunicipioNombre = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Municipio), "Municipio") ??  (string)Consulta_de_Mandamientos_JudicialesData.Municipio_Municipio.Nombre
+                    ,Juzgado = Consulta_de_Mandamientos_JudicialesData.Juzgado
+                    ,JuzgadoNombre = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Juzgado), "Juzgado") ??  (string)Consulta_de_Mandamientos_JudicialesData.Juzgado_Juzgado.Nombre
+                    ,Oficio_Solicitud_Juzgado = Consulta_de_Mandamientos_JudicialesData.Oficio_Solicitud_Juzgado
+                    ,Carpeta_de_Investigacion = Consulta_de_Mandamientos_JudicialesData.Carpeta_de_Investigacion
+                    ,Causa_Penal = Consulta_de_Mandamientos_JudicialesData.Causa_Penal
 
 					};
 				}
@@ -207,12 +224,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Sexo != null && Generos_Sexo.Resource != null)
-                ViewBag.Generos_Sexo = Generos_Sexo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IJuzgadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Juzgados_Juzgado = _IJuzgadoApiConsumer.SelAll(true);
+            if (Juzgados_Juzgado != null && Juzgados_Juzgado.Resource != null)
+                ViewBag.Juzgados_Juzgado = Juzgados_Juzgado.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Juzgado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -278,14 +295,22 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varConsulta_de_Mandamientos_Judiciales= new Consulta_de_Mandamientos_JudicialesModel
 					{
 						Clave  = Consulta_de_Mandamientos_JudicialesData.Clave 
-	                    ,Nombre = Consulta_de_Mandamientos_JudicialesData.Nombre
+	                    ,MandamientoJudicialId = Consulta_de_Mandamientos_JudicialesData.MandamientoJudicialId
+                    ,Nombre = Consulta_de_Mandamientos_JudicialesData.Nombre
                     ,Apellido_Paterno = Consulta_de_Mandamientos_JudicialesData.Apellido_Paterno
                     ,Apellido_Materno = Consulta_de_Mandamientos_JudicialesData.Apellido_Materno
-                    ,Fecha_de_Nacimiento = (Consulta_de_Mandamientos_JudicialesData.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(Consulta_de_Mandamientos_JudicialesData.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                    ,Sexo = Consulta_de_Mandamientos_JudicialesData.Sexo
-                    ,SexoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Sexo), "Genero") ??  (string)Consulta_de_Mandamientos_JudicialesData.Sexo_Genero.Descripcion
-                    ,Nacionalidad = Consulta_de_Mandamientos_JudicialesData.Nacionalidad
-                    ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Nacionalidad), "Nacionalidad") ??  (string)Consulta_de_Mandamientos_JudicialesData.Nacionalidad_Nacionalidad.NacionalidadC
+                    ,Alias = Consulta_de_Mandamientos_JudicialesData.Alias
+                    ,Pais = Consulta_de_Mandamientos_JudicialesData.Pais
+                    ,PaisNombre = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Pais), "Pais") ??  (string)Consulta_de_Mandamientos_JudicialesData.Pais_Pais.Nombre
+                    ,Estado = Consulta_de_Mandamientos_JudicialesData.Estado
+                    ,EstadoNombre = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Estado), "Estado") ??  (string)Consulta_de_Mandamientos_JudicialesData.Estado_Estado.Nombre
+                    ,Municipio = Consulta_de_Mandamientos_JudicialesData.Municipio
+                    ,MunicipioNombre = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Municipio), "Municipio") ??  (string)Consulta_de_Mandamientos_JudicialesData.Municipio_Municipio.Nombre
+                    ,Juzgado = Consulta_de_Mandamientos_JudicialesData.Juzgado
+                    ,JuzgadoNombre = CultureHelper.GetTraduction(Convert.ToString(Consulta_de_Mandamientos_JudicialesData.Juzgado), "Juzgado") ??  (string)Consulta_de_Mandamientos_JudicialesData.Juzgado_Juzgado.Nombre
+                    ,Oficio_Solicitud_Juzgado = Consulta_de_Mandamientos_JudicialesData.Oficio_Solicitud_Juzgado
+                    ,Carpeta_de_Investigacion = Consulta_de_Mandamientos_JudicialesData.Carpeta_de_Investigacion
+                    ,Causa_Penal = Consulta_de_Mandamientos_JudicialesData.Causa_Penal
 
 					};
 				}
@@ -294,12 +319,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Sexo != null && Generos_Sexo.Resource != null)
-                ViewBag.Generos_Sexo = Generos_Sexo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IJuzgadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Juzgados_Juzgado = _IJuzgadoApiConsumer.SelAll(true);
+            if (Juzgados_Juzgado != null && Juzgados_Juzgado.Resource != null)
+                ViewBag.Juzgados_Juzgado = Juzgados_Juzgado.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Juzgado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -321,19 +346,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
-        [HttpGet]
-        public ActionResult GetGeneroAll()
+		[HttpGet]
+        public ActionResult GetPaisAll()
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IGeneroApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IPaisApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion")?? m.Descripcion,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Pais", "Nombre")?? m.Nombre,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -343,18 +368,60 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 		[HttpGet]
-        public ActionResult GetNacionalidadAll()
+        public ActionResult GetEstadoAll()
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _INacionalidadApiConsumer.SelAll(false).Resource;
+                _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IEstadoApiConsumer.SelAll(false).Resource;
 				
-                return Json(result.OrderBy(m => m.NacionalidadC).Select(m => new SelectListItem
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Nacionalidad", "NacionalidadC")?? m.NacionalidadC,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre")?? m.Nombre,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetMunicipioAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMunicipioApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre")?? m.Nombre,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetJuzgadoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IJuzgadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IJuzgadoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Juzgado", "Nombre")?? m.Nombre,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -396,12 +463,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Sexo != null && Generos_Sexo.Resource != null)
-                ViewBag.Generos_Sexo = Generos_Sexo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IJuzgadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Juzgados_Juzgado = _IJuzgadoApiConsumer.SelAll(true);
+            if (Juzgados_Juzgado != null && Juzgados_Juzgado.Resource != null)
+                ViewBag.Juzgados_Juzgado = Juzgados_Juzgado.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Juzgado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -414,12 +481,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
-            if (Generos_Sexo != null && Generos_Sexo.Resource != null)
-                ViewBag.Generos_Sexo = Generos_Sexo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IJuzgadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Juzgados_Juzgado = _IJuzgadoApiConsumer.SelAll(true);
+            if (Juzgados_Juzgado != null && Juzgados_Juzgado.Resource != null)
+                ViewBag.Juzgados_Juzgado = Juzgados_Juzgado.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Juzgado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -459,12 +526,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Consulta_de_Mandamientos_Judicialess.Select(m => new Consulta_de_Mandamientos_JudicialesGridModel
                     {
                     Clave = m.Clave
+			,MandamientoJudicialId = m.MandamientoJudicialId
 			,Nombre = m.Nombre
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
-                        ,Fecha_de_Nacimiento = (m.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
+			,Alias = m.Alias
+                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
+                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,JuzgadoNombre = CultureHelper.GetTraduction(m.Juzgado_Juzgado.Clave.ToString(), "Nombre") ?? (string)m.Juzgado_Juzgado.Nombre
+			,Oficio_Solicitud_Juzgado = m.Oficio_Solicitud_Juzgado
+			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
+			,Causa_Penal = m.Causa_Penal
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -579,12 +652,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 aaData = result.Consulta_de_Mandamientos_Judicialess.Select(m => new Consulta_de_Mandamientos_JudicialesGridModel
             {
                     Clave = m.Clave
+			,MandamientoJudicialId = m.MandamientoJudicialId
 			,Nombre = m.Nombre
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
-                        ,Fecha_de_Nacimiento = (m.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
+			,Alias = m.Alias
+                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
+                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,JuzgadoNombre = CultureHelper.GetTraduction(m.Juzgado_Juzgado.Clave.ToString(), "Nombre") ?? (string)m.Juzgado_Juzgado.Nombre
+			,Oficio_Solicitud_Juzgado = m.Oficio_Solicitud_Juzgado
+			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
+			,Causa_Penal = m.Causa_Penal
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -595,7 +674,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
         [HttpGet]
-        public JsonResult GetConsulta_de_Mandamientos_Judiciales_Nacionalidad_Nacionalidad(string query, string where)
+        public JsonResult GetConsulta_de_Mandamientos_Judiciales_Pais_Pais(string query, string where)
         {
             try
             {
@@ -603,18 +682,72 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where = "";
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+                _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Nacionalidad.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Nacionalidad.NacionalidadC as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Pais.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _INacionalidadApiConsumer.ListaSelAll(1, 20,elWhere , " Nacionalidad.NacionalidadC ASC ").Resource;
+				var result = _IPaisApiConsumer.ListaSelAll(1, 20,elWhere , " Pais.Nombre ASC ").Resource;
                
-                foreach (var item in result.Nacionalidads)
+                foreach (var item in result.Paiss)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Nacionalidad", "NacionalidadC");
-                    item.NacionalidadC =trans ??item.NacionalidadC;
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Pais", "Nombre");
+                    item.Nombre =trans ??item.Nombre;
                 }
-                return Json(result.Nacionalidads.ToArray(), JsonRequestBehavior.AllowGet);
+                return Json(result.Paiss.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetConsulta_de_Mandamientos_Judiciales_Estado_Estado(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Estado.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IEstadoApiConsumer.ListaSelAll(1, 20,elWhere , " Estado.Nombre ASC ").Resource;
+               
+                foreach (var item in result.Estados)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Estado", "Nombre");
+                    item.Nombre =trans ??item.Nombre;
+                }
+                return Json(result.Estados.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetConsulta_de_Mandamientos_Judiciales_Municipio_Municipio(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Municipio.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IMunicipioApiConsumer.ListaSelAll(1, 20,elWhere , " Municipio.Nombre ASC ").Resource;
+               
+                foreach (var item in result.Municipios)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Municipio", "Nombre");
+                    item.Nombre =trans ??item.Nombre;
+                }
+                return Json(result.Municipios.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -622,33 +755,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 //Grid GetAutoComplete
-        [HttpGet]
-        public JsonResult GetDetalle_de_Resultados_Nacionalidad_Nacionalidad(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Nacionalidad.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Nacionalidad.NacionalidadC as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _INacionalidadApiConsumer.ListaSelAll(1, 20,elWhere , " Nacionalidad.NacionalidadC ASC ").Resource;
-               
-                foreach (var item in result.Nacionalidads)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Nacionalidad", "NacionalidadC");
-                    item.NacionalidadC =trans ??item.NacionalidadC;
-                }
-                return Json(result.Nacionalidads.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 
 
 
@@ -665,6 +771,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Consulta_de_Mandamientos_Judiciales.Clave >= " + filter.FromClave;
                 if (!string.IsNullOrEmpty(filter.ToClave))
                     where += " AND Consulta_de_Mandamientos_Judiciales.Clave <= " + filter.ToClave;
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromMandamientoJudicialId) || !string.IsNullOrEmpty(filter.ToMandamientoJudicialId))
+            {
+                if (!string.IsNullOrEmpty(filter.FromMandamientoJudicialId))
+                    where += " AND Consulta_de_Mandamientos_Judiciales.MandamientoJudicialId >= " + filter.FromMandamientoJudicialId;
+                if (!string.IsNullOrEmpty(filter.ToMandamientoJudicialId))
+                    where += " AND Consulta_de_Mandamientos_Judiciales.MandamientoJudicialId <= " + filter.ToMandamientoJudicialId;
             }
 
             if (!string.IsNullOrEmpty(filter.Nombre))
@@ -733,73 +847,204 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.FromFecha_de_Nacimiento) || !string.IsNullOrEmpty(filter.ToFecha_de_Nacimiento))
+            if (!string.IsNullOrEmpty(filter.Alias))
             {
-                var Fecha_de_NacimientoFrom = DateTime.ParseExact(filter.FromFecha_de_Nacimiento, ConfigurationProperty.DateFormat,
-                    CultureInfo.InvariantCulture as IFormatProvider);
-                var Fecha_de_NacimientoTo = DateTime.ParseExact(filter.ToFecha_de_Nacimiento, ConfigurationProperty.DateFormat,
-                  CultureInfo.InvariantCulture as IFormatProvider);
-
-                if (!string.IsNullOrEmpty(filter.FromFecha_de_Nacimiento))
-                    where += " AND Consulta_de_Mandamientos_Judiciales.Fecha_de_Nacimiento >= '" + Fecha_de_NacimientoFrom.ToString("MM-dd-yyyy") + "'";
-                if (!string.IsNullOrEmpty(filter.ToFecha_de_Nacimiento))
-                    where += " AND Consulta_de_Mandamientos_Judiciales.Fecha_de_Nacimiento <= '" + Fecha_de_NacimientoTo.ToString("MM-dd-yyyy") + "'";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceSexo))
-            {
-                switch (filter.SexoFilter)
+                switch (filter.AliasFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Genero.Descripcion LIKE '" + filter.AdvanceSexo + "%'";
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Alias LIKE '" + filter.Alias + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Genero.Descripcion LIKE '%" + filter.AdvanceSexo + "'";
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Alias LIKE '%" + filter.Alias + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Genero.Descripcion = '" + filter.AdvanceSexo + "'";
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Alias = '" + filter.Alias + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Genero.Descripcion LIKE '%" + filter.AdvanceSexo + "%'";
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Alias LIKE '%" + filter.Alias + "%'";
                         break;
                 }
             }
-            else if (filter.AdvanceSexoMultiple != null && filter.AdvanceSexoMultiple.Count() > 0)
-            {
-                var SexoIds = string.Join(",", filter.AdvanceSexoMultiple);
 
-                where += " AND Consulta_de_Mandamientos_Judiciales.Sexo In (" + SexoIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceNacionalidad))
+            if (!string.IsNullOrEmpty(filter.AdvancePais))
             {
-                switch (filter.NacionalidadFilter)
+                switch (filter.PaisFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Nacionalidad.NacionalidadC LIKE '" + filter.AdvanceNacionalidad + "%'";
+                        where += " AND Pais.Nombre LIKE '" + filter.AdvancePais + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Nacionalidad.NacionalidadC LIKE '%" + filter.AdvanceNacionalidad + "'";
+                        where += " AND Pais.Nombre LIKE '%" + filter.AdvancePais + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Nacionalidad.NacionalidadC = '" + filter.AdvanceNacionalidad + "'";
+                        where += " AND Pais.Nombre = '" + filter.AdvancePais + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Nacionalidad.NacionalidadC LIKE '%" + filter.AdvanceNacionalidad + "%'";
+                        where += " AND Pais.Nombre LIKE '%" + filter.AdvancePais + "%'";
                         break;
                 }
             }
-            else if (filter.AdvanceNacionalidadMultiple != null && filter.AdvanceNacionalidadMultiple.Count() > 0)
+            else if (filter.AdvancePaisMultiple != null && filter.AdvancePaisMultiple.Count() > 0)
             {
-                var NacionalidadIds = string.Join(",", filter.AdvanceNacionalidadMultiple);
+                var PaisIds = string.Join(",", filter.AdvancePaisMultiple);
 
-                where += " AND Consulta_de_Mandamientos_Judiciales.Nacionalidad In (" + NacionalidadIds + ")";
+                where += " AND Consulta_de_Mandamientos_Judiciales.Pais In (" + PaisIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceEstado))
+            {
+                switch (filter.EstadoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Estado.Nombre LIKE '" + filter.AdvanceEstado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEstado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Estado.Nombre = '" + filter.AdvanceEstado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEstado + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceEstadoMultiple != null && filter.AdvanceEstadoMultiple.Count() > 0)
+            {
+                var EstadoIds = string.Join(",", filter.AdvanceEstadoMultiple);
+
+                where += " AND Consulta_de_Mandamientos_Judiciales.Estado In (" + EstadoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceMunicipio))
+            {
+                switch (filter.MunicipioFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Municipio.Nombre LIKE '" + filter.AdvanceMunicipio + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Municipio.Nombre LIKE '%" + filter.AdvanceMunicipio + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Municipio.Nombre = '" + filter.AdvanceMunicipio + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Municipio.Nombre LIKE '%" + filter.AdvanceMunicipio + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceMunicipioMultiple != null && filter.AdvanceMunicipioMultiple.Count() > 0)
+            {
+                var MunicipioIds = string.Join(",", filter.AdvanceMunicipioMultiple);
+
+                where += " AND Consulta_de_Mandamientos_Judiciales.Municipio In (" + MunicipioIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceJuzgado))
+            {
+                switch (filter.JuzgadoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Juzgado.Nombre LIKE '" + filter.AdvanceJuzgado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Juzgado.Nombre LIKE '%" + filter.AdvanceJuzgado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Juzgado.Nombre = '" + filter.AdvanceJuzgado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Juzgado.Nombre LIKE '%" + filter.AdvanceJuzgado + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceJuzgadoMultiple != null && filter.AdvanceJuzgadoMultiple.Count() > 0)
+            {
+                var JuzgadoIds = string.Join(",", filter.AdvanceJuzgadoMultiple);
+
+                where += " AND Consulta_de_Mandamientos_Judiciales.Juzgado In (" + JuzgadoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Oficio_Solicitud_Juzgado))
+            {
+                switch (filter.Oficio_Solicitud_JuzgadoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Oficio_Solicitud_Juzgado LIKE '" + filter.Oficio_Solicitud_Juzgado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Oficio_Solicitud_Juzgado LIKE '%" + filter.Oficio_Solicitud_Juzgado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Oficio_Solicitud_Juzgado = '" + filter.Oficio_Solicitud_Juzgado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Oficio_Solicitud_Juzgado LIKE '%" + filter.Oficio_Solicitud_Juzgado + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Carpeta_de_Investigacion))
+            {
+                switch (filter.Carpeta_de_InvestigacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Carpeta_de_Investigacion LIKE '" + filter.Carpeta_de_Investigacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Carpeta_de_Investigacion LIKE '%" + filter.Carpeta_de_Investigacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Carpeta_de_Investigacion = '" + filter.Carpeta_de_Investigacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Carpeta_de_Investigacion LIKE '%" + filter.Carpeta_de_Investigacion + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Causa_Penal))
+            {
+                switch (filter.Causa_PenalFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Causa_Penal LIKE '" + filter.Causa_Penal + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Causa_Penal LIKE '%" + filter.Causa_Penal + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Causa_Penal = '" + filter.Causa_Penal + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Consulta_de_Mandamientos_Judiciales.Causa_Penal LIKE '%" + filter.Causa_Penal + "%'";
+                        break;
+                }
             }
 
 
@@ -845,14 +1090,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+			,Fuente = m.Fuente
+			,Tipo_de_Mandamiento = m.Tipo_de_Mandamiento
 			,Nombre = m.Nombre
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
-			,Fecha_Nacimiento = (m.Fecha_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,Sexo = m.Sexo
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ??(string)m.Sexo_Genero.Descripcion
-                        ,Nacionalidad = m.Nacionalidad
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "NacionalidadC") ??(string)m.Nacionalidad_Nacionalidad.NacionalidadC
+			,Alias = m.Alias
+			,Sexo = m.Sexo
+			,Pais = m.Pais
+			,Estado = m.Estado
+			,Municipio = m.Municipio
+			,Juzgado = m.Juzgado
+			,Oficio_Solicitud_Juzgado = m.Oficio_Solicitud_Juzgado
+			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
+			,Causa_Penal = m.Causa_Penal
 
                 }).ToList(),
                 recordsTotal = result.RowCount,
@@ -885,14 +1136,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+			,Fuente = m.Fuente
+			,Tipo_de_Mandamiento = m.Tipo_de_Mandamiento
 			,Nombre = m.Nombre
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
-			,Fecha_Nacimiento = (m.Fecha_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,Sexo = m.Sexo
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ??(string)m.Sexo_Genero.Descripcion
-                        ,Nacionalidad = m.Nacionalidad
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "NacionalidadC") ??(string)m.Nacionalidad_Nacionalidad.NacionalidadC
+			,Alias = m.Alias
+			,Sexo = m.Sexo
+			,Pais = m.Pais
+			,Estado = m.Estado
+			,Municipio = m.Municipio
+			,Juzgado = m.Juzgado
+			,Oficio_Solicitud_Juzgado = m.Oficio_Solicitud_Juzgado
+			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
+			,Causa_Penal = m.Causa_Penal
 
 
                     }).ToList();
@@ -964,12 +1221,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Consulta_de_Mandamientos_JudicialesInfo = new Consulta_de_Mandamientos_Judiciales
                     {
                         Clave = varConsulta_de_Mandamientos_Judiciales.Clave
+                        ,MandamientoJudicialId = varConsulta_de_Mandamientos_Judiciales.MandamientoJudicialId
                         ,Nombre = varConsulta_de_Mandamientos_Judiciales.Nombre
                         ,Apellido_Paterno = varConsulta_de_Mandamientos_Judiciales.Apellido_Paterno
                         ,Apellido_Materno = varConsulta_de_Mandamientos_Judiciales.Apellido_Materno
-                        ,Fecha_de_Nacimiento = (!String.IsNullOrEmpty(varConsulta_de_Mandamientos_Judiciales.Fecha_de_Nacimiento)) ? DateTime.ParseExact(varConsulta_de_Mandamientos_Judiciales.Fecha_de_Nacimiento, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Sexo = varConsulta_de_Mandamientos_Judiciales.Sexo
-                        ,Nacionalidad = varConsulta_de_Mandamientos_Judiciales.Nacionalidad
+                        ,Alias = varConsulta_de_Mandamientos_Judiciales.Alias
+                        ,Pais = varConsulta_de_Mandamientos_Judiciales.Pais
+                        ,Estado = varConsulta_de_Mandamientos_Judiciales.Estado
+                        ,Municipio = varConsulta_de_Mandamientos_Judiciales.Municipio
+                        ,Juzgado = varConsulta_de_Mandamientos_Judiciales.Juzgado
+                        ,Oficio_Solicitud_Juzgado = varConsulta_de_Mandamientos_Judiciales.Oficio_Solicitud_Juzgado
+                        ,Carpeta_de_Investigacion = varConsulta_de_Mandamientos_Judiciales.Carpeta_de_Investigacion
+                        ,Causa_Penal = varConsulta_de_Mandamientos_Judiciales.Causa_Penal
 
                     };
 
@@ -1068,6 +1331,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
+
+
+
+
+
+
                         //Removal Request
                         if (Detalle_de_ResultadosItem.Removed)
                         {
@@ -1081,12 +1352,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Consulta_de_Ordenes = MasterId
                             ,Clave = Detalle_de_ResultadosItem.Clave
+                            ,Fuente = Detalle_de_ResultadosItem.Fuente
+                            ,Tipo_de_Mandamiento = Detalle_de_ResultadosItem.Tipo_de_Mandamiento
                             ,Nombre = Detalle_de_ResultadosItem.Nombre
                             ,Apellido_Paterno = Detalle_de_ResultadosItem.Apellido_Paterno
                             ,Apellido_Materno = Detalle_de_ResultadosItem.Apellido_Materno
-                            ,Fecha_Nacimiento = (Detalle_de_ResultadosItem.Fecha_Nacimiento!= null) ? DateTime.ParseExact(Detalle_de_ResultadosItem.Fecha_Nacimiento, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                            ,Sexo = (Convert.ToInt32(Detalle_de_ResultadosItem.Sexo) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_de_ResultadosItem.Sexo))
-                            ,Nacionalidad = (Convert.ToInt32(Detalle_de_ResultadosItem.Nacionalidad) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_de_ResultadosItem.Nacionalidad))
+                            ,Alias = Detalle_de_ResultadosItem.Alias
+                            ,Sexo = Detalle_de_ResultadosItem.Sexo
+                            ,Pais = Detalle_de_ResultadosItem.Pais
+                            ,Estado = Detalle_de_ResultadosItem.Estado
+                            ,Municipio = Detalle_de_ResultadosItem.Municipio
+                            ,Juzgado = Detalle_de_ResultadosItem.Juzgado
+                            ,Oficio_Solicitud_Juzgado = Detalle_de_ResultadosItem.Oficio_Solicitud_Juzgado
+                            ,Carpeta_de_Investigacion = Detalle_de_ResultadosItem.Carpeta_de_Investigacion
+                            ,Causa_Penal = Detalle_de_ResultadosItem.Causa_Penal
 
                         };
 
@@ -1110,47 +1389,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
-        [HttpGet]
-        public ActionResult GetDetalle_de_Resultados_GeneroAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IGeneroApiConsumer.SelAll(false).Resource;
-                foreach (var item in result)
-                {
-				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Genero", "Descripcion");
-                  item.Descripcion= trans??item.Descripcion;
-                }
-                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetDetalle_de_Resultados_NacionalidadAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _INacionalidadApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _INacionalidadApiConsumer.SelAll(false).Resource;
-                foreach (var item in result)
-                {
-                    item.NacionalidadC= CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Nacionalidad", "NacionalidadC");
-                }
-                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1530,12 +1778,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Consulta_de_Mandamientos_Judicialess.Select(m => new Consulta_de_Mandamientos_JudicialesGridModel
             {
                 Clave = m.Clave
+			,MandamientoJudicialId = m.MandamientoJudicialId
 			,Nombre = m.Nombre
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
-                        ,Fecha_de_Nacimiento = (m.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
+			,Alias = m.Alias
+                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
+                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,JuzgadoNombre = CultureHelper.GetTraduction(m.Juzgado_Juzgado.Clave.ToString(), "Nombre") ?? (string)m.Juzgado_Juzgado.Nombre
+			,Oficio_Solicitud_Juzgado = m.Oficio_Solicitud_Juzgado
+			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
+			,Causa_Penal = m.Causa_Penal
 
             }).ToList();
 
@@ -1609,12 +1863,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Consulta_de_Mandamientos_Judicialess.Select(m => new Consulta_de_Mandamientos_JudicialesGridModel
             {
                 Clave = m.Clave
+			,MandamientoJudicialId = m.MandamientoJudicialId
 			,Nombre = m.Nombre
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
-                        ,Fecha_de_Nacimiento = (m.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
+			,Alias = m.Alias
+                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
+                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,JuzgadoNombre = CultureHelper.GetTraduction(m.Juzgado_Juzgado.Clave.ToString(), "Nombre") ?? (string)m.Juzgado_Juzgado.Nombre
+			,Oficio_Solicitud_Juzgado = m.Oficio_Solicitud_Juzgado
+			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
+			,Causa_Penal = m.Causa_Penal
 
             }).ToList();
 
@@ -1654,12 +1914,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Consulta_de_Mandamientos_Judiciales_Datos_GeneralesInfo = new Consulta_de_Mandamientos_Judiciales_Datos_Generales
                 {
                     Clave = varConsulta_de_Mandamientos_Judiciales.Clave
-                                            ,Nombre = varConsulta_de_Mandamientos_Judiciales.Nombre
+                                            ,MandamientoJudicialId = varConsulta_de_Mandamientos_Judiciales.MandamientoJudicialId
+                        ,Nombre = varConsulta_de_Mandamientos_Judiciales.Nombre
                         ,Apellido_Paterno = varConsulta_de_Mandamientos_Judiciales.Apellido_Paterno
                         ,Apellido_Materno = varConsulta_de_Mandamientos_Judiciales.Apellido_Materno
-                        ,Fecha_de_Nacimiento = (!String.IsNullOrEmpty(varConsulta_de_Mandamientos_Judiciales.Fecha_de_Nacimiento)) ? DateTime.ParseExact(varConsulta_de_Mandamientos_Judiciales.Fecha_de_Nacimiento, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Sexo = varConsulta_de_Mandamientos_Judiciales.Sexo
-                        ,Nacionalidad = varConsulta_de_Mandamientos_Judiciales.Nacionalidad
+                        ,Alias = varConsulta_de_Mandamientos_Judiciales.Alias
+                        ,Pais = varConsulta_de_Mandamientos_Judiciales.Pais
+                        ,Estado = varConsulta_de_Mandamientos_Judiciales.Estado
+                        ,Municipio = varConsulta_de_Mandamientos_Judiciales.Municipio
+                        ,Juzgado = varConsulta_de_Mandamientos_Judiciales.Juzgado
+                        ,Oficio_Solicitud_Juzgado = varConsulta_de_Mandamientos_Judiciales.Oficio_Solicitud_Juzgado
+                        ,Carpeta_de_Investigacion = varConsulta_de_Mandamientos_Judiciales.Carpeta_de_Investigacion
+                        ,Causa_Penal = varConsulta_de_Mandamientos_Judiciales.Causa_Penal
                     
                 };
 
@@ -1690,14 +1956,22 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var result = new Consulta_de_Mandamientos_Judiciales_Datos_GeneralesModel
                 {
                     Clave = m.Clave
+			,MandamientoJudicialId = m.MandamientoJudicialId
 			,Nombre = m.Nombre
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
-                        ,Fecha_de_Nacimiento = (m.Fecha_de_Nacimiento == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Nacimiento).ToString(ConfigurationProperty.DateFormat))
-                        ,Sexo = m.Sexo
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-                        ,Nacionalidad = m.Nacionalidad
-                        ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
+			,Alias = m.Alias
+                        ,Pais = m.Pais
+                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_Pais.Nombre
+                        ,Estado = m.Estado
+                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
+                        ,Municipio = m.Municipio
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
+                        ,Juzgado = m.Juzgado
+                        ,JuzgadoNombre = CultureHelper.GetTraduction(m.Juzgado_Juzgado.Clave.ToString(), "Nombre") ?? (string)m.Juzgado_Juzgado.Nombre
+			,Oficio_Solicitud_Juzgado = m.Oficio_Solicitud_Juzgado
+			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
+			,Causa_Penal = m.Causa_Penal
 
                     
                 };

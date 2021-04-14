@@ -6424,11 +6424,11 @@ function CambiaPais(deesc) {
     var valorPaisId = EvaluaQuery(query)
     control.select2('open');
     $('.select2-search__field').val(valorPaisId).trigger('keyup');
+
     control.select2('close');
-    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    var data = AutoCompletePaisData;
     control.select2({ data: data });
     control.val(valorPaisId).trigger('change');
-    //$('#Pais').val(valorPaisId).trigger('change');
 
 }
 
@@ -6442,7 +6442,7 @@ function CambiaEstado(deesc) {
     control.select2('open');
     $('.select2-search__field').val(valorPaisId).trigger('keyup');
     control.select2('close');
-    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    var data = AutoCompleteEstadoData;
     control.select2({ data: data });
     control.val(valorPaisId).trigger('change');
 
@@ -6476,7 +6476,7 @@ function CambiaMunicipio(deesc) {
     control.select2('open');
     $('.select2-search__field').val(ValorMunicipio).trigger('keyup');
     control.select2('close');
-    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    var data = AutoCompleteMunicipioData;
     control.select2({ data: data });
     control.val(ValorMunicipio).trigger('change');
 }
@@ -6500,7 +6500,7 @@ function CambiaPoblacion(deesc) {
     control.select2('open');
     $('.select2-search__field').val(valorPobla).trigger('keyup');
     control.select2('close');
-    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    var data = AutoCompletePoblacionData;
     control.select2({ data: data });
     control.val(valorPobla).trigger('change');
 }
@@ -6515,7 +6515,7 @@ function CambiaColonia(deesc) {
     control.select2('open');
     $('.select2-search__field').val(valorPaisId).trigger('keyup');
     control.select2('close');
-    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+    var data = AutoCompleteColoniaData;
     control.select2({ data: data });
     control.val(valorPaisId).trigger('change');
 }
@@ -6571,7 +6571,7 @@ function CargaGoogleMaps() {
             }
         });
 
-        /*google.maps.event.addListener(map, 'click', function(event) {
+        google.maps.event.addListener(map, 'click', function(event) {
             placeMarker(event.latLng);
             geocoder.geocode({ 'latLng': marker.getPosition() }, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
@@ -6638,7 +6638,7 @@ function CargaGoogleMaps() {
                 }
             });
         });
-*/
+
         function placeMarker(location) {
 
             if (marker == null) {
@@ -6653,7 +6653,7 @@ function CargaGoogleMaps() {
 
         }
 
-        google.maps.event.addListener(map, 'click', function(event) {
+        /*google.maps.event.addListener(map, 'click', function(event) {
 
             geocoder.geocode({ 'latLng': marker.getPosition() }, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
@@ -6721,7 +6721,7 @@ function CargaGoogleMaps() {
             });
         });
 
-
+*/
 
 
         // Evento que se dispara cuando se mueve el marcador en en el mapa (es el Marcador de posicion de color Rojo)
@@ -6798,7 +6798,7 @@ function CargaGoogleMaps() {
     // Buscamos la direccion escrita (solo busca todavia no asigna) y no posicionamos sobre ella, se dispara cuando se le da click al boton buscar dentro de la modal que contiene al mapa
     // var geocoder = new google.maps.Geocoder();
     geocoder.geocode({
-            address: jQuery('input[name=address]').val() == "" ? "Badiraguto Sinaloa,Mexico" : $('input[name=address]').val(),
+            address: jQuery('input[name=address]').val() == "" ? "Primer Cuadro, 80000 Culiacán Rosales, Sin., México" : $('input[name=address]').val(),
             region: 'no'
         },
         function(results, status) {
@@ -6945,7 +6945,7 @@ function CargaGoogleMapsOtrosDomicilios() {
     // Buscamos la direccion escrita (solo busca todavia no asigna) y no posicionamos sobre ella, se dispara cuando se le da click al boton buscar dentro de la modal que contiene al mapa
     // var geocoder = new google.maps.Geocoder();
     geocoder.geocode({
-            address: jQuery('input[name=address2]').val() == "" ? "Badiraguto Sinaloa,Mexico" : $('input[name=address2]').val(),
+            address: jQuery('input[name=address2]').val() == "" ? "Primer Cuadro, 80000 Culiacán Rosales, Sin., México" : $('input[name=address2]').val(),
             region: 'no'
         },
         function(results, status) {
@@ -7275,7 +7275,7 @@ function CargaGoogleMapsOtrosDomicilios() {
     // Buscamos la direccion escrita (solo busca todavia no asigna) y no posicionamos sobre ella, se dispara cuando se le da click al boton buscar dentro de la modal que contiene al mapa
     // var geocoder = new google.maps.Geocoder();
     geocoder.geocode({
-            address: jQuery('input[name=address2]').val() == "" ? "Badiraguto Sinaloa,Mexico" : $('input[name=address2]').val(),
+            address: jQuery('input[name=address2]').val() == "" ? "Primer Cuadro, 80000 Culiacán Rosales, Sin., México" : $('input[name=address2]').val(),
             region: 'no'
         },
         function(results, status) {

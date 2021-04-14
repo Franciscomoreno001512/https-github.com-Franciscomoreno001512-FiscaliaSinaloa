@@ -74,6 +74,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceTipo_de_Delito { set; get; }
         public int[] AdvanceTipo_de_DelitoMultiple { set; get; }
 
+        public Filters Titulo_del_DelitoFilter { set; get; }
+        public string AdvanceTitulo_del_Delito { set; get; }
+        public int[] AdvanceTitulo_del_DelitoMultiple { set; get; }
+
         public Filters Grupo_DelitoFilter { set; get; }
         public string AdvanceGrupo_Delito { set; get; }
         public int[] AdvanceGrupo_DelitoMultiple { set; get; }
@@ -178,6 +182,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public RadioOptions Se_Informo_el_Procedimiento { set; get; }
 
         public RadioOptions Levantamiento_de_Cadaver { set; get; }
+
+        public Filters Mandamiento_JudicialFilter { set; get; }
+        public string AdvanceMandamiento_Judicial { set; get; }
+        public int[] AdvanceMandamiento_JudicialMultiple { set; get; }
 
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string FromFecha_del_Robo { set; get; }

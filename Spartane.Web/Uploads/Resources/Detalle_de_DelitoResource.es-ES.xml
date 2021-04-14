@@ -13,6 +13,7 @@
   <resource culture="es-es" name="Violencia_de_Genero" value="¿Hubo Violencia de Género? "></resource>
   <resource culture="es-es" name="Delito_Violencia_Genero" value="Delito Violencia Genero"></resource>
   <resource culture="es-es" name="Tipo_de_Delito" value="Tipo de Delito"></resource>
+  <resource culture="es-es" name="Titulo_del_Delito" value="Titulo del Delito"></resource>
   <resource culture="es-es" name="Grupo_Delito" value="Grupo Delito"></resource>
   <resource culture="es-es" name="Delito" value="Delito"></resource>
   <resource culture="es-es" name="Agravante" value="Agravante"></resource>
@@ -45,6 +46,7 @@
   <resource culture="es-es" name="Se_Informaron_sus_Derechos" value="Se Informaron sus Derechos"></resource>
   <resource culture="es-es" name="Se_Informo_el_Procedimiento" value="Se Informó el Procedimiento"></resource>
   <resource culture="es-es" name="Levantamiento_de_Cadaver" value="Levantamiento de Cadáver"></resource>
+  <resource culture="es-es" name="Mandamiento_Judicial" value="Mandamiento Judicial"></resource>
   <resource culture="es-es" name="Fecha_del_Robo" value="Fecha del Robo"></resource>
   <resource culture="es-es" name="Hora_del_Robo" value="Hora del Robo"></resource>
   <resource culture="es-es" name="Robo_de" value="Robo de"></resource>

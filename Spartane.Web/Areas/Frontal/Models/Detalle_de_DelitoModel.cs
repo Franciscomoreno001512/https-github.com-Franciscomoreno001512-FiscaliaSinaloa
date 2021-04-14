@@ -29,6 +29,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Delito_Violencia_GeneroDescripcion { get; set; }
         public int? Tipo_de_Delito { get; set; }
         public string Tipo_de_DelitoDescripcion { get; set; }
+        public int? Titulo_del_Delito { get; set; }
+        public string Titulo_del_DelitoDescripcion { get; set; }
         public int? Grupo_Delito { get; set; }
         public string Grupo_DelitoDescripcion { get; set; }
         public int? Delito { get; set; }
@@ -75,6 +77,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool Se_Informaron_sus_Derechos { get; set; }
         public bool Se_Informo_el_Procedimiento { get; set; }
         public bool Levantamiento_de_Cadaver { get; set; }
+        public int? Mandamiento_Judicial { get; set; }
+        public string Mandamiento_JudicialNumero_de_Mandamiento { get; set; }
         public string Fecha_del_Robo { get; set; }
         public string Hora_del_Robo { get; set; }
         public int? Robo_de { get; set; }
@@ -203,6 +207,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Delito_Violencia_GeneroDescripcion { get; set; }
         public int? Tipo_de_Delito { get; set; }
         public string Tipo_de_DelitoDescripcion { get; set; }
+        public int? Titulo_del_Delito { get; set; }
+        public string Titulo_del_DelitoDescripcion { get; set; }
         public int? Grupo_Delito { get; set; }
         public string Grupo_DelitoDescripcion { get; set; }
         public int? Delito { get; set; }
@@ -249,6 +255,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Se_Informaron_sus_Derechos { get; set; }
         public bool? Se_Informo_el_Procedimiento { get; set; }
         public bool? Levantamiento_de_Cadaver { get; set; }
+        public int? Mandamiento_Judicial { get; set; }
+        public string Mandamiento_JudicialNumero_de_Mandamiento { get; set; }
 
     }
 

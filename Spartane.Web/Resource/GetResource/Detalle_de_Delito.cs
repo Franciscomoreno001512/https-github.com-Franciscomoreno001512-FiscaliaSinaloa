@@ -146,6 +146,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Titulo_del_Delito</summary>
+        public static string Titulo_del_Delito
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Delito.GetResource("Titulo_del_Delito", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Grupo_Delito</summary>
         public static string Grupo_Delito
         {
@@ -463,6 +473,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Delito.GetResource("Levantamiento_de_Cadaver", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Mandamiento_Judicial</summary>
+        public static string Mandamiento_Judicial
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Delito.GetResource("Mandamiento_Judicial", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

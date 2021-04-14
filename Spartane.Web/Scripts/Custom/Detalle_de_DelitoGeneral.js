@@ -603,16 +603,16 @@ function GetAutoCompleteDetalle_de_Delito_Expediente_MASC_SolicitudData(data) {
     }
     return AutoCompleteExpediente_MASCData;
 }
-var AutoCompleteTipo_de_DelitoData = [];
-function GetAutoCompleteDetalle_de_Delito_Tipo_de_Delito_Titulo_del_DelitoData(data) {
-	AutoCompleteTipo_de_DelitoData = [];
+var AutoCompleteTitulo_del_DelitoData = [];
+function GetAutoCompleteDetalle_de_Delito_Titulo_del_Delito_Titulo_del_DelitoData(data) {
+	AutoCompleteTitulo_del_DelitoData = [];
     for (var i = 0; i < data.length; i++) {
-        AutoCompleteTipo_de_DelitoData.push({
+        AutoCompleteTitulo_del_DelitoData.push({
             id: data[i].Clave,
             text: data[i].Descripcion
         });
     }
-    return AutoCompleteTipo_de_DelitoData;
+    return AutoCompleteTitulo_del_DelitoData;
 }
 var AutoCompleteGrupo_DelitoData = [];
 function GetAutoCompleteDetalle_de_Delito_Grupo_Delito_Grupo_del_DelitoData(data) {
@@ -672,6 +672,17 @@ function GetAutoCompleteDetalle_de_Delito_Colonia_del_Delito_ColoniaData(data) {
         });
     }
     return AutoCompleteColonia_del_DelitoData;
+}
+var AutoCompleteMandamiento_JudicialData = [];
+function GetAutoCompleteDetalle_de_Delito_Mandamiento_Judicial_Registro_de_Mandamiento_JudicialData(data) {
+	AutoCompleteMandamiento_JudicialData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteMandamiento_JudicialData.push({
+            id: data[i].Clave,
+            text: data[i].Numero_de_Mandamiento
+        });
+    }
+    return AutoCompleteMandamiento_JudicialData;
 }
 var AutoCompleteEstado_de_Origen_de_las_PlacasData = [];
 function GetAutoCompleteDetalle_de_Delito_Estado_de_Origen_de_las_Placas_EstadoData(data) {
@@ -807,9 +818,9 @@ function ClearControls() {
     $('#Expediente_MASC').empty();
     $("#Expediente_MASC").append('<option value=""></option>');
     $('#Expediente_MASC').val('0').trigger('change');
-    $('#Tipo_de_Delito').empty();
-    $("#Tipo_de_Delito").append('<option value=""></option>');
-    $('#Tipo_de_Delito').val('0').trigger('change');
+    $('#Titulo_del_Delito').empty();
+    $("#Titulo_del_Delito").append('<option value=""></option>');
+    $('#Titulo_del_Delito').val('0').trigger('change');
     $('#Grupo_Delito').empty();
     $("#Grupo_Delito").append('<option value=""></option>');
     $('#Grupo_Delito').val('0').trigger('change');
@@ -827,6 +838,9 @@ function ClearControls() {
     $('#Colonia_del_Delito').empty();
     $("#Colonia_del_Delito").append('<option value=""></option>');
     $('#Colonia_del_Delito').val('0').trigger('change');
+    $('#Mandamiento_Judicial').empty();
+    $("#Mandamiento_Judicial").append('<option value=""></option>');
+    $('#Mandamiento_Judicial').val('0').trigger('change');
     $('#Estado_de_Origen_de_las_Placas').empty();
     $("#Estado_de_Origen_de_las_Placas").append('<option value=""></option>');
     $('#Estado_de_Origen_de_las_Placas').val('0').trigger('change');
@@ -1001,9 +1015,9 @@ $(document).ready(function () {
     $('#Expediente_MASC').empty();
     $("#Expediente_MASC").append('<option value=""></option>');
     $('#Expediente_MASC').val('0').trigger('change');
-    $('#Tipo_de_Delito').empty();
-    $("#Tipo_de_Delito").append('<option value=""></option>');
-    $('#Tipo_de_Delito').val('0').trigger('change');
+    $('#Titulo_del_Delito').empty();
+    $("#Titulo_del_Delito").append('<option value=""></option>');
+    $('#Titulo_del_Delito').val('0').trigger('change');
     $('#Grupo_Delito').empty();
     $("#Grupo_Delito").append('<option value=""></option>');
     $('#Grupo_Delito').val('0').trigger('change');
@@ -1021,6 +1035,9 @@ $(document).ready(function () {
     $('#Colonia_del_Delito').empty();
     $("#Colonia_del_Delito").append('<option value=""></option>');
     $('#Colonia_del_Delito').val('0').trigger('change');
+    $('#Mandamiento_Judicial').empty();
+    $("#Mandamiento_Judicial").append('<option value=""></option>');
+    $('#Mandamiento_Judicial').val('0').trigger('change');
     $('#Estado_de_Origen_de_las_Placas').empty();
     $("#Estado_de_Origen_de_las_Placas").append('<option value=""></option>');
     $('#Estado_de_Origen_de_las_Placas').val('0').trigger('change');

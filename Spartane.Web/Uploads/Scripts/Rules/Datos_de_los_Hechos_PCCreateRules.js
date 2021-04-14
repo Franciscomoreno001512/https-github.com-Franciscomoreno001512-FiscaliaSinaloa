@@ -512,34 +512,55 @@ function CambiaEstado(deesc)
 
 
 
+var poblacionP;
 function CambiaMunicipio(deesc) {
     debugger;
+
+    if (deesc.toLowerCase() == "Culiacán Rosales".toLowerCase()) {
+        deesc = "Culiacán";
+    }
+
     $('#Municipio').val(null).trigger('change');
     var control = $('#Municipio');
-    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
-    var query = "select top 1 clave from Municipio where estado = '" + $('#Estado').val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
-    var valorPaisId = EvaluaQuery(query)
+
+
+    var rdesc = EvaluaQuery("usp_GetMunicipioYPoblacion '" + $('#Estado').val() + "', '" + deesc + "'");
+    var split = rdesc.split(',');
+    var ValorMunicipio = split[0];
+
+    poblacionP = split[1];
+
     control.select2('open');
-    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    $('.select2-search__field').val(ValorMunicipio).trigger('keyup');
     control.select2('close');
      var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
         control.select2({ data: data });
-        control.val(valorPaisId).trigger('change');
+    control.val(ValorMunicipio).trigger('change');
 }
 
 function CambiaPoblacion(deesc) {
     debugger;
     $('#Poblacion').val(null).trigger('change');
     var control = $('#Poblacion');
-    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
-    var query = "select top 1 clave from Colonia where Municipio = '" + $('#Municipio').val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
-    var valorPaisId = EvaluaQuery(query)
+
+     var valorPobla = 0;
+    if (poblacionP == "0") {
+        var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+        var query = "select top 1 clave from Colonia where Municipio = '" + $('#Municipio').val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+        valorPobla = EvaluaQuery(query);
+    }
+    else {
+        valorPobla = poblacionP;
+    }
+
+
+
     control.select2('open');
-    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    $('.select2-search__field').val(valorPobla).trigger('keyup');
     control.select2('close');
      var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
         control.select2({ data: data });
-        control.val(valorPaisId).trigger('change');
+    control.val(valorPobla).trigger('change');
 }
 function CambiaColonia(deesc) {
     debugger;

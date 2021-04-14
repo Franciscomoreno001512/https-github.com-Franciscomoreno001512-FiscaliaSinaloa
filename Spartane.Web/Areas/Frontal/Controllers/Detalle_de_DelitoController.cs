@@ -7,6 +7,7 @@ using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Formato_de_Denuncia;
 using Spartane.Core.Domain.Delitos_Violencia_Genero;
+using Spartane.Core.Domain.Tipo_Delito;
 using Spartane.Core.Domain.Titulo_del_Delito;
 using Spartane.Core.Domain.Grupo_del_Delito;
 using Spartane.Core.Domain.Delito;
@@ -30,6 +31,7 @@ using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Motivo_de_No_Canalizacion;
+using Spartane.Core.Domain.Registro_de_Mandamiento_Judicial;
 using Spartane.Core.Domain.Elemento_Robado;
 using Spartane.Core.Domain.Circunstancia_Vehiculo;
 using Spartane.Core.Domain.Especifica_Vehiculo;
@@ -75,6 +77,7 @@ using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
 using Spartane.Web.Areas.WebApiConsumer.Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Formato_de_Denuncia;
 using Spartane.Web.Areas.WebApiConsumer.Delitos_Violencia_Genero;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_Delito;
 using Spartane.Web.Areas.WebApiConsumer.Titulo_del_Delito;
 using Spartane.Web.Areas.WebApiConsumer.Grupo_del_Delito;
 using Spartane.Web.Areas.WebApiConsumer.Delito;
@@ -98,6 +101,7 @@ using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.A_Tiempo;
 using Spartane.Web.Areas.WebApiConsumer.Motivo_de_No_Canalizacion;
+using Spartane.Web.Areas.WebApiConsumer.Registro_de_Mandamiento_Judicial;
 using Spartane.Web.Areas.WebApiConsumer.Elemento_Robado;
 using Spartane.Web.Areas.WebApiConsumer.Circunstancia_Vehiculo;
 using Spartane.Web.Areas.WebApiConsumer.Especifica_Vehiculo;
@@ -169,6 +173,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ISolicitudApiConsumer _ISolicitudApiConsumer;
         private IFormato_de_DenunciaApiConsumer _IFormato_de_DenunciaApiConsumer;
         private IDelitos_Violencia_GeneroApiConsumer _IDelitos_Violencia_GeneroApiConsumer;
+        private ITipo_DelitoApiConsumer _ITipo_DelitoApiConsumer;
         private ITitulo_del_DelitoApiConsumer _ITitulo_del_DelitoApiConsumer;
         private IGrupo_del_DelitoApiConsumer _IGrupo_del_DelitoApiConsumer;
         private IDelitoApiConsumer _IDelitoApiConsumer;
@@ -192,6 +197,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IColoniaApiConsumer _IColoniaApiConsumer;
         private IA_TiempoApiConsumer _IA_TiempoApiConsumer;
         private IMotivo_de_No_CanalizacionApiConsumer _IMotivo_de_No_CanalizacionApiConsumer;
+        private IRegistro_de_Mandamiento_JudicialApiConsumer _IRegistro_de_Mandamiento_JudicialApiConsumer;
         private IElemento_RobadoApiConsumer _IElemento_RobadoApiConsumer;
         private ICircunstancia_VehiculoApiConsumer _ICircunstancia_VehiculoApiConsumer;
         private IEspecifica_VehiculoApiConsumer _IEspecifica_VehiculoApiConsumer;
@@ -229,7 +235,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_DelitoController(IDetalle_de_DelitoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_DelitoApiConsumer Detalle_de_DelitoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , IFormato_de_DenunciaApiConsumer Formato_de_DenunciaApiConsumer , IDelitos_Violencia_GeneroApiConsumer Delitos_Violencia_GeneroApiConsumer , ITitulo_del_DelitoApiConsumer Titulo_del_DelitoApiConsumer , IGrupo_del_DelitoApiConsumer Grupo_del_DelitoApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IAgravantes_del_DelitoApiConsumer Agravantes_del_DelitoApiConsumer , IAgravantesApiConsumer AgravantesApiConsumer  , ICircunstancias_del_DelitoApiConsumer Circunstancias_del_DelitoApiConsumer , ITipo_de_Lugar_del_RoboApiConsumer Tipo_de_Lugar_del_RoboApiConsumer  , ICircunstancia_del_DelitoApiConsumer Circunstancia_del_DelitoApiConsumer , IForma_Comision_DelitoApiConsumer Forma_Comision_DelitoApiConsumer , IForma_Accion_DelitoApiConsumer Forma_Accion_DelitoApiConsumer , IModalidad_DelitoApiConsumer Modalidad_DelitoApiConsumer , IElementos_Comision_DelitoApiConsumer Elementos_Comision_DelitoApiConsumer , IClasificacion_en_Orden_de_ResultadoApiConsumer Clasificacion_en_Orden_de_ResultadoApiConsumer , IConcursoApiConsumer ConcursoApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IMotivo_de_No_CanalizacionApiConsumer Motivo_de_No_CanalizacionApiConsumer , IElemento_RobadoApiConsumer Elemento_RobadoApiConsumer , ICircunstancia_VehiculoApiConsumer Circunstancia_VehiculoApiConsumer , IEspecifica_VehiculoApiConsumer Especifica_VehiculoApiConsumer , IMarca_del_VehiculoApiConsumer Marca_del_VehiculoApiConsumer , ISub_Marca_del_VehiculoApiConsumer Sub_Marca_del_VehiculoApiConsumer , ITipo_de_VehiculoApiConsumer Tipo_de_VehiculoApiConsumer , IColor_VehiculoApiConsumer Color_VehiculoApiConsumer , IZona_de_RoboApiConsumer Zona_de_RoboApiConsumer , IAseguradora_de_VehiculoApiConsumer Aseguradora_de_VehiculoApiConsumer , IServicio_del_VehiculoApiConsumer Servicio_del_VehiculoApiConsumer , IProcedencia_del_VehiculoApiConsumer Procedencia_del_VehiculoApiConsumer , ITipo_de_RoboApiConsumer Tipo_de_RoboApiConsumer , ITipo_de_CarreteraApiConsumer Tipo_de_CarreteraApiConsumer , IModalidad_de_Robo_de_VehiculoApiConsumer Modalidad_de_Robo_de_VehiculoApiConsumer , ICircunstancia_DefuncionApiConsumer Circunstancia_DefuncionApiConsumer , IConsecuencia_DefuncionApiConsumer Consecuencia_DefuncionApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IDetalle_de_Persona_MoralApiConsumer Detalle_de_Persona_MoralApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer )
+        public Detalle_de_DelitoController(IDetalle_de_DelitoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_DelitoApiConsumer Detalle_de_DelitoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , IFormato_de_DenunciaApiConsumer Formato_de_DenunciaApiConsumer , IDelitos_Violencia_GeneroApiConsumer Delitos_Violencia_GeneroApiConsumer , ITipo_DelitoApiConsumer Tipo_DelitoApiConsumer , ITitulo_del_DelitoApiConsumer Titulo_del_DelitoApiConsumer , IGrupo_del_DelitoApiConsumer Grupo_del_DelitoApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IAgravantes_del_DelitoApiConsumer Agravantes_del_DelitoApiConsumer , IAgravantesApiConsumer AgravantesApiConsumer  , ICircunstancias_del_DelitoApiConsumer Circunstancias_del_DelitoApiConsumer , ITipo_de_Lugar_del_RoboApiConsumer Tipo_de_Lugar_del_RoboApiConsumer  , ICircunstancia_del_DelitoApiConsumer Circunstancia_del_DelitoApiConsumer , IForma_Comision_DelitoApiConsumer Forma_Comision_DelitoApiConsumer , IForma_Accion_DelitoApiConsumer Forma_Accion_DelitoApiConsumer , IModalidad_DelitoApiConsumer Modalidad_DelitoApiConsumer , IElementos_Comision_DelitoApiConsumer Elementos_Comision_DelitoApiConsumer , IClasificacion_en_Orden_de_ResultadoApiConsumer Clasificacion_en_Orden_de_ResultadoApiConsumer , IConcursoApiConsumer ConcursoApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IMotivo_de_No_CanalizacionApiConsumer Motivo_de_No_CanalizacionApiConsumer , IRegistro_de_Mandamiento_JudicialApiConsumer Registro_de_Mandamiento_JudicialApiConsumer , IElemento_RobadoApiConsumer Elemento_RobadoApiConsumer , ICircunstancia_VehiculoApiConsumer Circunstancia_VehiculoApiConsumer , IEspecifica_VehiculoApiConsumer Especifica_VehiculoApiConsumer , IMarca_del_VehiculoApiConsumer Marca_del_VehiculoApiConsumer , ISub_Marca_del_VehiculoApiConsumer Sub_Marca_del_VehiculoApiConsumer , ITipo_de_VehiculoApiConsumer Tipo_de_VehiculoApiConsumer , IColor_VehiculoApiConsumer Color_VehiculoApiConsumer , IZona_de_RoboApiConsumer Zona_de_RoboApiConsumer , IAseguradora_de_VehiculoApiConsumer Aseguradora_de_VehiculoApiConsumer , IServicio_del_VehiculoApiConsumer Servicio_del_VehiculoApiConsumer , IProcedencia_del_VehiculoApiConsumer Procedencia_del_VehiculoApiConsumer , ITipo_de_RoboApiConsumer Tipo_de_RoboApiConsumer , ITipo_de_CarreteraApiConsumer Tipo_de_CarreteraApiConsumer , IModalidad_de_Robo_de_VehiculoApiConsumer Modalidad_de_Robo_de_VehiculoApiConsumer , ICircunstancia_DefuncionApiConsumer Circunstancia_DefuncionApiConsumer , IConsecuencia_DefuncionApiConsumer Consecuencia_DefuncionApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IDetalle_de_Persona_MoralApiConsumer Detalle_de_Persona_MoralApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -248,6 +254,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISolicitudApiConsumer = SolicitudApiConsumer;
             this._IFormato_de_DenunciaApiConsumer = Formato_de_DenunciaApiConsumer;
             this._IDelitos_Violencia_GeneroApiConsumer = Delitos_Violencia_GeneroApiConsumer;
+            this._ITipo_DelitoApiConsumer = Tipo_DelitoApiConsumer;
             this._ITitulo_del_DelitoApiConsumer = Titulo_del_DelitoApiConsumer;
             this._IGrupo_del_DelitoApiConsumer = Grupo_del_DelitoApiConsumer;
             this._IDelitoApiConsumer = DelitoApiConsumer;
@@ -271,6 +278,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IA_TiempoApiConsumer = A_TiempoApiConsumer;
             this._IMotivo_de_No_CanalizacionApiConsumer = Motivo_de_No_CanalizacionApiConsumer;
+            this._IRegistro_de_Mandamiento_JudicialApiConsumer = Registro_de_Mandamiento_JudicialApiConsumer;
             this._IElemento_RobadoApiConsumer = Elemento_RobadoApiConsumer;
             this._ICircunstancia_VehiculoApiConsumer = Circunstancia_VehiculoApiConsumer;
             this._IEspecifica_VehiculoApiConsumer = Especifica_VehiculoApiConsumer;
@@ -396,7 +404,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Delito_Violencia_Genero = Detalle_de_DelitoData.Delito_Violencia_Genero
                     ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Delito_Violencia_Genero), "Delitos_Violencia_Genero") ??  (string)Detalle_de_DelitoData.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
                     ,Tipo_de_Delito = Detalle_de_DelitoData.Tipo_de_Delito
-                    ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Tipo_de_Delito), "Titulo_del_Delito") ??  (string)Detalle_de_DelitoData.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                    ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Tipo_de_Delito), "Tipo_Delito") ??  (string)Detalle_de_DelitoData.Tipo_de_Delito_Tipo_Delito.Descripcion
+                    ,Titulo_del_Delito = Detalle_de_DelitoData.Titulo_del_Delito
+                    ,Titulo_del_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Titulo_del_Delito), "Titulo_del_Delito") ??  (string)Detalle_de_DelitoData.Titulo_del_Delito_Titulo_del_Delito.Descripcion
                     ,Grupo_Delito = Detalle_de_DelitoData.Grupo_Delito
                     ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Grupo_Delito), "Grupo_del_Delito") ??  (string)Detalle_de_DelitoData.Grupo_Delito_Grupo_del_Delito.Descripcion
                     ,Delito = Detalle_de_DelitoData.Delito
@@ -441,6 +451,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Se_Informaron_sus_Derechos = Detalle_de_DelitoData.Se_Informaron_sus_Derechos.GetValueOrDefault()
                     ,Se_Informo_el_Procedimiento = Detalle_de_DelitoData.Se_Informo_el_Procedimiento.GetValueOrDefault()
                     ,Levantamiento_de_Cadaver = Detalle_de_DelitoData.Levantamiento_de_Cadaver.GetValueOrDefault()
+                    ,Mandamiento_Judicial = Detalle_de_DelitoData.Mandamiento_Judicial
+                    ,Mandamiento_JudicialNumero_de_Mandamiento = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Mandamiento_Judicial), "Registro_de_Mandamiento_Judicial") ??  (string)Detalle_de_DelitoData.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento
                     ,Fecha_del_Robo = (Detalle_de_DelitoData.Fecha_del_Robo == null ? string.Empty : Convert.ToDateTime(Detalle_de_DelitoData.Fecha_del_Robo).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_del_Robo = Detalle_de_DelitoData.Hora_del_Robo
                     ,Robo_de = Detalle_de_DelitoData.Robo_de
@@ -564,6 +576,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Delitos_Violencia_Generos_Delito_Violencia_Genero = Delitos_Violencia_Generos_Delito_Violencia_Genero.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delitos_Violencia_Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Delitos_Tipo_de_Delito = _ITipo_DelitoApiConsumer.SelAll(true);
+            if (Tipo_Delitos_Tipo_de_Delito != null && Tipo_Delitos_Tipo_de_Delito.Resource != null)
+                ViewBag.Tipo_Delitos_Tipo_de_Delito = Tipo_Delitos_Tipo_de_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICircunstancia_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Circunstancia_del_Delitos_Circunstancia_Delito = _ICircunstancia_del_DelitoApiConsumer.SelAll(true);
@@ -864,7 +883,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Delito_Violencia_Genero = Detalle_de_DelitoData.Delito_Violencia_Genero
                     ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Delito_Violencia_Genero), "Delitos_Violencia_Genero") ??  (string)Detalle_de_DelitoData.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
                     ,Tipo_de_Delito = Detalle_de_DelitoData.Tipo_de_Delito
-                    ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Tipo_de_Delito), "Titulo_del_Delito") ??  (string)Detalle_de_DelitoData.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                    ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Tipo_de_Delito), "Tipo_Delito") ??  (string)Detalle_de_DelitoData.Tipo_de_Delito_Tipo_Delito.Descripcion
+                    ,Titulo_del_Delito = Detalle_de_DelitoData.Titulo_del_Delito
+                    ,Titulo_del_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Titulo_del_Delito), "Titulo_del_Delito") ??  (string)Detalle_de_DelitoData.Titulo_del_Delito_Titulo_del_Delito.Descripcion
                     ,Grupo_Delito = Detalle_de_DelitoData.Grupo_Delito
                     ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Grupo_Delito), "Grupo_del_Delito") ??  (string)Detalle_de_DelitoData.Grupo_Delito_Grupo_del_Delito.Descripcion
                     ,Delito = Detalle_de_DelitoData.Delito
@@ -909,6 +930,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Se_Informaron_sus_Derechos = Detalle_de_DelitoData.Se_Informaron_sus_Derechos.GetValueOrDefault()
                     ,Se_Informo_el_Procedimiento = Detalle_de_DelitoData.Se_Informo_el_Procedimiento.GetValueOrDefault()
                     ,Levantamiento_de_Cadaver = Detalle_de_DelitoData.Levantamiento_de_Cadaver.GetValueOrDefault()
+                    ,Mandamiento_Judicial = Detalle_de_DelitoData.Mandamiento_Judicial
+                    ,Mandamiento_JudicialNumero_de_Mandamiento = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_DelitoData.Mandamiento_Judicial), "Registro_de_Mandamiento_Judicial") ??  (string)Detalle_de_DelitoData.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento
                     ,Fecha_del_Robo = (Detalle_de_DelitoData.Fecha_del_Robo == null ? string.Empty : Convert.ToDateTime(Detalle_de_DelitoData.Fecha_del_Robo).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_del_Robo = Detalle_de_DelitoData.Hora_del_Robo
                     ,Robo_de = Detalle_de_DelitoData.Robo_de
@@ -1030,6 +1053,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Delitos_Violencia_Generos_Delito_Violencia_Genero = Delitos_Violencia_Generos_Delito_Violencia_Genero.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delitos_Violencia_Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Delitos_Tipo_de_Delito = _ITipo_DelitoApiConsumer.SelAll(true);
+            if (Tipo_Delitos_Tipo_de_Delito != null && Tipo_Delitos_Tipo_de_Delito.Resource != null)
+                ViewBag.Tipo_Delitos_Tipo_de_Delito = Tipo_Delitos_Tipo_de_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICircunstancia_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Circunstancia_del_Delitos_Circunstancia_Delito = _ICircunstancia_del_DelitoApiConsumer.SelAll(true);
@@ -1373,6 +1403,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public ActionResult GetTipo_DelitoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_DelitoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Delito", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 		[HttpGet]
         public ActionResult GetTitulo_del_DelitoAll()
         {
@@ -1680,6 +1731,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_No_Canalizacion", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetRegistro_de_Mandamiento_JudicialAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegistro_de_Mandamiento_JudicialApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IRegistro_de_Mandamiento_JudicialApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Numero_de_Mandamiento).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Registro_de_Mandamiento_Judicial", "Numero_de_Mandamiento")?? m.Numero_de_Mandamiento,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -2176,6 +2248,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delitos_Violencia_Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _ITipo_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Delitos_Tipo_de_Delito = _ITipo_DelitoApiConsumer.SelAll(true);
+            if (Tipo_Delitos_Tipo_de_Delito != null && Tipo_Delitos_Tipo_de_Delito.Resource != null)
+                ViewBag.Tipo_Delitos_Tipo_de_Delito = Tipo_Delitos_Tipo_de_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ICircunstancia_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Circunstancia_del_Delitos_Circunstancia_Delito = _ICircunstancia_del_DelitoApiConsumer.SelAll(true);
             if (Circunstancia_del_Delitos_Circunstancia_Delito != null && Circunstancia_del_Delitos_Circunstancia_Delito.Resource != null)
@@ -2417,6 +2496,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Delitos_Violencia_Generos_Delito_Violencia_Genero = Delitos_Violencia_Generos_Delito_Violencia_Genero.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delitos_Violencia_Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Delitos_Tipo_de_Delito = _ITipo_DelitoApiConsumer.SelAll(true);
+            if (Tipo_Delitos_Tipo_de_Delito != null && Tipo_Delitos_Tipo_de_Delito.Resource != null)
+                ViewBag.Tipo_Delitos_Tipo_de_Delito = Tipo_Delitos_Tipo_de_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICircunstancia_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Circunstancia_del_Delitos_Circunstancia_Delito = _ICircunstancia_del_DelitoApiConsumer.SelAll(true);
@@ -2683,7 +2769,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_del_Delito = m.Hora_del_Delito
 			,Violencia_de_Genero = m.Violencia_de_Genero
                         ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
-                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Tipo_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Delito_Tipo_Delito.Descripcion
+                        ,Titulo_del_DelitoDescripcion = CultureHelper.GetTraduction(m.Titulo_del_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Titulo_del_Delito_Titulo_del_Delito.Descripcion
                         ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
 			,Agravante = m.Agravante
@@ -2714,6 +2801,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Se_Informaron_sus_Derechos = m.Se_Informaron_sus_Derechos
 			,Se_Informo_el_Procedimiento = m.Se_Informo_el_Procedimiento
 			,Levantamiento_de_Cadaver = m.Levantamiento_de_Cadaver
+                        ,Mandamiento_JudicialNumero_de_Mandamiento = CultureHelper.GetTraduction(m.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Clave.ToString(), "Registro_de_Mandamiento_Judicial") ?? (string)m.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento
                         ,Fecha_del_Robo = (m.Fecha_del_Robo == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Robo).ToString(ConfigurationProperty.DateFormat))
 			,Hora_del_Robo = m.Hora_del_Robo
                         ,Robo_deDescripcion = CultureHelper.GetTraduction(m.Robo_de_Elemento_Robado.Clave.ToString(), "Descripcion") ?? (string)m.Robo_de_Elemento_Robado.Descripcion
@@ -2908,7 +2996,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_del_Delito = m.Hora_del_Delito
 			,Violencia_de_Genero = m.Violencia_de_Genero
                         ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
-                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Tipo_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Delito_Tipo_Delito.Descripcion
+                        ,Titulo_del_DelitoDescripcion = CultureHelper.GetTraduction(m.Titulo_del_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Titulo_del_Delito_Titulo_del_Delito.Descripcion
                         ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
 			,Agravante = m.Agravante
@@ -2939,6 +3028,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Se_Informaron_sus_Derechos = m.Se_Informaron_sus_Derechos
 			,Se_Informo_el_Procedimiento = m.Se_Informo_el_Procedimiento
 			,Levantamiento_de_Cadaver = m.Levantamiento_de_Cadaver
+                        ,Mandamiento_JudicialNumero_de_Mandamiento = CultureHelper.GetTraduction(m.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Clave.ToString(), "Registro_de_Mandamiento_Judicial") ?? (string)m.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento
                         ,Fecha_del_Robo = (m.Fecha_del_Robo == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Robo).ToString(ConfigurationProperty.DateFormat))
 			,Hora_del_Robo = m.Hora_del_Robo
                         ,Robo_deDescripcion = CultureHelper.GetTraduction(m.Robo_de_Elemento_Robado.Clave.ToString(), "Descripcion") ?? (string)m.Robo_de_Elemento_Robado.Descripcion
@@ -3100,7 +3190,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public JsonResult GetDetalle_de_Delito_Tipo_de_Delito_Titulo_del_Delito(string query, string where)
+        public JsonResult GetDetalle_de_Delito_Titulo_del_Delito_Titulo_del_Delito(string query, string where)
         {
             try
             {
@@ -3259,6 +3349,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.Nombre =trans ??item.Nombre;
                 }
                 return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Delito_Mandamiento_Judicial_Registro_de_Mandamiento_Judicial(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegistro_de_Mandamiento_JudicialApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Registro_de_Mandamiento_Judicial.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IRegistro_de_Mandamiento_JudicialApiConsumer.ListaSelAll(1, 20,elWhere , " Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento ASC ").Resource;
+               
+                foreach (var item in result.Registro_de_Mandamiento_Judicials)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Registro_de_Mandamiento_Judicial", "Numero_de_Mandamiento");
+                    item.Numero_de_Mandamiento =trans ??item.Numero_de_Mandamiento;
+                }
+                return Json(result.Registro_de_Mandamiento_Judicials.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -3692,19 +3809,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 switch (filter.Tipo_de_DelitoFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Titulo_del_Delito.Descripcion LIKE '" + filter.AdvanceTipo_de_Delito + "%'";
+                        where += " AND Tipo_Delito.Descripcion LIKE '" + filter.AdvanceTipo_de_Delito + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Titulo_del_Delito.Descripcion LIKE '%" + filter.AdvanceTipo_de_Delito + "'";
+                        where += " AND Tipo_Delito.Descripcion LIKE '%" + filter.AdvanceTipo_de_Delito + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Titulo_del_Delito.Descripcion = '" + filter.AdvanceTipo_de_Delito + "'";
+                        where += " AND Tipo_Delito.Descripcion = '" + filter.AdvanceTipo_de_Delito + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Titulo_del_Delito.Descripcion LIKE '%" + filter.AdvanceTipo_de_Delito + "%'";
+                        where += " AND Tipo_Delito.Descripcion LIKE '%" + filter.AdvanceTipo_de_Delito + "%'";
                         break;
                 }
             }
@@ -3713,6 +3830,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Tipo_de_DelitoIds = string.Join(",", filter.AdvanceTipo_de_DelitoMultiple);
 
                 where += " AND Detalle_de_Delito.Tipo_de_Delito In (" + Tipo_de_DelitoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceTitulo_del_Delito))
+            {
+                switch (filter.Titulo_del_DelitoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Titulo_del_Delito.Descripcion LIKE '" + filter.AdvanceTitulo_del_Delito + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Titulo_del_Delito.Descripcion LIKE '%" + filter.AdvanceTitulo_del_Delito + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Titulo_del_Delito.Descripcion = '" + filter.AdvanceTitulo_del_Delito + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Titulo_del_Delito.Descripcion LIKE '%" + filter.AdvanceTitulo_del_Delito + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTitulo_del_DelitoMultiple != null && filter.AdvanceTitulo_del_DelitoMultiple.Count() > 0)
+            {
+                var Titulo_del_DelitoIds = string.Join(",", filter.AdvanceTitulo_del_DelitoMultiple);
+
+                where += " AND Detalle_de_Delito.Titulo_del_Delito In (" + Titulo_del_DelitoIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceGrupo_Delito))
@@ -4335,6 +4480,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             if (filter.Levantamiento_de_Cadaver != RadioOptions.NoApply)
                 where += " AND Detalle_de_Delito.Levantamiento_de_Cadaver = " + Convert.ToInt32(filter.Levantamiento_de_Cadaver);
+
+            if (!string.IsNullOrEmpty(filter.AdvanceMandamiento_Judicial))
+            {
+                switch (filter.Mandamiento_JudicialFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento LIKE '" + filter.AdvanceMandamiento_Judicial + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento LIKE '%" + filter.AdvanceMandamiento_Judicial + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento = '" + filter.AdvanceMandamiento_Judicial + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento LIKE '%" + filter.AdvanceMandamiento_Judicial + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceMandamiento_JudicialMultiple != null && filter.AdvanceMandamiento_JudicialMultiple.Count() > 0)
+            {
+                var Mandamiento_JudicialIds = string.Join(",", filter.AdvanceMandamiento_JudicialMultiple);
+
+                where += " AND Detalle_de_Delito.Mandamiento_Judicial In (" + Mandamiento_JudicialIds + ")";
+            }
 
             if (!string.IsNullOrEmpty(filter.FromFecha_del_Robo) || !string.IsNullOrEmpty(filter.ToFecha_del_Robo))
             {
@@ -6058,6 +6231,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Violencia_de_Genero = varDetalle_de_Delito.Violencia_de_Genero
                         ,Delito_Violencia_Genero = varDetalle_de_Delito.Delito_Violencia_Genero
                         ,Tipo_de_Delito = varDetalle_de_Delito.Tipo_de_Delito
+                        ,Titulo_del_Delito = varDetalle_de_Delito.Titulo_del_Delito
                         ,Grupo_Delito = varDetalle_de_Delito.Grupo_Delito
                         ,Delito = varDetalle_de_Delito.Delito
                         ,Agravante = varDetalle_de_Delito.Agravante
@@ -6088,6 +6262,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Se_Informaron_sus_Derechos = varDetalle_de_Delito.Se_Informaron_sus_Derechos
                         ,Se_Informo_el_Procedimiento = varDetalle_de_Delito.Se_Informo_el_Procedimiento
                         ,Levantamiento_de_Cadaver = varDetalle_de_Delito.Levantamiento_de_Cadaver
+                        ,Mandamiento_Judicial = varDetalle_de_Delito.Mandamiento_Judicial
                         ,Fecha_del_Robo = (!String.IsNullOrEmpty(varDetalle_de_Delito.Fecha_del_Robo)) ? DateTime.ParseExact(varDetalle_de_Delito.Fecha_del_Robo, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_del_Robo = varDetalle_de_Delito.Hora_del_Robo
                         ,Robo_de = varDetalle_de_Delito.Robo_de
@@ -6833,7 +7008,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_del_Delito = m.Hora_del_Delito
 			,Violencia_de_Genero = m.Violencia_de_Genero
                         ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
-                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Tipo_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Delito_Tipo_Delito.Descripcion
+                        ,Titulo_del_DelitoDescripcion = CultureHelper.GetTraduction(m.Titulo_del_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Titulo_del_Delito_Titulo_del_Delito.Descripcion
                         ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
 			,Agravante = m.Agravante
@@ -6864,6 +7040,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Se_Informaron_sus_Derechos = m.Se_Informaron_sus_Derechos
 			,Se_Informo_el_Procedimiento = m.Se_Informo_el_Procedimiento
 			,Levantamiento_de_Cadaver = m.Levantamiento_de_Cadaver
+                        ,Mandamiento_JudicialNumero_de_Mandamiento = CultureHelper.GetTraduction(m.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Clave.ToString(), "Registro_de_Mandamiento_Judicial") ?? (string)m.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento
                         ,Fecha_del_Robo = (m.Fecha_del_Robo == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Robo).ToString(ConfigurationProperty.DateFormat))
 			,Hora_del_Robo = m.Hora_del_Robo
                         ,Robo_deDescripcion = CultureHelper.GetTraduction(m.Robo_de_Elemento_Robado.Clave.ToString(), "Descripcion") ?? (string)m.Robo_de_Elemento_Robado.Descripcion
@@ -7017,7 +7194,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_del_Delito = m.Hora_del_Delito
 			,Violencia_de_Genero = m.Violencia_de_Genero
                         ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
-                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Tipo_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Delito_Tipo_Delito.Descripcion
+                        ,Titulo_del_DelitoDescripcion = CultureHelper.GetTraduction(m.Titulo_del_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Titulo_del_Delito_Titulo_del_Delito.Descripcion
                         ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
 			,Agravante = m.Agravante
@@ -7048,6 +7226,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Se_Informaron_sus_Derechos = m.Se_Informaron_sus_Derechos
 			,Se_Informo_el_Procedimiento = m.Se_Informo_el_Procedimiento
 			,Levantamiento_de_Cadaver = m.Levantamiento_de_Cadaver
+                        ,Mandamiento_JudicialNumero_de_Mandamiento = CultureHelper.GetTraduction(m.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Clave.ToString(), "Registro_de_Mandamiento_Judicial") ?? (string)m.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento
                         ,Fecha_del_Robo = (m.Fecha_del_Robo == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Robo).ToString(ConfigurationProperty.DateFormat))
 			,Hora_del_Robo = m.Hora_del_Robo
                         ,Robo_deDescripcion = CultureHelper.GetTraduction(m.Robo_de_Elemento_Robado.Clave.ToString(), "Descripcion") ?? (string)m.Robo_de_Elemento_Robado.Descripcion
@@ -7168,6 +7347,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Violencia_de_Genero = varDetalle_de_Delito.Violencia_de_Genero
                         ,Delito_Violencia_Genero = varDetalle_de_Delito.Delito_Violencia_Genero
                         ,Tipo_de_Delito = varDetalle_de_Delito.Tipo_de_Delito
+                        ,Titulo_del_Delito = varDetalle_de_Delito.Titulo_del_Delito
                         ,Grupo_Delito = varDetalle_de_Delito.Grupo_Delito
                         ,Delito = varDetalle_de_Delito.Delito
                         ,Agravante = varDetalle_de_Delito.Agravante
@@ -7198,6 +7378,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Se_Informaron_sus_Derechos = varDetalle_de_Delito.Se_Informaron_sus_Derechos
                         ,Se_Informo_el_Procedimiento = varDetalle_de_Delito.Se_Informo_el_Procedimiento
                         ,Levantamiento_de_Cadaver = varDetalle_de_Delito.Levantamiento_de_Cadaver
+                        ,Mandamiento_Judicial = varDetalle_de_Delito.Mandamiento_Judicial
                     
                 };
 
@@ -7246,7 +7427,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Delito_Violencia_Genero = m.Delito_Violencia_Genero
                         ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
                         ,Tipo_de_Delito = m.Tipo_de_Delito
-                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Tipo_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Delito_Tipo_Delito.Descripcion
+                        ,Titulo_del_Delito = m.Titulo_del_Delito
+                        ,Titulo_del_DelitoDescripcion = CultureHelper.GetTraduction(m.Titulo_del_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Titulo_del_Delito_Titulo_del_Delito.Descripcion
                         ,Grupo_Delito = m.Grupo_Delito
                         ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,Delito = m.Delito
@@ -7291,6 +7474,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Se_Informaron_sus_Derechos = m.Se_Informaron_sus_Derechos
 			,Se_Informo_el_Procedimiento = m.Se_Informo_el_Procedimiento
 			,Levantamiento_de_Cadaver = m.Levantamiento_de_Cadaver
+                        ,Mandamiento_Judicial = m.Mandamiento_Judicial
+                        ,Mandamiento_JudicialNumero_de_Mandamiento = CultureHelper.GetTraduction(m.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Clave.ToString(), "Registro_de_Mandamiento_Judicial") ?? (string)m.Mandamiento_Judicial_Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento
 
                     
                 };

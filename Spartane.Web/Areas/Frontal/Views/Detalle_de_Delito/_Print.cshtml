@@ -91,6 +91,9 @@
                 @Resources.Detalle_de_DelitoResources.Tipo_de_Delito
             </td>
             <td class="column1">
+                @Resources.Detalle_de_DelitoResources.Titulo_del_Delito
+            </td>
+            <td class="column1">
                 @Resources.Detalle_de_DelitoResources.Grupo_Delito
             </td>
             <td class="column1">
@@ -179,6 +182,9 @@
             </td>
             <td class="column1">
                 @Resources.Detalle_de_DelitoResources.Levantamiento_de_Cadaver
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_DelitoResources.Mandamiento_Judicial
             </td>
             <td class="column1">
                 @Resources.Detalle_de_DelitoResources.Fecha_del_Robo
@@ -435,7 +441,10 @@
                         @item.Delito_Violencia_GeneroDescripcion
                     </td>
                     <td>
-                        @item.Tipo_de_Delito
+                        @item.Tipo_de_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Titulo_del_Delito
                     </td>
                     <td>
                         @item.Grupo_Delito
@@ -526,6 +535,9 @@
                     </td>
                     <td>
                         @item.Levantamiento_de_Cadaver
+                    </td>
+                    <td>
+                        @item.Mandamiento_Judicial
                     </td>
                     <td>
                         @item.Fecha_del_Robo

@@ -19,6 +19,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         [IsNumberAfterAttribute("FromClave", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToClave { set; get; }
 
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string FromMandamientoJudicialId { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("FromMandamientoJudicialId", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToMandamientoJudicialId { set; get; }
+
         public Filters NombreFilter { set; get; }
         public string Nombre { set; get; }
 
@@ -28,19 +34,33 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Apellido_MaternoFilter { set; get; }
         public string Apellido_Materno { set; get; }
 
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_Nacimiento { set; get; }
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_Nacimiento", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_Nacimiento { set; get; }
+        public Filters AliasFilter { set; get; }
+        public string Alias { set; get; }
 
-        public Filters SexoFilter { set; get; }
-        public string AdvanceSexo { set; get; }
-        public int[] AdvanceSexoMultiple { set; get; }
+        public Filters PaisFilter { set; get; }
+        public string AdvancePais { set; get; }
+        public int[] AdvancePaisMultiple { set; get; }
 
-        public Filters NacionalidadFilter { set; get; }
-        public string AdvanceNacionalidad { set; get; }
-        public int[] AdvanceNacionalidadMultiple { set; get; }
+        public Filters EstadoFilter { set; get; }
+        public string AdvanceEstado { set; get; }
+        public int[] AdvanceEstadoMultiple { set; get; }
+
+        public Filters MunicipioFilter { set; get; }
+        public string AdvanceMunicipio { set; get; }
+        public int[] AdvanceMunicipioMultiple { set; get; }
+
+        public Filters JuzgadoFilter { set; get; }
+        public string AdvanceJuzgado { set; get; }
+        public int[] AdvanceJuzgadoMultiple { set; get; }
+
+        public Filters Oficio_Solicitud_JuzgadoFilter { set; get; }
+        public string Oficio_Solicitud_Juzgado { set; get; }
+
+        public Filters Carpeta_de_InvestigacionFilter { set; get; }
+        public string Carpeta_de_Investigacion { set; get; }
+
+        public Filters Causa_PenalFilter { set; get; }
+        public string Causa_Penal { set; get; }
 
 
     }

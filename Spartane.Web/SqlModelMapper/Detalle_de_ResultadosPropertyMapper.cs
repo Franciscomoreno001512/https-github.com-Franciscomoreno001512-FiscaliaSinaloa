@@ -16,20 +16,34 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Detalle_de_Resultados.Clave";
+                case "Fuente":
+                    return "Detalle_de_Resultados.Fuente";
+                case "Tipo_de_Mandamiento":
+                    return "Detalle_de_Resultados.Tipo_de_Mandamiento";
                 case "Nombre":
                     return "Detalle_de_Resultados.Nombre";
                 case "Apellido_Paterno":
                     return "Detalle_de_Resultados.Apellido_Paterno";
                 case "Apellido_Materno":
                     return "Detalle_de_Resultados.Apellido_Materno";
-                case "Fecha_Nacimiento":
-                    return "Detalle_de_Resultados.Fecha_Nacimiento";
-                case "Sexo[Descripcion]":
-                case "SexoDescripcion":
-                    return "Genero.Descripcion";
-                case "Nacionalidad[NacionalidadC]":
-                case "NacionalidadNacionalidadC":
-                    return "Nacionalidad.NacionalidadC";
+                case "Alias":
+                    return "Detalle_de_Resultados.Alias";
+                case "Sexo":
+                    return "Detalle_de_Resultados.Sexo";
+                case "Pais":
+                    return "Detalle_de_Resultados.Pais";
+                case "Estado":
+                    return "Detalle_de_Resultados.Estado";
+                case "Municipio":
+                    return "Detalle_de_Resultados.Municipio";
+                case "Juzgado":
+                    return "Detalle_de_Resultados.Juzgado";
+                case "Oficio_Solicitud_Juzgado":
+                    return "Detalle_de_Resultados.Oficio_Solicitud_Juzgado";
+                case "Carpeta_de_Investigacion":
+                    return "Detalle_de_Resultados.Carpeta_de_Investigacion";
+                case "Causa_Penal":
+                    return "Detalle_de_Resultados.Causa_Penal";
 
                 default:
                     return propertyName;
@@ -47,17 +61,6 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
-            if (columnName == "Fecha_Nacimiento")
-            {
-                try
-                {
-                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
 
 
             var operatorCondition = GetOperationType(columnName);

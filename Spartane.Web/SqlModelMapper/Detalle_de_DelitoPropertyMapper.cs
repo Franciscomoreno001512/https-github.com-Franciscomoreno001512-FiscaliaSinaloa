@@ -43,6 +43,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Delitos_Violencia_Genero.Descripcion";
                 case "Tipo_de_Delito[Descripcion]":
                 case "Tipo_de_DelitoDescripcion":
+                    return "Tipo_Delito.Descripcion";
+                case "Titulo_del_Delito[Descripcion]":
+                case "Titulo_del_DelitoDescripcion":
                     return "Titulo_del_Delito.Descripcion";
                 case "Grupo_Delito[Descripcion]":
                 case "Grupo_DelitoDescripcion":
@@ -118,6 +121,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_Delito.Se_Informo_el_Procedimiento";
                 case "Levantamiento_de_Cadaver":
                     return "Detalle_de_Delito.Levantamiento_de_Cadaver";
+                case "Mandamiento_Judicial[Numero_de_Mandamiento]":
+                case "Mandamiento_JudicialNumero_de_Mandamiento":
+                    return "Registro_de_Mandamiento_Judicial.Numero_de_Mandamiento";
                 case "Fecha_del_Robo":
                     return "Detalle_de_Delito.Fecha_del_Robo";
                 case "Hora_del_Robo":

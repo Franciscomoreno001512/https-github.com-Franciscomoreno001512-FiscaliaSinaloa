@@ -3,12 +3,18 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Consulta_de_Mandamientos_JudicialesAdvanceSearchModel
 @{
-    List<SelectListItem> varGenero_Sexo = null;
-    if (ViewBag.Generos_Sexo != null)
-    { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
- List<SelectListItem> varNacionalidad_Nacionalidad = null;
-    if (ViewBag.Nacionalidads_Nacionalidad != null)
-    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+    List<SelectListItem> varJuzgado_Juzgado = null;
+    if (ViewBag.Juzgados_Juzgado != null)
+    { varJuzgado_Juzgado = (List<SelectListItem>)ViewBag.Juzgados_Juzgado; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -57,6 +63,17 @@
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Consulta_de_Mandamientos_JudicialesResources.MandamientoJudicialId</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromMandamientoJudicialId, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromMandamientoJudicialId" })
+                    @Html.ValidationMessageFor(m => m.FromMandamientoJudicialId)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToMandamientoJudicialId, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToMandamientoJudicialId", @data_min = "txtAdvanceFromMandamientoJudicialId" })
+                    @Html.ValidationMessageFor(m => m.ToMandamientoJudicialId)
+                </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Consulta_de_Mandamientos_JudicialesResources.Nombre</h3>
                 </div>
@@ -81,49 +98,68 @@
                     @Html.DropDownListFor(m => m.Apellido_MaternoFilter, filters, new { @class = "form-control", @id = "ddlApellido_MaternoFilter" })
                     @Html.TextBoxFor(m => m.Apellido_Materno, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno" })
                 </div>
-        <div class="MarginBottom ">
-            <h3>@Resources.Consulta_de_Mandamientos_JudicialesResources.Fecha_de_Nacimiento</h3>
-        </div>
-        <div class="MarginBottom form-inline">
-            <label class="">@Resources.Resources.From:</label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceFromFecha_de_Nacimiento" name="FromFecha_de_Nacimiento" type="text" value="@Model.FromFecha_de_Nacimiento" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-            <label class="">@Resources.Resources.To: </label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceToFecha_de_Nacimiento" name="ToFecha_de_Nacimiento" type="text" value="@Model.ToFecha_de_Nacimiento" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Consulta_de_Mandamientos_JudicialesResources.Sexo</h3>
+                    <h3>@Resources.Consulta_de_Mandamientos_JudicialesResources.Alias</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.SexoFilter, filters, new { @class = "form-control", @id = "ddlSexoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceSexo, new { @class = "form-control", @type = "text", @id = "txtAdvanceSexo" })
+                    @Html.DropDownListFor(m => m.AliasFilter, filters, new { @class = "form-control", @id = "ddlAliasFilter" })
+                    @Html.TextBoxFor(m => m.Alias, new { @class = "form-control", @type = "text", @id = "txtAlias" })
+                </div>
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Consulta_de_Mandamientos_JudicialesResources.Juzgado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.JuzgadoFilter, filters, new { @class = "form-control", @id = "ddlJuzgadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceJuzgado, new { @class = "form-control", @type = "text", @id = "txtAdvanceJuzgado" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varGenero_Sexo!=null)
+                    @if (varJuzgado_Juzgado!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceSexoMultiple, varGenero_Sexo,
+                        @Html.ListBoxFor(m => m.AdvanceJuzgadoMultiple, varJuzgado_Juzgado,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvanceSexo"
+                            @id = "ddlAdvanceJuzgado"
                         });
                     }
                 </div>
- List<SelectListItem> varNacionalidad_Nacionalidad = null;
-    if (ViewBag.Nacionalidads_Nacionalidad != null)
-    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Consulta_de_Mandamientos_JudicialesResources.Oficio_Solicitud_Juzgado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Oficio_Solicitud_JuzgadoFilter, filters, new { @class = "form-control", @id = "ddlOficio_Solicitud_JuzgadoFilter" })
+                    @Html.TextBoxFor(m => m.Oficio_Solicitud_Juzgado, new { @class = "form-control", @type = "text", @id = "txtOficio_Solicitud_Juzgado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Consulta_de_Mandamientos_JudicialesResources.Carpeta_de_Investigacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Carpeta_de_InvestigacionFilter, filters, new { @class = "form-control", @id = "ddlCarpeta_de_InvestigacionFilter" })
+                    @Html.TextBoxFor(m => m.Carpeta_de_Investigacion, new { @class = "form-control", @type = "text", @id = "txtCarpeta_de_Investigacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Consulta_de_Mandamientos_JudicialesResources.Causa_Penal</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Causa_PenalFilter, filters, new { @class = "form-control", @id = "ddlCausa_PenalFilter" })
+                    @Html.TextBoxFor(m => m.Causa_Penal, new { @class = "form-control", @type = "text", @id = "txtCausa_Penal" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Consulta_de_Mandamientos_Judiciales/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -141,6 +177,11 @@
             advanceSearch.Consulta_de_Mandamientos_JudicialesClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Consulta_de_Mandamientos_JudicialesClaveTo = $("#txtAdvanceToClave").val();
         }
+        if ($("#txtAdvanceFromMandamientoJudicialId").val() != "" || $("#txtAdvanceToMandamientoJudicialId").val() != "") {
+            hasParameter = true;
+            advanceSearch.Consulta_de_Mandamientos_JudicialesMandamientoJudicialIdFrom = $("#txtAdvanceFromMandamientoJudicialId").val();
+            advanceSearch.Consulta_de_Mandamientos_JudicialesMandamientoJudicialIdTo = $("#txtAdvanceToMandamientoJudicialId").val();
+        }
         if ($("#txtAdvanceNombre").val() != "") {
             hasParameter = true;
             advanceSearch.Consulta_de_Mandamientos_JudicialesNombre = $("#txtAdvanceNombre").val();
@@ -156,40 +197,85 @@
             advanceSearch.Consulta_de_Mandamientos_JudicialesApellido_Materno = $("#txtAdvanceApellido_Materno").val();
             advanceSearch.Consulta_de_Mandamientos_JudicialesApellido_MaternoSearchType = $("#ddlAdvanceApellido_MaternoFilter").val();
         }
-        if ($("#txtAdvanceFromFecha_de_Nacimiento").val() != "" || $("#txtAdvanceToFecha_de_Nacimiento").val() != "") {
+        if ($("#txtAdvanceAlias").val() != "") {
             hasParameter = true;
-            advanceSearch.Consulta_de_Mandamientos_JudicialesFecha_de_NacimientoFrom = $("#txtAdvanceFromFecha_de_Nacimiento").val();
-            advanceSearch.Consulta_de_Mandamientos_JudicialesFecha_de_NacimientoTo = $("#txtAdvanceToFecha_de_Nacimiento").val();
+            advanceSearch.Consulta_de_Mandamientos_JudicialesAlias = $("#txtAdvanceAlias").val();
+            advanceSearch.Consulta_de_Mandamientos_JudicialesAliasSearchType = $("#ddlAdvanceAliasFilter").val();
         }
-        advanceSearch.SexoSearchType = 0;
-        if ($('#ddlAdvanceSexo').val().length > 0 || $("#txtAdvanceSexo").val() == "") {
+        advanceSearch.PaisSearchType = 0;
+        if ($('#ddlAdvancePais').val().length > 0 || $("#txtAdvancePais").val() == "") {
 
 
             if (isConsulta_de_Mandamientos_JudicialesTextSearch) {
-                advanceSearch.SexoName = $("#txtAdvanceSexo").val();
-                advanceSearch.SexoNameSearchType = $("#ddlAdvanceSexo").val();
-                advanceSearch.SexoSearchType = 1;
+                advanceSearch.PaisName = $("#txtAdvancePais").val();
+                advanceSearch.PaisNameSearchType = $("#ddlAdvancePais").val();
+                advanceSearch.PaisSearchType = 1;
             }
             else {
 
-                advanceSearch.SexoToSearch = $("#ddlAdvanceSexo").val();
-                advanceSearch.SexoSearchType = 2;
+                advanceSearch.PaisToSearch = $("#ddlAdvancePais").val();
+                advanceSearch.PaisSearchType = 2;
             }
         }
-        advanceSearch.NacionalidadSearchType = 0;
-        if ($('#ddlAdvanceNacionalidad').val().length > 0 || $("#txtAdvanceNacionalidad").val() == "") {
+        advanceSearch.EstadoSearchType = 0;
+        if ($('#ddlAdvanceEstado').val().length > 0 || $("#txtAdvanceEstado").val() == "") {
 
 
             if (isConsulta_de_Mandamientos_JudicialesTextSearch) {
-                advanceSearch.NacionalidadName = $("#txtAdvanceNacionalidad").val();
-                advanceSearch.NacionalidadNameSearchType = $("#ddlAdvanceNacionalidad").val();
-                advanceSearch.NacionalidadSearchType = 1;
+                advanceSearch.EstadoName = $("#txtAdvanceEstado").val();
+                advanceSearch.EstadoNameSearchType = $("#ddlAdvanceEstado").val();
+                advanceSearch.EstadoSearchType = 1;
             }
             else {
 
-                advanceSearch.NacionalidadToSearch = $("#ddlAdvanceNacionalidad").val();
-                advanceSearch.NacionalidadSearchType = 2;
+                advanceSearch.EstadoToSearch = $("#ddlAdvanceEstado").val();
+                advanceSearch.EstadoSearchType = 2;
             }
+        }
+        advanceSearch.MunicipioSearchType = 0;
+        if ($('#ddlAdvanceMunicipio').val().length > 0 || $("#txtAdvanceMunicipio").val() == "") {
+
+
+            if (isConsulta_de_Mandamientos_JudicialesTextSearch) {
+                advanceSearch.MunicipioName = $("#txtAdvanceMunicipio").val();
+                advanceSearch.MunicipioNameSearchType = $("#ddlAdvanceMunicipio").val();
+                advanceSearch.MunicipioSearchType = 1;
+            }
+            else {
+
+                advanceSearch.MunicipioToSearch = $("#ddlAdvanceMunicipio").val();
+                advanceSearch.MunicipioSearchType = 2;
+            }
+        }
+        advanceSearch.JuzgadoSearchType = 0;
+        if ($('#ddlAdvanceJuzgado').val().length > 0 || $("#txtAdvanceJuzgado").val() == "") {
+
+
+            if (isConsulta_de_Mandamientos_JudicialesTextSearch) {
+                advanceSearch.JuzgadoName = $("#txtAdvanceJuzgado").val();
+                advanceSearch.JuzgadoNameSearchType = $("#ddlAdvanceJuzgado").val();
+                advanceSearch.JuzgadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.JuzgadoToSearch = $("#ddlAdvanceJuzgado").val();
+                advanceSearch.JuzgadoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceOficio_Solicitud_Juzgado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Consulta_de_Mandamientos_JudicialesOficio_Solicitud_Juzgado = $("#txtAdvanceOficio_Solicitud_Juzgado").val();
+            advanceSearch.Consulta_de_Mandamientos_JudicialesOficio_Solicitud_JuzgadoSearchType = $("#ddlAdvanceOficio_Solicitud_JuzgadoFilter").val();
+        }
+        if ($("#txtAdvanceCarpeta_de_Investigacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Consulta_de_Mandamientos_JudicialesCarpeta_de_Investigacion = $("#txtAdvanceCarpeta_de_Investigacion").val();
+            advanceSearch.Consulta_de_Mandamientos_JudicialesCarpeta_de_InvestigacionSearchType = $("#ddlAdvanceCarpeta_de_InvestigacionFilter").val();
+        }
+        if ($("#txtAdvanceCausa_Penal").val() != "") {
+            hasParameter = true;
+            advanceSearch.Consulta_de_Mandamientos_JudicialesCausa_Penal = $("#txtAdvanceCausa_Penal").val();
+            advanceSearch.Consulta_de_Mandamientos_JudicialesCausa_PenalSearchType = $("#ddlAdvanceCausa_PenalFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
@@ -209,23 +295,41 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
-        $("#txtAdvanceSexo").keypress(function () {
+        $("#txtAdvancePais").keypress(function () {
             isConsulta_de_Mandamientos_JudicialesTextSearch = true;
-            $("#ddlAdvanceSexo").val('').trigger("chosen:updated");
+            $("#ddlAdvancePais").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceSexo").change(function () {
+        $("#ddlAdvancePais").change(function () {
             isConsulta_de_Mandamientos_JudicialesTextSearch = false;
-            $("#txtAdvanceSexo").val('');
+            $("#txtAdvancePais").val('');
         });
-        $("#txtAdvanceNacionalidad").keypress(function () {
+        $("#txtAdvanceEstado").keypress(function () {
             isConsulta_de_Mandamientos_JudicialesTextSearch = true;
-            $("#ddlAdvanceNacionalidad").val('').trigger("chosen:updated");
+            $("#ddlAdvanceEstado").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceNacionalidad").change(function () {
+        $("#ddlAdvanceEstado").change(function () {
             isConsulta_de_Mandamientos_JudicialesTextSearch = false;
-            $("#txtAdvanceNacionalidad").val('');
+            $("#txtAdvanceEstado").val('');
+        });
+        $("#txtAdvanceMunicipio").keypress(function () {
+            isConsulta_de_Mandamientos_JudicialesTextSearch = true;
+            $("#ddlAdvanceMunicipio").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMunicipio").change(function () {
+            isConsulta_de_Mandamientos_JudicialesTextSearch = false;
+            $("#txtAdvanceMunicipio").val('');
+        });
+        $("#txtAdvanceJuzgado").keypress(function () {
+            isConsulta_de_Mandamientos_JudicialesTextSearch = true;
+            $("#ddlAdvanceJuzgado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceJuzgado").change(function () {
+            isConsulta_de_Mandamientos_JudicialesTextSearch = false;
+            $("#txtAdvanceJuzgado").val('');
         });
 
     });

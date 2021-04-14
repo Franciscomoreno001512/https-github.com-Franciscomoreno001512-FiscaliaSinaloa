@@ -55,9 +55,21 @@
                         {
                             if (objectData.Object_Type != 7)
                             {
-                                <li class="module_@Model.id">
-                                    <a href="@Url.Content("~/Frontal/" + objectData.URL + "?ModuleId=" + Model.id)">@Resources.Objects.GetObjectValueById(objectData.Object_Id)</a>
-                                </li>
+                                
+                                    if (objectData.URL == "Consulta_de_Mandamientos_Judiciales" && SessionHelper.UserEntity.Role != 1)
+                                                            {
+                                    <li class="module_@Model.id">
+                                        @*<a href="@Url.Content("~/Frontal/" + objectData.URL + SessionHelper.UserEntity.Role + "/Create?Length=35")">@Resources.Objects.GetObjectValueById(objectData.Object_Id)</a>*@
+                                        <a href="@Url.Content("~/Frontal/" + objectData.URL  + "/Create?Length=35")">@Resources.Objects.GetObjectValueById(objectData.Object_Id)</a>
+                                    </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="module_@Model.id">
+                                            @*<a href="@Url.Content("~/Frontal/" + objectData.URL + SessionHelper.UserEntity.Role + "?ModuleId=" + Model.id)">@Resources.Objects.GetObjectValueById(objectData.Object_Id)</a>*@
+                                            <a href="@Url.Content("~/Frontal/" + objectData.URL  + "?ModuleId=" + Model.id)">@Resources.Objects.GetObjectValueById(objectData.Object_Id)</a>
+                                        </li>
+                                    }
                             }
                             else
                             {
@@ -100,7 +112,7 @@
                                                     }
                                                 </a>
 
-                                        </li>
+                                            </li>
                                         }
                                     </ul>
                                 </li>

@@ -16,20 +16,34 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Consulta_de_Mandamientos_Judiciales.Clave";
+                case "MandamientoJudicialId":
+                    return "Consulta_de_Mandamientos_Judiciales.MandamientoJudicialId";
                 case "Nombre":
                     return "Consulta_de_Mandamientos_Judiciales.Nombre";
                 case "Apellido_Paterno":
                     return "Consulta_de_Mandamientos_Judiciales.Apellido_Paterno";
                 case "Apellido_Materno":
                     return "Consulta_de_Mandamientos_Judiciales.Apellido_Materno";
-                case "Fecha_de_Nacimiento":
-                    return "Consulta_de_Mandamientos_Judiciales.Fecha_de_Nacimiento";
-                case "Sexo[Descripcion]":
-                case "SexoDescripcion":
-                    return "Genero.Descripcion";
-                case "Nacionalidad[NacionalidadC]":
-                case "NacionalidadNacionalidadC":
-                    return "Nacionalidad.NacionalidadC";
+                case "Alias":
+                    return "Consulta_de_Mandamientos_Judiciales.Alias";
+                case "Pais[Nombre]":
+                case "PaisNombre":
+                    return "Pais.Nombre";
+                case "Estado[Nombre]":
+                case "EstadoNombre":
+                    return "Estado.Nombre";
+                case "Municipio[Nombre]":
+                case "MunicipioNombre":
+                    return "Municipio.Nombre";
+                case "Juzgado[Nombre]":
+                case "JuzgadoNombre":
+                    return "Juzgado.Nombre";
+                case "Oficio_Solicitud_Juzgado":
+                    return "Consulta_de_Mandamientos_Judiciales.Oficio_Solicitud_Juzgado";
+                case "Carpeta_de_Investigacion":
+                    return "Consulta_de_Mandamientos_Judiciales.Carpeta_de_Investigacion";
+                case "Causa_Penal":
+                    return "Consulta_de_Mandamientos_Judiciales.Causa_Penal";
 
                 default:
                     return propertyName;
@@ -47,17 +61,6 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
-            if (columnName == "Fecha_de_Nacimiento")
-            {
-                try
-                {
-                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
 
 
             var operatorCondition = GetOperationType(columnName);

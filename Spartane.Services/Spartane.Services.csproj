@@ -1545,6 +1545,8 @@
 <Compile Include="Area_envia_Cumplimiento\Area_envia_CumplimientoService.cs" />
 <Compile Include="Personas_donde_se_ejecuto_mandamiento\IPersonas_donde_se_ejecuto_mandamientoService.cs" />
 <Compile Include="Personas_donde_se_ejecuto_mandamiento\Personas_donde_se_ejecuto_mandamientoService.cs" />
+<Compile Include="Control_de_Folios_de_Mandamiento_Judicial\IControl_de_Folios_de_Mandamiento_JudicialService.cs" />
+<Compile Include="Control_de_Folios_de_Mandamiento_Judicial\Control_de_Folios_de_Mandamiento_JudicialService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1644,6 +1646,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

@@ -1088,7 +1088,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Pais.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Pais.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IPaisApiConsumer.ListaSelAll(1, 20,elWhere , " Pais.Nombre ASC ").Resource;
                

@@ -545,16 +545,24 @@ if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTabl
 }
 //BusinessRuleId:4940, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
+
+
 //BusinessRuleId:4941, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
-if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('6', '6') ) { var valor = $('#' + nameOfTable + 'Delito' + rowIndex).val();   $('#' + nameOfTable + 'Delito' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Delito' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select distinct d.Clave, d.Descripcion from Detalle_de_Delito ddd inner join Delito d on ddd.Delito = d.Clave where ddd.Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select distinct d.Clave, d.Descripcion from Detalle_de_Delito ddd inner join Delito d on ddd.Delito = d.Clave where ddd.Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Delito' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Delito' + rowIndex).val(valor).trigger('change');} else {}
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('6', '6') ) { var valor = $('#' + nameOfTable + 'Delito' + rowIndex).val();   $('#' + nameOfTable + 'Delito' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Delito' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select distinct d.Clave, d.Descripcion from Detalle_de_Delito ddd inner join Delito d on ddd.Delito = d.Clave where ddd.Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select distinct d.Clave, d.Descripcion from Detalle_de_Delito ddd inner join Delito d on ddd.Delito = d.Clave where ddd.Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Delito' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Delito' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val();   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Probable_Responsable' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("Select Clave, Nombre_Completo_Detenido from Detalle_de_Imputado where Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("Select Clave, Nombre_Completo_Detenido from Detalle_de_Imputado where Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val(valor).trigger('change');} else {}
 
 }
 //BusinessRuleId:4941, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:4941, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
-if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('6', '6') ) { var valor = $('#' + nameOfTable + 'Delito' + rowIndex).val();   $('#' + nameOfTable + 'Delito' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Delito' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select distinct d.Clave, d.Descripcion from Detalle_de_Delito ddd inner join Delito d on ddd.Delito = d.Clave where ddd.Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select distinct d.Clave, d.Descripcion from Detalle_de_Delito ddd inner join Delito d on ddd.Delito = d.Clave where ddd.Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Delito' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Delito' + rowIndex).val(valor).trigger('change');} else {}
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('6', '6') ) { var valor = $('#' + nameOfTable + 'Delito' + rowIndex).val();   $('#' + nameOfTable + 'Delito' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Delito' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select distinct d.Clave, d.Descripcion from Detalle_de_Delito ddd inner join Delito d on ddd.Delito = d.Clave where ddd.Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select distinct d.Clave, d.Descripcion from Detalle_de_Delito ddd inner join Delito d on ddd.Delito = d.Clave where ddd.Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Delito' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Delito' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val();   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Probable_Responsable' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("Select Clave, Nombre_Completo_Detenido from Detalle_de_Imputado where Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("Select Clave, Nombre_Completo_Detenido from Detalle_de_Imputado where Mandamiento_Judicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Probable_Responsable' + rowIndex).val(valor).trigger('change');} else {}
 
 }
 //BusinessRuleId:4941, Attribute:0, Operation:Object, Event:SCREENOPENING
@@ -602,6 +610,32 @@ result=false;} else {}
 
 }
 //BusinessRuleId:3894, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:4969, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+if( EvaluaQuery("EXEC usp_Valida_ExisteRelacion_EnExpediente_MJ GLOBAL[SpartanOperationId],FLD[Probable_Responsable],FLD[Delito]",rowIndex, nameOfTable)>TryParseInt('0', '0') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('6', '6') ) { alert(DecodifyText('Ya existe la relación especificada, favor de corregir', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:4969, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:4969, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+if( EvaluaQuery("EXEC usp_Valida_ExisteRelacion_EnExpediente_MJ GLOBAL[SpartanOperationId],FLD[Probable_Responsable],FLD[Delito]",rowIndex, nameOfTable)>TryParseInt('0', '0') && TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('6', '6') ) { alert(DecodifyText('Ya existe la relación especificada, favor de corregir', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:4969, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;

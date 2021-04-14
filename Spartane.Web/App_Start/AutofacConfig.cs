@@ -2030,6 +2030,9 @@ using Spartane.Web.Areas.WebApiConsumer.Area_envia_Cumplimiento;
 using Spartane.Services.Personas_donde_se_ejecuto_mandamiento;
 using Spartane.Core.Domain.Personas_donde_se_ejecuto_mandamiento;
 using Spartane.Web.Areas.WebApiConsumer.Personas_donde_se_ejecuto_mandamiento;
+using Spartane.Services.Control_de_Folios_de_Mandamiento_Judicial;
+using Spartane.Core.Domain.Control_de_Folios_de_Mandamiento_Judicial;
+using Spartane.Web.Areas.WebApiConsumer.Control_de_Folios_de_Mandamiento_Judicial;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3506,6 +3509,8 @@ builder.RegisterType<Area_envia_CumplimientoService>().As<IArea_envia_Cumplimien
 builder.RegisterType<Area_envia_CumplimientoApiConsumer>().As<IArea_envia_CumplimientoApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Personas_donde_se_ejecuto_mandamientoService>().As<IPersonas_donde_se_ejecuto_mandamientoService>().InstancePerLifetimeScope();
 builder.RegisterType<Personas_donde_se_ejecuto_mandamientoApiConsumer>().As<IPersonas_donde_se_ejecuto_mandamientoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Control_de_Folios_de_Mandamiento_JudicialService>().As<IControl_de_Folios_de_Mandamiento_JudicialService>().InstancePerLifetimeScope();
+builder.RegisterType<Control_de_Folios_de_Mandamiento_JudicialApiConsumer>().As<IControl_de_Folios_de_Mandamiento_JudicialApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3686,6 +3691,16 @@ builder.RegisterType<Personas_donde_se_ejecuto_mandamientoApiConsumer>().As<IPer
 
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1366,8 +1366,20 @@
 <Object Id="46303" culture="es-es" value="Area envia Cumplimiento" />
 <Object Id="46304" culture="en-us" value="Personas donde se ejecutó mandamiento" />
 <Object Id="46304" culture="es-es" value="Personas donde se ejecutó mandamiento" />
+<Object Id="46305" culture="en-us" value="Control de Folios de Mandamiento Judicial" />
+<Object Id="46305" culture="es-es" value="Control de Folios de Mandamiento Judicial" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
 
 
 

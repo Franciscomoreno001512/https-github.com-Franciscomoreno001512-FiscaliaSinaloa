@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Control_de_Folios_de_Mandamiento_Judicial" value="Control de Folios de Mandamiento Judicial"></resource>
+  <resource culture="en-US" name="Consecutivo" value="Consecutivo"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Ano" value="Año"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

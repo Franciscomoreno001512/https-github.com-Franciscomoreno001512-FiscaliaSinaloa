@@ -192,7 +192,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     if (where != "")
                         where += " AND ";
-                    where += WhereWF;
+                    where +=   WhereWF;
                 }
             }
             _tokenManager.GenerateToken();

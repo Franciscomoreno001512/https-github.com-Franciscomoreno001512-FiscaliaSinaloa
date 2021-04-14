@@ -1063,34 +1063,55 @@ function CambiaEstado(deesc) {
 
 
 
+var poblacionP;
 function CambiaMunicipio(deesc) {
     debugger;
+
+    if (deesc.toLowerCase() == "Culiacán Rosales".toLowerCase()) {
+        deesc = "Culiacán";
+    }
+
     $('#Municipio').val(null).trigger('change');
     var control = $('#Municipio');
-    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
-    var query = "select top 1 clave from Municipio where estado = '" + $('#Estado').val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
-    var valorPaisId = EvaluaQuery(query)
+
+
+    var rdesc = EvaluaQuery("usp_GetMunicipioYPoblacion '" + $('#Estado').val() + "', '" + deesc + "'");
+    var split = rdesc.split(',');
+    var ValorMunicipio = split[0];
+
+    poblacionP = split[1];
+
     control.select2('open');
-    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    $('.select2-search__field').val(ValorMunicipio).trigger('keyup');
     control.select2('close');
-    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-    control.select2({ data: data });
-    control.val(valorPaisId).trigger('change');
+     var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+        control.select2({ data: data });
+    control.val(ValorMunicipio).trigger('change');
 }
 
 function CambiaPoblacion(deesc) {
     debugger;
     $('#Poblacion').val(null).trigger('change');
     var control = $('#Poblacion');
-    var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
-    var query = "select top 1 clave from Colonia where Municipio = '" + $('#Municipio').val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
-    var valorPaisId = EvaluaQuery(query)
+
+     var valorPobla = 0;
+    if (poblacionP == "0") {
+        var rdesc = EvaluaQuery("select dbo.RemoveAccentMarks ('" + deesc + "')");
+        var query = "select top 1 clave from Colonia where Municipio = '" + $('#Municipio').val() + "' and " + " dbo.RemoveAccentMarks(nombre) like '%" + rdesc + "%'";
+        valorPobla = EvaluaQuery(query);
+    }
+    else {
+        valorPobla = poblacionP;
+    }
+
+
+
     control.select2('open');
-    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    $('.select2-search__field').val(valorPobla).trigger('keyup');
     control.select2('close');
-    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-    control.select2({ data: data });
-    control.val(valorPaisId).trigger('change');
+     var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+        control.select2({ data: data });
+    control.val(valorPobla).trigger('change');
 }
 function CambiaColonia(deesc) {
     debugger;
@@ -1102,9 +1123,9 @@ function CambiaColonia(deesc) {
     control.select2('open');
     $('.select2-search__field').val(valorPaisId).trigger('keyup');
     control.select2('close');
-    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-    control.select2({ data: data });
-    control.val(valorPaisId).trigger('change');
+     var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+        control.select2({ data: data });
+        control.val(valorPaisId).trigger('change');
 }
 
 
@@ -1155,6 +1176,83 @@ function CargaGoogleMaps() {
                 }
             }
         });
+		
+		google.maps.event.addListener(map, 'click', function (event) {
+            placeMarker(event.latLng);
+            geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        debugger;
+                      //  for (var i = results[0].address_components.length; i < 0 ; i--) {
+							 for (var i=results[0].address_components.length -1; i>=0; i--) {
+
+                            if (results[0].address_components[i].types[0] == "postal_code") {
+                                $("#Codigo_Postal").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "country") {
+                                debugger;
+                                CambiaPais(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Pais' + rowIndex), results[0].address_components[i].long_name);
+
+                              
+                            }
+
+                            if (results[0].address_components[i].types[0] == "administrative_area_level_1") {
+                                CambiaEstado(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Estado' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+                            if (results[0].address_components[i].types[0] == "locality") {
+                                CambiaMunicipio(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+
+                            if (results[0].address_components[i].types[0] == "political") { // segun spartanMetadata poblacion es igual a colonia
+								
+								CambiaPoblacion(results[0].address_components[i].long_name);
+								CambiaColonia(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Colonia' + rowIndex), results[0].address_components[i].long_name);
+                                //AsignarValor($('#' + nameOfTable + 'Poblacion' + rowIndex), results[0].address_components[i].long_name);
+                            }
+
+                            
+
+                            if (results[0].address_components[i].types[0] == "route") {
+                                $("#Calle").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "street_number") {
+                                $("#Numero_Exterior").val((results[0].address_components[i].long_name));
+                            }
+                            
+
+
+                        }
+                        $('#Latitud').val(marker.getPosition().lat());
+                        $('#Longitud').val(marker.getPosition().lng());
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    }
+                }
+            });
+
+        });
+        function placeMarker(location) {
+
+            if (marker == null) {
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+            else {
+                marker.setPosition(location);
+            }
+
+
+        }
 
         // Evento que se dispara cuando se mueve el marcador en en el mapa (es el Marcador de posicion de color Rojo)
         // cada pixel que se mueve o se arrastra se recalcula la latitud y la longitud
@@ -1225,7 +1323,7 @@ function CargaGoogleMaps() {
     // Buscamos la direccion escrita (solo busca todavia no asigna) y no posicionamos sobre ella, se dispara cuando se le da click al boton buscar dentro de la modal que contiene al mapa
     // var geocoder = new google.maps.Geocoder();
     geocoder.geocode({
-        address: jQuery('input[name=address]').val() == "" ? "Badiraguto Sinaloa,Mexico" : $('input[name=address]').val(),
+        address: jQuery('input[name=address]').val() == "" ? "Primer Cuadro, 80000 Culiacán Rosales, Sin., México" : $('input[name=address]').val(),
         region: 'no'
     },
         function (results, status) {

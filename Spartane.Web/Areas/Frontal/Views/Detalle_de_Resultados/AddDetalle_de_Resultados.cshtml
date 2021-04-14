@@ -7,16 +7,7 @@
 @model Spartane.Web.Areas.Frontal.Models.Detalle_de_ResultadosModel
 @{
 
-    string Fecha_Nacimiento = "";
-    if (Model.Fecha_Nacimiento == "")
-    { Model.Fecha_Nacimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
-    List<SelectListItem> varGenero_Sexo = null;
-    if (ViewBag.Generos_Sexo != null)
-    { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
- List<SelectListItem> varNacionalidad_Nacionalidad = null;
-    if (ViewBag.Nacionalidads_Nacionalidad != null)
-    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
 
 
     Permission permission = ViewBag.Permission;
@@ -142,6 +133,18 @@
                                     <label class="form-control" for="Detalle_de_ResultadosClave" id="Detalle_de_ResultadosClave">@Model.Clave</label>
                                 </div>
                             </div>
+<div class="form-group" id="divFuente">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Fuente</label>
+                                <div class="col-sm-8" data-field-id="Fuente" data-attribute="273786" data-field-name="@Resources.Detalle_de_ResultadosResources.Fuente">
+                                    <input class="form-control" id="Detalle_de_ResultadosFuente" name="Detalle_de_ResultadosFuente" type="text" value="@Model.Fuente">
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_de_Mandamiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Tipo_de_Mandamiento</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Mandamiento" data-attribute="273787" data-field-name="@Resources.Detalle_de_ResultadosResources.Tipo_de_Mandamiento">
+                                    <input class="form-control" id="Detalle_de_ResultadosTipo_de_Mandamiento" name="Detalle_de_ResultadosTipo_de_Mandamiento" type="text" value="@Model.Tipo_de_Mandamiento">
+                                </div>
+                            </div>
 <div class="form-group" id="divNombre">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Nombre</label>
                                 <div class="col-sm-8" data-field-id="Nombre" data-attribute="268901" data-field-name="@Resources.Detalle_de_ResultadosResources.Nombre">
@@ -160,44 +163,58 @@
                                     <input class="form-control" id="Detalle_de_ResultadosApellido_Materno" name="Detalle_de_ResultadosApellido_Materno" type="text" value="@Model.Apellido_Materno">
                                 </div>
                             </div>
-<div class="form-group" id="divFecha_Nacimiento">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Fecha_Nacimiento</label>
-                                <div class="col-sm-8" data-field-id="Fecha_Nacimiento" data-attribute="268904" data-field-name="@Resources.Detalle_de_ResultadosResources.Fecha_Nacimiento">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12" id="Detalle_de_ResultadosFecha_Nacimiento" readonly="readonly" name="Detalle_de_ResultadosFecha_Nacimiento" type="text" value="@Model.Fecha_Nacimiento">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
+<div class="form-group" id="divAlias">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Alias</label>
+                                <div class="col-sm-8" data-field-id="Alias" data-attribute="273788" data-field-name="@Resources.Detalle_de_ResultadosResources.Alias">
+                                    <input class="form-control" id="Detalle_de_ResultadosAlias" name="Detalle_de_ResultadosAlias" type="text" value="@Model.Alias">
                                 </div>
                             </div>
 <div class="form-group" id="divSexo">
-	<label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Sexo</label>
-	<div class="col-sm-8" data-field-id="Sexo" data-attribute="268905" data-field-name="@Resources.Detalle_de_ResultadosResources.Sexo">
-		<select class="form-control" data-val="true" data-val-number="The field Sexo must be a number." data-val-required="The Sexo field is required." id="Detalle_de_ResultadosSexo" name="Detalle_de_ResultadosSexo">
-			<option value=""></option>
-			@if (varGenero_Sexo != null){ 
-				foreach (var itemSexo in varGenero_Sexo)
-				{
-					if (itemSexo.Value == Convert.ToString(Model.Sexo))
-					{
-						<option value="@itemSexo.Value" selected>@itemSexo.Text</option>
-					}
-					else
-					{
-						<option value="@itemSexo.Value">@itemSexo.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
-<div class="form-group" id="divNacionalidad">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Nacionalidad</label>
-                                <div class="col-sm-8" data-field-id="Nacionalidad" data-attribute="268906" data-field-name="@Resources.Detalle_de_ResultadosResources.Nacionalidad">
-                                    <select class='fullWidth AutoCompleteNacionalidad form-control select2-dropdown' data-val="true" id="Detalle_de_ResultadosNacionalidad" name="Detalle_de_ResultadosNacionalidad">
-                                        <option value="@Model.Nacionalidad">@(Model.NacionalidadNacionalidadC??Model.NacionalidadNacionalidadC)</option>
-                                    </select>
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Sexo</label>
+                                <div class="col-sm-8" data-field-id="Sexo" data-attribute="268905" data-field-name="@Resources.Detalle_de_ResultadosResources.Sexo">
+                                    <input class="form-control" id="Detalle_de_ResultadosSexo" name="Detalle_de_ResultadosSexo" type="text" value="@Model.Sexo">
+                                </div>
+                            </div>
+<div class="form-group" id="divPais">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Pais</label>
+                                <div class="col-sm-8" data-field-id="Pais" data-attribute="273789" data-field-name="@Resources.Detalle_de_ResultadosResources.Pais">
+                                    <input class="form-control" id="Detalle_de_ResultadosPais" name="Detalle_de_ResultadosPais" type="text" value="@Model.Pais">
+                                </div>
+                            </div>
+<div class="form-group" id="divEstado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Estado</label>
+                                <div class="col-sm-8" data-field-id="Estado" data-attribute="273790" data-field-name="@Resources.Detalle_de_ResultadosResources.Estado">
+                                    <input class="form-control" id="Detalle_de_ResultadosEstado" name="Detalle_de_ResultadosEstado" type="text" value="@Model.Estado">
+                                </div>
+                            </div>
+<div class="form-group" id="divMunicipio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Municipio</label>
+                                <div class="col-sm-8" data-field-id="Municipio" data-attribute="273791" data-field-name="@Resources.Detalle_de_ResultadosResources.Municipio">
+                                    <input class="form-control" id="Detalle_de_ResultadosMunicipio" name="Detalle_de_ResultadosMunicipio" type="text" value="@Model.Municipio">
+                                </div>
+                            </div>
+<div class="form-group" id="divJuzgado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Juzgado</label>
+                                <div class="col-sm-8" data-field-id="Juzgado" data-attribute="273792" data-field-name="@Resources.Detalle_de_ResultadosResources.Juzgado">
+                                    <input class="form-control" id="Detalle_de_ResultadosJuzgado" name="Detalle_de_ResultadosJuzgado" type="text" value="@Model.Juzgado">
+                                </div>
+                            </div>
+<div class="form-group" id="divOficio_Solicitud_Juzgado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Oficio_Solicitud_Juzgado</label>
+                                <div class="col-sm-8" data-field-id="Oficio_Solicitud_Juzgado" data-attribute="273793" data-field-name="@Resources.Detalle_de_ResultadosResources.Oficio_Solicitud_Juzgado">
+                                    <input class="form-control" id="Detalle_de_ResultadosOficio_Solicitud_Juzgado" name="Detalle_de_ResultadosOficio_Solicitud_Juzgado" type="text" value="@Model.Oficio_Solicitud_Juzgado">
+                                </div>
+                            </div>
+<div class="form-group" id="divCarpeta_de_Investigacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Carpeta_de_Investigacion</label>
+                                <div class="col-sm-8" data-field-id="Carpeta_de_Investigacion" data-attribute="273794" data-field-name="@Resources.Detalle_de_ResultadosResources.Carpeta_de_Investigacion">
+                                    <input class="form-control" id="Detalle_de_ResultadosCarpeta_de_Investigacion" name="Detalle_de_ResultadosCarpeta_de_Investigacion" type="text" value="@Model.Carpeta_de_Investigacion">
+                                </div>
+                            </div>
+<div class="form-group" id="divCausa_Penal">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ResultadosResources.Causa_Penal</label>
+                                <div class="col-sm-8" data-field-id="Causa_Penal" data-attribute="273795" data-field-name="@Resources.Detalle_de_ResultadosResources.Causa_Penal">
+                                    <input class="form-control" id="Detalle_de_ResultadosCausa_Penal" name="Detalle_de_ResultadosCausa_Penal" type="text" value="@Model.Causa_Penal">
                                 </div>
                             </div>
 
@@ -295,52 +312,11 @@
             var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
             $('#dvSaveJob').html(insertRowHTML);
 			
-            $('#Detalle_de_ResultadosFecha_Nacimiento').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true,
-                format: "@ConfigurationProperty.DateFormatDatePicker"
-            });
 
 
             initiateUIControls();
             EjecutarValidacionesAlComienzo();
 			$('a').tooltip();
-        });
-       var AutoCompleteNacionalidadData =[];
-       $(".AutoCompleteDetalle_de_Resultados_Nacionalidad").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_de_Resultados/GetDetalle_de_Resultados_Nacionalidad_Nacionalidad")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteDetalle_de_Resultados_Nacionalidad_NacionalidadData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteDetalle_de_Resultados_Nacionalidad");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
         });
 
 

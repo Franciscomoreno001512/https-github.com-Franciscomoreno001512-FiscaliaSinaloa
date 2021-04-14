@@ -6,6 +6,7 @@
 @using Spartane.Core.Domain.Solicitud;
 @using Spartane.Core.Domain.Formato_de_Denuncia;
 @using Spartane.Core.Domain.Delitos_Violencia_Genero;
+@using Spartane.Core.Domain.Tipo_Delito;
 @using Spartane.Core.Domain.Titulo_del_Delito;
 @using Spartane.Core.Domain.Grupo_del_Delito;
 @using Spartane.Core.Domain.Delito;
@@ -21,6 +22,7 @@
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.Motivo_de_No_Canalizacion;
+@using Spartane.Core.Domain.Registro_de_Mandamiento_Judicial;
 @using Spartane.Core.Domain.Elemento_Robado;
 @using Spartane.Core.Domain.Circunstancia_Vehiculo;
 @using Spartane.Core.Domain.Especifica_Vehiculo;
@@ -258,6 +260,7 @@
                                     <th>@Resources.Detalle_de_DelitoResources.Violencia_de_Genero</th>
                                     <th>@Resources.Detalle_de_DelitoResources.Delito_Violencia_Genero</th>
                                     <th>@Resources.Detalle_de_DelitoResources.Tipo_de_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Titulo_del_Delito</th>
                                     <th>@Resources.Detalle_de_DelitoResources.Grupo_Delito</th>
                                     <th>@Resources.Detalle_de_DelitoResources.Delito</th>
                                     <th>@Resources.Detalle_de_DelitoResources.Agravante</th>
@@ -288,6 +291,7 @@
                                     <th>@Resources.Detalle_de_DelitoResources.Se_Informaron_sus_Derechos</th>
                                     <th>@Resources.Detalle_de_DelitoResources.Se_Informo_el_Procedimiento</th>
                                     <th>@Resources.Detalle_de_DelitoResources.Levantamiento_de_Cadaver</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Mandamiento_Judicial</th>
                                     <th>@Resources.Detalle_de_DelitoResources.Fecha_del_Robo</th>
                                     <th>@Resources.Detalle_de_DelitoResources.Hora_del_Robo</th>
                                     <th>@Resources.Detalle_de_DelitoResources.Robo_de</th>
@@ -378,6 +382,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -406,6 +411,7 @@
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -603,6 +609,7 @@
         var Violencia_de_Genero = $($('table td .filterData.form-control:input')[counter++]).val();
         var Delito_Violencia_Genero =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Titulo_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Grupo_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Agravante = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -633,6 +640,7 @@
         var Se_Informaron_sus_Derechos = $($('table td .filterData.form-control:input')[counter++]).val();
         var Se_Informo_el_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
         var Levantamiento_de_Cadaver = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Mandamiento_Judicial =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_del_Robo = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_del_Robo = $($('table td .filterData.form-control:input')[counter++]).val();
         var Robo_de =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -717,6 +725,7 @@
         + "&Violencia_de_Genero=" + Violencia_de_Genero
         + "&Delito_Violencia_Genero=" + Delito_Violencia_Genero
         + "&Tipo_de_Delito=" + Tipo_de_Delito
+        + "&Titulo_del_Delito=" + Titulo_del_Delito
         + "&Grupo_Delito=" + Grupo_Delito
         + "&Delito=" + Delito
         + "&Agravante=" + Agravante
@@ -747,6 +756,7 @@
         + "&Se_Informaron_sus_Derechos=" + Se_Informaron_sus_Derechos
         + "&Se_Informo_el_Procedimiento=" + Se_Informo_el_Procedimiento
         + "&Levantamiento_de_Cadaver=" + Levantamiento_de_Cadaver
+        + "&Mandamiento_Judicial=" + Mandamiento_Judicial
         + "&Fecha_del_Robo=" + Fecha_del_Robo
         + "&Hora_del_Robo=" + Hora_del_Robo
         + "&Robo_de=" + Robo_de
@@ -842,6 +852,7 @@
         var Violencia_de_Genero = $($('table td .filterData.form-control:input')[counter++]).val();
         var Delito_Violencia_Genero =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Titulo_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Grupo_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Agravante = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -872,6 +883,7 @@
         var Se_Informaron_sus_Derechos = $($('table td .filterData.form-control:input')[counter++]).val();
         var Se_Informo_el_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
         var Levantamiento_de_Cadaver = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Mandamiento_Judicial =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_del_Robo = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_del_Robo = $($('table td .filterData.form-control:input')[counter++]).val();
         var Robo_de =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -956,6 +968,7 @@
         + "&Violencia_de_Genero=" + Violencia_de_Genero
         + "&Delito_Violencia_Genero=" + Delito_Violencia_Genero
         + "&Tipo_de_Delito=" + Tipo_de_Delito
+        + "&Titulo_del_Delito=" + Titulo_del_Delito
         + "&Grupo_Delito=" + Grupo_Delito
         + "&Delito=" + Delito
         + "&Agravante=" + Agravante
@@ -986,6 +999,7 @@
         + "&Se_Informaron_sus_Derechos=" + Se_Informaron_sus_Derechos
         + "&Se_Informo_el_Procedimiento=" + Se_Informo_el_Procedimiento
         + "&Levantamiento_de_Cadaver=" + Levantamiento_de_Cadaver
+        + "&Mandamiento_Judicial=" + Mandamiento_Judicial
         + "&Fecha_del_Robo=" + Fecha_del_Robo
         + "&Hora_del_Robo=" + Hora_del_Robo
         + "&Robo_de=" + Robo_de
@@ -1236,11 +1250,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -1314,7 +1328,8 @@
                 ,{ "data": "Hora_del_Delito", "orderable": true, "name": "Hora_del_Delito" }
                 ,{ "data": "Violencia_de_Genero", "orderable": true, "name": "Violencia_de_Genero","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Delito_Violencia_GeneroDescripcion", "orderable": true, "name": "Delito_Violencia_GeneroDescripcion" }
-                ,{ "data": "Tipo_de_DelitoDescripcion", "orderable": true, "name": "Tipo_de_DelitoDescripcion"}
+                ,{ "data": "Tipo_de_DelitoDescripcion", "orderable": true, "name": "Tipo_de_DelitoDescripcion" }
+                ,{ "data": "Titulo_del_DelitoDescripcion", "orderable": true, "name": "Titulo_del_DelitoDescripcion"}
                 ,{ "data": "Grupo_DelitoDescripcion", "orderable": true, "name": "Grupo_DelitoDescripcion"}
                 ,{ "data": "DelitoDescripcion", "orderable": true, "name": "DelitoDescripcion"}
                 ,{ "data": "Agravante", "orderable": true, "name": "Agravante","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
@@ -1345,6 +1360,7 @@
                 ,{ "data": "Se_Informaron_sus_Derechos", "orderable": true, "name": "Se_Informaron_sus_Derechos","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Se_Informo_el_Procedimiento", "orderable": true, "name": "Se_Informo_el_Procedimiento","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Levantamiento_de_Cadaver", "orderable": true, "name": "Levantamiento_de_Cadaver","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Mandamiento_JudicialNumero_de_Mandamiento", "orderable": true, "name": "Mandamiento_JudicialNumero_de_Mandamiento"}
                 ,{ "data": "Fecha_del_Robo", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Robo" }
                 ,{ "data": "Hora_del_Robo", "orderable": true, "name": "Hora_del_Robo" }
                 ,{ "data": "Robo_deDescripcion", "orderable": true, "name": "Robo_deDescripcion" }

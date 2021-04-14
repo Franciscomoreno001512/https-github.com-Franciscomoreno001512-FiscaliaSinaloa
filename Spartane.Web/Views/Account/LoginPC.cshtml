@@ -87,10 +87,10 @@
             </center>
             <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 align-v">
                 <div class="row">
-                    <img class="logo-fiscalia"  src="~/Images/logotipos/fiscalia200px.png" alt="Logotipo Fiscalia Sinaloa">
+                    <img class="logo-fiscalia" src="~/Images/logotipos/fiscalia200px.png" alt="Logotipo Fiscalia Sinaloa">
                     <img class="logo-saproj" src="~/Images/logotipos/saproj200px.png" alt="Logotipo SAPROJ">
-                    
-                   <!-- <img class="login-logos" src="~/Images/logotipos/powered200px.png" alt="Logotipo Totaltech"> -->
+
+                    <!-- <img class="login-logos" src="~/Images/logotipos/powered200px.png" alt="Logotipo Totaltech"> -->
                 </div>
 
 
@@ -100,7 +100,7 @@
                 </div>
 
                 <div>
-                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = "LoginPC" }, FormMethod.Post, new { id = "myform", @class = "form-horizontal ", role = "form" }))
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.urlToRedirect }, FormMethod.Post, new { id = "myform", @class = "form-horizontal ", role = "form" }))
                     {
 
                         @Html.ValidationSummary(true)
@@ -139,7 +139,7 @@
                         <div class="row text-center">
                             <img class="logo-tt" src="~/Images/logotipos/powered200px.png" alt="Logotipo Totaltech">
                         </div>
-                        
+
                         if (System.Configuration.ConfigurationManager.AppSettings["VersionApp"] != null)
                         {
                             <br />
@@ -147,7 +147,7 @@
                         }
 
                     }
-					
+
                 </div>
             </div>
         </div>
@@ -209,7 +209,7 @@
                 }
             });
             });
-			
+
 			 $('#Registrarme').click(function () {
                 $.ajax({
                     url: '@Url.Action("ValidateLogin2", "Account")',
@@ -230,8 +230,8 @@
                     }
                 });
             });
-			
-			
+
+
         });
 
         function changeLanguage(element) {

@@ -36,6 +36,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Fuente</summary>
+        public static string Fuente
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Resultados.GetResource("Fuente", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Tipo_de_Mandamiento</summary>
+        public static string Tipo_de_Mandamiento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Resultados.GetResource("Tipo_de_Mandamiento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Nombre</summary>
         public static string Nombre
         {
@@ -66,13 +86,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Fecha_Nacimiento</summary>
-        public static string Fecha_Nacimiento
+        /// <summary>Alias</summary>
+        public static string Alias
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_de_Resultados.GetResource("Fecha_Nacimiento", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_de_Resultados.GetResource("Alias", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -86,13 +106,73 @@ namespace Resources
             }
         }
 
-        /// <summary>Nacionalidad</summary>
-        public static string Nacionalidad
+        /// <summary>Pais</summary>
+        public static string Pais
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_de_Resultados.GetResource("Nacionalidad", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_de_Resultados.GetResource("Pais", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Estado</summary>
+        public static string Estado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Resultados.GetResource("Estado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Municipio</summary>
+        public static string Municipio
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Resultados.GetResource("Municipio", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Juzgado</summary>
+        public static string Juzgado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Resultados.GetResource("Juzgado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Oficio_Solicitud_Juzgado</summary>
+        public static string Oficio_Solicitud_Juzgado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Resultados.GetResource("Oficio_Solicitud_Juzgado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Carpeta_de_Investigacion</summary>
+        public static string Carpeta_de_Investigacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Resultados.GetResource("Carpeta_de_Investigacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Causa_Penal</summary>
+        public static string Causa_Penal
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Resultados.GetResource("Causa_Penal", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

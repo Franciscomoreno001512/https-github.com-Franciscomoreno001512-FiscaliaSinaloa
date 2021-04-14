@@ -1654,6 +1654,8 @@
 <Compile Include="Domain\Area_envia_Cumplimiento\Area_envia_CumplimientoPagingModel.cs" />
 <Compile Include="Domain\Personas_donde_se_ejecuto_mandamiento\Personas_donde_se_ejecuto_mandamientoPagingModel.cs" />
 <Compile Include="Domain\Personas_donde_se_ejecuto_mandamiento\Personas_donde_se_ejecuto_mandamiento.cs" />
+<Compile Include="Domain\Control_de_Folios_de_Mandamiento_Judicial\Control_de_Folios_de_Mandamiento_Judicial.cs" />
+<Compile Include="Domain\Control_de_Folios_de_Mandamiento_Judicial\Control_de_Folios_de_Mandamiento_JudicialPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1674,6 +1676,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

@@ -1,8 +1,10 @@
 ﻿@using System.Collections.Generic
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Consulta_de_Mandamientos_Judiciales;
-@using Spartane.Core.Domain.Genero;
-@using Spartane.Core.Domain.Nacionalidad;
+@using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Juzgado;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -199,12 +201,18 @@
                                 <tr>
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Clave</th>
+                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.MandamientoJudicialId</th>
                                     <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Nombre</th>
                                     <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Apellido_Paterno</th>
                                     <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Apellido_Materno</th>
-                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Fecha_de_Nacimiento</th>
-                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Sexo</th>
-                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Nacionalidad</th>
+                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Alias</th>
+                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Pais</th>
+                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Estado</th>
+                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Municipio</th>
+                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Juzgado</th>
+                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Oficio_Solicitud_Juzgado</th>
+                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Carpeta_de_Investigacion</th>
+                                    <th>@Resources.Consulta_de_Mandamientos_JudicialesResources.Causa_Penal</th>
 
                                 </tr>
                             </thead>
@@ -212,10 +220,16 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
@@ -334,21 +348,33 @@
         var queryString = GetQueryString();
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var MandamientoJudicialId =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Nacimiento = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Sexo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Alias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Juzgado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Oficio_Solicitud_Juzgado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Causa_Penal =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
+        + "&MandamientoJudicialId=" + MandamientoJudicialId
         + "&Nombre=" + Nombre
         + "&Apellido_Paterno=" + Apellido_Paterno
         + "&Apellido_Materno=" + Apellido_Materno
-        + "&Fecha_de_Nacimiento=" + Fecha_de_Nacimiento
-        + "&Sexo=" + Sexo
-        + "&Nacionalidad=" + Nacionalidad
+        + "&Alias=" + Alias
+        + "&Pais=" + Pais
+        + "&Estado=" + Estado
+        + "&Municipio=" + Municipio
+        + "&Juzgado=" + Juzgado
+        + "&Oficio_Solicitud_Juzgado=" + Oficio_Solicitud_Juzgado
+        + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
+        + "&Causa_Penal=" + Causa_Penal
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Consulta_de_Mandamientos_Judiciales/Export?format=")" + format
@@ -363,21 +389,33 @@
 	
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var MandamientoJudicialId =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Nacimiento = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Sexo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Alias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Juzgado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Oficio_Solicitud_Juzgado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Causa_Penal =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
+        + "&MandamientoJudicialId=" + MandamientoJudicialId
         + "&Nombre=" + Nombre
         + "&Apellido_Paterno=" + Apellido_Paterno
         + "&Apellido_Materno=" + Apellido_Materno
-        + "&Fecha_de_Nacimiento=" + Fecha_de_Nacimiento
-        + "&Sexo=" + Sexo
-        + "&Nacionalidad=" + Nacionalidad
+        + "&Alias=" + Alias
+        + "&Pais=" + Pais
+        + "&Estado=" + Estado
+        + "&Municipio=" + Municipio
+        + "&Juzgado=" + Juzgado
+        + "&Oficio_Solicitud_Juzgado=" + Oficio_Solicitud_Juzgado
+        + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
+        + "&Causa_Penal=" + Causa_Penal
 ;
 
     }
@@ -558,11 +596,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -626,12 +664,18 @@
                     }
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "MandamientoJudicialId","className": "dt-right", "orderable": true, "name": "MandamientoJudicialId" }
                 ,{ "data": "Nombre", "orderable": true, "name": "Nombre", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Paterno", "orderable": true, "name": "Apellido_Paterno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Materno", "orderable": true, "name": "Apellido_Materno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_de_Nacimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Nacimiento" }
-                ,{ "data": "SexoDescripcion", "orderable": true, "name": "SexoDescripcion" }
-                ,{ "data": "NacionalidadNacionalidadC", "orderable": true, "name": "NacionalidadNacionalidadC"}
+                ,{ "data": "Alias", "orderable": true, "name": "Alias", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre"}
+                ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
+                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
+                ,{ "data": "JuzgadoNombre", "orderable": true, "name": "JuzgadoNombre" }
+                ,{ "data": "Oficio_Solicitud_Juzgado", "orderable": true, "name": "Oficio_Solicitud_Juzgado", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Carpeta_de_Investigacion", "orderable": true, "name": "Carpeta_de_Investigacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Causa_Penal", "orderable": true, "name": "Causa_Penal", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],
 			"colReorder": true,

@@ -16149,6 +16149,26 @@
 <Content Include="Uploads\Scripts\Personas_donde_se_ejecuto_mandamiento.js" />
 <Content Include="Uploads\Scripts\Rules\Personas_donde_se_ejecuto_mandamientoIndexRules.js" />
 <Content Include="Uploads\Scripts\Rules\Personas_donde_se_ejecuto_mandamientoCreateRules.js" />
+<Compile Include="Areas\WebApiConsumer\Control_de_Folios_de_Mandamiento_Judicial\Control_de_Folios_de_Mandamiento_JudicialApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Control_de_Folios_de_Mandamiento_Judicial\IControl_de_Folios_de_Mandamiento_JudicialApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialModel.cs" />
+<Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Control_de_Folios_de_Mandamiento_JudicialController.cs" />
+<Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\Create.cshtml" />
+<Compile Include="Resource\GetResource\Control_de_Folios_de_Mandamiento_Judicial.cs" />
+<Content Include="Uploads\Resources\Control_de_Folios_de_Mandamiento_JudicialResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Control_de_Folios_de_Mandamiento_JudicialPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Control_de_Folios_de_Mandamiento_JudicialResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Control_de_Folios_de_Mandamiento_Judicial.js" />
+<Content Include="Scripts\Custom\Control_de_Folios_de_Mandamiento_JudicialGeneral.js" />
+<Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Control_de_Folios_de_Mandamiento_JudicialCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Control_de_Folios_de_Mandamiento_JudicialIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -17156,6 +17176,26 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

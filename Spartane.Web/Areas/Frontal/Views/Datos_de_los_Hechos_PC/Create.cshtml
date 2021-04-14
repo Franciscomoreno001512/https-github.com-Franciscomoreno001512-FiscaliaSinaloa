@@ -541,6 +541,88 @@
     </div>
 </div>
 <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+<button style="display: none" type="button" class="btn btn-info btn-lg" data-toggle="modal" id="modalMapa" data-target="#myModal">Ver Mapa</button>
+<!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
+	<div class="modal-dialog" style="width: 90%;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Seleccionar Dirección</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <label>Escriba la dirección</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" style="width:100%" id="address" name="address" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="button" id="BucarDireccion" value="Buscar">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:12px;">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <!-- <div id="gmap" style="height:100%; width:100%;"></div> -->
+                                <div id="gmap" style="height: 400px"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal2" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
+        <div class="modal-dialog" style="width: 90%;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Seleccionar Dirección</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <label>Escriba la dirección</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" style="width:100%" id="address2" name="address2" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="button" id="BucarDireccion2" value="Buscar">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:12px;">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <!-- <div id="gmap" style="height:100%; width:100%;"></div> -->
+                                <div id="gmap2" style="height: 400px"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 @section Styles {
 <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
@@ -704,7 +786,7 @@
                 url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Pais_Pais")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -737,7 +819,7 @@
                 url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Estado_Estado")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -770,7 +852,7 @@
                 url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Municipio_Municipio")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -803,7 +885,7 @@
                 url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Poblacion_Colonia")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {
@@ -836,7 +918,7 @@
                 url: "@Url.Content("~/Frontal/Datos_de_los_Hechos_PC/GetDatos_de_los_Hechos_PC_Colonia_Colonia")",
 		cache: false,
                 dataType: 'json',
-                async: true,
+                async: false,
                 global: false,
                 data: function (params) {
                     return {

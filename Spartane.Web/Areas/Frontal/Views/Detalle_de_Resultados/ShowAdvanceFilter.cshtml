@@ -3,12 +3,6 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_de_ResultadosAdvanceSearchModel
 @{
-    List<SelectListItem> varGenero_Sexo = null;
-    if (ViewBag.Generos_Sexo != null)
-    { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
- List<SelectListItem> varNacionalidad_Nacionalidad = null;
-    if (ViewBag.Nacionalidads_Nacionalidad != null)
-    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -58,6 +52,22 @@
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_ResultadosResources.Fuente</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.FuenteFilter, filters, new { @class = "form-control", @id = "ddlFuenteFilter" })
+                    @Html.TextBoxFor(m => m.Fuente, new { @class = "form-control", @type = "text", @id = "txtFuente" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_ResultadosResources.Tipo_de_Mandamiento</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_MandamientoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_MandamientoFilter" })
+                    @Html.TextBoxFor(m => m.Tipo_de_Mandamiento, new { @class = "form-control", @type = "text", @id = "txtTipo_de_Mandamiento" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_ResultadosResources.Nombre</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -81,49 +91,78 @@
                     @Html.DropDownListFor(m => m.Apellido_MaternoFilter, filters, new { @class = "form-control", @id = "ddlApellido_MaternoFilter" })
                     @Html.TextBoxFor(m => m.Apellido_Materno, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno" })
                 </div>
-        <div class="MarginBottom ">
-            <h3>@Resources.Detalle_de_ResultadosResources.Fecha_Nacimiento</h3>
-        </div>
-        <div class="MarginBottom form-inline">
-            <label class="">@Resources.Resources.From:</label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceFromFecha_Nacimiento" name="FromFecha_Nacimiento" type="text" value="@Model.FromFecha_Nacimiento" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-            <label class="">@Resources.Resources.To: </label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceToFecha_Nacimiento" name="ToFecha_Nacimiento" type="text" value="@Model.ToFecha_Nacimiento" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_ResultadosResources.Alias</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AliasFilter, filters, new { @class = "form-control", @id = "ddlAliasFilter" })
+                    @Html.TextBoxFor(m => m.Alias, new { @class = "form-control", @type = "text", @id = "txtAlias" })
+                </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_ResultadosResources.Sexo</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.SexoFilter, filters, new { @class = "form-control", @id = "ddlSexoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceSexo, new { @class = "form-control", @type = "text", @id = "txtAdvanceSexo" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varGenero_Sexo!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceSexoMultiple, varGenero_Sexo,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceSexo"
-                        });
-                    }
+                    @Html.TextBoxFor(m => m.Sexo, new { @class = "form-control", @type = "text", @id = "txtSexo" })
                 </div>
- List<SelectListItem> varNacionalidad_Nacionalidad = null;
-    if (ViewBag.Nacionalidads_Nacionalidad != null)
-    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_ResultadosResources.Pais</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.PaisFilter, filters, new { @class = "form-control", @id = "ddlPaisFilter" })
+                    @Html.TextBoxFor(m => m.Pais, new { @class = "form-control", @type = "text", @id = "txtPais" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_ResultadosResources.Estado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EstadoFilter, filters, new { @class = "form-control", @id = "ddlEstadoFilter" })
+                    @Html.TextBoxFor(m => m.Estado, new { @class = "form-control", @type = "text", @id = "txtEstado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_ResultadosResources.Municipio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.MunicipioFilter, filters, new { @class = "form-control", @id = "ddlMunicipioFilter" })
+                    @Html.TextBoxFor(m => m.Municipio, new { @class = "form-control", @type = "text", @id = "txtMunicipio" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_ResultadosResources.Juzgado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.JuzgadoFilter, filters, new { @class = "form-control", @id = "ddlJuzgadoFilter" })
+                    @Html.TextBoxFor(m => m.Juzgado, new { @class = "form-control", @type = "text", @id = "txtJuzgado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_ResultadosResources.Oficio_Solicitud_Juzgado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Oficio_Solicitud_JuzgadoFilter, filters, new { @class = "form-control", @id = "ddlOficio_Solicitud_JuzgadoFilter" })
+                    @Html.TextBoxFor(m => m.Oficio_Solicitud_Juzgado, new { @class = "form-control", @type = "text", @id = "txtOficio_Solicitud_Juzgado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_ResultadosResources.Carpeta_de_Investigacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Carpeta_de_InvestigacionFilter, filters, new { @class = "form-control", @id = "ddlCarpeta_de_InvestigacionFilter" })
+                    @Html.TextBoxFor(m => m.Carpeta_de_Investigacion, new { @class = "form-control", @type = "text", @id = "txtCarpeta_de_Investigacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_ResultadosResources.Causa_Penal</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Causa_PenalFilter, filters, new { @class = "form-control", @id = "ddlCausa_PenalFilter" })
+                    @Html.TextBoxFor(m => m.Causa_Penal, new { @class = "form-control", @type = "text", @id = "txtCausa_Penal" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_de_Resultados/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -141,6 +180,16 @@
             advanceSearch.Detalle_de_ResultadosClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_de_ResultadosClaveTo = $("#txtAdvanceToClave").val();
         }
+        if ($("#txtAdvanceFuente").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ResultadosFuente = $("#txtAdvanceFuente").val();
+            advanceSearch.Detalle_de_ResultadosFuenteSearchType = $("#ddlAdvanceFuenteFilter").val();
+        }
+        if ($("#txtAdvanceTipo_de_Mandamiento").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ResultadosTipo_de_Mandamiento = $("#txtAdvanceTipo_de_Mandamiento").val();
+            advanceSearch.Detalle_de_ResultadosTipo_de_MandamientoSearchType = $("#ddlAdvanceTipo_de_MandamientoFilter").val();
+        }
         if ($("#txtAdvanceNombre").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_ResultadosNombre = $("#txtAdvanceNombre").val();
@@ -156,40 +205,50 @@
             advanceSearch.Detalle_de_ResultadosApellido_Materno = $("#txtAdvanceApellido_Materno").val();
             advanceSearch.Detalle_de_ResultadosApellido_MaternoSearchType = $("#ddlAdvanceApellido_MaternoFilter").val();
         }
-        if ($("#txtAdvanceFromFecha_Nacimiento").val() != "" || $("#txtAdvanceToFecha_Nacimiento").val() != "") {
+        if ($("#txtAdvanceAlias").val() != "") {
             hasParameter = true;
-            advanceSearch.Detalle_de_ResultadosFecha_NacimientoFrom = $("#txtAdvanceFromFecha_Nacimiento").val();
-            advanceSearch.Detalle_de_ResultadosFecha_NacimientoTo = $("#txtAdvanceToFecha_Nacimiento").val();
+            advanceSearch.Detalle_de_ResultadosAlias = $("#txtAdvanceAlias").val();
+            advanceSearch.Detalle_de_ResultadosAliasSearchType = $("#ddlAdvanceAliasFilter").val();
         }
-        advanceSearch.SexoSearchType = 0;
-        if ($('#ddlAdvanceSexo').val().length > 0 || $("#txtAdvanceSexo").val() == "") {
-
-
-            if (isDetalle_de_ResultadosTextSearch) {
-                advanceSearch.SexoName = $("#txtAdvanceSexo").val();
-                advanceSearch.SexoNameSearchType = $("#ddlAdvanceSexo").val();
-                advanceSearch.SexoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.SexoToSearch = $("#ddlAdvanceSexo").val();
-                advanceSearch.SexoSearchType = 2;
-            }
+        if ($("#txtAdvanceSexo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ResultadosSexo = $("#txtAdvanceSexo").val();
+            advanceSearch.Detalle_de_ResultadosSexoSearchType = $("#ddlAdvanceSexoFilter").val();
         }
-        advanceSearch.NacionalidadSearchType = 0;
-        if ($('#ddlAdvanceNacionalidad').val().length > 0 || $("#txtAdvanceNacionalidad").val() == "") {
-
-
-            if (isDetalle_de_ResultadosTextSearch) {
-                advanceSearch.NacionalidadName = $("#txtAdvanceNacionalidad").val();
-                advanceSearch.NacionalidadNameSearchType = $("#ddlAdvanceNacionalidad").val();
-                advanceSearch.NacionalidadSearchType = 1;
-            }
-            else {
-
-                advanceSearch.NacionalidadToSearch = $("#ddlAdvanceNacionalidad").val();
-                advanceSearch.NacionalidadSearchType = 2;
-            }
+        if ($("#txtAdvancePais").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ResultadosPais = $("#txtAdvancePais").val();
+            advanceSearch.Detalle_de_ResultadosPaisSearchType = $("#ddlAdvancePaisFilter").val();
+        }
+        if ($("#txtAdvanceEstado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ResultadosEstado = $("#txtAdvanceEstado").val();
+            advanceSearch.Detalle_de_ResultadosEstadoSearchType = $("#ddlAdvanceEstadoFilter").val();
+        }
+        if ($("#txtAdvanceMunicipio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ResultadosMunicipio = $("#txtAdvanceMunicipio").val();
+            advanceSearch.Detalle_de_ResultadosMunicipioSearchType = $("#ddlAdvanceMunicipioFilter").val();
+        }
+        if ($("#txtAdvanceJuzgado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ResultadosJuzgado = $("#txtAdvanceJuzgado").val();
+            advanceSearch.Detalle_de_ResultadosJuzgadoSearchType = $("#ddlAdvanceJuzgadoFilter").val();
+        }
+        if ($("#txtAdvanceOficio_Solicitud_Juzgado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ResultadosOficio_Solicitud_Juzgado = $("#txtAdvanceOficio_Solicitud_Juzgado").val();
+            advanceSearch.Detalle_de_ResultadosOficio_Solicitud_JuzgadoSearchType = $("#ddlAdvanceOficio_Solicitud_JuzgadoFilter").val();
+        }
+        if ($("#txtAdvanceCarpeta_de_Investigacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ResultadosCarpeta_de_Investigacion = $("#txtAdvanceCarpeta_de_Investigacion").val();
+            advanceSearch.Detalle_de_ResultadosCarpeta_de_InvestigacionSearchType = $("#ddlAdvanceCarpeta_de_InvestigacionFilter").val();
+        }
+        if ($("#txtAdvanceCausa_Penal").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ResultadosCausa_Penal = $("#txtAdvanceCausa_Penal").val();
+            advanceSearch.Detalle_de_ResultadosCausa_PenalSearchType = $("#ddlAdvanceCausa_PenalFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
@@ -209,24 +268,6 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
-        $("#txtAdvanceSexo").keypress(function () {
-            isDetalle_de_ResultadosTextSearch = true;
-            $("#ddlAdvanceSexo").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceSexo").change(function () {
-            isDetalle_de_ResultadosTextSearch = false;
-            $("#txtAdvanceSexo").val('');
-        });
-        $("#txtAdvanceNacionalidad").keypress(function () {
-            isDetalle_de_ResultadosTextSearch = true;
-            $("#ddlAdvanceNacionalidad").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceNacionalidad").change(function () {
-            isDetalle_de_ResultadosTextSearch = false;
-            $("#txtAdvanceNacionalidad").val('');
-        });
 
     });
 </script>

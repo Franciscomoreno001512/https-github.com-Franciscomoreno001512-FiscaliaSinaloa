@@ -8,6 +8,7 @@ using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Formato_de_Denuncia;
 using Spartane.Core.Domain.Delitos_Violencia_Genero;
+using Spartane.Core.Domain.Tipo_Delito;
 using Spartane.Core.Domain.Titulo_del_Delito;
 using Spartane.Core.Domain.Grupo_del_Delito;
 using Spartane.Core.Domain.Delito;
@@ -23,6 +24,7 @@ using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Motivo_de_No_Canalizacion;
+using Spartane.Core.Domain.Registro_de_Mandamiento_Judicial;
 using Spartane.Core.Domain.Elemento_Robado;
 using Spartane.Core.Domain.Circunstancia_Vehiculo;
 using Spartane.Core.Domain.Especifica_Vehiculo;
@@ -77,6 +79,7 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public bool? Violencia_de_Genero { get; set; }
         public int? Delito_Violencia_Genero { get; set; }
         public int? Tipo_de_Delito { get; set; }
+        public int? Titulo_del_Delito { get; set; }
         public int? Grupo_Delito { get; set; }
         public int? Delito { get; set; }
         public bool? Agravante { get; set; }
@@ -107,6 +110,7 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public bool? Se_Informaron_sus_Derechos { get; set; }
         public bool? Se_Informo_el_Procedimiento { get; set; }
         public bool? Levantamiento_de_Cadaver { get; set; }
+        public int? Mandamiento_Judicial { get; set; }
         public DateTime? Fecha_del_Robo { get; set; }
         public string Hora_del_Robo { get; set; }
         public int? Robo_de { get; set; }
@@ -189,7 +193,9 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         [ForeignKey("Delito_Violencia_Genero")]
         public virtual Spartane.Core.Domain.Delitos_Violencia_Genero.Delitos_Violencia_Genero Delito_Violencia_Genero_Delitos_Violencia_Genero { get; set; }
         [ForeignKey("Tipo_de_Delito")]
-        public virtual Spartane.Core.Domain.Titulo_del_Delito.Titulo_del_Delito Tipo_de_Delito_Titulo_del_Delito { get; set; }
+        public virtual Spartane.Core.Domain.Tipo_Delito.Tipo_Delito Tipo_de_Delito_Tipo_Delito { get; set; }
+        [ForeignKey("Titulo_del_Delito")]
+        public virtual Spartane.Core.Domain.Titulo_del_Delito.Titulo_del_Delito Titulo_del_Delito_Titulo_del_Delito { get; set; }
         [ForeignKey("Grupo_Delito")]
         public virtual Spartane.Core.Domain.Grupo_del_Delito.Grupo_del_Delito Grupo_Delito_Grupo_del_Delito { get; set; }
         [ForeignKey("Delito")]
@@ -218,6 +224,8 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Puede_Ser_Canalizado_a_JA_A_Tiempo { get; set; }
         [ForeignKey("Motivo_de_no_canalizacion")]
         public virtual Spartane.Core.Domain.Motivo_de_No_Canalizacion.Motivo_de_No_Canalizacion Motivo_de_no_canalizacion_Motivo_de_No_Canalizacion { get; set; }
+        [ForeignKey("Mandamiento_Judicial")]
+        public virtual Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial Mandamiento_Judicial_Registro_de_Mandamiento_Judicial { get; set; }
         [ForeignKey("Robo_de")]
         public virtual Spartane.Core.Domain.Elemento_Robado.Elemento_Robado Robo_de_Elemento_Robado { get; set; }
         [ForeignKey("Circunstancia_de_Vehiculo")]
@@ -295,6 +303,7 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public bool? Violencia_de_Genero { get; set; }
         public int? Delito_Violencia_Genero { get; set; }
         public int? Tipo_de_Delito { get; set; }
+        public int? Titulo_del_Delito { get; set; }
         public int? Grupo_Delito { get; set; }
         public int? Delito { get; set; }
         public bool? Agravante { get; set; }
@@ -325,6 +334,7 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public bool? Se_Informaron_sus_Derechos { get; set; }
         public bool? Se_Informo_el_Procedimiento { get; set; }
         public bool? Levantamiento_de_Cadaver { get; set; }
+        public int? Mandamiento_Judicial { get; set; }
 
 		        [ForeignKey("Expediente_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Expediente_Inicial_Modulo_Atencion_Inicial { get; set; }
@@ -337,7 +347,9 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         [ForeignKey("Delito_Violencia_Genero")]
         public virtual Spartane.Core.Domain.Delitos_Violencia_Genero.Delitos_Violencia_Genero Delito_Violencia_Genero_Delitos_Violencia_Genero { get; set; }
         [ForeignKey("Tipo_de_Delito")]
-        public virtual Spartane.Core.Domain.Titulo_del_Delito.Titulo_del_Delito Tipo_de_Delito_Titulo_del_Delito { get; set; }
+        public virtual Spartane.Core.Domain.Tipo_Delito.Tipo_Delito Tipo_de_Delito_Tipo_Delito { get; set; }
+        [ForeignKey("Titulo_del_Delito")]
+        public virtual Spartane.Core.Domain.Titulo_del_Delito.Titulo_del_Delito Titulo_del_Delito_Titulo_del_Delito { get; set; }
         [ForeignKey("Grupo_Delito")]
         public virtual Spartane.Core.Domain.Grupo_del_Delito.Grupo_del_Delito Grupo_Delito_Grupo_del_Delito { get; set; }
         [ForeignKey("Delito")]
@@ -366,6 +378,8 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Puede_Ser_Canalizado_a_JA_A_Tiempo { get; set; }
         [ForeignKey("Motivo_de_no_canalizacion")]
         public virtual Spartane.Core.Domain.Motivo_de_No_Canalizacion.Motivo_de_No_Canalizacion Motivo_de_no_canalizacion_Motivo_de_No_Canalizacion { get; set; }
+        [ForeignKey("Mandamiento_Judicial")]
+        public virtual Spartane.Core.Domain.Registro_de_Mandamiento_Judicial.Registro_de_Mandamiento_Judicial Mandamiento_Judicial_Registro_de_Mandamiento_Judicial { get; set; }
 
     }
 
