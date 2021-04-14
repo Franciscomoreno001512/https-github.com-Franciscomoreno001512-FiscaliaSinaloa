@@ -258,7 +258,7 @@
                                 <span id="LabelDetalle">DETALLE</span>
                             </div>
                             <div class="table-responsive" style="height:100px;">
-                                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                <table id="detalletable" class="align-middle mb-0 table table-borderless table-striped table-hover">
                                     <thead>
                                         <tr id="TrColumnsDetail"></tr>
                                     </thead>
@@ -360,14 +360,13 @@
                     break;
             }
 
-            debugger;
             if (darclickaNuevoEndiligencias) {
                 $("#new").click();
             }
 
         });//editDetails
         $('#TbodyDetails').on('click', '.editDetails', function () {
-            debugger;
+
 
             if (ObjectSelected == "45033") { // es invitaciones (detalle_de_solicitud_de_invitacines)
                 esEdicionInvitaciones = true;
@@ -384,7 +383,7 @@
             $("#printFormatModal").data('idrecord', idRecord);
         });
         $('#new').click(function () {
-            debugger;
+
             esEdicionInvitaciones = false;
             var role = @Session["USERROLEID"] != null ? @Session["USERROLEID"] : 0;
             if($('#LabelDetalle').text() == "Informe" && (role==8 || role==9 || role==10 || role==11)){
@@ -417,7 +416,7 @@
 
 
         $("#btn_rg_busqueda_visualizar").click(function () {
-            debugger;
+
             $("#btn_rg_busqueda_visualizar").hide();
             $("#btn_rg_busqueda_ocultar").show();
             $('.panelbusqueda').show();
@@ -429,7 +428,7 @@
 
         var totalTamanofinal = 0;
         $("#btn_rg_info_busqueda_ocultar").click(function () {
-            debugger;
+
             alturaoriginal = 0;
             $("#btn_rg_info_busqueda_ocultar").hide();
             $("#btn_rg_info_busqueda_visualizar").show();
@@ -447,7 +446,7 @@
 
 
         $("#btn_rg_info_busqueda_visualizar").click(function () {
-            debugger;
+
             $("#btn_rg_info_busqueda_ocultar").show();
             $("#btn_rg_info_busqueda_visualizar").hide();
 
@@ -504,7 +503,7 @@
     }
     var bPreguntar = true
     function GetCatalogPopup(id) {
-        debugger;
+
         darclickaNuevoEndiligencias = false;
         var edit = '';
         var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
@@ -526,7 +525,7 @@
     }
 
     function RefreshCatalog(catalog, control, id) {
-        debugger;
+
         GetDataToShow(IdSelected, @ViewBag.idTablero);
         FillDetailsByTab(TabSelected, ObjectSelected, IdSelected,@ViewBag.idTablero);
 
@@ -616,7 +615,7 @@
     var IdSelected = "-1";
 	var idModule = getParameterByName('id');
     function FillDetailsByTab(idTab, object, id, idTablero) {
-       debugger;
+
         ObjectSelected = object;
         $.ajax({
             url: url_content + "Frontal/DynamicSearch/GetDetalleBySearchResult?idTab=" + idTab + "&id=" + id + "&idTablero=" + idTablero,
@@ -625,7 +624,7 @@
             dataType: "json",
             async: false,
             success: function (result) {
-                //aqui
+
                 var role = @Session["USERROLEID"] != null ? @Session["USERROLEID"] : 0;
 
                 var permisionDelete = false;
@@ -652,7 +651,22 @@
                             if (c == "Clave" || c == "Lista_para_periciales" || c == "Documento_Pericial" || c == "Archivo_Pericial" ) {
                                 htmlColumns += '<th class="text-center" hidden>' + c.replace(/_/g, " ") + '</th>';
                             } else {
-                                htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
+
+                                if (ObjectSelected == "45620" || ObjectSelected == "45109") {
+                                  //  if (ObjectSelected == "45620" ) {
+                                    if (c == "Archivo" || c == "archivo" || c=="Archivo_Pericial" ) {
+                                        htmlColumns += '<th class="text-center" hidden>' + c.replace(/_/g, " ") + '</th>';
+                                    }
+                                    else {
+                                         htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
+                                    }
+
+                                }
+                                else {
+                                    htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
+                                }
+
+
                             }
                         }
 
@@ -678,7 +692,7 @@
                               <text>
 
                         if (ObjectSelected == "45018" || ObjectSelected == "45474") { // 45018 representa el tab de documentos, solo se muestra cuando el tab es documentos
-                            debugger;
+
 
 
                                // htmlValues += '<td class="text-center" style="width:80px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails hidden" style="padding-left: 10px;"><i class="fa fa-print"></i></a><a class="claseeditardocumento"  title="Editar Documento"  style="padding-left: 5px;"><img src="~/Images/icono-editar-documento.PNG" width="16px" height="16px"></a><a class="claseverdocumento"  title="Ver Documento"  style="padding-left: 5px;"><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a><a class="claseverdocumentopericial"><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a></td>';
@@ -724,7 +738,7 @@
                         {
                             <text>
 
-                        debugger;
+
                         var tagPericial = '';
 
                         //if (idModule == "2") {
@@ -732,24 +746,75 @@
                      //  }
 
 
+                        if (ObjectSelected == "45620") {
 
-                            if (idModule == "1" ) {
-                                if (v.Values[11] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>';  }
+
+                            if (idModule == "1") {
+                                if (v.Values[11] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
                             }
-                            if ( idModule == "3") {
+                            if (idModule == "3") {
                                 if (v.Values[13] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
                             }
-                            if ( idModule == "2") {
+                            if (idModule == "2") {
                                 if (v.Values[6] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
                             }
 
-                        if (permisionDelete) {
-                            htmlValues += '<td class="text-center" style="width:100px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="classDelete"><i class="fa fa-trash"  data-ObjectSelected="' + ObjectSelected + '"></i></a>' + tagPericial + '</td>';
+                           // htmlValues += '<td class="text-center" style="width:100px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails hidden" style="padding-left: 10px;"><i class="fa fa-print"></i></a><a class="claseeditardocumento"  title="Editar Documento"  style="padding-left: 5px;"><img src="~/Images/icono-editar-documento.PNG" width="16px" height="16px"></a><a class="claseverdocumento"  title="Ver Documento"  style="padding-left: 5px;"><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>' + tagPericial + '</td>';
+
+                            htmlValues += '<td class="text-center" style="width:100px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="claseverdocumento" data-ObjectSelected= "' + ObjectSelected + '" title="Ver Documento"  style="padding-left: 5px;"><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>' + tagPericial + '</td>';
+
+
+
+                        }
+                        else if (ObjectSelected== "45109") // fjmore para en diligencia porner el icono de ver contestacion
+                        {
+                            debugger;
+
+
+                            if (idModule == "1") {
+                                if (v.Values[11] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
+                            }
+                            if (idModule == "3") {
+                                if (v.Values[13] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
+                            }
+                            if (idModule == "2") {
+                                if (v.Values[6] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
+                            }
+
+                            if (permisionDelete) {
+                                htmlValues += '<td class="text-center" style="width:100px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="classDelete"><i class="fa fa-trash"  data-ObjectSelected="' + ObjectSelected + '"></i></a><a style="padding:7px;" class="claseverdocumento" data-ObjectSelected= "' + ObjectSelected + '" title="Ver Documento"  style=""><i class="fa fa-eye"></i></a><a class="claseverdocumento" data-ObjectContestacion ="contesta" data-ObjectSelected= "' + ObjectSelected + '" title="Ver Documento Contestación"  style="padding-left: 5px;"><img src="~/Images/responseicon.jpeg" width="16px" height="16px"></a>' + tagPericial + '</td>';
+
+                            }
+                            else {
+                                //fjmore poner el icono de la contestacion
+                                htmlValues += '<td class="text-center" style="width:100px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="claseverdocumento" data-ObjectSelected= "' + ObjectSelected + '" title="Ver Documento"  style=""><i class="fa fa-eye"></i></a><a class="claseverdocumento" data-ObjectSelected= "' + ObjectSelected + '" title="Ver Documento Contestación"  style="padding-left: 5px;"><img src="~/Images/responseicon.jpeg" width="16px" height="16px"></a>' + tagPericial + '</td>';
+
+                            }
+
+
 
                         }
                         else {
-                            htmlValues += '<td class="text-center" style="width:100px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a>' + tagPericial + '</td>';
 
+
+                            if (idModule == "1") {
+                                if (v.Values[11] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
+                            }
+                            if (idModule == "3") {
+                                if (v.Values[13] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
+                            }
+                            if (idModule == "2") {
+                                if (v.Values[6] == "1") { tagPericial = '<a class="claseverdocumentopericial"  title="Ver Documento Pericial"  ><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a>'; }
+                            }
+
+                            if (permisionDelete) {
+                                htmlValues += '<td class="text-center" style="width:100px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="classDelete"><i class="fa fa-trash"  data-ObjectSelected="' + ObjectSelected + '"></i></a>' + tagPericial + '</td>';
+
+                            }
+                            else {
+                                htmlValues += '<td class="text-center" style="width:100px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a>' + tagPericial + '</td>';
+
+                            }
                         }
 
 
@@ -760,12 +825,20 @@
 
 
 
-                        debugger;
+
                         $.each(v.Values, function (i, v2) {
                             if (ObjectSelected == "45018" ) {
                                 //if (ObjectSelected == "45018" || ObjectSelected == "45474") {
 
                                 if (i == 0 || (i == 7 && idModule == '1') || (i == 10 && idModule == '1')  || (i == 11 && idModule == '1') || (i == 17 && idModule == '3') || (i == 18 && idModule == '3')) { //|| (i == 12 && idModule == '1')
+                                    htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
+                                } else {
+                                    htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
+                                }
+                            }
+                            else if (ObjectSelected == "45109")
+                            {
+                                if (i == 0 || (i == 11 && idModule == '2') || (i == 10 && idModule == '2') ) { //|| (i == 12 && idModule == '1')
                                     htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
@@ -789,6 +862,14 @@
                     var html = '<td class="text-center text-muted"><div class="alert alert-danger" role="alert">No se encontraron resultados</div></td>';
                     $('#TbodyDetails').html(html);
                 }
+
+
+
+                //if (ObjectSelected == "45109") {
+                //    $("#detalletable th:last-child, #detalletable td:last-child").hide();
+                //}
+
+
             },
             error: function (result) {
                 showNotification("Error buscando variable", "error");
@@ -857,7 +938,7 @@
     }
     function DisabledAE(value) {
         var replaced = value.toString().split(' ').join('');
-        //debugger;
+
         console.log(replaced);
         if (replaced.toUpperCase() == 'ATENCIÓNAEXTRAVÍO') {
             console.log("True");
@@ -1123,9 +1204,43 @@
         var _columna = '12';
         if (_idModule == '1') { _columna = '11'; }
 
-        var folioControlDoc = jQuery(this).closest('tr').find('td:eq(' + _columna + ')').text();
+         var folioControlDoc = "";
 
-        var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + folioControlDoc, "", "");// document.getElementById("Archivo").innerHTML;
+         folioControlDoc = jQuery(this).closest('tr').find('td:eq(' + _columna + ')').text();
+
+         var dataObjectSelected = $(this).attr("data-ObjectSelected");
+
+         if (dataObjectSelected == "45620") {
+             var claveTabla = jQuery(this).closest('tr').find('td:eq(' + 1 + ')').text();
+
+             folioControlDoc = EvaluaQuery("select Archivo from Detalle_Resumen_Denuncia where clave = " + claveTabla, "", "");
+
+         }
+
+         var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + folioControlDoc, "", "");
+
+
+         if (dataObjectSelected == "45109") {
+            // var fileid = jQuery(this).closest('tr').find('td:eq(' + 12 + ')').text();
+
+             var escontestacion = $(this).attr("data-ObjectContestacion") == "contesta";
+
+             if (escontestacion) {
+                 folioControlDoc = jQuery(this).closest('tr').find('td:eq(' + 12 + ')').text();
+             }
+             else {
+                 folioControlDoc = jQuery(this).closest('tr').find('td:eq(' + 11 + ')').text();
+             }
+             id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + folioControlDoc, "", "");
+
+         }
+
+         if (id == null || id == "0" || id == "") {
+             alert("No hay documento para visualizar, porfavor verifique que previamente lo haya generado corrrectamente!");
+             return;
+         }
+
+
             $.ajax({
                 async: false,
                 url: '@Url.Content("~/Frontal/General/GetArchivoFisico")',
