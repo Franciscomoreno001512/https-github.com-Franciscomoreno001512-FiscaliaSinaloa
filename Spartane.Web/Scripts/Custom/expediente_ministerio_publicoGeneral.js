@@ -361,6 +361,17 @@ function GetAutoCompleteexpediente_ministerio_publico_Municipio_MunicipioData(da
     }
     return AutoCompleteMunicipioData;
 }
+var AutoCompletePre_DenunciaData = [];
+function GetAutoCompleteexpediente_ministerio_publico_Pre_Denuncia_Solicitud_de_Denuncia_CiudadanaData(data) {
+	AutoCompletePre_DenunciaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompletePre_DenunciaData.push({
+            id: data[i].Clave,
+            text: data[i].Folio
+        });
+    }
+    return AutoCompletePre_DenunciaData;
+}
 //Grid GetAutocomplete
 var AutoCompleteusuario_que_realiza_observacionData = [];
 function GetAutoCompletedetalle_de_observaciones_mpi_usuario_que_realiza_observacion_Spartan_UserData(data) {
@@ -489,6 +500,9 @@ function ClearControls() {
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
+    $('#Pre_Denuncia').empty();
+    $("#Pre_Denuncia").append('<option value=""></option>');
+    $('#Pre_Denuncia').val('0').trigger('change');
                 detalle_de_observaciones_mpiClearGridData();
     $('#PaisH').empty();
     $("#PaisH").append('<option value=""></option>');
@@ -655,6 +669,9 @@ $(document).ready(function () {
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
+    $('#Pre_Denuncia').empty();
+    $("#Pre_Denuncia").append('<option value=""></option>');
+    $('#Pre_Denuncia').val('0').trigger('change');
                 detalle_de_observaciones_mpiClearGridData();
     $('#PaisH').empty();
     $("#PaisH").append('<option value=""></option>');

@@ -1547,6 +1547,10 @@
 <Compile Include="Personas_donde_se_ejecuto_mandamiento\Personas_donde_se_ejecuto_mandamientoService.cs" />
 <Compile Include="Control_de_Folios_de_Mandamiento_Judicial\IControl_de_Folios_de_Mandamiento_JudicialService.cs" />
 <Compile Include="Control_de_Folios_de_Mandamiento_Judicial\Control_de_Folios_de_Mandamiento_JudicialService.cs" />
+<Compile Include="Contestacion_de_Portal_Ciudadano\IContestacion_de_Portal_CiudadanoService.cs" />
+<Compile Include="Contestacion_de_Portal_Ciudadano\Contestacion_de_Portal_CiudadanoService.cs" />
+<Compile Include="Tipo_Resolucion_Portal_Ciudadano\ITipo_Resolucion_Portal_CiudadanoService.cs" />
+<Compile Include="Tipo_Resolucion_Portal_Ciudadano\Tipo_Resolucion_Portal_CiudadanoService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1646,6 +1650,10 @@
  </Target>
  -->
 </Project>
+
+
+
+
 
 
 

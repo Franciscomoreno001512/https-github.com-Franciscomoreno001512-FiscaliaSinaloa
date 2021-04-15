@@ -104,10 +104,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceMinisterio_Publico_en_Turno { set; get; }
         public int[] AdvanceMinisterio_Publico_en_TurnoMultiple { set; get; }
 
-        public Filters Solicitud_de_Denuncia_CiudadanaFilter { set; get; }
-        public string AdvanceSolicitud_de_Denuncia_Ciudadana { set; get; }
-        public int[] AdvanceSolicitud_de_Denuncia_CiudadanaMultiple { set; get; }
-
         public Filters Nombres_turnoFilter { set; get; }
         public string Nombres_turno { set; get; }
 
@@ -143,6 +139,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Tipo_de_Urgencia_turnoFilter { set; get; }
         public string AdvanceTipo_de_Urgencia_turno { set; get; }
         public int[] AdvanceTipo_de_Urgencia_turnoMultiple { set; get; }
+
+        public Filters Solicitud_de_Denuncia_CiudadanaFilter { set; get; }
+        public string AdvanceSolicitud_de_Denuncia_Ciudadana { set; get; }
+        public int[] AdvanceSolicitud_de_Denuncia_CiudadanaMultiple { set; get; }
 
         public Filters Motivo_Finalizacion_TurnoFilter { set; get; }
         public string AdvanceMotivo_Finalizacion_Turno { set; get; }

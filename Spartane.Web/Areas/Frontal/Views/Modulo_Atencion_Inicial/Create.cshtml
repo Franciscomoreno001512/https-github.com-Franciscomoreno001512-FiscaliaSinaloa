@@ -55,9 +55,6 @@
  List<SelectListItem> varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno = null;
     if (ViewBag.Jefes_de_Usuarios_del_Sistemas_Ministerio_Publico_en_Turno != null)
     { varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno = (List<SelectListItem>)ViewBag.Jefes_de_Usuarios_del_Sistemas_Ministerio_Publico_en_Turno; }
- List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = null;
-    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana != null)
-    { varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana; }
     List<SelectListItem> varGenero_Sexo_turno = null;
     if (ViewBag.Generos_Sexo_turno != null)
     { varGenero_Sexo_turno = (List<SelectListItem>)ViewBag.Generos_Sexo_turno; }
@@ -70,6 +67,9 @@
     List<SelectListItem> varTipo_de_Urgencia_Tipo_de_Urgencia_turno = null;
     if (ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia_turno != null)
     { varTipo_de_Urgencia_Tipo_de_Urgencia_turno = (List<SelectListItem>)ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia_turno; }
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana; }
     List<SelectListItem> varMotivo_Finalizacion_Turno_Motivo_Finalizacion_Turno = null;
     if (ViewBag.Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno != null)
     { varMotivo_Finalizacion_Turno_Motivo_Finalizacion_Turno = (List<SelectListItem>)ViewBag.Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno; }
@@ -578,20 +578,6 @@
                                 </div>
                                 }
                             </div>
-				<div class="form-group" id="divSolicitud_de_Denuncia_Ciudadana">
-                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Solicitud_de_Denuncia_Ciudadana</label>
-                                <div class="col-sm-8" data-field-id="Solicitud_de_Denuncia_Ciudadana" data-attribute="269444" data-field-name="@Resources.Modulo_Atencion_InicialResources.Solicitud_de_Denuncia_Ciudadana">
-                                    <select class='fullWidth AutoComplete AutoCompleteModulo_Atencion_Inicial_Solicitud_de_Denuncia_Ciudadana form-control select2-dropdown Datos_del_Caso' data-val="true" id="Solicitud_de_Denuncia_Ciudadana" name="Solicitud_de_Denuncia_Ciudadana">
-                                        <option value="@Model.Solicitud_de_Denuncia_Ciudadana">@(Model.Solicitud_de_Denuncia_CiudadanaFolio??Model.Solicitud_de_Denuncia_CiudadanaFolio)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269444).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud_de_Denuncia_Ciudadana', 'Solicitud_de_Denuncia_Ciudadana');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
                             </div>
                                 </div>
 
@@ -748,6 +734,20 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Urgencia', 'Tipo_de_Urgencia_turno');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divSolicitud_de_Denuncia_Ciudadana">
+                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Solicitud_de_Denuncia_Ciudadana</label>
+                                <div class="col-sm-8" data-field-id="Solicitud_de_Denuncia_Ciudadana" data-attribute="269444" data-field-name="@Resources.Modulo_Atencion_InicialResources.Solicitud_de_Denuncia_Ciudadana">
+                                    <select class='fullWidth AutoComplete AutoCompleteModulo_Atencion_Inicial_Solicitud_de_Denuncia_Ciudadana form-control select2-dropdown Informacion_de_Turno' data-val="true" id="Solicitud_de_Denuncia_Ciudadana" name="Solicitud_de_Denuncia_Ciudadana">
+                                        <option value="@Model.Solicitud_de_Denuncia_Ciudadana">@(Model.Solicitud_de_Denuncia_CiudadanaFolio??Model.Solicitud_de_Denuncia_CiudadanaFolio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269444).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud_de_Denuncia_Ciudadana', 'Solicitud_de_Denuncia_Ciudadana');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -2824,15 +2824,6 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Ministerio_Publico_en_Turno).trigger('change');
                     }, 3000);
-                    var control = $('#Solicitud_de_Denuncia_Ciudadana');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Solicitud_de_Denuncia_Ciudadana).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Solicitud_de_Denuncia_Ciudadana).trigger('change');
-                    }, 3000);
 
                 },
                 error: function (result) {
@@ -2865,7 +2856,6 @@
                 data.append('Delegacion', $('#Delegacion').val());
                 data.append('Agencia', $('#Agencia').val());
                 data.append('Ministerio_Publico_en_Turno', $('#Ministerio_Publico_en_Turno').val());
-                data.append('Solicitud_de_Denuncia_Ciudadana', $('#Solicitud_de_Denuncia_Ciudadana').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Datos_del_Caso")',
@@ -2909,6 +2899,15 @@
                     $('#Numero_de_Identificacion_turno').val(result.data.Numero_de_Identificacion_turno);
                     $('#Urgencia_turno').prop('checked', result.data.Urgencia_turno);
                     $('#Tipo_de_Urgencia_turno').val(result.data.Tipo_de_Urgencia_turno);
+                    var control = $('#Solicitud_de_Denuncia_Ciudadana');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Solicitud_de_Denuncia_Ciudadana).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Solicitud_de_Denuncia_Ciudadana).trigger('change');
+                    }, 3000);
                     $('#Motivo_Finalizacion_Turno').val(result.data.Motivo_Finalizacion_Turno);
                     $('#Observaciones_turno').val(result.data.Observaciones_turno);
 
@@ -2932,6 +2931,7 @@
                 data.append('Numero_de_Identificacion_turno', $('#Numero_de_Identificacion_turno').val());
                 data.append('Urgencia_turno', $('#Urgencia_turno').prop('checked'));
                 data.append('Tipo_de_Urgencia_turno', $('#Tipo_de_Urgencia_turno').val());
+                data.append('Solicitud_de_Denuncia_Ciudadana', $('#Solicitud_de_Denuncia_Ciudadana').val());
                 data.append('Motivo_Finalizacion_Turno', $('#Motivo_Finalizacion_Turno').val());
                 data.append('Observaciones_turno', $('#Observaciones_turno').val());
 

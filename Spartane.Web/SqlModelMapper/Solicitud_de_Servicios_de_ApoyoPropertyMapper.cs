@@ -32,9 +32,15 @@ namespace Spartane.Web.SqlModelMapper
                 case "Numero_de_Expediente_AT[NUAT]":
                 case "Numero_de_Expediente_ATNUAT":
                     return "Modulo_Atencion_Inicial.NUAT";
+                case "Diligencia_AT[Observaciones]":
+                case "Diligencia_ATObservaciones":
+                    return "Detalle_de_Documentos_MPO.Observaciones";
                 case "Numero_de_Expediente_MP[nuat]":
                 case "Numero_de_Expediente_MPnuat":
                     return "expediente_ministerio_publico.nuat";
+                case "Diligencia_MP[Observaciones]":
+                case "Diligencia_MPObservaciones":
+                    return "Diligencias_MP.Observaciones";
                 case "NUAT":
                     return "Solicitud_de_Servicios_de_Apoyo.NUAT";
                 case "Numero_de_Denuncia":
@@ -46,6 +52,15 @@ namespace Spartane.Web.SqlModelMapper
                 case "Solicitud[Descripcion]":
                 case "SolicitudDescripcion":
                     return "Documento.Descripcion";
+                case "Solicitud_de_Apoyo_Externa":
+                    return "Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Apoyo_Externa";
+                case "Solicitud_Externa":
+                    return "Solicitud_de_Servicios_de_Apoyo.Solicitud_Externa";
+                case "Autoridad_que_Solicita[Descripcion]":
+                case "Autoridad_que_SolicitaDescripcion":
+                    return "Autoridad_Externa.Descripcion";
+                case "Narracion_Solicitud":
+                    return "Solicitud_de_Servicios_de_Apoyo.Narracion_Solicitud";
                 case "Observaciones":
                     return "Solicitud_de_Servicios_de_Apoyo.Observaciones";
                 case "Estatus[Descripcion]":
@@ -91,6 +106,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Dictamen[Descripcion]":
                 case "DictamenDescripcion":
                     return "Documento.Descripcion";
+                case "numero_contestacion":
+                    return "Solicitud_de_Servicios_de_Apoyo.numero_contestacion";
                 case "Enviar_Contestacion":
                     return "Solicitud_de_Servicios_de_Apoyo.Enviar_Contestacion";
                 case "Archivo":
@@ -138,6 +155,10 @@ namespace Spartane.Web.SqlModelMapper
                 {
 
                 }
+            }
+            if (columnName == "Solicitud_Externa")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "Fecha_de_Recepcion")
             {

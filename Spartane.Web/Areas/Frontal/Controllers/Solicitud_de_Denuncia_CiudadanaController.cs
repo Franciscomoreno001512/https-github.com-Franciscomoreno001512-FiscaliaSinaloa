@@ -6,7 +6,14 @@ using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Solicitud;
 using Spartane.Core.Domain.Estatus_de_Solicitud;
 using Spartane.Core.Domain.PC_CanalizarA;
+using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Tipo_Resolucion_Portal_Ciudadano;
+using Spartane.Core.Domain.Region;
 using Spartane.Core.Domain.Unidad;
+using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Contestacion_de_Portal_Ciudadano;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -21,7 +28,14 @@ using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Estatus_de_Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.PC_CanalizarA;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_Resolucion_Portal_Ciudadano;
+using Spartane.Web.Areas.WebApiConsumer.Region;
 using Spartane.Web.Areas.WebApiConsumer.Unidad;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Contestacion_de_Portal_Ciudadano;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -62,7 +76,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ITipo_de_SolicitudApiConsumer _ITipo_de_SolicitudApiConsumer;
         private IEstatus_de_SolicitudApiConsumer _IEstatus_de_SolicitudApiConsumer;
         private IPC_CanalizarAApiConsumer _IPC_CanalizarAApiConsumer;
+        private ITipo_Resolucion_Portal_CiudadanoApiConsumer _ITipo_Resolucion_Portal_CiudadanoApiConsumer;
+        private IRegionApiConsumer _IRegionApiConsumer;
         private IUnidadApiConsumer _IUnidadApiConsumer;
+        private IContestacion_de_Portal_CiudadanoApiConsumer _IContestacion_de_Portal_CiudadanoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -80,7 +97,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Solicitud_de_Denuncia_CiudadanaController(ISolicitud_de_Denuncia_CiudadanaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_SolicitudApiConsumer Tipo_de_SolicitudApiConsumer , IEstatus_de_SolicitudApiConsumer Estatus_de_SolicitudApiConsumer , IPC_CanalizarAApiConsumer PC_CanalizarAApiConsumer , IUnidadApiConsumer UnidadApiConsumer )
+        public Solicitud_de_Denuncia_CiudadanaController(ISolicitud_de_Denuncia_CiudadanaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_SolicitudApiConsumer Tipo_de_SolicitudApiConsumer , IEstatus_de_SolicitudApiConsumer Estatus_de_SolicitudApiConsumer , IPC_CanalizarAApiConsumer PC_CanalizarAApiConsumer , ITipo_Resolucion_Portal_CiudadanoApiConsumer Tipo_Resolucion_Portal_CiudadanoApiConsumer , IRegionApiConsumer RegionApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IContestacion_de_Portal_CiudadanoApiConsumer Contestacion_de_Portal_CiudadanoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -98,7 +115,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ITipo_de_SolicitudApiConsumer = Tipo_de_SolicitudApiConsumer;
             this._IEstatus_de_SolicitudApiConsumer = Estatus_de_SolicitudApiConsumer;
             this._IPC_CanalizarAApiConsumer = PC_CanalizarAApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._ITipo_Resolucion_Portal_CiudadanoApiConsumer = Tipo_Resolucion_Portal_CiudadanoApiConsumer;
+            this._IRegionApiConsumer = RegionApiConsumer;
             this._IUnidadApiConsumer = UnidadApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._IContestacion_de_Portal_CiudadanoApiConsumer = Contestacion_de_Portal_CiudadanoApiConsumer;
 
         }
 
@@ -184,10 +208,35 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Tipo_de_Solicitud), "Tipo_de_Solicitud") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                     ,Estatus_de_Solicitud = Solicitud_de_Denuncia_CiudadanaData.Estatus_de_Solicitud
                     ,Estatus_de_SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Estatus_de_Solicitud), "Estatus_de_Solicitud") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Estatus_de_Solicitud_Estatus_de_Solicitud.Descripcion
+                    ,Motivo = Solicitud_de_Denuncia_CiudadanaData.Motivo
                     ,Canalizar_a = Solicitud_de_Denuncia_CiudadanaData.Canalizar_a
                     ,Canalizar_aDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Canalizar_a), "PC_CanalizarA") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Canalizar_a_PC_CanalizarA.Descripcion
+                    ,Fecha_de_Revision = (Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Revision == null ? string.Empty : Convert.ToDateTime(Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Revision).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Revision = Solicitud_de_Denuncia_CiudadanaData.Hora_de_Revision
+                    ,Usuario_que_Revisa = Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Revisa
+                    ,Usuario_que_RevisaName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Revisa), "Spartan_User") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Revisa_Spartan_User.Name
+                    ,Tipo_de_Resolucion = Solicitud_de_Denuncia_CiudadanaData.Tipo_de_Resolucion
+                    ,Tipo_de_ResolucionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Tipo_de_Resolucion), "Tipo_Resolucion_Portal_Ciudadano") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Descripcion
+                    ,Region = Solicitud_de_Denuncia_CiudadanaData.Region
+                    ,RegionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Region), "Region") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Region_Region.Descripcion
                     ,Unidad_canaliza = Solicitud_de_Denuncia_CiudadanaData.Unidad_canaliza
                     ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Unidad_canaliza), "Unidad") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Unidad_canaliza_Unidad.Descripcion
+                    ,Contestacion = Solicitud_de_Denuncia_CiudadanaData.Contestacion
+                    ,Observaciones_resolucion = Solicitud_de_Denuncia_CiudadanaData.Observaciones_resolucion
+                    ,Fecha_de_Asignacion = (Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Asignacion = Solicitud_de_Denuncia_CiudadanaData.Hora_de_Asignacion
+                    ,Usuario_que_Asigna = Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Asigna
+                    ,Usuario_que_AsignaName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Asigna), "Spartan_User") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Asigna_Spartan_User.Name
+                    ,Responsable_Asignado = Solicitud_de_Denuncia_CiudadanaData.Responsable_Asignado
+                    ,Responsable_AsignadoName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Responsable_Asignado), "Spartan_User") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Responsable_Asignado_Spartan_User.Name
+                    ,Observaciones_responsable = Solicitud_de_Denuncia_CiudadanaData.Observaciones_responsable
+                    ,Fecha_de_Atencion = (Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Atencion == null ? string.Empty : Convert.ToDateTime(Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Atencion).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Atencion = Solicitud_de_Denuncia_CiudadanaData.Hora_de_Atencion
+                    ,Usuario_que_Atiende = Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Atiende
+                    ,Usuario_que_AtiendeName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Atiende), "Spartan_User") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Atiende_Spartan_User.Name
+                    ,Atencion_Realizada = Solicitud_de_Denuncia_CiudadanaData.Atencion_Realizada
+                    ,Atencion_RealizadaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Atencion_Realizada), "Contestacion_de_Portal_Ciudadano") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Descripcion
+                    ,Observaciones_atencion = Solicitud_de_Denuncia_CiudadanaData.Observaciones_atencion
 
 					};
 				}
@@ -219,12 +268,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "PC_CanalizarA", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _ITipo_Resolucion_Portal_CiudadanoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion = _ITipo_Resolucion_Portal_CiudadanoApiConsumer.SelAll(true);
+            if (Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion != null && Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion.Resource != null)
+                ViewBag.Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion = Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Resolucion_Portal_Ciudadano", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IRegionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Regions_Region = _IRegionApiConsumer.SelAll(true);
+            if (Regions_Region != null && Regions_Region.Resource != null)
+                ViewBag.Regions_Region = Regions_Region.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Region", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IUnidadApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Unidads_Unidad_canaliza = _IUnidadApiConsumer.SelAll(true);
             if (Unidads_Unidad_canaliza != null && Unidads_Unidad_canaliza.Resource != null)
                 ViewBag.Unidads_Unidad_canaliza = Unidads_Unidad_canaliza.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IContestacion_de_Portal_CiudadanoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Contestacion_de_Portal_Ciudadanos_Atencion_Realizada = _IContestacion_de_Portal_CiudadanoApiConsumer.SelAll(true);
+            if (Contestacion_de_Portal_Ciudadanos_Atencion_Realizada != null && Contestacion_de_Portal_Ciudadanos_Atencion_Realizada.Resource != null)
+                ViewBag.Contestacion_de_Portal_Ciudadanos_Atencion_Realizada = Contestacion_de_Portal_Ciudadanos_Atencion_Realizada.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Contestacion_de_Portal_Ciudadano", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -298,10 +368,35 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Tipo_de_Solicitud), "Tipo_de_Solicitud") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                     ,Estatus_de_Solicitud = Solicitud_de_Denuncia_CiudadanaData.Estatus_de_Solicitud
                     ,Estatus_de_SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Estatus_de_Solicitud), "Estatus_de_Solicitud") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Estatus_de_Solicitud_Estatus_de_Solicitud.Descripcion
+                    ,Motivo = Solicitud_de_Denuncia_CiudadanaData.Motivo
                     ,Canalizar_a = Solicitud_de_Denuncia_CiudadanaData.Canalizar_a
                     ,Canalizar_aDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Canalizar_a), "PC_CanalizarA") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Canalizar_a_PC_CanalizarA.Descripcion
+                    ,Fecha_de_Revision = (Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Revision == null ? string.Empty : Convert.ToDateTime(Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Revision).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Revision = Solicitud_de_Denuncia_CiudadanaData.Hora_de_Revision
+                    ,Usuario_que_Revisa = Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Revisa
+                    ,Usuario_que_RevisaName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Revisa), "Spartan_User") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Revisa_Spartan_User.Name
+                    ,Tipo_de_Resolucion = Solicitud_de_Denuncia_CiudadanaData.Tipo_de_Resolucion
+                    ,Tipo_de_ResolucionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Tipo_de_Resolucion), "Tipo_Resolucion_Portal_Ciudadano") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Descripcion
+                    ,Region = Solicitud_de_Denuncia_CiudadanaData.Region
+                    ,RegionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Region), "Region") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Region_Region.Descripcion
                     ,Unidad_canaliza = Solicitud_de_Denuncia_CiudadanaData.Unidad_canaliza
                     ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Unidad_canaliza), "Unidad") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Unidad_canaliza_Unidad.Descripcion
+                    ,Contestacion = Solicitud_de_Denuncia_CiudadanaData.Contestacion
+                    ,Observaciones_resolucion = Solicitud_de_Denuncia_CiudadanaData.Observaciones_resolucion
+                    ,Fecha_de_Asignacion = (Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Asignacion = Solicitud_de_Denuncia_CiudadanaData.Hora_de_Asignacion
+                    ,Usuario_que_Asigna = Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Asigna
+                    ,Usuario_que_AsignaName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Asigna), "Spartan_User") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Asigna_Spartan_User.Name
+                    ,Responsable_Asignado = Solicitud_de_Denuncia_CiudadanaData.Responsable_Asignado
+                    ,Responsable_AsignadoName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Responsable_Asignado), "Spartan_User") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Responsable_Asignado_Spartan_User.Name
+                    ,Observaciones_responsable = Solicitud_de_Denuncia_CiudadanaData.Observaciones_responsable
+                    ,Fecha_de_Atencion = (Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Atencion == null ? string.Empty : Convert.ToDateTime(Solicitud_de_Denuncia_CiudadanaData.Fecha_de_Atencion).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Atencion = Solicitud_de_Denuncia_CiudadanaData.Hora_de_Atencion
+                    ,Usuario_que_Atiende = Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Atiende
+                    ,Usuario_que_AtiendeName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Atiende), "Spartan_User") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Usuario_que_Atiende_Spartan_User.Name
+                    ,Atencion_Realizada = Solicitud_de_Denuncia_CiudadanaData.Atencion_Realizada
+                    ,Atencion_RealizadaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Denuncia_CiudadanaData.Atencion_Realizada), "Contestacion_de_Portal_Ciudadano") ??  (string)Solicitud_de_Denuncia_CiudadanaData.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Descripcion
+                    ,Observaciones_atencion = Solicitud_de_Denuncia_CiudadanaData.Observaciones_atencion
 
 					};
 				}
@@ -331,12 +426,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "PC_CanalizarA", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _ITipo_Resolucion_Portal_CiudadanoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion = _ITipo_Resolucion_Portal_CiudadanoApiConsumer.SelAll(true);
+            if (Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion != null && Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion.Resource != null)
+                ViewBag.Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion = Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Resolucion_Portal_Ciudadano", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IRegionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Regions_Region = _IRegionApiConsumer.SelAll(true);
+            if (Regions_Region != null && Regions_Region.Resource != null)
+                ViewBag.Regions_Region = Regions_Region.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Region", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IUnidadApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Unidads_Unidad_canaliza = _IUnidadApiConsumer.SelAll(true);
             if (Unidads_Unidad_canaliza != null && Unidads_Unidad_canaliza.Resource != null)
                 ViewBag.Unidads_Unidad_canaliza = Unidads_Unidad_canaliza.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IContestacion_de_Portal_CiudadanoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Contestacion_de_Portal_Ciudadanos_Atencion_Realizada = _IContestacion_de_Portal_CiudadanoApiConsumer.SelAll(true);
+            if (Contestacion_de_Portal_Ciudadanos_Atencion_Realizada != null && Contestacion_de_Portal_Ciudadanos_Atencion_Realizada.Resource != null)
+                ViewBag.Contestacion_de_Portal_Ciudadanos_Atencion_Realizada = Contestacion_de_Portal_Ciudadanos_Atencion_Realizada.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Contestacion_de_Portal_Ciudadano", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -443,6 +559,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
+        public ActionResult GetTipo_Resolucion_Portal_CiudadanoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_Resolucion_Portal_CiudadanoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_Resolucion_Portal_CiudadanoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Resolucion_Portal_Ciudadano", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetRegionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IRegionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IRegionApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Region", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public ActionResult GetUnidadAll()
         {
             try
@@ -455,6 +613,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetContestacion_de_Portal_CiudadanoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IContestacion_de_Portal_CiudadanoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IContestacion_de_Portal_CiudadanoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Contestacion_de_Portal_Ciudadano", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -517,12 +696,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "PC_CanalizarA", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _ITipo_Resolucion_Portal_CiudadanoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion = _ITipo_Resolucion_Portal_CiudadanoApiConsumer.SelAll(true);
+            if (Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion != null && Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion.Resource != null)
+                ViewBag.Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion = Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Resolucion_Portal_Ciudadano", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IRegionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Regions_Region = _IRegionApiConsumer.SelAll(true);
+            if (Regions_Region != null && Regions_Region.Resource != null)
+                ViewBag.Regions_Region = Regions_Region.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Region", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IUnidadApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Unidads_Unidad_canaliza = _IUnidadApiConsumer.SelAll(true);
             if (Unidads_Unidad_canaliza != null && Unidads_Unidad_canaliza.Resource != null)
                 ViewBag.Unidads_Unidad_canaliza = Unidads_Unidad_canaliza.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IContestacion_de_Portal_CiudadanoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Contestacion_de_Portal_Ciudadanos_Atencion_Realizada = _IContestacion_de_Portal_CiudadanoApiConsumer.SelAll(true);
+            if (Contestacion_de_Portal_Ciudadanos_Atencion_Realizada != null && Contestacion_de_Portal_Ciudadanos_Atencion_Realizada.Resource != null)
+                ViewBag.Contestacion_de_Portal_Ciudadanos_Atencion_Realizada = Contestacion_de_Portal_Ciudadanos_Atencion_Realizada.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Contestacion_de_Portal_Ciudadano", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -556,12 +756,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "PC_CanalizarA", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _ITipo_Resolucion_Portal_CiudadanoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion = _ITipo_Resolucion_Portal_CiudadanoApiConsumer.SelAll(true);
+            if (Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion != null && Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion.Resource != null)
+                ViewBag.Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion = Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_Resolucion_Portal_Ciudadano", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IRegionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Regions_Region = _IRegionApiConsumer.SelAll(true);
+            if (Regions_Region != null && Regions_Region.Resource != null)
+                ViewBag.Regions_Region = Regions_Region.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Region", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IUnidadApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Unidads_Unidad_canaliza = _IUnidadApiConsumer.SelAll(true);
             if (Unidads_Unidad_canaliza != null && Unidads_Unidad_canaliza.Resource != null)
                 ViewBag.Unidads_Unidad_canaliza = Unidads_Unidad_canaliza.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IContestacion_de_Portal_CiudadanoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Contestacion_de_Portal_Ciudadanos_Atencion_Realizada = _IContestacion_de_Portal_CiudadanoApiConsumer.SelAll(true);
+            if (Contestacion_de_Portal_Ciudadanos_Atencion_Realizada != null && Contestacion_de_Portal_Ciudadanos_Atencion_Realizada.Resource != null)
+                ViewBag.Contestacion_de_Portal_Ciudadanos_Atencion_Realizada = Contestacion_de_Portal_Ciudadanos_Atencion_Realizada.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Contestacion_de_Portal_Ciudadano", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -608,8 +829,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                         ,Estatus_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Solicitud_Estatus_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Solicitud_Estatus_de_Solicitud.Descripcion
+			,Motivo = m.Motivo
                         ,Canalizar_aDescripcion = CultureHelper.GetTraduction(m.Canalizar_a_PC_CanalizarA.Clave.ToString(), "Descripcion") ?? (string)m.Canalizar_a_PC_CanalizarA.Descripcion
+                        ,Fecha_de_Revision = (m.Fecha_de_Revision == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Revision).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Revision = m.Hora_de_Revision
+                        ,Usuario_que_RevisaName = CultureHelper.GetTraduction(m.Usuario_que_Revisa_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Revisa_Spartan_User.Name
+                        ,Tipo_de_ResolucionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Descripcion
+                        ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(m.Unidad_canaliza_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_canaliza_Unidad.Descripcion
+			,Contestacion = m.Contestacion
+			,Observaciones_resolucion = m.Observaciones_resolucion
+                        ,Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Asignacion = m.Hora_de_Asignacion
+                        ,Usuario_que_AsignaName = CultureHelper.GetTraduction(m.Usuario_que_Asigna_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Asigna_Spartan_User.Name
+                        ,Responsable_AsignadoName = CultureHelper.GetTraduction(m.Responsable_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Responsable_Asignado_Spartan_User.Name
+			,Observaciones_responsable = m.Observaciones_responsable
+                        ,Fecha_de_Atencion = (m.Fecha_de_Atencion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Atencion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Atencion = m.Hora_de_Atencion
+                        ,Usuario_que_AtiendeName = CultureHelper.GetTraduction(m.Usuario_que_Atiende_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Atiende_Spartan_User.Name
+                        ,Atencion_RealizadaDescripcion = CultureHelper.GetTraduction(m.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Clave.ToString(), "Descripcion") ?? (string)m.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Descripcion
+			,Observaciones_atencion = m.Observaciones_atencion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -731,8 +970,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                         ,Estatus_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Solicitud_Estatus_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Solicitud_Estatus_de_Solicitud.Descripcion
+			,Motivo = m.Motivo
                         ,Canalizar_aDescripcion = CultureHelper.GetTraduction(m.Canalizar_a_PC_CanalizarA.Clave.ToString(), "Descripcion") ?? (string)m.Canalizar_a_PC_CanalizarA.Descripcion
+                        ,Fecha_de_Revision = (m.Fecha_de_Revision == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Revision).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Revision = m.Hora_de_Revision
+                        ,Usuario_que_RevisaName = CultureHelper.GetTraduction(m.Usuario_que_Revisa_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Revisa_Spartan_User.Name
+                        ,Tipo_de_ResolucionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Descripcion
+                        ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(m.Unidad_canaliza_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_canaliza_Unidad.Descripcion
+			,Contestacion = m.Contestacion
+			,Observaciones_resolucion = m.Observaciones_resolucion
+                        ,Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Asignacion = m.Hora_de_Asignacion
+                        ,Usuario_que_AsignaName = CultureHelper.GetTraduction(m.Usuario_que_Asigna_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Asigna_Spartan_User.Name
+                        ,Responsable_AsignadoName = CultureHelper.GetTraduction(m.Responsable_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Responsable_Asignado_Spartan_User.Name
+			,Observaciones_responsable = m.Observaciones_responsable
+                        ,Fecha_de_Atencion = (m.Fecha_de_Atencion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Atencion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Atencion = m.Hora_de_Atencion
+                        ,Usuario_que_AtiendeName = CultureHelper.GetTraduction(m.Usuario_que_Atiende_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Atiende_Spartan_User.Name
+                        ,Atencion_RealizadaDescripcion = CultureHelper.GetTraduction(m.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Clave.ToString(), "Descripcion") ?? (string)m.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Descripcion
+			,Observaciones_atencion = m.Observaciones_atencion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -744,6 +1001,114 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         [HttpGet]
         public JsonResult GetSolicitud_de_Denuncia_Ciudadana_Usuario_que_Registra_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetSolicitud_de_Denuncia_Ciudadana_Usuario_que_Revisa_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetSolicitud_de_Denuncia_Ciudadana_Usuario_que_Asigna_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetSolicitud_de_Denuncia_Ciudadana_Responsable_Asignado_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetSolicitud_de_Denuncia_Ciudadana_Usuario_que_Atiende_Spartan_User(string query, string where)
         {
             try
             {
@@ -935,6 +1300,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Solicitud_de_Denuncia_Ciudadana.Estatus_de_Solicitud In (" + Estatus_de_SolicitudIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.Motivo))
+            {
+                switch (filter.MotivoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Motivo LIKE '" + filter.Motivo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Motivo LIKE '%" + filter.Motivo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Motivo = '" + filter.Motivo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Motivo LIKE '%" + filter.Motivo + "%'";
+                        break;
+                }
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceCanalizar_a))
             {
                 switch (filter.Canalizar_aFilter)
@@ -963,6 +1350,111 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Solicitud_de_Denuncia_Ciudadana.Canalizar_a In (" + Canalizar_aIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.FromFecha_de_Revision) || !string.IsNullOrEmpty(filter.ToFecha_de_Revision))
+            {
+                var Fecha_de_RevisionFrom = DateTime.ParseExact(filter.FromFecha_de_Revision, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_de_RevisionTo = DateTime.ParseExact(filter.ToFecha_de_Revision, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_de_Revision))
+                    where += " AND Solicitud_de_Denuncia_Ciudadana.Fecha_de_Revision >= '" + Fecha_de_RevisionFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_de_Revision))
+                    where += " AND Solicitud_de_Denuncia_Ciudadana.Fecha_de_Revision <= '" + Fecha_de_RevisionTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_de_Revision) || !string.IsNullOrEmpty(filter.ToHora_de_Revision))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_de_Revision))
+                    where += " AND Convert(TIME,Solicitud_de_Denuncia_Ciudadana.Hora_de_Revision) >='" + filter.FromHora_de_Revision + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_de_Revision))
+                    where += " AND Convert(TIME,Solicitud_de_Denuncia_Ciudadana.Hora_de_Revision) <='" + filter.ToHora_de_Revision + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_Revisa))
+            {
+                switch (filter.Usuario_que_RevisaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_Revisa + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Revisa + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_Revisa + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Revisa + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceUsuario_que_RevisaMultiple != null && filter.AdvanceUsuario_que_RevisaMultiple.Count() > 0)
+            {
+                var Usuario_que_RevisaIds = string.Join(",", filter.AdvanceUsuario_que_RevisaMultiple);
+
+                where += " AND Solicitud_de_Denuncia_Ciudadana.Usuario_que_Revisa In (" + Usuario_que_RevisaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Resolucion))
+            {
+                switch (filter.Tipo_de_ResolucionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_Resolucion_Portal_Ciudadano.Descripcion LIKE '" + filter.AdvanceTipo_de_Resolucion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_Resolucion_Portal_Ciudadano.Descripcion LIKE '%" + filter.AdvanceTipo_de_Resolucion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_Resolucion_Portal_Ciudadano.Descripcion = '" + filter.AdvanceTipo_de_Resolucion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_Resolucion_Portal_Ciudadano.Descripcion LIKE '%" + filter.AdvanceTipo_de_Resolucion + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipo_de_ResolucionMultiple != null && filter.AdvanceTipo_de_ResolucionMultiple.Count() > 0)
+            {
+                var Tipo_de_ResolucionIds = string.Join(",", filter.AdvanceTipo_de_ResolucionMultiple);
+
+                where += " AND Solicitud_de_Denuncia_Ciudadana.Tipo_de_Resolucion In (" + Tipo_de_ResolucionIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceRegion))
+            {
+                switch (filter.RegionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Region.Descripcion LIKE '" + filter.AdvanceRegion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Region.Descripcion LIKE '%" + filter.AdvanceRegion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Region.Descripcion = '" + filter.AdvanceRegion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Region.Descripcion LIKE '%" + filter.AdvanceRegion + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceRegionMultiple != null && filter.AdvanceRegionMultiple.Count() > 0)
+            {
+                var RegionIds = string.Join(",", filter.AdvanceRegionMultiple);
+
+                where += " AND Solicitud_de_Denuncia_Ciudadana.Region In (" + RegionIds + ")";
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceUnidad_canaliza))
             {
                 switch (filter.Unidad_canalizaFilter)
@@ -989,6 +1481,248 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Unidad_canalizaIds = string.Join(",", filter.AdvanceUnidad_canalizaMultiple);
 
                 where += " AND Solicitud_de_Denuncia_Ciudadana.Unidad_canaliza In (" + Unidad_canalizaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Contestacion))
+            {
+                switch (filter.ContestacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Contestacion LIKE '" + filter.Contestacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Contestacion LIKE '%" + filter.Contestacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Contestacion = '" + filter.Contestacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Contestacion LIKE '%" + filter.Contestacion + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Observaciones_resolucion))
+            {
+                switch (filter.Observaciones_resolucionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_resolucion LIKE '" + filter.Observaciones_resolucion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_resolucion LIKE '%" + filter.Observaciones_resolucion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_resolucion = '" + filter.Observaciones_resolucion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_resolucion LIKE '%" + filter.Observaciones_resolucion + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromFecha_de_Asignacion) || !string.IsNullOrEmpty(filter.ToFecha_de_Asignacion))
+            {
+                var Fecha_de_AsignacionFrom = DateTime.ParseExact(filter.FromFecha_de_Asignacion, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_de_AsignacionTo = DateTime.ParseExact(filter.ToFecha_de_Asignacion, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_de_Asignacion))
+                    where += " AND Solicitud_de_Denuncia_Ciudadana.Fecha_de_Asignacion >= '" + Fecha_de_AsignacionFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_de_Asignacion))
+                    where += " AND Solicitud_de_Denuncia_Ciudadana.Fecha_de_Asignacion <= '" + Fecha_de_AsignacionTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_de_Asignacion) || !string.IsNullOrEmpty(filter.ToHora_de_Asignacion))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_de_Asignacion))
+                    where += " AND Convert(TIME,Solicitud_de_Denuncia_Ciudadana.Hora_de_Asignacion) >='" + filter.FromHora_de_Asignacion + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_de_Asignacion))
+                    where += " AND Convert(TIME,Solicitud_de_Denuncia_Ciudadana.Hora_de_Asignacion) <='" + filter.ToHora_de_Asignacion + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_Asigna))
+            {
+                switch (filter.Usuario_que_AsignaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_Asigna + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Asigna + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_Asigna + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Asigna + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceUsuario_que_AsignaMultiple != null && filter.AdvanceUsuario_que_AsignaMultiple.Count() > 0)
+            {
+                var Usuario_que_AsignaIds = string.Join(",", filter.AdvanceUsuario_que_AsignaMultiple);
+
+                where += " AND Solicitud_de_Denuncia_Ciudadana.Usuario_que_Asigna In (" + Usuario_que_AsignaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceResponsable_Asignado))
+            {
+                switch (filter.Responsable_AsignadoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceResponsable_Asignado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceResponsable_Asignado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceResponsable_Asignado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceResponsable_Asignado + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceResponsable_AsignadoMultiple != null && filter.AdvanceResponsable_AsignadoMultiple.Count() > 0)
+            {
+                var Responsable_AsignadoIds = string.Join(",", filter.AdvanceResponsable_AsignadoMultiple);
+
+                where += " AND Solicitud_de_Denuncia_Ciudadana.Responsable_Asignado In (" + Responsable_AsignadoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Observaciones_responsable))
+            {
+                switch (filter.Observaciones_responsableFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_responsable LIKE '" + filter.Observaciones_responsable + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_responsable LIKE '%" + filter.Observaciones_responsable + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_responsable = '" + filter.Observaciones_responsable + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_responsable LIKE '%" + filter.Observaciones_responsable + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromFecha_de_Atencion) || !string.IsNullOrEmpty(filter.ToFecha_de_Atencion))
+            {
+                var Fecha_de_AtencionFrom = DateTime.ParseExact(filter.FromFecha_de_Atencion, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_de_AtencionTo = DateTime.ParseExact(filter.ToFecha_de_Atencion, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_de_Atencion))
+                    where += " AND Solicitud_de_Denuncia_Ciudadana.Fecha_de_Atencion >= '" + Fecha_de_AtencionFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_de_Atencion))
+                    where += " AND Solicitud_de_Denuncia_Ciudadana.Fecha_de_Atencion <= '" + Fecha_de_AtencionTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_de_Atencion) || !string.IsNullOrEmpty(filter.ToHora_de_Atencion))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_de_Atencion))
+                    where += " AND Convert(TIME,Solicitud_de_Denuncia_Ciudadana.Hora_de_Atencion) >='" + filter.FromHora_de_Atencion + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_de_Atencion))
+                    where += " AND Convert(TIME,Solicitud_de_Denuncia_Ciudadana.Hora_de_Atencion) <='" + filter.ToHora_de_Atencion + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_Atiende))
+            {
+                switch (filter.Usuario_que_AtiendeFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_Atiende + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Atiende + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_Atiende + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Atiende + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceUsuario_que_AtiendeMultiple != null && filter.AdvanceUsuario_que_AtiendeMultiple.Count() > 0)
+            {
+                var Usuario_que_AtiendeIds = string.Join(",", filter.AdvanceUsuario_que_AtiendeMultiple);
+
+                where += " AND Solicitud_de_Denuncia_Ciudadana.Usuario_que_Atiende In (" + Usuario_que_AtiendeIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceAtencion_Realizada))
+            {
+                switch (filter.Atencion_RealizadaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Contestacion_de_Portal_Ciudadano.Descripcion LIKE '" + filter.AdvanceAtencion_Realizada + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Contestacion_de_Portal_Ciudadano.Descripcion LIKE '%" + filter.AdvanceAtencion_Realizada + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Contestacion_de_Portal_Ciudadano.Descripcion = '" + filter.AdvanceAtencion_Realizada + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Contestacion_de_Portal_Ciudadano.Descripcion LIKE '%" + filter.AdvanceAtencion_Realizada + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceAtencion_RealizadaMultiple != null && filter.AdvanceAtencion_RealizadaMultiple.Count() > 0)
+            {
+                var Atencion_RealizadaIds = string.Join(",", filter.AdvanceAtencion_RealizadaMultiple);
+
+                where += " AND Solicitud_de_Denuncia_Ciudadana.Atencion_Realizada In (" + Atencion_RealizadaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Observaciones_atencion))
+            {
+                switch (filter.Observaciones_atencionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_atencion LIKE '" + filter.Observaciones_atencion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_atencion LIKE '%" + filter.Observaciones_atencion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_atencion = '" + filter.Observaciones_atencion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Observaciones_atencion LIKE '%" + filter.Observaciones_atencion + "%'";
+                        break;
+                }
             }
 
 
@@ -1053,8 +1787,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_Registra = varSolicitud_de_Denuncia_Ciudadana.Usuario_que_Registra
                         ,Tipo_de_Solicitud = varSolicitud_de_Denuncia_Ciudadana.Tipo_de_Solicitud
                         ,Estatus_de_Solicitud = varSolicitud_de_Denuncia_Ciudadana.Estatus_de_Solicitud
+                        ,Motivo = varSolicitud_de_Denuncia_Ciudadana.Motivo
                         ,Canalizar_a = varSolicitud_de_Denuncia_Ciudadana.Canalizar_a
+                        ,Fecha_de_Revision = (!String.IsNullOrEmpty(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Revision)) ? DateTime.ParseExact(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Revision, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Revision = varSolicitud_de_Denuncia_Ciudadana.Hora_de_Revision
+                        ,Usuario_que_Revisa = varSolicitud_de_Denuncia_Ciudadana.Usuario_que_Revisa
+                        ,Tipo_de_Resolucion = varSolicitud_de_Denuncia_Ciudadana.Tipo_de_Resolucion
+                        ,Region = varSolicitud_de_Denuncia_Ciudadana.Region
                         ,Unidad_canaliza = varSolicitud_de_Denuncia_Ciudadana.Unidad_canaliza
+                        ,Contestacion = varSolicitud_de_Denuncia_Ciudadana.Contestacion
+                        ,Observaciones_resolucion = varSolicitud_de_Denuncia_Ciudadana.Observaciones_resolucion
+                        ,Fecha_de_Asignacion = (!String.IsNullOrEmpty(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Asignacion)) ? DateTime.ParseExact(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Asignacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Asignacion = varSolicitud_de_Denuncia_Ciudadana.Hora_de_Asignacion
+                        ,Usuario_que_Asigna = varSolicitud_de_Denuncia_Ciudadana.Usuario_que_Asigna
+                        ,Responsable_Asignado = varSolicitud_de_Denuncia_Ciudadana.Responsable_Asignado
+                        ,Observaciones_responsable = varSolicitud_de_Denuncia_Ciudadana.Observaciones_responsable
+                        ,Fecha_de_Atencion = (!String.IsNullOrEmpty(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Atencion)) ? DateTime.ParseExact(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Atencion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Atencion = varSolicitud_de_Denuncia_Ciudadana.Hora_de_Atencion
+                        ,Usuario_que_Atiende = varSolicitud_de_Denuncia_Ciudadana.Usuario_que_Atiende
+                        ,Atencion_Realizada = varSolicitud_de_Denuncia_Ciudadana.Atencion_Realizada
+                        ,Observaciones_atencion = varSolicitud_de_Denuncia_Ciudadana.Observaciones_atencion
 
                     };
 
@@ -1449,8 +2201,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                         ,Estatus_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Solicitud_Estatus_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Solicitud_Estatus_de_Solicitud.Descripcion
+			,Motivo = m.Motivo
                         ,Canalizar_aDescripcion = CultureHelper.GetTraduction(m.Canalizar_a_PC_CanalizarA.Clave.ToString(), "Descripcion") ?? (string)m.Canalizar_a_PC_CanalizarA.Descripcion
+                        ,Fecha_de_Revision = (m.Fecha_de_Revision == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Revision).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Revision = m.Hora_de_Revision
+                        ,Usuario_que_RevisaName = CultureHelper.GetTraduction(m.Usuario_que_Revisa_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Revisa_Spartan_User.Name
+                        ,Tipo_de_ResolucionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Descripcion
+                        ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(m.Unidad_canaliza_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_canaliza_Unidad.Descripcion
+			,Contestacion = m.Contestacion
+			,Observaciones_resolucion = m.Observaciones_resolucion
+                        ,Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Asignacion = m.Hora_de_Asignacion
+                        ,Usuario_que_AsignaName = CultureHelper.GetTraduction(m.Usuario_que_Asigna_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Asigna_Spartan_User.Name
+                        ,Responsable_AsignadoName = CultureHelper.GetTraduction(m.Responsable_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Responsable_Asignado_Spartan_User.Name
+			,Observaciones_responsable = m.Observaciones_responsable
+                        ,Fecha_de_Atencion = (m.Fecha_de_Atencion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Atencion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Atencion = m.Hora_de_Atencion
+                        ,Usuario_que_AtiendeName = CultureHelper.GetTraduction(m.Usuario_que_Atiende_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Atiende_Spartan_User.Name
+                        ,Atencion_RealizadaDescripcion = CultureHelper.GetTraduction(m.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Clave.ToString(), "Descripcion") ?? (string)m.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Descripcion
+			,Observaciones_atencion = m.Observaciones_atencion
 
             }).ToList();
 
@@ -1531,8 +2301,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                         ,Estatus_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Solicitud_Estatus_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Solicitud_Estatus_de_Solicitud.Descripcion
+			,Motivo = m.Motivo
                         ,Canalizar_aDescripcion = CultureHelper.GetTraduction(m.Canalizar_a_PC_CanalizarA.Clave.ToString(), "Descripcion") ?? (string)m.Canalizar_a_PC_CanalizarA.Descripcion
+                        ,Fecha_de_Revision = (m.Fecha_de_Revision == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Revision).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Revision = m.Hora_de_Revision
+                        ,Usuario_que_RevisaName = CultureHelper.GetTraduction(m.Usuario_que_Revisa_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Revisa_Spartan_User.Name
+                        ,Tipo_de_ResolucionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Descripcion
+                        ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(m.Unidad_canaliza_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_canaliza_Unidad.Descripcion
+			,Contestacion = m.Contestacion
+			,Observaciones_resolucion = m.Observaciones_resolucion
+                        ,Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Asignacion = m.Hora_de_Asignacion
+                        ,Usuario_que_AsignaName = CultureHelper.GetTraduction(m.Usuario_que_Asigna_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Asigna_Spartan_User.Name
+                        ,Responsable_AsignadoName = CultureHelper.GetTraduction(m.Responsable_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Responsable_Asignado_Spartan_User.Name
+			,Observaciones_responsable = m.Observaciones_responsable
+                        ,Fecha_de_Atencion = (m.Fecha_de_Atencion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Atencion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Atencion = m.Hora_de_Atencion
+                        ,Usuario_que_AtiendeName = CultureHelper.GetTraduction(m.Usuario_que_Atiende_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Atiende_Spartan_User.Name
+                        ,Atencion_RealizadaDescripcion = CultureHelper.GetTraduction(m.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Clave.ToString(), "Descripcion") ?? (string)m.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Descripcion
+			,Observaciones_atencion = m.Observaciones_atencion
 
             }).ToList();
 
@@ -1578,6 +2366,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hora_de_Registro = varSolicitud_de_Denuncia_Ciudadana.Hora_de_Registro
                         ,Usuario_que_Registra = varSolicitud_de_Denuncia_Ciudadana.Usuario_que_Registra
                         ,Tipo_de_Solicitud = varSolicitud_de_Denuncia_Ciudadana.Tipo_de_Solicitud
+                        ,Estatus_de_Solicitud = varSolicitud_de_Denuncia_Ciudadana.Estatus_de_Solicitud
                     
                 };
 
@@ -1614,6 +2403,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_Solicitud = m.Tipo_de_Solicitud
                         ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
+                        ,Estatus_de_Solicitud = m.Estatus_de_Solicitud
+                        ,Estatus_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Solicitud_Estatus_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Solicitud_Estatus_de_Solicitud.Descripcion
 
                     
                 };
@@ -1628,7 +2419,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 		[HttpPost]
-        public ActionResult Post_Canalizar(Solicitud_de_Denuncia_Ciudadana_CanalizarModel varSolicitud_de_Denuncia_Ciudadana)
+        public ActionResult Post_Resolucion(Solicitud_de_Denuncia_Ciudadana_ResolucionModel varSolicitud_de_Denuncia_Ciudadana)
         {
             try
             {
@@ -1637,16 +2428,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
 				
                 var result = "";
-                var Solicitud_de_Denuncia_Ciudadana_CanalizarInfo = new Solicitud_de_Denuncia_Ciudadana_Canalizar
+                var Solicitud_de_Denuncia_Ciudadana_ResolucionInfo = new Solicitud_de_Denuncia_Ciudadana_Resolucion
                 {
                     Clave = varSolicitud_de_Denuncia_Ciudadana.Clave
-                                            ,Estatus_de_Solicitud = varSolicitud_de_Denuncia_Ciudadana.Estatus_de_Solicitud
+                                            ,Motivo = varSolicitud_de_Denuncia_Ciudadana.Motivo
                         ,Canalizar_a = varSolicitud_de_Denuncia_Ciudadana.Canalizar_a
+                        ,Fecha_de_Revision = (!String.IsNullOrEmpty(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Revision)) ? DateTime.ParseExact(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Revision, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Revision = varSolicitud_de_Denuncia_Ciudadana.Hora_de_Revision
+                        ,Usuario_que_Revisa = varSolicitud_de_Denuncia_Ciudadana.Usuario_que_Revisa
+                        ,Tipo_de_Resolucion = varSolicitud_de_Denuncia_Ciudadana.Tipo_de_Resolucion
+                        ,Region = varSolicitud_de_Denuncia_Ciudadana.Region
                         ,Unidad_canaliza = varSolicitud_de_Denuncia_Ciudadana.Unidad_canaliza
+                        ,Contestacion = varSolicitud_de_Denuncia_Ciudadana.Contestacion
+                        ,Observaciones_resolucion = varSolicitud_de_Denuncia_Ciudadana.Observaciones_resolucion
                     
                 };
 
-                result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.Update_Canalizar(Solicitud_de_Denuncia_Ciudadana_CanalizarInfo).Resource.ToString();
+                result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.Update_Resolucion(Solicitud_de_Denuncia_Ciudadana_ResolucionInfo).Resource.ToString();
                 Session["KeyValueInserted"] = result;
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -1657,26 +2455,167 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 		
 		[HttpGet]
-        public JsonResult Get_Canalizar(string Id)
+        public JsonResult Get_Resolucion(string Id)
         {     
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
             {                
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var m = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.Get_Canalizar(Id).Resource;
+                var m = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.Get_Resolucion(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
 				
-                var result = new Solicitud_de_Denuncia_Ciudadana_CanalizarModel
+                var result = new Solicitud_de_Denuncia_Ciudadana_ResolucionModel
                 {
                     Clave = m.Clave
-                        ,Estatus_de_Solicitud = m.Estatus_de_Solicitud
-                        ,Estatus_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Solicitud_Estatus_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Solicitud_Estatus_de_Solicitud.Descripcion
+			,Motivo = m.Motivo
                         ,Canalizar_a = m.Canalizar_a
                         ,Canalizar_aDescripcion = CultureHelper.GetTraduction(m.Canalizar_a_PC_CanalizarA.Clave.ToString(), "Descripcion") ?? (string)m.Canalizar_a_PC_CanalizarA.Descripcion
+                        ,Fecha_de_Revision = (m.Fecha_de_Revision == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Revision).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Revision = m.Hora_de_Revision
+                        ,Usuario_que_Revisa = m.Usuario_que_Revisa
+                        ,Usuario_que_RevisaName = CultureHelper.GetTraduction(m.Usuario_que_Revisa_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Revisa_Spartan_User.Name
+                        ,Tipo_de_Resolucion = m.Tipo_de_Resolucion
+                        ,Tipo_de_ResolucionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Resolucion_Tipo_Resolucion_Portal_Ciudadano.Descripcion
+                        ,Region = m.Region
+                        ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,Unidad_canaliza = m.Unidad_canaliza
                         ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(m.Unidad_canaliza_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_canaliza_Unidad.Descripcion
+			,Contestacion = m.Contestacion
+			,Observaciones_resolucion = m.Observaciones_resolucion
+
+                    
+                };
+				var resultData = new
+                {
+                    data = result
+
+                };
+                return Json(resultData, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);            
+        }
+
+		[HttpPost]
+        public ActionResult Post_Asignar_Responsable_de_Atencion(Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_AtencionModel varSolicitud_de_Denuncia_Ciudadana)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
+				
+                var result = "";
+                var Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_AtencionInfo = new Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_Atencion
+                {
+                    Clave = varSolicitud_de_Denuncia_Ciudadana.Clave
+                                            ,Fecha_de_Asignacion = (!String.IsNullOrEmpty(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Asignacion)) ? DateTime.ParseExact(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Asignacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Asignacion = varSolicitud_de_Denuncia_Ciudadana.Hora_de_Asignacion
+                        ,Usuario_que_Asigna = varSolicitud_de_Denuncia_Ciudadana.Usuario_que_Asigna
+                        ,Responsable_Asignado = varSolicitud_de_Denuncia_Ciudadana.Responsable_Asignado
+                        ,Observaciones_responsable = varSolicitud_de_Denuncia_Ciudadana.Observaciones_responsable
+                    
+                };
+
+                result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.Update_Asignar_Responsable_de_Atencion(Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_AtencionInfo).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+		
+		[HttpGet]
+        public JsonResult Get_Asignar_Responsable_de_Atencion(string Id)
+        {     
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
+            {                
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var m = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.Get_Asignar_Responsable_de_Atencion(Id).Resource;
+                if (m == null)
+                    return Json(null, JsonRequestBehavior.AllowGet);
+				
+                var result = new Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_AtencionModel
+                {
+                    Clave = m.Clave
+                        ,Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Asignacion = m.Hora_de_Asignacion
+                        ,Usuario_que_Asigna = m.Usuario_que_Asigna
+                        ,Usuario_que_AsignaName = CultureHelper.GetTraduction(m.Usuario_que_Asigna_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Asigna_Spartan_User.Name
+                        ,Responsable_Asignado = m.Responsable_Asignado
+                        ,Responsable_AsignadoName = CultureHelper.GetTraduction(m.Responsable_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Responsable_Asignado_Spartan_User.Name
+			,Observaciones_responsable = m.Observaciones_responsable
+
+                    
+                };
+				var resultData = new
+                {
+                    data = result
+
+                };
+                return Json(resultData, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);            
+        }
+
+		[HttpPost]
+        public ActionResult Post_Atencion(Solicitud_de_Denuncia_Ciudadana_AtencionModel varSolicitud_de_Denuncia_Ciudadana)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
+				
+                var result = "";
+                var Solicitud_de_Denuncia_Ciudadana_AtencionInfo = new Solicitud_de_Denuncia_Ciudadana_Atencion
+                {
+                    Clave = varSolicitud_de_Denuncia_Ciudadana.Clave
+                                            ,Fecha_de_Atencion = (!String.IsNullOrEmpty(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Atencion)) ? DateTime.ParseExact(varSolicitud_de_Denuncia_Ciudadana.Fecha_de_Atencion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Atencion = varSolicitud_de_Denuncia_Ciudadana.Hora_de_Atencion
+                        ,Usuario_que_Atiende = varSolicitud_de_Denuncia_Ciudadana.Usuario_que_Atiende
+                        ,Atencion_Realizada = varSolicitud_de_Denuncia_Ciudadana.Atencion_Realizada
+                        ,Observaciones_atencion = varSolicitud_de_Denuncia_Ciudadana.Observaciones_atencion
+                    
+                };
+
+                result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.Update_Atencion(Solicitud_de_Denuncia_Ciudadana_AtencionInfo).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+		
+		[HttpGet]
+        public JsonResult Get_Atencion(string Id)
+        {     
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
+            {                
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var m = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.Get_Atencion(Id).Resource;
+                if (m == null)
+                    return Json(null, JsonRequestBehavior.AllowGet);
+				
+                var result = new Solicitud_de_Denuncia_Ciudadana_AtencionModel
+                {
+                    Clave = m.Clave
+                        ,Fecha_de_Atencion = (m.Fecha_de_Atencion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Atencion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Atencion = m.Hora_de_Atencion
+                        ,Usuario_que_Atiende = m.Usuario_que_Atiende
+                        ,Usuario_que_AtiendeName = CultureHelper.GetTraduction(m.Usuario_que_Atiende_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Atiende_Spartan_User.Name
+                        ,Atencion_Realizada = m.Atencion_Realizada
+                        ,Atencion_RealizadaDescripcion = CultureHelper.GetTraduction(m.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Clave.ToString(), "Descripcion") ?? (string)m.Atencion_Realizada_Contestacion_de_Portal_Ciudadano.Descripcion
+			,Observaciones_atencion = m.Observaciones_atencion
 
                     
                 };

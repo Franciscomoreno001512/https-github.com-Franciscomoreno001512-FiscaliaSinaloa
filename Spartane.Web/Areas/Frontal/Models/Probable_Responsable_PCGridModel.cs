@@ -11,12 +11,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public int? Solicitud { get; set; }
         public string SolicitudFolio { get; set; }
-        public int? Tipo_de_Solicitud { get; set; }
-        public string Tipo_de_SolicitudDescripcion { get; set; }
         public short? Tiene_informacion_responsable { get; set; }
         public string Tiene_informacion_responsableDescripcion { get; set; }
         public bool? Quien_Resulte_Responsable { get; set; }
         public bool? Persona_moral { get; set; }
+        public bool? Conoce_los_datos_del_representante_legal { get; set; }
+        public string Razon_Social { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }

@@ -12,6 +12,9 @@
     List<SelectListItem> varTipo_de_Documento_Tipo_de_Documento = null;
     if (ViewBag.Tipo_de_Documentos_Tipo_de_Documento != null)
     { varTipo_de_Documento_Tipo_de_Documento = (List<SelectListItem>)ViewBag.Tipo_de_Documentos_Tipo_de_Documento; }
+    List<SelectListItem> varArea_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo = null;
+    if (ViewBag.Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo != null)
+    { varArea_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo = (List<SelectListItem>)ViewBag.Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo; }
     List<SelectListItem> varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo = null;
     if (ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo != null)
     { varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo = (List<SelectListItem>)ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo; }
@@ -135,6 +138,27 @@
                     }
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.DocumentoResources.Area_de_Servicios_de_Apoyo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Area_de_Servicios_de_ApoyoFilter, filters, new { @class = "form-control", @id = "ddlArea_de_Servicios_de_ApoyoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceArea_de_Servicios_de_Apoyo, new { @class = "form-control", @type = "text", @id = "txtAdvanceArea_de_Servicios_de_Apoyo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varArea_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceArea_de_Servicios_de_ApoyoMultiple, varArea_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceArea_de_Servicios_de_Apoyo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.DocumentoResources.SubArea_de_Servicios_de_Apoyo</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -233,6 +257,21 @@
                 advanceSearch.Tipo_de_DocumentoSearchType = 2;
             }
         }
+        advanceSearch.Area_de_Servicios_de_ApoyoSearchType = 0;
+        if ($('#ddlAdvanceArea_de_Servicios_de_Apoyo').val().length > 0 || $("#txtAdvanceArea_de_Servicios_de_Apoyo").val() == "") {
+
+
+            if (isDocumentoTextSearch) {
+                advanceSearch.Area_de_Servicios_de_ApoyoName = $("#txtAdvanceArea_de_Servicios_de_Apoyo").val();
+                advanceSearch.Area_de_Servicios_de_ApoyoNameSearchType = $("#ddlAdvanceArea_de_Servicios_de_Apoyo").val();
+                advanceSearch.Area_de_Servicios_de_ApoyoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Area_de_Servicios_de_ApoyoToSearch = $("#ddlAdvanceArea_de_Servicios_de_Apoyo").val();
+                advanceSearch.Area_de_Servicios_de_ApoyoSearchType = 2;
+            }
+        }
         advanceSearch.SubArea_de_Servicios_de_ApoyoSearchType = 0;
         if ($('#ddlAdvanceSubArea_de_Servicios_de_Apoyo').val().length > 0 || $("#txtAdvanceSubArea_de_Servicios_de_Apoyo").val() == "") {
 
@@ -317,6 +356,15 @@
         $("#ddlAdvanceTipo_de_Documento").change(function () {
             isDocumentoTextSearch = false;
             $("#txtAdvanceTipo_de_Documento").val('');
+        });
+        $("#txtAdvanceArea_de_Servicios_de_Apoyo").keypress(function () {
+            isDocumentoTextSearch = true;
+            $("#ddlAdvanceArea_de_Servicios_de_Apoyo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceArea_de_Servicios_de_Apoyo").change(function () {
+            isDocumentoTextSearch = false;
+            $("#txtAdvanceArea_de_Servicios_de_Apoyo").val('');
         });
         $("#txtAdvanceSubArea_de_Servicios_de_Apoyo").keypress(function () {
             isDocumentoTextSearch = true;

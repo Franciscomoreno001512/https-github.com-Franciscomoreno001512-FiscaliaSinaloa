@@ -5,6 +5,7 @@ using Spartane.Core.Domain.Documento;
 using Spartane.Core.Domain.Dilgencia_MASC;
 using Spartane.Core.Domain.Origen_de_Invitacion;
 using Spartane.Core.Domain.Tipo_de_Documento;
+using Spartane.Core.Domain.Area_de_Servicios_de_Apoyo;
 using Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo;
 
 using Spartane.Core.Enums;
@@ -19,6 +20,7 @@ using Spartane.Web.Areas.WebApiConsumer.Documento;
 using Spartane.Web.Areas.WebApiConsumer.Dilgencia_MASC;
 using Spartane.Web.Areas.WebApiConsumer.Origen_de_Invitacion;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Documento;
+using Spartane.Web.Areas.WebApiConsumer.Area_de_Servicios_de_Apoyo;
 using Spartane.Web.Areas.WebApiConsumer.SubArea_de_Servicios_de_Apoyo;
 
 using Spartane.Web.AuthFilters;
@@ -59,6 +61,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDilgencia_MASCApiConsumer _IDilgencia_MASCApiConsumer;
         private IOrigen_de_InvitacionApiConsumer _IOrigen_de_InvitacionApiConsumer;
         private ITipo_de_DocumentoApiConsumer _ITipo_de_DocumentoApiConsumer;
+        private IArea_de_Servicios_de_ApoyoApiConsumer _IArea_de_Servicios_de_ApoyoApiConsumer;
         private ISubArea_de_Servicios_de_ApoyoApiConsumer _ISubArea_de_Servicios_de_ApoyoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
@@ -77,7 +80,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public DocumentoController(IDocumentoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDocumentoApiConsumer DocumentoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IDilgencia_MASCApiConsumer Dilgencia_MASCApiConsumer , IOrigen_de_InvitacionApiConsumer Origen_de_InvitacionApiConsumer , ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer , ISubArea_de_Servicios_de_ApoyoApiConsumer SubArea_de_Servicios_de_ApoyoApiConsumer )
+        public DocumentoController(IDocumentoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDocumentoApiConsumer DocumentoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IDilgencia_MASCApiConsumer Dilgencia_MASCApiConsumer , IOrigen_de_InvitacionApiConsumer Origen_de_InvitacionApiConsumer , ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer , IArea_de_Servicios_de_ApoyoApiConsumer Area_de_Servicios_de_ApoyoApiConsumer , ISubArea_de_Servicios_de_ApoyoApiConsumer SubArea_de_Servicios_de_ApoyoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -94,6 +97,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IDilgencia_MASCApiConsumer = Dilgencia_MASCApiConsumer;
             this._IOrigen_de_InvitacionApiConsumer = Origen_de_InvitacionApiConsumer;
             this._ITipo_de_DocumentoApiConsumer = Tipo_de_DocumentoApiConsumer;
+            this._IArea_de_Servicios_de_ApoyoApiConsumer = Area_de_Servicios_de_ApoyoApiConsumer;
             this._ISubArea_de_Servicios_de_ApoyoApiConsumer = SubArea_de_Servicios_de_ApoyoApiConsumer;
 
         }
@@ -177,6 +181,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,OrigenDescripcion = CultureHelper.GetTraduction(Convert.ToString(DocumentoData.Origen), "Origen_de_Invitacion") ??  (string)DocumentoData.Origen_Origen_de_Invitacion.Descripcion
                     ,Tipo_de_Documento = DocumentoData.Tipo_de_Documento
                     ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(DocumentoData.Tipo_de_Documento), "Tipo_de_Documento") ??  (string)DocumentoData.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                    ,Area_de_Servicios_de_Apoyo = DocumentoData.Area_de_Servicios_de_Apoyo
+                    ,Area_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(Convert.ToString(DocumentoData.Area_de_Servicios_de_Apoyo), "Area_de_Servicios_de_Apoyo") ??  (string)DocumentoData.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Descripcion
                     ,SubArea_de_Servicios_de_Apoyo = DocumentoData.SubArea_de_Servicios_de_Apoyo
                     ,SubArea_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(Convert.ToString(DocumentoData.SubArea_de_Servicios_de_Apoyo), "SubArea_de_Servicios_de_Apoyo") ??  (string)DocumentoData.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Descripcion
                     ,idFormato = DocumentoData.idFormato
@@ -215,6 +221,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Documentos_Tipo_de_Documento = Tipo_de_Documentos_Tipo_de_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IArea_de_Servicios_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo = _IArea_de_Servicios_de_ApoyoApiConsumer.SelAll(true);
+            if (Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo != null && Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo.Resource != null)
+                ViewBag.Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo = Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Area_de_Servicios_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISubArea_de_Servicios_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo = _ISubArea_de_Servicios_de_ApoyoApiConsumer.SelAll(true);
@@ -292,6 +305,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,OrigenDescripcion = CultureHelper.GetTraduction(Convert.ToString(DocumentoData.Origen), "Origen_de_Invitacion") ??  (string)DocumentoData.Origen_Origen_de_Invitacion.Descripcion
                     ,Tipo_de_Documento = DocumentoData.Tipo_de_Documento
                     ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(DocumentoData.Tipo_de_Documento), "Tipo_de_Documento") ??  (string)DocumentoData.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                    ,Area_de_Servicios_de_Apoyo = DocumentoData.Area_de_Servicios_de_Apoyo
+                    ,Area_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(Convert.ToString(DocumentoData.Area_de_Servicios_de_Apoyo), "Area_de_Servicios_de_Apoyo") ??  (string)DocumentoData.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Descripcion
                     ,SubArea_de_Servicios_de_Apoyo = DocumentoData.SubArea_de_Servicios_de_Apoyo
                     ,SubArea_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(Convert.ToString(DocumentoData.SubArea_de_Servicios_de_Apoyo), "SubArea_de_Servicios_de_Apoyo") ??  (string)DocumentoData.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Descripcion
                     ,idFormato = DocumentoData.idFormato
@@ -328,6 +343,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Documentos_Tipo_de_Documento = Tipo_de_Documentos_Tipo_de_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IArea_de_Servicios_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo = _IArea_de_Servicios_de_ApoyoApiConsumer.SelAll(true);
+            if (Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo != null && Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo.Resource != null)
+                ViewBag.Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo = Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Area_de_Servicios_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISubArea_de_Servicios_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo = _ISubArea_de_Servicios_de_ApoyoApiConsumer.SelAll(true);
@@ -420,6 +442,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
+        public ActionResult GetArea_de_Servicios_de_ApoyoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IArea_de_Servicios_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IArea_de_Servicios_de_ApoyoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Area_de_Servicios_de_Apoyo", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public ActionResult GetSubArea_de_Servicios_de_ApoyoAll()
         {
             try
@@ -494,6 +537,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IArea_de_Servicios_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo = _IArea_de_Servicios_de_ApoyoApiConsumer.SelAll(true);
+            if (Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo != null && Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo.Resource != null)
+                ViewBag.Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo = Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Area_de_Servicios_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ISubArea_de_Servicios_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo = _ISubArea_de_Servicios_de_ApoyoApiConsumer.SelAll(true);
             if (SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo != null && SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo.Resource != null)
@@ -532,6 +582,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Documentos_Tipo_de_Documento = Tipo_de_Documentos_Tipo_de_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IArea_de_Servicios_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo = _IArea_de_Servicios_de_ApoyoApiConsumer.SelAll(true);
+            if (Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo != null && Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo.Resource != null)
+                ViewBag.Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo = Area_de_Servicios_de_Apoyos_Area_de_Servicios_de_Apoyo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Area_de_Servicios_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISubArea_de_Servicios_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo = _ISubArea_de_Servicios_de_ApoyoApiConsumer.SelAll(true);
@@ -582,6 +639,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,DiligenciaDescripcion = CultureHelper.GetTraduction(m.Diligencia_Dilgencia_MASC.Clave.ToString(), "Descripcion") ?? (string)m.Diligencia_Dilgencia_MASC.Descripcion
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                        ,Area_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(m.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Descripcion
                         ,SubArea_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(m.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Descripcion
 			,idFormato = m.idFormato
 			,Requerido = m.Requerido
@@ -707,6 +765,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,DiligenciaDescripcion = CultureHelper.GetTraduction(m.Diligencia_Dilgencia_MASC.Clave.ToString(), "Descripcion") ?? (string)m.Diligencia_Dilgencia_MASC.Descripcion
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                        ,Area_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(m.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Descripcion
                         ,SubArea_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(m.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Descripcion
 			,idFormato = m.idFormato
 			,Requerido = m.Requerido
@@ -846,6 +905,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Documento.Tipo_de_Documento In (" + Tipo_de_DocumentoIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceArea_de_Servicios_de_Apoyo))
+            {
+                switch (filter.Area_de_Servicios_de_ApoyoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Area_de_Servicios_de_Apoyo.Descripcion LIKE '" + filter.AdvanceArea_de_Servicios_de_Apoyo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Area_de_Servicios_de_Apoyo.Descripcion LIKE '%" + filter.AdvanceArea_de_Servicios_de_Apoyo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Area_de_Servicios_de_Apoyo.Descripcion = '" + filter.AdvanceArea_de_Servicios_de_Apoyo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Area_de_Servicios_de_Apoyo.Descripcion LIKE '%" + filter.AdvanceArea_de_Servicios_de_Apoyo + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceArea_de_Servicios_de_ApoyoMultiple != null && filter.AdvanceArea_de_Servicios_de_ApoyoMultiple.Count() > 0)
+            {
+                var Area_de_Servicios_de_ApoyoIds = string.Join(",", filter.AdvanceArea_de_Servicios_de_ApoyoMultiple);
+
+                where += " AND Documento.Area_de_Servicios_de_Apoyo In (" + Area_de_Servicios_de_ApoyoIds + ")";
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceSubArea_de_Servicios_de_Apoyo))
             {
                 switch (filter.SubArea_de_Servicios_de_ApoyoFilter)
@@ -956,6 +1043,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Diligencia = varDocumento.Diligencia
                         ,Origen = varDocumento.Origen
                         ,Tipo_de_Documento = varDocumento.Tipo_de_Documento
+                        ,Area_de_Servicios_de_Apoyo = varDocumento.Area_de_Servicios_de_Apoyo
                         ,SubArea_de_Servicios_de_Apoyo = varDocumento.SubArea_de_Servicios_de_Apoyo
                         ,idFormato = varDocumento.idFormato
                         ,Requerido = varDocumento.Requerido
@@ -1354,6 +1442,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,DiligenciaDescripcion = CultureHelper.GetTraduction(m.Diligencia_Dilgencia_MASC.Clave.ToString(), "Descripcion") ?? (string)m.Diligencia_Dilgencia_MASC.Descripcion
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                        ,Area_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(m.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Descripcion
                         ,SubArea_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(m.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Descripcion
 			,idFormato = m.idFormato
 			,Requerido = m.Requerido
@@ -1438,6 +1527,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,DiligenciaDescripcion = CultureHelper.GetTraduction(m.Diligencia_Dilgencia_MASC.Clave.ToString(), "Descripcion") ?? (string)m.Diligencia_Dilgencia_MASC.Descripcion
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                        ,Area_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(m.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Descripcion
                         ,SubArea_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(m.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Descripcion
 			,idFormato = m.idFormato
 			,Requerido = m.Requerido
@@ -1488,6 +1578,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Diligencia = varDocumento.Diligencia
                         ,Origen = varDocumento.Origen
                         ,Tipo_de_Documento = varDocumento.Tipo_de_Documento
+                        ,Area_de_Servicios_de_Apoyo = varDocumento.Area_de_Servicios_de_Apoyo
                         ,SubArea_de_Servicios_de_Apoyo = varDocumento.SubArea_de_Servicios_de_Apoyo
                         ,idFormato = varDocumento.idFormato
                         ,Requerido = varDocumento.Requerido
@@ -1530,6 +1621,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Tipo_de_Documento = m.Tipo_de_Documento
                         ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                        ,Area_de_Servicios_de_Apoyo = m.Area_de_Servicios_de_Apoyo
+                        ,Area_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(m.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo.Descripcion
                         ,SubArea_de_Servicios_de_Apoyo = m.SubArea_de_Servicios_de_Apoyo
                         ,SubArea_de_Servicios_de_ApoyoDescripcion = CultureHelper.GetTraduction(m.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo.Descripcion
 			,idFormato = m.idFormato

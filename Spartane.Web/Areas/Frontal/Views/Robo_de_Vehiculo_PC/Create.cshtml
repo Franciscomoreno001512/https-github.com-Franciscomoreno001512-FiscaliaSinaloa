@@ -7,10 +7,10 @@
 @model Spartane.Web.Areas.Frontal.Models.Robo_de_Vehiculo_PCModel
 @{
 
-/*
+    /*
 
-*/
- List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud = null;
+    */
+    List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud = null;
     if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
     { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
     List<SelectListItem> varTipo_de_Solicitud_Tipo_de_Solicitud = null;
@@ -31,11 +31,11 @@
 
 
     Permission permission = ViewBag.Permission;
-	
-	if (ViewBag.IsPartial || ViewBag.viewInEframe)
-   { 
-       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
-   }
+
+    if (ViewBag.IsPartial || ViewBag.viewInEframe)
+    {
+        Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+    }
 }
 @*fjmore portal*@
 <style>
@@ -113,24 +113,24 @@
             </h2>
             @*fjmore portal*@
             @*<ol class="breadcrumb">
-                <li>
-                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
-                </li>
-                <li class="active">
-                @if (Session["PhaseName"] != null)
-                {
-                    <strong>@Session["PhaseName"].ToString()</strong>
-                }
-                else
-                {
-                    <strong>@Resources.Robo_de_Vehiculo_PCResources.Robo_de_Vehiculo_PC</strong>
-                }
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                    </li>
+                    <li class="active">
+                    @if (Session["PhaseName"] != null)
+                    {
+                        <strong>@Session["PhaseName"].ToString()</strong>
+                    }
+                    else
+                    {
+                        <strong>@Resources.Robo_de_Vehiculo_PCResources.Robo_de_Vehiculo_PC</strong>
+                    }
 
-            </li>
-                <li class="active">
-                    <strong>@Resources.Resources.Create</strong>
                 </li>
-                </ol>*@
+                    <li class="active">
+                        <strong>@Resources.Resources.Create</strong>
+                    </li>
+                    </ol>*@
         </div>
         <div class="col-lg-2">
 
@@ -147,7 +147,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">
-                                          @Resources.Resources.titleBussinesRules
+                                        @Resources.Resources.titleBussinesRules
                                         <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
                                     </h4>
                                 </div>
@@ -166,10 +166,10 @@
                         </div>
                     </div>
 
-                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-					</div>
-					<div aria-hidden="true" data-backdrop="static" class="modal fade in Robo_de_Vehiculo_PCBusinessRuleModal" id="Robo_de_Vehiculo_PCBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-					</div>
+                    <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Robo_de_Vehiculo_PCBusinessRuleModal" id="Robo_de_Vehiculo_PCBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
 
 
                 }
@@ -178,251 +178,256 @@
         </div>
     </div>
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="ibox float-e-margins">
-        <div class="ibox-content">
-            @using (Html.BeginForm("Post", "Robo_de_Vehiculo_PC", FormMethod.Post, new { id = "CreateRobo_de_Vehiculo_PC", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
-            {
-                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
-                <span id="popupNotification"></span>
-                <div class="container-fluid Robo_de_Vehiculo_PCCreateForm" id="viewmodeledit">
-				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
-                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
-                        <span id="textRequired"></span>
-                 </div>
-			<div class="tabs-container">
-                        	<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Robo_de_Vehiculo_PCResources.TabDatos_Generales</a></li>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                @using (Html.BeginForm("Post", "Robo_de_Vehiculo_PC", FormMethod.Post, new { id = "CreateRobo_de_Vehiculo_PC", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+                {
+                    <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                    <span id="popupNotification"></span>
+                    <div class="container-fluid Robo_de_Vehiculo_PCCreateForm" id="viewmodeledit">
+                        <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                            <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                            <span id="textRequired"></span>
+                        </div>
+                        <div class="tabs-container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Robo_de_Vehiculo_PCResources.TabDatos_Generales</a></li>
 
-                        	</ul>
-	                	<div class="tab-content">
-                            <div id="tabDatos_Generales" class="tab-pane active">
-                                <div class="panel-body">
-                            <div class="form-group" id="divClave">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Clave</label>
-                                <div class="col-sm-8" data-field-id="Clave" data-attribute="269243" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Clave">
-                                    <label class="form-control" for="Clave" id="lblClave">
-                                    @if (Model.Clave== 0)
-                                        {
-                                            <text>@Resources.Resources.ClaveDefault</text>
-                                        }
-                                        else
-                                        { 
-                                            <text>@Model.Clave</text>
-                                        }
-                                    </label>
-                                </div>
-                            </div>
-				<div class="form-group" id="divSolicitud">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Solicitud</label>
-                                <div class="col-sm-8" data-field-id="Solicitud" data-attribute="269244" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Solicitud">
-                                    <select class='fullWidth AutoComplete AutoCompleteRobo_de_Vehiculo_PC_Solicitud form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitud" name="Solicitud">
-                                        <option value="@Model.Solicitud">@(Model.SolicitudFolio??Model.SolicitudFolio)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269244).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud_de_Denuncia_Ciudadana', 'Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                                  <div class="form-group" id="divTipo_de_Solicitud">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Solicitud</label>
-                                <div class="col-sm-8" data-field-id="Tipo_de_Solicitud" data-attribute="269375" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Solicitud">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Solicitud must be a number." data-val-required="The Tipo de Solicitud field is required." id="Tipo_de_Solicitud" name="Tipo_de_Solicitud">
-                                        <option value=""></option>
-                                        @if (varTipo_de_Solicitud_Tipo_de_Solicitud != null){ 
-                                            foreach (var itemTipo_de_Solicitud in varTipo_de_Solicitud_Tipo_de_Solicitud)
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tabDatos_Generales" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <div class="form-group" id="divClave">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Clave</label>
+                                            <div class="col-sm-8" data-field-id="Clave" data-attribute="269243" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Clave">
+                                                <label class="form-control" for="Clave" id="lblClave">
+                                                    @if (Model.Clave == 0)
+                                                    {
+                                                        <text>@Resources.Resources.ClaveDefault</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <text>@Model.Clave</text>
+                                                    }
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divSolicitud">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Solicitud</label>
+                                            <div class="col-sm-8" data-field-id="Solicitud" data-attribute="269244" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Solicitud">
+                                                <select class='fullWidth AutoComplete AutoCompleteRobo_de_Vehiculo_PC_Solicitud form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitud" name="Solicitud">
+                                                    <option value="@Model.Solicitud">@(Model.SolicitudFolio ?? Model.SolicitudFolio)</option>
+                                                </select>
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269244).New)
                                             {
-                                                if (itemTipo_de_Solicitud.Value == Convert.ToString(Model.Tipo_de_Solicitud))
-                                                {
-                                                    <option value="@itemTipo_de_Solicitud.Value" selected>@itemTipo_de_Solicitud.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTipo_de_Solicitud.Value">@itemTipo_de_Solicitud.Text</option>
-                                                }
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud_de_Denuncia_Ciudadana', 'Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
                                             }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Solicitud" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269375).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Solicitud', 'Tipo_de_Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divRobo_de_Vehiculo">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Robo_de_Vehiculo</label>
-                                <div class="col-sm-8" data-field-id="Robo_de_Vehiculo" data-attribute="269245" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Robo_de_Vehiculo">
-                                    @Html.CheckBoxFor(m => m.Robo_de_Vehiculo, new { @class = "i-checks Datos_Generales" })
-                                </div>
-                            </div>
-                            <div class="form-group" id="divMarca">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Marca</label>
-                                <div class="col-sm-8" data-field-id="Marca" data-attribute="269246" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Marca">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Marca must be a number." data-val-required="The Marca field is required." id="Marca" name="Marca">
-                                        <option value=""></option>
-                                        @if (varMarca_del_Vehiculo_Marca != null){ 
-                                            foreach (var itemMarca in varMarca_del_Vehiculo_Marca)
+                                        </div>
+                                        <div class="form-group" id="divTipo_de_Solicitud">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Solicitud</label>
+                                            <div class="col-sm-8" data-field-id="Tipo_de_Solicitud" data-attribute="269375" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Solicitud">
+                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Solicitud must be a number." data-val-required="The Tipo de Solicitud field is required." id="Tipo_de_Solicitud" name="Tipo_de_Solicitud">
+                                                    <option value=""></option>
+                                                    @if (varTipo_de_Solicitud_Tipo_de_Solicitud != null)
+                                                    {
+                                                        foreach (var itemTipo_de_Solicitud in varTipo_de_Solicitud_Tipo_de_Solicitud)
+                                                        {
+                                                            if (itemTipo_de_Solicitud.Value == Convert.ToString(Model.Tipo_de_Solicitud))
+                                                            {
+                                                                <option value="@itemTipo_de_Solicitud.Value" selected>@itemTipo_de_Solicitud.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemTipo_de_Solicitud.Value">@itemTipo_de_Solicitud.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Solicitud" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269375).New)
                                             {
-                                                if (itemMarca.Value == Convert.ToString(Model.Marca))
-                                                {
-                                                    <option value="@itemMarca.Value" selected>@itemMarca.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemMarca.Value">@itemMarca.Text</option>
-                                                }
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Solicitud', 'Tipo_de_Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
                                             }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Marca" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269246).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Marca_del_Vehiculo', 'Marca');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divSub_Marca">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Sub_Marca</label>
-                                <div class="col-sm-8" data-field-id="Sub_Marca" data-attribute="269247" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Sub_Marca">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Sub Marca must be a number." data-val-required="The Sub Marca field is required." id="Sub_Marca" name="Sub_Marca">
-                                        <option value=""></option>
-                                        @if (varSub_Marca_del_Vehiculo_Sub_Marca != null){ 
-                                            foreach (var itemSub_Marca in varSub_Marca_del_Vehiculo_Sub_Marca)
+                                        </div>
+                                        <div class="form-group" id="divRobo_de_Vehiculo">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Robo_de_Vehiculo</label>
+                                            <div class="col-sm-8" data-field-id="Robo_de_Vehiculo" data-attribute="269245" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Robo_de_Vehiculo">
+                                                @Html.CheckBoxFor(m => m.Robo_de_Vehiculo, new { @class = "i-checks Datos_Generales" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divMarca">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Marca</label>
+                                            <div class="col-sm-8" data-field-id="Marca" data-attribute="269246" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Marca">
+                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Marca must be a number." data-val-required="The Marca field is required." id="Marca" name="Marca">
+                                                    <option value=""></option>
+                                                    @if (varMarca_del_Vehiculo_Marca != null)
+                                                    {
+                                                        foreach (var itemMarca in varMarca_del_Vehiculo_Marca)
+                                                        {
+                                                            if (itemMarca.Value == Convert.ToString(Model.Marca))
+                                                            {
+                                                                <option value="@itemMarca.Value" selected>@itemMarca.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemMarca.Value">@itemMarca.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Marca" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269246).New)
                                             {
-                                                if (itemSub_Marca.Value == Convert.ToString(Model.Sub_Marca))
-                                                {
-                                                    <option value="@itemSub_Marca.Value" selected>@itemSub_Marca.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemSub_Marca.Value">@itemSub_Marca.Text</option>
-                                                }
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Marca_del_Vehiculo', 'Marca');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
                                             }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Sub_Marca" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269247).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Sub_Marca_del_Vehiculo', 'Sub_Marca');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divTipo_de_Vehiculo">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Vehiculo</label>
-                                <div class="col-sm-8" data-field-id="Tipo_de_Vehiculo" data-attribute="269248" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Vehiculo">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Vehículo must be a number." data-val-required="The Tipo de Vehículo field is required." id="Tipo_de_Vehiculo" name="Tipo_de_Vehiculo">
-                                        <option value=""></option>
-                                        @if (varTipo_de_Vehiculo_Tipo_de_Vehiculo != null){ 
-                                            foreach (var itemTipo_de_Vehiculo in varTipo_de_Vehiculo_Tipo_de_Vehiculo)
+                                        </div>
+                                        <div class="form-group" id="divSub_Marca">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Sub_Marca</label>
+                                            <div class="col-sm-8" data-field-id="Sub_Marca" data-attribute="269247" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Sub_Marca">
+                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Sub Marca must be a number." data-val-required="The Sub Marca field is required." id="Sub_Marca" name="Sub_Marca">
+                                                    <option value=""></option>
+                                                    @if (varSub_Marca_del_Vehiculo_Sub_Marca != null)
+                                                    {
+                                                        foreach (var itemSub_Marca in varSub_Marca_del_Vehiculo_Sub_Marca)
+                                                        {
+                                                            if (itemSub_Marca.Value == Convert.ToString(Model.Sub_Marca))
+                                                            {
+                                                                <option value="@itemSub_Marca.Value" selected>@itemSub_Marca.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemSub_Marca.Value">@itemSub_Marca.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Sub_Marca" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269247).New)
                                             {
-                                                if (itemTipo_de_Vehiculo.Value == Convert.ToString(Model.Tipo_de_Vehiculo))
-                                                {
-                                                    <option value="@itemTipo_de_Vehiculo.Value" selected>@itemTipo_de_Vehiculo.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTipo_de_Vehiculo.Value">@itemTipo_de_Vehiculo.Text</option>
-                                                }
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Sub_Marca_del_Vehiculo', 'Sub_Marca');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
                                             }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Vehiculo" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269248).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Vehiculo', 'Tipo_de_Vehiculo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divModelo">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Modelo</label>
-                                <div class="col-sm-8" data-field-id="Modelo" data-attribute="269249" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Modelo">
-                                    <input class="form-control inputNumber Datos_Generales" id="Modelo" name="Modelo" type="text" value="@Model.Modelo">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Modelo" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divColor">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Color</label>
-                                <div class="col-sm-8" data-field-id="Color" data-attribute="269250" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Color">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Color must be a number." data-val-required="The Color field is required." id="Color" name="Color">
-                                        <option value=""></option>
-                                        @if (varColor_Vehiculo_Color != null){ 
-                                            foreach (var itemColor in varColor_Vehiculo_Color)
+                                        </div>
+                                        <div class="form-group" id="divTipo_de_Vehiculo">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Vehiculo</label>
+                                            <div class="col-sm-8" data-field-id="Tipo_de_Vehiculo" data-attribute="269248" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Tipo_de_Vehiculo">
+                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Vehículo must be a number." data-val-required="The Tipo de Vehículo field is required." id="Tipo_de_Vehiculo" name="Tipo_de_Vehiculo">
+                                                    <option value=""></option>
+                                                    @if (varTipo_de_Vehiculo_Tipo_de_Vehiculo != null)
+                                                    {
+                                                        foreach (var itemTipo_de_Vehiculo in varTipo_de_Vehiculo_Tipo_de_Vehiculo)
+                                                        {
+                                                            if (itemTipo_de_Vehiculo.Value == Convert.ToString(Model.Tipo_de_Vehiculo))
+                                                            {
+                                                                <option value="@itemTipo_de_Vehiculo.Value" selected>@itemTipo_de_Vehiculo.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemTipo_de_Vehiculo.Value">@itemTipo_de_Vehiculo.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Vehiculo" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269248).New)
                                             {
-                                                if (itemColor.Value == Convert.ToString(Model.Color))
-                                                {
-                                                    <option value="@itemColor.Value" selected>@itemColor.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemColor.Value">@itemColor.Text</option>
-                                                }
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Vehiculo', 'Tipo_de_Vehiculo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
                                             }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Color" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269250).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Color_Vehiculo', 'Color');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divPlacas">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Placas</label>
-                                <div class="col-sm-8" data-field-id="Placas" data-attribute="269251" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Placas">
-                                    <input class="form-control Datos_Generales" id="Placas" name="Placas" type="text" value="@Model.Placas">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Placas" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divSenas_Particulares">
-                                <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Senas_Particulares</label>
-                                <div class="col-sm-8" data-field-id="Senas_Particulares" data-attribute="269252" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Senas_Particulares">
-                                    <textarea id="Senas_Particulares" name="Senas_Particulares" class="form-control Datos_Generales" rows="4" cols="50">@Model.Senas_Particulares</textarea>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Senas_Particulares" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            </div>
+                                        </div>
+                                        <div class="form-group" id="divModelo">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Modelo</label>
+                                            <div class="col-sm-8" data-field-id="Modelo" data-attribute="269249" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Modelo">
+                                                <input class="form-control inputNumber Datos_Generales" id="Modelo" name="Modelo" type="text" value="@Model.Modelo">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Modelo" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divColor">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Color</label>
+                                            <div class="col-sm-8" data-field-id="Color" data-attribute="269250" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Color">
+                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Color must be a number." data-val-required="The Color field is required." id="Color" name="Color">
+                                                    <option value=""></option>
+                                                    @if (varColor_Vehiculo_Color != null)
+                                                    {
+                                                        foreach (var itemColor in varColor_Vehiculo_Color)
+                                                        {
+                                                            if (itemColor.Value == Convert.ToString(Model.Color))
+                                                            {
+                                                                <option value="@itemColor.Value" selected>@itemColor.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemColor.Value">@itemColor.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Color" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269250).New)
+                                            {
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Color_Vehiculo', 'Color');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="form-group" id="divPlacas">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Placas</label>
+                                            <div class="col-sm-8" data-field-id="Placas" data-attribute="269251" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Placas">
+                                                <input class="form-control Datos_Generales" id="Placas" name="Placas" type="text" value="@Model.Placas">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Placas" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divSenas_Particulares">
+                                            <label class="col-sm-2 control-label">@Resources.Robo_de_Vehiculo_PCResources.Senas_Particulares</label>
+                                            <div class="col-sm-8" data-field-id="Senas_Particulares" data-attribute="269252" data-field-name="@Resources.Robo_de_Vehiculo_PCResources.Senas_Particulares">
+                                                <textarea id="Senas_Particulares" name="Senas_Particulares" class="form-control Datos_Generales" rows="4" cols="50">@Model.Senas_Particulares</textarea>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Senas_Particulares" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-				</div>	
-                    <br />
+                            </div>
+                            <br />
                             <div class="form-actions fluid">
                                 <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
                                 <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
                                 <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
                                 @if (!ViewBag.Consult)
                                 {
-                                    <input type="button" value="@Resources.Resources.Guardar" id="Robo_de_Vehiculo_PCGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Robo_de_Vehiculo_PCCreateForm');"  />
-									<button onclick="Robo_de_Vehiculo_PCGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Robo_de_Vehiculo_PCBusinessRule-form">
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Robo_de_Vehiculo_PCGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Robo_de_Vehiculo_PCCreateForm');" />
+                                    <button onclick="Robo_de_Vehiculo_PCGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Robo_de_Vehiculo_PCBusinessRule-form">
                                         <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
                                             <i class="fa fa-cogs fa-spin"></i>
                                         </a>
-                                    </button>                                    
+                                    </button>
 
-                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Robo_de_Vehiculo_PCGuardarYNuevo" onclick="return checkClientValidate('Robo_de_Vehiculo_PCCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
-                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Robo_de_Vehiculo_PCGuardarYCopia" onclick="return checkClientValidate('Robo_de_Vehiculo_PCCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Robo_de_Vehiculo_PCGuardarYNuevo" onclick="return checkClientValidate('Robo_de_Vehiculo_PCCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew" />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Robo_de_Vehiculo_PCGuardarYCopia" onclick="return checkClientValidate('Robo_de_Vehiculo_PCCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy" />
                                     if (permission.Configure)
                                     {
                                         <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
                                     }
                                 }
-								<input type="button" value="Anterior" id="Robo_de_Vehiculo_PCAnterior" class="btn btn-w-m btn-primary btn_save" />
-                                <input type="button" value="Siguiente" id="Robo_de_Vehiculo_PCSiguiente" class="btn btn-w-m btn-primary btn_save" />
+                                <input type="button" value="Anterior" id="Robo_de_Vehiculo_PCAnterior" class="btn btn-w-m btn-primary btn_save" />
+                                <input type="button" value="Finalizar" id="Robo_de_Vehiculo_PCSiguiente" class="btn btn-w-m btn-primary btn_save" />
                                 <input type="hidden" id="hdnConfigureType" />
-								<input type="hidden" id="hdnRobo_de_Vehiculo_PCBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnRobo_de_Vehiculo_PCBusinessRuleFieldId" />
                                 <input type="hidden" id="hdnRobo_de_Vehiculo_PCBusinessRuleFieldName" />
                                 <input type="hidden" id="hdnRobo_de_Vehiculo_PCBusinessRuleAttribute" />
 
@@ -434,47 +439,53 @@
                                     </a>
                                 </button>
                             </div>
-						</div>
-					</div>
+                        </div>
+                    </div>
                 }
+            </div>
         </div>
     </div>
-</div>
-<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+    <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
 
-@section Styles {
-<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
-    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
-    @Styles.Render("~/plugins/dateRangeStyles")
-    @Styles.Render("~/plugins/dataPickerStyles")
-    @Styles.Render("~/plugins/clockpickerStyles")
-    @Styles.Render("~/plugins/awesomeCheckboxStyles")
-    @Styles.Render("~/plugins/select2Styles")
-    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
-<style>
-    .dataTables_filter {
-        display: none;
-    }
-    .select2-results{background-color:#fff;}
-    .select2-container .select2-dropdown{height:auto !important;}
+    @section Styles {
+        <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+        @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+        @Styles.Render("~/plugins/dateRangeStyles")
+        @Styles.Render("~/plugins/dataPickerStyles")
+        @Styles.Render("~/plugins/clockpickerStyles")
+        @Styles.Render("~/plugins/awesomeCheckboxStyles")
+        @Styles.Render("~/plugins/select2Styles")
+        @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+        <style>
+                    .dataTables_filter {
+                        display: none;
+                    }
 
-    div.dataTables_info {
-        display: inline-block;
-        float: right;
-    }
-        /*i {
-        font-size: 25px !important;
-        display: block;
-        color: #676a6c;
-        margin-left: 6px;
-        margin-right: 6px;
-    }*/
+                    .select2-results {
+                        background-color: #fff;
+                    }
 
-    .fullWidth {
-        width: 100%;
+                    .select2-container .select2-dropdown {
+                        height: auto !important;
+                    }
+
+                    div.dataTables_info {
+                        display: inline-block;
+                        float: right;
+                    }
+                    /*i {
+                font-size: 25px !important;
+                display: block;
+                color: #676a6c;
+                margin-left: 6px;
+                margin-right: 6px;
+            }*/
+
+                    .fullWidth {
+                        width: 100%;
+                    }
+        </style>
     }
-</style>
-}
 
     <script type="text/javascript" src="~/Uploads/Scripts/Robo_de_Vehiculo_PC.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
     <script type="text/javascript" src="~/Scripts/Custom/Robo_de_Vehiculo_PCGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
@@ -482,29 +493,29 @@
     <script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
     <script src="~/Scripts/plugins/jsPdf/jspdf.min.js"></script>
 
-@section Scripts {
+    @section Scripts {
 
 
-    <script type="text/javascript">
-        
+        <script type="text/javascript">
+
 
 
 	function GetTraduction(text) {
          switch (text.toLowerCase()) {
             case 'edit':
-                return "@Resources.Resources.Edit";          
+                return "@Resources.Resources.Edit";
             case 'delete':
-                return "@Resources.Resources.Delete";               
+                return "@Resources.Resources.Delete";
             case 'required':
-                return "@Resources.Resources.Required";              
+                return "@Resources.Resources.Required";
             case 'notrequired':
-                return "@Resources.Resources.NotRequired";           
+                return "@Resources.Resources.NotRequired";
             case 'enabled':
-                return "@Resources.Resources.Enabled";         
+                return "@Resources.Resources.Enabled";
             case 'disabled':
-                return "@Resources.Resources.Disabled";           
+                return "@Resources.Resources.Disabled";
             case 'visible':
-                return "@Resources.Resources.Visible";            
+                return "@Resources.Resources.Visible";
             case 'botvisible':
                 return "@Resources.Resources.InVisible";
             case 'messagednoinvisible':
@@ -514,12 +525,12 @@
             case 'defaultvalue':
                 return "@Resources.Resources.DefaultValue";
             case 'helptext':
-                return "@Resources.Resources.HelpText";                     
+                return "@Resources.Resources.HelpText";
             default:
                 return "";
         }
     }
-	
+
 	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
 	    var isPartial = ('@ViewBag.IsPartial' == 'True');
         var isMR = ('@ViewBag.isMR' == 'True');
@@ -538,16 +549,16 @@
             initiateUIControls();
 			$('a').tooltip();
 			$('.loading').css('display', 'none');
-			
-			 if (viewInEframe) {             
+
+			 if (viewInEframe) {
                 $('#Robo_de_Vehiculo_PCGuardarYNuevo').hide();
                 $('#Robo_de_Vehiculo_PCGuardarYCopia').hide();
-                $('#Robo_de_Vehiculo_PCCancelar').hide(); 
+                $('#Robo_de_Vehiculo_PCCancelar').hide();
                 $('#ConfigureSave').hide();
                 $('#Robo_de_Vehiculo_PCGuardar').val('Actualizar Seccion ' + '@Resources.Robo_de_Vehiculo_PCResources.Robo_de_Vehiculo_PC' )
             }
 
-			
+
 			       var AutoCompleteSolicitudData =[];
        $(".AutoCompleteRobo_de_Vehiculo_PC_Solicitud").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -559,7 +570,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term, 
+                        query: params.term,
                     };
                 },
                 processResults: function (data, params) {
@@ -568,12 +579,12 @@
                     return {
                         results: GetAutoCompleteRobo_de_Vehiculo_PC_Solicitud_Solicitud_de_Denuncia_CiudadanaData(data),
                         pagination: {
-                            more: false 
+                            more: false
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; }, 
+            escapeMarkup: function (markup) { return markup; },
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteRobo_de_Vehiculo_PC_Solicitud");
@@ -584,7 +595,7 @@
 
 
             @if(ViewBag.IsNew)
-            { 
+            {
                 <text>$('input:checkbox').prop('checked', false);</text>
             }
 			else
@@ -596,8 +607,8 @@
 
                 </text>
             }
-            EjecutarValidacionesAlComienzo(); 
-			
+            EjecutarValidacionesAlComienzo();
+
         });
 
 
@@ -619,9 +630,9 @@
 
         }
 
-    </script>
+        </script>
 
-<script type="text/javascript">
+        <script type="text/javascript">
 var roleActivo = @Session["USERROLEID"];
 
    function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
@@ -643,7 +654,7 @@ var roleActivo = @Session["USERROLEID"];
 				return;
 			}
 		}
-			
+
 			var url = '@Url.Content("~/Frontal/Robo_de_Vehiculo_PC/GetCatalogAll")';
 			url = url.replace(/Catalog/g, catalog);
 
@@ -659,41 +670,41 @@ var roleActivo = @Session["USERROLEID"];
 					showNotification("@Resources.Resources.ErrorContactingServer", "error");
 				}
 			});
-		
+
     }
 
 var newIDInv=0;
         function SendRobo_de_Vehiculo_PCData(callBack) {
-			
-					
-		 var arr = []; 
-		 $("form#CreateRobo_de_Vehiculo_PC").find(':input').each(function( index ) {		 
+
+
+		 var arr = [];
+		 $("form#CreateRobo_de_Vehiculo_PC").find(':input').each(function( index ) {
 			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
-			{		
-				arr.push($(this).attr('id')); 
-				$(this).prop('disabled', false);  	
+			{
+				arr.push($(this).attr('id'));
+				$(this).prop('disabled', false);
 			}
 	    });
-		
+
              var formData = new FormData($("form#CreateRobo_de_Vehiculo_PC")[0]);
 			$.each( arr, function( key, value ) {
 			  $('#' +value).prop('disabled', true);
 			});
 			var id = $("#ReferenceClave").val();
             var isNew = $('#hdnIsNew').val();
-           
+
 			if (Tab_Datos_Generales && !checkClientValidate('Robo_de_Vehiculo_PCCreateForm', 'Datos_Generales')) {
 				return false;
-			}						
+			}
 
 
-			
+
 			if (isNew == "True")
             {
                 id = CreateID();
             }
 			newIDInv=id;
-			
+
 			if (Tab_Datos_Generales)
 				Save_Datos_Generales(id);
 
@@ -725,7 +736,7 @@ var newIDInv=0;
 			});
 			return newId;
 		}
-		
+
 		function OpenRules()
 		{
 			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
@@ -754,7 +765,7 @@ var newIDInv=0;
         Configure: '@permission.Configure' == 'True',
     };
 
-    
+
     //MR-var statusItems;
     //MR-var stateItems;
     //MR-var cityItems = [];
@@ -775,7 +786,7 @@ var newIDInv=0;
         else
 			location.href = "@Url.Content("~/Frontal/Robo_de_Vehiculo_PC/")";
     }
-	
+
 	function ReadScriptSettings(callback)
     {
         $.post("@Url.Content("~/Frontal/Robo_de_Vehiculo_PC/ReadScriptSettings")", function (data) {
@@ -792,7 +803,7 @@ var newIDInv=0;
             //$('#hdnConfigureType').val("0");
         }, "json");
     }
-	
+
         function SaveElementAttributes() {
             if ($('#hdnConfigureType').val() == "1") {
                 $.post("@Url.Content("~/Frontal/Robo_de_Vehiculo_PC/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
@@ -846,13 +857,13 @@ var newIDInv=0;
 			$('#Attribute').val(attribute);
                         Robo_de_Vehiculo_PCGetBusinessRule();
 		});
-		//Initialize HTML Editors            
+		//Initialize HTML Editors
   var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
   var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
   var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
   var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
-		
-		
+
+
 		function Fill_Datos_Generales()
         {
             $.ajax({
@@ -887,7 +898,7 @@ var newIDInv=0;
                 }
             });
         }
-		
+
 		function Save_Datos_Generales(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -915,7 +926,7 @@ var newIDInv=0;
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
 					} else {
 						newId = result;
-                    
+
 					}
 				},
 				error: function (result) {
@@ -926,12 +937,11 @@ var newIDInv=0;
 		}
 
 
-    </script>
-}
+        </script>
+    }
     <input type="hidden" id="FieldId" name="FieldId" value="" />
     <input type="hidden" id="FieldName" name="FieldName" value="" />
     <input type="hidden" id="ObjectId" name="ObjectId" value="" />
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
-     <input type="hidden" id="Robo_de_Vehiculo_PC_cmbLabelSelect" name="Robo_de_Vehiculo_PC_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
-
+    <input type="hidden" id="Robo_de_Vehiculo_PC_cmbLabelSelect" name="Robo_de_Vehiculo_PC_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />

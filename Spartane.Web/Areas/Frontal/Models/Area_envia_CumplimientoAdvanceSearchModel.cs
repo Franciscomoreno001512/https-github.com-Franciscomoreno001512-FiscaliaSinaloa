@@ -11,6 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public Area_envia_CumplimientoAdvanceSearchModel()
         {
+            Vigente = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -21,6 +22,8 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }
+
+        public RadioOptions Vigente { set; get; }
 
 
     }

@@ -40,8 +40,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AgenciaDescripcion { get; set; }
         public int? Ministerio_Publico_en_Turno { get; set; }
         public string Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno { get; set; }
-        public int? Solicitud_de_Denuncia_Ciudadana { get; set; }
-        public string Solicitud_de_Denuncia_CiudadanaFolio { get; set; }
         public string Nombres_turno { get; set; }
         public string Apellido_Paterno_turno { get; set; }
         public string Apellido_Materno_turno { get; set; }
@@ -56,6 +54,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Urgencia_turno { get; set; }
         public int? Tipo_de_Urgencia_turno { get; set; }
         public string Tipo_de_Urgencia_turnoDescripcion { get; set; }
+        public int? Solicitud_de_Denuncia_Ciudadana { get; set; }
+        public string Solicitud_de_Denuncia_CiudadanaFolio { get; set; }
         public int? Motivo_Finalizacion_Turno { get; set; }
         public string Motivo_Finalizacion_TurnoDescripcion { get; set; }
         public string Observaciones_turno { get; set; }

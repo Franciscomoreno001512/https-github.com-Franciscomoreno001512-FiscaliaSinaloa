@@ -40,6 +40,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Region.Descripcion";
                 case "nuat":
                     return "expediente_ministerio_publico.nuat";
+                case "Numero_de_Denuncia":
+                    return "expediente_ministerio_publico.Numero_de_Denuncia";
                 case "nic":
                     return "expediente_ministerio_publico.nic";
                 case "detenido[Descripcion]":
@@ -49,6 +51,14 @@ namespace Spartane.Web.SqlModelMapper
                     return "expediente_ministerio_publico.hora_del_detenido";
                 case "hora_puesto_a_disposicion":
                     return "expediente_ministerio_publico.hora_puesto_a_disposicion";
+                case "Urgencia":
+                    return "expediente_ministerio_publico.Urgencia";
+                case "Tipo_de_urgencia[Descripcion]":
+                case "Tipo_de_urgenciaDescripcion":
+                    return "Tipo_de_Urgencia.Descripcion";
+                case "Pre_Denuncia[Folio]":
+                case "Pre_DenunciaFolio":
+                    return "Solicitud_de_Denuncia_Ciudadana.Folio";
                 case "estatus[descripcion]":
                 case "estatusdescripcion":
                     return "estatus_mpi.descripcion";
@@ -156,6 +166,10 @@ namespace Spartane.Web.SqlModelMapper
                 {
 
                 }
+            }
+            if (columnName == "Urgencia")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "Fecha_del_Hecho")
             {

@@ -32,6 +32,17 @@ function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Numero_de_Expediente_AT_
     }
     return AutoCompleteNumero_de_Expediente_ATData;
 }
+var AutoCompleteDiligencia_ATData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Diligencia_AT_Detalle_de_Documentos_MPOData(data) {
+	AutoCompleteDiligencia_ATData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteDiligencia_ATData.push({
+            id: data[i].Clave,
+            text: data[i].Observaciones
+        });
+    }
+    return AutoCompleteDiligencia_ATData;
+}
 var AutoCompleteNumero_de_Expediente_MPData = [];
 function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Numero_de_Expediente_MP_expediente_ministerio_publicoData(data) {
 	AutoCompleteNumero_de_Expediente_MPData = [];
@@ -42,6 +53,17 @@ function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Numero_de_Expediente_MP_
         });
     }
     return AutoCompleteNumero_de_Expediente_MPData;
+}
+var AutoCompleteDiligencia_MPData = [];
+function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Diligencia_MP_Diligencias_MPData(data) {
+	AutoCompleteDiligencia_MPData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteDiligencia_MPData.push({
+            id: data[i].Clave,
+            text: data[i].Observaciones
+        });
+    }
+    return AutoCompleteDiligencia_MPData;
 }
 var AutoCompleteSolicitudData = [];
 function GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Solicitud_DocumentoData(data) {
@@ -163,9 +185,15 @@ function ClearControls() {
     $('#Numero_de_Expediente_AT').empty();
     $("#Numero_de_Expediente_AT").append('<option value=""></option>');
     $('#Numero_de_Expediente_AT').val('0').trigger('change');
+    $('#Diligencia_AT').empty();
+    $("#Diligencia_AT").append('<option value=""></option>');
+    $('#Diligencia_AT').val('0').trigger('change');
     $('#Numero_de_Expediente_MP').empty();
     $("#Numero_de_Expediente_MP").append('<option value=""></option>');
     $('#Numero_de_Expediente_MP').val('0').trigger('change');
+    $('#Diligencia_MP').empty();
+    $("#Diligencia_MP").append('<option value=""></option>');
+    $('#Diligencia_MP').val('0').trigger('change');
     $('#Solicitud').empty();
     $("#Solicitud").append('<option value=""></option>');
     $('#Solicitud').val('0').trigger('change');
@@ -322,9 +350,15 @@ $(document).ready(function () {
     $('#Numero_de_Expediente_AT').empty();
     $("#Numero_de_Expediente_AT").append('<option value=""></option>');
     $('#Numero_de_Expediente_AT').val('0').trigger('change');
+    $('#Diligencia_AT').empty();
+    $("#Diligencia_AT").append('<option value=""></option>');
+    $('#Diligencia_AT').val('0').trigger('change');
     $('#Numero_de_Expediente_MP').empty();
     $("#Numero_de_Expediente_MP").append('<option value=""></option>');
     $('#Numero_de_Expediente_MP').val('0').trigger('change');
+    $('#Diligencia_MP').empty();
+    $("#Diligencia_MP").append('<option value=""></option>');
+    $('#Diligencia_MP').val('0').trigger('change');
     $('#Solicitud').empty();
     $("#Solicitud").append('<option value=""></option>');
     $('#Solicitud').val('0').trigger('change');

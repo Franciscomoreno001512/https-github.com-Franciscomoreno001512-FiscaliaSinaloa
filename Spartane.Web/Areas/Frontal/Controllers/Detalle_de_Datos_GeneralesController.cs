@@ -10,8 +10,8 @@ using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
-using Spartane.Core.Domain.Nacionalidad;
 using Spartane.Core.Domain.Ocupacion;
+using Spartane.Core.Domain.Nacionalidad;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Corporacion;
 using Spartane.Core.Domain.Pais;
@@ -36,6 +36,10 @@ using Spartane.Core.Domain.Calidad_Migratoria;
 using Spartane.Core.Domain.Dialecto;
 using Spartane.Core.Domain.Estado_de_Involucrado;
 using Spartane.Core.Domain.Tipo_de_Inimputabilidad;
+using Spartane.Core.Domain.Discapacidades_Mentales;
+using Spartane.Core.Domain.Discapacidades_Fisicas;
+using Spartane.Core.Domain.Discapacidades_Sensoriales;
+using Spartane.Core.Domain.Discapacidades_Psicosociales;
 using Spartane.Core.Domain.Adicciones_de_Involucrado;
 
 using Spartane.Core.Domain.Adicciones;
@@ -57,10 +61,6 @@ using Spartane.Core.Domain.Otras_Identificaciones_Involucrado;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
 
 
-using Spartane.Core.Domain.Discapacidades_Mentales;
-using Spartane.Core.Domain.Discapacidades_Fisicas;
-using Spartane.Core.Domain.Discapacidades_Sensoriales;
-using Spartane.Core.Domain.Discapacidades_Psicosociales;
 using Spartane.Core.Domain.Otros_Domicilios_Involucrado;
 
 using Spartane.Core.Domain.Estado;
@@ -152,8 +152,8 @@ using Spartane.Web.Areas.WebApiConsumer.A_Tiempo;
 using Spartane.Web.Areas.WebApiConsumer.Genero;
 using Spartane.Web.Areas.WebApiConsumer.Estado_Civil;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Identificacion;
-using Spartane.Web.Areas.WebApiConsumer.Nacionalidad;
 using Spartane.Web.Areas.WebApiConsumer.Ocupacion;
+using Spartane.Web.Areas.WebApiConsumer.Nacionalidad;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Corporacion;
 using Spartane.Web.Areas.WebApiConsumer.Pais;
@@ -178,6 +178,10 @@ using Spartane.Web.Areas.WebApiConsumer.Calidad_Migratoria;
 using Spartane.Web.Areas.WebApiConsumer.Dialecto;
 using Spartane.Web.Areas.WebApiConsumer.Estado_de_Involucrado;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Inimputabilidad;
+using Spartane.Web.Areas.WebApiConsumer.Discapacidades_Mentales;
+using Spartane.Web.Areas.WebApiConsumer.Discapacidades_Fisicas;
+using Spartane.Web.Areas.WebApiConsumer.Discapacidades_Sensoriales;
+using Spartane.Web.Areas.WebApiConsumer.Discapacidades_Psicosociales;
 using Spartane.Web.Areas.WebApiConsumer.Adicciones_de_Involucrado;
 
 using Spartane.Web.Areas.WebApiConsumer.Adicciones;
@@ -194,10 +198,6 @@ using Spartane.Web.Areas.WebApiConsumer.Otras_Identificaciones_Involucrado;
 
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Identificacion;
 
-using Spartane.Web.Areas.WebApiConsumer.Discapacidades_Mentales;
-using Spartane.Web.Areas.WebApiConsumer.Discapacidades_Fisicas;
-using Spartane.Web.Areas.WebApiConsumer.Discapacidades_Sensoriales;
-using Spartane.Web.Areas.WebApiConsumer.Discapacidades_Psicosociales;
 using Spartane.Web.Areas.WebApiConsumer.Otros_Domicilios_Involucrado;
 
 using Spartane.Web.Areas.WebApiConsumer.Estado;
@@ -306,8 +306,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IGeneroApiConsumer _IGeneroApiConsumer;
         private IEstado_CivilApiConsumer _IEstado_CivilApiConsumer;
         private ITipo_de_IdentificacionApiConsumer _ITipo_de_IdentificacionApiConsumer;
-        private INacionalidadApiConsumer _INacionalidadApiConsumer;
         private IOcupacionApiConsumer _IOcupacionApiConsumer;
+        private INacionalidadApiConsumer _INacionalidadApiConsumer;
         private IMunicipioApiConsumer _IMunicipioApiConsumer;
         private ICorporacionApiConsumer _ICorporacionApiConsumer;
         private IPaisApiConsumer _IPaisApiConsumer;
@@ -326,6 +326,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDialectoApiConsumer _IDialectoApiConsumer;
         private IEstado_de_InvolucradoApiConsumer _IEstado_de_InvolucradoApiConsumer;
         private ITipo_de_InimputabilidadApiConsumer _ITipo_de_InimputabilidadApiConsumer;
+        private IDiscapacidades_MentalesApiConsumer _IDiscapacidades_MentalesApiConsumer;
+        private IDiscapacidades_FisicasApiConsumer _IDiscapacidades_FisicasApiConsumer;
+        private IDiscapacidades_SensorialesApiConsumer _IDiscapacidades_SensorialesApiConsumer;
+        private IDiscapacidades_PsicosocialesApiConsumer _IDiscapacidades_PsicosocialesApiConsumer;
         private IAdicciones_de_InvolucradoApiConsumer _IAdicciones_de_InvolucradoApiConsumer;
 
         private IAdiccionesApiConsumer _IAdiccionesApiConsumer;
@@ -341,10 +345,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IOtras_Identificaciones_InvolucradoApiConsumer _IOtras_Identificaciones_InvolucradoApiConsumer;
 
 
-        private IDiscapacidades_MentalesApiConsumer _IDiscapacidades_MentalesApiConsumer;
-        private IDiscapacidades_FisicasApiConsumer _IDiscapacidades_FisicasApiConsumer;
-        private IDiscapacidades_SensorialesApiConsumer _IDiscapacidades_SensorialesApiConsumer;
-        private IDiscapacidades_PsicosocialesApiConsumer _IDiscapacidades_PsicosocialesApiConsumer;
         private IOtros_Domicilios_InvolucradoApiConsumer _IOtros_Domicilios_InvolucradoApiConsumer;
 
 
@@ -400,7 +400,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Datos_GeneralesController(IDetalle_de_Datos_GeneralesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ITipo_de_ComparecienteApiConsumer Tipo_de_ComparecienteApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IOcupacionApiConsumer OcupacionApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , ICorporacionApiConsumer CorporacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IGrupo_al_que_PerteneceApiConsumer Grupo_al_que_PerteneceApiConsumer , IPreferencia_SexualApiConsumer Preferencia_SexualApiConsumer , IEtniaApiConsumer EtniaApiConsumer , IReligionApiConsumer ReligionApiConsumer , IServicio_MedicoApiConsumer Servicio_MedicoApiConsumer , IEscolaridadApiConsumer EscolaridadApiConsumer , IEspecialidadApiConsumer EspecialidadApiConsumer , IEstudios_SuperioresApiConsumer Estudios_SuperioresApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , ICalidad_MigratoriaApiConsumer Calidad_MigratoriaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IEstado_de_InvolucradoApiConsumer Estado_de_InvolucradoApiConsumer , ITipo_de_InimputabilidadApiConsumer Tipo_de_InimputabilidadApiConsumer , IAdicciones_de_InvolucradoApiConsumer Adicciones_de_InvolucradoApiConsumer , IAdiccionesApiConsumer AdiccionesApiConsumer  , ILugares_Frecuentes_InvolucradoApiConsumer Lugares_Frecuentes_InvolucradoApiConsumer , ILugaresApiConsumer LugaresApiConsumer  , IDatos_Personales_Adicionales_InvolucradoApiConsumer Datos_Personales_Adicionales_InvolucradoApiConsumer , IRedes_SocialesApiConsumer Redes_SocialesApiConsumer  , IOtras_Identificaciones_InvolucradoApiConsumer Otras_Identificaciones_InvolucradoApiConsumer  , IDiscapacidades_MentalesApiConsumer Discapacidades_MentalesApiConsumer , IDiscapacidades_FisicasApiConsumer Discapacidades_FisicasApiConsumer , IDiscapacidades_SensorialesApiConsumer Discapacidades_SensorialesApiConsumer , IDiscapacidades_PsicosocialesApiConsumer Discapacidades_PsicosocialesApiConsumer , IOtros_Domicilios_InvolucradoApiConsumer Otros_Domicilios_InvolucradoApiConsumer  , ILocalidadApiConsumer LocalidadApiConsumer , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , IDocumento_ExtraviadoApiConsumer Documento_ExtraviadoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IForma_OjosApiConsumer Forma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , ITamano_de_NarizApiConsumer Tamano_de_NarizApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , ICausas_de_InterrupcionApiConsumer Causas_de_InterrupcionApiConsumer )
+        public Detalle_de_Datos_GeneralesController(IDetalle_de_Datos_GeneralesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ITipo_de_ComparecienteApiConsumer Tipo_de_ComparecienteApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , IOcupacionApiConsumer OcupacionApiConsumer , INacionalidadApiConsumer NacionalidadApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , ICorporacionApiConsumer CorporacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IGrupo_al_que_PerteneceApiConsumer Grupo_al_que_PerteneceApiConsumer , IPreferencia_SexualApiConsumer Preferencia_SexualApiConsumer , IEtniaApiConsumer EtniaApiConsumer , IReligionApiConsumer ReligionApiConsumer , IServicio_MedicoApiConsumer Servicio_MedicoApiConsumer , IEscolaridadApiConsumer EscolaridadApiConsumer , IEspecialidadApiConsumer EspecialidadApiConsumer , IEstudios_SuperioresApiConsumer Estudios_SuperioresApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , ICalidad_MigratoriaApiConsumer Calidad_MigratoriaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IEstado_de_InvolucradoApiConsumer Estado_de_InvolucradoApiConsumer , ITipo_de_InimputabilidadApiConsumer Tipo_de_InimputabilidadApiConsumer , IDiscapacidades_MentalesApiConsumer Discapacidades_MentalesApiConsumer , IDiscapacidades_FisicasApiConsumer Discapacidades_FisicasApiConsumer , IDiscapacidades_SensorialesApiConsumer Discapacidades_SensorialesApiConsumer , IDiscapacidades_PsicosocialesApiConsumer Discapacidades_PsicosocialesApiConsumer , IAdicciones_de_InvolucradoApiConsumer Adicciones_de_InvolucradoApiConsumer , IAdiccionesApiConsumer AdiccionesApiConsumer  , ILugares_Frecuentes_InvolucradoApiConsumer Lugares_Frecuentes_InvolucradoApiConsumer , ILugaresApiConsumer LugaresApiConsumer  , IDatos_Personales_Adicionales_InvolucradoApiConsumer Datos_Personales_Adicionales_InvolucradoApiConsumer , IRedes_SocialesApiConsumer Redes_SocialesApiConsumer  , IOtras_Identificaciones_InvolucradoApiConsumer Otras_Identificaciones_InvolucradoApiConsumer  , IOtros_Domicilios_InvolucradoApiConsumer Otros_Domicilios_InvolucradoApiConsumer  , ILocalidadApiConsumer LocalidadApiConsumer , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , IDocumento_ExtraviadoApiConsumer Documento_ExtraviadoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IForma_OjosApiConsumer Forma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , ITamano_de_NarizApiConsumer Tamano_de_NarizApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer , ICausas_de_InterrupcionApiConsumer Causas_de_InterrupcionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -422,8 +422,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IGeneroApiConsumer = GeneroApiConsumer;
             this._IEstado_CivilApiConsumer = Estado_CivilApiConsumer;
             this._ITipo_de_IdentificacionApiConsumer = Tipo_de_IdentificacionApiConsumer;
-            this._INacionalidadApiConsumer = NacionalidadApiConsumer;
             this._IOcupacionApiConsumer = OcupacionApiConsumer;
+            this._INacionalidadApiConsumer = NacionalidadApiConsumer;
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._ICorporacionApiConsumer = CorporacionApiConsumer;
             this._IPaisApiConsumer = PaisApiConsumer;
@@ -448,6 +448,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IDialectoApiConsumer = DialectoApiConsumer;
             this._IEstado_de_InvolucradoApiConsumer = Estado_de_InvolucradoApiConsumer;
             this._ITipo_de_InimputabilidadApiConsumer = Tipo_de_InimputabilidadApiConsumer;
+            this._IDiscapacidades_MentalesApiConsumer = Discapacidades_MentalesApiConsumer;
+            this._IDiscapacidades_FisicasApiConsumer = Discapacidades_FisicasApiConsumer;
+            this._IDiscapacidades_SensorialesApiConsumer = Discapacidades_SensorialesApiConsumer;
+            this._IDiscapacidades_PsicosocialesApiConsumer = Discapacidades_PsicosocialesApiConsumer;
             this._IAdicciones_de_InvolucradoApiConsumer = Adicciones_de_InvolucradoApiConsumer;
 
             this._IAdiccionesApiConsumer = AdiccionesApiConsumer;
@@ -464,10 +468,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             this._ITipo_de_IdentificacionApiConsumer = Tipo_de_IdentificacionApiConsumer;
 
-            this._IDiscapacidades_MentalesApiConsumer = Discapacidades_MentalesApiConsumer;
-            this._IDiscapacidades_FisicasApiConsumer = Discapacidades_FisicasApiConsumer;
-            this._IDiscapacidades_SensorialesApiConsumer = Discapacidades_SensorialesApiConsumer;
-            this._IDiscapacidades_PsicosocialesApiConsumer = Discapacidades_PsicosocialesApiConsumer;
             this._IOtros_Domicilios_InvolucradoApiConsumer = Otros_Domicilios_InvolucradoApiConsumer;
 
             this._IEstadoApiConsumer = EstadoApiConsumer;
@@ -650,12 +650,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Numero_de_Identificacion = Detalle_de_Datos_GeneralesData.Numero_de_Identificacion
                     ,CURP = Detalle_de_Datos_GeneralesData.CURP
                     ,RFC = Detalle_de_Datos_GeneralesData.RFC
+                    ,Ocupacion = Detalle_de_Datos_GeneralesData.Ocupacion
+                    ,OcupacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Ocupacion), "Ocupacion") ??  (string)Detalle_de_Datos_GeneralesData.Ocupacion_Ocupacion.Descripcion
                     ,Calidad_Juridica = Detalle_de_Datos_GeneralesData.Calidad_Juridica
                     ,Razon_Social = Detalle_de_Datos_GeneralesData.Razon_Social
                     ,Nacionalidad = Detalle_de_Datos_GeneralesData.Nacionalidad
                     ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Nacionalidad), "Nacionalidad") ??  (string)Detalle_de_Datos_GeneralesData.Nacionalidad_Nacionalidad.NacionalidadC
-                    ,Ocupacion = Detalle_de_Datos_GeneralesData.Ocupacion
-                    ,OcupacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Ocupacion), "Ocupacion") ??  (string)Detalle_de_Datos_GeneralesData.Ocupacion_Ocupacion.Descripcion
                     ,Municipio_Corporacion = Detalle_de_Datos_GeneralesData.Municipio_Corporacion
                     ,Municipio_CorporacionNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Municipio_Corporacion), "Municipio") ??  (string)Detalle_de_Datos_GeneralesData.Municipio_Corporacion_Municipio.Nombre
                     ,Corporacion = Detalle_de_Datos_GeneralesData.Corporacion
@@ -1514,12 +1514,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Numero_de_Identificacion = Detalle_de_Datos_GeneralesData.Numero_de_Identificacion
                     ,CURP = Detalle_de_Datos_GeneralesData.CURP
                     ,RFC = Detalle_de_Datos_GeneralesData.RFC
+                    ,Ocupacion = Detalle_de_Datos_GeneralesData.Ocupacion
+                    ,OcupacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Ocupacion), "Ocupacion") ??  (string)Detalle_de_Datos_GeneralesData.Ocupacion_Ocupacion.Descripcion
                     ,Calidad_Juridica = Detalle_de_Datos_GeneralesData.Calidad_Juridica
                     ,Razon_Social = Detalle_de_Datos_GeneralesData.Razon_Social
                     ,Nacionalidad = Detalle_de_Datos_GeneralesData.Nacionalidad
                     ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Nacionalidad), "Nacionalidad") ??  (string)Detalle_de_Datos_GeneralesData.Nacionalidad_Nacionalidad.NacionalidadC
-                    ,Ocupacion = Detalle_de_Datos_GeneralesData.Ocupacion
-                    ,OcupacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Ocupacion), "Ocupacion") ??  (string)Detalle_de_Datos_GeneralesData.Ocupacion_Ocupacion.Descripcion
                     ,Municipio_Corporacion = Detalle_de_Datos_GeneralesData.Municipio_Corporacion
                     ,Municipio_CorporacionNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Datos_GeneralesData.Municipio_Corporacion), "Municipio") ??  (string)Detalle_de_Datos_GeneralesData.Municipio_Corporacion_Municipio.Nombre
                     ,Corporacion = Detalle_de_Datos_GeneralesData.Corporacion
@@ -2459,6 +2459,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public ActionResult GetOcupacionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IOcupacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IOcupacionApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Ocupacion", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 		[HttpGet]
         public ActionResult GetNacionalidadAll()
         {
@@ -2481,18 +2502,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public ActionResult GetOcupacionAll()
+        public ActionResult GetMunicipioAll()
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IOcupacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IOcupacionApiConsumer.SelAll(false).Resource;
+                _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMunicipioApiConsumer.SelAll(false).Resource;
                 
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Ocupacion", "Descripcion")?? m.Descripcion,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre")?? m.Nombre,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -2501,7 +2522,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        
         [HttpGet]
         public ActionResult GetCorporacionAll()
         {
@@ -2565,27 +2585,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		[HttpGet]
-        public ActionResult GetMunicipioAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IMunicipioApiConsumer.SelAll(false).Resource;
-				
-                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre")?? m.Nombre,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
+		
 		[HttpGet]
         public ActionResult GetColoniaAll()
         {
@@ -4815,10 +4815,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Identificacion = m.Numero_de_Identificacion
 			,CURP = m.CURP
 			,RFC = m.RFC
+                        ,OcupacionDescripcion = CultureHelper.GetTraduction(m.Ocupacion_Ocupacion.Clave.ToString(), "Descripcion") ?? (string)m.Ocupacion_Ocupacion.Descripcion
 			,Calidad_Juridica = m.Calidad_Juridica
 			,Razon_Social = m.Razon_Social
                         ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
-                        ,OcupacionDescripcion = CultureHelper.GetTraduction(m.Ocupacion_Ocupacion.Clave.ToString(), "Descripcion") ?? (string)m.Ocupacion_Ocupacion.Descripcion
                         ,Municipio_CorporacionNombre = CultureHelper.GetTraduction(m.Municipio_Corporacion_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Corporacion_Municipio.Nombre
                         ,CorporacionDescripcion = CultureHelper.GetTraduction(m.Corporacion_Corporacion.Clave.ToString(), "Descripcion") ?? (string)m.Corporacion_Corporacion.Descripcion
                         ,Pais_de_NacimientoNombre = CultureHelper.GetTraduction(m.Pais_de_Nacimiento_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_de_Nacimiento_Pais.Nombre
@@ -5110,10 +5110,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Identificacion = m.Numero_de_Identificacion
 			,CURP = m.CURP
 			,RFC = m.RFC
+                        ,OcupacionDescripcion = CultureHelper.GetTraduction(m.Ocupacion_Ocupacion.Clave.ToString(), "Descripcion") ?? (string)m.Ocupacion_Ocupacion.Descripcion
 			,Calidad_Juridica = m.Calidad_Juridica
 			,Razon_Social = m.Razon_Social
                         ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
-                        ,OcupacionDescripcion = CultureHelper.GetTraduction(m.Ocupacion_Ocupacion.Clave.ToString(), "Descripcion") ?? (string)m.Ocupacion_Ocupacion.Descripcion
                         ,Municipio_CorporacionNombre = CultureHelper.GetTraduction(m.Municipio_Corporacion_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Corporacion_Municipio.Nombre
                         ,CorporacionDescripcion = CultureHelper.GetTraduction(m.Corporacion_Corporacion.Clave.ToString(), "Descripcion") ?? (string)m.Corporacion_Corporacion.Descripcion
                         ,Pais_de_NacimientoNombre = CultureHelper.GetTraduction(m.Pais_de_Nacimiento_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_de_Nacimiento_Pais.Nombre
@@ -5394,7 +5394,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Pais.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Pais.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IPaisApiConsumer.ListaSelAll(1, 20,elWhere , " Pais.Nombre ASC ").Resource;
                
@@ -5421,7 +5421,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Estado.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Estado.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IEstadoApiConsumer.ListaSelAll(1, 20,elWhere , " Estado.Nombre ASC ").Resource;
                
@@ -5448,7 +5448,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Municipio.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Municipio.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IMunicipioApiConsumer.ListaSelAll(1, 20,elWhere , " Municipio.Nombre ASC ").Resource;
                
@@ -5475,12 +5475,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-                //var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Pais.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-
-                //fjmore
-                var elWhere = " (cast(Pais.Clave as nvarchar(max)) COLLATE Latin1_general_CI_AI LIKE '%" + query.Trim() + "%' COLLATE Latin1_general_CI_AI or cast((Pais.Nombre) as nvarchar(max)) COLLATE Latin1_general_CI_AI LIKE '%" + query.Trim() + "%' COLLATE Latin1_general_CI_AI) " + where;
-
-                elWhere = HttpUtility.UrlEncode(elWhere);
+				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Pais.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IPaisApiConsumer.ListaSelAll(1, 20,elWhere , " Pais.Nombre ASC ").Resource;
                
                 foreach (var item in result.Paiss)
@@ -5506,7 +5502,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Estado.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Estado.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IEstadoApiConsumer.ListaSelAll(1, 20,elWhere , " Estado.Nombre ASC ").Resource;
                
@@ -5533,7 +5529,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Municipio.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Municipio.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IMunicipioApiConsumer.ListaSelAll(1, 20,elWhere , " Municipio.Nombre ASC ").Resource;
                
@@ -5560,7 +5556,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Colonia.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
                
@@ -5587,7 +5583,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Colonia.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
                
@@ -5623,7 +5619,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Estado.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Estado.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IEstadoApiConsumer.ListaSelAll(1, 20,elWhere , " Estado.Nombre ASC ").Resource;
                
@@ -5650,7 +5646,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Municipio.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Municipio.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IMunicipioApiConsumer.ListaSelAll(1, 20,elWhere , " Municipio.Nombre ASC ").Resource;
                
@@ -5677,7 +5673,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Colonia.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
                
@@ -5704,7 +5700,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Colonia.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
                
@@ -5732,7 +5728,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Pais.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Pais.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IPaisApiConsumer.ListaSelAll(1, 20,elWhere , " Pais.Nombre ASC ").Resource;
                
@@ -5759,7 +5755,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Pais.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Pais.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IPaisApiConsumer.ListaSelAll(1, 20,elWhere , " Pais.Nombre ASC ").Resource;
                
@@ -5786,7 +5782,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Estado.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Estado.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IEstadoApiConsumer.ListaSelAll(1, 20,elWhere , " Estado.Nombre ASC ").Resource;
                
@@ -5813,7 +5809,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Municipio.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Municipio.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IMunicipioApiConsumer.ListaSelAll(1, 20,elWhere , " Municipio.Nombre ASC ").Resource;
                
@@ -5840,7 +5836,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Colonia.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
                
@@ -5867,7 +5863,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Colonia.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
                
@@ -5894,7 +5890,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Pais.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Pais.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Pais.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IPaisApiConsumer.ListaSelAll(1, 20,elWhere , " Pais.Nombre ASC ").Resource;
                
@@ -5921,7 +5917,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Estado.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Estado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Estado.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IEstadoApiConsumer.ListaSelAll(1, 20,elWhere , " Estado.Nombre ASC ").Resource;
                
@@ -5948,7 +5944,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Municipio.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Municipio.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Municipio.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IMunicipioApiConsumer.ListaSelAll(1, 20,elWhere , " Municipio.Nombre ASC ").Resource;
                
@@ -5975,7 +5971,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Colonia.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
                
@@ -6002,7 +5998,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(dbo.RemoveAccentMarks(Colonia.Nombre) as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
 				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
                
@@ -6468,6 +6464,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceOcupacion))
+            {
+                switch (filter.OcupacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Ocupacion.Descripcion LIKE '" + filter.AdvanceOcupacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Ocupacion.Descripcion LIKE '%" + filter.AdvanceOcupacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Ocupacion.Descripcion = '" + filter.AdvanceOcupacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Ocupacion.Descripcion LIKE '%" + filter.AdvanceOcupacion + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceOcupacionMultiple != null && filter.AdvanceOcupacionMultiple.Count() > 0)
+            {
+                var OcupacionIds = string.Join(",", filter.AdvanceOcupacionMultiple);
+
+                where += " AND Detalle_de_Datos_Generales.Ocupacion In (" + OcupacionIds + ")";
+            }
+
             if (!string.IsNullOrEmpty(filter.Calidad_Juridica))
             {
                 switch (filter.Calidad_JuridicaFilter)
@@ -6538,34 +6562,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var NacionalidadIds = string.Join(",", filter.AdvanceNacionalidadMultiple);
 
                 where += " AND Detalle_de_Datos_Generales.Nacionalidad In (" + NacionalidadIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceOcupacion))
-            {
-                switch (filter.OcupacionFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Ocupacion.Descripcion LIKE '" + filter.AdvanceOcupacion + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Ocupacion.Descripcion LIKE '%" + filter.AdvanceOcupacion + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Ocupacion.Descripcion = '" + filter.AdvanceOcupacion + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Ocupacion.Descripcion LIKE '%" + filter.AdvanceOcupacion + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceOcupacionMultiple != null && filter.AdvanceOcupacionMultiple.Count() > 0)
-            {
-                var OcupacionIds = string.Join(",", filter.AdvanceOcupacionMultiple);
-
-                where += " AND Detalle_de_Datos_Generales.Ocupacion In (" + OcupacionIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceMunicipio_Corporacion))
@@ -10770,10 +10766,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Numero_de_Identificacion = varDetalle_de_Datos_Generales.Numero_de_Identificacion
                         ,CURP = varDetalle_de_Datos_Generales.CURP
                         ,RFC = varDetalle_de_Datos_Generales.RFC
+                        ,Ocupacion = varDetalle_de_Datos_Generales.Ocupacion
                         ,Calidad_Juridica = varDetalle_de_Datos_Generales.Calidad_Juridica
                         ,Razon_Social = varDetalle_de_Datos_Generales.Razon_Social
                         ,Nacionalidad = varDetalle_de_Datos_Generales.Nacionalidad
-                        ,Ocupacion = varDetalle_de_Datos_Generales.Ocupacion
                         ,Municipio_Corporacion = varDetalle_de_Datos_Generales.Municipio_Corporacion
                         ,Corporacion = varDetalle_de_Datos_Generales.Corporacion
                         ,Pais_de_Nacimiento = varDetalle_de_Datos_Generales.Pais_de_Nacimiento
@@ -12121,10 +12117,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Identificacion = m.Numero_de_Identificacion
 			,CURP = m.CURP
 			,RFC = m.RFC
+                        ,OcupacionDescripcion = CultureHelper.GetTraduction(m.Ocupacion_Ocupacion.Clave.ToString(), "Descripcion") ?? (string)m.Ocupacion_Ocupacion.Descripcion
 			,Calidad_Juridica = m.Calidad_Juridica
 			,Razon_Social = m.Razon_Social
                         ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
-                        ,OcupacionDescripcion = CultureHelper.GetTraduction(m.Ocupacion_Ocupacion.Clave.ToString(), "Descripcion") ?? (string)m.Ocupacion_Ocupacion.Descripcion
                         ,Municipio_CorporacionNombre = CultureHelper.GetTraduction(m.Municipio_Corporacion_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Corporacion_Municipio.Nombre
                         ,CorporacionDescripcion = CultureHelper.GetTraduction(m.Corporacion_Corporacion.Clave.ToString(), "Descripcion") ?? (string)m.Corporacion_Corporacion.Descripcion
                         ,Pais_de_NacimientoNombre = CultureHelper.GetTraduction(m.Pais_de_Nacimiento_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_de_Nacimiento_Pais.Nombre
@@ -12375,10 +12371,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Identificacion = m.Numero_de_Identificacion
 			,CURP = m.CURP
 			,RFC = m.RFC
+                        ,OcupacionDescripcion = CultureHelper.GetTraduction(m.Ocupacion_Ocupacion.Clave.ToString(), "Descripcion") ?? (string)m.Ocupacion_Ocupacion.Descripcion
 			,Calidad_Juridica = m.Calidad_Juridica
 			,Razon_Social = m.Razon_Social
                         ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
-                        ,OcupacionDescripcion = CultureHelper.GetTraduction(m.Ocupacion_Ocupacion.Clave.ToString(), "Descripcion") ?? (string)m.Ocupacion_Ocupacion.Descripcion
                         ,Municipio_CorporacionNombre = CultureHelper.GetTraduction(m.Municipio_Corporacion_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Corporacion_Municipio.Nombre
                         ,CorporacionDescripcion = CultureHelper.GetTraduction(m.Corporacion_Corporacion.Clave.ToString(), "Descripcion") ?? (string)m.Corporacion_Corporacion.Descripcion
                         ,Pais_de_NacimientoNombre = CultureHelper.GetTraduction(m.Pais_de_Nacimiento_Pais.Clave.ToString(), "Pais") ?? (string)m.Pais_de_Nacimiento_Pais.Nombre
@@ -12595,10 +12591,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Numero_de_Identificacion = varDetalle_de_Datos_Generales.Numero_de_Identificacion
                         ,CURP = varDetalle_de_Datos_Generales.CURP
                         ,RFC = varDetalle_de_Datos_Generales.RFC
+                        ,Ocupacion = varDetalle_de_Datos_Generales.Ocupacion
                         ,Calidad_Juridica = varDetalle_de_Datos_Generales.Calidad_Juridica
                         ,Razon_Social = varDetalle_de_Datos_Generales.Razon_Social
                         ,Nacionalidad = varDetalle_de_Datos_Generales.Nacionalidad
-                        ,Ocupacion = varDetalle_de_Datos_Generales.Ocupacion
                         ,Municipio_Corporacion = varDetalle_de_Datos_Generales.Municipio_Corporacion
                         ,Corporacion = varDetalle_de_Datos_Generales.Corporacion
                         ,Pais_de_Nacimiento = varDetalle_de_Datos_Generales.Pais_de_Nacimiento
@@ -12719,12 +12715,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Identificacion = m.Numero_de_Identificacion
 			,CURP = m.CURP
 			,RFC = m.RFC
+                        ,Ocupacion = m.Ocupacion
+                        ,OcupacionDescripcion = CultureHelper.GetTraduction(m.Ocupacion_Ocupacion.Clave.ToString(), "Descripcion") ?? (string)m.Ocupacion_Ocupacion.Descripcion
 			,Calidad_Juridica = m.Calidad_Juridica
 			,Razon_Social = m.Razon_Social
                         ,Nacionalidad = m.Nacionalidad
                         ,NacionalidadNacionalidadC = CultureHelper.GetTraduction(m.Nacionalidad_Nacionalidad.Clave.ToString(), "Nacionalidad") ?? (string)m.Nacionalidad_Nacionalidad.NacionalidadC
-                        ,Ocupacion = m.Ocupacion
-                        ,OcupacionDescripcion = CultureHelper.GetTraduction(m.Ocupacion_Ocupacion.Clave.ToString(), "Descripcion") ?? (string)m.Ocupacion_Ocupacion.Descripcion
                         ,Municipio_Corporacion = m.Municipio_Corporacion
                         ,Municipio_CorporacionNombre = CultureHelper.GetTraduction(m.Municipio_Corporacion_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Corporacion_Municipio.Nombre
                         ,Corporacion = m.Corporacion

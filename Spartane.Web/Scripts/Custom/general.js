@@ -108,10 +108,10 @@ $(function() {
         separator: "-",
         alias: "dd/mm/yyyy"
     });
-
-    $('.input-group.date').datepicker({
-        format: "dd-mm-yyyy"
-    });
+    //fjmore se comenta porque hace que cuando seleciones una fecha se muestre el clockpicker y el datepicker
+    //$('.input-group.date').datepicker({
+    //    format: "dd-mm-yyyy"
+    //});
 
     $('.inputclientrequired').blur(function() {
         if ($(this).val() == '') {

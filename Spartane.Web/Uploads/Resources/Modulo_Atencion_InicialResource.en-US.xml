@@ -23,7 +23,6 @@
   <resource culture="en-US" name="Delegacion" value="Delegación"></resource>
   <resource culture="en-US" name="Agencia" value="Agencia"></resource>
   <resource culture="en-US" name="Ministerio_Publico_en_Turno" value="Ministerio Público en Turno"></resource>
-  <resource culture="en-US" name="Solicitud_de_Denuncia_Ciudadana" value="Solicitud de Denuncia Ciudadana"></resource>
   <resource culture="en-US" name="Nombres_turno" value="Nombre(s)"></resource>
   <resource culture="en-US" name="Apellido_Paterno_turno" value="Apellido Paterno"></resource>
   <resource culture="en-US" name="Apellido_Materno_turno" value="Apellido Materno"></resource>
@@ -34,6 +33,7 @@
   <resource culture="en-US" name="Numero_de_Identificacion_turno" value="Número de Identificación"></resource>
   <resource culture="en-US" name="Urgencia_turno" value="Urgencia"></resource>
   <resource culture="en-US" name="Tipo_de_Urgencia_turno" value="Tipo de Urgencia"></resource>
+  <resource culture="en-US" name="Solicitud_de_Denuncia_Ciudadana" value="Pre-Denuncia"></resource>
   <resource culture="en-US" name="Motivo_Finalizacion_Turno" value="Motivo Finalización Turno"></resource>
   <resource culture="en-US" name="Observaciones_turno" value="Observaciones"></resource>
   <resource culture="en-US" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>

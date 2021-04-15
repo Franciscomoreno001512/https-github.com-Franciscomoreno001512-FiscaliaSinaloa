@@ -56,6 +56,16 @@ namespace Resources
             }
         }
 
+        /// <summary>recepcion_servicios_apoyo</summary>
+        public static string recepcion_servicios_apoyo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderRegion.GetResource("recepcion_servicios_apoyo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Vigencia</summary>
         public static string Vigencia
         {

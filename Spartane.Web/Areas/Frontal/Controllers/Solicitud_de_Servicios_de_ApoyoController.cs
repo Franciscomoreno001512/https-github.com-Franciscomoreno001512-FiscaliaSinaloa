@@ -6,8 +6,11 @@ using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Region;
 using Spartane.Core.Domain.Origen_de_Invitacion;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+using Spartane.Core.Domain.Detalle_de_Documentos_MPO;
 using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Core.Domain.Diligencias_MP;
 using Spartane.Core.Domain.Documento;
+using Spartane.Core.Domain.Autoridad_Externa;
 using Spartane.Core.Domain.Estatus_de_Solicitud_de_Apoyo;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Area_de_Servicios_de_Apoyo;
@@ -33,8 +36,11 @@ using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Region;
 using Spartane.Web.Areas.WebApiConsumer.Origen_de_Invitacion;
 using Spartane.Web.Areas.WebApiConsumer.Modulo_Atencion_Inicial;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Documentos_MPO;
 using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
+using Spartane.Web.Areas.WebApiConsumer.Diligencias_MP;
 using Spartane.Web.Areas.WebApiConsumer.Documento;
+using Spartane.Web.Areas.WebApiConsumer.Autoridad_Externa;
 using Spartane.Web.Areas.WebApiConsumer.Estatus_de_Solicitud_de_Apoyo;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Area_de_Servicios_de_Apoyo;
@@ -86,8 +92,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IRegionApiConsumer _IRegionApiConsumer;
         private IOrigen_de_InvitacionApiConsumer _IOrigen_de_InvitacionApiConsumer;
         private IModulo_Atencion_InicialApiConsumer _IModulo_Atencion_InicialApiConsumer;
+        private IDetalle_de_Documentos_MPOApiConsumer _IDetalle_de_Documentos_MPOApiConsumer;
         private Iexpediente_ministerio_publicoApiConsumer _Iexpediente_ministerio_publicoApiConsumer;
+        private IDiligencias_MPApiConsumer _IDiligencias_MPApiConsumer;
         private IDocumentoApiConsumer _IDocumentoApiConsumer;
+        private IAutoridad_ExternaApiConsumer _IAutoridad_ExternaApiConsumer;
         private IEstatus_de_Solicitud_de_ApoyoApiConsumer _IEstatus_de_Solicitud_de_ApoyoApiConsumer;
         private IArea_de_Servicios_de_ApoyoApiConsumer _IArea_de_Servicios_de_ApoyoApiConsumer;
         private ISubArea_de_Servicios_de_ApoyoApiConsumer _ISubArea_de_Servicios_de_ApoyoApiConsumer;
@@ -110,7 +119,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Solicitud_de_Servicios_de_ApoyoController(ISolicitud_de_Servicios_de_ApoyoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISolicitud_de_Servicios_de_ApoyoApiConsumer Solicitud_de_Servicios_de_ApoyoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IRegionApiConsumer RegionApiConsumer , IOrigen_de_InvitacionApiConsumer Origen_de_InvitacionApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , IDocumentoApiConsumer DocumentoApiConsumer , IEstatus_de_Solicitud_de_ApoyoApiConsumer Estatus_de_Solicitud_de_ApoyoApiConsumer , IArea_de_Servicios_de_ApoyoApiConsumer Area_de_Servicios_de_ApoyoApiConsumer , ISubArea_de_Servicios_de_ApoyoApiConsumer SubArea_de_Servicios_de_ApoyoApiConsumer , ITipo_de_Asignacion_de_ApoyoApiConsumer Tipo_de_Asignacion_de_ApoyoApiConsumer , IResultado_de_RevisionApiConsumer Resultado_de_RevisionApiConsumer )
+        public Solicitud_de_Servicios_de_ApoyoController(ISolicitud_de_Servicios_de_ApoyoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISolicitud_de_Servicios_de_ApoyoApiConsumer Solicitud_de_Servicios_de_ApoyoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IRegionApiConsumer RegionApiConsumer , IOrigen_de_InvitacionApiConsumer Origen_de_InvitacionApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , IDetalle_de_Documentos_MPOApiConsumer Detalle_de_Documentos_MPOApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , IDiligencias_MPApiConsumer Diligencias_MPApiConsumer , IDocumentoApiConsumer DocumentoApiConsumer , IAutoridad_ExternaApiConsumer Autoridad_ExternaApiConsumer , IEstatus_de_Solicitud_de_ApoyoApiConsumer Estatus_de_Solicitud_de_ApoyoApiConsumer , IArea_de_Servicios_de_ApoyoApiConsumer Area_de_Servicios_de_ApoyoApiConsumer , ISubArea_de_Servicios_de_ApoyoApiConsumer SubArea_de_Servicios_de_ApoyoApiConsumer , ITipo_de_Asignacion_de_ApoyoApiConsumer Tipo_de_Asignacion_de_ApoyoApiConsumer , IResultado_de_RevisionApiConsumer Resultado_de_RevisionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -128,8 +137,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IRegionApiConsumer = RegionApiConsumer;
             this._IOrigen_de_InvitacionApiConsumer = Origen_de_InvitacionApiConsumer;
             this._IModulo_Atencion_InicialApiConsumer = Modulo_Atencion_InicialApiConsumer;
+            this._IDetalle_de_Documentos_MPOApiConsumer = Detalle_de_Documentos_MPOApiConsumer;
             this._Iexpediente_ministerio_publicoApiConsumer = expediente_ministerio_publicoApiConsumer;
+            this._IDiligencias_MPApiConsumer = Diligencias_MPApiConsumer;
             this._IDocumentoApiConsumer = DocumentoApiConsumer;
+            this._IAutoridad_ExternaApiConsumer = Autoridad_ExternaApiConsumer;
             this._IEstatus_de_Solicitud_de_ApoyoApiConsumer = Estatus_de_Solicitud_de_ApoyoApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._IArea_de_Servicios_de_ApoyoApiConsumer = Area_de_Servicios_de_ApoyoApiConsumer;
@@ -226,14 +238,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,OrigenDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Origen), "Origen_de_Invitacion") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Origen_Origen_de_Invitacion.Descripcion
                     ,Numero_de_Expediente_AT = Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_AT
                     ,Numero_de_Expediente_ATNUAT = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_AT), "Modulo_Atencion_Inicial") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.NUAT
+                    ,Diligencia_AT = Solicitud_de_Servicios_de_ApoyoData.Diligencia_AT
+                    ,Diligencia_ATObservaciones = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Diligencia_AT), "Detalle_de_Documentos_MPO") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Diligencia_AT_Detalle_de_Documentos_MPO.Observaciones
                     ,Numero_de_Expediente_MP = Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_MP
                     ,Numero_de_Expediente_MPnuat = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_MP), "expediente_ministerio_publico") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_MP_expediente_ministerio_publico.nuat
+                    ,Diligencia_MP = Solicitud_de_Servicios_de_ApoyoData.Diligencia_MP
+                    ,Diligencia_MPObservaciones = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Diligencia_MP), "Diligencias_MP") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Diligencia_MP_Diligencias_MP.Observaciones
                     ,NUAT = Solicitud_de_Servicios_de_ApoyoData.NUAT
                     ,Numero_de_Denuncia = Solicitud_de_Servicios_de_ApoyoData.Numero_de_Denuncia
                     ,Carpeta_de_Investigacion = Solicitud_de_Servicios_de_ApoyoData.Carpeta_de_Investigacion
                     ,Numero_de_Oficio = Solicitud_de_Servicios_de_ApoyoData.Numero_de_Oficio
                     ,Solicitud = Solicitud_de_Servicios_de_ApoyoData.Solicitud
                     ,SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Solicitud), "Documento") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Solicitud_Documento.Descripcion
+                    ,Solicitud_de_Apoyo_Externa = Solicitud_de_Servicios_de_ApoyoData.Solicitud_de_Apoyo_Externa
+                    ,Solicitud_Externa = Solicitud_de_Servicios_de_ApoyoData.Solicitud_Externa.GetValueOrDefault()
+                    ,Autoridad_que_Solicita = Solicitud_de_Servicios_de_ApoyoData.Autoridad_que_Solicita
+                    ,Autoridad_que_SolicitaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Autoridad_que_Solicita), "Autoridad_Externa") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Autoridad_que_Solicita_Autoridad_Externa.Descripcion
+                    ,Narracion_Solicitud = Solicitud_de_Servicios_de_ApoyoData.Narracion_Solicitud
                     ,Ver_Documento = Solicitud_de_Servicios_de_ApoyoData.Ver_Documento
                     ,Observaciones = Solicitud_de_Servicios_de_ApoyoData.Observaciones
                     ,Estatus = Solicitud_de_Servicios_de_ApoyoData.Estatus
@@ -262,6 +283,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Usuario_que_contestaName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Usuario_que_contesta), "Spartan_User") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Usuario_que_contesta_Spartan_User.Name
                     ,Dictamen = Solicitud_de_Servicios_de_ApoyoData.Dictamen
                     ,DictamenDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Dictamen), "Documento") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Dictamen_Documento.Descripcion
+                    ,numero_contestacion = Solicitud_de_Servicios_de_ApoyoData.numero_contestacion
                     ,Enviar_Contestacion = Solicitud_de_Servicios_de_ApoyoData.Enviar_Contestacion.GetValueOrDefault()
                     ,Archivo = Solicitud_de_Servicios_de_ApoyoData.Archivo
                     ,Observaciones_Contestacion = Solicitud_de_Servicios_de_ApoyoData.Observaciones_Contestacion
@@ -298,6 +320,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Origen_de_Invitacions_Origen = Origen_de_Invitacions_Origen.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Origen_de_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IAutoridad_ExternaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Autoridad_Externas_Autoridad_que_Solicita = _IAutoridad_ExternaApiConsumer.SelAll(true);
+            if (Autoridad_Externas_Autoridad_que_Solicita != null && Autoridad_Externas_Autoridad_que_Solicita.Resource != null)
+                ViewBag.Autoridad_Externas_Autoridad_que_Solicita = Autoridad_Externas_Autoridad_que_Solicita.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Autoridad_Externa", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IEstatus_de_Solicitud_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Estatus_de_Solicitud_de_Apoyos_Estatus = _IEstatus_de_Solicitud_de_ApoyoApiConsumer.SelAll(true);
@@ -406,14 +435,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,OrigenDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Origen), "Origen_de_Invitacion") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Origen_Origen_de_Invitacion.Descripcion
                     ,Numero_de_Expediente_AT = Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_AT
                     ,Numero_de_Expediente_ATNUAT = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_AT), "Modulo_Atencion_Inicial") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.NUAT
+                    ,Diligencia_AT = Solicitud_de_Servicios_de_ApoyoData.Diligencia_AT
+                    ,Diligencia_ATObservaciones = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Diligencia_AT), "Detalle_de_Documentos_MPO") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Diligencia_AT_Detalle_de_Documentos_MPO.Observaciones
                     ,Numero_de_Expediente_MP = Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_MP
                     ,Numero_de_Expediente_MPnuat = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_MP), "expediente_ministerio_publico") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Numero_de_Expediente_MP_expediente_ministerio_publico.nuat
+                    ,Diligencia_MP = Solicitud_de_Servicios_de_ApoyoData.Diligencia_MP
+                    ,Diligencia_MPObservaciones = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Diligencia_MP), "Diligencias_MP") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Diligencia_MP_Diligencias_MP.Observaciones
                     ,NUAT = Solicitud_de_Servicios_de_ApoyoData.NUAT
                     ,Numero_de_Denuncia = Solicitud_de_Servicios_de_ApoyoData.Numero_de_Denuncia
                     ,Carpeta_de_Investigacion = Solicitud_de_Servicios_de_ApoyoData.Carpeta_de_Investigacion
                     ,Numero_de_Oficio = Solicitud_de_Servicios_de_ApoyoData.Numero_de_Oficio
                     ,Solicitud = Solicitud_de_Servicios_de_ApoyoData.Solicitud
                     ,SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Solicitud), "Documento") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Solicitud_Documento.Descripcion
+                    ,Solicitud_de_Apoyo_Externa = Solicitud_de_Servicios_de_ApoyoData.Solicitud_de_Apoyo_Externa
+                    ,Solicitud_Externa = Solicitud_de_Servicios_de_ApoyoData.Solicitud_Externa.GetValueOrDefault()
+                    ,Autoridad_que_Solicita = Solicitud_de_Servicios_de_ApoyoData.Autoridad_que_Solicita
+                    ,Autoridad_que_SolicitaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Autoridad_que_Solicita), "Autoridad_Externa") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Autoridad_que_Solicita_Autoridad_Externa.Descripcion
+                    ,Narracion_Solicitud = Solicitud_de_Servicios_de_ApoyoData.Narracion_Solicitud
                     ,Ver_Documento = Solicitud_de_Servicios_de_ApoyoData.Ver_Documento
                     ,Observaciones = Solicitud_de_Servicios_de_ApoyoData.Observaciones
                     ,Estatus = Solicitud_de_Servicios_de_ApoyoData.Estatus
@@ -442,6 +480,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Usuario_que_contestaName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Usuario_que_contesta), "Spartan_User") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Usuario_que_contesta_Spartan_User.Name
                     ,Dictamen = Solicitud_de_Servicios_de_ApoyoData.Dictamen
                     ,DictamenDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_Servicios_de_ApoyoData.Dictamen), "Documento") ??  (string)Solicitud_de_Servicios_de_ApoyoData.Dictamen_Documento.Descripcion
+                    ,numero_contestacion = Solicitud_de_Servicios_de_ApoyoData.numero_contestacion
                     ,Enviar_Contestacion = Solicitud_de_Servicios_de_ApoyoData.Enviar_Contestacion.GetValueOrDefault()
                     ,Archivo = Solicitud_de_Servicios_de_ApoyoData.Archivo
                     ,Observaciones_Contestacion = Solicitud_de_Servicios_de_ApoyoData.Observaciones_Contestacion
@@ -476,6 +515,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Origen_de_Invitacions_Origen = Origen_de_Invitacions_Origen.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Origen_de_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IAutoridad_ExternaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Autoridad_Externas_Autoridad_que_Solicita = _IAutoridad_ExternaApiConsumer.SelAll(true);
+            if (Autoridad_Externas_Autoridad_que_Solicita != null && Autoridad_Externas_Autoridad_que_Solicita.Resource != null)
+                ViewBag.Autoridad_Externas_Autoridad_que_Solicita = Autoridad_Externas_Autoridad_que_Solicita.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Autoridad_Externa", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IEstatus_de_Solicitud_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Estatus_de_Solicitud_de_Apoyos_Estatus = _IEstatus_de_Solicitud_de_ApoyoApiConsumer.SelAll(true);
@@ -617,6 +663,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 		[HttpGet]
+        public ActionResult GetDetalle_de_Documentos_MPOAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Documentos_MPOApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IDetalle_de_Documentos_MPOApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Observaciones).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Documentos_MPO", "Observaciones")?? m.Observaciones,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
         public ActionResult Getexpediente_ministerio_publicoAll()
         {
             try
@@ -638,6 +705,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 		[HttpGet]
+        public ActionResult GetDiligencias_MPAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDiligencias_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IDiligencias_MPApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Observaciones).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Diligencias_MP", "Observaciones")?? m.Observaciones,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
         public ActionResult GetDocumentoAll()
         {
             try
@@ -650,6 +738,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetAutoridad_ExternaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IAutoridad_ExternaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IAutoridad_ExternaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Autoridad_Externa", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -810,6 +919,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Origen_de_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IAutoridad_ExternaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Autoridad_Externas_Autoridad_que_Solicita = _IAutoridad_ExternaApiConsumer.SelAll(true);
+            if (Autoridad_Externas_Autoridad_que_Solicita != null && Autoridad_Externas_Autoridad_que_Solicita.Resource != null)
+                ViewBag.Autoridad_Externas_Autoridad_que_Solicita = Autoridad_Externas_Autoridad_que_Solicita.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Autoridad_Externa", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IEstatus_de_Solicitud_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Estatus_de_Solicitud_de_Apoyos_Estatus = _IEstatus_de_Solicitud_de_ApoyoApiConsumer.SelAll(true);
             if (Estatus_de_Solicitud_de_Apoyos_Estatus != null && Estatus_de_Solicitud_de_Apoyos_Estatus.Resource != null)
@@ -869,6 +985,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Origen_de_Invitacions_Origen = Origen_de_Invitacions_Origen.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Origen_de_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IAutoridad_ExternaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Autoridad_Externas_Autoridad_que_Solicita = _IAutoridad_ExternaApiConsumer.SelAll(true);
+            if (Autoridad_Externas_Autoridad_que_Solicita != null && Autoridad_Externas_Autoridad_que_Solicita.Resource != null)
+                ViewBag.Autoridad_Externas_Autoridad_que_Solicita = Autoridad_Externas_Autoridad_que_Solicita.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Autoridad_Externa", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IEstatus_de_Solicitud_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Estatus_de_Solicitud_de_Apoyos_Estatus = _IEstatus_de_Solicitud_de_ApoyoApiConsumer.SelAll(true);
@@ -949,12 +1072,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Numero_de_Expediente_ATNUAT = CultureHelper.GetTraduction(m.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.NUAT
+                        ,Diligencia_ATObservaciones = CultureHelper.GetTraduction(m.Diligencia_AT_Detalle_de_Documentos_MPO.Clave.ToString(), "Detalle_de_Documentos_MPO") ?? (string)m.Diligencia_AT_Detalle_de_Documentos_MPO.Observaciones
                         ,Numero_de_Expediente_MPnuat = CultureHelper.GetTraduction(m.Numero_de_Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Numero_de_Expediente_MP_expediente_ministerio_publico.nuat
+                        ,Diligencia_MPObservaciones = CultureHelper.GetTraduction(m.Diligencia_MP_Diligencias_MP.Clave.ToString(), "Diligencias_MP") ?? (string)m.Diligencia_MP_Diligencias_MP.Observaciones
 			,NUAT = m.NUAT
 			,Numero_de_Denuncia = m.Numero_de_Denuncia
 			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
 			,Numero_de_Oficio = m.Numero_de_Oficio
                         ,SolicitudDescripcion = CultureHelper.GetTraduction(m.Solicitud_Documento.Clave.ToString(), "Documento") ?? (string)m.Solicitud_Documento.Descripcion
+			,Solicitud_de_Apoyo_Externa = m.Solicitud_de_Apoyo_Externa
+			,Solicitud_Externa = m.Solicitud_Externa
+                        ,Autoridad_que_SolicitaDescripcion = CultureHelper.GetTraduction(m.Autoridad_que_Solicita_Autoridad_Externa.Clave.ToString(), "Descripcion") ?? (string)m.Autoridad_que_Solicita_Autoridad_Externa.Descripcion
+			,Narracion_Solicitud = m.Narracion_Solicitud
 			,Ver_Documento = m.Ver_Documento
 			,Observaciones = m.Observaciones
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_de_Solicitud_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_de_Solicitud_de_Apoyo.Descripcion
@@ -974,6 +1103,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Contestacion = m.Hora_de_Contestacion
                         ,Usuario_que_contestaName = CultureHelper.GetTraduction(m.Usuario_que_contesta_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_contesta_Spartan_User.Name
                         ,DictamenDescripcion = CultureHelper.GetTraduction(m.Dictamen_Documento.Clave.ToString(), "Documento") ?? (string)m.Dictamen_Documento.Descripcion
+			,numero_contestacion = m.numero_contestacion
 			,Enviar_Contestacion = m.Enviar_Contestacion
 			,Archivo = m.Archivo
 			,Observaciones_Contestacion = m.Observaciones_Contestacion
@@ -1103,12 +1233,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Numero_de_Expediente_ATNUAT = CultureHelper.GetTraduction(m.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.NUAT
+                        ,Diligencia_ATObservaciones = CultureHelper.GetTraduction(m.Diligencia_AT_Detalle_de_Documentos_MPO.Clave.ToString(), "Detalle_de_Documentos_MPO") ?? (string)m.Diligencia_AT_Detalle_de_Documentos_MPO.Observaciones
                         ,Numero_de_Expediente_MPnuat = CultureHelper.GetTraduction(m.Numero_de_Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Numero_de_Expediente_MP_expediente_ministerio_publico.nuat
+                        ,Diligencia_MPObservaciones = CultureHelper.GetTraduction(m.Diligencia_MP_Diligencias_MP.Clave.ToString(), "Diligencias_MP") ?? (string)m.Diligencia_MP_Diligencias_MP.Observaciones
 			,NUAT = m.NUAT
 			,Numero_de_Denuncia = m.Numero_de_Denuncia
 			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
 			,Numero_de_Oficio = m.Numero_de_Oficio
                         ,SolicitudDescripcion = CultureHelper.GetTraduction(m.Solicitud_Documento.Clave.ToString(), "Documento") ?? (string)m.Solicitud_Documento.Descripcion
+			,Solicitud_de_Apoyo_Externa = m.Solicitud_de_Apoyo_Externa
+			,Solicitud_Externa = m.Solicitud_Externa
+                        ,Autoridad_que_SolicitaDescripcion = CultureHelper.GetTraduction(m.Autoridad_que_Solicita_Autoridad_Externa.Clave.ToString(), "Descripcion") ?? (string)m.Autoridad_que_Solicita_Autoridad_Externa.Descripcion
+			,Narracion_Solicitud = m.Narracion_Solicitud
 			,Ver_Documento = m.Ver_Documento
 			,Observaciones = m.Observaciones
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_de_Solicitud_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_de_Solicitud_de_Apoyo.Descripcion
@@ -1128,6 +1264,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Contestacion = m.Hora_de_Contestacion
                         ,Usuario_que_contestaName = CultureHelper.GetTraduction(m.Usuario_que_contesta_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_contesta_Spartan_User.Name
                         ,DictamenDescripcion = CultureHelper.GetTraduction(m.Dictamen_Documento.Clave.ToString(), "Documento") ?? (string)m.Dictamen_Documento.Descripcion
+			,numero_contestacion = m.numero_contestacion
 			,Enviar_Contestacion = m.Enviar_Contestacion
 			,Archivo = m.Archivo
 			,Observaciones_Contestacion = m.Observaciones_Contestacion
@@ -1201,6 +1338,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
+        public JsonResult GetSolicitud_de_Servicios_de_Apoyo_Diligencia_AT_Detalle_de_Documentos_MPO(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Documentos_MPOApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Detalle_de_Documentos_MPO.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Documentos_MPO.Observaciones as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IDetalle_de_Documentos_MPOApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Documentos_MPO.Observaciones ASC ").Resource;
+               
+                foreach (var item in result.Detalle_de_Documentos_MPOs)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Documentos_MPO", "Observaciones");
+                    item.Observaciones =trans ??item.Observaciones;
+                }
+                return Json(result.Detalle_de_Documentos_MPOs.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public JsonResult GetSolicitud_de_Servicios_de_Apoyo_Numero_de_Expediente_MP_expediente_ministerio_publico(string query, string where)
         {
             try
@@ -1221,6 +1385,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.nuat =trans ??item.nuat;
                 }
                 return Json(result.expediente_ministerio_publicos.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetSolicitud_de_Servicios_de_Apoyo_Diligencia_MP_Diligencias_MP(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDiligencias_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Diligencias_MP.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Diligencias_MP.Observaciones as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IDiligencias_MPApiConsumer.ListaSelAll(1, 20,elWhere , " Diligencias_MP.Observaciones ASC ").Resource;
+               
+                foreach (var item in result.Diligencias_MPs)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Diligencias_MP", "Observaciones");
+                    item.Observaciones =trans ??item.Observaciones;
+                }
+                return Json(result.Diligencias_MPs.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -1566,6 +1757,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Solicitud_de_Servicios_de_Apoyo.Numero_de_Expediente_AT In (" + Numero_de_Expediente_ATIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceDiligencia_AT))
+            {
+                switch (filter.Diligencia_ATFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.Observaciones LIKE '" + filter.AdvanceDiligencia_AT + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.Observaciones LIKE '%" + filter.AdvanceDiligencia_AT + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.Observaciones = '" + filter.AdvanceDiligencia_AT + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.Observaciones LIKE '%" + filter.AdvanceDiligencia_AT + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceDiligencia_ATMultiple != null && filter.AdvanceDiligencia_ATMultiple.Count() > 0)
+            {
+                var Diligencia_ATIds = string.Join(",", filter.AdvanceDiligencia_ATMultiple);
+
+                where += " AND Solicitud_de_Servicios_de_Apoyo.Diligencia_AT In (" + Diligencia_ATIds + ")";
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceNumero_de_Expediente_MP))
             {
                 switch (filter.Numero_de_Expediente_MPFilter)
@@ -1592,6 +1811,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Numero_de_Expediente_MPIds = string.Join(",", filter.AdvanceNumero_de_Expediente_MPMultiple);
 
                 where += " AND Solicitud_de_Servicios_de_Apoyo.Numero_de_Expediente_MP In (" + Numero_de_Expediente_MPIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceDiligencia_MP))
+            {
+                switch (filter.Diligencia_MPFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Diligencias_MP.Observaciones LIKE '" + filter.AdvanceDiligencia_MP + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Diligencias_MP.Observaciones LIKE '%" + filter.AdvanceDiligencia_MP + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Diligencias_MP.Observaciones = '" + filter.AdvanceDiligencia_MP + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Diligencias_MP.Observaciones LIKE '%" + filter.AdvanceDiligencia_MP + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceDiligencia_MPMultiple != null && filter.AdvanceDiligencia_MPMultiple.Count() > 0)
+            {
+                var Diligencia_MPIds = string.Join(",", filter.AdvanceDiligencia_MPMultiple);
+
+                where += " AND Solicitud_de_Servicios_de_Apoyo.Diligencia_MP In (" + Diligencia_MPIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.NUAT))
@@ -1708,6 +1955,67 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var SolicitudIds = string.Join(",", filter.AdvanceSolicitudMultiple);
 
                 where += " AND Solicitud_de_Servicios_de_Apoyo.Solicitud In (" + SolicitudIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromSolicitud_de_Apoyo_Externa) || !string.IsNullOrEmpty(filter.ToSolicitud_de_Apoyo_Externa))
+            {
+                if (!string.IsNullOrEmpty(filter.FromSolicitud_de_Apoyo_Externa))
+                    where += " AND Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Apoyo_Externa >= " + filter.FromSolicitud_de_Apoyo_Externa;
+                if (!string.IsNullOrEmpty(filter.ToSolicitud_de_Apoyo_Externa))
+                    where += " AND Solicitud_de_Servicios_de_Apoyo.Solicitud_de_Apoyo_Externa <= " + filter.ToSolicitud_de_Apoyo_Externa;
+            }
+
+            if (filter.Solicitud_Externa != RadioOptions.NoApply)
+                where += " AND Solicitud_de_Servicios_de_Apoyo.Solicitud_Externa = " + Convert.ToInt32(filter.Solicitud_Externa);
+
+            if (!string.IsNullOrEmpty(filter.AdvanceAutoridad_que_Solicita))
+            {
+                switch (filter.Autoridad_que_SolicitaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Autoridad_Externa.Descripcion LIKE '" + filter.AdvanceAutoridad_que_Solicita + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Autoridad_Externa.Descripcion LIKE '%" + filter.AdvanceAutoridad_que_Solicita + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Autoridad_Externa.Descripcion = '" + filter.AdvanceAutoridad_que_Solicita + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Autoridad_Externa.Descripcion LIKE '%" + filter.AdvanceAutoridad_que_Solicita + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceAutoridad_que_SolicitaMultiple != null && filter.AdvanceAutoridad_que_SolicitaMultiple.Count() > 0)
+            {
+                var Autoridad_que_SolicitaIds = string.Join(",", filter.AdvanceAutoridad_que_SolicitaMultiple);
+
+                where += " AND Solicitud_de_Servicios_de_Apoyo.Autoridad_que_Solicita In (" + Autoridad_que_SolicitaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Narracion_Solicitud))
+            {
+                switch (filter.Narracion_SolicitudFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud_de_Servicios_de_Apoyo.Narracion_Solicitud LIKE '" + filter.Narracion_Solicitud + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud_de_Servicios_de_Apoyo.Narracion_Solicitud LIKE '%" + filter.Narracion_Solicitud + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud_de_Servicios_de_Apoyo.Narracion_Solicitud = '" + filter.Narracion_Solicitud + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud_de_Servicios_de_Apoyo.Narracion_Solicitud LIKE '%" + filter.Narracion_Solicitud + "%'";
+                        break;
+                }
             }
 
             if (filter.Ver_Documento != RadioOptions.NoApply)
@@ -2094,6 +2402,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Solicitud_de_Servicios_de_Apoyo.Dictamen In (" + DictamenIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.numero_contestacion))
+            {
+                switch (filter.numero_contestacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud_de_Servicios_de_Apoyo.numero_contestacion LIKE '" + filter.numero_contestacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud_de_Servicios_de_Apoyo.numero_contestacion LIKE '%" + filter.numero_contestacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud_de_Servicios_de_Apoyo.numero_contestacion = '" + filter.numero_contestacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud_de_Servicios_de_Apoyo.numero_contestacion LIKE '%" + filter.numero_contestacion + "%'";
+                        break;
+                }
+            }
+
             if (filter.Enviar_Contestacion != RadioOptions.NoApply)
                 where += " AND Solicitud_de_Servicios_de_Apoyo.Enviar_Contestacion = " + Convert.ToInt32(filter.Enviar_Contestacion);
 
@@ -2325,12 +2655,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Region = varSolicitud_de_Servicios_de_Apoyo.Region
                         ,Origen = varSolicitud_de_Servicios_de_Apoyo.Origen
                         ,Numero_de_Expediente_AT = varSolicitud_de_Servicios_de_Apoyo.Numero_de_Expediente_AT
+                        ,Diligencia_AT = varSolicitud_de_Servicios_de_Apoyo.Diligencia_AT
                         ,Numero_de_Expediente_MP = varSolicitud_de_Servicios_de_Apoyo.Numero_de_Expediente_MP
+                        ,Diligencia_MP = varSolicitud_de_Servicios_de_Apoyo.Diligencia_MP
                         ,NUAT = varSolicitud_de_Servicios_de_Apoyo.NUAT
                         ,Numero_de_Denuncia = varSolicitud_de_Servicios_de_Apoyo.Numero_de_Denuncia
                         ,Carpeta_de_Investigacion = varSolicitud_de_Servicios_de_Apoyo.Carpeta_de_Investigacion
                         ,Numero_de_Oficio = varSolicitud_de_Servicios_de_Apoyo.Numero_de_Oficio
                         ,Solicitud = varSolicitud_de_Servicios_de_Apoyo.Solicitud
+                        ,Solicitud_de_Apoyo_Externa = varSolicitud_de_Servicios_de_Apoyo.Solicitud_de_Apoyo_Externa
+                        ,Solicitud_Externa = varSolicitud_de_Servicios_de_Apoyo.Solicitud_Externa
+                        ,Autoridad_que_Solicita = varSolicitud_de_Servicios_de_Apoyo.Autoridad_que_Solicita
+                        ,Narracion_Solicitud = varSolicitud_de_Servicios_de_Apoyo.Narracion_Solicitud
                         ,Ver_Documento = (varSolicitud_de_Servicios_de_Apoyo.Ver_Documento.HasValue && varSolicitud_de_Servicios_de_Apoyo.Ver_Documento != 0) ? ((int?)Convert.ToInt32(varSolicitud_de_Servicios_de_Apoyo.Ver_Documento.Value)) : null
 
                         ,Observaciones = varSolicitud_de_Servicios_de_Apoyo.Observaciones
@@ -2351,6 +2687,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hora_de_Contestacion = varSolicitud_de_Servicios_de_Apoyo.Hora_de_Contestacion
                         ,Usuario_que_contesta = varSolicitud_de_Servicios_de_Apoyo.Usuario_que_contesta
                         ,Dictamen = varSolicitud_de_Servicios_de_Apoyo.Dictamen
+                        ,numero_contestacion = varSolicitud_de_Servicios_de_Apoyo.numero_contestacion
                         ,Enviar_Contestacion = varSolicitud_de_Servicios_de_Apoyo.Enviar_Contestacion
                         ,Archivo = varSolicitud_de_Servicios_de_Apoyo.Archivo
                         ,Observaciones_Contestacion = varSolicitud_de_Servicios_de_Apoyo.Observaciones_Contestacion
@@ -2753,12 +3090,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Numero_de_Expediente_ATNUAT = CultureHelper.GetTraduction(m.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.NUAT
+                        ,Diligencia_ATObservaciones = CultureHelper.GetTraduction(m.Diligencia_AT_Detalle_de_Documentos_MPO.Clave.ToString(), "Detalle_de_Documentos_MPO") ?? (string)m.Diligencia_AT_Detalle_de_Documentos_MPO.Observaciones
                         ,Numero_de_Expediente_MPnuat = CultureHelper.GetTraduction(m.Numero_de_Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Numero_de_Expediente_MP_expediente_ministerio_publico.nuat
+                        ,Diligencia_MPObservaciones = CultureHelper.GetTraduction(m.Diligencia_MP_Diligencias_MP.Clave.ToString(), "Diligencias_MP") ?? (string)m.Diligencia_MP_Diligencias_MP.Observaciones
 			,NUAT = m.NUAT
 			,Numero_de_Denuncia = m.Numero_de_Denuncia
 			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
 			,Numero_de_Oficio = m.Numero_de_Oficio
                         ,SolicitudDescripcion = CultureHelper.GetTraduction(m.Solicitud_Documento.Clave.ToString(), "Documento") ?? (string)m.Solicitud_Documento.Descripcion
+			,Solicitud_de_Apoyo_Externa = m.Solicitud_de_Apoyo_Externa
+			,Solicitud_Externa = m.Solicitud_Externa
+                        ,Autoridad_que_SolicitaDescripcion = CultureHelper.GetTraduction(m.Autoridad_que_Solicita_Autoridad_Externa.Clave.ToString(), "Descripcion") ?? (string)m.Autoridad_que_Solicita_Autoridad_Externa.Descripcion
+			,Narracion_Solicitud = m.Narracion_Solicitud
 			,Ver_Documento = m.Ver_Documento
 			,Observaciones = m.Observaciones
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_de_Solicitud_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_de_Solicitud_de_Apoyo.Descripcion
@@ -2778,6 +3121,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Contestacion = m.Hora_de_Contestacion
                         ,Usuario_que_contestaName = CultureHelper.GetTraduction(m.Usuario_que_contesta_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_contesta_Spartan_User.Name
                         ,DictamenDescripcion = CultureHelper.GetTraduction(m.Dictamen_Documento.Clave.ToString(), "Documento") ?? (string)m.Dictamen_Documento.Descripcion
+			,numero_contestacion = m.numero_contestacion
 			,Enviar_Contestacion = m.Enviar_Contestacion
 			,Archivo = m.Archivo
 			,Observaciones_Contestacion = m.Observaciones_Contestacion
@@ -2866,12 +3210,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Numero_de_Expediente_ATNUAT = CultureHelper.GetTraduction(m.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.NUAT
+                        ,Diligencia_ATObservaciones = CultureHelper.GetTraduction(m.Diligencia_AT_Detalle_de_Documentos_MPO.Clave.ToString(), "Detalle_de_Documentos_MPO") ?? (string)m.Diligencia_AT_Detalle_de_Documentos_MPO.Observaciones
                         ,Numero_de_Expediente_MPnuat = CultureHelper.GetTraduction(m.Numero_de_Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Numero_de_Expediente_MP_expediente_ministerio_publico.nuat
+                        ,Diligencia_MPObservaciones = CultureHelper.GetTraduction(m.Diligencia_MP_Diligencias_MP.Clave.ToString(), "Diligencias_MP") ?? (string)m.Diligencia_MP_Diligencias_MP.Observaciones
 			,NUAT = m.NUAT
 			,Numero_de_Denuncia = m.Numero_de_Denuncia
 			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
 			,Numero_de_Oficio = m.Numero_de_Oficio
                         ,SolicitudDescripcion = CultureHelper.GetTraduction(m.Solicitud_Documento.Clave.ToString(), "Documento") ?? (string)m.Solicitud_Documento.Descripcion
+			,Solicitud_de_Apoyo_Externa = m.Solicitud_de_Apoyo_Externa
+			,Solicitud_Externa = m.Solicitud_Externa
+                        ,Autoridad_que_SolicitaDescripcion = CultureHelper.GetTraduction(m.Autoridad_que_Solicita_Autoridad_Externa.Clave.ToString(), "Descripcion") ?? (string)m.Autoridad_que_Solicita_Autoridad_Externa.Descripcion
+			,Narracion_Solicitud = m.Narracion_Solicitud
 			,Ver_Documento = m.Ver_Documento
 			,Observaciones = m.Observaciones
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_de_Solicitud_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_de_Solicitud_de_Apoyo.Descripcion
@@ -2891,6 +3241,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Contestacion = m.Hora_de_Contestacion
                         ,Usuario_que_contestaName = CultureHelper.GetTraduction(m.Usuario_que_contesta_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_contesta_Spartan_User.Name
                         ,DictamenDescripcion = CultureHelper.GetTraduction(m.Dictamen_Documento.Clave.ToString(), "Documento") ?? (string)m.Dictamen_Documento.Descripcion
+			,numero_contestacion = m.numero_contestacion
 			,Enviar_Contestacion = m.Enviar_Contestacion
 			,Archivo = m.Archivo
 			,Observaciones_Contestacion = m.Observaciones_Contestacion
@@ -2961,12 +3312,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Region = varSolicitud_de_Servicios_de_Apoyo.Region
                         ,Origen = varSolicitud_de_Servicios_de_Apoyo.Origen
                         ,Numero_de_Expediente_AT = varSolicitud_de_Servicios_de_Apoyo.Numero_de_Expediente_AT
+                        ,Diligencia_AT = varSolicitud_de_Servicios_de_Apoyo.Diligencia_AT
                         ,Numero_de_Expediente_MP = varSolicitud_de_Servicios_de_Apoyo.Numero_de_Expediente_MP
+                        ,Diligencia_MP = varSolicitud_de_Servicios_de_Apoyo.Diligencia_MP
                         ,NUAT = varSolicitud_de_Servicios_de_Apoyo.NUAT
                         ,Numero_de_Denuncia = varSolicitud_de_Servicios_de_Apoyo.Numero_de_Denuncia
                         ,Carpeta_de_Investigacion = varSolicitud_de_Servicios_de_Apoyo.Carpeta_de_Investigacion
                         ,Numero_de_Oficio = varSolicitud_de_Servicios_de_Apoyo.Numero_de_Oficio
                         ,Solicitud = varSolicitud_de_Servicios_de_Apoyo.Solicitud
+                        ,Solicitud_de_Apoyo_Externa = varSolicitud_de_Servicios_de_Apoyo.Solicitud_de_Apoyo_Externa
+                        ,Solicitud_Externa = varSolicitud_de_Servicios_de_Apoyo.Solicitud_Externa
+                        ,Autoridad_que_Solicita = varSolicitud_de_Servicios_de_Apoyo.Autoridad_que_Solicita
+                        ,Narracion_Solicitud = varSolicitud_de_Servicios_de_Apoyo.Narracion_Solicitud
                         ,Ver_Documento = (varSolicitud_de_Servicios_de_Apoyo.Ver_Documento.HasValue && varSolicitud_de_Servicios_de_Apoyo.Ver_Documento != 0) ? ((int?)Convert.ToInt32(varSolicitud_de_Servicios_de_Apoyo.Ver_Documento.Value)) : null
 
                         ,Observaciones = varSolicitud_de_Servicios_de_Apoyo.Observaciones
@@ -3009,14 +3366,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,OrigenDescripcion = CultureHelper.GetTraduction(m.Origen_Origen_de_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Origen_Origen_de_Invitacion.Descripcion
                         ,Numero_de_Expediente_AT = m.Numero_de_Expediente_AT
                         ,Numero_de_Expediente_ATNUAT = CultureHelper.GetTraduction(m.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Numero_de_Expediente_AT_Modulo_Atencion_Inicial.NUAT
+                        ,Diligencia_AT = m.Diligencia_AT
+                        ,Diligencia_ATObservaciones = CultureHelper.GetTraduction(m.Diligencia_AT_Detalle_de_Documentos_MPO.Clave.ToString(), "Detalle_de_Documentos_MPO") ?? (string)m.Diligencia_AT_Detalle_de_Documentos_MPO.Observaciones
                         ,Numero_de_Expediente_MP = m.Numero_de_Expediente_MP
                         ,Numero_de_Expediente_MPnuat = CultureHelper.GetTraduction(m.Numero_de_Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Numero_de_Expediente_MP_expediente_ministerio_publico.nuat
+                        ,Diligencia_MP = m.Diligencia_MP
+                        ,Diligencia_MPObservaciones = CultureHelper.GetTraduction(m.Diligencia_MP_Diligencias_MP.Clave.ToString(), "Diligencias_MP") ?? (string)m.Diligencia_MP_Diligencias_MP.Observaciones
 			,NUAT = m.NUAT
 			,Numero_de_Denuncia = m.Numero_de_Denuncia
 			,Carpeta_de_Investigacion = m.Carpeta_de_Investigacion
 			,Numero_de_Oficio = m.Numero_de_Oficio
                         ,Solicitud = m.Solicitud
                         ,SolicitudDescripcion = CultureHelper.GetTraduction(m.Solicitud_Documento.Clave.ToString(), "Documento") ?? (string)m.Solicitud_Documento.Descripcion
+			,Solicitud_de_Apoyo_Externa = m.Solicitud_de_Apoyo_Externa
+			,Solicitud_Externa = m.Solicitud_Externa
+                        ,Autoridad_que_Solicita = m.Autoridad_que_Solicita
+                        ,Autoridad_que_SolicitaDescripcion = CultureHelper.GetTraduction(m.Autoridad_que_Solicita_Autoridad_Externa.Clave.ToString(), "Descripcion") ?? (string)m.Autoridad_que_Solicita_Autoridad_Externa.Descripcion
+			,Narracion_Solicitud = m.Narracion_Solicitud
 			,Ver_Documento = m.Ver_Documento
 			,Observaciones = m.Observaciones
                         ,Estatus = m.Estatus
@@ -3189,6 +3555,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hora_de_Contestacion = varSolicitud_de_Servicios_de_Apoyo.Hora_de_Contestacion
                         ,Usuario_que_contesta = varSolicitud_de_Servicios_de_Apoyo.Usuario_que_contesta
                         ,Dictamen = varSolicitud_de_Servicios_de_Apoyo.Dictamen
+                        ,numero_contestacion = varSolicitud_de_Servicios_de_Apoyo.numero_contestacion
                         ,Enviar_Contestacion = varSolicitud_de_Servicios_de_Apoyo.Enviar_Contestacion
                         ,Archivo = varSolicitud_de_Servicios_de_Apoyo.Archivo
                         ,Observaciones_Contestacion = varSolicitud_de_Servicios_de_Apoyo.Observaciones_Contestacion
@@ -3226,6 +3593,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_contestaName = CultureHelper.GetTraduction(m.Usuario_que_contesta_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_contesta_Spartan_User.Name
                         ,Dictamen = m.Dictamen
                         ,DictamenDescripcion = CultureHelper.GetTraduction(m.Dictamen_Documento.Clave.ToString(), "Documento") ?? (string)m.Dictamen_Documento.Descripcion
+			,numero_contestacion = m.numero_contestacion
 			,Enviar_Contestacion = m.Enviar_Contestacion
 			,Archivo = m.Archivo
 			,Observaciones_Contestacion = m.Observaciones_Contestacion

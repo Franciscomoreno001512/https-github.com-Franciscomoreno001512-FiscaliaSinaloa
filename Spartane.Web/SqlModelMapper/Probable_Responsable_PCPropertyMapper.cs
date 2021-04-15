@@ -19,9 +19,6 @@ namespace Spartane.Web.SqlModelMapper
                 case "Solicitud[Folio]":
                 case "SolicitudFolio":
                     return "Solicitud_de_Denuncia_Ciudadana.Folio";
-                case "Tipo_de_Solicitud[Descripcion]":
-                case "Tipo_de_SolicitudDescripcion":
-                    return "Tipo_de_Solicitud.Descripcion";
                 case "Tiene_informacion_responsable[Descripcion]":
                 case "Tiene_informacion_responsableDescripcion":
                     return "Respuesta.Descripcion";
@@ -29,6 +26,10 @@ namespace Spartane.Web.SqlModelMapper
                     return "Probable_Responsable_PC.Quien_Resulte_Responsable";
                 case "Persona_moral":
                     return "Probable_Responsable_PC.Persona_moral";
+                case "Conoce_los_datos_del_representante_legal":
+                    return "Probable_Responsable_PC.Conoce_los_datos_del_representante_legal";
+                case "Razon_Social":
+                    return "Probable_Responsable_PC.Razon_Social";
                 case "Nombres":
                     return "Probable_Responsable_PC.Nombres";
                 case "Apellido_Paterno":
@@ -212,6 +213,10 @@ namespace Spartane.Web.SqlModelMapper
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "Persona_moral")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Conoce_los_datos_del_representante_legal")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

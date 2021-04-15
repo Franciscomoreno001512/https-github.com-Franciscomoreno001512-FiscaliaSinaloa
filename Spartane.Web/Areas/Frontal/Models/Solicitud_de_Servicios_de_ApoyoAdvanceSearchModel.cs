@@ -11,6 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public Solicitud_de_Servicios_de_ApoyoAdvanceSearchModel()
         {
+            Solicitud_Externa = RadioOptions.NoApply;
             Ver_Documento = RadioOptions.NoApply;
             Enviar_Contestacion = RadioOptions.NoApply;
 
@@ -46,9 +47,17 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceNumero_de_Expediente_AT { set; get; }
         public int[] AdvanceNumero_de_Expediente_ATMultiple { set; get; }
 
+        public Filters Diligencia_ATFilter { set; get; }
+        public string AdvanceDiligencia_AT { set; get; }
+        public int[] AdvanceDiligencia_ATMultiple { set; get; }
+
         public Filters Numero_de_Expediente_MPFilter { set; get; }
         public string AdvanceNumero_de_Expediente_MP { set; get; }
         public int[] AdvanceNumero_de_Expediente_MPMultiple { set; get; }
+
+        public Filters Diligencia_MPFilter { set; get; }
+        public string AdvanceDiligencia_MP { set; get; }
+        public int[] AdvanceDiligencia_MPMultiple { set; get; }
 
         public Filters NUATFilter { set; get; }
         public string NUAT { set; get; }
@@ -65,6 +74,21 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters SolicitudFilter { set; get; }
         public string AdvanceSolicitud { set; get; }
         public int[] AdvanceSolicitudMultiple { set; get; }
+
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string FromSolicitud_de_Apoyo_Externa { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("FromSolicitud_de_Apoyo_Externa", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToSolicitud_de_Apoyo_Externa { set; get; }
+
+        public RadioOptions Solicitud_Externa { set; get; }
+
+        public Filters Autoridad_que_SolicitaFilter { set; get; }
+        public string AdvanceAutoridad_que_Solicita { set; get; }
+        public int[] AdvanceAutoridad_que_SolicitaMultiple { set; get; }
+
+        public Filters Narracion_SolicitudFilter { set; get; }
+        public string Narracion_Solicitud { set; get; }
 
         public RadioOptions Ver_Documento { set; get; }
 
@@ -139,6 +163,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters DictamenFilter { set; get; }
         public string AdvanceDictamen { set; get; }
         public int[] AdvanceDictamenMultiple { set; get; }
+
+        public Filters numero_contestacionFilter { set; get; }
+        public string numero_contestacion { set; get; }
 
         public RadioOptions Enviar_Contestacion { set; get; }
 

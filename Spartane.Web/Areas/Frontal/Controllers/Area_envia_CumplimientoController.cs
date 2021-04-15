@@ -155,6 +155,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Area_envia_CumplimientoData.Clave 
 	                    ,Descripcion = Area_envia_CumplimientoData.Descripcion
+                    ,Vigente = Area_envia_CumplimientoData.Vigente.GetValueOrDefault()
 
 					};
 				}
@@ -228,6 +229,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Area_envia_CumplimientoData.Clave 
 	                    ,Descripcion = Area_envia_CumplimientoData.Descripcion
+                    ,Vigente = Area_envia_CumplimientoData.Vigente.GetValueOrDefault()
 
 					};
 				}
@@ -339,6 +341,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Vigente = m.Vigente
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -454,6 +457,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Vigente = m.Vigente
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -501,6 +505,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         break;
                 }
             }
+
+            if (filter.Vigente != RadioOptions.NoApply)
+                where += " AND Area_envia_Cumplimiento.Vigente = " + Convert.ToInt32(filter.Vigente);
 
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
@@ -558,6 +565,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varArea_envia_Cumplimiento.Clave
                         ,Descripcion = varArea_envia_Cumplimiento.Descripcion
+                        ,Vigente = varArea_envia_Cumplimiento.Vigente
 
                     };
 
@@ -946,6 +954,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Vigente = m.Vigente
 
             }).ToList();
 
@@ -1020,6 +1029,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Vigente = m.Vigente
 
             }).ToList();
 
@@ -1060,6 +1070,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varArea_envia_Cumplimiento.Clave
                                             ,Descripcion = varArea_envia_Cumplimiento.Descripcion
+                        ,Vigente = varArea_envia_Cumplimiento.Vigente
                     
                 };
 
@@ -1089,6 +1100,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Vigente = m.Vigente
 
                     
                 };

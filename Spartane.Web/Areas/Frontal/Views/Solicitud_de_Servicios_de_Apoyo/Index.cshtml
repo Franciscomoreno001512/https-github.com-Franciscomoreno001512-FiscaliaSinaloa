@@ -5,8 +5,11 @@
 @using Spartane.Core.Domain.Region;
 @using Spartane.Core.Domain.Origen_de_Invitacion;
 @using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+@using Spartane.Core.Domain.Detalle_de_Documentos_MPO;
 @using Spartane.Core.Domain.expediente_ministerio_publico;
+@using Spartane.Core.Domain.Diligencias_MP;
 @using Spartane.Core.Domain.Documento;
+@using Spartane.Core.Domain.Autoridad_Externa;
 @using Spartane.Core.Domain.Estatus_de_Solicitud_de_Apoyo;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Area_de_Servicios_de_Apoyo;
@@ -220,12 +223,18 @@
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Region</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Origen</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_AT</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Diligencia_AT</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_MP</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Diligencia_MP</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.NUAT</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Denuncia</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Carpeta_de_Investigacion</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Oficio</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud_de_Apoyo_Externa</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud_Externa</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Autoridad_que_Solicita</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Narracion_Solicitud</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Estatus</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Fecha_de_Recepcion</th>
@@ -244,6 +253,7 @@
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Hora_de_Contestacion</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Usuario_que_contesta</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Dictamen</th>
+                                    <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.numero_contestacion</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Enviar_Contestacion</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Archivo</th>
                                     <th>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones_Contestacion</th>
@@ -274,8 +284,8 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -288,6 +298,13 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
@@ -421,12 +438,18 @@
         var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Expediente_AT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Diligencia_AT =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Diligencia_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
         var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Oficio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitud_de_Apoyo_Externa =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitud_Externa = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Autoridad_que_Solicita =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Narracion_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Recepcion = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -445,6 +468,7 @@
         var Hora_de_Contestacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_contesta =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Dictamen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var numero_contestacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Enviar_Contestacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones_Contestacion =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -463,12 +487,18 @@
         + "&Region=" + Region
         + "&Origen=" + Origen
         + "&Numero_de_Expediente_AT=" + Numero_de_Expediente_AT
+        + "&Diligencia_AT=" + Diligencia_AT
         + "&Numero_de_Expediente_MP=" + Numero_de_Expediente_MP
+        + "&Diligencia_MP=" + Diligencia_MP
         + "&NUAT=" + NUAT
         + "&Numero_de_Denuncia=" + Numero_de_Denuncia
         + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
         + "&Numero_de_Oficio=" + Numero_de_Oficio
         + "&Solicitud=" + Solicitud
+        + "&Solicitud_de_Apoyo_Externa=" + Solicitud_de_Apoyo_Externa
+        + "&Solicitud_Externa=" + Solicitud_Externa
+        + "&Autoridad_que_Solicita=" + Autoridad_que_Solicita
+        + "&Narracion_Solicitud=" + Narracion_Solicitud
         + "&Observaciones=" + Observaciones
         + "&Estatus=" + Estatus
         + "&Fecha_de_Recepcion=" + Fecha_de_Recepcion
@@ -487,6 +517,7 @@
         + "&Hora_de_Contestacion=" + Hora_de_Contestacion
         + "&Usuario_que_contesta=" + Usuario_que_contesta
         + "&Dictamen=" + Dictamen
+        + "&numero_contestacion=" + numero_contestacion
         + "&Enviar_Contestacion=" + Enviar_Contestacion
         + "&Archivo=" + Archivo
         + "&Observaciones_Contestacion=" + Observaciones_Contestacion
@@ -516,12 +547,18 @@
         var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Expediente_AT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Diligencia_AT =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Diligencia_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
         var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Oficio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitud_de_Apoyo_Externa =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitud_Externa = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Autoridad_que_Solicita =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Narracion_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Recepcion = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -540,6 +577,7 @@
         var Hora_de_Contestacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_contesta =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Dictamen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var numero_contestacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Enviar_Contestacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones_Contestacion =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -558,12 +596,18 @@
         + "&Region=" + Region
         + "&Origen=" + Origen
         + "&Numero_de_Expediente_AT=" + Numero_de_Expediente_AT
+        + "&Diligencia_AT=" + Diligencia_AT
         + "&Numero_de_Expediente_MP=" + Numero_de_Expediente_MP
+        + "&Diligencia_MP=" + Diligencia_MP
         + "&NUAT=" + NUAT
         + "&Numero_de_Denuncia=" + Numero_de_Denuncia
         + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
         + "&Numero_de_Oficio=" + Numero_de_Oficio
         + "&Solicitud=" + Solicitud
+        + "&Solicitud_de_Apoyo_Externa=" + Solicitud_de_Apoyo_Externa
+        + "&Solicitud_Externa=" + Solicitud_Externa
+        + "&Autoridad_que_Solicita=" + Autoridad_que_Solicita
+        + "&Narracion_Solicitud=" + Narracion_Solicitud
         + "&Observaciones=" + Observaciones
         + "&Estatus=" + Estatus
         + "&Fecha_de_Recepcion=" + Fecha_de_Recepcion
@@ -582,6 +626,7 @@
         + "&Hora_de_Contestacion=" + Hora_de_Contestacion
         + "&Usuario_que_contesta=" + Usuario_que_contesta
         + "&Dictamen=" + Dictamen
+        + "&numero_contestacion=" + numero_contestacion
         + "&Enviar_Contestacion=" + Enviar_Contestacion
         + "&Archivo=" + Archivo
         + "&Observaciones_Contestacion=" + Observaciones_Contestacion
@@ -771,11 +816,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -845,12 +890,18 @@
                 ,{ "data": "RegionDescripcion", "orderable": true, "name": "RegionDescripcion" }
                 ,{ "data": "OrigenDescripcion", "orderable": true, "name": "OrigenDescripcion" }
                 ,{ "data": "Numero_de_Expediente_ATNUAT", "orderable": true, "name": "Numero_de_Expediente_ATNUAT"}
+                ,{ "data": "Diligencia_ATObservaciones", "orderable": true, "name": "Diligencia_ATObservaciones"}
                 ,{ "data": "Numero_de_Expediente_MPnuat", "orderable": true, "name": "Numero_de_Expediente_MPnuat"}
+                ,{ "data": "Diligencia_MPObservaciones", "orderable": true, "name": "Diligencia_MPObservaciones"}
                 ,{ "data": "NUAT", "orderable": true, "name": "NUAT", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Numero_de_Denuncia", "orderable": true, "name": "Numero_de_Denuncia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Carpeta_de_Investigacion", "orderable": true, "name": "Carpeta_de_Investigacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Numero_de_Oficio", "orderable": true, "name": "Numero_de_Oficio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "SolicitudDescripcion", "orderable": true, "name": "SolicitudDescripcion"}
+                ,{ "data": "Solicitud_de_Apoyo_Externa","className": "dt-right", "orderable": true, "name": "Solicitud_de_Apoyo_Externa" }
+                ,{ "data": "Solicitud_Externa", "orderable": true, "name": "Solicitud_Externa","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Autoridad_que_SolicitaDescripcion", "orderable": true, "name": "Autoridad_que_SolicitaDescripcion" }
+                ,{ "data": "Narracion_Solicitud", "orderable": true, "name": "Narracion_Solicitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "EstatusDescripcion", "orderable": true, "name": "EstatusDescripcion" }
                 ,{ "data": "Fecha_de_Recepcion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Recepcion" }
@@ -869,6 +920,7 @@
                 ,{ "data": "Hora_de_Contestacion", "orderable": true, "name": "Hora_de_Contestacion" }
                 ,{ "data": "Usuario_que_contestaName", "orderable": true, "name": "Usuario_que_contestaName"}
                 ,{ "data": "DictamenDescripcion", "orderable": true, "name": "DictamenDescripcion"}
+                ,{ "data": "numero_contestacion", "orderable": true, "name": "numero_contestacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Enviar_Contestacion", "orderable": true, "name": "Enviar_Contestacion","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Archivo","className": "dt-right", "orderable": true, "name": "Archivo" }
                 ,{ "data": "Observaciones_Contestacion", "orderable": true, "name": "Observaciones_Contestacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }

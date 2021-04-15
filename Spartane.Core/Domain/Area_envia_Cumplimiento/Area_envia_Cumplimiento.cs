@@ -17,6 +17,7 @@ namespace Spartane.Core.Domain.Area_envia_Cumplimiento
     {
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public bool? Vigente { get; set; }
 
 
     }
@@ -25,6 +26,7 @@ namespace Spartane.Core.Domain.Area_envia_Cumplimiento
     {
                 public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public bool? Vigente { get; set; }
 
 		
     }

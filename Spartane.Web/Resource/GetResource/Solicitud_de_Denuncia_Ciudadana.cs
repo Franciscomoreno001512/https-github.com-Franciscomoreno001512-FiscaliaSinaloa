@@ -106,6 +106,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo</summary>
+        public static string Motivo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Motivo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Canalizar_a</summary>
         public static string Canalizar_a
         {
@@ -113,6 +123,56 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Canalizar_a", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_de_Revision</summary>
+        public static string Fecha_de_Revision
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Fecha_de_Revision", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_de_Revision</summary>
+        public static string Hora_de_Revision
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Hora_de_Revision", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Usuario_que_Revisa</summary>
+        public static string Usuario_que_Revisa
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Usuario_que_Revisa", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Tipo_de_Resolucion</summary>
+        public static string Tipo_de_Resolucion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Tipo_de_Resolucion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Region</summary>
+        public static string Region
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Region", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -126,9 +186,131 @@ namespace Resources
             }
         }
 
+        /// <summary>Contestacion</summary>
+        public static string Contestacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Contestacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Observaciones_resolucion</summary>
+        public static string Observaciones_resolucion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Observaciones_resolucion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_de_Asignacion</summary>
+        public static string Fecha_de_Asignacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Fecha_de_Asignacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_de_Asignacion</summary>
+        public static string Hora_de_Asignacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Hora_de_Asignacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Usuario_que_Asigna</summary>
+        public static string Usuario_que_Asigna
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Usuario_que_Asigna", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Responsable_Asignado</summary>
+        public static string Responsable_Asignado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Responsable_Asignado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Observaciones_responsable</summary>
+        public static string Observaciones_responsable
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Observaciones_responsable", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_de_Atencion</summary>
+        public static string Fecha_de_Atencion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Fecha_de_Atencion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_de_Atencion</summary>
+        public static string Hora_de_Atencion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Hora_de_Atencion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Usuario_que_Atiende</summary>
+        public static string Usuario_que_Atiende
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Usuario_que_Atiende", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Atencion_Realizada</summary>
+        public static string Atencion_Realizada
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Atencion_Realizada", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Observaciones_atencion</summary>
+        public static string Observaciones_atencion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("Observaciones_atencion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos de la Solicitud</summary>	public static string TabDatos_de_la_Solicitud 	{		get		{			SetPath();  			return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("TabDatos_de_la_Solicitud", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Canalizar</summary>	public static string TabCanalizar 	{		get		{			SetPath();  			return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("TabCanalizar", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Resolución</summary>	public static string TabResolucion 	{		get		{			SetPath();  			return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("TabResolucion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Asignar Responsable de Atención</summary>	public static string TabAsignar_Responsable_de_Atencion 	{		get		{			SetPath();  			return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("TabAsignar_Responsable_de_Atencion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Atención</summary>	public static string TabAtencion 	{		get		{			SetPath();  			return resourceProviderSolicitud_de_Denuncia_Ciudadana.GetResource("TabAtencion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
     }
 }

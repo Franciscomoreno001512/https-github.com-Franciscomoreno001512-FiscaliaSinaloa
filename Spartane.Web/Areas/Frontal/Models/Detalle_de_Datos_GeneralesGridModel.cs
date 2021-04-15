@@ -42,12 +42,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Numero_de_Identificacion { get; set; }
         public string CURP { get; set; }
         public string RFC { get; set; }
+        public int? Ocupacion { get; set; }
+        public string OcupacionDescripcion { get; set; }
         public string Calidad_Juridica { get; set; }
         public string Razon_Social { get; set; }
         public int? Nacionalidad { get; set; }
         public string NacionalidadNacionalidadC { get; set; }
-        public int? Ocupacion { get; set; }
-        public string OcupacionDescripcion { get; set; }
         public int? Municipio_Corporacion { get; set; }
         public string Municipio_CorporacionNombre { get; set; }
         public int? Corporacion { get; set; }

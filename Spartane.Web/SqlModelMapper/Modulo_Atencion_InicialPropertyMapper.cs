@@ -68,9 +68,6 @@ namespace Spartane.Web.SqlModelMapper
                 case "Ministerio_Publico_en_Turno[Ministerio_Publico_en_Turno]":
                 case "Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno":
                     return "Jefes_de_Usuarios_del_Sistema.Ministerio_Publico_en_Turno";
-                case "Solicitud_de_Denuncia_Ciudadana[Folio]":
-                case "Solicitud_de_Denuncia_CiudadanaFolio":
-                    return "Solicitud_de_Denuncia_Ciudadana.Folio";
                 case "Nombres_turno":
                     return "Modulo_Atencion_Inicial.Nombres_turno";
                 case "Apellido_Paterno_turno":
@@ -95,6 +92,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Tipo_de_Urgencia_turno[Descripcion]":
                 case "Tipo_de_Urgencia_turnoDescripcion":
                     return "Tipo_de_Urgencia.Descripcion";
+                case "Solicitud_de_Denuncia_Ciudadana[Folio]":
+                case "Solicitud_de_Denuncia_CiudadanaFolio":
+                    return "Solicitud_de_Denuncia_Ciudadana.Folio";
                 case "Motivo_Finalizacion_Turno[Descripcion]":
                 case "Motivo_Finalizacion_TurnoDescripcion":
                     return "Motivo_Finalizacion_Turno.Descripcion";

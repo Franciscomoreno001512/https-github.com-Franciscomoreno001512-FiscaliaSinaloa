@@ -24,6 +24,12 @@
     List<SelectListItem> varA_Tiempo_detenido = null;
     if (ViewBag.A_Tiempos_detenido != null)
     { varA_Tiempo_detenido = (List<SelectListItem>)ViewBag.A_Tiempos_detenido; }
+    List<SelectListItem> varTipo_de_Urgencia_Tipo_de_urgencia = null;
+    if (ViewBag.Tipo_de_Urgencias_Tipo_de_urgencia != null)
+    { varTipo_de_Urgencia_Tipo_de_urgencia = (List<SelectListItem>)ViewBag.Tipo_de_Urgencias_Tipo_de_urgencia; }
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Pre_Denuncia = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Pre_Denuncia != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Pre_Denuncia = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Pre_Denuncia; }
     List<SelectListItem> varestatus_mpi_estatus = null;
     if (ViewBag.estatus_mpis_estatus != null)
     { varestatus_mpi_estatus = (List<SelectListItem>)ViewBag.estatus_mpis_estatus; }
@@ -209,6 +215,14 @@
                     @Html.TextBoxFor(m => m.nuat, new { @class = "form-control", @type = "text", @id = "txtnuat" })
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.Numero_de_Denuncia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_de_DenunciaFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_DenunciaFilter" })
+                    @Html.TextBoxFor(m => m.Numero_de_Denuncia, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Denuncia" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.expediente_ministerio_publicoResources.nic</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -275,6 +289,30 @@
                 </span>
             </div>
         </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.Tipo_de_urgencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_urgenciaFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_urgenciaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_urgencia, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_urgencia" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Urgencia_Tipo_de_urgencia!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_urgenciaMultiple, varTipo_de_Urgencia_Tipo_de_urgencia,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_urgencia"
+                        });
+                    }
+                </div>
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Pre_Denuncia = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Pre_Denuncia != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Pre_Denuncia = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Pre_Denuncia; }
                 <div class="MarginBottom">
                     <h3>@Resources.expediente_ministerio_publicoResources.estatus</h3>
                 </div>
@@ -792,6 +830,11 @@
             advanceSearch.expediente_ministerio_publiconuat = $("#txtAdvancenuat").val();
             advanceSearch.expediente_ministerio_publiconuatSearchType = $("#ddlAdvancenuatFilter").val();
         }
+        if ($("#txtAdvanceNumero_de_Denuncia").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicoNumero_de_Denuncia = $("#txtAdvanceNumero_de_Denuncia").val();
+            advanceSearch.expediente_ministerio_publicoNumero_de_DenunciaSearchType = $("#ddlAdvanceNumero_de_DenunciaFilter").val();
+        }
         if ($("#txtAdvancenic").val() != "") {
             hasParameter = true;
             advanceSearch.expediente_ministerio_publiconic = $("#txtAdvancenic").val();
@@ -821,6 +864,40 @@
             hasParameter = true;
             advanceSearch.expediente_ministerio_publicohora_puesto_a_disposicion = $("#txtAdvancehora_puesto_a_disposicion").val();
             advanceSearch.expediente_ministerio_publicohora_puesto_a_disposicionSearchType = $("#ddlAdvancehora_puesto_a_disposicionFilter").val();
+        }
+        if ($("#ddlAdvanceUrgencia").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicoUrgencia = $("#ddlAdvanceUrgencia").val();
+        }
+        advanceSearch.Tipo_de_urgenciaSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_urgencia').val().length > 0 || $("#txtAdvanceTipo_de_urgencia").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.Tipo_de_urgenciaName = $("#txtAdvanceTipo_de_urgencia").val();
+                advanceSearch.Tipo_de_urgenciaNameSearchType = $("#ddlAdvanceTipo_de_urgencia").val();
+                advanceSearch.Tipo_de_urgenciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_urgenciaToSearch = $("#ddlAdvanceTipo_de_urgencia").val();
+                advanceSearch.Tipo_de_urgenciaSearchType = 2;
+            }
+        }
+        advanceSearch.Pre_DenunciaSearchType = 0;
+        if ($('#ddlAdvancePre_Denuncia').val().length > 0 || $("#txtAdvancePre_Denuncia").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.Pre_DenunciaName = $("#txtAdvancePre_Denuncia").val();
+                advanceSearch.Pre_DenunciaNameSearchType = $("#ddlAdvancePre_Denuncia").val();
+                advanceSearch.Pre_DenunciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Pre_DenunciaToSearch = $("#ddlAdvancePre_Denuncia").val();
+                advanceSearch.Pre_DenunciaSearchType = 2;
+            }
         }
         advanceSearch.estatusSearchType = 0;
         if ($('#ddlAdvanceestatus').val().length > 0 || $("#txtAdvanceestatus").val() == "") {
@@ -1192,6 +1269,24 @@
         $("#ddlAdvancedetenido").change(function () {
             isexpediente_ministerio_publicoTextSearch = false;
             $("#txtAdvancedetenido").val('');
+        });
+        $("#txtAdvanceTipo_de_urgencia").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvanceTipo_de_urgencia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_urgencia").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvanceTipo_de_urgencia").val('');
+        });
+        $("#txtAdvancePre_Denuncia").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvancePre_Denuncia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePre_Denuncia").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvancePre_Denuncia").val('');
         });
         $("#txtAdvanceestatus").keypress(function () {
             isexpediente_ministerio_publicoTextSearch = true;

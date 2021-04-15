@@ -8,6 +8,8 @@
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Region;
 @using Spartane.Core.Domain.A_Tiempo;
+@using Spartane.Core.Domain.Tipo_de_Urgencia;
+@using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
 @using Spartane.Core.Domain.estatus_mpi;
 @using Spartane.Core.Domain.Lugar_Tipo;
 @using Spartane.Core.Domain.Pais;
@@ -225,10 +227,14 @@
                                     <th>@Resources.expediente_ministerio_publicoResources.Municipio</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Region</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.nuat</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Numero_de_Denuncia</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.nic</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.detenido</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.hora_del_detenido</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.hora_puesto_a_disposicion</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Urgencia</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Tipo_de_urgencia</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Pre_Denuncia</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.estatus</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Titulo_del_Hecho</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Fecha_del_Hecho</th>
@@ -281,8 +287,12 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
@@ -442,10 +452,14 @@
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var nuat =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var nic =  $($('table td .filterData.form-control:input')[counter++]).val();
         var detenido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_del_detenido = $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_puesto_a_disposicion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Urgencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_urgencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pre_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -492,10 +506,14 @@
         + "&Municipio=" + Municipio
         + "&Region=" + Region
         + "&nuat=" + nuat
+        + "&Numero_de_Denuncia=" + Numero_de_Denuncia
         + "&nic=" + nic
         + "&detenido=" + detenido
         + "&hora_del_detenido=" + hora_del_detenido
         + "&hora_puesto_a_disposicion=" + hora_puesto_a_disposicion
+        + "&Urgencia=" + Urgencia
+        + "&Tipo_de_urgencia=" + Tipo_de_urgencia
+        + "&Pre_Denuncia=" + Pre_Denuncia
         + "&estatus=" + estatus
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
         + "&Fecha_del_Hecho=" + Fecha_del_Hecho
@@ -553,10 +571,14 @@
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var nuat =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var nic =  $($('table td .filterData.form-control:input')[counter++]).val();
         var detenido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_del_detenido = $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_puesto_a_disposicion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Urgencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_urgencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pre_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -603,10 +625,14 @@
         + "&Municipio=" + Municipio
         + "&Region=" + Region
         + "&nuat=" + nuat
+        + "&Numero_de_Denuncia=" + Numero_de_Denuncia
         + "&nic=" + nic
         + "&detenido=" + detenido
         + "&hora_del_detenido=" + hora_del_detenido
         + "&hora_puesto_a_disposicion=" + hora_puesto_a_disposicion
+        + "&Urgencia=" + Urgencia
+        + "&Tipo_de_urgencia=" + Tipo_de_urgencia
+        + "&Pre_Denuncia=" + Pre_Denuncia
         + "&estatus=" + estatus
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
         + "&Fecha_del_Hecho=" + Fecha_del_Hecho
@@ -821,11 +847,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -898,10 +924,14 @@
                 ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
                 ,{ "data": "RegionDescripcion", "orderable": true, "name": "RegionDescripcion" }
                 ,{ "data": "nuat", "orderable": true, "name": "nuat", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_de_Denuncia", "orderable": true, "name": "Numero_de_Denuncia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "nic", "orderable": true, "name": "nic", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "detenidoDescripcion", "orderable": true, "name": "detenidoDescripcion" }
                 ,{ "data": "hora_del_detenido", "orderable": true, "name": "hora_del_detenido" }
                 ,{ "data": "hora_puesto_a_disposicion", "orderable": true, "name": "hora_puesto_a_disposicion" }
+                ,{ "data": "Urgencia", "orderable": true, "name": "Urgencia","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Tipo_de_urgenciaDescripcion", "orderable": true, "name": "Tipo_de_urgenciaDescripcion" }
+                ,{ "data": "Pre_DenunciaFolio", "orderable": true, "name": "Pre_DenunciaFolio"}
                 ,{ "data": "estatusdescripcion", "orderable": true, "name": "estatusdescripcion" }
                 ,{ "data": "Titulo_del_Hecho", "orderable": true, "name": "Titulo_del_Hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_del_Hecho", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Hecho" }

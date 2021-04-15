@@ -15,7 +15,7 @@
     List<SelectListItem> varPartida_que_Cumplimenta_Partida_que_cumplimenta = null;
     if (ViewBag.Partida_que_Cumplimentas_Partida_que_cumplimenta != null)
     { varPartida_que_Cumplimenta_Partida_que_cumplimenta = (List<SelectListItem>)ViewBag.Partida_que_Cumplimentas_Partida_que_cumplimenta; }
-    List<SelectListItem> varArea_envia_Cumplimiento_Area_que_envia_cumplimiento = null;
+ List<SelectListItem> varArea_envia_Cumplimiento_Area_que_envia_cumplimiento = null;
     if (ViewBag.Area_envia_Cumplimientos_Area_que_envia_cumplimiento != null)
     { varArea_envia_Cumplimiento_Area_que_envia_cumplimiento = (List<SelectListItem>)ViewBag.Area_envia_Cumplimientos_Area_que_envia_cumplimiento; }
  List<SelectListItem> varEstado_Estado = null;
@@ -199,27 +199,9 @@
                         });
                     }
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Registro_de_CumplimientoResources.Area_que_envia_cumplimiento</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Area_que_envia_cumplimientoFilter, filters, new { @class = "form-control", @id = "ddlArea_que_envia_cumplimientoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceArea_que_envia_cumplimiento, new { @class = "form-control", @type = "text", @id = "txtAdvanceArea_que_envia_cumplimiento" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varArea_envia_Cumplimiento_Area_que_envia_cumplimiento!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceArea_que_envia_cumplimientoMultiple, varArea_envia_Cumplimiento_Area_que_envia_cumplimiento,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceArea_que_envia_cumplimiento"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varArea_envia_Cumplimiento_Area_que_envia_cumplimiento = null;
+    if (ViewBag.Area_envia_Cumplimientos_Area_que_envia_cumplimiento != null)
+    { varArea_envia_Cumplimiento_Area_que_envia_cumplimiento = (List<SelectListItem>)ViewBag.Area_envia_Cumplimientos_Area_que_envia_cumplimiento; }
  List<SelectListItem> varEstado_Estado = null;
     if (ViewBag.Estados_Estado != null)
     { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }

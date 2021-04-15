@@ -96,6 +96,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Diligencia_AT</summary>
+        public static string Diligencia_AT
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Diligencia_AT", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Numero_de_Expediente_MP</summary>
         public static string Numero_de_Expediente_MP
         {
@@ -103,6 +113,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Numero_de_Expediente_MP", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Diligencia_MP</summary>
+        public static string Diligencia_MP
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Diligencia_MP", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -153,6 +173,46 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Solicitud", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Solicitud_de_Apoyo_Externa</summary>
+        public static string Solicitud_de_Apoyo_Externa
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Solicitud_de_Apoyo_Externa", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Solicitud_Externa</summary>
+        public static string Solicitud_Externa
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Solicitud_Externa", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Autoridad_que_Solicita</summary>
+        public static string Autoridad_que_Solicita
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Autoridad_que_Solicita", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Narracion_Solicitud</summary>
+        public static string Narracion_Solicitud
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Narracion_Solicitud", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -343,6 +403,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("Dictamen", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>numero_contestacion</summary>
+        public static string numero_contestacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Servicios_de_Apoyo.GetResource("numero_contestacion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

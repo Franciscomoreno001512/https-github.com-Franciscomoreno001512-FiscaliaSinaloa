@@ -1,7 +1,7 @@
-﻿        function RemoveAttachmentMainImagen_Tatuaje () {
-            $("#hdnRemoveImagen_Tatuaje").val("1");
-            $("#divAttachmentImagen_Tatuaje").hide();
-        }
+﻿function RemoveAttachmentMainImagen_Tatuaje() {
+    $("#hdnRemoveImagen_Tatuaje").val("1");
+    $("#divAttachmentImagen_Tatuaje").hide();
+}
 
 
 
@@ -12,7 +12,7 @@ $(function () {
 
 var AutoCompleteUsuario_que_RegistraData = [];
 function GetAutoCompleteQuejas_de_MP_Usuario_que_Registra_Spartan_UserData(data) {
-	AutoCompleteUsuario_que_RegistraData = [];
+    AutoCompleteUsuario_que_RegistraData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteUsuario_que_RegistraData.push({
             id: data[i].Id_User,
@@ -23,7 +23,7 @@ function GetAutoCompleteQuejas_de_MP_Usuario_que_Registra_Spartan_UserData(data)
 }
 var AutoCompleteMunicipio_hechosData = [];
 function GetAutoCompleteQuejas_de_MP_Municipio_hechos_MunicipioData(data) {
-	AutoCompleteMunicipio_hechosData = [];
+    AutoCompleteMunicipio_hechosData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteMunicipio_hechosData.push({
             id: data[i].Clave,
@@ -34,7 +34,7 @@ function GetAutoCompleteQuejas_de_MP_Municipio_hechos_MunicipioData(data) {
 }
 var AutoCompletePoblacion_hechosData = [];
 function GetAutoCompleteQuejas_de_MP_Poblacion_hechos_ColoniaData(data) {
-	AutoCompletePoblacion_hechosData = [];
+    AutoCompletePoblacion_hechosData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompletePoblacion_hechosData.push({
             id: data[i].Clave,
@@ -45,7 +45,7 @@ function GetAutoCompleteQuejas_de_MP_Poblacion_hechos_ColoniaData(data) {
 }
 var AutoCompleteColonia_hechosData = [];
 function GetAutoCompleteQuejas_de_MP_Colonia_hechos_ColoniaData(data) {
-	AutoCompleteColonia_hechosData = [];
+    AutoCompleteColonia_hechosData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteColonia_hechosData.push({
             id: data[i].Clave,
@@ -56,7 +56,7 @@ function GetAutoCompleteQuejas_de_MP_Colonia_hechos_ColoniaData(data) {
 }
 var AutoCompleteNacionalidad_IdentificacionData = [];
 function GetAutoCompleteQuejas_de_MP_Nacionalidad_Identificacion_NacionalidadData(data) {
-	AutoCompleteNacionalidad_IdentificacionData = [];
+    AutoCompleteNacionalidad_IdentificacionData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteNacionalidad_IdentificacionData.push({
             id: data[i].Clave,
@@ -67,7 +67,7 @@ function GetAutoCompleteQuejas_de_MP_Nacionalidad_Identificacion_NacionalidadDat
 }
 var AutoCompleteEntidad_de_Nacimiento_IdentificacionData = [];
 function GetAutoCompleteQuejas_de_MP_Entidad_de_Nacimiento_Identificacion_EstadoData(data) {
-	AutoCompleteEntidad_de_Nacimiento_IdentificacionData = [];
+    AutoCompleteEntidad_de_Nacimiento_IdentificacionData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteEntidad_de_Nacimiento_IdentificacionData.push({
             id: data[i].Clave,
@@ -78,7 +78,7 @@ function GetAutoCompleteQuejas_de_MP_Entidad_de_Nacimiento_Identificacion_Estado
 }
 var AutoCompleteMunicipioData = [];
 function GetAutoCompleteQuejas_de_MP_Municipio_MunicipioData(data) {
-	AutoCompleteMunicipioData = [];
+    AutoCompleteMunicipioData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteMunicipioData.push({
             id: data[i].Clave,
@@ -89,7 +89,7 @@ function GetAutoCompleteQuejas_de_MP_Municipio_MunicipioData(data) {
 }
 var AutoCompletePoblacionData = [];
 function GetAutoCompleteQuejas_de_MP_Poblacion_ColoniaData(data) {
-	AutoCompletePoblacionData = [];
+    AutoCompletePoblacionData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompletePoblacionData.push({
             id: data[i].Clave,
@@ -100,7 +100,7 @@ function GetAutoCompleteQuejas_de_MP_Poblacion_ColoniaData(data) {
 }
 var AutoCompleteColoniaData = [];
 function GetAutoCompleteQuejas_de_MP_Colonia_ColoniaData(data) {
-	AutoCompleteColoniaData = [];
+    AutoCompleteColoniaData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteColoniaData.push({
             id: data[i].Clave,
@@ -133,12 +133,12 @@ function GetFileUploader() {
     return "<input type='file' class='fullWidth'>";
 }
 
-function GetGridAutoComplete(data,field, id) {
-    
+function GetGridAutoComplete(data, field, id) {
+
     var dataMain = data == null ? "Select" : data;
-    id ==  (id==null   || id==undefined)? "":id;
-    
-     return "<select class='AutoComplete fullWidth select2-dropDown " + field + " form-control' data-val='true'  ><option value='" + id +"'>" + dataMain + "</option></select>";
+    id == (id == null || id == undefined) ? "" : id;
+
+    return "<select class='AutoComplete fullWidth select2-dropDown " + field + " form-control' data-val='true'  ><option value='" + id + "'>" + dataMain + "</option></select>";
 }
 
 function ClearControls() {
@@ -192,7 +192,7 @@ function ClearFormControls() {
             case 'text':
             case 'textarea':
                 $(this).val('');
-				for (instance in CKEDITOR.instances) {
+                for (instance in CKEDITOR.instances) {
                     CKEDITOR.instances[instance].updateElement();
                     CKEDITOR.instances[instance].setData('');
                 }
@@ -209,7 +209,7 @@ function CheckValidation() {
         $myForm.submit();
         return false;
     }
-	
+
     return true;
 }
 
@@ -222,138 +222,137 @@ $(document).ready(function () {
         e.preventDefault();
         return false;
     });
-	$("form#CreateQuejas_de_MP").on('click', '#Quejas_de_MPCancelar', function () {
-	  if (!isPartial) {
-        Quejas_de_MPBackToGrid();
-	  } else {
+    $("form#CreateQuejas_de_MP").on('click', '#Quejas_de_MPCancelar', function () {
+        if (!isPartial) {
+            Quejas_de_MPBackToGrid();
+        } else {
             window.close();
-      }
+        }
     });
-	$("form#CreateQuejas_de_MP").on('click', '#Quejas_de_MPGuardar', function () {
-		$('#Quejas_de_MPGuardar').attr('disabled', true);
-		$('#Quejas_de_MPGuardar').unbind()
+    $("form#CreateQuejas_de_MP").on('click', '#Quejas_de_MPGuardar', function () {
+        $('#Quejas_de_MPGuardar').attr('disabled', true);
+        $('#Quejas_de_MPGuardar').unbind()
         if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
-				if (!SendQuejas_de_MPData(function () {
-					EjecutarValidacionesDespuesDeGuardar();
-					if (!isPartial  && !viewInEframe)
-						Quejas_de_MPBackToGrid();
-					else if (viewInEframe) 
-                    {
-                        $('#Quejas_de_MPGuardar').removeAttr('disabled');
-                        $('#Quejas_de_MPGuardar').bind()
-                    }
-					else {						
-						if (!isMR)
-							window.opener.RefreshCatalog('Quejas_de_MP', nameAttribute);
-						else {
-							var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
-							if(!control.hasClass('AutoComplete'))
-							{
-							if (control.attr("data-isfilter") == "true") {
-									eval(GetReglaFilter(control,  $(window.opener.document.getElementById('ObjectId')).val()));								    
-								}
-								else 
-								{
-									eval('window.opener.Get' + nameMR + '_Quejas_de_MPItem()');
-									var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
-									control.html(eval('window.opener.Get' + nameMR + '_Quejas_de_MPDropDown().get(0)').innerHTML);  
-								}								
-							}
-						}
-						window.close();						
-						}
-				})) {
-					$('#Quejas_de_MPGuardar').removeAttr('disabled');
-					$('#Quejas_de_MPGuardar').bind()
-				}
-		}
-		else {
-			$('#Quejas_de_MPGuardar').removeAttr('disabled');
-			$('#Quejas_de_MPGuardar').bind()
-		}
+            if (!SendQuejas_de_MPData(function () {
+                EjecutarValidacionesDespuesDeGuardar();
+                //if (!isPartial  && !viewInEframe)
+                //	Quejas_de_MPBackToGrid();
+                //else if (viewInEframe) 
+                //               {
+                //                   $('#Quejas_de_MPGuardar').removeAttr('disabled');
+                //                   $('#Quejas_de_MPGuardar').bind()
+                //               }
+                //else {						
+                //	if (!isMR)
+                //		window.opener.RefreshCatalog('Quejas_de_MP', nameAttribute);
+                //	else {
+                //		var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
+                //		if(!control.hasClass('AutoComplete'))
+                //		{
+                //		if (control.attr("data-isfilter") == "true") {
+                //				eval(GetReglaFilter(control,  $(window.opener.document.getElementById('ObjectId')).val()));								    
+                //			}
+                //			else 
+                //			{
+                //				eval('window.opener.Get' + nameMR + '_Quejas_de_MPItem()');
+                //				var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
+                //				control.html(eval('window.opener.Get' + nameMR + '_Quejas_de_MPDropDown().get(0)').innerHTML);  
+                //			}								
+                //		}
+                //	}
+                //	window.close();						
+                //	}
+                //  window.location = "../../inicio.html";
+            })) {
+                $('#Quejas_de_MPGuardar').removeAttr('disabled');
+                $('#Quejas_de_MPGuardar').bind()
+            }
+        }
+        else {
+            $('#Quejas_de_MPGuardar').removeAttr('disabled');
+            $('#Quejas_de_MPGuardar').bind()
+        }
     });
-	$("form#CreateQuejas_de_MP").on('click', '#Quejas_de_MPGuardarYNuevo', function () {	
-		if (EjecutarValidacionesAntesDeGuardar()) {
-			if (CheckValidation()) {
-				SendQuejas_de_MPData(function () {
-					ClearControls();
-					ClearAttachmentsDiv();
-					ResetClaveLabel();
-	
-					if (isPartial)
-					{
-						 if (!isMR)
-					        window.opener.RefreshCatalog('Quejas_de_MP', nameAttribute);
-					    else {
-                            eval('window.opener.Get' + nameMR + '_Quejas_de_MPItem()');                           
-                            var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
-                            control.html(eval('window.opener.Get' + nameMR + '_Quejas_de_MPDropDown().get(0)').innerHTML);   
-					    }	
-					}						
-					EjecutarValidacionesDespuesDeGuardar();				
-			setIsNew();
-			EjecutarValidacionesAlComienzo();
-				});
-			}
-		}		
+    $("form#CreateQuejas_de_MP").on('click', '#Quejas_de_MPGuardarYNuevo', function () {
+        if (EjecutarValidacionesAntesDeGuardar()) {
+            if (CheckValidation()) {
+                SendQuejas_de_MPData(function () {
+                    ClearControls();
+                    ClearAttachmentsDiv();
+                    ResetClaveLabel();
+
+                    if (isPartial) {
+                        if (!isMR)
+                            window.opener.RefreshCatalog('Quejas_de_MP', nameAttribute);
+                        else {
+                            eval('window.opener.Get' + nameMR + '_Quejas_de_MPItem()');
+                            var control = $(window.opener.document.getElementsByClassName(nameMR + "_" + nameAttribute)[0]);
+                            control.html(eval('window.opener.Get' + nameMR + '_Quejas_de_MPDropDown().get(0)').innerHTML);
+                        }
+                    }
+                    EjecutarValidacionesDespuesDeGuardar();
+                    setIsNew();
+                    EjecutarValidacionesAlComienzo();
+                });
+            }
+        }
     });
     $("form#CreateQuejas_de_MP").on('click', '#Quejas_de_MPGuardarYCopia', function () {
-		if (EjecutarValidacionesAntesDeGuardar()) {
-			if (CheckValidation())
-				SendQuejas_de_MPData(function (currentId) {
-					$("#ClaveId").val("0");
-	    $('#Usuario_que_Registra').empty();
-    $("#Usuario_que_Registra").append('<option value=""></option>');
-    $('#Usuario_que_Registra').val('0').trigger('change');
-    $('#Municipio_hechos').empty();
-    $("#Municipio_hechos").append('<option value=""></option>');
-    $('#Municipio_hechos').val('0').trigger('change');
-    $('#Poblacion_hechos').empty();
-    $("#Poblacion_hechos").append('<option value=""></option>');
-    $('#Poblacion_hechos').val('0').trigger('change');
-    $('#Colonia_hechos').empty();
-    $("#Colonia_hechos").append('<option value=""></option>');
-    $('#Colonia_hechos').val('0').trigger('change');
-    $('#Nacionalidad_Identificacion').empty();
-    $("#Nacionalidad_Identificacion").append('<option value=""></option>');
-    $('#Nacionalidad_Identificacion').val('0').trigger('change');
-    $('#Entidad_de_Nacimiento_Identificacion').empty();
-    $("#Entidad_de_Nacimiento_Identificacion").append('<option value=""></option>');
-    $('#Entidad_de_Nacimiento_Identificacion').val('0').trigger('change');
-    $('#Municipio').empty();
-    $("#Municipio").append('<option value=""></option>');
-    $('#Municipio').val('0').trigger('change');
-    $('#Poblacion').empty();
-    $("#Poblacion").append('<option value=""></option>');
-    $('#Poblacion').val('0').trigger('change');
-    $('#Colonia').empty();
-    $("#Colonia").append('<option value=""></option>');
-    $('#Colonia').val('0').trigger('change');
+        if (EjecutarValidacionesAntesDeGuardar()) {
+            if (CheckValidation())
+                SendQuejas_de_MPData(function (currentId) {
+                    $("#ClaveId").val("0");
+                    $('#Usuario_que_Registra').empty();
+                    $("#Usuario_que_Registra").append('<option value=""></option>');
+                    $('#Usuario_que_Registra').val('0').trigger('change');
+                    $('#Municipio_hechos').empty();
+                    $("#Municipio_hechos").append('<option value=""></option>');
+                    $('#Municipio_hechos').val('0').trigger('change');
+                    $('#Poblacion_hechos').empty();
+                    $("#Poblacion_hechos").append('<option value=""></option>');
+                    $('#Poblacion_hechos').val('0').trigger('change');
+                    $('#Colonia_hechos').empty();
+                    $("#Colonia_hechos").append('<option value=""></option>');
+                    $('#Colonia_hechos').val('0').trigger('change');
+                    $('#Nacionalidad_Identificacion').empty();
+                    $("#Nacionalidad_Identificacion").append('<option value=""></option>');
+                    $('#Nacionalidad_Identificacion').val('0').trigger('change');
+                    $('#Entidad_de_Nacimiento_Identificacion').empty();
+                    $("#Entidad_de_Nacimiento_Identificacion").append('<option value=""></option>');
+                    $('#Entidad_de_Nacimiento_Identificacion').val('0').trigger('change');
+                    $('#Municipio').empty();
+                    $("#Municipio").append('<option value=""></option>');
+                    $('#Municipio').val('0').trigger('change');
+                    $('#Poblacion').empty();
+                    $("#Poblacion").append('<option value=""></option>');
+                    $('#Poblacion').val('0').trigger('change');
+                    $('#Colonia').empty();
+                    $("#Colonia").append('<option value=""></option>');
+                    $('#Colonia').val('0').trigger('change');
 
-					ResetClaveLabel();
-					$("#ReferenceClave").val(currentId);
-	
-					EjecutarValidacionesDespuesDeGuardar();		
-					if (isPartial)
-					{
-						 if (!isMR)
-					        window.opener.RefreshCatalog('Quejas_de_MP',nameAttribute);
-					    else {
-                            eval('window.opener.Get' + nameMR + '_Quejas_de_MPItem()');                          
-                            var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);						
-							control.html(eval('window.opener.Get' + nameMR + '_Quejas_de_MPDropDown().get(0)').innerHTML);                          
-					    }	
-					}						
-			setIsNew();
-				});
-		}
+                    ResetClaveLabel();
+                    $("#ReferenceClave").val(currentId);
+
+                    EjecutarValidacionesDespuesDeGuardar();
+                    if (isPartial) {
+                        if (!isMR)
+                            window.opener.RefreshCatalog('Quejas_de_MP', nameAttribute);
+                        else {
+                            eval('window.opener.Get' + nameMR + '_Quejas_de_MPItem()');
+                            var control = $(window.opener.document.getElementsByClassName(nameMR + "_" + nameAttribute)[0]);
+                            control.html(eval('window.opener.Get' + nameMR + '_Quejas_de_MPDropDown().get(0)').innerHTML);
+                        }
+                    }
+                    setIsNew();
+                });
+        }
     });
 });
 
 function setIsNew() {
     $('#hdnIsNew').val("True");
-	$('#Operation').val("New");
-	operation = "New";
+    $('#Operation').val("New");
+    operation = "New";
 }
 
 
@@ -424,7 +423,7 @@ function setReadOnly(elementNumber, element, elementType, table) {
         }
         mainElementObject[elementNumber].IsReadOnly = (mainElementObject[elementNumber].IsReadOnly == true ? false : true);
         $(element).children().attr("src", "" + $('#hdnApplicationDirectory').val() + (mainElementObject[elementNumber].IsReadOnly == true ? "Images/Disabled.png" : "Images/Enabled.png") + "");
-        $(element).attr('title', (mainElementObject[elementNumber].IsReadOnly == true ?GetTraduction('Disabled') : GetTraduction('Enabled')));
+        $(element).attr('title', (mainElementObject[elementNumber].IsReadOnly == true ? GetTraduction('Disabled') : GetTraduction('Enabled')));
     } else {
         if (getElementTable(elementNumber, table).IsRequired && getElementTable(elementNumber, table).DefaultValue == '' && !getElementTable(elementNumber, table).IsReadOnly) {
             showNotification(GetTraduction("messagedNoReadOnly"), "error");
@@ -495,7 +494,7 @@ function returnAttributeHTML(element, table, number) {
     var mainElementAttributes = '<div class="col-ld-12" style="display:inline-flex;">';
     mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (element.IsRequired == true ? GetTraduction("Required") : GetTraduction("NotRequired")) + '" onclick="setRequired(' + number.toString() + ', this, 2,  \'' + table + '\')"><img src="' + $('#hdnApplicationDirectory').val() + (element.IsRequired == true ? "Images/Required.png" : "Images/Not-Required.png") + '" alt="" /></a></div>';
     mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (element.IsVisible == true ? GetTraduction("Visible") : GetTraduction("InVisible")) + '" onclick="setVisible(' + number.toString() + ', this, 2,  \'' + table + '\')"><img src="' + $('#hdnApplicationDirectory').val() + (element.IsVisible == true ? "Images/Visible.png" : "Images/InVisible.png") + '" alt="" /></a></div>';
-    mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (element.IsReadOnly == true ?GetTraduction("Disabled") :GetTraduction("Enabled")) + '" onclick="setReadOnly(' + number.toString() + ', this, 2,  \'' + table + '\')"><img src="' + $('#hdnApplicationDirectory').val() + (element.IsReadOnly == true ? "Images/Disabled.png" : "Images/Enabled.png") + '" alt="" /></a></div>';
+    mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (element.IsReadOnly == true ? GetTraduction("Disabled") : GetTraduction("Enabled")) + '" onclick="setReadOnly(' + number.toString() + ', this, 2,  \'' + table + '\')"><img src="' + $('#hdnApplicationDirectory').val() + (element.IsReadOnly == true ? "Images/Disabled.png" : "Images/Enabled.png") + '" alt="" /></a></div>';
     mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValueHeader_' + number.toString() + '" class="defaultValueClick" title="' + (element.DefaultValue) + '" onclick="setDefaultValue(' + number.toString() + ', this, 2,  "' + table + '")"><img src="' + $('#hdnApplicationDirectory').val() + (element.DefaultValue != '' && element.DefaultValue != null ? "Images/default-value.png" : "Images/Not-Default-Value.png") + '" alt="" /></a></div>';
     mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpTextHeader_' + number.toString() + '" class="helpTextClick" title="' + (element.HelpText) + '" onclick="setHelpText(' + number.toString() + ', this, 2,  \'' + table + '\')"><img src="' + $('#hdnApplicationDirectory').val() + (element.HelpText != '' && element.HelpText != null ? "Images/green-help.png" : "Images/red-help.jpg") + '" alt="" /></a></div>';
     mainElementAttributes += '</div>';
@@ -509,9 +508,9 @@ Quejas_de_MPDisplayBusinessRuleButtons(Quejas_de_MPisdisplayBusinessPropery);
 function Quejas_de_MPDisplayBusinessRule() {
     if (!Quejas_de_MPisdisplayBusinessPropery) {
         $('#CreateQuejas_de_MP').find('.col-sm-8').each(function () {
-			var div =$(this); 
-			if ($(this).find('.input-group').length >0)
-				div  =  $(this).find('.input-group').first().hasClass('date')? $(this): $(this).find('.input-group').first();	
+            var div = $(this);
+            if ($(this).find('.input-group').length > 0)
+                div = $(this).find('.input-group').first().hasClass('date') ? $(this) : $(this).find('.input-group').first();
             var mainElementAttributes = '<div class="col-sm-2">';
             var fieldId = div.data('field-id');
             var fieldName = div.data('field-name');
@@ -536,4 +535,3 @@ function Quejas_de_MPDisplayBusinessRuleButtons(flag) {
         element.prop('disabled', true);
     }
 }
-

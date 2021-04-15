@@ -33,9 +33,6 @@
  List<SelectListItem> varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno = null;
     if (ViewBag.Jefes_de_Usuarios_del_Sistemas_Ministerio_Publico_en_Turno != null)
     { varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno = (List<SelectListItem>)ViewBag.Jefes_de_Usuarios_del_Sistemas_Ministerio_Publico_en_Turno; }
- List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = null;
-    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana != null)
-    { varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana; }
     List<SelectListItem> varGenero_Sexo_turno = null;
     if (ViewBag.Generos_Sexo_turno != null)
     { varGenero_Sexo_turno = (List<SelectListItem>)ViewBag.Generos_Sexo_turno; }
@@ -48,6 +45,9 @@
     List<SelectListItem> varTipo_de_Urgencia_Tipo_de_Urgencia_turno = null;
     if (ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia_turno != null)
     { varTipo_de_Urgencia_Tipo_de_Urgencia_turno = (List<SelectListItem>)ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia_turno; }
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana; }
     List<SelectListItem> varMotivo_Finalizacion_Turno_Motivo_Finalizacion_Turno = null;
     if (ViewBag.Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno != null)
     { varMotivo_Finalizacion_Turno_Motivo_Finalizacion_Turno = (List<SelectListItem>)ViewBag.Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno; }
@@ -399,9 +399,6 @@
  List<SelectListItem> varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno = null;
     if (ViewBag.Jefes_de_Usuarios_del_Sistemas_Ministerio_Publico_en_Turno != null)
     { varJefes_de_Usuarios_del_Sistema_Ministerio_Publico_en_Turno = (List<SelectListItem>)ViewBag.Jefes_de_Usuarios_del_Sistemas_Ministerio_Publico_en_Turno; }
- List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = null;
-    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana != null)
-    { varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana; }
                 <div class="MarginBottom">
                     <h3>@Resources.Modulo_Atencion_InicialResources.Nombres_turno</h3>
                 </div>
@@ -529,6 +526,9 @@
                         });
                     }
                 </div>
+ List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = null;
+    if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana != null)
+    { varSolicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud_de_Denuncia_Ciudadana; }
                 <div class="MarginBottom">
                     <h3>@Resources.Modulo_Atencion_InicialResources.Motivo_Finalizacion_Turno</h3>
                 </div>
@@ -1057,21 +1057,6 @@
                 advanceSearch.Ministerio_Publico_en_TurnoSearchType = 2;
             }
         }
-        advanceSearch.Solicitud_de_Denuncia_CiudadanaSearchType = 0;
-        if ($('#ddlAdvanceSolicitud_de_Denuncia_Ciudadana').val().length > 0 || $("#txtAdvanceSolicitud_de_Denuncia_Ciudadana").val() == "") {
-
-
-            if (isModulo_Atencion_InicialTextSearch) {
-                advanceSearch.Solicitud_de_Denuncia_CiudadanaName = $("#txtAdvanceSolicitud_de_Denuncia_Ciudadana").val();
-                advanceSearch.Solicitud_de_Denuncia_CiudadanaNameSearchType = $("#ddlAdvanceSolicitud_de_Denuncia_Ciudadana").val();
-                advanceSearch.Solicitud_de_Denuncia_CiudadanaSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Solicitud_de_Denuncia_CiudadanaToSearch = $("#ddlAdvanceSolicitud_de_Denuncia_Ciudadana").val();
-                advanceSearch.Solicitud_de_Denuncia_CiudadanaSearchType = 2;
-            }
-        }
         if ($("#txtAdvanceNombres_turno").val() != "") {
             hasParameter = true;
             advanceSearch.Modulo_Atencion_InicialNombres_turno = $("#txtAdvanceNombres_turno").val();
@@ -1159,6 +1144,21 @@
 
                 advanceSearch.Tipo_de_Urgencia_turnoToSearch = $("#ddlAdvanceTipo_de_Urgencia_turno").val();
                 advanceSearch.Tipo_de_Urgencia_turnoSearchType = 2;
+            }
+        }
+        advanceSearch.Solicitud_de_Denuncia_CiudadanaSearchType = 0;
+        if ($('#ddlAdvanceSolicitud_de_Denuncia_Ciudadana').val().length > 0 || $("#txtAdvanceSolicitud_de_Denuncia_Ciudadana").val() == "") {
+
+
+            if (isModulo_Atencion_InicialTextSearch) {
+                advanceSearch.Solicitud_de_Denuncia_CiudadanaName = $("#txtAdvanceSolicitud_de_Denuncia_Ciudadana").val();
+                advanceSearch.Solicitud_de_Denuncia_CiudadanaNameSearchType = $("#ddlAdvanceSolicitud_de_Denuncia_Ciudadana").val();
+                advanceSearch.Solicitud_de_Denuncia_CiudadanaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Solicitud_de_Denuncia_CiudadanaToSearch = $("#ddlAdvanceSolicitud_de_Denuncia_Ciudadana").val();
+                advanceSearch.Solicitud_de_Denuncia_CiudadanaSearchType = 2;
             }
         }
         advanceSearch.Motivo_Finalizacion_TurnoSearchType = 0;
@@ -1527,15 +1527,6 @@
             isModulo_Atencion_InicialTextSearch = false;
             $("#txtAdvanceMinisterio_Publico_en_Turno").val('');
         });
-        $("#txtAdvanceSolicitud_de_Denuncia_Ciudadana").keypress(function () {
-            isModulo_Atencion_InicialTextSearch = true;
-            $("#ddlAdvanceSolicitud_de_Denuncia_Ciudadana").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceSolicitud_de_Denuncia_Ciudadana").change(function () {
-            isModulo_Atencion_InicialTextSearch = false;
-            $("#txtAdvanceSolicitud_de_Denuncia_Ciudadana").val('');
-        });
         $("#txtAdvanceSexo_turno").keypress(function () {
             isModulo_Atencion_InicialTextSearch = true;
             $("#ddlAdvanceSexo_turno").val('').trigger("chosen:updated");
@@ -1571,6 +1562,15 @@
         $("#ddlAdvanceTipo_de_Urgencia_turno").change(function () {
             isModulo_Atencion_InicialTextSearch = false;
             $("#txtAdvanceTipo_de_Urgencia_turno").val('');
+        });
+        $("#txtAdvanceSolicitud_de_Denuncia_Ciudadana").keypress(function () {
+            isModulo_Atencion_InicialTextSearch = true;
+            $("#ddlAdvanceSolicitud_de_Denuncia_Ciudadana").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSolicitud_de_Denuncia_Ciudadana").change(function () {
+            isModulo_Atencion_InicialTextSearch = false;
+            $("#txtAdvanceSolicitud_de_Denuncia_Ciudadana").val('');
         });
         $("#txtAdvanceMotivo_Finalizacion_Turno").keypress(function () {
             isModulo_Atencion_InicialTextSearch = true;

@@ -328,7 +328,6 @@
             InitiateAdvanceSearch();
         });
         $('a').tooltip();
-		Role_= @Convert.ToInt32(Spartane.Web.SessionHelper.Role.ToString());															  
     });
 
     var advanceSearchQuery = "@(advanceSearch)", isAsignacion_de_TurnosTextSearch = true;
@@ -381,78 +380,6 @@
     }
 
     function Export(format) {
-	 var counter = 1;
-        currentFilter = table.page.info();
-		 var where= MRWhere;
-		var order = MROrder;
-
-        var queryString = GetQueryString();
-		
-		var Folio = "";
-        var Fecha_de_Turno = "";
-        var Hora_de_Turno = "";
-        var Numero_de_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Unidad_de_Atencion = "";
-        var Recepcion = "";
-        var Nombres = "";
-        var Apellido_Paterno = "";
-        var Apellido_Materno = "";
-        var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Sexo = "";
-        var Edad = "";
-        var Tipo_de_Atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Identificacion = "";
-        var Numero_de_Identificacion = "";
-        var Urgencia = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Urgencia =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Orientador = "";
-        var Estatus_de_Turno = "";
-        var Modulo = "";
-        var Motivo_Finalizacion_Turno = "";
-        var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Asignacion = "";
-        var Hora_de_Asignacion = "";
-        var Fecha_de_Finalizacion = "";
-        var Hora_de_Finalizacion = "";
-
-
-        var queryString = "&Folio=" + Folio
-        + "&Fecha_de_Turno=" + Fecha_de_Turno
-        + "&Hora_de_Turno=" + Hora_de_Turno
-        + "&Numero_de_Turno=" + Numero_de_Turno
-        + "&Unidad_de_Atencion=" + Unidad_de_Atencion
-        + "&Recepcion=" + Recepcion
-        + "&Nombres=" + Nombres
-        + "&Apellido_Paterno=" + Apellido_Paterno
-        + "&Apellido_Materno=" + Apellido_Materno
-        + "&Nombre_Completo=" + Nombre_Completo
-        + "&Sexo=" + Sexo
-        + "&Edad=" + Edad
-        + "&Tipo_de_Atencion=" + Tipo_de_Atencion
-        + "&Tipo_de_Identificacion=" + Tipo_de_Identificacion
-        + "&Numero_de_Identificacion=" + Numero_de_Identificacion
-        + "&Urgencia=" + Urgencia
-        + "&Tipo_de_Urgencia=" + Tipo_de_Urgencia
-        + "&Orientador=" + Orientador
-        + "&Estatus_de_Turno=" + Estatus_de_Turno
-        + "&Modulo=" + Modulo
-        + "&Motivo_Finalizacion_Turno=" + Motivo_Finalizacion_Turno
-        + "&Observaciones=" + Observaciones
-        + "&Fecha_de_Asignacion=" + Fecha_de_Asignacion
-        + "&Hora_de_Asignacion=" + Hora_de_Asignacion
-        + "&Fecha_de_Finalizacion=" + Fecha_de_Finalizacion
-        + "&Hora_de_Finalizacion=" + Hora_de_Finalizacion
- + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
-
-        var url = "@Url.Content("~/Frontal/Asignacion_de_Turnos/Export?format=")" + format
-            + "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
-            + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
-		    + "&where=" + where + "&order=" + order +
-			+ "&columnsVisible=" + table.columns().visible().join(",") + queryString;
-        window.open(url, '_blank');
-    };
-
-       function Export(format) {
 	 var counter = 1;
         currentFilter = table.page.info();
 		 var where= MRWhere;
@@ -533,57 +460,35 @@
     function GetQueryString() {
 	
 	 var counter = 0;
-        var Folio =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Turno = "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Turno = "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Turno = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Turno = $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Unidad_de_Atencion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Recepcion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Nombres =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Paterno =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Materno =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad_de_Atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombres =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Sexo =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Edad =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Sexo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Edad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Identificacion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Otra_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Identificacion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Urgencia = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Urgencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Denuncia_Ciudadana =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Turno_Previo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Orientador =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Estatus_de_Turno =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Modulo =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Motivo_Finalizacion_Turno =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Orientador =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus_de_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_Finalizacion_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Asignacion = "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Asignacion = "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Finalizacion = "";//$($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Finalizacion = "";//$($('table td .filterData.form-control:input')[counter++]).val();
-		var filtro_urgencia = $('.checkbox:checkbox:checked').val();
-
-
-
-        var LoadTable = $('#LoadTable').val();
-        if (LoadTable == "True") {
-
-            filtro_urgencia = 'undefined';
-            $('.checkbox').trigger('click');
-            $('#LoadTable').val("False");
-
-        }
-
-
-
-        if (filtro_urgencia == "on")
-		{
-		Urgencia = "true"
-		}else{
-				Urgencia = ""
-
-		}															
+        var Fecha_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Finalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Finalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Folio=" + Folio 
@@ -818,7 +723,7 @@
             "processing": true,
             "serverSide": true,
             "info": true,
-            "lengthMenu": [[-1,10, 20, 50], ["@Resources.Resources.All", 10, 20, 50]],        
+            "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "@Resources.Resources.All"]],            
 			 "ajax": function (data, callback, settings, aoData) {
                 $.ajax({
                     url: "@Url.Content("~/Frontal/Asignacion_de_Turnos/GetAsignacion_de_TurnosList")", 
@@ -859,15 +764,7 @@
                         var del = '<a title="@Resources.Resources.Delete" onclick="DeleteAsignacion_de_Turnos(\'' + data.Folio + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
                         if (!permission.Delete)
                             del = '';
-						var asignar = "";  
-                        if (data.Estatus_de_TurnoDescripcion == "Por Asignar" &&  Role_ == "4" ) {
-                            asignar = '<a title="Asignar" onclick="ToAssign(\'' + data.Folio + '\')"  class="editor_remove eliminar-MR"><img src="/MVCfiscaliasinaloa/Images/autorizar.png" width="16" height="16" /></a>';
-                        }
-                        var finalizar = "";
-                        if (data.Estatus_de_TurnoDescripcion == "Asignado" && Role_ == "4") {
-                            finalizar = '<a title="Finalizar" href="@Url.Action("Create", "Asignacion_de_Turnos")?Id=' + data.Folio + '&finalizaTurno=1" class="editor_remove eliminar-MR"><img src="/MVCfiscaliasinaloa/Images/Terminar.PNG" width="16" height="16" /></a>';
-                        } 
-                        return edit + del + consult + print +  asignar + finalizar;
+                        return edit + del + consult + print;
                     }
                 }, 
                 { "data": "Folio", "orderable": true, "name": "Folio" }
@@ -1008,75 +905,11 @@
         });
     }
 </script>
-<script>
-
-    function TurnoAsignado() {
-         var orientador = @Convert.ToInt32(Spartane.Web.SessionHelper.UserEntity.Id_User.ToString());
-         $.ajax({
-                url: '@Url.Content("~/Frontal/Asignacion_de_Turnos/TurnoAsignado")',
-                data: { "orientador":  orientador },
-                type: 'POST',
-             success: function (result) {
-                 tieneTurno = JSON.stringify(result.Resource) ;
-                }
-            });
-    }
-
-
-    function ToAssign(Folio) {
-        debugger;
-        var orientador = @Convert.ToInt32(Spartane.Web.SessionHelper.UserEntity.Id_User.ToString());
-               $.ajax({
-                async: false,
-                url: '@Url.Content("~/Frontal/Asignacion_de_Turnos/TurnoAsignado")',
-                data: { "orientador":  orientador },
-                type: 'POST',
-                   success: function (tieneTurno) {
-
-                       if (tieneTurno == "0") {
-
-                           $.ajax({
-                               url: '@Url.Content("~/Frontal/Asignacion_de_Turnos/ToAssign")',
-                               data: { "orientador": orientador, "Folio": Folio },
-                               type: 'POST',
-                               success: function (result) {
-                                   if (result) {
-                                       table.draw();
-                                       showNotification('Turno asignado correctamente.', "success");
-
-                                       location.reload();
-
-                                   } else {
-                                       showNotification('@Resources.Resources.DeleteError', "error");
-                                   }
-                               },
-                               error: function (xhr, status, error) {
-                                   debugger;
-                                   showNotification('@Resources.Resources.DeleteError', "error");
-                               }
-                           });
-                       } else {
-                            showNotification("No se puede asignar turno, ya tiene un turno asignado.", "error");
-                       }
-                },
-                error:function(w,r,t){
-                    var un =w;
-                    var uu = r;
-                    var jyj = t;
-
-                }
-
-            });
-    }
-
-
-</script>
 <input type="hidden" id="FieldId" name="FieldId" value="" />
 <input type="hidden" id="FieldName" name="FieldName" value="" />
 <input type="hidden" id="ObjectId" name="ObjectId" value="" />
 <input type="hidden" id="Attribute" name="Attribute" value="" />
 <input type="hidden" id="Screen" name="Screen" value="" />
-<input type="hidden" id="LoadTable" name="LoadTable" value="True" />
 @section Styles {
     
     @Styles.Render("~/plugins/dateRangeStyles")

@@ -46,16 +46,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Tipo_de_Solicitud</summary>
-        public static string Tipo_de_Solicitud
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderProbable_Responsable_PC.GetResource("Tipo_de_Solicitud", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Tiene_informacion_responsable</summary>
         public static string Tiene_informacion_responsable
         {
@@ -83,6 +73,26 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderProbable_Responsable_PC.GetResource("Persona_moral", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Conoce_los_datos_del_representante_legal</summary>
+        public static string Conoce_los_datos_del_representante_legal
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderProbable_Responsable_PC.GetResource("Conoce_los_datos_del_representante_legal", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Razon_Social</summary>
+        public static string Razon_Social
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderProbable_Responsable_PC.GetResource("Razon_Social", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

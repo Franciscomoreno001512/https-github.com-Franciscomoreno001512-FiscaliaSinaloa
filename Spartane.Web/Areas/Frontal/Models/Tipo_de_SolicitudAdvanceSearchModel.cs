@@ -22,6 +22,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }
 
+        public Filters AbreviacionFilter { set; get; }
+        public string Abreviacion { set; get; }
+
 
     }
 }

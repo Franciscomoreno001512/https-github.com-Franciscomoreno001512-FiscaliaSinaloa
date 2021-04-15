@@ -126,6 +126,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Numero_de_Denuncia</summary>
+        public static string Numero_de_Denuncia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Numero_de_Denuncia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>nic</summary>
         public static string nic
         {
@@ -163,6 +173,36 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderexpediente_ministerio_publico.GetResource("hora_puesto_a_disposicion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Urgencia</summary>
+        public static string Urgencia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Urgencia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Tipo_de_urgencia</summary>
+        public static string Tipo_de_urgencia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Tipo_de_urgencia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Pre_Denuncia</summary>
+        public static string Pre_Denuncia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Pre_Denuncia", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

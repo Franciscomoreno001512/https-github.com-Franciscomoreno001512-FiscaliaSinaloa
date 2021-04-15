@@ -38,12 +38,21 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Numero_de_Expediente_AT = null;
     if (ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT != null)
     { varModulo_Atencion_Inicial_Numero_de_Expediente_AT = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT; }
+ List<SelectListItem> varDetalle_de_Documentos_MPO_Diligencia_AT = null;
+    if (ViewBag.Detalle_de_Documentos_MPOs_Diligencia_AT != null)
+    { varDetalle_de_Documentos_MPO_Diligencia_AT = (List<SelectListItem>)ViewBag.Detalle_de_Documentos_MPOs_Diligencia_AT; }
  List<SelectListItem> varexpediente_ministerio_publico_Numero_de_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP != null)
     { varexpediente_ministerio_publico_Numero_de_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP; }
+ List<SelectListItem> varDiligencias_MP_Diligencia_MP = null;
+    if (ViewBag.Diligencias_MPs_Diligencia_MP != null)
+    { varDiligencias_MP_Diligencia_MP = (List<SelectListItem>)ViewBag.Diligencias_MPs_Diligencia_MP; }
  List<SelectListItem> varDocumento_Solicitud = null;
     if (ViewBag.Documentos_Solicitud != null)
     { varDocumento_Solicitud = (List<SelectListItem>)ViewBag.Documentos_Solicitud; }
+    List<SelectListItem> varAutoridad_Externa_Autoridad_que_Solicita = null;
+    if (ViewBag.Autoridad_Externas_Autoridad_que_Solicita != null)
+    { varAutoridad_Externa_Autoridad_que_Solicita = (List<SelectListItem>)ViewBag.Autoridad_Externas_Autoridad_que_Solicita; }
     List<SelectListItem> varEstatus_de_Solicitud_de_Apoyo_Estatus = null;
     if (ViewBag.Estatus_de_Solicitud_de_Apoyos_Estatus != null)
     { varEstatus_de_Solicitud_de_Apoyo_Estatus = (List<SelectListItem>)ViewBag.Estatus_de_Solicitud_de_Apoyos_Estatus; }
@@ -332,6 +341,20 @@
                                 </div>
                                 }
                             </div>
+				<div class="form-group" id="divDiligencia_AT">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Diligencia_AT</label>
+                                <div class="col-sm-8" data-field-id="Diligencia_AT" data-attribute="273276" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Diligencia_AT">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_de_Servicios_de_Apoyo_Diligencia_AT form-control select2-dropdown Datos_Generales' data-val="true" id="Diligencia_AT" name="Diligencia_AT">
+                                        <option value="@Model.Diligencia_AT">@(Model.Diligencia_ATObservaciones??Model.Diligencia_ATObservaciones)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273276).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Documentos_MPO', 'Diligencia_AT');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
 				<div class="form-group" id="divNumero_de_Expediente_MP">
                                 <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_MP</label>
                                 <div class="col-sm-8" data-field-id="Numero_de_Expediente_MP" data-attribute="272991" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Numero_de_Expediente_MP">
@@ -343,6 +366,20 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Numero_de_Expediente_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divDiligencia_MP">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Diligencia_MP</label>
+                                <div class="col-sm-8" data-field-id="Diligencia_MP" data-attribute="273277" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Diligencia_MP">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_de_Servicios_de_Apoyo_Diligencia_MP form-control select2-dropdown Datos_Generales' data-val="true" id="Diligencia_MP" name="Diligencia_MP">
+                                        <option value="@Model.Diligencia_MP">@(Model.Diligencia_MPObservaciones??Model.Diligencia_MPObservaciones)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273277).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Diligencias_MP', 'Diligencia_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -387,6 +424,54 @@
                                     <a id="Estado_New" onclick="GetCatalogPopup('Documento', 'Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
+                            </div>
+                            <div class="form-group" id="divSolicitud_de_Apoyo_Externa">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud_de_Apoyo_Externa</label>
+                                <div class="col-sm-8" data-field-id="Solicitud_de_Apoyo_Externa" data-attribute="273326" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud_de_Apoyo_Externa">
+                                    <input class="form-control inputNumber Datos_Generales" id="Solicitud_de_Apoyo_Externa" name="Solicitud_de_Apoyo_Externa" type="text" value="@Model.Solicitud_de_Apoyo_Externa">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Solicitud_de_Apoyo_Externa" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divSolicitud_Externa">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud_Externa</label>
+                                <div class="col-sm-8" data-field-id="Solicitud_Externa" data-attribute="273320" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud_Externa">
+                                    @Html.CheckBoxFor(m => m.Solicitud_Externa, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divAutoridad_que_Solicita">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Autoridad_que_Solicita</label>
+                                <div class="col-sm-8" data-field-id="Autoridad_que_Solicita" data-attribute="273321" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Autoridad_que_Solicita">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Autoridad que Solicita must be a number." data-val-required="The Autoridad que Solicita field is required." id="Autoridad_que_Solicita" name="Autoridad_que_Solicita">
+                                        <option value=""></option>
+                                        @if (varAutoridad_Externa_Autoridad_que_Solicita != null){ 
+                                            foreach (var itemAutoridad_que_Solicita in varAutoridad_Externa_Autoridad_que_Solicita)
+                                            {
+                                                if (itemAutoridad_que_Solicita.Value == Convert.ToString(Model.Autoridad_que_Solicita))
+                                                {
+                                                    <option value="@itemAutoridad_que_Solicita.Value" selected>@itemAutoridad_que_Solicita.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemAutoridad_que_Solicita.Value">@itemAutoridad_que_Solicita.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Autoridad_que_Solicita" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273321).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Autoridad_Externa', 'Autoridad_que_Solicita');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divNarracion_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Narracion_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Narracion_Solicitud" data-attribute="273322" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Narracion_Solicitud">
+                                    <textarea id="Narracion_Solicitud" name="Narracion_Solicitud" class="form-control Datos_Generales" rows="4" cols="50">@Model.Narracion_Solicitud</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Narracion_Solicitud" data-valmsg-replace="true"></span>*@
+                                </div>
                             </div>
                             @if (attachedFileVer_Documento != null && attachedFileVer_Documento.File_Id > 0)
                             {
@@ -693,6 +778,13 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divnumero_contestacion">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.numero_contestacion</label>
+                                <div class="col-sm-8" data-field-id="numero_contestacion" data-attribute="273319" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.numero_contestacion">
+                                    <input class="form-control Contestacion" id="numero_contestacion" name="numero_contestacion" type="text" value="@Model.numero_contestacion">
+                                    @*<span class="field-validation-valid" data-valmsg-for="numero_contestacion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             <div class="form-group" id="divEnviar_Contestacion">
                                 <label class="col-sm-2 control-label">@Resources.Solicitud_de_Servicios_de_ApoyoResources.Enviar_Contestacion</label>
                                 <div class="col-sm-8" data-field-id="Enviar_Contestacion" data-attribute="273022" data-field-name="@Resources.Solicitud_de_Servicios_de_ApoyoResources.Enviar_Contestacion">
@@ -713,30 +805,6 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Contestacion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-                            <div class="form-group" id="divArchivo">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
-                                        <div class="col-md-3">
-
-                                            <button id="Archivo_VerDocto" class="btn btn-w-m btn-primary btn_save hidden" onclick="VerDocto()"><img src="/MVCfiscaliasinaloa/Images/seguimiento.png" width="16" height="16" /> Ver Docto</button>
-
-                                        </div>
-                                        <div class="col-md-3">
-
-                                            <button id="Archivo_EditarDocto" class="btn btn-w-m btn-primary btn_save" onclick="EditarDocto()"><img src="/MVCfiscaliasinaloa/Images/seguimiento.png" width="16" height="16" /> Editar Docto</button>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-
                             </div>
                                 </div>
 
@@ -1095,6 +1163,39 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
+       var AutoCompleteDiligencia_ATData =[];
+       $(".AutoCompleteSolicitud_de_Servicios_de_Apoyo_Diligencia_AT").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud_de_Servicios_de_Apoyo/GetSolicitud_de_Servicios_de_Apoyo_Diligencia_AT_Detalle_de_Documentos_MPO")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Diligencia_AT_Detalle_de_Documentos_MPOData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_de_Servicios_de_Apoyo_Diligencia_AT");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
        var AutoCompleteNumero_de_Expediente_MPData =[];
        $(".AutoCompleteSolicitud_de_Servicios_de_Apoyo_Numero_de_Expediente_MP").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -1124,6 +1225,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteSolicitud_de_Servicios_de_Apoyo_Numero_de_Expediente_MP");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteDiligencia_MPData =[];
+       $(".AutoCompleteSolicitud_de_Servicios_de_Apoyo_Diligencia_MP").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud_de_Servicios_de_Apoyo/GetSolicitud_de_Servicios_de_Apoyo_Diligencia_MP_Diligencias_MP")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_de_Servicios_de_Apoyo_Diligencia_MP_Diligencias_MPData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_de_Servicios_de_Apoyo_Diligencia_MP");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -1387,14 +1521,6 @@
                 </text>
             }
             EjecutarValidacionesAlComienzo(); 
-			var valorArchivo = $("#Archivo").val();
-			
-			
-			if (valorArchivo != "" && valorArchivo != "0") {
-				
-				$("#Archivo_VerDocto").removeClass("hidden");
-				
-			}
 			
         });
 
@@ -1710,6 +1836,15 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Numero_de_Expediente_AT).trigger('change');
                     }, 3000);
+                    var control = $('#Diligencia_AT');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Diligencia_AT).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Diligencia_AT).trigger('change');
+                    }, 3000);
                     var control = $('#Numero_de_Expediente_MP');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Numero_de_Expediente_MP).trigger('keyup');
@@ -1718,6 +1853,15 @@
 	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
 	                    control.select2({ data: data });
 	                    control.val(result.data.Numero_de_Expediente_MP).trigger('change');
+                    }, 3000);
+                    var control = $('#Diligencia_MP');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Diligencia_MP).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Diligencia_MP).trigger('change');
                     }, 3000);
                     $('#NUAT').val(result.data.NUAT);
                     $('#Numero_de_Denuncia').val(result.data.Numero_de_Denuncia);
@@ -1732,6 +1876,10 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Solicitud).trigger('change');
                     }, 3000);
+                    $('#Solicitud_de_Apoyo_Externa').val(result.data.Solicitud_de_Apoyo_Externa);
+                    $('#Solicitud_Externa').prop('checked', result.data.Solicitud_Externa);
+                    $('#Autoridad_que_Solicita').val(result.data.Autoridad_que_Solicita);
+                    $('#Narracion_Solicitud').val(result.data.Narracion_Solicitud);
                     $('#Ver_Documento').val(result.data.Ver_Documento);
                     $('#Observaciones').val(result.data.Observaciones);
                     $('#Estatus').val(result.data.Estatus);
@@ -1752,12 +1900,18 @@
                 data.append('Region', $('#Region').val());
                 data.append('Origen', $('#Origen').val());
                 data.append('Numero_de_Expediente_AT', $('#Numero_de_Expediente_AT').val());
+                data.append('Diligencia_AT', $('#Diligencia_AT').val());
                 data.append('Numero_de_Expediente_MP', $('#Numero_de_Expediente_MP').val());
+                data.append('Diligencia_MP', $('#Diligencia_MP').val());
                 data.append('NUAT', $('#NUAT').val());
                 data.append('Numero_de_Denuncia', $('#Numero_de_Denuncia').val());
                 data.append('Carpeta_de_Investigacion', $('#Carpeta_de_Investigacion').val());
                 data.append('Numero_de_Oficio', $('#Numero_de_Oficio').val());
                 data.append('Solicitud', $('#Solicitud').val());
+                data.append('Solicitud_de_Apoyo_Externa', $('#Solicitud_de_Apoyo_Externa').val());
+                data.append('Solicitud_Externa', $('#Solicitud_Externa').prop('checked'));
+                data.append('Autoridad_que_Solicita', $('#Autoridad_que_Solicita').val());
+                data.append('Narracion_Solicitud', $('#Narracion_Solicitud').val());
                 data.append('Ver_Documento', $('#hdnAttachedVer_Documento').val());
                 data.append('Ver_DocumentoFile', $('#Ver_DocumentoFile')[0].files[0]);
                 data.append('Ver_DocumentoRemoveAttachment', $('#hdnRemoveVer_Documento').val());
@@ -1952,6 +2106,7 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Dictamen).trigger('change');
                     }, 3000);
+                    $('#numero_contestacion').val(result.data.numero_contestacion);
                     $('#Enviar_Contestacion').prop('checked', result.data.Enviar_Contestacion);
                     $('#Archivo').val(result.data.Archivo);
                     $('#Observaciones_Contestacion').val(result.data.Observaciones_Contestacion);
@@ -1970,6 +2125,7 @@
                 data.append('Hora_de_Contestacion', $('#Hora_de_Contestacion').val());
                 data.append('Usuario_que_contesta', $('#Usuario_que_contesta').val());
                 data.append('Dictamen', $('#Dictamen').val());
+                data.append('numero_contestacion', $('#numero_contestacion').val());
                 data.append('Enviar_Contestacion', $('#Enviar_Contestacion').prop('checked'));
                 data.append('Archivo', $('#Archivo').val());
                 data.append('Observaciones_Contestacion', $('#Observaciones_Contestacion').val());
@@ -2060,103 +2216,6 @@
 				cache: false
 			});
 		}
-
-            function GetIdFormatoFromDocumento() {
-                debugger;
-                var formatoID = EvaluaQuery(" usp_getIdFormatoFromDocumento  " + $('#Dictamen').val() + "");
-                console.log(formatoID);
-                return formatoID;
-            }
-
-            function VerDocto() {
-                debugger;
-                var PathFile = "";
-                var BaseUrl = "";
-                var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + $("#Archivo").val(), "", "");// document.getElementById("Archivo").innerHTML;
-
-
-                $.ajax({
-                    async: false,
-                    url: '@Url.Content("~/Frontal/General/GetArchivoFisico")',
-                    data: { "Archivo": id },
-                    type: 'POST',
-                    success: function (result) {
-
-                        BaseUrl = result;
-
-                        window.open(BaseUrl);
-                    }
-                });
-            }
-
-            function EditarDocto() {
-
-                debugger;
-
-
-                var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
-                controlDocumentoDynamiSeach = false;
-                if (_controlDocumentoDynamiSeach == "true") {
-                    controlDocumentoDynamiSeach = true;
-
-                }
-
-                if (controlDocumentoDynamiSeach == true) {
-                    alert('Existe una ventana abierta');
-                }
-                else {
-                    debugger;
-                    permitirCerrar = false;
-                    controlDocumentoDynamiSeach = true;
-                    localStorage.setItem('controlDocumentoDynamiSeach', "true");
-                    var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
-                    var folioControlDocumentos = $("#Archivo").val();
-                    $('.loading').css('display', 'none');
-                    var formaid = GetIdFormatoFromDocumento();
-                    if (isedit) {
-                        OpenPrintFormats(folioControlDocumentos, @Spartane.Web.SessionHelper.Role, "", true, "45018", formaid);
-                    }
-                    else {
-                        GuardarRegistro(formaid);
-
-                    }
-                }
-
-            }
-
-
-            function GuardarRegistro(formaid) {
-
-                debugger;
-
-                if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
-                    debugger
-                    if (!SendSolicitud_de_Servicios_de_ApoyoData(function (idvalor) {
-                        debugger
-                        EjecutarValidacionesDespuesDeGuardar();
-                        $('.loading').css('display', 'none');
-                        $('#hdnIsNew').val("False");
-                        //aqui
-                        $("#ReferenceFolio").text(idvalor);
-                        $("#ReferenceFolio").val(idvalor);
-
-
-                        OpenPrintFormats(idvalor, @Spartane.Web.SessionHelper.Role, "", false, "45018", formaid);
-
-
-
-
-
-                    }, false)) {
-                        localStorage.setItem("controlDocumentoDynamiSeach", "False");
-
-                    }
-                }
-
-
-
-
-            }
 
 
     </script>

@@ -18,6 +18,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Area_envia_Cumplimiento.Clave";
                 case "Descripcion":
                     return "Area_envia_Cumplimiento.Descripcion";
+                case "Vigente":
+                    return "Area_envia_Cumplimiento.Vigente";
 
                 default:
                     return propertyName;
@@ -35,6 +37,10 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
+            if (columnName == "Vigente")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
 
 
             var operatorCondition = GetOperationType(columnName);

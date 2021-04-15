@@ -46,6 +46,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Vigente</summary>
+        public static string Vigente
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderArea_envia_Cumplimiento.GetResource("Vigente", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderArea_envia_Cumplimiento.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

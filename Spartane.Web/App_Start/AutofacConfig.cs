@@ -2033,6 +2033,12 @@ using Spartane.Web.Areas.WebApiConsumer.Personas_donde_se_ejecuto_mandamiento;
 using Spartane.Services.Control_de_Folios_de_Mandamiento_Judicial;
 using Spartane.Core.Domain.Control_de_Folios_de_Mandamiento_Judicial;
 using Spartane.Web.Areas.WebApiConsumer.Control_de_Folios_de_Mandamiento_Judicial;
+using Spartane.Services.Contestacion_de_Portal_Ciudadano;
+using Spartane.Core.Domain.Contestacion_de_Portal_Ciudadano;
+using Spartane.Web.Areas.WebApiConsumer.Contestacion_de_Portal_Ciudadano;
+using Spartane.Services.Tipo_Resolucion_Portal_Ciudadano;
+using Spartane.Core.Domain.Tipo_Resolucion_Portal_Ciudadano;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_Resolucion_Portal_Ciudadano;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3511,6 +3517,10 @@ builder.RegisterType<Personas_donde_se_ejecuto_mandamientoService>().As<IPersona
 builder.RegisterType<Personas_donde_se_ejecuto_mandamientoApiConsumer>().As<IPersonas_donde_se_ejecuto_mandamientoApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Control_de_Folios_de_Mandamiento_JudicialService>().As<IControl_de_Folios_de_Mandamiento_JudicialService>().InstancePerLifetimeScope();
 builder.RegisterType<Control_de_Folios_de_Mandamiento_JudicialApiConsumer>().As<IControl_de_Folios_de_Mandamiento_JudicialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Contestacion_de_Portal_CiudadanoService>().As<IContestacion_de_Portal_CiudadanoService>().InstancePerLifetimeScope();
+builder.RegisterType<Contestacion_de_Portal_CiudadanoApiConsumer>().As<IContestacion_de_Portal_CiudadanoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_Resolucion_Portal_CiudadanoService>().As<ITipo_Resolucion_Portal_CiudadanoService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_Resolucion_Portal_CiudadanoApiConsumer>().As<ITipo_Resolucion_Portal_CiudadanoApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3691,6 +3701,38 @@ builder.RegisterType<Control_de_Folios_de_Mandamiento_JudicialApiConsumer>().As<
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

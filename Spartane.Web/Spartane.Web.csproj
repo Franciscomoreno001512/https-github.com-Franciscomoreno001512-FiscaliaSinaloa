@@ -2511,6 +2511,7 @@
  <Content Include="Images\logo-fiscalia-sinaloa.png" />
  <Content Include="Images\Logo-white.png" />
  <Content Include="Images\Logo-white1.png" />
+ <Content Include="Images\Logo-whiteportal.png" />
  <Content Include="Images\Logo.png" />
  <Content Include="Images\logotipos\fiscalia200px.png" />
  <Content Include="Images\logotipos\powered200px.png" />
@@ -15996,179 +15997,219 @@
  <Content Include="Uploads\Scripts\Rules\Estatus_de_Mandamiento_JudicialIndexRules.js" />
  <Content Include="Areas\Frontal\Views\Estatus_de_Mandamiento_Judicial\_Print.cshtml" />
  <Compile Include="Areas\WebApiConsumer\Tipo_de_Victima\Tipo_de_VictimaApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Tipo_de_Victima\ITipo_de_VictimaApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_VictimaModel.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_VictimaGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_VictimaMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Tipo_de_VictimaController.cs" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Victima\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Victima\Create.cshtml" />
-<Compile Include="Resource\GetResource\Tipo_de_Victima.cs" />
-<Content Include="Uploads\Resources\Tipo_de_VictimaResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Tipo_de_VictimaPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Tipo_de_VictimaResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Tipo_de_Victima.js" />
-<Content Include="Scripts\Custom\Tipo_de_VictimaGeneral.js" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Victima\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_VictimaAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_VictimaBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Tipo_de_VictimaCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Tipo_de_VictimaIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Victima\_Print.cshtml" />
-<Compile Include="Areas\Frontal\Controllers\Detalle_de_Personas_a_IncluirController.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_de_Personas_a_IncluirModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_de_Personas_a_IncluirGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_de_Personas_a_IncluirMainModel.cs" />
-<Content Include="Areas\Frontal\Views\Detalle_de_Personas_a_Incluir\_Print.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_de_Personas_a_Incluir\AddDetalle_de_Personas_a_Incluir.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_de_Personas_a_Incluir\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Detalle_de_Personas_a_Incluir\Detalle_de_Personas_a_IncluirApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Detalle_de_Personas_a_Incluir\IDetalle_de_Personas_a_IncluirApiConsumer.cs" />
-<Compile Include="Resource\GetResource\Detalle_de_Personas_a_Incluir.cs" />
-<Content Include="Scripts\Custom\Detalle_de_Personas_a_IncluirGeneral.js" />
-<Compile Include="SqlModelMapper\Detalle_de_Personas_a_IncluirPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Detalle_de_Personas_a_IncluirResource.en-US.xml" />
-<Content Include="Uploads\Resources\Detalle_de_Personas_a_IncluirResource.es-ES.xml" />
-<Content Include="Uploads\Scripts\Detalle_de_Personas_a_Incluir.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_de_Personas_a_IncluirIndexRules.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_de_Personas_a_IncluirCreateRules.js" />
-<Compile Include="Areas\WebApiConsumer\Fuente_de_Mandamiento_Judicial\Fuente_de_Mandamiento_JudicialApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Fuente_de_Mandamiento_Judicial\IFuente_de_Mandamiento_JudicialApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Fuente_de_Mandamiento_JudicialModel.cs" />
-<Compile Include="Areas\Frontal\Models\Fuente_de_Mandamiento_JudicialGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Fuente_de_Mandamiento_JudicialMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Fuente_de_Mandamiento_JudicialController.cs" />
-<Content Include="Areas\Frontal\Views\Fuente_de_Mandamiento_Judicial\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Fuente_de_Mandamiento_Judicial\Create.cshtml" />
-<Compile Include="Resource\GetResource\Fuente_de_Mandamiento_Judicial.cs" />
-<Content Include="Uploads\Resources\Fuente_de_Mandamiento_JudicialResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Fuente_de_Mandamiento_JudicialPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Fuente_de_Mandamiento_JudicialResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Fuente_de_Mandamiento_Judicial.js" />
-<Content Include="Scripts\Custom\Fuente_de_Mandamiento_JudicialGeneral.js" />
-<Content Include="Areas\Frontal\Views\Fuente_de_Mandamiento_Judicial\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Fuente_de_Mandamiento_JudicialAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Fuente_de_Mandamiento_JudicialBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Fuente_de_Mandamiento_JudicialCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Fuente_de_Mandamiento_JudicialIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Fuente_de_Mandamiento_Judicial\_Print.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Registro_de_Cumplimiento\Registro_de_CumplimientoApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Registro_de_Cumplimiento\IRegistro_de_CumplimientoApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Registro_de_CumplimientoModel.cs" />
-<Compile Include="Areas\Frontal\Models\Registro_de_CumplimientoGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Registro_de_CumplimientoMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Registro_de_CumplimientoController.cs" />
-<Content Include="Areas\Frontal\Views\Registro_de_Cumplimiento\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Registro_de_Cumplimiento\Create.cshtml" />
-<Compile Include="Resource\GetResource\Registro_de_Cumplimiento.cs" />
-<Content Include="Uploads\Resources\Registro_de_CumplimientoResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Registro_de_CumplimientoPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Registro_de_CumplimientoResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Registro_de_Cumplimiento.js" />
-<Content Include="Scripts\Custom\Registro_de_CumplimientoGeneral.js" />
-<Content Include="Areas\Frontal\Views\Registro_de_Cumplimiento\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Registro_de_CumplimientoAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Registro_de_CumplimientoBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Registro_de_CumplimientoCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Registro_de_CumplimientoIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Registro_de_Cumplimiento\_Print.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Resolucion_de_Mandamiento_Judicial\Resolucion_de_Mandamiento_JudicialApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Resolucion_de_Mandamiento_Judicial\IResolucion_de_Mandamiento_JudicialApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Resolucion_de_Mandamiento_JudicialModel.cs" />
-<Compile Include="Areas\Frontal\Models\Resolucion_de_Mandamiento_JudicialGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Resolucion_de_Mandamiento_JudicialMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Resolucion_de_Mandamiento_JudicialController.cs" />
-<Content Include="Areas\Frontal\Views\Resolucion_de_Mandamiento_Judicial\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Resolucion_de_Mandamiento_Judicial\Create.cshtml" />
-<Compile Include="Resource\GetResource\Resolucion_de_Mandamiento_Judicial.cs" />
-<Content Include="Uploads\Resources\Resolucion_de_Mandamiento_JudicialResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Resolucion_de_Mandamiento_JudicialPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Resolucion_de_Mandamiento_JudicialResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Resolucion_de_Mandamiento_Judicial.js" />
-<Content Include="Scripts\Custom\Resolucion_de_Mandamiento_JudicialGeneral.js" />
-<Content Include="Areas\Frontal\Views\Resolucion_de_Mandamiento_Judicial\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Resolucion_de_Mandamiento_JudicialAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Resolucion_de_Mandamiento_JudicialBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Resolucion_de_Mandamiento_JudicialCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Resolucion_de_Mandamiento_JudicialIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Resolucion_de_Mandamiento_Judicial\_Print.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Partida_que_Cumplimenta\Partida_que_CumplimentaApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Partida_que_Cumplimenta\IPartida_que_CumplimentaApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Partida_que_CumplimentaModel.cs" />
-<Compile Include="Areas\Frontal\Models\Partida_que_CumplimentaGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Partida_que_CumplimentaMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Partida_que_CumplimentaController.cs" />
-<Content Include="Areas\Frontal\Views\Partida_que_Cumplimenta\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Partida_que_Cumplimenta\Create.cshtml" />
-<Compile Include="Resource\GetResource\Partida_que_Cumplimenta.cs" />
-<Content Include="Uploads\Resources\Partida_que_CumplimentaResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Partida_que_CumplimentaPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Partida_que_CumplimentaResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Partida_que_Cumplimenta.js" />
-<Content Include="Scripts\Custom\Partida_que_CumplimentaGeneral.js" />
-<Content Include="Areas\Frontal\Views\Partida_que_Cumplimenta\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Partida_que_CumplimentaAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Partida_que_CumplimentaBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Partida_que_CumplimentaCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Partida_que_CumplimentaIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Partida_que_Cumplimenta\_Print.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Area_envia_Cumplimiento\Area_envia_CumplimientoApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Area_envia_Cumplimiento\IArea_envia_CumplimientoApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Area_envia_CumplimientoModel.cs" />
-<Compile Include="Areas\Frontal\Models\Area_envia_CumplimientoGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Area_envia_CumplimientoMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Area_envia_CumplimientoController.cs" />
-<Content Include="Areas\Frontal\Views\Area_envia_Cumplimiento\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Area_envia_Cumplimiento\Create.cshtml" />
-<Compile Include="Resource\GetResource\Area_envia_Cumplimiento.cs" />
-<Content Include="Uploads\Resources\Area_envia_CumplimientoResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Area_envia_CumplimientoPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Area_envia_CumplimientoResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Area_envia_Cumplimiento.js" />
-<Content Include="Scripts\Custom\Area_envia_CumplimientoGeneral.js" />
-<Content Include="Areas\Frontal\Views\Area_envia_Cumplimiento\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Area_envia_CumplimientoAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Area_envia_CumplimientoBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Area_envia_CumplimientoCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Area_envia_CumplimientoIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Area_envia_Cumplimiento\_Print.cshtml" />
-<Compile Include="Areas\Frontal\Controllers\Personas_donde_se_ejecuto_mandamientoController.cs" />
-<Compile Include="Areas\Frontal\Models\Personas_donde_se_ejecuto_mandamientoModel.cs" />
-<Compile Include="Areas\Frontal\Models\Personas_donde_se_ejecuto_mandamientoGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Personas_donde_se_ejecuto_mandamientoMainModel.cs" />
-<Content Include="Areas\Frontal\Views\Personas_donde_se_ejecuto_mandamiento\_Print.cshtml" />
-<Content Include="Areas\Frontal\Views\Personas_donde_se_ejecuto_mandamiento\AddPersonas_donde_se_ejecuto_mandamiento.cshtml" />
-<Content Include="Areas\Frontal\Views\Personas_donde_se_ejecuto_mandamiento\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Personas_donde_se_ejecuto_mandamiento\Personas_donde_se_ejecuto_mandamientoApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Personas_donde_se_ejecuto_mandamiento\IPersonas_donde_se_ejecuto_mandamientoApiConsumer.cs" />
-<Compile Include="Resource\GetResource\Personas_donde_se_ejecuto_mandamiento.cs" />
-<Content Include="Scripts\Custom\Personas_donde_se_ejecuto_mandamientoGeneral.js" />
-<Compile Include="SqlModelMapper\Personas_donde_se_ejecuto_mandamientoPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Personas_donde_se_ejecuto_mandamientoResource.en-US.xml" />
-<Content Include="Uploads\Resources\Personas_donde_se_ejecuto_mandamientoResource.es-ES.xml" />
-<Content Include="Uploads\Scripts\Personas_donde_se_ejecuto_mandamiento.js" />
-<Content Include="Uploads\Scripts\Rules\Personas_donde_se_ejecuto_mandamientoIndexRules.js" />
-<Content Include="Uploads\Scripts\Rules\Personas_donde_se_ejecuto_mandamientoCreateRules.js" />
-<Compile Include="Areas\WebApiConsumer\Control_de_Folios_de_Mandamiento_Judicial\Control_de_Folios_de_Mandamiento_JudicialApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Control_de_Folios_de_Mandamiento_Judicial\IControl_de_Folios_de_Mandamiento_JudicialApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialModel.cs" />
-<Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Control_de_Folios_de_Mandamiento_JudicialController.cs" />
-<Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\Create.cshtml" />
-<Compile Include="Resource\GetResource\Control_de_Folios_de_Mandamiento_Judicial.cs" />
-<Content Include="Uploads\Resources\Control_de_Folios_de_Mandamiento_JudicialResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Control_de_Folios_de_Mandamiento_JudicialPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Control_de_Folios_de_Mandamiento_JudicialResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Control_de_Folios_de_Mandamiento_Judicial.js" />
-<Content Include="Scripts\Custom\Control_de_Folios_de_Mandamiento_JudicialGeneral.js" />
-<Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Control_de_Folios_de_Mandamiento_JudicialCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Control_de_Folios_de_Mandamiento_JudicialIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\_Print.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Tipo_de_Victima\ITipo_de_VictimaApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_VictimaModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_VictimaGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_VictimaMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Tipo_de_VictimaController.cs" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Victima\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Victima\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Tipo_de_Victima.cs" />
+ <Content Include="Uploads\Resources\Tipo_de_VictimaResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Tipo_de_VictimaPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Tipo_de_VictimaResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Tipo_de_Victima.js" />
+ <Content Include="Scripts\Custom\Tipo_de_VictimaGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Victima\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_VictimaAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_VictimaBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Tipo_de_VictimaCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Tipo_de_VictimaIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Victima\_Print.cshtml" />
+ <Compile Include="Areas\Frontal\Controllers\Detalle_de_Personas_a_IncluirController.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_de_Personas_a_IncluirModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_de_Personas_a_IncluirGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_de_Personas_a_IncluirMainModel.cs" />
+ <Content Include="Areas\Frontal\Views\Detalle_de_Personas_a_Incluir\_Print.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_de_Personas_a_Incluir\AddDetalle_de_Personas_a_Incluir.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_de_Personas_a_Incluir\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_de_Personas_a_Incluir\Detalle_de_Personas_a_IncluirApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_de_Personas_a_Incluir\IDetalle_de_Personas_a_IncluirApiConsumer.cs" />
+ <Compile Include="Resource\GetResource\Detalle_de_Personas_a_Incluir.cs" />
+ <Content Include="Scripts\Custom\Detalle_de_Personas_a_IncluirGeneral.js" />
+ <Compile Include="SqlModelMapper\Detalle_de_Personas_a_IncluirPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Detalle_de_Personas_a_IncluirResource.en-US.xml" />
+ <Content Include="Uploads\Resources\Detalle_de_Personas_a_IncluirResource.es-ES.xml" />
+ <Content Include="Uploads\Scripts\Detalle_de_Personas_a_Incluir.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_de_Personas_a_IncluirIndexRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_de_Personas_a_IncluirCreateRules.js" />
+ <Compile Include="Areas\WebApiConsumer\Fuente_de_Mandamiento_Judicial\Fuente_de_Mandamiento_JudicialApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Fuente_de_Mandamiento_Judicial\IFuente_de_Mandamiento_JudicialApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Fuente_de_Mandamiento_JudicialModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Fuente_de_Mandamiento_JudicialGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Fuente_de_Mandamiento_JudicialMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Fuente_de_Mandamiento_JudicialController.cs" />
+ <Content Include="Areas\Frontal\Views\Fuente_de_Mandamiento_Judicial\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Fuente_de_Mandamiento_Judicial\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Fuente_de_Mandamiento_Judicial.cs" />
+ <Content Include="Uploads\Resources\Fuente_de_Mandamiento_JudicialResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Fuente_de_Mandamiento_JudicialPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Fuente_de_Mandamiento_JudicialResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Fuente_de_Mandamiento_Judicial.js" />
+ <Content Include="Scripts\Custom\Fuente_de_Mandamiento_JudicialGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Fuente_de_Mandamiento_Judicial\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Fuente_de_Mandamiento_JudicialAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Fuente_de_Mandamiento_JudicialBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Fuente_de_Mandamiento_JudicialCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Fuente_de_Mandamiento_JudicialIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Fuente_de_Mandamiento_Judicial\_Print.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Registro_de_Cumplimiento\Registro_de_CumplimientoApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Registro_de_Cumplimiento\IRegistro_de_CumplimientoApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Registro_de_CumplimientoModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Registro_de_CumplimientoGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Registro_de_CumplimientoMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Registro_de_CumplimientoController.cs" />
+ <Content Include="Areas\Frontal\Views\Registro_de_Cumplimiento\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Registro_de_Cumplimiento\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Registro_de_Cumplimiento.cs" />
+ <Content Include="Uploads\Resources\Registro_de_CumplimientoResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Registro_de_CumplimientoPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Registro_de_CumplimientoResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Registro_de_Cumplimiento.js" />
+ <Content Include="Scripts\Custom\Registro_de_CumplimientoGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Registro_de_Cumplimiento\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Registro_de_CumplimientoAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Registro_de_CumplimientoBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Registro_de_CumplimientoCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Registro_de_CumplimientoIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Registro_de_Cumplimiento\_Print.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Resolucion_de_Mandamiento_Judicial\Resolucion_de_Mandamiento_JudicialApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Resolucion_de_Mandamiento_Judicial\IResolucion_de_Mandamiento_JudicialApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Resolucion_de_Mandamiento_JudicialModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Resolucion_de_Mandamiento_JudicialGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Resolucion_de_Mandamiento_JudicialMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Resolucion_de_Mandamiento_JudicialController.cs" />
+ <Content Include="Areas\Frontal\Views\Resolucion_de_Mandamiento_Judicial\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Resolucion_de_Mandamiento_Judicial\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Resolucion_de_Mandamiento_Judicial.cs" />
+ <Content Include="Uploads\Resources\Resolucion_de_Mandamiento_JudicialResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Resolucion_de_Mandamiento_JudicialPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Resolucion_de_Mandamiento_JudicialResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Resolucion_de_Mandamiento_Judicial.js" />
+ <Content Include="Scripts\Custom\Resolucion_de_Mandamiento_JudicialGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Resolucion_de_Mandamiento_Judicial\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Resolucion_de_Mandamiento_JudicialAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Resolucion_de_Mandamiento_JudicialBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Resolucion_de_Mandamiento_JudicialCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Resolucion_de_Mandamiento_JudicialIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Resolucion_de_Mandamiento_Judicial\_Print.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Partida_que_Cumplimenta\Partida_que_CumplimentaApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Partida_que_Cumplimenta\IPartida_que_CumplimentaApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Partida_que_CumplimentaModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Partida_que_CumplimentaGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Partida_que_CumplimentaMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Partida_que_CumplimentaController.cs" />
+ <Content Include="Areas\Frontal\Views\Partida_que_Cumplimenta\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Partida_que_Cumplimenta\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Partida_que_Cumplimenta.cs" />
+ <Content Include="Uploads\Resources\Partida_que_CumplimentaResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Partida_que_CumplimentaPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Partida_que_CumplimentaResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Partida_que_Cumplimenta.js" />
+ <Content Include="Scripts\Custom\Partida_que_CumplimentaGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Partida_que_Cumplimenta\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Partida_que_CumplimentaAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Partida_que_CumplimentaBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Partida_que_CumplimentaCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Partida_que_CumplimentaIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Partida_que_Cumplimenta\_Print.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Area_envia_Cumplimiento\Area_envia_CumplimientoApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Area_envia_Cumplimiento\IArea_envia_CumplimientoApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Area_envia_CumplimientoModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Area_envia_CumplimientoGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Area_envia_CumplimientoMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Area_envia_CumplimientoController.cs" />
+ <Content Include="Areas\Frontal\Views\Area_envia_Cumplimiento\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Area_envia_Cumplimiento\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Area_envia_Cumplimiento.cs" />
+ <Content Include="Uploads\Resources\Area_envia_CumplimientoResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Area_envia_CumplimientoPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Area_envia_CumplimientoResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Area_envia_Cumplimiento.js" />
+ <Content Include="Scripts\Custom\Area_envia_CumplimientoGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Area_envia_Cumplimiento\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Area_envia_CumplimientoAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Area_envia_CumplimientoBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Area_envia_CumplimientoCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Area_envia_CumplimientoIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Area_envia_Cumplimiento\_Print.cshtml" />
+ <Compile Include="Areas\Frontal\Controllers\Personas_donde_se_ejecuto_mandamientoController.cs" />
+ <Compile Include="Areas\Frontal\Models\Personas_donde_se_ejecuto_mandamientoModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Personas_donde_se_ejecuto_mandamientoGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Personas_donde_se_ejecuto_mandamientoMainModel.cs" />
+ <Content Include="Areas\Frontal\Views\Personas_donde_se_ejecuto_mandamiento\_Print.cshtml" />
+ <Content Include="Areas\Frontal\Views\Personas_donde_se_ejecuto_mandamiento\AddPersonas_donde_se_ejecuto_mandamiento.cshtml" />
+ <Content Include="Areas\Frontal\Views\Personas_donde_se_ejecuto_mandamiento\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Personas_donde_se_ejecuto_mandamiento\Personas_donde_se_ejecuto_mandamientoApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Personas_donde_se_ejecuto_mandamiento\IPersonas_donde_se_ejecuto_mandamientoApiConsumer.cs" />
+ <Compile Include="Resource\GetResource\Personas_donde_se_ejecuto_mandamiento.cs" />
+ <Content Include="Scripts\Custom\Personas_donde_se_ejecuto_mandamientoGeneral.js" />
+ <Compile Include="SqlModelMapper\Personas_donde_se_ejecuto_mandamientoPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Personas_donde_se_ejecuto_mandamientoResource.en-US.xml" />
+ <Content Include="Uploads\Resources\Personas_donde_se_ejecuto_mandamientoResource.es-ES.xml" />
+ <Content Include="Uploads\Scripts\Personas_donde_se_ejecuto_mandamiento.js" />
+ <Content Include="Uploads\Scripts\Rules\Personas_donde_se_ejecuto_mandamientoIndexRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Personas_donde_se_ejecuto_mandamientoCreateRules.js" />
+ <Compile Include="Areas\WebApiConsumer\Control_de_Folios_de_Mandamiento_Judicial\Control_de_Folios_de_Mandamiento_JudicialApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Control_de_Folios_de_Mandamiento_Judicial\IControl_de_Folios_de_Mandamiento_JudicialApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Control_de_Folios_de_Mandamiento_JudicialController.cs" />
+ <Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Control_de_Folios_de_Mandamiento_Judicial.cs" />
+ <Content Include="Uploads\Resources\Control_de_Folios_de_Mandamiento_JudicialResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Control_de_Folios_de_Mandamiento_JudicialPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Control_de_Folios_de_Mandamiento_JudicialResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Control_de_Folios_de_Mandamiento_Judicial.js" />
+ <Content Include="Scripts\Custom\Control_de_Folios_de_Mandamiento_JudicialGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Control_de_Folios_de_Mandamiento_JudicialBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Control_de_Folios_de_Mandamiento_JudicialCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Control_de_Folios_de_Mandamiento_JudicialIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Control_de_Folios_de_Mandamiento_Judicial\_Print.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Contestacion_de_Portal_Ciudadano\Contestacion_de_Portal_CiudadanoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Contestacion_de_Portal_Ciudadano\IContestacion_de_Portal_CiudadanoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Contestacion_de_Portal_CiudadanoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Contestacion_de_Portal_CiudadanoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Contestacion_de_Portal_CiudadanoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Contestacion_de_Portal_CiudadanoController.cs" />
+<Content Include="Areas\Frontal\Views\Contestacion_de_Portal_Ciudadano\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Contestacion_de_Portal_Ciudadano\Create.cshtml" />
+<Compile Include="Resource\GetResource\Contestacion_de_Portal_Ciudadano.cs" />
+<Content Include="Uploads\Resources\Contestacion_de_Portal_CiudadanoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Contestacion_de_Portal_CiudadanoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Contestacion_de_Portal_CiudadanoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Contestacion_de_Portal_Ciudadano.js" />
+<Content Include="Scripts\Custom\Contestacion_de_Portal_CiudadanoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Contestacion_de_Portal_Ciudadano\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Contestacion_de_Portal_CiudadanoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Contestacion_de_Portal_CiudadanoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Contestacion_de_Portal_CiudadanoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Contestacion_de_Portal_CiudadanoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Contestacion_de_Portal_Ciudadano\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_Resolucion_Portal_Ciudadano\Tipo_Resolucion_Portal_CiudadanoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_Resolucion_Portal_Ciudadano\ITipo_Resolucion_Portal_CiudadanoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_Resolucion_Portal_CiudadanoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_Resolucion_Portal_CiudadanoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_Resolucion_Portal_CiudadanoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_Resolucion_Portal_CiudadanoController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_Resolucion_Portal_Ciudadano\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_Resolucion_Portal_Ciudadano\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_Resolucion_Portal_Ciudadano.cs" />
+<Content Include="Uploads\Resources\Tipo_Resolucion_Portal_CiudadanoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_Resolucion_Portal_CiudadanoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_Resolucion_Portal_CiudadanoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_Resolucion_Portal_Ciudadano.js" />
+<Content Include="Scripts\Custom\Tipo_Resolucion_Portal_CiudadanoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_Resolucion_Portal_Ciudadano\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_Resolucion_Portal_CiudadanoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_Resolucion_Portal_CiudadanoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_Resolucion_Portal_CiudadanoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_Resolucion_Portal_CiudadanoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_Resolucion_Portal_Ciudadano\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -17176,140 +17217,6 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -2,7 +2,6 @@
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Probable_Responsable_PC;
 @using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
-@using Spartane.Core.Domain.Tipo_de_Solicitud;
 @using Spartane.Core.Domain.Respuesta;
 @using Spartane.Core.Domain.Genero;
 @using Spartane.Core.Domain.Estado_Civil;
@@ -240,10 +239,11 @@
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Probable_Responsable_PCResources.Clave</th>
                                     <th>@Resources.Probable_Responsable_PCResources.Solicitud</th>
-                                    <th>@Resources.Probable_Responsable_PCResources.Tipo_de_Solicitud</th>
                                     <th>@Resources.Probable_Responsable_PCResources.Tiene_informacion_responsable</th>
                                     <th>@Resources.Probable_Responsable_PCResources.Quien_Resulte_Responsable</th>
                                     <th>@Resources.Probable_Responsable_PCResources.Persona_moral</th>
+                                    <th>@Resources.Probable_Responsable_PCResources.Conoce_los_datos_del_representante_legal</th>
+                                    <th>@Resources.Probable_Responsable_PCResources.Razon_Social</th>
                                     <th>@Resources.Probable_Responsable_PCResources.Nombres</th>
                                     <th>@Resources.Probable_Responsable_PCResources.Apellido_Paterno</th>
                                     <th>@Resources.Probable_Responsable_PCResources.Apellido_Materno</th>
@@ -314,9 +314,10 @@
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -495,10 +496,11 @@
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tiene_informacion_responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Quien_Resulte_Responsable = $($('table td .filterData.form-control:input')[counter++]).val();
         var Persona_moral = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Conoce_los_datos_del_representante_legal = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Razon_Social =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -564,10 +566,11 @@
 
         var queryString = "&Clave=" + Clave 
         + "&Solicitud=" + Solicitud
-        + "&Tipo_de_Solicitud=" + Tipo_de_Solicitud
         + "&Tiene_informacion_responsable=" + Tiene_informacion_responsable
         + "&Quien_Resulte_Responsable=" + Quien_Resulte_Responsable
         + "&Persona_moral=" + Persona_moral
+        + "&Conoce_los_datos_del_representante_legal=" + Conoce_los_datos_del_representante_legal
+        + "&Razon_Social=" + Razon_Social
         + "&Nombres=" + Nombres
         + "&Apellido_Paterno=" + Apellido_Paterno
         + "&Apellido_Materno=" + Apellido_Materno
@@ -644,10 +647,11 @@
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tiene_informacion_responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Quien_Resulte_Responsable = $($('table td .filterData.form-control:input')[counter++]).val();
         var Persona_moral = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Conoce_los_datos_del_representante_legal = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Razon_Social =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -713,10 +717,11 @@
 
         return "&Clave=" + Clave 
         + "&Solicitud=" + Solicitud
-        + "&Tipo_de_Solicitud=" + Tipo_de_Solicitud
         + "&Tiene_informacion_responsable=" + Tiene_informacion_responsable
         + "&Quien_Resulte_Responsable=" + Quien_Resulte_Responsable
         + "&Persona_moral=" + Persona_moral
+        + "&Conoce_los_datos_del_representante_legal=" + Conoce_los_datos_del_representante_legal
+        + "&Razon_Social=" + Razon_Social
         + "&Nombres=" + Nombres
         + "&Apellido_Paterno=" + Apellido_Paterno
         + "&Apellido_Materno=" + Apellido_Materno
@@ -876,7 +881,7 @@
 
     function SetTitle(printWindow) {
         if (printWindow.document) {
-            printWindow.document.title = "Probable Responsable PC Print";
+            printWindow.document.title = "Proporcione los datos del Probable Responsable Print";
         } else {
             setTimeout(SetTitle, 10);
         }
@@ -958,11 +963,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -1027,10 +1032,11 @@
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "SolicitudFolio", "orderable": true, "name": "SolicitudFolio"}
-                ,{ "data": "Tipo_de_SolicitudDescripcion", "orderable": true, "name": "Tipo_de_SolicitudDescripcion" }
                 ,{ "data": "Tiene_informacion_responsableDescripcion", "orderable": true, "name": "Tiene_informacion_responsableDescripcion" }
                 ,{ "data": "Quien_Resulte_Responsable", "orderable": true, "name": "Quien_Resulte_Responsable","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Persona_moral", "orderable": true, "name": "Persona_moral","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Conoce_los_datos_del_representante_legal", "orderable": true, "name": "Conoce_los_datos_del_representante_legal","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Razon_Social", "orderable": true, "name": "Razon_Social", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Nombres", "orderable": true, "name": "Nombres", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Paterno", "orderable": true, "name": "Apellido_Paterno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Materno", "orderable": true, "name": "Apellido_Materno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }

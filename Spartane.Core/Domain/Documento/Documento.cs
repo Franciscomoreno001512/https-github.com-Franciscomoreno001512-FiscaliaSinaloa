@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Spartane.Core.Domain.Dilgencia_MASC;
 using Spartane.Core.Domain.Origen_de_Invitacion;
 using Spartane.Core.Domain.Tipo_de_Documento;
+using Spartane.Core.Domain.Area_de_Servicios_de_Apoyo;
 using Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo;
 
 using System.ComponentModel.DataAnnotations;
@@ -24,6 +25,7 @@ namespace Spartane.Core.Domain.Documento
         public int? Diligencia { get; set; }
         public int? Origen { get; set; }
         public int? Tipo_de_Documento { get; set; }
+        public int? Area_de_Servicios_de_Apoyo { get; set; }
         public int? SubArea_de_Servicios_de_Apoyo { get; set; }
         public int? idFormato { get; set; }
         public bool? Requerido { get; set; }
@@ -38,6 +40,8 @@ namespace Spartane.Core.Domain.Documento
         public virtual Spartane.Core.Domain.Origen_de_Invitacion.Origen_de_Invitacion Origen_Origen_de_Invitacion { get; set; }
         [ForeignKey("Tipo_de_Documento")]
         public virtual Spartane.Core.Domain.Tipo_de_Documento.Tipo_de_Documento Tipo_de_Documento_Tipo_de_Documento { get; set; }
+        [ForeignKey("Area_de_Servicios_de_Apoyo")]
+        public virtual Spartane.Core.Domain.Area_de_Servicios_de_Apoyo.Area_de_Servicios_de_Apoyo Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo { get; set; }
         [ForeignKey("SubArea_de_Servicios_de_Apoyo")]
         public virtual Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo.SubArea_de_Servicios_de_Apoyo SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo { get; set; }
 
@@ -50,6 +54,7 @@ namespace Spartane.Core.Domain.Documento
         public int? Diligencia { get; set; }
         public int? Origen { get; set; }
         public int? Tipo_de_Documento { get; set; }
+        public int? Area_de_Servicios_de_Apoyo { get; set; }
         public int? SubArea_de_Servicios_de_Apoyo { get; set; }
         public int? idFormato { get; set; }
         public bool? Requerido { get; set; }
@@ -64,6 +69,8 @@ namespace Spartane.Core.Domain.Documento
         public virtual Spartane.Core.Domain.Origen_de_Invitacion.Origen_de_Invitacion Origen_Origen_de_Invitacion { get; set; }
         [ForeignKey("Tipo_de_Documento")]
         public virtual Spartane.Core.Domain.Tipo_de_Documento.Tipo_de_Documento Tipo_de_Documento_Tipo_de_Documento { get; set; }
+        [ForeignKey("Area_de_Servicios_de_Apoyo")]
+        public virtual Spartane.Core.Domain.Area_de_Servicios_de_Apoyo.Area_de_Servicios_de_Apoyo Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo { get; set; }
         [ForeignKey("SubArea_de_Servicios_de_Apoyo")]
         public virtual Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo.SubArea_de_Servicios_de_Apoyo SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo { get; set; }
 

@@ -246,16 +246,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Solicitud_de_Denuncia_Ciudadana</summary>
-        public static string Solicitud_de_Denuncia_Ciudadana
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderModulo_Atencion_Inicial.GetResource("Solicitud_de_Denuncia_Ciudadana", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Nombres_turno</summary>
         public static string Nombres_turno
         {
@@ -353,6 +343,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderModulo_Atencion_Inicial.GetResource("Tipo_de_Urgencia_turno", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Solicitud_de_Denuncia_Ciudadana</summary>
+        public static string Solicitud_de_Denuncia_Ciudadana
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Atencion_Inicial.GetResource("Solicitud_de_Denuncia_Ciudadana", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

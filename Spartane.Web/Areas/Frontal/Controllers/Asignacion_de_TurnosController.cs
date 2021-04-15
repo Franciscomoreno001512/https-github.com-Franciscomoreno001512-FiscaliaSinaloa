@@ -61,7 +61,7 @@ using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_Format_Related;
 using Spartane.Core.Domain.Spartan_Format;
 using iTextSharp.text.pdf;
-using Spartane.Web.Areas.WebApiConsumer.SpartaneQuery;											  
+using Spartane.Web.Areas.WebApiConsumer.SpartaneQuery;
 
 
 namespace Spartane.Web.Areas.Frontal.Controllers
@@ -94,15 +94,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IGeneratePDFApiConsumer _IGeneratePDFApiConsumer;
         private ISpartan_FormatApiConsumer _ISpartan_FormatApiConsumer;
         private ISpartan_Format_PermissionsApiConsumer _ISpartan_Format_PermissionsApiConsumer;
-		private ISpartan_Format_RelatedApiConsumer _ISpartan_FormatRelatedApiConsumer;
-		private ISpartaneQueryApiConsumer _ISpartaneQueryApiConsumer;																																															
+        private ISpartan_Format_RelatedApiConsumer _ISpartan_FormatRelatedApiConsumer;
+        private ISpartaneQueryApiConsumer _ISpartaneQueryApiConsumer;
 
         #endregion "variable declaration"
 
         #region "Constructor Declaration"
 
-        
-        public Asignacion_de_TurnosController(IAsignacion_de_TurnosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAsignacion_de_TurnosApiConsumer Asignacion_de_TurnosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IUnidadApiConsumer UnidadApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IGeneroApiConsumer GeneroApiConsumer , ITipo_de_AtencionApiConsumer Tipo_de_AtencionApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , ITipo_de_UrgenciaApiConsumer Tipo_de_UrgenciaApiConsumer , ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer , IAsignacion_de_Turnos_PreviosApiConsumer Asignacion_de_Turnos_PreviosApiConsumer , IEstatus_de_TurnoApiConsumer Estatus_de_TurnoApiConsumer , IModuloApiConsumer ModuloApiConsumer , IMotivo_Finalizacion_TurnoApiConsumer Motivo_Finalizacion_TurnoApiConsumer, ISpartaneQueryApiConsumer SpartaneQueryApiConsumer  )
+
+        public Asignacion_de_TurnosController(IAsignacion_de_TurnosService service, ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAsignacion_de_TurnosApiConsumer Asignacion_de_TurnosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer, IUnidadApiConsumer UnidadApiConsumer, ISpartan_UserApiConsumer Spartan_UserApiConsumer, IGeneroApiConsumer GeneroApiConsumer, ITipo_de_AtencionApiConsumer Tipo_de_AtencionApiConsumer, ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer, ITipo_de_UrgenciaApiConsumer Tipo_de_UrgenciaApiConsumer, ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer, IAsignacion_de_Turnos_PreviosApiConsumer Asignacion_de_Turnos_PreviosApiConsumer, IEstatus_de_TurnoApiConsumer Estatus_de_TurnoApiConsumer, IModuloApiConsumer ModuloApiConsumer, IMotivo_Finalizacion_TurnoApiConsumer Motivo_Finalizacion_TurnoApiConsumer, ISpartaneQueryApiConsumer SpartaneQueryApiConsumer)
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -115,7 +115,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_FormatApiConsumer = Spartan_FormatApiConsumer;
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
-			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
+            this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._IUnidadApiConsumer = UnidadApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._IGeneroApiConsumer = GeneroApiConsumer;
@@ -128,7 +128,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IEstatus_de_TurnoApiConsumer = Estatus_de_TurnoApiConsumer;
             this._IModuloApiConsumer = ModuloApiConsumer;
             this._IMotivo_Finalizacion_TurnoApiConsumer = Motivo_Finalizacion_TurnoApiConsumer;
-			this._ISpartaneQueryApiConsumer = SpartaneQueryApiConsumer;
+            this._ISpartaneQueryApiConsumer = SpartaneQueryApiConsumer;
         }
 
         #endregion "Constructor Declaration"
@@ -137,14 +137,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         // GET: Frontal/Asignacion_de_Turnos
         [ObjectAuth(ObjectId = (ModuleObjectId)45297, PermissionType = PermissionTypes.Consult)]
-        public ActionResult Index(int ModuleId=0)
+        public ActionResult Index(int ModuleId = 0)
         {
-			if (Session["AdvanceReportFilter"] != null)
+            if (Session["AdvanceReportFilter"] != null)
             {
                 Session["AdvanceReportFilter"] = null;
                 Session["AdvanceSearch"] = null;
             }
-			if (ModuleId == 0)
+            if (ModuleId == 0)
             {
                 ModuleId = Convert.ToInt32(Session["CurrentModuleId"]);
                 if (ModuleId == 0)
@@ -156,99 +156,139 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45297, ModuleId);
             ViewBag.Permission = permission;
             ViewBag.AdvanceSearch = Session["AdvanceSearch"] != null;
-			          
+
             return View();
         }
 
         // GET: Frontal/Asignacion_de_Turnos/Create
-          [ObjectAuth(ObjectId = (ModuleObjectId)45297, PermissionType = PermissionTypes.New,
-            OptionalParameter = "Id", OptionalPermissionType = PermissionTypes.Edit, OptionalPermissionTypeConsult = PermissionTypes.Consult)]
-        public ActionResult Create(int Id = 0,  int consult = 0, int ModuleId=0)
+        [ObjectAuth(ObjectId = (ModuleObjectId)45297, PermissionType = PermissionTypes.New,
+          OptionalParameter = "Id", OptionalPermissionType = PermissionTypes.Edit, OptionalPermissionTypeConsult = PermissionTypes.Consult)]
+        public ActionResult Create(int Id = 0, int consult = 0, int ModuleId = 0)
         {
-                       if(ModuleId == 0)
-                       {
-			    ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
-                       }
-                       else
-                            Session["CurrentModuleId"] = ModuleId;
+            if (ModuleId == 0)
+            {
+                ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
+            }
+            else
+                Session["CurrentModuleId"] = ModuleId;
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45297, ModuleId);
-           if ((!permission.New && Id.ToString() == "0") || (!permission.Edit && Id.ToString() != "0" && (!permission.Consult && consult == 1)))
+            if ((!permission.New && Id.ToString() == "0") || (!permission.Edit && Id.ToString() != "0" && (!permission.Consult && consult == 1)))
             {
                 Response.Redirect("~/");
             }
             ViewBag.Permission = permission;
             var varAsignacion_de_Turnos = new Asignacion_de_TurnosModel();
-			varAsignacion_de_Turnos.Folio = Id;
-			
+            varAsignacion_de_Turnos.Folio = Id;
+
             ViewBag.ObjectId = "45297";
-			ViewBag.Operation = "New";
-			
-			ViewBag.IsNew = true;
+            ViewBag.Operation = "New";
+
+            ViewBag.IsNew = true;
 
 
 
-            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short))&& Id.ToString() != "0"))
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
             {
-				ViewBag.IsNew = false;
-				ViewBag.Operation = "Update";
-				
-				_tokenManager.GenerateToken();
-				_ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                ViewBag.IsNew = false;
+                ViewBag.Operation = "Update";
+
+                _tokenManager.GenerateToken();
+                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
                 _IAsignacion_de_TurnosApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var Asignacion_de_TurnossData = _IAsignacion_de_TurnosApiConsumer.ListaSelAll(0, 1000, "Asignacion_de_Turnos.Folio=" + Id, "").Resource.Asignacion_de_Turnoss;
-				
-				if (Asignacion_de_TurnossData != null && Asignacion_de_TurnossData.Count > 0)
-                {
-					var Asignacion_de_TurnosData = Asignacion_de_TurnossData.First();
-					varAsignacion_de_Turnos= new Asignacion_de_TurnosModel
-					{
-						Folio  = Asignacion_de_TurnosData.Folio 
-	                    ,Fecha_de_Turno = (Asignacion_de_TurnosData.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Turno = Asignacion_de_TurnosData.Hora_de_Turno
-                    ,Numero_de_Turno = Asignacion_de_TurnosData.Numero_de_Turno
-                    ,Unidad_de_Atencion = Asignacion_de_TurnosData.Unidad_de_Atencion
-                    ,Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Unidad_de_Atencion), "Unidad") ??  (string)Asignacion_de_TurnosData.Unidad_de_Atencion_Unidad.Descripcion
-                    ,Recepcion = Asignacion_de_TurnosData.Recepcion
-                    ,RecepcionName = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Recepcion), "Spartan_User") ??  (string)Asignacion_de_TurnosData.Recepcion_Spartan_User.Name
-                    ,Nombres = Asignacion_de_TurnosData.Nombres
-                    ,Apellido_Paterno = Asignacion_de_TurnosData.Apellido_Paterno
-                    ,Apellido_Materno = Asignacion_de_TurnosData.Apellido_Materno
-                    ,Nombre_Completo = Asignacion_de_TurnosData.Nombre_Completo
-                    ,Sexo = Asignacion_de_TurnosData.Sexo
-                    ,SexoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Sexo), "Genero") ??  (string)Asignacion_de_TurnosData.Sexo_Genero.Descripcion
-                    ,Edad = Asignacion_de_TurnosData.Edad
-                    ,Tipo_de_Atencion = Asignacion_de_TurnosData.Tipo_de_Atencion
-                    ,Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Atencion), "Tipo_de_Atencion") ??  (string)Asignacion_de_TurnosData.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
-                    ,Tipo_de_Identificacion = Asignacion_de_TurnosData.Tipo_de_Identificacion
-                    ,Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Identificacion), "Tipo_de_Identificacion") ??  (string)Asignacion_de_TurnosData.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
-                    ,Otra_Identificacion = Asignacion_de_TurnosData.Otra_Identificacion
-                    ,Numero_de_Identificacion = Asignacion_de_TurnosData.Numero_de_Identificacion
-                    ,Urgencia = Asignacion_de_TurnosData.Urgencia.GetValueOrDefault()
-                    ,Tipo_de_Urgencia = Asignacion_de_TurnosData.Tipo_de_Urgencia
-                    ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Urgencia), "Tipo_de_Urgencia") ??  (string)Asignacion_de_TurnosData.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
-                    ,Denuncia_Ciudadana = Asignacion_de_TurnosData.Denuncia_Ciudadana
-                    ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Denuncia_Ciudadana), "Solicitud_de_Denuncia_Ciudadana") ??  (string)Asignacion_de_TurnosData.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
-                    ,Turno_Previo = Asignacion_de_TurnosData.Turno_Previo
-                    ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Turno_Previo), "Asignacion_de_Turnos_Previos") ??  (string)Asignacion_de_TurnosData.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
-                    ,Orientador = Asignacion_de_TurnosData.Orientador
-                    ,OrientadorName = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Orientador), "Spartan_User") ??  (string)Asignacion_de_TurnosData.Orientador_Spartan_User.Name
-                    ,Estatus_de_Turno = Asignacion_de_TurnosData.Estatus_de_Turno
-                    ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Estatus_de_Turno), "Estatus_de_Turno") ??  (string)Asignacion_de_TurnosData.Estatus_de_Turno_Estatus_de_Turno.Descripcion
-                    ,Modulo = Asignacion_de_TurnosData.Modulo
-                    ,ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Modulo), "Modulo") ??  (string)Asignacion_de_TurnosData.Modulo_Modulo.Descripcion
-                    ,Motivo_Finalizacion_Turno = Asignacion_de_TurnosData.Motivo_Finalizacion_Turno
-                    ,Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Motivo_Finalizacion_Turno), "Motivo_Finalizacion_Turno") ??  (string)Asignacion_de_TurnosData.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
-                    ,Observaciones = Asignacion_de_TurnosData.Observaciones
-                    ,Fecha_de_Asignacion = (Asignacion_de_TurnosData.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Asignacion = Asignacion_de_TurnosData.Hora_de_Asignacion
-                    ,Fecha_de_Finalizacion = (Asignacion_de_TurnosData.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Finalizacion = Asignacion_de_TurnosData.Hora_de_Finalizacion
 
-					};
-				}
-				
-				
-				
+                if (Asignacion_de_TurnossData != null && Asignacion_de_TurnossData.Count > 0)
+                {
+                    var Asignacion_de_TurnosData = Asignacion_de_TurnossData.First();
+                    varAsignacion_de_Turnos = new Asignacion_de_TurnosModel
+                    {
+                        Folio = Asignacion_de_TurnosData.Folio
+                        ,
+                        Fecha_de_Turno = (Asignacion_de_TurnosData.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
+                    ,
+                        Hora_de_Turno = Asignacion_de_TurnosData.Hora_de_Turno
+                    ,
+                        Numero_de_Turno = Asignacion_de_TurnosData.Numero_de_Turno
+                    ,
+                        Unidad_de_Atencion = Asignacion_de_TurnosData.Unidad_de_Atencion
+                    ,
+                        Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Unidad_de_Atencion), "Unidad") ?? (string)Asignacion_de_TurnosData.Unidad_de_Atencion_Unidad.Descripcion
+                    ,
+                        Recepcion = Asignacion_de_TurnosData.Recepcion
+                    ,
+                        RecepcionName = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Recepcion), "Spartan_User") ?? (string)Asignacion_de_TurnosData.Recepcion_Spartan_User.Name
+                    ,
+                        Nombres = Asignacion_de_TurnosData.Nombres
+                    ,
+                        Apellido_Paterno = Asignacion_de_TurnosData.Apellido_Paterno
+                    ,
+                        Apellido_Materno = Asignacion_de_TurnosData.Apellido_Materno
+                    ,
+                        Nombre_Completo = Asignacion_de_TurnosData.Nombre_Completo
+                    ,
+                        Sexo = Asignacion_de_TurnosData.Sexo
+                    ,
+                        SexoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Sexo), "Genero") ?? (string)Asignacion_de_TurnosData.Sexo_Genero.Descripcion
+                    ,
+                        Edad = Asignacion_de_TurnosData.Edad
+                    ,
+                        Tipo_de_Atencion = Asignacion_de_TurnosData.Tipo_de_Atencion
+                    ,
+                        Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Atencion), "Tipo_de_Atencion") ?? (string)Asignacion_de_TurnosData.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
+                    ,
+                        Tipo_de_Identificacion = Asignacion_de_TurnosData.Tipo_de_Identificacion
+                    ,
+                        Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Identificacion), "Tipo_de_Identificacion") ?? (string)Asignacion_de_TurnosData.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
+                    ,
+                        Otra_Identificacion = Asignacion_de_TurnosData.Otra_Identificacion
+                    ,
+                        Numero_de_Identificacion = Asignacion_de_TurnosData.Numero_de_Identificacion
+                    ,
+                        Urgencia = Asignacion_de_TurnosData.Urgencia.GetValueOrDefault()
+                    ,
+                        Tipo_de_Urgencia = Asignacion_de_TurnosData.Tipo_de_Urgencia
+                    ,
+                        Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Urgencia), "Tipo_de_Urgencia") ?? (string)Asignacion_de_TurnosData.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                    ,
+                        Denuncia_Ciudadana = Asignacion_de_TurnosData.Denuncia_Ciudadana
+                    ,
+                        Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Denuncia_Ciudadana), "Solicitud_de_Denuncia_Ciudadana") ?? (string)Asignacion_de_TurnosData.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                    ,
+                        Turno_Previo = Asignacion_de_TurnosData.Turno_Previo
+                    ,
+                        Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Turno_Previo), "Asignacion_de_Turnos_Previos") ?? (string)Asignacion_de_TurnosData.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
+                    ,
+                        Orientador = Asignacion_de_TurnosData.Orientador
+                    ,
+                        OrientadorName = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Orientador), "Spartan_User") ?? (string)Asignacion_de_TurnosData.Orientador_Spartan_User.Name
+                    ,
+                        Estatus_de_Turno = Asignacion_de_TurnosData.Estatus_de_Turno
+                    ,
+                        Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Estatus_de_Turno), "Estatus_de_Turno") ?? (string)Asignacion_de_TurnosData.Estatus_de_Turno_Estatus_de_Turno.Descripcion
+                    ,
+                        Modulo = Asignacion_de_TurnosData.Modulo
+                    ,
+                        ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Modulo), "Modulo") ?? (string)Asignacion_de_TurnosData.Modulo_Modulo.Descripcion
+                    ,
+                        Motivo_Finalizacion_Turno = Asignacion_de_TurnosData.Motivo_Finalizacion_Turno
+                    ,
+                        Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Motivo_Finalizacion_Turno), "Motivo_Finalizacion_Turno") ?? (string)Asignacion_de_TurnosData.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
+                    ,
+                        Observaciones = Asignacion_de_TurnosData.Observaciones
+                    ,
+                        Fecha_de_Asignacion = (Asignacion_de_TurnosData.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+                    ,
+                        Hora_de_Asignacion = Asignacion_de_TurnosData.Hora_de_Asignacion
+                    ,
+                        Fecha_de_Finalizacion = (Asignacion_de_TurnosData.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
+                    ,
+                        Hora_de_Finalizacion = Asignacion_de_TurnosData.Hora_de_Finalizacion
+
+                    };
+                }
+
+
+
             }
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
@@ -258,84 +298,94 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (Unidads_Unidad_de_Atencion != null && Unidads_Unidad_de_Atencion.Resource != null)
                 ViewBag.Unidads_Unidad_de_Atencion = Unidads_Unidad_de_Atencion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Recepcion = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Recepcion != null && Spartan_Users_Recepcion.Resource != null)
                 ViewBag.Spartan_Users_Recepcion = Spartan_Users_Recepcion.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(),
+                    Value = Convert.ToString(m.Id_User)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Sexo != null && Generos_Sexo.Resource != null)
                 ViewBag.Generos_Sexo = Generos_Sexo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_AtencionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Atencions_Tipo_de_Atencion = _ITipo_de_AtencionApiConsumer.SelAll(true);
             if (Tipo_de_Atencions_Tipo_de_Atencion != null && Tipo_de_Atencions_Tipo_de_Atencion.Resource != null)
                 ViewBag.Tipo_de_Atencions_Tipo_de_Atencion = Tipo_de_Atencions_Tipo_de_Atencion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Atencion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Atencion", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Identificacions_Tipo_de_Identificacion = _ITipo_de_IdentificacionApiConsumer.SelAll(true);
             if (Tipo_de_Identificacions_Tipo_de_Identificacion != null && Tipo_de_Identificacions_Tipo_de_Identificacion.Resource != null)
                 ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion = Tipo_de_Identificacions_Tipo_de_Identificacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_UrgenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Urgencias_Tipo_de_Urgencia = _ITipo_de_UrgenciaApiConsumer.SelAll(true);
             if (Tipo_de_Urgencias_Tipo_de_Urgencia != null && Tipo_de_Urgencias_Tipo_de_Urgencia.Resource != null)
                 ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia = Tipo_de_Urgencias_Tipo_de_Urgencia.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Orientador = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Orientador != null && Spartan_Users_Orientador.Resource != null)
                 ViewBag.Spartan_Users_Orientador = Spartan_Users_Orientador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(),
+                    Value = Convert.ToString(m.Id_User)
                 }).ToList();
             _IEstatus_de_TurnoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Estatus_de_Turnos_Estatus_de_Turno = _IEstatus_de_TurnoApiConsumer.SelAll(true);
             if (Estatus_de_Turnos_Estatus_de_Turno != null && Estatus_de_Turnos_Estatus_de_Turno.Resource != null)
                 ViewBag.Estatus_de_Turnos_Estatus_de_Turno = Estatus_de_Turnos_Estatus_de_Turno.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Turno", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Turno", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IModuloApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Modulos_Modulo = _IModuloApiConsumer.SelAll(true);
             if (Modulos_Modulo != null && Modulos_Modulo.Resource != null)
                 ViewBag.Modulos_Modulo = Modulos_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IMotivo_Finalizacion_TurnoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno = _IMotivo_Finalizacion_TurnoApiConsumer.SelAll(true);
             if (Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno != null && Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno.Resource != null)
                 ViewBag.Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno = Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_Finalizacion_Turno", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_Finalizacion_Turno", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
             ViewBag.Consult = consult == 1;
-			if (consult == 1)
+            if (consult == 1)
                 ViewBag.Operation = "Consult";
-				
-			var viewInEframe = false;
-			var isPartial = false;
+
+            var viewInEframe = false;
+            var isPartial = false;
             var isMR = false;
             var nameMR = string.Empty;
             var nameAttribute = string.Empty;
 
-	        if (Request.QueryString["isPartial"]!= null)
+            if (Request.QueryString["isPartial"] != null)
                 isPartial = Convert.ToBoolean(Request.QueryString["isPartial"]);
 
             if (Request.QueryString["isMR"] != null)
@@ -346,88 +396,128 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             if (Request.QueryString["nameAttribute"] != null)
                 nameAttribute = Request.QueryString["nameAttribute"].ToString();
-				
-			if (Request.QueryString["viewInEframe"] != null)
-                viewInEframe = Convert.ToBoolean(Request.QueryString["viewInEframe"]);	
-				
-			ViewBag.isPartial=isPartial;
-			ViewBag.isMR=isMR;
-			ViewBag.nameMR=nameMR;
-			ViewBag.nameAttribute=nameAttribute;
-			ViewBag.viewInEframe = viewInEframe;
 
-				
+            if (Request.QueryString["viewInEframe"] != null)
+                viewInEframe = Convert.ToBoolean(Request.QueryString["viewInEframe"]);
+
+            ViewBag.isPartial = isPartial;
+            ViewBag.isMR = isMR;
+            ViewBag.nameMR = nameMR;
+            ViewBag.nameAttribute = nameAttribute;
+            ViewBag.viewInEframe = viewInEframe;
+
+
             return View(varAsignacion_de_Turnos);
         }
-		
-	[HttpGet]
+
+        [HttpGet]
         public ActionResult AddAsignacion_de_Turnos(int rowIndex = 0, int functionMode = 0, string id = "0")
         {
-			int ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
+            int ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
             ViewBag.currentRowIndex = rowIndex;
             ViewBag.functionMode = functionMode;
             ViewBag.Consult = false;
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45297);
             ViewBag.Permission = permission;
-			if (!_tokenManager.GenerateToken())
+            if (!_tokenManager.GenerateToken())
                 return null;
-           _IAsignacion_de_TurnosApiConsumer.SetAuthHeader(_tokenManager.Token);
-			Asignacion_de_TurnosModel varAsignacion_de_Turnos= new Asignacion_de_TurnosModel();
+            _IAsignacion_de_TurnosApiConsumer.SetAuthHeader(_tokenManager.Token);
+            Asignacion_de_TurnosModel varAsignacion_de_Turnos = new Asignacion_de_TurnosModel();
 
 
             if (id.ToString() != "0")
             {
                 var Asignacion_de_TurnossData = _IAsignacion_de_TurnosApiConsumer.ListaSelAll(0, 1000, "Asignacion_de_Turnos.Folio=" + id, "").Resource.Asignacion_de_Turnoss;
-				
-				if (Asignacion_de_TurnossData != null && Asignacion_de_TurnossData.Count > 0)
-                {
-					var Asignacion_de_TurnosData = Asignacion_de_TurnossData.First();
-					varAsignacion_de_Turnos= new Asignacion_de_TurnosModel
-					{
-						Folio  = Asignacion_de_TurnosData.Folio 
-	                    ,Fecha_de_Turno = (Asignacion_de_TurnosData.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Turno = Asignacion_de_TurnosData.Hora_de_Turno
-                    ,Numero_de_Turno = Asignacion_de_TurnosData.Numero_de_Turno
-                    ,Unidad_de_Atencion = Asignacion_de_TurnosData.Unidad_de_Atencion
-                    ,Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Unidad_de_Atencion), "Unidad") ??  (string)Asignacion_de_TurnosData.Unidad_de_Atencion_Unidad.Descripcion
-                    ,Recepcion = Asignacion_de_TurnosData.Recepcion
-                    ,RecepcionName = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Recepcion), "Spartan_User") ??  (string)Asignacion_de_TurnosData.Recepcion_Spartan_User.Name
-                    ,Nombres = Asignacion_de_TurnosData.Nombres
-                    ,Apellido_Paterno = Asignacion_de_TurnosData.Apellido_Paterno
-                    ,Apellido_Materno = Asignacion_de_TurnosData.Apellido_Materno
-                    ,Nombre_Completo = Asignacion_de_TurnosData.Nombre_Completo
-                    ,Sexo = Asignacion_de_TurnosData.Sexo
-                    ,SexoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Sexo), "Genero") ??  (string)Asignacion_de_TurnosData.Sexo_Genero.Descripcion
-                    ,Edad = Asignacion_de_TurnosData.Edad
-                    ,Tipo_de_Atencion = Asignacion_de_TurnosData.Tipo_de_Atencion
-                    ,Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Atencion), "Tipo_de_Atencion") ??  (string)Asignacion_de_TurnosData.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
-                    ,Tipo_de_Identificacion = Asignacion_de_TurnosData.Tipo_de_Identificacion
-                    ,Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Identificacion), "Tipo_de_Identificacion") ??  (string)Asignacion_de_TurnosData.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
-                    ,Otra_Identificacion = Asignacion_de_TurnosData.Otra_Identificacion
-                    ,Numero_de_Identificacion = Asignacion_de_TurnosData.Numero_de_Identificacion
-                    ,Urgencia = Asignacion_de_TurnosData.Urgencia.GetValueOrDefault()
-                    ,Tipo_de_Urgencia = Asignacion_de_TurnosData.Tipo_de_Urgencia
-                    ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Urgencia), "Tipo_de_Urgencia") ??  (string)Asignacion_de_TurnosData.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
-                    ,Denuncia_Ciudadana = Asignacion_de_TurnosData.Denuncia_Ciudadana
-                    ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Denuncia_Ciudadana), "Solicitud_de_Denuncia_Ciudadana") ??  (string)Asignacion_de_TurnosData.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
-                    ,Turno_Previo = Asignacion_de_TurnosData.Turno_Previo
-                    ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Turno_Previo), "Asignacion_de_Turnos_Previos") ??  (string)Asignacion_de_TurnosData.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
-                    ,Orientador = Asignacion_de_TurnosData.Orientador
-                    ,OrientadorName = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Orientador), "Spartan_User") ??  (string)Asignacion_de_TurnosData.Orientador_Spartan_User.Name
-                    ,Estatus_de_Turno = Asignacion_de_TurnosData.Estatus_de_Turno
-                    ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Estatus_de_Turno), "Estatus_de_Turno") ??  (string)Asignacion_de_TurnosData.Estatus_de_Turno_Estatus_de_Turno.Descripcion
-                    ,Modulo = Asignacion_de_TurnosData.Modulo
-                    ,ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Modulo), "Modulo") ??  (string)Asignacion_de_TurnosData.Modulo_Modulo.Descripcion
-                    ,Motivo_Finalizacion_Turno = Asignacion_de_TurnosData.Motivo_Finalizacion_Turno
-                    ,Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Motivo_Finalizacion_Turno), "Motivo_Finalizacion_Turno") ??  (string)Asignacion_de_TurnosData.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
-                    ,Observaciones = Asignacion_de_TurnosData.Observaciones
-                    ,Fecha_de_Asignacion = (Asignacion_de_TurnosData.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Asignacion = Asignacion_de_TurnosData.Hora_de_Asignacion
-                    ,Fecha_de_Finalizacion = (Asignacion_de_TurnosData.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Finalizacion = Asignacion_de_TurnosData.Hora_de_Finalizacion
 
-					};
-				}
+                if (Asignacion_de_TurnossData != null && Asignacion_de_TurnossData.Count > 0)
+                {
+                    var Asignacion_de_TurnosData = Asignacion_de_TurnossData.First();
+                    varAsignacion_de_Turnos = new Asignacion_de_TurnosModel
+                    {
+                        Folio = Asignacion_de_TurnosData.Folio
+                        ,
+                        Fecha_de_Turno = (Asignacion_de_TurnosData.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
+                    ,
+                        Hora_de_Turno = Asignacion_de_TurnosData.Hora_de_Turno
+                    ,
+                        Numero_de_Turno = Asignacion_de_TurnosData.Numero_de_Turno
+                    ,
+                        Unidad_de_Atencion = Asignacion_de_TurnosData.Unidad_de_Atencion
+                    ,
+                        Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Unidad_de_Atencion), "Unidad") ?? (string)Asignacion_de_TurnosData.Unidad_de_Atencion_Unidad.Descripcion
+                    ,
+                        Recepcion = Asignacion_de_TurnosData.Recepcion
+                    ,
+                        RecepcionName = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Recepcion), "Spartan_User") ?? (string)Asignacion_de_TurnosData.Recepcion_Spartan_User.Name
+                    ,
+                        Nombres = Asignacion_de_TurnosData.Nombres
+                    ,
+                        Apellido_Paterno = Asignacion_de_TurnosData.Apellido_Paterno
+                    ,
+                        Apellido_Materno = Asignacion_de_TurnosData.Apellido_Materno
+                    ,
+                        Nombre_Completo = Asignacion_de_TurnosData.Nombre_Completo
+                    ,
+                        Sexo = Asignacion_de_TurnosData.Sexo
+                    ,
+                        SexoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Sexo), "Genero") ?? (string)Asignacion_de_TurnosData.Sexo_Genero.Descripcion
+                    ,
+                        Edad = Asignacion_de_TurnosData.Edad
+                    ,
+                        Tipo_de_Atencion = Asignacion_de_TurnosData.Tipo_de_Atencion
+                    ,
+                        Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Atencion), "Tipo_de_Atencion") ?? (string)Asignacion_de_TurnosData.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
+                    ,
+                        Tipo_de_Identificacion = Asignacion_de_TurnosData.Tipo_de_Identificacion
+                    ,
+                        Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Identificacion), "Tipo_de_Identificacion") ?? (string)Asignacion_de_TurnosData.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
+                    ,
+                        Otra_Identificacion = Asignacion_de_TurnosData.Otra_Identificacion
+                    ,
+                        Numero_de_Identificacion = Asignacion_de_TurnosData.Numero_de_Identificacion
+                    ,
+                        Urgencia = Asignacion_de_TurnosData.Urgencia.GetValueOrDefault()
+                    ,
+                        Tipo_de_Urgencia = Asignacion_de_TurnosData.Tipo_de_Urgencia
+                    ,
+                        Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Tipo_de_Urgencia), "Tipo_de_Urgencia") ?? (string)Asignacion_de_TurnosData.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                    ,
+                        Denuncia_Ciudadana = Asignacion_de_TurnosData.Denuncia_Ciudadana
+                    ,
+                        Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Denuncia_Ciudadana), "Solicitud_de_Denuncia_Ciudadana") ?? (string)Asignacion_de_TurnosData.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                    ,
+                        Turno_Previo = Asignacion_de_TurnosData.Turno_Previo
+                    ,
+                        Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Turno_Previo), "Asignacion_de_Turnos_Previos") ?? (string)Asignacion_de_TurnosData.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
+                    ,
+                        Orientador = Asignacion_de_TurnosData.Orientador
+                    ,
+                        OrientadorName = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Orientador), "Spartan_User") ?? (string)Asignacion_de_TurnosData.Orientador_Spartan_User.Name
+                    ,
+                        Estatus_de_Turno = Asignacion_de_TurnosData.Estatus_de_Turno
+                    ,
+                        Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Estatus_de_Turno), "Estatus_de_Turno") ?? (string)Asignacion_de_TurnosData.Estatus_de_Turno_Estatus_de_Turno.Descripcion
+                    ,
+                        Modulo = Asignacion_de_TurnosData.Modulo
+                    ,
+                        ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Modulo), "Modulo") ?? (string)Asignacion_de_TurnosData.Modulo_Modulo.Descripcion
+                    ,
+                        Motivo_Finalizacion_Turno = Asignacion_de_TurnosData.Motivo_Finalizacion_Turno
+                    ,
+                        Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Asignacion_de_TurnosData.Motivo_Finalizacion_Turno), "Motivo_Finalizacion_Turno") ?? (string)Asignacion_de_TurnosData.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
+                    ,
+                        Observaciones = Asignacion_de_TurnosData.Observaciones
+                    ,
+                        Fecha_de_Asignacion = (Asignacion_de_TurnosData.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+                    ,
+                        Hora_de_Asignacion = Asignacion_de_TurnosData.Hora_de_Asignacion
+                    ,
+                        Fecha_de_Finalizacion = (Asignacion_de_TurnosData.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(Asignacion_de_TurnosData.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
+                    ,
+                        Hora_de_Finalizacion = Asignacion_de_TurnosData.Hora_de_Finalizacion
+
+                    };
+                }
 
             }
             if (!_tokenManager.GenerateToken())
@@ -438,70 +528,80 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (Unidads_Unidad_de_Atencion != null && Unidads_Unidad_de_Atencion.Resource != null)
                 ViewBag.Unidads_Unidad_de_Atencion = Unidads_Unidad_de_Atencion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Recepcion = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Recepcion != null && Spartan_Users_Recepcion.Resource != null)
                 ViewBag.Spartan_Users_Recepcion = Spartan_Users_Recepcion.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(),
+                    Value = Convert.ToString(m.Id_User)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Sexo != null && Generos_Sexo.Resource != null)
                 ViewBag.Generos_Sexo = Generos_Sexo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_AtencionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Atencions_Tipo_de_Atencion = _ITipo_de_AtencionApiConsumer.SelAll(true);
             if (Tipo_de_Atencions_Tipo_de_Atencion != null && Tipo_de_Atencions_Tipo_de_Atencion.Resource != null)
                 ViewBag.Tipo_de_Atencions_Tipo_de_Atencion = Tipo_de_Atencions_Tipo_de_Atencion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Atencion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Atencion", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Identificacions_Tipo_de_Identificacion = _ITipo_de_IdentificacionApiConsumer.SelAll(true);
             if (Tipo_de_Identificacions_Tipo_de_Identificacion != null && Tipo_de_Identificacions_Tipo_de_Identificacion.Resource != null)
                 ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion = Tipo_de_Identificacions_Tipo_de_Identificacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_UrgenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Urgencias_Tipo_de_Urgencia = _ITipo_de_UrgenciaApiConsumer.SelAll(true);
             if (Tipo_de_Urgencias_Tipo_de_Urgencia != null && Tipo_de_Urgencias_Tipo_de_Urgencia.Resource != null)
                 ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia = Tipo_de_Urgencias_Tipo_de_Urgencia.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Orientador = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Orientador != null && Spartan_Users_Orientador.Resource != null)
                 ViewBag.Spartan_Users_Orientador = Spartan_Users_Orientador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(),
+                    Value = Convert.ToString(m.Id_User)
                 }).ToList();
             _IEstatus_de_TurnoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Estatus_de_Turnos_Estatus_de_Turno = _IEstatus_de_TurnoApiConsumer.SelAll(true);
             if (Estatus_de_Turnos_Estatus_de_Turno != null && Estatus_de_Turnos_Estatus_de_Turno.Resource != null)
                 ViewBag.Estatus_de_Turnos_Estatus_de_Turno = Estatus_de_Turnos_Estatus_de_Turno.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Turno", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Turno", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IModuloApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Modulos_Modulo = _IModuloApiConsumer.SelAll(true);
             if (Modulos_Modulo != null && Modulos_Modulo.Resource != null)
                 ViewBag.Modulos_Modulo = Modulos_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IMotivo_Finalizacion_TurnoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno = _IMotivo_Finalizacion_TurnoApiConsumer.SelAll(true);
             if (Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno != null && Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno.Resource != null)
                 ViewBag.Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno = Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_Finalizacion_Turno", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_Finalizacion_Turno", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -532,10 +632,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IUnidadApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IUnidadApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -553,10 +653,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name,
                     Value = Convert.ToString(m.Id_User)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -574,10 +674,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IGeneroApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -595,10 +695,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ITipo_de_AtencionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ITipo_de_AtencionApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Atencion", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Atencion", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -616,10 +716,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ITipo_de_IdentificacionApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre")?? m.Nombre,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -637,10 +737,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ITipo_de_UrgenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ITipo_de_UrgenciaApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -649,7 +749,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		[HttpGet]
+        [HttpGet]
         public ActionResult GetSolicitud_de_Denuncia_CiudadanaAll()
         {
             try
@@ -658,10 +758,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SelAll(false).Resource;
-				
+
                 return Json(result.OrderBy(m => m.Folio).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud_de_Denuncia_Ciudadana", "Folio")?? m.Folio,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud_de_Denuncia_Ciudadana", "Folio") ?? m.Folio,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -670,7 +770,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		[HttpGet]
+        [HttpGet]
         public ActionResult GetAsignacion_de_Turnos_PreviosAll()
         {
             try
@@ -679,10 +779,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IAsignacion_de_Turnos_PreviosApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IAsignacion_de_Turnos_PreviosApiConsumer.SelAll(false).Resource;
-				
+
                 return Json(result.OrderBy(m => m.Numero_Turno).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Asignacion_de_Turnos_Previos", "Numero_Turno")?? m.Numero_Turno,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Asignacion_de_Turnos_Previos", "Numero_Turno") ?? m.Numero_Turno,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -700,10 +800,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IEstatus_de_TurnoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IEstatus_de_TurnoApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Turno", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Turno", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -721,10 +821,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IModuloApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IModuloApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -742,10 +842,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IMotivo_Finalizacion_TurnoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IMotivo_Finalizacion_TurnoApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_Finalizacion_Turno", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_Finalizacion_Turno", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -770,7 +870,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (ModelState.IsValid)
             {
                 Session["AdvanceSearch"] = model;
-				if (idFilter != -1)
+                if (idFilter != -1)
                 {
                     Session["AdvanceReportFilter"] = GetAdvanceFilter(model);
                     return RedirectToAction("Index", "Report", new { id = idFilter });
@@ -792,74 +892,84 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (Unidads_Unidad_de_Atencion != null && Unidads_Unidad_de_Atencion.Resource != null)
                 ViewBag.Unidads_Unidad_de_Atencion = Unidads_Unidad_de_Atencion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Recepcion = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Recepcion != null && Spartan_Users_Recepcion.Resource != null)
                 ViewBag.Spartan_Users_Recepcion = Spartan_Users_Recepcion.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(),
+                    Value = Convert.ToString(m.Id_User)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Sexo != null && Generos_Sexo.Resource != null)
                 ViewBag.Generos_Sexo = Generos_Sexo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_AtencionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Atencions_Tipo_de_Atencion = _ITipo_de_AtencionApiConsumer.SelAll(true);
             if (Tipo_de_Atencions_Tipo_de_Atencion != null && Tipo_de_Atencions_Tipo_de_Atencion.Resource != null)
                 ViewBag.Tipo_de_Atencions_Tipo_de_Atencion = Tipo_de_Atencions_Tipo_de_Atencion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Atencion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Atencion", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Identificacions_Tipo_de_Identificacion = _ITipo_de_IdentificacionApiConsumer.SelAll(true);
             if (Tipo_de_Identificacions_Tipo_de_Identificacion != null && Tipo_de_Identificacions_Tipo_de_Identificacion.Resource != null)
                 ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion = Tipo_de_Identificacions_Tipo_de_Identificacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_UrgenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Urgencias_Tipo_de_Urgencia = _ITipo_de_UrgenciaApiConsumer.SelAll(true);
             if (Tipo_de_Urgencias_Tipo_de_Urgencia != null && Tipo_de_Urgencias_Tipo_de_Urgencia.Resource != null)
                 ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia = Tipo_de_Urgencias_Tipo_de_Urgencia.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Orientador = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Orientador != null && Spartan_Users_Orientador.Resource != null)
                 ViewBag.Spartan_Users_Orientador = Spartan_Users_Orientador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(),
+                    Value = Convert.ToString(m.Id_User)
                 }).ToList();
             _IEstatus_de_TurnoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Estatus_de_Turnos_Estatus_de_Turno = _IEstatus_de_TurnoApiConsumer.SelAll(true);
             if (Estatus_de_Turnos_Estatus_de_Turno != null && Estatus_de_Turnos_Estatus_de_Turno.Resource != null)
                 ViewBag.Estatus_de_Turnos_Estatus_de_Turno = Estatus_de_Turnos_Estatus_de_Turno.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Turno", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Turno", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IModuloApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Modulos_Modulo = _IModuloApiConsumer.SelAll(true);
             if (Modulos_Modulo != null && Modulos_Modulo.Resource != null)
                 ViewBag.Modulos_Modulo = Modulos_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IMotivo_Finalizacion_TurnoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno = _IMotivo_Finalizacion_TurnoApiConsumer.SelAll(true);
             if (Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno != null && Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno.Resource != null)
                 ViewBag.Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno = Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_Finalizacion_Turno", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_Finalizacion_Turno", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
-            return View(model);  
+            return View(model);
         }
 
         [HttpGet]
@@ -873,70 +983,80 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (Unidads_Unidad_de_Atencion != null && Unidads_Unidad_de_Atencion.Resource != null)
                 ViewBag.Unidads_Unidad_de_Atencion = Unidads_Unidad_de_Atencion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Recepcion = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Recepcion != null && Spartan_Users_Recepcion.Resource != null)
                 ViewBag.Spartan_Users_Recepcion = Spartan_Users_Recepcion.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(),
+                    Value = Convert.ToString(m.Id_User)
                 }).ToList();
             _IGeneroApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Generos_Sexo = _IGeneroApiConsumer.SelAll(true);
             if (Generos_Sexo != null && Generos_Sexo.Resource != null)
                 ViewBag.Generos_Sexo = Generos_Sexo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Genero", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_AtencionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Atencions_Tipo_de_Atencion = _ITipo_de_AtencionApiConsumer.SelAll(true);
             if (Tipo_de_Atencions_Tipo_de_Atencion != null && Tipo_de_Atencions_Tipo_de_Atencion.Resource != null)
                 ViewBag.Tipo_de_Atencions_Tipo_de_Atencion = Tipo_de_Atencions_Tipo_de_Atencion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Atencion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Atencion", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_IdentificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Identificacions_Tipo_de_Identificacion = _ITipo_de_IdentificacionApiConsumer.SelAll(true);
             if (Tipo_de_Identificacions_Tipo_de_Identificacion != null && Tipo_de_Identificacions_Tipo_de_Identificacion.Resource != null)
                 ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion = Tipo_de_Identificacions_Tipo_de_Identificacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Identificacion", "Nombre") ?? m.Nombre.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_UrgenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Urgencias_Tipo_de_Urgencia = _ITipo_de_UrgenciaApiConsumer.SelAll(true);
             if (Tipo_de_Urgencias_Tipo_de_Urgencia != null && Tipo_de_Urgencias_Tipo_de_Urgencia.Resource != null)
                 ViewBag.Tipo_de_Urgencias_Tipo_de_Urgencia = Tipo_de_Urgencias_Tipo_de_Urgencia.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Spartan_Users_Orientador = _ISpartan_UserApiConsumer.SelAll(true);
             if (Spartan_Users_Orientador != null && Spartan_Users_Orientador.Resource != null)
                 ViewBag.Spartan_Users_Orientador = Spartan_Users_Orientador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(),
+                    Value = Convert.ToString(m.Id_User)
                 }).ToList();
             _IEstatus_de_TurnoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Estatus_de_Turnos_Estatus_de_Turno = _IEstatus_de_TurnoApiConsumer.SelAll(true);
             if (Estatus_de_Turnos_Estatus_de_Turno != null && Estatus_de_Turnos_Estatus_de_Turno.Resource != null)
                 ViewBag.Estatus_de_Turnos_Estatus_de_Turno = Estatus_de_Turnos_Estatus_de_Turno.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Turno", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_de_Turno", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IModuloApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Modulos_Modulo = _IModuloApiConsumer.SelAll(true);
             if (Modulos_Modulo != null && Modulos_Modulo.Resource != null)
                 ViewBag.Modulos_Modulo = Modulos_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IMotivo_Finalizacion_TurnoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno = _IMotivo_Finalizacion_TurnoApiConsumer.SelAll(true);
             if (Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno != null && Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno.Resource != null)
                 ViewBag.Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno = Motivo_Finalizacion_Turnos_Motivo_Finalizacion_Turno.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_Finalizacion_Turno", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_Finalizacion_Turno", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -974,42 +1094,70 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return Json(new
             {
                 data = result.Asignacion_de_Turnoss.Select(m => new Asignacion_de_TurnosGridModel
-                    {
+                {
                     Folio = m.Folio
-                        ,Fecha_de_Turno = (m.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Turno = m.Hora_de_Turno
-			,Numero_de_Turno = m.Numero_de_Turno
-                        ,Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Atencion_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Atencion_Unidad.Descripcion
-                        ,RecepcionName = CultureHelper.GetTraduction(m.Recepcion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Recepcion_Spartan_User.Name
-			,Nombres = m.Nombres
-			,Apellido_Paterno = m.Apellido_Paterno
-			,Apellido_Materno = m.Apellido_Materno
-			,Nombre_Completo = m.Nombre_Completo
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-			,Edad = m.Edad
-                        ,Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Atencion_Tipo_de_Atencion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
-                        ,Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
-			,Otra_Identificacion = m.Otra_Identificacion
-			,Numero_de_Identificacion = m.Numero_de_Identificacion
-			,Urgencia = m.Urgencia
-                        ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
-                        ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
-                        ,OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
-                        ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
-                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
-                        ,Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
-			,Observaciones = m.Observaciones
-                        ,Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Asignacion = m.Hora_de_Asignacion
-                        ,Fecha_de_Finalizacion = (m.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Finalizacion = m.Hora_de_Finalizacion
+                        ,
+                    Fecha_de_Turno = (m.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Turno = m.Hora_de_Turno
+            ,
+                    Numero_de_Turno = m.Numero_de_Turno
+                        ,
+                    Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Atencion_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Atencion_Unidad.Descripcion
+                        ,
+                    RecepcionName = CultureHelper.GetTraduction(m.Recepcion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Recepcion_Spartan_User.Name
+            ,
+                    Nombres = m.Nombres
+            ,
+                    Apellido_Paterno = m.Apellido_Paterno
+            ,
+                    Apellido_Materno = m.Apellido_Materno
+            ,
+                    Nombre_Completo = m.Nombre_Completo
+                        ,
+                    SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
+            ,
+                    Edad = m.Edad
+                        ,
+                    Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Atencion_Tipo_de_Atencion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
+                        ,
+                    Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
+            ,
+                    Otra_Identificacion = m.Otra_Identificacion
+            ,
+                    Numero_de_Identificacion = m.Numero_de_Identificacion
+            ,
+                    Urgencia = m.Urgencia
+                        ,
+                    Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                        ,
+                    Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                        ,
+                    Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
+                        ,
+                    OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
+                        ,
+                    Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
+                        ,
+                    ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
+                        ,
+                    Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
+            ,
+                    Observaciones = m.Observaciones
+                        ,
+                    Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Asignacion = m.Hora_de_Asignacion
+                        ,
+                    Fecha_de_Finalizacion = (m.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Finalizacion = m.Hora_de_Finalizacion
 
-                    }).ToList(),
+                }).ToList(),
                 itemsCount = result.RowCount
             }, JsonRequestBehavior.AllowGet);
         }
-		/*
+        /*
 		 [HttpGet]
         public ActionResult GetAsignacion_de_TurnosAll()
         {
@@ -1041,7 +1189,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         /// <returns>Return List of Asignacion_de_Turnos Entity</returns>
         public ActionResult GetAsignacion_de_TurnosList(UrlParametersModel param)
         {
-			 int sEcho = param.sEcho;
+            int sEcho = param.sEcho;
             int iDisplayStart = param.iDisplayStart;
             int iDisplayLength = param.iDisplayLength;
             string where = param.where;
@@ -1070,40 +1218,40 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return null;
             _IAsignacion_de_TurnosApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-          
+
             NameValueCollection filter = HttpUtility.ParseQueryString(param.filters);
 
             var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
             if (filter != null)
                 configuration = GridQueryHelper.GetDataTableConfigurationNew(param, new Asignacion_de_TurnosPropertyMapper());
-				
-			if (!String.IsNullOrEmpty(where))
+
+            if (!String.IsNullOrEmpty(where))
             {
-                 configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
+                configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
             }
             if (!String.IsNullOrEmpty(order))
             {
                 configuration.OrderByClause = order;
             }
             //Adding Advance Search
-            if (param.AdvanceSearch != null && param.AdvanceSearch == true && Session["AdvanceSearch"] != null)            
+            if (param.AdvanceSearch != null && param.AdvanceSearch == true && Session["AdvanceSearch"] != null)
             {
-				if (Session["AdvanceSearch"].GetType() == typeof(Asignacion_de_TurnosAdvanceSearchModel))
+                if (Session["AdvanceSearch"].GetType() == typeof(Asignacion_de_TurnosAdvanceSearchModel))
                 {
-					var advanceFilter =
+                    var advanceFilter =
                     (Asignacion_de_TurnosAdvanceSearchModel)Session["AdvanceSearch"];
-					configuration.WhereClause = configuration.WhereClause == "" ? GetAdvanceFilter(advanceFilter) : configuration.WhereClause + " AND " + GetAdvanceFilter(advanceFilter);
-				}
-				else
-                {    
-					Session.Remove("AdvanceSearch");
+                    configuration.WhereClause = configuration.WhereClause == "" ? GetAdvanceFilter(advanceFilter) : configuration.WhereClause + " AND " + GetAdvanceFilter(advanceFilter);
+                }
+                else
+                {
+                    Session.Remove("AdvanceSearch");
                 }
             }
 
             Asignacion_de_TurnosPropertyMapper oAsignacion_de_TurnosPropertyMapper = new Asignacion_de_TurnosPropertyMapper();
-			if (String.IsNullOrEmpty(order))
+            if (String.IsNullOrEmpty(order))
             {
-                 if (sortColumn != -1)
+                if (sortColumn != -1)
                     configuration.OrderByClause = oAsignacion_de_TurnosPropertyMapper.GetPropertyName(param.columns[sortColumn].name) + " " + sortDirection;
             }
 
@@ -1116,36 +1264,64 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return Json(new
             {
                 aaData = result.Asignacion_de_Turnoss.Select(m => new Asignacion_de_TurnosGridModel
-            {
+                {
                     Folio = m.Folio
-                        ,Fecha_de_Turno = (m.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Turno = m.Hora_de_Turno
-			,Numero_de_Turno = m.Numero_de_Turno
-                        ,Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Atencion_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Atencion_Unidad.Descripcion
-                        ,RecepcionName = CultureHelper.GetTraduction(m.Recepcion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Recepcion_Spartan_User.Name
-			,Nombres = m.Nombres
-			,Apellido_Paterno = m.Apellido_Paterno
-			,Apellido_Materno = m.Apellido_Materno
-			,Nombre_Completo = m.Nombre_Completo
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-			,Edad = m.Edad
-                        ,Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Atencion_Tipo_de_Atencion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
-                        ,Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
-			,Otra_Identificacion = m.Otra_Identificacion
-			,Numero_de_Identificacion = m.Numero_de_Identificacion
-			,Urgencia = m.Urgencia
-                        ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
-                        ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
-                        ,OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
-                        ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
-                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
-                        ,Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
-			,Observaciones = m.Observaciones
-                        ,Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Asignacion = m.Hora_de_Asignacion
-                        ,Fecha_de_Finalizacion = (m.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Finalizacion = m.Hora_de_Finalizacion
+                        ,
+                    Fecha_de_Turno = (m.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Turno = m.Hora_de_Turno
+            ,
+                    Numero_de_Turno = m.Numero_de_Turno
+                        ,
+                    Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Atencion_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Atencion_Unidad.Descripcion
+                        ,
+                    RecepcionName = CultureHelper.GetTraduction(m.Recepcion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Recepcion_Spartan_User.Name
+            ,
+                    Nombres = m.Nombres
+            ,
+                    Apellido_Paterno = m.Apellido_Paterno
+            ,
+                    Apellido_Materno = m.Apellido_Materno
+            ,
+                    Nombre_Completo = m.Nombre_Completo
+                        ,
+                    SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
+            ,
+                    Edad = m.Edad
+                        ,
+                    Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Atencion_Tipo_de_Atencion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
+                        ,
+                    Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
+            ,
+                    Otra_Identificacion = m.Otra_Identificacion
+            ,
+                    Numero_de_Identificacion = m.Numero_de_Identificacion
+            ,
+                    Urgencia = m.Urgencia
+                        ,
+                    Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                        ,
+                    Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                        ,
+                    Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
+                        ,
+                    OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
+                        ,
+                    Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
+                        ,
+                    ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
+                        ,
+                    Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
+            ,
+                    Observaciones = m.Observaciones
+                        ,
+                    Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Asignacion = m.Hora_de_Asignacion
+                        ,
+                    Fecha_de_Finalizacion = (m.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Finalizacion = m.Hora_de_Finalizacion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -1166,14 +1342,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Solicitud_de_Denuncia_Ciudadana.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud_de_Denuncia_Ciudadana.Folio as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.ListaSelAll(1, 20,elWhere , " Solicitud_de_Denuncia_Ciudadana.Folio ASC ").Resource;
-               
+                var elWhere = " (cast(Solicitud_de_Denuncia_Ciudadana.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud_de_Denuncia_Ciudadana.Folio as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+                elWhere = HttpUtility.UrlEncode(elWhere);
+                var result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.ListaSelAll(1, 20, elWhere, " Solicitud_de_Denuncia_Ciudadana.Folio ASC ").Resource;
+
                 foreach (var item in result.Solicitud_de_Denuncia_Ciudadanas)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud_de_Denuncia_Ciudadana", "Folio");
-                    item.Folio =trans ??item.Folio;
+                    var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud_de_Denuncia_Ciudadana", "Folio");
+                    item.Folio = trans ?? item.Folio;
                 }
                 return Json(result.Solicitud_de_Denuncia_Ciudadanas.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -1193,14 +1369,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IAsignacion_de_Turnos_PreviosApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Asignacion_de_Turnos_Previos.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Asignacion_de_Turnos_Previos.Numero_Turno as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IAsignacion_de_Turnos_PreviosApiConsumer.ListaSelAll(1, 20,elWhere , " Asignacion_de_Turnos_Previos.Numero_Turno ASC ").Resource;
-               
+                var elWhere = " (cast(Asignacion_de_Turnos_Previos.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Asignacion_de_Turnos_Previos.Numero_Turno as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+                elWhere = HttpUtility.UrlEncode(elWhere);
+                var result = _IAsignacion_de_Turnos_PreviosApiConsumer.ListaSelAll(1, 20, elWhere, " Asignacion_de_Turnos_Previos.Numero_Turno ASC ").Resource;
+
                 foreach (var item in result.Asignacion_de_Turnos_Previoss)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Asignacion_de_Turnos_Previos", "Numero_Turno");
-                    item.Numero_Turno =trans ??item.Numero_Turno;
+                    var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Asignacion_de_Turnos_Previos", "Numero_Turno");
+                    item.Numero_Turno = trans ?? item.Numero_Turno;
                 }
                 return Json(result.Asignacion_de_Turnos_Previoss.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -1837,7 +2013,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Asignacion_de_Turnos varAsignacion_de_Turnos = null;
                 if (id.ToString() != "0")
                 {
-                        string where = "";
+                    string where = "";
 
                 }
                 var result = _IAsignacion_de_TurnosApiConsumer.Delete(id, null, null).Resource;
@@ -1854,57 +2030,85 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             try
             {
-				//if (ModelState.IsValid)
-				//{
-                    if (!_tokenManager.GenerateToken())
-                        return Json(null, JsonRequestBehavior.AllowGet);
-                    _IAsignacion_de_TurnosApiConsumer.SetAuthHeader(_tokenManager.Token);
+                //if (ModelState.IsValid)
+                //{
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IAsignacion_de_TurnosApiConsumer.SetAuthHeader(_tokenManager.Token);
 
 
 
-                    
-                    var result = "";
-                    var Asignacion_de_TurnosInfo = new Asignacion_de_Turnos
-                    {
-                        Folio = varAsignacion_de_Turnos.Folio
-                        ,Fecha_de_Turno = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Turno)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Turno, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Turno = varAsignacion_de_Turnos.Hora_de_Turno
-                        ,Numero_de_Turno = varAsignacion_de_Turnos.Numero_de_Turno
-                        ,Unidad_de_Atencion = varAsignacion_de_Turnos.Unidad_de_Atencion
-                        ,Recepcion = varAsignacion_de_Turnos.Recepcion
-                        ,Nombres = varAsignacion_de_Turnos.Nombres
-                        ,Apellido_Paterno = varAsignacion_de_Turnos.Apellido_Paterno
-                        ,Apellido_Materno = varAsignacion_de_Turnos.Apellido_Materno
-                        ,Nombre_Completo = varAsignacion_de_Turnos.Nombre_Completo
-                        ,Sexo = varAsignacion_de_Turnos.Sexo
-                        ,Edad = varAsignacion_de_Turnos.Edad
-                        ,Tipo_de_Atencion = varAsignacion_de_Turnos.Tipo_de_Atencion
-                        ,Tipo_de_Identificacion = varAsignacion_de_Turnos.Tipo_de_Identificacion
-                        ,Otra_Identificacion = varAsignacion_de_Turnos.Otra_Identificacion
-                        ,Numero_de_Identificacion = varAsignacion_de_Turnos.Numero_de_Identificacion
-                        ,Urgencia = varAsignacion_de_Turnos.Urgencia
-                        ,Tipo_de_Urgencia = varAsignacion_de_Turnos.Tipo_de_Urgencia
-                        ,Denuncia_Ciudadana = varAsignacion_de_Turnos.Denuncia_Ciudadana
-                        ,Turno_Previo = varAsignacion_de_Turnos.Turno_Previo
-                        ,Orientador = varAsignacion_de_Turnos.Orientador
-                        ,Estatus_de_Turno = varAsignacion_de_Turnos.Estatus_de_Turno
-                        ,Modulo = varAsignacion_de_Turnos.Modulo
-                        ,Motivo_Finalizacion_Turno = varAsignacion_de_Turnos.Motivo_Finalizacion_Turno
-                        ,Observaciones = varAsignacion_de_Turnos.Observaciones
-                        ,Fecha_de_Asignacion = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Asignacion)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Asignacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Asignacion = varAsignacion_de_Turnos.Hora_de_Asignacion
-                        ,Fecha_de_Finalizacion = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Finalizacion)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Finalizacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Finalizacion = varAsignacion_de_Turnos.Hora_de_Finalizacion
 
-                    };
+                var result = "";
+                var Asignacion_de_TurnosInfo = new Asignacion_de_Turnos
+                {
+                    Folio = varAsignacion_de_Turnos.Folio
+                    ,
+                    Fecha_de_Turno = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Turno)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Turno, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    ,
+                    Hora_de_Turno = varAsignacion_de_Turnos.Hora_de_Turno
+                    ,
+                    Numero_de_Turno = varAsignacion_de_Turnos.Numero_de_Turno
+                    ,
+                    Unidad_de_Atencion = varAsignacion_de_Turnos.Unidad_de_Atencion
+                    ,
+                    Recepcion = varAsignacion_de_Turnos.Recepcion
+                    ,
+                    Nombres = varAsignacion_de_Turnos.Nombres
+                    ,
+                    Apellido_Paterno = varAsignacion_de_Turnos.Apellido_Paterno
+                    ,
+                    Apellido_Materno = varAsignacion_de_Turnos.Apellido_Materno
+                    ,
+                    Nombre_Completo = varAsignacion_de_Turnos.Nombre_Completo
+                    ,
+                    Sexo = varAsignacion_de_Turnos.Sexo
+                    ,
+                    Edad = varAsignacion_de_Turnos.Edad
+                    ,
+                    Tipo_de_Atencion = varAsignacion_de_Turnos.Tipo_de_Atencion
+                    ,
+                    Tipo_de_Identificacion = varAsignacion_de_Turnos.Tipo_de_Identificacion
+                    ,
+                    Otra_Identificacion = varAsignacion_de_Turnos.Otra_Identificacion
+                    ,
+                    Numero_de_Identificacion = varAsignacion_de_Turnos.Numero_de_Identificacion
+                    ,
+                    Urgencia = varAsignacion_de_Turnos.Urgencia
+                    ,
+                    Tipo_de_Urgencia = varAsignacion_de_Turnos.Tipo_de_Urgencia
+                    ,
+                    Denuncia_Ciudadana = varAsignacion_de_Turnos.Denuncia_Ciudadana
+                    ,
+                    Turno_Previo = varAsignacion_de_Turnos.Turno_Previo
+                    ,
+                    Orientador = varAsignacion_de_Turnos.Orientador
+                    ,
+                    Estatus_de_Turno = varAsignacion_de_Turnos.Estatus_de_Turno
+                    ,
+                    Modulo = varAsignacion_de_Turnos.Modulo
+                    ,
+                    Motivo_Finalizacion_Turno = varAsignacion_de_Turnos.Motivo_Finalizacion_Turno
+                    ,
+                    Observaciones = varAsignacion_de_Turnos.Observaciones
+                    ,
+                    Fecha_de_Asignacion = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Asignacion)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Asignacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    ,
+                    Hora_de_Asignacion = varAsignacion_de_Turnos.Hora_de_Asignacion
+                    ,
+                    Fecha_de_Finalizacion = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Finalizacion)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Finalizacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    ,
+                    Hora_de_Finalizacion = varAsignacion_de_Turnos.Hora_de_Finalizacion
 
-                    result = !IsNew ?
-                        _IAsignacion_de_TurnosApiConsumer.Update(Asignacion_de_TurnosInfo, null, null).Resource.ToString() :
-                         _IAsignacion_de_TurnosApiConsumer.Insert(Asignacion_de_TurnosInfo, null, null).Resource.ToString();
-					Session["KeyValueInserted"] = result;
-                    return Json(result, JsonRequestBehavior.AllowGet);
-				//}
-				//return Json(false, JsonRequestBehavior.AllowGet);
+                };
+
+                result = !IsNew ?
+                    _IAsignacion_de_TurnosApiConsumer.Update(Asignacion_de_TurnosInfo, null, null).Resource.ToString() :
+                     _IAsignacion_de_TurnosApiConsumer.Insert(Asignacion_de_TurnosInfo, null, null).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+                //}
+                //return Json(false, JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -1933,23 +2137,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Asignacion_de_TurnosModuleAttributeList.CustomModuleAttributeList[i].HelpText = string.Empty;
                 }
             }
-			if (Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList != null)
+            if (Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList != null)
             {
-				for (int i = 0; i < Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList.Count - 1; i++)
-				{
-					for (int j = 0; j < Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList[i].elements.Count; j++)
-					{
-						if (string.IsNullOrEmpty(Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue))
-						{
-							Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue = string.Empty;
-						}
-						if (string.IsNullOrEmpty(Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText))
-						{
-							Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText = string.Empty;
-						}
-					}
-				}
-			}
+                for (int i = 0; i < Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList.Count - 1; i++)
+                {
+                    for (int j = 0; j < Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList[i].elements.Count; j++)
+                    {
+                        if (string.IsNullOrEmpty(Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue))
+                        {
+                            Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue = string.Empty;
+                        }
+                        if (string.IsNullOrEmpty(Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText))
+                        {
+                            Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText = string.Empty;
+                        }
+                    }
+                }
+            }
             string strAsignacion_de_TurnosScript = string.Empty;
             using (StreamReader r = new StreamReader(Server.MapPath("~/Uploads/Scripts/Asignacion_de_Turnos.js")))
             {
@@ -1968,53 +2172,53 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             // get json string of change job history element attributes
             string childUserChangeJson = jsSerialize.Serialize(Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList);
-			int indexOfArrayHistory = 0;
+            int indexOfArrayHistory = 0;
             string splittedStringHistory = "";
             int indexOfMainElementHistory = 0;
             int endIndexOfMainElementHistory = 0;
-			if (Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList != null)
+            if (Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList != null)
             {
-				indexOfArrayHistory = strAsignacion_de_TurnosScript.IndexOf("});");
-				if(indexOfArrayHistory != -1)
-				{
-					splittedStringHistory = strAsignacion_de_TurnosScript.Substring(indexOfArrayHistory, strAsignacion_de_TurnosScript.Length - indexOfArrayHistory);
-					indexOfMainElementHistory = splittedStringHistory.IndexOf('[');
-					endIndexOfMainElementHistory = splittedStringHistory.IndexOf(']') + 1;
-				}
-			}
-			string finalResponse = strAsignacion_de_TurnosScript.Substring(0, indexOfArray + indexOfMainElement) + userChangeJson + strAsignacion_de_TurnosScript.Substring(endIndexOfMainElement + indexOfArray, strAsignacion_de_TurnosScript.Length - (endIndexOfMainElement + indexOfArray));
-           
-		   var ResponseChild = string.Empty;
+                indexOfArrayHistory = strAsignacion_de_TurnosScript.IndexOf("});");
+                if (indexOfArrayHistory != -1)
+                {
+                    splittedStringHistory = strAsignacion_de_TurnosScript.Substring(indexOfArrayHistory, strAsignacion_de_TurnosScript.Length - indexOfArrayHistory);
+                    indexOfMainElementHistory = splittedStringHistory.IndexOf('[');
+                    endIndexOfMainElementHistory = splittedStringHistory.IndexOf(']') + 1;
+                }
+            }
+            string finalResponse = strAsignacion_de_TurnosScript.Substring(0, indexOfArray + indexOfMainElement) + userChangeJson + strAsignacion_de_TurnosScript.Substring(endIndexOfMainElement + indexOfArray, strAsignacion_de_TurnosScript.Length - (endIndexOfMainElement + indexOfArray));
+
+            var ResponseChild = string.Empty;
             if (Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList != null && indexOfArrayHistory != -1)
             {
                 foreach (var item in Asignacion_de_TurnosModuleAttributeList.ChildModuleAttributeList)
                 {
-				if (item!= null && item.elements != null  && item.elements.Count>0)
-                    ResponseChild += "\r\n  \n\r function set" + item.table + "Validation() { " +
-                                    " \r\n var inpuElementChildArray =" + jsSerialize.Serialize(item.elements) + ";" +
-                                    "  \r\n setInputEntityAttributes(inpuElementChildArray, \".\", 0);" +
-                                    "  \r\n setDynamicRenderElement(); \n\r } ";
+                    if (item != null && item.elements != null && item.elements.Count > 0)
+                        ResponseChild += "\r\n  \n\r function set" + item.table + "Validation() { " +
+                                        " \r\n var inpuElementChildArray =" + jsSerialize.Serialize(item.elements) + ";" +
+                                        "  \r\n setInputEntityAttributes(inpuElementChildArray, \".\", 0);" +
+                                        "  \r\n setDynamicRenderElement(); \n\r } ";
 
                 }
             }
-            finalResponse = finalResponse.Substring(0, finalResponse.IndexOf("});") + 4) +  "\n\r";
+            finalResponse = finalResponse.Substring(0, finalResponse.IndexOf("});") + 4) + "\n\r";
             finalResponse += ResponseChild;
-          
+
 
             using (StreamWriter w = new StreamWriter(Server.MapPath("~/Uploads/Scripts/Asignacion_de_Turnos.js")))
             {
                 w.WriteLine(finalResponse);
             }
-            
+
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-        
+
 
         [HttpPost]
         public JsonResult ReadScriptSettings()
         {
             string strCustomScript = string.Empty;
-            
+
             CustomElementAttribute oCustomElementAttribute = new CustomElementAttribute();
 
             if (System.IO.File.Exists(Server.MapPath("~/Uploads/Scripts/Asignacion_de_Turnos.js")))
@@ -2022,13 +2226,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 using (StreamReader r = new StreamReader(Server.MapPath("~/Uploads/Scripts/Asignacion_de_Turnos.js")))
                 {
                     strCustomScript = r.ReadToEnd();
-                
+
                 }
 
                 int indexOfArray = strCustomScript.IndexOf("inpuElementArray");
-                string splittedString = strCustomScript.Substring(indexOfArray, strCustomScript.Length - indexOfArray);                
-                int indexOfMainElement = splittedString.IndexOf('[');                
-                int endIndexOfMainElement = splittedString.IndexOf(']') + 1;                
+                string splittedString = strCustomScript.Substring(indexOfArray, strCustomScript.Length - indexOfArray);
+                int indexOfMainElement = splittedString.IndexOf('[');
+                int endIndexOfMainElement = splittedString.IndexOf(']') + 1;
                 string mainJsonArray = splittedString.Substring(indexOfMainElement, endIndexOfMainElement - indexOfMainElement);
 
                 int indexOfChildArray = strCustomScript.IndexOf("function set");
@@ -2064,7 +2268,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 oCustomElementAttribute.MainElement = string.Empty;
                 oCustomElementAttribute.ChildElement = string.Empty;
-            }        
+            }
             return Json(oCustomElementAttribute, JsonRequestBehavior.AllowGet);
         }
 
@@ -2073,8 +2277,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             return PartialView("Asignacion_de_TurnosPropertyBag", "Asignacion_de_Turnos");
         }
-		
-		public List<Spartan_Business_Rule> GetBusinessRules(int ObjectId, int Attribute)
+
+        public List<Spartan_Business_Rule> GetBusinessRules(int ObjectId, int Attribute)
         {
             if (!_tokenManager.GenerateToken())
                 return null;
@@ -2121,8 +2325,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #endregion "Controller Methods"
 
         #region "Custom methods"
-		
-		[HttpGet]
+
+        [HttpGet]
         public FileStreamResult PrintFormats(int idFormat, string RecordId)
         {
             if (!_tokenManager.GenerateToken())
@@ -2132,7 +2336,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             _ISpartan_FormatRelatedApiConsumer.SetAuthHeader(_tokenManager.Token);
 
             MemoryStream ms = new MemoryStream();
-           
+
             //Buscar los Formatos Relacionados
             var relacionados = _ISpartan_FormatRelatedApiConsumer.ListaSelAll(0, 5000, "Spartan_Format_Related.FormatId = " + idFormat, "").Resource.Spartan_Format_Relateds.OrderBy(r => r.Order).ToList();
             if (relacionados.Count > 0)
@@ -2156,11 +2360,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var allPagesContent = ms.GetBuffer();
                 ms.Flush();
             }
-            else {
+            else
+            {
                 var bytePdf = _IGeneratePDFApiConsumer.GeneratePDF(idFormat, RecordId);
-                ms.Write(bytePdf.Resource, 0, bytePdf.Resource.Length);           
+                ms.Write(bytePdf.Resource, 0, bytePdf.Resource.Length);
             }
-                
+
             Response.ContentType = "application/pdf";
             Response.AddHeader("content-disposition", "attachment;filename=Formatos.pdf");
             Response.Buffer = true;
@@ -2171,10 +2376,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             return new FileStreamResult(Response.OutputStream, "application/pdf");
         }
-		
-		
-		
-		[HttpGet]
+
+
+
+        [HttpGet]
         public ActionResult GetFormats(string RecordId)
         {
             if (!_tokenManager.GenerateToken())
@@ -2185,7 +2390,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
             _ISpartan_Format_PermissionsApiConsumer.SetAuthHeader(_tokenManager.Token);
-           _ISpartan_FormatApiConsumer.SetAuthHeader(_tokenManager.Token);
+            _ISpartan_FormatApiConsumer.SetAuthHeader(_tokenManager.Token);
 
             var whereClause = " Spartan_Format_Permissions.Spartan_User_Role = " + SessionHelper.Role + " AND Spartan_Format_Permissions.Permission_Type = 1 AND Apply=1 ";
             var formatsPermisions = _ISpartan_Format_PermissionsApiConsumer.ListaSelAll(0, 500, whereClause, string.Empty).Resource;
@@ -2210,7 +2415,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                             {
                                 formatList.Add(new SelectListItem
                                 {
-                                    Text =  CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
+                                    Text = CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
                                     Value = Convert.ToString(format.FormatId)
                                 });
                             }
@@ -2219,7 +2424,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             formatList.Add(new SelectListItem
                             {
-                                Text =  CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
+                                Text = CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
                                 Value = Convert.ToString(format.FormatId)
                             });
                         }
@@ -2236,11 +2441,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
-										  
-			//string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
-			string[] arrayColumnsVisible = null;
 
-			 where = HttpUtility.UrlEncode(where);
+            //string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+            string[] arrayColumnsVisible = null;
+
+            where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
                 return;
 
@@ -2250,8 +2455,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
             if (filter != null)
                 configuration = GridQueryHelper.GetDataTableConfiguration(filter, new Asignacion_de_TurnosPropertyMapper());
-			
-			 if (!String.IsNullOrEmpty(where))
+
+            if (!String.IsNullOrEmpty(where))
             {
                 configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
             }
@@ -2266,14 +2471,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     (Asignacion_de_TurnosAdvanceSearchModel)Session["AdvanceSearch"];
                 configuration.WhereClause = configuration.WhereClause == "" ? GetAdvanceFilter(advanceFilter) : configuration.WhereClause + " AND " + GetAdvanceFilter(advanceFilter);
             }
-			string sortDirection = "asc";
+            string sortDirection = "asc";
 
             Asignacion_de_TurnosPropertyMapper oAsignacion_de_TurnosPropertyMapper = new Asignacion_de_TurnosPropertyMapper();
             if (Request.QueryString["sSortDir"] != null)
             {
                 sortDirection = Request.QueryString["sSortDir"];
             }
-            configuration.OrderByClause =  oAsignacion_de_TurnosPropertyMapper.GetPropertyName(iSortCol)  + " " + sortDirection;
+            configuration.OrderByClause = oAsignacion_de_TurnosPropertyMapper.GetPropertyName(iSortCol) + " " + sortDirection;
             pageSize = pageSize == 0 ? int.MaxValue : pageSize;
 
             var result = _IAsignacion_de_TurnosApiConsumer.ListaSelAll((pageIndex * pageSize) - pageSize + 1, pageSize + ((pageIndex * pageSize) - pageSize), configuration.WhereClause, configuration.OrderByClause ?? "").Resource;
@@ -2283,34 +2488,62 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Asignacion_de_Turnoss.Select(m => new Asignacion_de_TurnosGridModel
             {
                 Folio = m.Folio
-                        ,Fecha_de_Turno = (m.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Turno = m.Hora_de_Turno
-			,Numero_de_Turno = m.Numero_de_Turno
-                        ,Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Atencion_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Atencion_Unidad.Descripcion
-                        ,RecepcionName = CultureHelper.GetTraduction(m.Recepcion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Recepcion_Spartan_User.Name
-			,Nombres = m.Nombres
-			,Apellido_Paterno = m.Apellido_Paterno
-			,Apellido_Materno = m.Apellido_Materno
-			,Nombre_Completo = m.Nombre_Completo
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-			,Edad = m.Edad
-                        ,Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Atencion_Tipo_de_Atencion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
-                        ,Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
-			,Otra_Identificacion = m.Otra_Identificacion
-			,Numero_de_Identificacion = m.Numero_de_Identificacion
-			,Urgencia = m.Urgencia
-                        ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
-                        ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
-                        ,OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
-                        ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
-                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
-                        ,Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
-			,Observaciones = m.Observaciones
-                        ,Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Asignacion = m.Hora_de_Asignacion
-                        ,Fecha_de_Finalizacion = (m.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Finalizacion = m.Hora_de_Finalizacion
+                        ,
+                Fecha_de_Turno = (m.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
+            ,
+                Hora_de_Turno = m.Hora_de_Turno
+            ,
+                Numero_de_Turno = m.Numero_de_Turno
+                        ,
+                Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Atencion_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Atencion_Unidad.Descripcion
+                        ,
+                RecepcionName = CultureHelper.GetTraduction(m.Recepcion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Recepcion_Spartan_User.Name
+            ,
+                Nombres = m.Nombres
+            ,
+                Apellido_Paterno = m.Apellido_Paterno
+            ,
+                Apellido_Materno = m.Apellido_Materno
+            ,
+                Nombre_Completo = m.Nombre_Completo
+                        ,
+                SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
+            ,
+                Edad = m.Edad
+                        ,
+                Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Atencion_Tipo_de_Atencion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
+                        ,
+                Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
+            ,
+                Otra_Identificacion = m.Otra_Identificacion
+            ,
+                Numero_de_Identificacion = m.Numero_de_Identificacion
+            ,
+                Urgencia = m.Urgencia
+                        ,
+                Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                        ,
+                Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                        ,
+                Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
+                        ,
+                OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
+                        ,
+                Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
+                        ,
+                ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
+                        ,
+                Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
+            ,
+                Observaciones = m.Observaciones
+                        ,
+                Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+            ,
+                Hora_de_Asignacion = m.Hora_de_Asignacion
+                        ,
+                Fecha_de_Finalizacion = (m.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
+            ,
+                Hora_de_Finalizacion = m.Hora_de_Finalizacion
 
             }).ToList();
 
@@ -2332,13 +2565,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         [HttpGet]
         //[ObjectAuth(ObjectId = ModuleObjectId.EMPLEADOS_OBJECT, PermissionType = PermissionTypes.Export)]
-        public ActionResult Print(string format, int pageIndex, int pageSize, string iSortCol, string sSortDir,string where, string order)
+        public ActionResult Print(string format, int pageIndex, int pageSize, string iSortCol, string sSortDir, string where, string order)
         {
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 
-			where = HttpUtility.UrlEncode(where);
-										   
+            where = HttpUtility.UrlEncode(where);
+
             if (!_tokenManager.GenerateToken())
                 return null;
 
@@ -2349,13 +2582,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
             if (filter != null)
                 configuration = GridQueryHelper.GetDataTableConfiguration(filter, new Asignacion_de_TurnosPropertyMapper());
-				
-				
+
+
             if (!String.IsNullOrEmpty(where))
             {
                 configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
             }
-			if (Session["AdvanceSearch"] != null && pageSize != 0)
+            if (Session["AdvanceSearch"] != null && pageSize != 0)
             {
                 var advanceFilter =
                     (Asignacion_de_TurnosAdvanceSearchModel)Session["AdvanceSearch"];
@@ -2369,9 +2602,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 sortDirection = Request.QueryString["sSortDir"];
             }
-            configuration.OrderByClause =  oAsignacion_de_TurnosPropertyMapper.GetPropertyName(iSortCol)  + " " + sortDirection;
-			
-			if (!String.IsNullOrEmpty(order))
+            configuration.OrderByClause = oAsignacion_de_TurnosPropertyMapper.GetPropertyName(iSortCol) + " " + sortDirection;
+
+            if (!String.IsNullOrEmpty(order))
             {
                 configuration.OrderByClause = order;
             }
@@ -2384,34 +2617,62 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Asignacion_de_Turnoss.Select(m => new Asignacion_de_TurnosGridModel
             {
                 Folio = m.Folio
-                        ,Fecha_de_Turno = (m.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Turno = m.Hora_de_Turno
-			,Numero_de_Turno = m.Numero_de_Turno
-                        ,Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Atencion_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Atencion_Unidad.Descripcion
-                        ,RecepcionName = CultureHelper.GetTraduction(m.Recepcion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Recepcion_Spartan_User.Name
-			,Nombres = m.Nombres
-			,Apellido_Paterno = m.Apellido_Paterno
-			,Apellido_Materno = m.Apellido_Materno
-			,Nombre_Completo = m.Nombre_Completo
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-			,Edad = m.Edad
-                        ,Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Atencion_Tipo_de_Atencion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
-                        ,Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
-			,Otra_Identificacion = m.Otra_Identificacion
-			,Numero_de_Identificacion = m.Numero_de_Identificacion
-			,Urgencia = m.Urgencia
-                        ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
-                        ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
-                        ,OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
-                        ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
-                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
-                        ,Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
-			,Observaciones = m.Observaciones
-                        ,Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Asignacion = m.Hora_de_Asignacion
-                        ,Fecha_de_Finalizacion = (m.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Finalizacion = m.Hora_de_Finalizacion
+                        ,
+                Fecha_de_Turno = (m.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
+            ,
+                Hora_de_Turno = m.Hora_de_Turno
+            ,
+                Numero_de_Turno = m.Numero_de_Turno
+                        ,
+                Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Atencion_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Atencion_Unidad.Descripcion
+                        ,
+                RecepcionName = CultureHelper.GetTraduction(m.Recepcion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Recepcion_Spartan_User.Name
+            ,
+                Nombres = m.Nombres
+            ,
+                Apellido_Paterno = m.Apellido_Paterno
+            ,
+                Apellido_Materno = m.Apellido_Materno
+            ,
+                Nombre_Completo = m.Nombre_Completo
+                        ,
+                SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
+            ,
+                Edad = m.Edad
+                        ,
+                Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Atencion_Tipo_de_Atencion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
+                        ,
+                Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
+            ,
+                Otra_Identificacion = m.Otra_Identificacion
+            ,
+                Numero_de_Identificacion = m.Numero_de_Identificacion
+            ,
+                Urgencia = m.Urgencia
+                        ,
+                Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                        ,
+                Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                        ,
+                Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
+                        ,
+                OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
+                        ,
+                Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
+                        ,
+                ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
+                        ,
+                Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
+            ,
+                Observaciones = m.Observaciones
+                        ,
+                Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+            ,
+                Hora_de_Asignacion = m.Hora_de_Asignacion
+                        ,
+                Fecha_de_Finalizacion = (m.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
+            ,
+                Hora_de_Finalizacion = m.Hora_de_Finalizacion
 
             }).ToList();
 
@@ -2419,8 +2680,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
         #endregion "Custom methods"
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult CreateID()
         {
             try
@@ -2437,8 +2698,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpPost]
+
+        [HttpPost]
         public ActionResult Post_Datos_Generales(Asignacion_de_Turnos_Datos_GeneralesModel varAsignacion_de_Turnos)
         {
             try
@@ -2446,40 +2707,68 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IAsignacion_de_TurnosApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+
                 var result = "";
                 var Asignacion_de_Turnos_Datos_GeneralesInfo = new Asignacion_de_Turnos_Datos_Generales
                 {
                     Folio = varAsignacion_de_Turnos.Folio
-                                            ,Fecha_de_Turno = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Turno)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Turno, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Turno = varAsignacion_de_Turnos.Hora_de_Turno
-                        ,Numero_de_Turno = varAsignacion_de_Turnos.Numero_de_Turno
-                        ,Unidad_de_Atencion = varAsignacion_de_Turnos.Unidad_de_Atencion
-                        ,Recepcion = varAsignacion_de_Turnos.Recepcion
-                        ,Nombres = varAsignacion_de_Turnos.Nombres
-                        ,Apellido_Paterno = varAsignacion_de_Turnos.Apellido_Paterno
-                        ,Apellido_Materno = varAsignacion_de_Turnos.Apellido_Materno
-                        ,Nombre_Completo = varAsignacion_de_Turnos.Nombre_Completo
-                        ,Sexo = varAsignacion_de_Turnos.Sexo
-                        ,Edad = varAsignacion_de_Turnos.Edad
-                        ,Tipo_de_Atencion = varAsignacion_de_Turnos.Tipo_de_Atencion
-                        ,Tipo_de_Identificacion = varAsignacion_de_Turnos.Tipo_de_Identificacion
-                        ,Otra_Identificacion = varAsignacion_de_Turnos.Otra_Identificacion
-                        ,Numero_de_Identificacion = varAsignacion_de_Turnos.Numero_de_Identificacion
-                        ,Urgencia = varAsignacion_de_Turnos.Urgencia
-                        ,Tipo_de_Urgencia = varAsignacion_de_Turnos.Tipo_de_Urgencia
-                        ,Denuncia_Ciudadana = varAsignacion_de_Turnos.Denuncia_Ciudadana
-                        ,Turno_Previo = varAsignacion_de_Turnos.Turno_Previo
-                        ,Orientador = varAsignacion_de_Turnos.Orientador
-                        ,Estatus_de_Turno = varAsignacion_de_Turnos.Estatus_de_Turno
-                        ,Modulo = varAsignacion_de_Turnos.Modulo
-                        ,Motivo_Finalizacion_Turno = varAsignacion_de_Turnos.Motivo_Finalizacion_Turno
-                        ,Observaciones = varAsignacion_de_Turnos.Observaciones
-                        ,Fecha_de_Asignacion = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Asignacion)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Asignacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Asignacion = varAsignacion_de_Turnos.Hora_de_Asignacion
-                        ,Fecha_de_Finalizacion = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Finalizacion)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Finalizacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Finalizacion = varAsignacion_de_Turnos.Hora_de_Finalizacion
-                    
+                                            ,
+                    Fecha_de_Turno = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Turno)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Turno, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,
+                    Hora_de_Turno = varAsignacion_de_Turnos.Hora_de_Turno
+                        ,
+                    Numero_de_Turno = varAsignacion_de_Turnos.Numero_de_Turno
+                        ,
+                    Unidad_de_Atencion = varAsignacion_de_Turnos.Unidad_de_Atencion
+                        ,
+                    Recepcion = varAsignacion_de_Turnos.Recepcion
+                        ,
+                    Nombres = varAsignacion_de_Turnos.Nombres
+                        ,
+                    Apellido_Paterno = varAsignacion_de_Turnos.Apellido_Paterno
+                        ,
+                    Apellido_Materno = varAsignacion_de_Turnos.Apellido_Materno
+                        ,
+                    Nombre_Completo = varAsignacion_de_Turnos.Nombre_Completo
+                        ,
+                    Sexo = varAsignacion_de_Turnos.Sexo
+                        ,
+                    Edad = varAsignacion_de_Turnos.Edad
+                        ,
+                    Tipo_de_Atencion = varAsignacion_de_Turnos.Tipo_de_Atencion
+                        ,
+                    Tipo_de_Identificacion = varAsignacion_de_Turnos.Tipo_de_Identificacion
+                        ,
+                    Otra_Identificacion = varAsignacion_de_Turnos.Otra_Identificacion
+                        ,
+                    Numero_de_Identificacion = varAsignacion_de_Turnos.Numero_de_Identificacion
+                        ,
+                    Urgencia = varAsignacion_de_Turnos.Urgencia
+                        ,
+                    Tipo_de_Urgencia = varAsignacion_de_Turnos.Tipo_de_Urgencia
+                        ,
+                    Denuncia_Ciudadana = varAsignacion_de_Turnos.Denuncia_Ciudadana
+                        ,
+                    Turno_Previo = varAsignacion_de_Turnos.Turno_Previo
+                        ,
+                    Orientador = varAsignacion_de_Turnos.Orientador
+                        ,
+                    Estatus_de_Turno = varAsignacion_de_Turnos.Estatus_de_Turno
+                        ,
+                    Modulo = varAsignacion_de_Turnos.Modulo
+                        ,
+                    Motivo_Finalizacion_Turno = varAsignacion_de_Turnos.Motivo_Finalizacion_Turno
+                        ,
+                    Observaciones = varAsignacion_de_Turnos.Observaciones
+                        ,
+                    Fecha_de_Asignacion = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Asignacion)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Asignacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,
+                    Hora_de_Asignacion = varAsignacion_de_Turnos.Hora_de_Asignacion
+                        ,
+                    Fecha_de_Finalizacion = (!String.IsNullOrEmpty(varAsignacion_de_Turnos.Fecha_de_Finalizacion)) ? DateTime.ParseExact(varAsignacion_de_Turnos.Fecha_de_Finalizacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,
+                    Hora_de_Finalizacion = varAsignacion_de_Turnos.Hora_de_Finalizacion
+
                 };
 
                 result = _IAsignacion_de_TurnosApiConsumer.Update_Datos_Generales(Asignacion_de_Turnos_Datos_GeneralesInfo).Resource.ToString();
@@ -2491,75 +2780,115 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Datos_Generales(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IAsignacion_de_TurnosApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IAsignacion_de_TurnosApiConsumer.Get_Datos_Generales(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				
+
                 var result = new Asignacion_de_Turnos_Datos_GeneralesModel
                 {
                     Folio = m.Folio
-                        ,Fecha_de_Turno = (m.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Turno = m.Hora_de_Turno
-			,Numero_de_Turno = m.Numero_de_Turno
-                        ,Unidad_de_Atencion = m.Unidad_de_Atencion
-                        ,Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Atencion_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Atencion_Unidad.Descripcion
-                        ,Recepcion = m.Recepcion
-                        ,RecepcionName = CultureHelper.GetTraduction(m.Recepcion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Recepcion_Spartan_User.Name
-			,Nombres = m.Nombres
-			,Apellido_Paterno = m.Apellido_Paterno
-			,Apellido_Materno = m.Apellido_Materno
-			,Nombre_Completo = m.Nombre_Completo
-                        ,Sexo = m.Sexo
-                        ,SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
-			,Edad = m.Edad
-                        ,Tipo_de_Atencion = m.Tipo_de_Atencion
-                        ,Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Atencion_Tipo_de_Atencion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
-                        ,Tipo_de_Identificacion = m.Tipo_de_Identificacion
-                        ,Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
-			,Otra_Identificacion = m.Otra_Identificacion
-			,Numero_de_Identificacion = m.Numero_de_Identificacion
-			,Urgencia = m.Urgencia
-                        ,Tipo_de_Urgencia = m.Tipo_de_Urgencia
-                        ,Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
-                        ,Denuncia_Ciudadana = m.Denuncia_Ciudadana
-                        ,Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Turno_Previo = m.Turno_Previo
-                        ,Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
-                        ,Orientador = m.Orientador
-                        ,OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
-                        ,Estatus_de_Turno = m.Estatus_de_Turno
-                        ,Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
-                        ,Modulo = m.Modulo
-                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
-                        ,Motivo_Finalizacion_Turno = m.Motivo_Finalizacion_Turno
-                        ,Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
-			,Observaciones = m.Observaciones
-                        ,Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Asignacion = m.Hora_de_Asignacion
-                        ,Fecha_de_Finalizacion = (m.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Finalizacion = m.Hora_de_Finalizacion
+                        ,
+                    Fecha_de_Turno = (m.Fecha_de_Turno == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Turno).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Turno = m.Hora_de_Turno
+            ,
+                    Numero_de_Turno = m.Numero_de_Turno
+                        ,
+                    Unidad_de_Atencion = m.Unidad_de_Atencion
+                        ,
+                    Unidad_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Atencion_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Atencion_Unidad.Descripcion
+                        ,
+                    Recepcion = m.Recepcion
+                        ,
+                    RecepcionName = CultureHelper.GetTraduction(m.Recepcion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Recepcion_Spartan_User.Name
+            ,
+                    Nombres = m.Nombres
+            ,
+                    Apellido_Paterno = m.Apellido_Paterno
+            ,
+                    Apellido_Materno = m.Apellido_Materno
+            ,
+                    Nombre_Completo = m.Nombre_Completo
+                        ,
+                    Sexo = m.Sexo
+                        ,
+                    SexoDescripcion = CultureHelper.GetTraduction(m.Sexo_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Sexo_Genero.Descripcion
+            ,
+                    Edad = m.Edad
+                        ,
+                    Tipo_de_Atencion = m.Tipo_de_Atencion
+                        ,
+                    Tipo_de_AtencionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Atencion_Tipo_de_Atencion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Atencion_Tipo_de_Atencion.Descripcion
+                        ,
+                    Tipo_de_Identificacion = m.Tipo_de_Identificacion
+                        ,
+                    Tipo_de_IdentificacionNombre = CultureHelper.GetTraduction(m.Tipo_de_Identificacion_Tipo_de_Identificacion.Clave.ToString(), "Nombre") ?? (string)m.Tipo_de_Identificacion_Tipo_de_Identificacion.Nombre
+            ,
+                    Otra_Identificacion = m.Otra_Identificacion
+            ,
+                    Numero_de_Identificacion = m.Numero_de_Identificacion
+            ,
+                    Urgencia = m.Urgencia
+                        ,
+                    Tipo_de_Urgencia = m.Tipo_de_Urgencia
+                        ,
+                    Tipo_de_UrgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Urgencia_Tipo_de_Urgencia.Descripcion
+                        ,
+                    Denuncia_Ciudadana = m.Denuncia_Ciudadana
+                        ,
+                    Denuncia_CiudadanaFolio = CultureHelper.GetTraduction(m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana.Folio
+                        ,
+                    Turno_Previo = m.Turno_Previo
+                        ,
+                    Turno_PrevioNumero_Turno = CultureHelper.GetTraduction(m.Turno_Previo_Asignacion_de_Turnos_Previos.Clave.ToString(), "Asignacion_de_Turnos_Previos") ?? (string)m.Turno_Previo_Asignacion_de_Turnos_Previos.Numero_Turno
+                        ,
+                    Orientador = m.Orientador
+                        ,
+                    OrientadorName = CultureHelper.GetTraduction(m.Orientador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Orientador_Spartan_User.Name
+                        ,
+                    Estatus_de_Turno = m.Estatus_de_Turno
+                        ,
+                    Estatus_de_TurnoDescripcion = CultureHelper.GetTraduction(m.Estatus_de_Turno_Estatus_de_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_de_Turno_Estatus_de_Turno.Descripcion
+                        ,
+                    Modulo = m.Modulo
+                        ,
+                    ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo.Descripcion
+                        ,
+                    Motivo_Finalizacion_Turno = m.Motivo_Finalizacion_Turno
+                        ,
+                    Motivo_Finalizacion_TurnoDescripcion = CultureHelper.GetTraduction(m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno.Descripcion
+            ,
+                    Observaciones = m.Observaciones
+                        ,
+                    Fecha_de_Asignacion = (m.Fecha_de_Asignacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Asignacion).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Asignacion = m.Hora_de_Asignacion
+                        ,
+                    Fecha_de_Finalizacion = (m.Fecha_de_Finalizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Finalizacion).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Finalizacion = m.Hora_de_Finalizacion
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
-		public ActionResult FinalizarTurno(int Folio)
+        public ActionResult FinalizarTurno(int Folio)
         {
             try
             {
@@ -2575,15 +2904,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                 query = String.Format("EXEC dbo.usp_SETFinalizarTurno  @Folio = {0}", Folio.ToString());
 
-                var result = _ISpartaneQueryApiConsumer.ExecuteQuery(query) ;
+                var result = _ISpartaneQueryApiConsumer.ExecuteQuery(query);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
-            catch (ServiceException )
+            catch (ServiceException)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-public ActionResult ToAssign(int orientador, int Folio)
+        public ActionResult ToAssign(int orientador, int Folio)
         {
             try
             {
@@ -2611,7 +2940,7 @@ public ActionResult ToAssign(int orientador, int Folio)
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-public ActionResult TurnoAsignado(int orientador)
+        public ActionResult TurnoAsignado(int orientador)
         {
             try
             {
@@ -2632,10 +2961,10 @@ public ActionResult TurnoAsignado(int orientador)
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-//ToAssignAsignacion_de_Turnos
+        //ToAssignAsignacion_de_Turnos
         private string GetModuuloOrientador(int idUser)
         {
-            string claveModulo ="-1";
+            string claveModulo = "-1";
 
             try
             {
@@ -2644,27 +2973,26 @@ public ActionResult TurnoAsignado(int orientador)
                 {
                     throw new Exception("");
                 }
-                
+
                 _ISpartaneQueryApiConsumer.SetAuthHeader(_tokenManager.Token);
 
 
                 var result = _ISpartaneQueryApiConsumer.ExecuteQuery("SELECT Clave as 'ResourceId' FROM dbo.Modulo WHERE Orientador  = " + idUser);
                 claveModulo = (string)result.Resource;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 claveModulo = "-1";
 
             }
 
-            return claveModulo;        
-       }
+            return claveModulo;
+        }
 
- 
+
 
 
 
 
     }
 }
-

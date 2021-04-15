@@ -257,13 +257,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Partida_que_Cumplimenta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IArea_envia_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Area_envia_Cumplimientos_Area_que_envia_cumplimiento = _IArea_envia_CumplimientoApiConsumer.SelAll(true);
-            if (Area_envia_Cumplimientos_Area_que_envia_cumplimiento != null && Area_envia_Cumplimientos_Area_que_envia_cumplimiento.Resource != null)
-                ViewBag.Area_envia_Cumplimientos_Area_que_envia_cumplimiento = Area_envia_Cumplimientos_Area_que_envia_cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Area_envia_Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -374,13 +367,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Partida_que_Cumplimenta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IArea_envia_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Area_envia_Cumplimientos_Area_que_envia_cumplimiento = _IArea_envia_CumplimientoApiConsumer.SelAll(true);
-            if (Area_envia_Cumplimientos_Area_que_envia_cumplimiento != null && Area_envia_Cumplimientos_Area_que_envia_cumplimiento.Resource != null)
-                ViewBag.Area_envia_Cumplimientos_Area_que_envia_cumplimiento = Area_envia_Cumplimientos_Area_que_envia_cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Area_envia_Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
 
 
             return PartialView("AddRegistro_de_Cumplimiento", varRegistro_de_Cumplimiento);
@@ -485,7 +471,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
+		[HttpGet]
         public ActionResult GetArea_envia_CumplimientoAll()
         {
             try
@@ -494,7 +480,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IArea_envia_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IArea_envia_CumplimientoApiConsumer.SelAll(false).Resource;
-                
+				
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Area_envia_Cumplimiento", "Descripcion")?? m.Descripcion,
@@ -616,13 +602,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Partida_que_Cumplimenta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IArea_envia_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Area_envia_Cumplimientos_Area_que_envia_cumplimiento = _IArea_envia_CumplimientoApiConsumer.SelAll(true);
-            if (Area_envia_Cumplimientos_Area_que_envia_cumplimiento != null && Area_envia_Cumplimientos_Area_que_envia_cumplimiento.Resource != null)
-                ViewBag.Area_envia_Cumplimientos_Area_que_envia_cumplimiento = Area_envia_Cumplimientos_Area_que_envia_cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Area_envia_Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
 
 
             return View(model);  
@@ -647,13 +626,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Partida_que_Cumplimentas_Partida_que_cumplimenta = Partida_que_Cumplimentas_Partida_que_cumplimenta.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Partida_que_Cumplimenta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IArea_envia_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Area_envia_Cumplimientos_Area_que_envia_cumplimiento = _IArea_envia_CumplimientoApiConsumer.SelAll(true);
-            if (Area_envia_Cumplimientos_Area_que_envia_cumplimiento != null && Area_envia_Cumplimientos_Area_que_envia_cumplimiento.Resource != null)
-                ViewBag.Area_envia_Cumplimientos_Area_que_envia_cumplimiento = Area_envia_Cumplimientos_Area_que_envia_cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Area_envia_Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -702,7 +674,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Oficio = m.Numero_de_Oficio
 			,Radiograma = m.Radiograma
                         ,Partida_que_cumplimentaDescripcion = CultureHelper.GetTraduction(m.Partida_que_cumplimenta_Partida_que_Cumplimenta.Clave.ToString(), "Descripcion") ?? (string)m.Partida_que_cumplimenta_Partida_que_Cumplimenta.Descripcion
-                        ,Area_que_envia_cumplimientoDescripcion = CultureHelper.GetTraduction(m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Descripcion
+                        ,Area_que_envia_cumplimientoDescripcion = CultureHelper.GetTraduction(m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Clave.ToString(), "Area_envia_Cumplimiento") ?? (string)m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Descripcion
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
@@ -831,7 +803,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Oficio = m.Numero_de_Oficio
 			,Radiograma = m.Radiograma
                         ,Partida_que_cumplimentaDescripcion = CultureHelper.GetTraduction(m.Partida_que_cumplimenta_Partida_que_Cumplimenta.Clave.ToString(), "Descripcion") ?? (string)m.Partida_que_cumplimenta_Partida_que_Cumplimenta.Descripcion
-                        ,Area_que_envia_cumplimientoDescripcion = CultureHelper.GetTraduction(m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Descripcion
+                        ,Area_que_envia_cumplimientoDescripcion = CultureHelper.GetTraduction(m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Clave.ToString(), "Area_envia_Cumplimiento") ?? (string)m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Descripcion
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
@@ -894,6 +866,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.Name =trans ??item.Name;
                 }
                 return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetRegistro_de_Cumplimiento_Area_que_envia_cumplimiento_Area_envia_Cumplimiento(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IArea_envia_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Area_envia_Cumplimiento.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Area_envia_Cumplimiento.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IArea_envia_CumplimientoApiConsumer.ListaSelAll(1, 20,elWhere , " Area_envia_Cumplimiento.Descripcion ASC ").Resource;
+               
+                foreach (var item in result.Area_envia_Cumplimientos)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Area_envia_Cumplimiento", "Descripcion");
+                    item.Descripcion =trans ??item.Descripcion;
+                }
+                return Json(result.Area_envia_Cumplimientos.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -2067,7 +2066,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Oficio = m.Numero_de_Oficio
 			,Radiograma = m.Radiograma
                         ,Partida_que_cumplimentaDescripcion = CultureHelper.GetTraduction(m.Partida_que_cumplimenta_Partida_que_Cumplimenta.Clave.ToString(), "Descripcion") ?? (string)m.Partida_que_cumplimenta_Partida_que_Cumplimenta.Descripcion
-                        ,Area_que_envia_cumplimientoDescripcion = CultureHelper.GetTraduction(m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Descripcion
+                        ,Area_que_envia_cumplimientoDescripcion = CultureHelper.GetTraduction(m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Clave.ToString(), "Area_envia_Cumplimiento") ?? (string)m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Descripcion
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
@@ -2155,7 +2154,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Numero_de_Oficio = m.Numero_de_Oficio
 			,Radiograma = m.Radiograma
                         ,Partida_que_cumplimentaDescripcion = CultureHelper.GetTraduction(m.Partida_que_cumplimenta_Partida_que_Cumplimenta.Clave.ToString(), "Descripcion") ?? (string)m.Partida_que_cumplimenta_Partida_que_Cumplimenta.Descripcion
-                        ,Area_que_envia_cumplimientoDescripcion = CultureHelper.GetTraduction(m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Descripcion
+                        ,Area_que_envia_cumplimientoDescripcion = CultureHelper.GetTraduction(m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Clave.ToString(), "Area_envia_Cumplimiento") ?? (string)m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Descripcion
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
@@ -2259,7 +2258,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Partida_que_cumplimenta = m.Partida_que_cumplimenta
                         ,Partida_que_cumplimentaDescripcion = CultureHelper.GetTraduction(m.Partida_que_cumplimenta_Partida_que_Cumplimenta.Clave.ToString(), "Descripcion") ?? (string)m.Partida_que_cumplimenta_Partida_que_Cumplimenta.Descripcion
                         ,Area_que_envia_cumplimiento = m.Area_que_envia_cumplimiento
-                        ,Area_que_envia_cumplimientoDescripcion = CultureHelper.GetTraduction(m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Descripcion
+                        ,Area_que_envia_cumplimientoDescripcion = CultureHelper.GetTraduction(m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Clave.ToString(), "Area_envia_Cumplimiento") ?? (string)m.Area_que_envia_cumplimiento_Area_envia_Cumplimiento.Descripcion
                         ,Estado = m.Estado
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,Municipio = m.Municipio

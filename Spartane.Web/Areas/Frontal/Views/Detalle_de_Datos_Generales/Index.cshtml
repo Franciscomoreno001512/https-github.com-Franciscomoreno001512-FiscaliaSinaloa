@@ -9,8 +9,8 @@
 @using Spartane.Core.Domain.Genero;
 @using Spartane.Core.Domain.Estado_Civil;
 @using Spartane.Core.Domain.Tipo_de_Identificacion;
-@using Spartane.Core.Domain.Nacionalidad;
 @using Spartane.Core.Domain.Ocupacion;
+@using Spartane.Core.Domain.Nacionalidad;
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Corporacion;
 @using Spartane.Core.Domain.Pais;
@@ -317,10 +317,10 @@
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Numero_de_Identificacion</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.CURP</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.RFC</th>
+                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Ocupacion</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Calidad_Juridica</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Razon_Social</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Nacionalidad</th>
-                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Ocupacion</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Municipio_Corporacion</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Corporacion</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Pais_de_Nacimiento</th>
@@ -800,10 +800,10 @@
         var Numero_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var CURP =  $($('table td .filterData.form-control:input')[counter++]).val();
         var RFC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Calidad_Juridica =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Razon_Social =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio_Corporacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Corporacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pais_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -983,10 +983,10 @@
         + "&Numero_de_Identificacion=" + Numero_de_Identificacion
         + "&CURP=" + CURP
         + "&RFC=" + RFC
+        + "&Ocupacion=" + Ocupacion
         + "&Calidad_Juridica=" + Calidad_Juridica
         + "&Razon_Social=" + Razon_Social
         + "&Nacionalidad=" + Nacionalidad
-        + "&Ocupacion=" + Ocupacion
         + "&Municipio_Corporacion=" + Municipio_Corporacion
         + "&Corporacion=" + Corporacion
         + "&Pais_de_Nacimiento=" + Pais_de_Nacimiento
@@ -1177,10 +1177,10 @@
         var Numero_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var CURP =  $($('table td .filterData.form-control:input')[counter++]).val();
         var RFC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Calidad_Juridica =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Razon_Social =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio_Corporacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Corporacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pais_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -1360,10 +1360,10 @@
         + "&Numero_de_Identificacion=" + Numero_de_Identificacion
         + "&CURP=" + CURP
         + "&RFC=" + RFC
+        + "&Ocupacion=" + Ocupacion
         + "&Calidad_Juridica=" + Calidad_Juridica
         + "&Razon_Social=" + Razon_Social
         + "&Nacionalidad=" + Nacionalidad
-        + "&Ocupacion=" + Ocupacion
         + "&Municipio_Corporacion=" + Municipio_Corporacion
         + "&Corporacion=" + Corporacion
         + "&Pais_de_Nacimiento=" + Pais_de_Nacimiento
@@ -1788,10 +1788,10 @@
                 ,{ "data": "Numero_de_Identificacion", "orderable": true, "name": "Numero_de_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "CURP", "orderable": true, "name": "CURP", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "RFC", "orderable": true, "name": "RFC", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "OcupacionDescripcion", "orderable": true, "name": "OcupacionDescripcion" }
                 ,{ "data": "Calidad_Juridica", "orderable": true, "name": "Calidad_Juridica", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Razon_Social", "orderable": true, "name": "Razon_Social", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "NacionalidadNacionalidadC", "orderable": true, "name": "NacionalidadNacionalidadC"}
-                ,{ "data": "OcupacionDescripcion", "orderable": true, "name": "OcupacionDescripcion" }
                 ,{ "data": "Municipio_CorporacionNombre", "orderable": true, "name": "Municipio_CorporacionNombre" }
                 ,{ "data": "CorporacionDescripcion", "orderable": true, "name": "CorporacionDescripcion" }
                 ,{ "data": "Pais_de_NacimientoNombre", "orderable": true, "name": "Pais_de_NacimientoNombre"}

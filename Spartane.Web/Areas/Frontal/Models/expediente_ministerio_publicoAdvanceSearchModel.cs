@@ -11,6 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public expediente_ministerio_publicoAdvanceSearchModel()
         {
+            Urgencia = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -55,6 +56,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters nuatFilter { set; get; }
         public string nuat { set; get; }
 
+        public Filters Numero_de_DenunciaFilter { set; get; }
+        public string Numero_de_Denuncia { set; get; }
+
         public Filters nicFilter { set; get; }
         public string nic { set; get; }
 
@@ -67,6 +71,16 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public string Tohora_puesto_a_disposicion { set; get; }
         public string Fromhora_puesto_a_disposicion { set; get; }
+
+        public RadioOptions Urgencia { set; get; }
+
+        public Filters Tipo_de_urgenciaFilter { set; get; }
+        public string AdvanceTipo_de_urgencia { set; get; }
+        public int[] AdvanceTipo_de_urgenciaMultiple { set; get; }
+
+        public Filters Pre_DenunciaFilter { set; get; }
+        public string AdvancePre_Denuncia { set; get; }
+        public int[] AdvancePre_DenunciaMultiple { set; get; }
 
         public Filters estatusFilter { set; get; }
         public string Advanceestatus { set; get; }

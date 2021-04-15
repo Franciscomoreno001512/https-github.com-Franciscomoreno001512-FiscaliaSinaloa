@@ -48,22 +48,24 @@ if( GetValueByControlType($('#' + nameOfTable + 'Estado' + rowIndex),nameOfTable
 
 
 
+
+
+
+
+
+
 //BusinessRuleId:4965, Attribute:273780, Operation:Field, Event:None
 $("form#CreateConsulta_de_Mandamientos_Judiciales").on('change', '#Municipio', function () {
 	nameOfTable='';
 	rowIndex='';
- fillMRFromQuery('Detalle_de_Resultados', "DECLARE "
-+"     @MandamientoJudicialId int = case when 'FLD[MandamientoJudicialId]' = '' then null else FLD[MandamientoJudicialId] end,"
-+" 	@Pais int = case when 'FLD[Pais]' = '' then null else FLD[Pais] end,"
-+" 	@Estado int = case when 'FLD[Estado]' = '' then null else FLD[Estado] end,"
-+" 	@Municipio int = case when 'FLD[Municipio]' = '' then null else FLD[Municipio] end,"
-+" 	@Juzgado int = case when 'FLD[Juzgado]' = '' then null else FLD[Juzgado] end"
-+" "
-+" "
-+" exec uspConsultaMandamientosJudiciales @MandamientoJudicialId,' FLD[Nombre] ',' FLD[Apellido_Paterno] ',' FLD[Apellido_Materno] ',' FLD[Alias] ',@Pais,@Estado,@Municipio,@Juzgado,' FLD[Oficio_Solicitud_Juzgado] ',' FLD[Carpeta_de_Investigacion] ','FLD[Causa_Penal]'");
+ fillMRFromQuery('Detalle_de_Resultados', "exec uspConsultaMandamientosJudiciales ' FLD[MandamientoJudicialId] ',' FLD[Nombre] ',' FLD[Apellido_Paterno] ',' FLD[Apellido_Materno] ',' FLD[Alias] ',' FLD[Pais] ',' FLD[Estado] ',' FLD[Municipio] ' ,' FLD[Juzgado] ',' FLD[Oficio_Solicitud_Juzgado] ',' FLD[Carpeta_de_Investigacion] ',' FLD[Causa_Penal] '");
 });
-
+
+
 //BusinessRuleId:4965, Attribute:273780, Operation:Field, Event:None
+
+
+
 
 //NEWBUSINESSRULE_NONE//
 });

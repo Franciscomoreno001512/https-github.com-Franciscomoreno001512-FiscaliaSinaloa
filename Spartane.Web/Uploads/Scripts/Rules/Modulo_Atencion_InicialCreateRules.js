@@ -362,15 +362,7 @@ if( EvaluaQuery("SELECT Urgencia FROM Asignacion_de_Turnos WHERE Folio = FLD[Tur
 
 
 
-//BusinessRuleId:4848, Attribute:266677, Operation:Field, Event:None
-$("form#CreateModulo_Atencion_Inicial").on('change', '#Tipo_de_Urgencia_turno', function () {
-	nameOfTable='';
-	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex),nameOfTable,rowIndex)==TryParseInt('7', '7') ) { $('#divSolicitud_de_Denuncia_Ciudadana').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex));} else { $('#divSolicitud_de_Denuncia_Ciudadana').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex),'undefined');}
-});
 
-
-//BusinessRuleId:4848, Attribute:266677, Operation:Field, Event:None
 
 
 
@@ -380,8 +372,31 @@ $("form#CreateModulo_Atencion_Inicial").on('change', '#Urgencia_turno', function
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Urgencia_turno' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divTipo_de_Urgencia_turno').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));} else { $('#divTipo_de_Urgencia_turno').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));$('#divSolicitud_de_Denuncia_Ciudadana').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex),'null');}
 });
-
+
+
 //BusinessRuleId:4847, Attribute:266676, Operation:Field, Event:None
+
+//BusinessRuleId:4848, Attribute:266677, Operation:Field, Event:None
+$("form#CreateModulo_Atencion_Inicial").on('change', '#Tipo_de_Urgencia_turno', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex),nameOfTable,rowIndex)==TryParseInt('7', '7') ) 
+{ 
+    $('#divSolicitud_de_Denuncia_Ciudadana').css('display', 'block'); 
+    SetRequiredToControl( $('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex));
+} 
+    else 
+    { 
+        $('#divSolicitud_de_Denuncia_Ciudadana').css('display', 'none'); 
+        SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex)); 
+        SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex)); 
+        AsignarValor($('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex),'0');
+        AsignarValor($('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex),'null');
+    }
+});
+
+
+//BusinessRuleId:4848, Attribute:266677, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -3430,14 +3445,16 @@ if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Se
 //BusinessRuleId:4849, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex),nameOfTable,rowIndex)==TryParseInt('7', '7') ) { AsignarValor($('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex),EvaluaQuery(" select folio from Solicitud_de_Denuncia_Ciudadana  where clave = FLD[Solicitud_de_Denuncia_Ciudadana]", rowIndex, nameOfTable));} else {}
-
+
+
 }
 //BusinessRuleId:4849, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:4849, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex),nameOfTable,rowIndex)==TryParseInt('7', '7') ) { AsignarValor($('#' + nameOfTable + 'Solicitud_de_Denuncia_Ciudadana' + rowIndex),EvaluaQuery(" select folio from Solicitud_de_Denuncia_Ciudadana  where clave = FLD[Solicitud_de_Denuncia_Ciudadana]", rowIndex, nameOfTable));} else {}
-
+
+
 }
 //BusinessRuleId:4849, Attribute:0, Operation:Object, Event:SCREENOPENING
 

@@ -81,6 +81,10 @@
             advanceSearch.Area_envia_CumplimientoDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.Area_envia_CumplimientoDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
         }
+        if ($("#ddlAdvanceVigente").val() != "") {
+            hasParameter = true;
+            advanceSearch.Area_envia_CumplimientoVigente = $("#ddlAdvanceVigente").val();
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblArea_envia_Cumplimiento').DataTable().draw();

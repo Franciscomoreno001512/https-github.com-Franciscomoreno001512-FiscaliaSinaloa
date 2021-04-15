@@ -19,6 +19,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string OrigenDescripcion { get; set; }
         public int? Tipo_de_Documento { get; set; }
         public string Tipo_de_DocumentoDescripcion { get; set; }
+        public int? Area_de_Servicios_de_Apoyo { get; set; }
+        public string Area_de_Servicios_de_ApoyoDescripcion { get; set; }
         public int? SubArea_de_Servicios_de_Apoyo { get; set; }
         public string SubArea_de_Servicios_de_ApoyoDescripcion { get; set; }
         [Range(0, 9999999999)]
@@ -42,6 +44,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string OrigenDescripcion { get; set; }
         public int? Tipo_de_Documento { get; set; }
         public string Tipo_de_DocumentoDescripcion { get; set; }
+        public int? Area_de_Servicios_de_Apoyo { get; set; }
+        public string Area_de_Servicios_de_ApoyoDescripcion { get; set; }
         public int? SubArea_de_Servicios_de_Apoyo { get; set; }
         public string SubArea_de_Servicios_de_ApoyoDescripcion { get; set; }
         [Range(0, 9999999999)]

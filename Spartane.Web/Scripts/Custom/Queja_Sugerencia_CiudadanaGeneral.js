@@ -8,7 +8,7 @@ $(function () {
 
 var AutoCompleteUsuario_que_RegistraData = [];
 function GetAutoCompleteQueja_Sugerencia_Ciudadana_Usuario_que_Registra_Spartan_UserData(data) {
-	AutoCompleteUsuario_que_RegistraData = [];
+    AutoCompleteUsuario_que_RegistraData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteUsuario_que_RegistraData.push({
             id: data[i].Id_User,
@@ -41,12 +41,12 @@ function GetFileUploader() {
     return "<input type='file' class='fullWidth'>";
 }
 
-function GetGridAutoComplete(data,field, id) {
-    
+function GetGridAutoComplete(data, field, id) {
+
     var dataMain = data == null ? "Select" : data;
-    id ==  (id==null   || id==undefined)? "":id;
-    
-     return "<select class='AutoComplete fullWidth select2-dropDown " + field + " form-control' data-val='true'  ><option value='" + id +"'>" + dataMain + "</option></select>";
+    id == (id == null || id == undefined) ? "" : id;
+
+    return "<select class='AutoComplete fullWidth select2-dropDown " + field + " form-control' data-val='true'  ><option value='" + id + "'>" + dataMain + "</option></select>";
 }
 
 function ClearControls() {
@@ -76,7 +76,7 @@ function ClearFormControls() {
             case 'text':
             case 'textarea':
                 $(this).val('');
-				for (instance in CKEDITOR.instances) {
+                for (instance in CKEDITOR.instances) {
                     CKEDITOR.instances[instance].updateElement();
                     CKEDITOR.instances[instance].setData('');
                 }
@@ -93,7 +93,7 @@ function CheckValidation() {
         $myForm.submit();
         return false;
     }
-	
+
     return true;
 }
 
@@ -106,114 +106,121 @@ $(document).ready(function () {
         e.preventDefault();
         return false;
     });
-	$("form#CreateQueja_Sugerencia_Ciudadana").on('click', '#Queja_Sugerencia_CiudadanaCancelar', function () {
-	  if (!isPartial) {
-        Queja_Sugerencia_CiudadanaBackToGrid();
-	  } else {
+    $("form#CreateQueja_Sugerencia_Ciudadana").on('click', '#Queja_Sugerencia_CiudadanaCancelar', function () {
+        if (!isPartial) {
+            Queja_Sugerencia_CiudadanaBackToGrid();
+        } else {
             window.close();
-      }
+        }
     });
-	$("form#CreateQueja_Sugerencia_Ciudadana").on('click', '#Queja_Sugerencia_CiudadanaGuardar', function () {
-		$('#Queja_Sugerencia_CiudadanaGuardar').attr('disabled', true);
-		$('#Queja_Sugerencia_CiudadanaGuardar').unbind()
+    $("form#CreateQueja_Sugerencia_Ciudadana").on('click', '#Queja_Sugerencia_CiudadanaGuardar', function () {
+        $('#Queja_Sugerencia_CiudadanaGuardar').attr('disabled', true);
+        $('#Queja_Sugerencia_CiudadanaGuardar').unbind()
         if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
-				if (!SendQueja_Sugerencia_CiudadanaData(function () {
-					EjecutarValidacionesDespuesDeGuardar();
-					if (!isPartial  && !viewInEframe)
-						Queja_Sugerencia_CiudadanaBackToGrid();
-					else if (viewInEframe) 
-                    {
-                        $('#Queja_Sugerencia_CiudadanaGuardar').removeAttr('disabled');
-                        $('#Queja_Sugerencia_CiudadanaGuardar').bind()
-                    }
-					else {						
-						if (!isMR)
-							window.opener.RefreshCatalog('Queja_Sugerencia_Ciudadana', nameAttribute);
-						else {
-							var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
-							if(!control.hasClass('AutoComplete'))
-							{
-							if (control.attr("data-isfilter") == "true") {
-									eval(GetReglaFilter(control,  $(window.opener.document.getElementById('ObjectId')).val()));								    
-								}
-								else 
-								{
-									eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaItem()');
-									var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
-									control.html(eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaDropDown().get(0)').innerHTML);  
-								}								
-							}
-						}
-						window.close();						
-						}
-				})) {
-					$('#Queja_Sugerencia_CiudadanaGuardar').removeAttr('disabled');
-					$('#Queja_Sugerencia_CiudadanaGuardar').bind()
-				}
-		}
-		else {
-			$('#Queja_Sugerencia_CiudadanaGuardar').removeAttr('disabled');
-			$('#Queja_Sugerencia_CiudadanaGuardar').bind()
-		}
+            if (!SendQueja_Sugerencia_CiudadanaData(function () {
+                EjecutarValidacionesDespuesDeGuardar();
+                //if (!isPartial  && !viewInEframe)
+                //	Queja_Sugerencia_CiudadanaBackToGrid();
+                //else if (viewInEframe) 
+                //               {
+                //                   $('#Queja_Sugerencia_CiudadanaGuardar').removeAttr('disabled');
+                //                   $('#Queja_Sugerencia_CiudadanaGuardar').bind()
+                //               }
+                //else {						
+                //	if (!isMR)
+                //		window.opener.RefreshCatalog('Queja_Sugerencia_Ciudadana', nameAttribute);
+                //	else {
+                //		var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
+                //		if(!control.hasClass('AutoComplete'))
+                //		{
+                //		if (control.attr("data-isfilter") == "true") {
+                //				eval(GetReglaFilter(control,  $(window.opener.document.getElementById('ObjectId')).val()));								    
+                //			}
+                //			else 
+                //			{
+                //				eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaItem()');
+                //				var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
+                //				control.html(eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaDropDown().get(0)').innerHTML);  
+                //			}								
+                //		}
+                //	}
+                //	window.close();	
+
+
+                //   window.location = "../../inicio.html";
+
+
+
+
+
+
+                //	}
+            })) {
+                $('#Queja_Sugerencia_CiudadanaGuardar').removeAttr('disabled');
+                $('#Queja_Sugerencia_CiudadanaGuardar').bind()
+            }
+        }
+        else {
+            $('#Queja_Sugerencia_CiudadanaGuardar').removeAttr('disabled');
+            $('#Queja_Sugerencia_CiudadanaGuardar').bind()
+        }
     });
-	$("form#CreateQueja_Sugerencia_Ciudadana").on('click', '#Queja_Sugerencia_CiudadanaGuardarYNuevo', function () {	
-		if (EjecutarValidacionesAntesDeGuardar()) {
-			if (CheckValidation()) {
-				SendQueja_Sugerencia_CiudadanaData(function () {
-					ClearControls();
-					ClearAttachmentsDiv();
-					ResetClaveLabel();
-	
-					if (isPartial)
-					{
-						 if (!isMR)
-					        window.opener.RefreshCatalog('Queja_Sugerencia_Ciudadana', nameAttribute);
-					    else {
-                            eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaItem()');                           
-                            var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
-                            control.html(eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaDropDown().get(0)').innerHTML);   
-					    }	
-					}						
-					EjecutarValidacionesDespuesDeGuardar();				
-			setIsNew();
-			EjecutarValidacionesAlComienzo();
-				});
-			}
-		}		
+    $("form#CreateQueja_Sugerencia_Ciudadana").on('click', '#Queja_Sugerencia_CiudadanaGuardarYNuevo', function () {
+        if (EjecutarValidacionesAntesDeGuardar()) {
+            if (CheckValidation()) {
+                SendQueja_Sugerencia_CiudadanaData(function () {
+                    ClearControls();
+                    ClearAttachmentsDiv();
+                    ResetClaveLabel();
+
+                    if (isPartial) {
+                        if (!isMR)
+                            window.opener.RefreshCatalog('Queja_Sugerencia_Ciudadana', nameAttribute);
+                        else {
+                            eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaItem()');
+                            var control = $(window.opener.document.getElementsByClassName(nameMR + "_" + nameAttribute)[0]);
+                            control.html(eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaDropDown().get(0)').innerHTML);
+                        }
+                    }
+                    EjecutarValidacionesDespuesDeGuardar();
+                    setIsNew();
+                    EjecutarValidacionesAlComienzo();
+                });
+            }
+        }
     });
     $("form#CreateQueja_Sugerencia_Ciudadana").on('click', '#Queja_Sugerencia_CiudadanaGuardarYCopia', function () {
-		if (EjecutarValidacionesAntesDeGuardar()) {
-			if (CheckValidation())
-				SendQueja_Sugerencia_CiudadanaData(function (currentId) {
-					$("#FolioId").val("0");
-	    $('#Usuario_que_Registra').empty();
-    $("#Usuario_que_Registra").append('<option value=""></option>');
-    $('#Usuario_que_Registra').val('0').trigger('change');
+        if (EjecutarValidacionesAntesDeGuardar()) {
+            if (CheckValidation())
+                SendQueja_Sugerencia_CiudadanaData(function (currentId) {
+                    $("#FolioId").val("0");
+                    $('#Usuario_que_Registra').empty();
+                    $("#Usuario_que_Registra").append('<option value=""></option>');
+                    $('#Usuario_que_Registra').val('0').trigger('change');
 
-					ResetClaveLabel();
-					$("#ReferenceFolio").val(currentId);
-	
-					EjecutarValidacionesDespuesDeGuardar();		
-					if (isPartial)
-					{
-						 if (!isMR)
-					        window.opener.RefreshCatalog('Queja_Sugerencia_Ciudadana',nameAttribute);
-					    else {
-                            eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaItem()');                          
-                            var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);						
-							control.html(eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaDropDown().get(0)').innerHTML);                          
-					    }	
-					}						
-			setIsNew();
-				});
-		}
+                    ResetClaveLabel();
+                    $("#ReferenceFolio").val(currentId);
+
+                    EjecutarValidacionesDespuesDeGuardar();
+                    if (isPartial) {
+                        if (!isMR)
+                            window.opener.RefreshCatalog('Queja_Sugerencia_Ciudadana', nameAttribute);
+                        else {
+                            eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaItem()');
+                            var control = $(window.opener.document.getElementsByClassName(nameMR + "_" + nameAttribute)[0]);
+                            control.html(eval('window.opener.Get' + nameMR + '_Queja_Sugerencia_CiudadanaDropDown().get(0)').innerHTML);
+                        }
+                    }
+                    setIsNew();
+                });
+        }
     });
 });
 
 function setIsNew() {
     $('#hdnIsNew').val("True");
-	$('#Operation').val("New");
-	operation = "New";
+    $('#Operation').val("New");
+    operation = "New";
 }
 
 
@@ -284,7 +291,7 @@ function setReadOnly(elementNumber, element, elementType, table) {
         }
         mainElementObject[elementNumber].IsReadOnly = (mainElementObject[elementNumber].IsReadOnly == true ? false : true);
         $(element).children().attr("src", "" + $('#hdnApplicationDirectory').val() + (mainElementObject[elementNumber].IsReadOnly == true ? "Images/Disabled.png" : "Images/Enabled.png") + "");
-        $(element).attr('title', (mainElementObject[elementNumber].IsReadOnly == true ?GetTraduction('Disabled') : GetTraduction('Enabled')));
+        $(element).attr('title', (mainElementObject[elementNumber].IsReadOnly == true ? GetTraduction('Disabled') : GetTraduction('Enabled')));
     } else {
         if (getElementTable(elementNumber, table).IsRequired && getElementTable(elementNumber, table).DefaultValue == '' && !getElementTable(elementNumber, table).IsReadOnly) {
             showNotification(GetTraduction("messagedNoReadOnly"), "error");
@@ -355,7 +362,7 @@ function returnAttributeHTML(element, table, number) {
     var mainElementAttributes = '<div class="col-ld-12" style="display:inline-flex;">';
     mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (element.IsRequired == true ? GetTraduction("Required") : GetTraduction("NotRequired")) + '" onclick="setRequired(' + number.toString() + ', this, 2,  \'' + table + '\')"><img src="' + $('#hdnApplicationDirectory').val() + (element.IsRequired == true ? "Images/Required.png" : "Images/Not-Required.png") + '" alt="" /></a></div>';
     mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (element.IsVisible == true ? GetTraduction("Visible") : GetTraduction("InVisible")) + '" onclick="setVisible(' + number.toString() + ', this, 2,  \'' + table + '\')"><img src="' + $('#hdnApplicationDirectory').val() + (element.IsVisible == true ? "Images/Visible.png" : "Images/InVisible.png") + '" alt="" /></a></div>';
-    mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (element.IsReadOnly == true ?GetTraduction("Disabled") :GetTraduction("Enabled")) + '" onclick="setReadOnly(' + number.toString() + ', this, 2,  \'' + table + '\')"><img src="' + $('#hdnApplicationDirectory').val() + (element.IsReadOnly == true ? "Images/Disabled.png" : "Images/Enabled.png") + '" alt="" /></a></div>';
+    mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (element.IsReadOnly == true ? GetTraduction("Disabled") : GetTraduction("Enabled")) + '" onclick="setReadOnly(' + number.toString() + ', this, 2,  \'' + table + '\')"><img src="' + $('#hdnApplicationDirectory').val() + (element.IsReadOnly == true ? "Images/Disabled.png" : "Images/Enabled.png") + '" alt="" /></a></div>';
     mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValueHeader_' + number.toString() + '" class="defaultValueClick" title="' + (element.DefaultValue) + '" onclick="setDefaultValue(' + number.toString() + ', this, 2,  "' + table + '")"><img src="' + $('#hdnApplicationDirectory').val() + (element.DefaultValue != '' && element.DefaultValue != null ? "Images/default-value.png" : "Images/Not-Default-Value.png") + '" alt="" /></a></div>';
     mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpTextHeader_' + number.toString() + '" class="helpTextClick" title="' + (element.HelpText) + '" onclick="setHelpText(' + number.toString() + ', this, 2,  \'' + table + '\')"><img src="' + $('#hdnApplicationDirectory').val() + (element.HelpText != '' && element.HelpText != null ? "Images/green-help.png" : "Images/red-help.jpg") + '" alt="" /></a></div>';
     mainElementAttributes += '</div>';
@@ -369,9 +376,9 @@ Queja_Sugerencia_CiudadanaDisplayBusinessRuleButtons(Queja_Sugerencia_Ciudadanai
 function Queja_Sugerencia_CiudadanaDisplayBusinessRule() {
     if (!Queja_Sugerencia_CiudadanaisdisplayBusinessPropery) {
         $('#CreateQueja_Sugerencia_Ciudadana').find('.col-sm-8').each(function () {
-			var div =$(this); 
-			if ($(this).find('.input-group').length >0)
-				div  =  $(this).find('.input-group').first().hasClass('date')? $(this): $(this).find('.input-group').first();	
+            var div = $(this);
+            if ($(this).find('.input-group').length > 0)
+                div = $(this).find('.input-group').first().hasClass('date') ? $(this) : $(this).find('.input-group').first();
             var mainElementAttributes = '<div class="col-sm-2">';
             var fieldId = div.data('field-id');
             var fieldName = div.data('field-name');
@@ -396,4 +403,3 @@ function Queja_Sugerencia_CiudadanaDisplayBusinessRuleButtons(flag) {
         element.prop('disabled', true);
     }
 }
-

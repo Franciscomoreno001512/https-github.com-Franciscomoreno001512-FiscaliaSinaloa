@@ -29,8 +29,14 @@ namespace Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Denuncia_Ciudadana
 		ApiResponse<int> Update_Datos_de_la_Solicitud(Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Datos_de_la_Solicitud entity);
 		ApiResponse<Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Datos_de_la_Solicitud> Get_Datos_de_la_Solicitud(string Key);
 
-		ApiResponse<int> Update_Canalizar(Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Canalizar entity);
-		ApiResponse<Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Canalizar> Get_Canalizar(string Key);
+		ApiResponse<int> Update_Resolucion(Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Resolucion entity);
+		ApiResponse<Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Resolucion> Get_Resolucion(string Key);
+
+		ApiResponse<int> Update_Asignar_Responsable_de_Atencion(Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_Atencion entity);
+		ApiResponse<Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_Atencion> Get_Asignar_Responsable_de_Atencion(string Key);
+
+		ApiResponse<int> Update_Atencion(Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Atencion entity);
+		ApiResponse<Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Atencion> Get_Atencion(string Key);
 
 
     }

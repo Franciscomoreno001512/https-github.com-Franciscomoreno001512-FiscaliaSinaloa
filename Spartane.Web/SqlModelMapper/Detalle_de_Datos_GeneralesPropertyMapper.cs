@@ -74,6 +74,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_Datos_Generales.CURP";
                 case "RFC":
                     return "Detalle_de_Datos_Generales.RFC";
+                case "Ocupacion[Descripcion]":
+                case "OcupacionDescripcion":
+                    return "Ocupacion.Descripcion";
                 case "Calidad_Juridica":
                     return "Detalle_de_Datos_Generales.Calidad_Juridica";
                 case "Razon_Social":
@@ -81,9 +84,6 @@ namespace Spartane.Web.SqlModelMapper
                 case "Nacionalidad[NacionalidadC]":
                 case "NacionalidadNacionalidadC":
                     return "Nacionalidad.NacionalidadC";
-                case "Ocupacion[Descripcion]":
-                case "OcupacionDescripcion":
-                    return "Ocupacion.Descripcion";
                 case "Municipio_Corporacion[Nombre]":
                 case "Municipio_CorporacionNombre":
                     return "Municipio.Nombre";

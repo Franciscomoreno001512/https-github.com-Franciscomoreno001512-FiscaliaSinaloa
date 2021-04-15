@@ -1272,8 +1272,8 @@
 <Object Id="45712" culture="es-es" value="Robo de Vehículo PC" />
 <Object Id="45713" culture="en-us" value="Proporcione los datos de la Víctima" />
 <Object Id="45713" culture="es-es" value="Proporcione los datos de la Víctima" />
-<Object Id="45714" culture="en-us" value="Probable Responsable PC" />
-<Object Id="45714" culture="es-es" value="Probable Responsable PC" />
+<Object Id="45714" culture="en-us" value="Proporcione los datos del Probable Responsable" />
+<Object Id="45714" culture="es-es" value="Proporcione los datos del Probable Responsable" />
 <Object Id="45719" culture="en-us" value="Tipo Encuesta" />
 <Object Id="45719" culture="es-es" value="Tipo Encuesta" />
 <Object Id="45722" culture="en-us" value="PC CanalizarA" />
@@ -1368,8 +1368,44 @@
 <Object Id="46304" culture="es-es" value="Personas donde se ejecutó mandamiento" />
 <Object Id="46305" culture="en-us" value="Control de Folios de Mandamiento Judicial" />
 <Object Id="46305" culture="es-es" value="Control de Folios de Mandamiento Judicial" />
+<Object Id="46256" culture="en-us" value="Contestación de Portal Ciudadano" />
+<Object Id="46256" culture="es-es" value="Contestación de Portal Ciudadano" />
+<Object Id="46255" culture="en-us" value="Tipo Resolución Portal Ciudadano" />
+<Object Id="46255" culture="es-es" value="Tipo Resolución Portal Ciudadano" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

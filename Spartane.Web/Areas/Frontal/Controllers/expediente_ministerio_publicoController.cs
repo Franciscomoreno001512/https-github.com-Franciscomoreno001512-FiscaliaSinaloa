@@ -9,6 +9,8 @@ using Spartane.Core.Domain.Unidad;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Region;
 using Spartane.Core.Domain.A_Tiempo;
+using Spartane.Core.Domain.Tipo_de_Urgencia;
+using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
 using Spartane.Core.Domain.estatus_mpi;
 using Spartane.Core.Domain.detalle_de_observaciones_mpi;
 
@@ -45,6 +47,8 @@ using Spartane.Web.Areas.WebApiConsumer.Unidad;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Region;
 using Spartane.Web.Areas.WebApiConsumer.A_Tiempo;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Urgencia;
+using Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Denuncia_Ciudadana;
 using Spartane.Web.Areas.WebApiConsumer.estatus_mpi;
 using Spartane.Web.Areas.WebApiConsumer.detalle_de_observaciones_mpi;
 
@@ -105,6 +109,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IMunicipioApiConsumer _IMunicipioApiConsumer;
         private IRegionApiConsumer _IRegionApiConsumer;
         private IA_TiempoApiConsumer _IA_TiempoApiConsumer;
+        private ITipo_de_UrgenciaApiConsumer _ITipo_de_UrgenciaApiConsumer;
+        private ISolicitud_de_Denuncia_CiudadanaApiConsumer _ISolicitud_de_Denuncia_CiudadanaApiConsumer;
         private Iestatus_mpiApiConsumer _Iestatus_mpiApiConsumer;
         private Idetalle_de_observaciones_mpiApiConsumer _Idetalle_de_observaciones_mpiApiConsumer;
 
@@ -135,7 +141,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public expediente_ministerio_publicoController(Iexpediente_ministerio_publicoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_DenunciaApiConsumer Tipo_de_DenunciaApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , Iestatus_mpiApiConsumer estatus_mpiApiConsumer , Idetalle_de_observaciones_mpiApiConsumer detalle_de_observaciones_mpiApiConsumer  , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer , IPeriodicidadApiConsumer PeriodicidadApiConsumer , Itipo_de_cierreApiConsumer tipo_de_cierreApiConsumer )
+        public expediente_ministerio_publicoController(Iexpediente_ministerio_publicoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_DenunciaApiConsumer Tipo_de_DenunciaApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , ITipo_de_UrgenciaApiConsumer Tipo_de_UrgenciaApiConsumer , ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer , Iestatus_mpiApiConsumer estatus_mpiApiConsumer , Idetalle_de_observaciones_mpiApiConsumer detalle_de_observaciones_mpiApiConsumer  , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer , IPeriodicidadApiConsumer PeriodicidadApiConsumer , Itipo_de_cierreApiConsumer tipo_de_cierreApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -156,6 +162,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._IRegionApiConsumer = RegionApiConsumer;
             this._IA_TiempoApiConsumer = A_TiempoApiConsumer;
+            this._ITipo_de_UrgenciaApiConsumer = Tipo_de_UrgenciaApiConsumer;
+            this._ISolicitud_de_Denuncia_CiudadanaApiConsumer = Solicitud_de_Denuncia_CiudadanaApiConsumer;
             this._Iestatus_mpiApiConsumer = estatus_mpiApiConsumer;
             this._Idetalle_de_observaciones_mpiApiConsumer = detalle_de_observaciones_mpiApiConsumer;
 
@@ -266,11 +274,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Region = expediente_ministerio_publicoData.Region
                     ,RegionDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.Region), "Region") ??  (string)expediente_ministerio_publicoData.Region_Region.Descripcion
                     ,nuat = expediente_ministerio_publicoData.nuat
+                    ,Numero_de_Denuncia = expediente_ministerio_publicoData.Numero_de_Denuncia
                     ,nic = expediente_ministerio_publicoData.nic
                     ,detenido = expediente_ministerio_publicoData.detenido
                     ,detenidoDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.detenido), "A_Tiempo") ??  (string)expediente_ministerio_publicoData.detenido_A_Tiempo.Descripcion
                     ,hora_del_detenido = expediente_ministerio_publicoData.hora_del_detenido
                     ,hora_puesto_a_disposicion = expediente_ministerio_publicoData.hora_puesto_a_disposicion
+                    ,Urgencia = expediente_ministerio_publicoData.Urgencia.GetValueOrDefault()
+                    ,Tipo_de_urgencia = expediente_ministerio_publicoData.Tipo_de_urgencia
+                    ,Tipo_de_urgenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.Tipo_de_urgencia), "Tipo_de_Urgencia") ??  (string)expediente_ministerio_publicoData.Tipo_de_urgencia_Tipo_de_Urgencia.Descripcion
+                    ,Pre_Denuncia = expediente_ministerio_publicoData.Pre_Denuncia
+                    ,Pre_DenunciaFolio = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.Pre_Denuncia), "Solicitud_de_Denuncia_Ciudadana") ??  (string)expediente_ministerio_publicoData.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Folio
                     ,estatus = expediente_ministerio_publicoData.estatus
                     ,estatusdescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.estatus), "estatus_mpi") ??  (string)expediente_ministerio_publicoData.estatus_estatus_mpi.descripcion
                     ,Titulo_del_Hecho = expediente_ministerio_publicoData.Titulo_del_Hecho
@@ -347,6 +361,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.A_Tiempos_detenido = A_Tiempos_detenido.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_UrgenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Urgencias_Tipo_de_urgencia = _ITipo_de_UrgenciaApiConsumer.SelAll(true);
+            if (Tipo_de_Urgencias_Tipo_de_urgencia != null && Tipo_de_Urgencias_Tipo_de_urgencia.Resource != null)
+                ViewBag.Tipo_de_Urgencias_Tipo_de_urgencia = Tipo_de_Urgencias_Tipo_de_urgencia.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _Iestatus_mpiApiConsumer.SetAuthHeader(_tokenManager.Token);
             var estatus_mpis_estatus = _Iestatus_mpiApiConsumer.SelAll(true);
@@ -469,11 +490,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Region = expediente_ministerio_publicoData.Region
                     ,RegionDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.Region), "Region") ??  (string)expediente_ministerio_publicoData.Region_Region.Descripcion
                     ,nuat = expediente_ministerio_publicoData.nuat
+                    ,Numero_de_Denuncia = expediente_ministerio_publicoData.Numero_de_Denuncia
                     ,nic = expediente_ministerio_publicoData.nic
                     ,detenido = expediente_ministerio_publicoData.detenido
                     ,detenidoDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.detenido), "A_Tiempo") ??  (string)expediente_ministerio_publicoData.detenido_A_Tiempo.Descripcion
                     ,hora_del_detenido = expediente_ministerio_publicoData.hora_del_detenido
                     ,hora_puesto_a_disposicion = expediente_ministerio_publicoData.hora_puesto_a_disposicion
+                    ,Urgencia = expediente_ministerio_publicoData.Urgencia.GetValueOrDefault()
+                    ,Tipo_de_urgencia = expediente_ministerio_publicoData.Tipo_de_urgencia
+                    ,Tipo_de_urgenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.Tipo_de_urgencia), "Tipo_de_Urgencia") ??  (string)expediente_ministerio_publicoData.Tipo_de_urgencia_Tipo_de_Urgencia.Descripcion
+                    ,Pre_Denuncia = expediente_ministerio_publicoData.Pre_Denuncia
+                    ,Pre_DenunciaFolio = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.Pre_Denuncia), "Solicitud_de_Denuncia_Ciudadana") ??  (string)expediente_ministerio_publicoData.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Folio
                     ,estatus = expediente_ministerio_publicoData.estatus
                     ,estatusdescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.estatus), "estatus_mpi") ??  (string)expediente_ministerio_publicoData.estatus_estatus_mpi.descripcion
                     ,Titulo_del_Hecho = expediente_ministerio_publicoData.Titulo_del_Hecho
@@ -548,6 +575,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.A_Tiempos_detenido = A_Tiempos_detenido.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_UrgenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Urgencias_Tipo_de_urgencia = _ITipo_de_UrgenciaApiConsumer.SelAll(true);
+            if (Tipo_de_Urgencias_Tipo_de_urgencia != null && Tipo_de_Urgencias_Tipo_de_urgencia.Resource != null)
+                ViewBag.Tipo_de_Urgencias_Tipo_de_urgencia = Tipo_de_Urgencias_Tipo_de_urgencia.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _Iestatus_mpiApiConsumer.SetAuthHeader(_tokenManager.Token);
             var estatus_mpis_estatus = _Iestatus_mpiApiConsumer.SelAll(true);
@@ -729,6 +763,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetTipo_de_UrgenciaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_UrgenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_UrgenciaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetSolicitud_de_Denuncia_CiudadanaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Folio).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud_de_Denuncia_Ciudadana", "Folio")?? m.Folio,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -959,6 +1035,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _ITipo_de_UrgenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Urgencias_Tipo_de_urgencia = _ITipo_de_UrgenciaApiConsumer.SelAll(true);
+            if (Tipo_de_Urgencias_Tipo_de_urgencia != null && Tipo_de_Urgencias_Tipo_de_urgencia.Resource != null)
+                ViewBag.Tipo_de_Urgencias_Tipo_de_urgencia = Tipo_de_Urgencias_Tipo_de_urgencia.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _Iestatus_mpiApiConsumer.SetAuthHeader(_tokenManager.Token);
             var estatus_mpis_estatus = _Iestatus_mpiApiConsumer.SelAll(true);
             if (estatus_mpis_estatus != null && estatus_mpis_estatus.Resource != null)
@@ -1032,6 +1115,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.A_Tiempos_detenido = A_Tiempos_detenido.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_UrgenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Urgencias_Tipo_de_urgencia = _ITipo_de_UrgenciaApiConsumer.SelAll(true);
+            if (Tipo_de_Urgencias_Tipo_de_urgencia != null && Tipo_de_Urgencias_Tipo_de_urgencia.Resource != null)
+                ViewBag.Tipo_de_Urgencias_Tipo_de_urgencia = Tipo_de_Urgencias_Tipo_de_urgencia.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Urgencia", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _Iestatus_mpiApiConsumer.SetAuthHeader(_tokenManager.Token);
             var estatus_mpis_estatus = _Iestatus_mpiApiConsumer.SelAll(true);
@@ -1122,10 +1212,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
 			,nuat = m.nuat
+			,Numero_de_Denuncia = m.Numero_de_Denuncia
 			,nic = m.nic
                         ,detenidoDescripcion = CultureHelper.GetTraduction(m.detenido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.detenido_A_Tiempo.Descripcion
 			,hora_del_detenido = m.hora_del_detenido
 			,hora_puesto_a_disposicion = m.hora_puesto_a_disposicion
+			,Urgencia = m.Urgencia
+                        ,Tipo_de_urgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_urgencia_Tipo_de_Urgencia.Descripcion
+                        ,Pre_DenunciaFolio = CultureHelper.GetTraduction(m.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Folio
                         ,estatusdescripcion = CultureHelper.GetTraduction(m.estatus_estatus_mpi.clave.ToString(), "descripcion") ?? (string)m.estatus_estatus_mpi.descripcion
 			,Titulo_del_Hecho = m.Titulo_del_Hecho
                         ,Fecha_del_Hecho = (m.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -1283,10 +1377,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
 			,nuat = m.nuat
+			,Numero_de_Denuncia = m.Numero_de_Denuncia
 			,nic = m.nic
                         ,detenidoDescripcion = CultureHelper.GetTraduction(m.detenido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.detenido_A_Tiempo.Descripcion
 			,hora_del_detenido = m.hora_del_detenido
 			,hora_puesto_a_disposicion = m.hora_puesto_a_disposicion
+			,Urgencia = m.Urgencia
+                        ,Tipo_de_urgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_urgencia_Tipo_de_Urgencia.Descripcion
+                        ,Pre_DenunciaFolio = CultureHelper.GetTraduction(m.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Folio
                         ,estatusdescripcion = CultureHelper.GetTraduction(m.estatus_estatus_mpi.clave.ToString(), "descripcion") ?? (string)m.estatus_estatus_mpi.descripcion
 			,Titulo_del_Hecho = m.Titulo_del_Hecho
                         ,Fecha_del_Hecho = (m.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -1432,6 +1530,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.Nombre =trans ??item.Nombre;
                 }
                 return Json(result.Municipios.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult Getexpediente_ministerio_publico_Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISolicitud_de_Denuncia_CiudadanaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Solicitud_de_Denuncia_Ciudadana.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud_de_Denuncia_Ciudadana.Folio as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISolicitud_de_Denuncia_CiudadanaApiConsumer.ListaSelAll(1, 20,elWhere , " Solicitud_de_Denuncia_Ciudadana.Folio ASC ").Resource;
+               
+                foreach (var item in result.Solicitud_de_Denuncia_Ciudadanas)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud_de_Denuncia_Ciudadana", "Folio");
+                    item.Folio =trans ??item.Folio;
+                }
+                return Json(result.Solicitud_de_Denuncia_Ciudadanas.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -1857,6 +1982,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Numero_de_Denuncia))
+            {
+                switch (filter.Numero_de_DenunciaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND expediente_ministerio_publico.Numero_de_Denuncia LIKE '" + filter.Numero_de_Denuncia + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND expediente_ministerio_publico.Numero_de_Denuncia LIKE '%" + filter.Numero_de_Denuncia + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND expediente_ministerio_publico.Numero_de_Denuncia = '" + filter.Numero_de_Denuncia + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND expediente_ministerio_publico.Numero_de_Denuncia LIKE '%" + filter.Numero_de_Denuncia + "%'";
+                        break;
+                }
+            }
+
             if (!string.IsNullOrEmpty(filter.nic))
             {
                 switch (filter.nicFilter)
@@ -1921,6 +2068,65 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Convert(TIME,expediente_ministerio_publico.hora_puesto_a_disposicion) >='" + filter.Fromhora_puesto_a_disposicion + "'";
                 if (!string.IsNullOrEmpty(filter.Tohora_puesto_a_disposicion))
                     where += " AND Convert(TIME,expediente_ministerio_publico.hora_puesto_a_disposicion) <='" + filter.Tohora_puesto_a_disposicion + "'";
+            }
+
+            if (filter.Urgencia != RadioOptions.NoApply)
+                where += " AND expediente_ministerio_publico.Urgencia = " + Convert.ToInt32(filter.Urgencia);
+
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_urgencia))
+            {
+                switch (filter.Tipo_de_urgenciaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Urgencia.Descripcion LIKE '" + filter.AdvanceTipo_de_urgencia + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Urgencia.Descripcion LIKE '%" + filter.AdvanceTipo_de_urgencia + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Urgencia.Descripcion = '" + filter.AdvanceTipo_de_urgencia + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Urgencia.Descripcion LIKE '%" + filter.AdvanceTipo_de_urgencia + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipo_de_urgenciaMultiple != null && filter.AdvanceTipo_de_urgenciaMultiple.Count() > 0)
+            {
+                var Tipo_de_urgenciaIds = string.Join(",", filter.AdvanceTipo_de_urgenciaMultiple);
+
+                where += " AND expediente_ministerio_publico.Tipo_de_urgencia In (" + Tipo_de_urgenciaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvancePre_Denuncia))
+            {
+                switch (filter.Pre_DenunciaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Folio LIKE '" + filter.AdvancePre_Denuncia + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Folio LIKE '%" + filter.AdvancePre_Denuncia + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Folio = '" + filter.AdvancePre_Denuncia + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud_de_Denuncia_Ciudadana.Folio LIKE '%" + filter.AdvancePre_Denuncia + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvancePre_DenunciaMultiple != null && filter.AdvancePre_DenunciaMultiple.Count() > 0)
+            {
+                var Pre_DenunciaIds = string.Join(",", filter.AdvancePre_DenunciaMultiple);
+
+                where += " AND expediente_ministerio_publico.Pre_Denuncia In (" + Pre_DenunciaIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.Advanceestatus))
@@ -2788,10 +2994,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Municipio = varexpediente_ministerio_publico.Municipio
                         ,Region = varexpediente_ministerio_publico.Region
                         ,nuat = varexpediente_ministerio_publico.nuat
+                        ,Numero_de_Denuncia = varexpediente_ministerio_publico.Numero_de_Denuncia
                         ,nic = varexpediente_ministerio_publico.nic
                         ,detenido = varexpediente_ministerio_publico.detenido
                         ,hora_del_detenido = varexpediente_ministerio_publico.hora_del_detenido
                         ,hora_puesto_a_disposicion = varexpediente_ministerio_publico.hora_puesto_a_disposicion
+                        ,Urgencia = varexpediente_ministerio_publico.Urgencia
+                        ,Tipo_de_urgencia = varexpediente_ministerio_publico.Tipo_de_urgencia
+                        ,Pre_Denuncia = varexpediente_ministerio_publico.Pre_Denuncia
                         ,estatus = varexpediente_ministerio_publico.estatus
                         ,Titulo_del_Hecho = varexpediente_ministerio_publico.Titulo_del_Hecho
                         ,Fecha_del_Hecho = (!String.IsNullOrEmpty(varexpediente_ministerio_publico.Fecha_del_Hecho)) ? DateTime.ParseExact(varexpediente_ministerio_publico.Fecha_del_Hecho, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
@@ -3369,10 +3579,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
 			,nuat = m.nuat
+			,Numero_de_Denuncia = m.Numero_de_Denuncia
 			,nic = m.nic
                         ,detenidoDescripcion = CultureHelper.GetTraduction(m.detenido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.detenido_A_Tiempo.Descripcion
 			,hora_del_detenido = m.hora_del_detenido
 			,hora_puesto_a_disposicion = m.hora_puesto_a_disposicion
+			,Urgencia = m.Urgencia
+                        ,Tipo_de_urgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_urgencia_Tipo_de_Urgencia.Descripcion
+                        ,Pre_DenunciaFolio = CultureHelper.GetTraduction(m.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Folio
                         ,estatusdescripcion = CultureHelper.GetTraduction(m.estatus_estatus_mpi.clave.ToString(), "descripcion") ?? (string)m.estatus_estatus_mpi.descripcion
 			,Titulo_del_Hecho = m.Titulo_del_Hecho
                         ,Fecha_del_Hecho = (m.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -3489,10 +3703,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
 			,nuat = m.nuat
+			,Numero_de_Denuncia = m.Numero_de_Denuncia
 			,nic = m.nic
                         ,detenidoDescripcion = CultureHelper.GetTraduction(m.detenido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.detenido_A_Tiempo.Descripcion
 			,hora_del_detenido = m.hora_del_detenido
 			,hora_puesto_a_disposicion = m.hora_puesto_a_disposicion
+			,Urgencia = m.Urgencia
+                        ,Tipo_de_urgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_urgencia_Tipo_de_Urgencia.Descripcion
+                        ,Pre_DenunciaFolio = CultureHelper.GetTraduction(m.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Folio
                         ,estatusdescripcion = CultureHelper.GetTraduction(m.estatus_estatus_mpi.clave.ToString(), "descripcion") ?? (string)m.estatus_estatus_mpi.descripcion
 			,Titulo_del_Hecho = m.Titulo_del_Hecho
                         ,Fecha_del_Hecho = (m.Fecha_del_Hecho == null ? string.Empty : Convert.ToDateTime(m.Fecha_del_Hecho).ToString(ConfigurationProperty.DateFormat))
@@ -3575,10 +3793,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Municipio = varexpediente_ministerio_publico.Municipio
                         ,Region = varexpediente_ministerio_publico.Region
                         ,nuat = varexpediente_ministerio_publico.nuat
+                        ,Numero_de_Denuncia = varexpediente_ministerio_publico.Numero_de_Denuncia
                         ,nic = varexpediente_ministerio_publico.nic
                         ,detenido = varexpediente_ministerio_publico.detenido
                         ,hora_del_detenido = varexpediente_ministerio_publico.hora_del_detenido
                         ,hora_puesto_a_disposicion = varexpediente_ministerio_publico.hora_puesto_a_disposicion
+                        ,Urgencia = varexpediente_ministerio_publico.Urgencia
+                        ,Tipo_de_urgencia = varexpediente_ministerio_publico.Tipo_de_urgencia
+                        ,Pre_Denuncia = varexpediente_ministerio_publico.Pre_Denuncia
                         ,estatus = varexpediente_ministerio_publico.estatus
                     
                 };
@@ -3625,11 +3847,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Region = m.Region
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
 			,nuat = m.nuat
+			,Numero_de_Denuncia = m.Numero_de_Denuncia
 			,nic = m.nic
                         ,detenido = m.detenido
                         ,detenidoDescripcion = CultureHelper.GetTraduction(m.detenido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.detenido_A_Tiempo.Descripcion
 			,hora_del_detenido = m.hora_del_detenido
 			,hora_puesto_a_disposicion = m.hora_puesto_a_disposicion
+			,Urgencia = m.Urgencia
+                        ,Tipo_de_urgencia = m.Tipo_de_urgencia
+                        ,Tipo_de_urgenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_urgencia_Tipo_de_Urgencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_urgencia_Tipo_de_Urgencia.Descripcion
+                        ,Pre_Denuncia = m.Pre_Denuncia
+                        ,Pre_DenunciaFolio = CultureHelper.GetTraduction(m.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana.Folio
                         ,estatus = m.estatus
                         ,estatusdescripcion = CultureHelper.GetTraduction(m.estatus_estatus_mpi.clave.ToString(), "descripcion") ?? (string)m.estatus_estatus_mpi.descripcion
 

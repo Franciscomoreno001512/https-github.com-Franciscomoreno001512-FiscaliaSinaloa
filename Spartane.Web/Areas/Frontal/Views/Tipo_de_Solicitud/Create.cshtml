@@ -162,6 +162,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divAbreviacion">
+                                <label class="col-sm-2 control-label">@Resources.Tipo_de_SolicitudResources.Abreviacion</label>
+                                <div class="col-sm-8" data-field-id="Abreviacion" data-attribute="273392" data-field-name="@Resources.Tipo_de_SolicitudResources.Abreviacion">
+                                    <input class="form-control Datos_Generales" id="Abreviacion" name="Abreviacion" type="text" value="@Model.Abreviacion">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Abreviacion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -595,6 +602,7 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Descripcion').val(result.data.Descripcion);
+                    $('#Abreviacion').val(result.data.Abreviacion);
 
                 },
                 error: function (result) {
@@ -607,6 +615,7 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Descripcion', $('#Descripcion').val());
+                data.append('Abreviacion', $('#Abreviacion').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Tipo_de_Solicitud/Post_Datos_Generales")',

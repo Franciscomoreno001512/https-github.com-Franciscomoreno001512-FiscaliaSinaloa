@@ -15,9 +15,30 @@
     List<SelectListItem> varPC_CanalizarA_Canalizar_a = null;
     if (ViewBag.PC_CanalizarAs_Canalizar_a != null)
     { varPC_CanalizarA_Canalizar_a = (List<SelectListItem>)ViewBag.PC_CanalizarAs_Canalizar_a; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
+    { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
+    List<SelectListItem> varTipo_Resolucion_Portal_Ciudadano_Tipo_de_Resolucion = null;
+    if (ViewBag.Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion != null)
+    { varTipo_Resolucion_Portal_Ciudadano_Tipo_de_Resolucion = (List<SelectListItem>)ViewBag.Tipo_Resolucion_Portal_Ciudadanos_Tipo_de_Resolucion; }
+    List<SelectListItem> varRegion_Region = null;
+    if (ViewBag.Regions_Region != null)
+    { varRegion_Region = (List<SelectListItem>)ViewBag.Regions_Region; }
     List<SelectListItem> varUnidad_Unidad_canaliza = null;
     if (ViewBag.Unidads_Unidad_canaliza != null)
     { varUnidad_Unidad_canaliza = (List<SelectListItem>)ViewBag.Unidads_Unidad_canaliza; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Asigna = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Asigna != null)
+    { varSpartan_User_Usuario_que_Asigna = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Asigna; }
+ List<SelectListItem> varSpartan_User_Responsable_Asignado = null;
+    if (ViewBag.Spartan_Users_Responsable_Asignado != null)
+    { varSpartan_User_Responsable_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Responsable_Asignado; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Atiende = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Atiende != null)
+    { varSpartan_User_Usuario_que_Atiende = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Atiende; }
+    List<SelectListItem> varContestacion_de_Portal_Ciudadano_Atencion_Realizada = null;
+    if (ViewBag.Contestacion_de_Portal_Ciudadanos_Atencion_Realizada != null)
+    { varContestacion_de_Portal_Ciudadano_Atencion_Realizada = (List<SelectListItem>)ViewBag.Contestacion_de_Portal_Ciudadanos_Atencion_Realizada; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -166,6 +187,14 @@
                     }
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Motivo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.MotivoFilter, filters, new { @class = "form-control", @id = "ddlMotivoFilter" })
+                    @Html.TextBoxFor(m => m.Motivo, new { @class = "form-control", @type = "text", @id = "txtMotivo" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Canalizar_a</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -183,6 +212,89 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceCanalizar_a"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Revision</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Revision" name="FromFecha_de_Revision" type="text" value="@Model.FromFecha_de_Revision" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Revision" name="ToFecha_de_Revision" type="text" value="@Model.ToFecha_de_Revision" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Revision</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Revision" name="FromHora_de_Revision" type="text" value="@Model.FromHora_de_Revision" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Revision" name="ToHora_de_Revision" type="text" value="@Model.ToHora_de_Revision" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
+    { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Tipo_de_Resolucion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_ResolucionFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_ResolucionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Resolucion, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Resolucion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_Resolucion_Portal_Ciudadano_Tipo_de_Resolucion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_ResolucionMultiple, varTipo_Resolucion_Portal_Ciudadano_Tipo_de_Resolucion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Resolucion"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Region</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.RegionFilter, filters, new { @class = "form-control", @id = "ddlRegionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceRegion, new { @class = "form-control", @type = "text", @id = "txtAdvanceRegion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varRegion_Region!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceRegionMultiple, varRegion_Region,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceRegion"
                         });
                     }
                 </div>
@@ -206,6 +318,144 @@
                             @id = "ddlAdvanceUnidad_canaliza"
                         });
                     }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Contestacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ContestacionFilter, filters, new { @class = "form-control", @id = "ddlContestacionFilter" })
+                    @Html.TextBoxFor(m => m.Contestacion, new { @class = "form-control", @type = "text", @id = "txtContestacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_resolucion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_resolucionFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_resolucionFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_resolucion, new { @class = "form-control", @type = "text", @id = "txtObservaciones_resolucion" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Asignacion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Asignacion" name="FromFecha_de_Asignacion" type="text" value="@Model.FromFecha_de_Asignacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Asignacion" name="ToFecha_de_Asignacion" type="text" value="@Model.ToFecha_de_Asignacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Asignacion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Asignacion" name="FromHora_de_Asignacion" type="text" value="@Model.FromHora_de_Asignacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Asignacion" name="ToHora_de_Asignacion" type="text" value="@Model.ToHora_de_Asignacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Asigna = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Asigna != null)
+    { varSpartan_User_Usuario_que_Asigna = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Asigna; }
+ List<SelectListItem> varSpartan_User_Responsable_Asignado = null;
+    if (ViewBag.Spartan_Users_Responsable_Asignado != null)
+    { varSpartan_User_Responsable_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Responsable_Asignado; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_responsable</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_responsableFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_responsableFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_responsable, new { @class = "form-control", @type = "text", @id = "txtObservaciones_responsable" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Atencion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Atencion" name="FromFecha_de_Atencion" type="text" value="@Model.FromFecha_de_Atencion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Atencion" name="ToFecha_de_Atencion" type="text" value="@Model.ToFecha_de_Atencion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Atencion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Atencion" name="FromHora_de_Atencion" type="text" value="@Model.FromHora_de_Atencion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Atencion" name="ToHora_de_Atencion" type="text" value="@Model.ToHora_de_Atencion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Atiende = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Atiende != null)
+    { varSpartan_User_Usuario_que_Atiende = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Atiende; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Atencion_Realizada</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Atencion_RealizadaFilter, filters, new { @class = "form-control", @id = "ddlAtencion_RealizadaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceAtencion_Realizada, new { @class = "form-control", @type = "text", @id = "txtAdvanceAtencion_Realizada" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varContestacion_de_Portal_Ciudadano_Atencion_Realizada!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceAtencion_RealizadaMultiple, varContestacion_de_Portal_Ciudadano_Atencion_Realizada,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceAtencion_Realizada"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_atencion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_atencionFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_atencionFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_atencion, new { @class = "form-control", @type = "text", @id = "txtObservaciones_atencion" })
                 </div>
 
                 <div class="MarginBottom form-inline">
@@ -289,6 +539,11 @@
                 advanceSearch.Estatus_de_SolicitudSearchType = 2;
             }
         }
+        if ($("#txtAdvanceMotivo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaMotivo = $("#txtAdvanceMotivo").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaMotivoSearchType = $("#ddlAdvanceMotivoFilter").val();
+        }
         advanceSearch.Canalizar_aSearchType = 0;
         if ($('#ddlAdvanceCanalizar_a').val().length > 0 || $("#txtAdvanceCanalizar_a").val() == "") {
 
@@ -302,6 +557,61 @@
 
                 advanceSearch.Canalizar_aToSearch = $("#ddlAdvanceCanalizar_a").val();
                 advanceSearch.Canalizar_aSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha_de_Revision").val() != "" || $("#txtAdvanceToFecha_de_Revision").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaFecha_de_RevisionFrom = $("#txtAdvanceFromFecha_de_Revision").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaFecha_de_RevisionTo = $("#txtAdvanceToFecha_de_Revision").val();
+        }
+        if ($("#txtAdvanceHora_de_Revision").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaHora_de_Revision = $("#txtAdvanceHora_de_Revision").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaHora_de_RevisionSearchType = $("#ddlAdvanceHora_de_RevisionFilter").val();
+        }
+        advanceSearch.Usuario_que_RevisaSearchType = 0;
+        if ($('#ddlAdvanceUsuario_que_Revisa').val().length > 0 || $("#txtAdvanceUsuario_que_Revisa").val() == "") {
+
+
+            if (isSolicitud_de_Denuncia_CiudadanaTextSearch) {
+                advanceSearch.Usuario_que_RevisaName = $("#txtAdvanceUsuario_que_Revisa").val();
+                advanceSearch.Usuario_que_RevisaNameSearchType = $("#ddlAdvanceUsuario_que_Revisa").val();
+                advanceSearch.Usuario_que_RevisaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_que_RevisaToSearch = $("#ddlAdvanceUsuario_que_Revisa").val();
+                advanceSearch.Usuario_que_RevisaSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_ResolucionSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Resolucion').val().length > 0 || $("#txtAdvanceTipo_de_Resolucion").val() == "") {
+
+
+            if (isSolicitud_de_Denuncia_CiudadanaTextSearch) {
+                advanceSearch.Tipo_de_ResolucionName = $("#txtAdvanceTipo_de_Resolucion").val();
+                advanceSearch.Tipo_de_ResolucionNameSearchType = $("#ddlAdvanceTipo_de_Resolucion").val();
+                advanceSearch.Tipo_de_ResolucionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_ResolucionToSearch = $("#ddlAdvanceTipo_de_Resolucion").val();
+                advanceSearch.Tipo_de_ResolucionSearchType = 2;
+            }
+        }
+        advanceSearch.RegionSearchType = 0;
+        if ($('#ddlAdvanceRegion').val().length > 0 || $("#txtAdvanceRegion").val() == "") {
+
+
+            if (isSolicitud_de_Denuncia_CiudadanaTextSearch) {
+                advanceSearch.RegionName = $("#txtAdvanceRegion").val();
+                advanceSearch.RegionNameSearchType = $("#ddlAdvanceRegion").val();
+                advanceSearch.RegionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.RegionToSearch = $("#ddlAdvanceRegion").val();
+                advanceSearch.RegionSearchType = 2;
             }
         }
         advanceSearch.Unidad_canalizaSearchType = 0;
@@ -318,6 +628,106 @@
                 advanceSearch.Unidad_canalizaToSearch = $("#ddlAdvanceUnidad_canaliza").val();
                 advanceSearch.Unidad_canalizaSearchType = 2;
             }
+        }
+        if ($("#txtAdvanceContestacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaContestacion = $("#txtAdvanceContestacion").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaContestacionSearchType = $("#ddlAdvanceContestacionFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones_resolucion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaObservaciones_resolucion = $("#txtAdvanceObservaciones_resolucion").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaObservaciones_resolucionSearchType = $("#ddlAdvanceObservaciones_resolucionFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Asignacion").val() != "" || $("#txtAdvanceToFecha_de_Asignacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaFecha_de_AsignacionFrom = $("#txtAdvanceFromFecha_de_Asignacion").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaFecha_de_AsignacionTo = $("#txtAdvanceToFecha_de_Asignacion").val();
+        }
+        if ($("#txtAdvanceHora_de_Asignacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaHora_de_Asignacion = $("#txtAdvanceHora_de_Asignacion").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaHora_de_AsignacionSearchType = $("#ddlAdvanceHora_de_AsignacionFilter").val();
+        }
+        advanceSearch.Usuario_que_AsignaSearchType = 0;
+        if ($('#ddlAdvanceUsuario_que_Asigna').val().length > 0 || $("#txtAdvanceUsuario_que_Asigna").val() == "") {
+
+
+            if (isSolicitud_de_Denuncia_CiudadanaTextSearch) {
+                advanceSearch.Usuario_que_AsignaName = $("#txtAdvanceUsuario_que_Asigna").val();
+                advanceSearch.Usuario_que_AsignaNameSearchType = $("#ddlAdvanceUsuario_que_Asigna").val();
+                advanceSearch.Usuario_que_AsignaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_que_AsignaToSearch = $("#ddlAdvanceUsuario_que_Asigna").val();
+                advanceSearch.Usuario_que_AsignaSearchType = 2;
+            }
+        }
+        advanceSearch.Responsable_AsignadoSearchType = 0;
+        if ($('#ddlAdvanceResponsable_Asignado').val().length > 0 || $("#txtAdvanceResponsable_Asignado").val() == "") {
+
+
+            if (isSolicitud_de_Denuncia_CiudadanaTextSearch) {
+                advanceSearch.Responsable_AsignadoName = $("#txtAdvanceResponsable_Asignado").val();
+                advanceSearch.Responsable_AsignadoNameSearchType = $("#ddlAdvanceResponsable_Asignado").val();
+                advanceSearch.Responsable_AsignadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Responsable_AsignadoToSearch = $("#ddlAdvanceResponsable_Asignado").val();
+                advanceSearch.Responsable_AsignadoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceObservaciones_responsable").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaObservaciones_responsable = $("#txtAdvanceObservaciones_responsable").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaObservaciones_responsableSearchType = $("#ddlAdvanceObservaciones_responsableFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Atencion").val() != "" || $("#txtAdvanceToFecha_de_Atencion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaFecha_de_AtencionFrom = $("#txtAdvanceFromFecha_de_Atencion").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaFecha_de_AtencionTo = $("#txtAdvanceToFecha_de_Atencion").val();
+        }
+        if ($("#txtAdvanceHora_de_Atencion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaHora_de_Atencion = $("#txtAdvanceHora_de_Atencion").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaHora_de_AtencionSearchType = $("#ddlAdvanceHora_de_AtencionFilter").val();
+        }
+        advanceSearch.Usuario_que_AtiendeSearchType = 0;
+        if ($('#ddlAdvanceUsuario_que_Atiende').val().length > 0 || $("#txtAdvanceUsuario_que_Atiende").val() == "") {
+
+
+            if (isSolicitud_de_Denuncia_CiudadanaTextSearch) {
+                advanceSearch.Usuario_que_AtiendeName = $("#txtAdvanceUsuario_que_Atiende").val();
+                advanceSearch.Usuario_que_AtiendeNameSearchType = $("#ddlAdvanceUsuario_que_Atiende").val();
+                advanceSearch.Usuario_que_AtiendeSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_que_AtiendeToSearch = $("#ddlAdvanceUsuario_que_Atiende").val();
+                advanceSearch.Usuario_que_AtiendeSearchType = 2;
+            }
+        }
+        advanceSearch.Atencion_RealizadaSearchType = 0;
+        if ($('#ddlAdvanceAtencion_Realizada').val().length > 0 || $("#txtAdvanceAtencion_Realizada").val() == "") {
+
+
+            if (isSolicitud_de_Denuncia_CiudadanaTextSearch) {
+                advanceSearch.Atencion_RealizadaName = $("#txtAdvanceAtencion_Realizada").val();
+                advanceSearch.Atencion_RealizadaNameSearchType = $("#ddlAdvanceAtencion_Realizada").val();
+                advanceSearch.Atencion_RealizadaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Atencion_RealizadaToSearch = $("#ddlAdvanceAtencion_Realizada").val();
+                advanceSearch.Atencion_RealizadaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceObservaciones_atencion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaObservaciones_atencion = $("#txtAdvanceObservaciones_atencion").val();
+            advanceSearch.Solicitud_de_Denuncia_CiudadanaObservaciones_atencionSearchType = $("#ddlAdvanceObservaciones_atencionFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
@@ -373,6 +783,33 @@
             isSolicitud_de_Denuncia_CiudadanaTextSearch = false;
             $("#txtAdvanceCanalizar_a").val('');
         });
+        $("#txtAdvanceUsuario_que_Revisa").keypress(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = true;
+            $("#ddlAdvanceUsuario_que_Revisa").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUsuario_que_Revisa").change(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = false;
+            $("#txtAdvanceUsuario_que_Revisa").val('');
+        });
+        $("#txtAdvanceTipo_de_Resolucion").keypress(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = true;
+            $("#ddlAdvanceTipo_de_Resolucion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Resolucion").change(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = false;
+            $("#txtAdvanceTipo_de_Resolucion").val('');
+        });
+        $("#txtAdvanceRegion").keypress(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = true;
+            $("#ddlAdvanceRegion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceRegion").change(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = false;
+            $("#txtAdvanceRegion").val('');
+        });
         $("#txtAdvanceUnidad_canaliza").keypress(function () {
             isSolicitud_de_Denuncia_CiudadanaTextSearch = true;
             $("#ddlAdvanceUnidad_canaliza").val('').trigger("chosen:updated");
@@ -381,6 +818,42 @@
         $("#ddlAdvanceUnidad_canaliza").change(function () {
             isSolicitud_de_Denuncia_CiudadanaTextSearch = false;
             $("#txtAdvanceUnidad_canaliza").val('');
+        });
+        $("#txtAdvanceUsuario_que_Asigna").keypress(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = true;
+            $("#ddlAdvanceUsuario_que_Asigna").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUsuario_que_Asigna").change(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = false;
+            $("#txtAdvanceUsuario_que_Asigna").val('');
+        });
+        $("#txtAdvanceResponsable_Asignado").keypress(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = true;
+            $("#ddlAdvanceResponsable_Asignado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceResponsable_Asignado").change(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = false;
+            $("#txtAdvanceResponsable_Asignado").val('');
+        });
+        $("#txtAdvanceUsuario_que_Atiende").keypress(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = true;
+            $("#ddlAdvanceUsuario_que_Atiende").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUsuario_que_Atiende").change(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = false;
+            $("#txtAdvanceUsuario_que_Atiende").val('');
+        });
+        $("#txtAdvanceAtencion_Realizada").keypress(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = true;
+            $("#ddlAdvanceAtencion_Realizada").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceAtencion_Realizada").change(function () {
+            isSolicitud_de_Denuncia_CiudadanaTextSearch = false;
+            $("#txtAdvanceAtencion_Realizada").val('');
         });
 
     });

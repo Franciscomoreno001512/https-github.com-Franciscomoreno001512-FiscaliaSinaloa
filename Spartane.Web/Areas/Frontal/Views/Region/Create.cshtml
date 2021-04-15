@@ -172,6 +172,12 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Abreviacion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divrecepcion_servicios_apoyo">
+                                <label class="col-sm-2 control-label">@Resources.RegionResources.recepcion_servicios_apoyo</label>
+                                <div class="col-sm-8" data-field-id="recepcion_servicios_apoyo" data-attribute="273207" data-field-name="@Resources.RegionResources.recepcion_servicios_apoyo">
+                                    @Html.CheckBoxFor(m => m.recepcion_servicios_apoyo, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
                             <div class="form-group" id="divVigencia">
                                 <label class="col-sm-2 control-label">@Resources.RegionResources.Vigencia</label>
                                 <div class="col-sm-8" data-field-id="Vigencia" data-attribute="266353" data-field-name="@Resources.RegionResources.Vigencia">
@@ -648,6 +654,7 @@
                                         $('#Clave').val(result.data.Clave);
                     $('#Descripcion').val(result.data.Descripcion);
                     $('#Abreviacion').val(result.data.Abreviacion);
+                    $('#recepcion_servicios_apoyo').prop('checked', result.data.recepcion_servicios_apoyo);
                     $('#Vigencia').val(result.data.Vigencia);
                     $('#Observaciones').val(result.data.Observaciones);
                     $('#Consecutivo_CDI').val(result.data.Consecutivo_CDI);
@@ -664,6 +671,7 @@
 			data.append('Clave', newId);
 			                data.append('Descripcion', $('#Descripcion').val());
                 data.append('Abreviacion', $('#Abreviacion').val());
+                data.append('recepcion_servicios_apoyo', $('#recepcion_servicios_apoyo').prop('checked'));
                 data.append('Vigencia', $('#Vigencia').val());
                 data.append('Observaciones', $('#Observaciones').val());
                 data.append('Consecutivo_CDI', $('#Consecutivo_CDI').val());

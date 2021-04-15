@@ -11,10 +11,14 @@
   <resource culture="en-US" name="Municipio" value="Municipio"></resource>
   <resource culture="en-US" name="Region" value="Región"></resource>
   <resource culture="en-US" name="nuat" value="NUAT"></resource>
+  <resource culture="en-US" name="Numero_de_Denuncia" value="Número de Denuncia"></resource>
   <resource culture="en-US" name="nic" value="CDI"></resource>
   <resource culture="en-US" name="detenido" value="Detenido"></resource>
   <resource culture="en-US" name="hora_del_detenido" value="Hora del Detenido"></resource>
   <resource culture="en-US" name="hora_puesto_a_disposicion" value="Hora de Puesto a Disposición"></resource>
+  <resource culture="en-US" name="Urgencia" value="Urgencia"></resource>
+  <resource culture="en-US" name="Tipo_de_urgencia" value="Tipo de urgencia"></resource>
+  <resource culture="en-US" name="Pre_Denuncia" value="Pre-Denuncia"></resource>
   <resource culture="en-US" name="estatus" value="Estatus"></resource>
   <resource culture="en-US" name="observaciones" value="Observaciones"></resource>
   <resource culture="en-US" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>

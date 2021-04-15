@@ -24,11 +24,17 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Region { get; set; }
         public string RegionDescripcion { get; set; }
         public string nuat { get; set; }
+        public string Numero_de_Denuncia { get; set; }
         public string nic { get; set; }
         public short? detenido { get; set; }
         public string detenidoDescripcion { get; set; }
         public string hora_del_detenido { get; set; }
         public string hora_puesto_a_disposicion { get; set; }
+        public bool? Urgencia { get; set; }
+        public int? Tipo_de_urgencia { get; set; }
+        public string Tipo_de_urgenciaDescripcion { get; set; }
+        public int? Pre_Denuncia { get; set; }
+        public string Pre_DenunciaFolio { get; set; }
         public short? estatus { get; set; }
         public string estatusdescripcion { get; set; }
         public string Titulo_del_Hecho { get; set; }

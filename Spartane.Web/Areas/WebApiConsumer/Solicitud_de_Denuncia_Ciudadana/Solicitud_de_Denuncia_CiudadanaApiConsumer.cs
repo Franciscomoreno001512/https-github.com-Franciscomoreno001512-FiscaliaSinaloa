@@ -221,11 +221,11 @@ public ApiResponse<int> Update_Datos_de_la_Solicitud(Solicitud_de_Denuncia_Ciuda
             }
         }
 
-public ApiResponse<int> Update_Canalizar(Solicitud_de_Denuncia_Ciudadana_Canalizar entity)
+public ApiResponse<int> Update_Resolucion(Solicitud_de_Denuncia_Ciudadana_Resolucion entity)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Canalizar",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Resolucion",
                       Method.PUT, ApiHeader, entity);
 
                 return new ApiResponse<int>(true, result);
@@ -236,18 +236,78 @@ public ApiResponse<int> Update_Canalizar(Solicitud_de_Denuncia_Ciudadana_Canaliz
             }
         }
 
-        public ApiResponse<Solicitud_de_Denuncia_Ciudadana_Canalizar> Get_Canalizar(string Key)
+        public ApiResponse<Solicitud_de_Denuncia_Ciudadana_Resolucion> Get_Resolucion(string Key)
         {
             try
             {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Canalizar>(baseApi, ApiControllerUrl + "/Get_Canalizar?id=" + Key,
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Resolucion>(baseApi, ApiControllerUrl + "/Get_Resolucion?id=" + Key,
                       Method.GET, ApiHeader);
 
-                return new ApiResponse<Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Canalizar>(true, varRecords);
+                return new ApiResponse<Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Resolucion>(true, varRecords);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Canalizar>(false, null);
+                return new ApiResponse<Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Resolucion>(false, null);
+            }
+        }
+
+public ApiResponse<int> Update_Asignar_Responsable_de_Atencion(Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_Atencion entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Asignar_Responsable_de_Atencion",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_Atencion> Get_Asignar_Responsable_de_Atencion(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_Atencion>(baseApi, ApiControllerUrl + "/Get_Asignar_Responsable_de_Atencion?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_Atencion>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Asignar_Responsable_de_Atencion>(false, null);
+            }
+        }
+
+public ApiResponse<int> Update_Atencion(Solicitud_de_Denuncia_Ciudadana_Atencion entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Atencion",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Solicitud_de_Denuncia_Ciudadana_Atencion> Get_Atencion(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Atencion>(baseApi, ApiControllerUrl + "/Get_Atencion?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Atencion>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana_Atencion>(false, null);
             }
         }
 

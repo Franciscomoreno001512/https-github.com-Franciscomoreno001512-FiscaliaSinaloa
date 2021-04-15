@@ -6,9 +6,6 @@
  List<SelectListItem> varSolicitud_de_Denuncia_Ciudadana_Solicitud = null;
     if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
     { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
-    List<SelectListItem> varTipo_de_Solicitud_Tipo_de_Solicitud = null;
-    if (ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud != null)
-    { varTipo_de_Solicitud_Tipo_de_Solicitud = (List<SelectListItem>)ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud; }
     List<SelectListItem> varRespuesta_Tiene_informacion_responsable = null;
     if (ViewBag.Respuestas_Tiene_informacion_responsable != null)
     { varRespuesta_Tiene_informacion_responsable = (List<SelectListItem>)ViewBag.Respuestas_Tiene_informacion_responsable; }
@@ -181,27 +178,6 @@
     if (ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud != null)
     { varSolicitud_de_Denuncia_Ciudadana_Solicitud = (List<SelectListItem>)ViewBag.Solicitud_de_Denuncia_Ciudadanas_Solicitud; }
                 <div class="MarginBottom">
-                    <h3>@Resources.Probable_Responsable_PCResources.Tipo_de_Solicitud</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Tipo_de_SolicitudFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_SolicitudFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Solicitud, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Solicitud" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_de_Solicitud_Tipo_de_Solicitud!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTipo_de_SolicitudMultiple, varTipo_de_Solicitud_Tipo_de_Solicitud,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTipo_de_Solicitud"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
                     <h3>@Resources.Probable_Responsable_PCResources.Tiene_informacion_responsable</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -221,6 +197,14 @@
                             @id = "ddlAdvanceTiene_informacion_responsable"
                         });
                     }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Probable_Responsable_PCResources.Razon_Social</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Razon_SocialFilter, filters, new { @class = "form-control", @id = "ddlRazon_SocialFilter" })
+                    @Html.TextBoxFor(m => m.Razon_Social, new { @class = "form-control", @type = "text", @id = "txtRazon_Social" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Probable_Responsable_PCResources.Nombres</h3>
@@ -1176,21 +1160,6 @@
                 advanceSearch.SolicitudSearchType = 2;
             }
         }
-        advanceSearch.Tipo_de_SolicitudSearchType = 0;
-        if ($('#ddlAdvanceTipo_de_Solicitud').val().length > 0 || $("#txtAdvanceTipo_de_Solicitud").val() == "") {
-
-
-            if (isProbable_Responsable_PCTextSearch) {
-                advanceSearch.Tipo_de_SolicitudName = $("#txtAdvanceTipo_de_Solicitud").val();
-                advanceSearch.Tipo_de_SolicitudNameSearchType = $("#ddlAdvanceTipo_de_Solicitud").val();
-                advanceSearch.Tipo_de_SolicitudSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Tipo_de_SolicitudToSearch = $("#ddlAdvanceTipo_de_Solicitud").val();
-                advanceSearch.Tipo_de_SolicitudSearchType = 2;
-            }
-        }
         advanceSearch.Tiene_informacion_responsableSearchType = 0;
         if ($('#ddlAdvanceTiene_informacion_responsable').val().length > 0 || $("#txtAdvanceTiene_informacion_responsable").val() == "") {
 
@@ -1213,6 +1182,15 @@
         if ($("#ddlAdvancePersona_moral").val() != "") {
             hasParameter = true;
             advanceSearch.Probable_Responsable_PCPersona_moral = $("#ddlAdvancePersona_moral").val();
+        }
+        if ($("#ddlAdvanceConoce_los_datos_del_representante_legal").val() != "") {
+            hasParameter = true;
+            advanceSearch.Probable_Responsable_PCConoce_los_datos_del_representante_legal = $("#ddlAdvanceConoce_los_datos_del_representante_legal").val();
+        }
+        if ($("#txtAdvanceRazon_Social").val() != "") {
+            hasParameter = true;
+            advanceSearch.Probable_Responsable_PCRazon_Social = $("#txtAdvanceRazon_Social").val();
+            advanceSearch.Probable_Responsable_PCRazon_SocialSearchType = $("#ddlAdvanceRazon_SocialFilter").val();
         }
         if ($("#txtAdvanceNombres").val() != "") {
             hasParameter = true;
@@ -1965,15 +1943,6 @@
         $("#ddlAdvanceSolicitud").change(function () {
             isProbable_Responsable_PCTextSearch = false;
             $("#txtAdvanceSolicitud").val('');
-        });
-        $("#txtAdvanceTipo_de_Solicitud").keypress(function () {
-            isProbable_Responsable_PCTextSearch = true;
-            $("#ddlAdvanceTipo_de_Solicitud").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceTipo_de_Solicitud").change(function () {
-            isProbable_Responsable_PCTextSearch = false;
-            $("#txtAdvanceTipo_de_Solicitud").val('');
         });
         $("#txtAdvanceTiene_informacion_responsable").keypress(function () {
             isProbable_Responsable_PCTextSearch = true;

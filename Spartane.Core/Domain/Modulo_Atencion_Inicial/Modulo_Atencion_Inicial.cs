@@ -13,11 +13,11 @@ using Spartane.Core.Domain.Estatus;
 using Spartane.Core.Domain.Delegacion;
 using Spartane.Core.Domain.Agencia;
 using Spartane.Core.Domain.Jefes_de_Usuarios_del_Sistema;
-using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Tipo_de_Atencion;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
 using Spartane.Core.Domain.Tipo_de_Urgencia;
+using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
 using Spartane.Core.Domain.Motivo_Finalizacion_Turno;
 using Spartane.Core.Domain.Prioridad_del_Hecho;
 using Spartane.Core.Domain.Spartan_User;
@@ -63,7 +63,6 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public int? Delegacion { get; set; }
         public int? Agencia { get; set; }
         public int? Ministerio_Publico_en_Turno { get; set; }
-        public int? Solicitud_de_Denuncia_Ciudadana { get; set; }
         public string Nombres_turno { get; set; }
         public string Apellido_Paterno_turno { get; set; }
         public string Apellido_Materno_turno { get; set; }
@@ -74,6 +73,7 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public string Numero_de_Identificacion_turno { get; set; }
         public bool? Urgencia_turno { get; set; }
         public int? Tipo_de_Urgencia_turno { get; set; }
+        public int? Solicitud_de_Denuncia_Ciudadana { get; set; }
         public int? Motivo_Finalizacion_Turno { get; set; }
         public string Observaciones_turno { get; set; }
         public string Titulo_del_Hecho { get; set; }
@@ -125,8 +125,6 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public virtual Spartane.Core.Domain.Agencia.Agencia Agencia_Agencia { get; set; }
         [ForeignKey("Ministerio_Publico_en_Turno")]
         public virtual Spartane.Core.Domain.Jefes_de_Usuarios_del_Sistema.Jefes_de_Usuarios_del_Sistema Ministerio_Publico_en_Turno_Jefes_de_Usuarios_del_Sistema { get; set; }
-        [ForeignKey("Solicitud_de_Denuncia_Ciudadana")]
-        public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Solicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana { get; set; }
         [ForeignKey("Sexo_turno")]
         public virtual Spartane.Core.Domain.Genero.Genero Sexo_turno_Genero { get; set; }
         [ForeignKey("Tipo_de_Atencion_turno")]
@@ -135,6 +133,8 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public virtual Spartane.Core.Domain.Tipo_de_Identificacion.Tipo_de_Identificacion Tipo_de_Identificacion_turno_Tipo_de_Identificacion { get; set; }
         [ForeignKey("Tipo_de_Urgencia_turno")]
         public virtual Spartane.Core.Domain.Tipo_de_Urgencia.Tipo_de_Urgencia Tipo_de_Urgencia_turno_Tipo_de_Urgencia { get; set; }
+        [ForeignKey("Solicitud_de_Denuncia_Ciudadana")]
+        public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Solicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana { get; set; }
         [ForeignKey("Motivo_Finalizacion_Turno")]
         public virtual Spartane.Core.Domain.Motivo_Finalizacion_Turno.Motivo_Finalizacion_Turno Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno { get; set; }
         [ForeignKey("Prioridad_del_Hecho")]
@@ -184,7 +184,6 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public int? Delegacion { get; set; }
         public int? Agencia { get; set; }
         public int? Ministerio_Publico_en_Turno { get; set; }
-        public int? Solicitud_de_Denuncia_Ciudadana { get; set; }
 
 		        [ForeignKey("Turno_Asignado")]
         public virtual Spartane.Core.Domain.Asignacion_de_Turnos.Asignacion_de_Turnos Turno_Asignado_Asignacion_de_Turnos { get; set; }
@@ -206,8 +205,6 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public virtual Spartane.Core.Domain.Agencia.Agencia Agencia_Agencia { get; set; }
         [ForeignKey("Ministerio_Publico_en_Turno")]
         public virtual Spartane.Core.Domain.Jefes_de_Usuarios_del_Sistema.Jefes_de_Usuarios_del_Sistema Ministerio_Publico_en_Turno_Jefes_de_Usuarios_del_Sistema { get; set; }
-        [ForeignKey("Solicitud_de_Denuncia_Ciudadana")]
-        public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Solicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana { get; set; }
 
     }
 
@@ -224,6 +221,7 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public string Numero_de_Identificacion_turno { get; set; }
         public bool? Urgencia_turno { get; set; }
         public int? Tipo_de_Urgencia_turno { get; set; }
+        public int? Solicitud_de_Denuncia_Ciudadana { get; set; }
         public int? Motivo_Finalizacion_Turno { get; set; }
         public string Observaciones_turno { get; set; }
 
@@ -235,6 +233,8 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public virtual Spartane.Core.Domain.Tipo_de_Identificacion.Tipo_de_Identificacion Tipo_de_Identificacion_turno_Tipo_de_Identificacion { get; set; }
         [ForeignKey("Tipo_de_Urgencia_turno")]
         public virtual Spartane.Core.Domain.Tipo_de_Urgencia.Tipo_de_Urgencia Tipo_de_Urgencia_turno_Tipo_de_Urgencia { get; set; }
+        [ForeignKey("Solicitud_de_Denuncia_Ciudadana")]
+        public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Solicitud_de_Denuncia_Ciudadana_Solicitud_de_Denuncia_Ciudadana { get; set; }
         [ForeignKey("Motivo_Finalizacion_Turno")]
         public virtual Spartane.Core.Domain.Motivo_Finalizacion_Turno.Motivo_Finalizacion_Turno Motivo_Finalizacion_Turno_Motivo_Finalizacion_Turno { get; set; }
 

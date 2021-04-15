@@ -28,7 +28,7 @@
     List<SelectListItem> varPartida_que_Cumplimenta_Partida_que_cumplimenta = null;
     if (ViewBag.Partida_que_Cumplimentas_Partida_que_cumplimenta != null)
     { varPartida_que_Cumplimenta_Partida_que_cumplimenta = (List<SelectListItem>)ViewBag.Partida_que_Cumplimentas_Partida_que_cumplimenta; }
-    List<SelectListItem> varArea_envia_Cumplimiento_Area_que_envia_cumplimiento = null;
+ List<SelectListItem> varArea_envia_Cumplimiento_Area_que_envia_cumplimiento = null;
     if (ViewBag.Area_envia_Cumplimientos_Area_que_envia_cumplimiento != null)
     { varArea_envia_Cumplimiento_Area_que_envia_cumplimiento = (List<SelectListItem>)ViewBag.Area_envia_Cumplimientos_Area_que_envia_cumplimiento; }
  List<SelectListItem> varEstado_Estado = null;
@@ -323,28 +323,14 @@
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divArea_que_envia_cumplimiento">
+				<div class="form-group" id="divArea_que_envia_cumplimiento">
                                 <label class="col-sm-2 control-label">@Resources.Registro_de_CumplimientoResources.Area_que_envia_cumplimiento</label>
                                 <div class="col-sm-8" data-field-id="Area_que_envia_cumplimiento" data-attribute="273754" data-field-name="@Resources.Registro_de_CumplimientoResources.Area_que_envia_cumplimiento">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Area que envía cumplimiento must be a number." data-val-required="The Area que envía cumplimiento field is required." id="Area_que_envia_cumplimiento" name="Area_que_envia_cumplimiento">
-                                        <option value=""></option>
-                                        @if (varArea_envia_Cumplimiento_Area_que_envia_cumplimiento != null){ 
-                                            foreach (var itemArea_que_envia_cumplimiento in varArea_envia_Cumplimiento_Area_que_envia_cumplimiento)
-                                            {
-                                                if (itemArea_que_envia_cumplimiento.Value == Convert.ToString(Model.Area_que_envia_cumplimiento))
-                                                {
-                                                    <option value="@itemArea_que_envia_cumplimiento.Value" selected>@itemArea_que_envia_cumplimiento.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemArea_que_envia_cumplimiento.Value">@itemArea_que_envia_cumplimiento.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteRegistro_de_Cumplimiento_Area_que_envia_cumplimiento form-control select2-dropdown Datos_Generales' data-val="true" id="Area_que_envia_cumplimiento" name="Area_que_envia_cumplimiento">
+                                        <option value="@Model.Area_que_envia_cumplimiento">@(Model.Area_que_envia_cumplimientoDescripcion??Model.Area_que_envia_cumplimientoDescripcion)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Area_que_envia_cumplimiento" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273754).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273754).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Area_envia_Cumplimiento', 'Area_que_envia_cumplimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -712,6 +698,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteRegistro_de_Cumplimiento_Usuario_de_Registro");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteArea_que_envia_cumplimientoData =[];
+       $(".AutoCompleteRegistro_de_Cumplimiento_Area_que_envia_cumplimiento").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Registro_de_Cumplimiento/GetRegistro_de_Cumplimiento_Area_que_envia_cumplimiento_Area_envia_Cumplimiento")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteRegistro_de_Cumplimiento_Area_que_envia_cumplimiento_Area_envia_CumplimientoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteRegistro_de_Cumplimiento_Area_que_envia_cumplimiento");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -1435,7 +1454,15 @@
                     $('#Numero_de_Oficio').val(result.data.Numero_de_Oficio);
                     $('#Radiograma').val(result.data.Radiograma);
                     $('#Partida_que_cumplimenta').val(result.data.Partida_que_cumplimenta);
-                    $('#Area_que_envia_cumplimiento').val(result.data.Area_que_envia_cumplimiento);
+                    var control = $('#Area_que_envia_cumplimiento');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Area_que_envia_cumplimiento).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Area_que_envia_cumplimiento).trigger('change');
+                    }, 3000);
                     var control = $('#Estado');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Estado).trigger('keyup');

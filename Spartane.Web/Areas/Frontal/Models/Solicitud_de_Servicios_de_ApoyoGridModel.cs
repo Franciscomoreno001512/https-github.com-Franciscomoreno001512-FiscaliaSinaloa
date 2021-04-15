@@ -19,14 +19,23 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string OrigenDescripcion { get; set; }
         public int? Numero_de_Expediente_AT { get; set; }
         public string Numero_de_Expediente_ATNUAT { get; set; }
+        public int? Diligencia_AT { get; set; }
+        public string Diligencia_ATObservaciones { get; set; }
         public int? Numero_de_Expediente_MP { get; set; }
         public string Numero_de_Expediente_MPnuat { get; set; }
+        public int? Diligencia_MP { get; set; }
+        public string Diligencia_MPObservaciones { get; set; }
         public string NUAT { get; set; }
         public string Numero_de_Denuncia { get; set; }
         public string Carpeta_de_Investigacion { get; set; }
         public string Numero_de_Oficio { get; set; }
         public int? Solicitud { get; set; }
         public string SolicitudDescripcion { get; set; }
+        public int? Solicitud_de_Apoyo_Externa { get; set; }
+        public bool? Solicitud_Externa { get; set; }
+        public int? Autoridad_que_Solicita { get; set; }
+        public string Autoridad_que_SolicitaDescripcion { get; set; }
+        public string Narracion_Solicitud { get; set; }
         public int? Ver_Documento { get; set; }
         public Grid_File Ver_DocumentoFileInfo { set; get; }
         public string Observaciones { get; set; }
@@ -56,6 +65,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Usuario_que_contestaName { get; set; }
         public int? Dictamen { get; set; }
         public string DictamenDescripcion { get; set; }
+        public string numero_contestacion { get; set; }
         public bool? Enviar_Contestacion { get; set; }
         public int? Archivo { get; set; }
         public string Observaciones_Contestacion { get; set; }

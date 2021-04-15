@@ -286,6 +286,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Ocupacion</summary>
+        public static string Ocupacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Ocupacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Calidad_Juridica</summary>
         public static string Calidad_Juridica
         {
@@ -313,16 +323,6 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Datos_Generales.GetResource("Nacionalidad", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Ocupacion</summary>
-        public static string Ocupacion
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Datos_Generales.GetResource("Ocupacion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -776,46 +776,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Adicciones_de_Involucrado</summary>
-        public static string Adicciones_de_Involucrado
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Datos_Generales.GetResource("Adicciones_de_Involucrado", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Lugares_que_Frecuenta</summary>
-        public static string Lugares_que_Frecuenta
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Datos_Generales.GetResource("Lugares_que_Frecuenta", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Datos_Personales_Adicionales</summary>
-        public static string Datos_Personales_Adicionales
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Datos_Generales.GetResource("Datos_Personales_Adicionales", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Otras_Identificaciones</summary>
-        public static string Otras_Identificaciones
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Datos_Generales.GetResource("Otras_Identificaciones", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Discapacidad_Mental</summary>
         public static string Discapacidad_Mental
         {
@@ -853,6 +813,46 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Datos_Generales.GetResource("Discapacidad_Psicosocial", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Adicciones_de_Involucrado</summary>
+        public static string Adicciones_de_Involucrado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Adicciones_de_Involucrado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Lugares_que_Frecuenta</summary>
+        public static string Lugares_que_Frecuenta
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Lugares_que_Frecuenta", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Datos_Personales_Adicionales</summary>
+        public static string Datos_Personales_Adicionales
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Datos_Personales_Adicionales", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Otras_Identificaciones</summary>
+        public static string Otras_Identificaciones
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Otras_Identificaciones", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

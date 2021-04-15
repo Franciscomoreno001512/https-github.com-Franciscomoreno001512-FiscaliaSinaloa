@@ -17,6 +17,7 @@ namespace Spartane.Core.Domain.Tipo_de_Solicitud
     {
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string Abreviacion { get; set; }
 
 
     }
@@ -25,6 +26,7 @@ namespace Spartane.Core.Domain.Tipo_de_Solicitud
     {
                 public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string Abreviacion { get; set; }
 
 		
     }

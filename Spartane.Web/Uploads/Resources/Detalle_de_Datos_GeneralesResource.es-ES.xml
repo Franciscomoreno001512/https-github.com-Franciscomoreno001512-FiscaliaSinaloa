@@ -27,10 +27,10 @@
   <resource culture="es-es" name="Numero_de_Identificacion" value="Número de Identificación "></resource>
   <resource culture="es-es" name="CURP" value="CURP"></resource>
   <resource culture="es-es" name="RFC" value="RFC"></resource>
+  <resource culture="es-es" name="Ocupacion" value="Ocupación"></resource>
   <resource culture="es-es" name="Calidad_Juridica" value="Calidad Jurídica"></resource>
   <resource culture="es-es" name="Razon_Social" value="Razón Social"></resource>
   <resource culture="es-es" name="Nacionalidad" value="Nacionalidad"></resource>
-  <resource culture="es-es" name="Ocupacion" value="Ocupación"></resource>
   <resource culture="es-es" name="Municipio_Corporacion" value="Municipio Corporación"></resource>
   <resource culture="es-es" name="Corporacion" value="Corporación"></resource>
   <resource culture="es-es" name="Pais_de_Nacimiento" value="País de Nacimiento"></resource>
@@ -76,14 +76,14 @@
   <resource culture="es-es" name="Especifique" value="Especifique"></resource>
   <resource culture="es-es" name="Se_Informaron_sobre_sus_Derechos" value="Lectura de Derechos"></resource>
   <resource culture="es-es" name="Gravidez" value="Gravidez"></resource>
-  <resource culture="es-es" name="Adicciones_de_Involucrado" value="Adicciones de Involucrado"></resource>
-  <resource culture="es-es" name="Lugares_que_Frecuenta" value="Lugares que Frecuenta"></resource>
-  <resource culture="es-es" name="Datos_Personales_Adicionales" value="Datos Personales Adicionales"></resource>
-  <resource culture="es-es" name="Otras_Identificaciones" value="Otras Identificaciones"></resource>
   <resource culture="es-es" name="Discapacidad_Mental" value="Discapacidad Mental"></resource>
   <resource culture="es-es" name="Discapacidad_Fisica" value="Discapacidad Fisica"></resource>
   <resource culture="es-es" name="Discapacidad_Sensorial" value="Discapacidad Sensorial"></resource>
   <resource culture="es-es" name="Discapacidad_Psicosocial" value="Discapacidad Psicosocial"></resource>
+  <resource culture="es-es" name="Adicciones_de_Involucrado" value="Adicciones de Involucrado"></resource>
+  <resource culture="es-es" name="Lugares_que_Frecuenta" value="Lugares que Frecuenta"></resource>
+  <resource culture="es-es" name="Datos_Personales_Adicionales" value="Datos Personales Adicionales"></resource>
+  <resource culture="es-es" name="Otras_Identificaciones" value="Otras Identificaciones"></resource>
   <resource culture="es-es" name="Otros_Domicilios" value="Otros Domicilios"></resource>
   <resource culture="es-es" name="Nombre_del_Tutor" value="Nombre(s)"></resource>
   <resource culture="es-es" name="Apellido_Paterno_del_Tutor" value="Apellido Paterno"></resource>

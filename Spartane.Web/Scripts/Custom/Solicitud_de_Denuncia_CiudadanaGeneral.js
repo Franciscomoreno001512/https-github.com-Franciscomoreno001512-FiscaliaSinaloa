@@ -17,6 +17,50 @@ function GetAutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Registra_Spa
     }
     return AutoCompleteUsuario_que_RegistraData;
 }
+var AutoCompleteUsuario_que_RevisaData = [];
+function GetAutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Revisa_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_RevisaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_RevisaData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_RevisaData;
+}
+var AutoCompleteUsuario_que_AsignaData = [];
+function GetAutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Asigna_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_AsignaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_AsignaData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_AsignaData;
+}
+var AutoCompleteResponsable_AsignadoData = [];
+function GetAutoCompleteSolicitud_de_Denuncia_Ciudadana_Responsable_Asignado_Spartan_UserData(data) {
+	AutoCompleteResponsable_AsignadoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteResponsable_AsignadoData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteResponsable_AsignadoData;
+}
+var AutoCompleteUsuario_que_AtiendeData = [];
+function GetAutoCompleteSolicitud_de_Denuncia_Ciudadana_Usuario_que_Atiende_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_AtiendeData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_AtiendeData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_AtiendeData;
+}
 
 
 function getDropdown(elementKey) {
@@ -57,6 +101,18 @@ function ClearControls() {
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
+    $('#Usuario_que_Revisa').empty();
+    $("#Usuario_que_Revisa").append('<option value=""></option>');
+    $('#Usuario_que_Revisa').val('0').trigger('change');
+    $('#Usuario_que_Asigna').empty();
+    $("#Usuario_que_Asigna").append('<option value=""></option>');
+    $('#Usuario_que_Asigna').val('0').trigger('change');
+    $('#Responsable_Asignado').empty();
+    $("#Responsable_Asignado").append('<option value=""></option>');
+    $('#Responsable_Asignado').val('0').trigger('change');
+    $('#Usuario_que_Atiende').empty();
+    $("#Usuario_que_Atiende").append('<option value=""></option>');
+    $('#Usuario_que_Atiende').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -189,6 +245,18 @@ $(document).ready(function () {
 	    $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
+    $('#Usuario_que_Revisa').empty();
+    $("#Usuario_que_Revisa").append('<option value=""></option>');
+    $('#Usuario_que_Revisa').val('0').trigger('change');
+    $('#Usuario_que_Asigna').empty();
+    $("#Usuario_que_Asigna").append('<option value=""></option>');
+    $('#Usuario_que_Asigna').val('0').trigger('change');
+    $('#Responsable_Asignado').empty();
+    $("#Responsable_Asignado").append('<option value=""></option>');
+    $('#Responsable_Asignado').val('0').trigger('change');
+    $('#Usuario_que_Atiende').empty();
+    $("#Usuario_que_Atiende").append('<option value=""></option>');
+    $('#Usuario_que_Atiende').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);

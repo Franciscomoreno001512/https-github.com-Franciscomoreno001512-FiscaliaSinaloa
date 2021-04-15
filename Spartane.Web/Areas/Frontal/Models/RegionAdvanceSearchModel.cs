@@ -11,6 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public RegionAdvanceSearchModel()
         {
+            recepcion_servicios_apoyo = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -24,6 +25,8 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters AbreviacionFilter { set; get; }
         public string Abreviacion { set; get; }
+
+        public RadioOptions recepcion_servicios_apoyo { set; get; }
 
         public Filters VigenciaFilter { set; get; }
         public string AdvanceVigencia { set; get; }

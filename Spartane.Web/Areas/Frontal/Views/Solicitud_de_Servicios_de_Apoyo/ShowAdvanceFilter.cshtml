@@ -15,12 +15,21 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Numero_de_Expediente_AT = null;
     if (ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT != null)
     { varModulo_Atencion_Inicial_Numero_de_Expediente_AT = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT; }
+ List<SelectListItem> varDetalle_de_Documentos_MPO_Diligencia_AT = null;
+    if (ViewBag.Detalle_de_Documentos_MPOs_Diligencia_AT != null)
+    { varDetalle_de_Documentos_MPO_Diligencia_AT = (List<SelectListItem>)ViewBag.Detalle_de_Documentos_MPOs_Diligencia_AT; }
  List<SelectListItem> varexpediente_ministerio_publico_Numero_de_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP != null)
     { varexpediente_ministerio_publico_Numero_de_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP; }
+ List<SelectListItem> varDiligencias_MP_Diligencia_MP = null;
+    if (ViewBag.Diligencias_MPs_Diligencia_MP != null)
+    { varDiligencias_MP_Diligencia_MP = (List<SelectListItem>)ViewBag.Diligencias_MPs_Diligencia_MP; }
  List<SelectListItem> varDocumento_Solicitud = null;
     if (ViewBag.Documentos_Solicitud != null)
     { varDocumento_Solicitud = (List<SelectListItem>)ViewBag.Documentos_Solicitud; }
+    List<SelectListItem> varAutoridad_Externa_Autoridad_que_Solicita = null;
+    if (ViewBag.Autoridad_Externas_Autoridad_que_Solicita != null)
+    { varAutoridad_Externa_Autoridad_que_Solicita = (List<SelectListItem>)ViewBag.Autoridad_Externas_Autoridad_que_Solicita; }
     List<SelectListItem> varEstatus_de_Solicitud_de_Apoyo_Estatus = null;
     if (ViewBag.Estatus_de_Solicitud_de_Apoyos_Estatus != null)
     { varEstatus_de_Solicitud_de_Apoyo_Estatus = (List<SelectListItem>)ViewBag.Estatus_de_Solicitud_de_Apoyos_Estatus; }
@@ -188,9 +197,15 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Numero_de_Expediente_AT = null;
     if (ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT != null)
     { varModulo_Atencion_Inicial_Numero_de_Expediente_AT = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Numero_de_Expediente_AT; }
+ List<SelectListItem> varDetalle_de_Documentos_MPO_Diligencia_AT = null;
+    if (ViewBag.Detalle_de_Documentos_MPOs_Diligencia_AT != null)
+    { varDetalle_de_Documentos_MPO_Diligencia_AT = (List<SelectListItem>)ViewBag.Detalle_de_Documentos_MPOs_Diligencia_AT; }
  List<SelectListItem> varexpediente_ministerio_publico_Numero_de_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP != null)
     { varexpediente_ministerio_publico_Numero_de_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Numero_de_Expediente_MP; }
+ List<SelectListItem> varDiligencias_MP_Diligencia_MP = null;
+    if (ViewBag.Diligencias_MPs_Diligencia_MP != null)
+    { varDiligencias_MP_Diligencia_MP = (List<SelectListItem>)ViewBag.Diligencias_MPs_Diligencia_MP; }
                 <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.NUAT</h3>
                 </div>
@@ -226,6 +241,46 @@
  List<SelectListItem> varDocumento_Solicitud = null;
     if (ViewBag.Documentos_Solicitud != null)
     { varDocumento_Solicitud = (List<SelectListItem>)ViewBag.Documentos_Solicitud; }
+                <div class="MarginBottom ">
+                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Solicitud_de_Apoyo_Externa</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromSolicitud_de_Apoyo_Externa, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromSolicitud_de_Apoyo_Externa" })
+                    @Html.ValidationMessageFor(m => m.FromSolicitud_de_Apoyo_Externa)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToSolicitud_de_Apoyo_Externa, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToSolicitud_de_Apoyo_Externa", @data_min = "txtAdvanceFromSolicitud_de_Apoyo_Externa" })
+                    @Html.ValidationMessageFor(m => m.ToSolicitud_de_Apoyo_Externa)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Autoridad_que_Solicita</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Autoridad_que_SolicitaFilter, filters, new { @class = "form-control", @id = "ddlAutoridad_que_SolicitaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceAutoridad_que_Solicita, new { @class = "form-control", @type = "text", @id = "txtAdvanceAutoridad_que_Solicita" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varAutoridad_Externa_Autoridad_que_Solicita!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceAutoridad_que_SolicitaMultiple, varAutoridad_Externa_Autoridad_que_Solicita,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceAutoridad_que_Solicita"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Narracion_Solicitud</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Narracion_SolicitudFilter, filters, new { @class = "form-control", @id = "ddlNarracion_SolicitudFilter" })
+                    @Html.TextBoxFor(m => m.Narracion_Solicitud, new { @class = "form-control", @type = "text", @id = "txtNarracion_Solicitud" })
+                </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Observaciones</h3>
                 </div>
@@ -463,6 +518,14 @@
  List<SelectListItem> varDocumento_Dictamen = null;
     if (ViewBag.Documentos_Dictamen != null)
     { varDocumento_Dictamen = (List<SelectListItem>)ViewBag.Documentos_Dictamen; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.numero_contestacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.numero_contestacionFilter, filters, new { @class = "form-control", @id = "ddlnumero_contestacionFilter" })
+                    @Html.TextBoxFor(m => m.numero_contestacion, new { @class = "form-control", @type = "text", @id = "txtnumero_contestacion" })
+                </div>
                 <div class="MarginBottom ">
                     <h3>@Resources.Solicitud_de_Servicios_de_ApoyoResources.Archivo</h3>
                 </div>
@@ -647,6 +710,21 @@
                 advanceSearch.Numero_de_Expediente_ATSearchType = 2;
             }
         }
+        advanceSearch.Diligencia_ATSearchType = 0;
+        if ($('#ddlAdvanceDiligencia_AT').val().length > 0 || $("#txtAdvanceDiligencia_AT").val() == "") {
+
+
+            if (isSolicitud_de_Servicios_de_ApoyoTextSearch) {
+                advanceSearch.Diligencia_ATName = $("#txtAdvanceDiligencia_AT").val();
+                advanceSearch.Diligencia_ATNameSearchType = $("#ddlAdvanceDiligencia_AT").val();
+                advanceSearch.Diligencia_ATSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Diligencia_ATToSearch = $("#ddlAdvanceDiligencia_AT").val();
+                advanceSearch.Diligencia_ATSearchType = 2;
+            }
+        }
         advanceSearch.Numero_de_Expediente_MPSearchType = 0;
         if ($('#ddlAdvanceNumero_de_Expediente_MP').val().length > 0 || $("#txtAdvanceNumero_de_Expediente_MP").val() == "") {
 
@@ -660,6 +738,21 @@
 
                 advanceSearch.Numero_de_Expediente_MPToSearch = $("#ddlAdvanceNumero_de_Expediente_MP").val();
                 advanceSearch.Numero_de_Expediente_MPSearchType = 2;
+            }
+        }
+        advanceSearch.Diligencia_MPSearchType = 0;
+        if ($('#ddlAdvanceDiligencia_MP').val().length > 0 || $("#txtAdvanceDiligencia_MP").val() == "") {
+
+
+            if (isSolicitud_de_Servicios_de_ApoyoTextSearch) {
+                advanceSearch.Diligencia_MPName = $("#txtAdvanceDiligencia_MP").val();
+                advanceSearch.Diligencia_MPNameSearchType = $("#ddlAdvanceDiligencia_MP").val();
+                advanceSearch.Diligencia_MPSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Diligencia_MPToSearch = $("#ddlAdvanceDiligencia_MP").val();
+                advanceSearch.Diligencia_MPSearchType = 2;
             }
         }
         if ($("#txtAdvanceNUAT").val() != "") {
@@ -696,6 +789,35 @@
                 advanceSearch.SolicitudToSearch = $("#ddlAdvanceSolicitud").val();
                 advanceSearch.SolicitudSearchType = 2;
             }
+        }
+        if ($("#txtAdvanceFromSolicitud_de_Apoyo_Externa").val() != "" || $("#txtAdvanceToSolicitud_de_Apoyo_Externa").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Servicios_de_ApoyoSolicitud_de_Apoyo_ExternaFrom = $("#txtAdvanceFromSolicitud_de_Apoyo_Externa").val();
+            advanceSearch.Solicitud_de_Servicios_de_ApoyoSolicitud_de_Apoyo_ExternaTo = $("#txtAdvanceToSolicitud_de_Apoyo_Externa").val();
+        }
+        if ($("#ddlAdvanceSolicitud_Externa").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Servicios_de_ApoyoSolicitud_Externa = $("#ddlAdvanceSolicitud_Externa").val();
+        }
+        advanceSearch.Autoridad_que_SolicitaSearchType = 0;
+        if ($('#ddlAdvanceAutoridad_que_Solicita').val().length > 0 || $("#txtAdvanceAutoridad_que_Solicita").val() == "") {
+
+
+            if (isSolicitud_de_Servicios_de_ApoyoTextSearch) {
+                advanceSearch.Autoridad_que_SolicitaName = $("#txtAdvanceAutoridad_que_Solicita").val();
+                advanceSearch.Autoridad_que_SolicitaNameSearchType = $("#ddlAdvanceAutoridad_que_Solicita").val();
+                advanceSearch.Autoridad_que_SolicitaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Autoridad_que_SolicitaToSearch = $("#ddlAdvanceAutoridad_que_Solicita").val();
+                advanceSearch.Autoridad_que_SolicitaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNarracion_Solicitud").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Servicios_de_ApoyoNarracion_Solicitud = $("#txtAdvanceNarracion_Solicitud").val();
+            advanceSearch.Solicitud_de_Servicios_de_ApoyoNarracion_SolicitudSearchType = $("#ddlAdvanceNarracion_SolicitudFilter").val();
         }
         advanceSearch.Ver_DocumentoSearchType = 0;
         if ($('#ddlAdvanceVer_Documento').val().length > 0 || $("#txtAdvanceVer_Documento").val() == "") {
@@ -892,6 +1014,11 @@
                 advanceSearch.DictamenSearchType = 2;
             }
         }
+        if ($("#txtAdvancenumero_contestacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_Servicios_de_Apoyonumero_contestacion = $("#txtAdvancenumero_contestacion").val();
+            advanceSearch.Solicitud_de_Servicios_de_Apoyonumero_contestacionSearchType = $("#ddlAdvancenumero_contestacionFilter").val();
+        }
         if ($("#ddlAdvanceEnviar_Contestacion").val() != "") {
             hasParameter = true;
             advanceSearch.Solicitud_de_Servicios_de_ApoyoEnviar_Contestacion = $("#ddlAdvanceEnviar_Contestacion").val();
@@ -1010,6 +1137,15 @@
             isSolicitud_de_Servicios_de_ApoyoTextSearch = false;
             $("#txtAdvanceNumero_de_Expediente_AT").val('');
         });
+        $("#txtAdvanceDiligencia_AT").keypress(function () {
+            isSolicitud_de_Servicios_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDiligencia_AT").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDiligencia_AT").change(function () {
+            isSolicitud_de_Servicios_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDiligencia_AT").val('');
+        });
         $("#txtAdvanceNumero_de_Expediente_MP").keypress(function () {
             isSolicitud_de_Servicios_de_ApoyoTextSearch = true;
             $("#ddlAdvanceNumero_de_Expediente_MP").val('').trigger("chosen:updated");
@@ -1019,6 +1155,15 @@
             isSolicitud_de_Servicios_de_ApoyoTextSearch = false;
             $("#txtAdvanceNumero_de_Expediente_MP").val('');
         });
+        $("#txtAdvanceDiligencia_MP").keypress(function () {
+            isSolicitud_de_Servicios_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDiligencia_MP").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDiligencia_MP").change(function () {
+            isSolicitud_de_Servicios_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDiligencia_MP").val('');
+        });
         $("#txtAdvanceSolicitud").keypress(function () {
             isSolicitud_de_Servicios_de_ApoyoTextSearch = true;
             $("#ddlAdvanceSolicitud").val('').trigger("chosen:updated");
@@ -1027,6 +1172,15 @@
         $("#ddlAdvanceSolicitud").change(function () {
             isSolicitud_de_Servicios_de_ApoyoTextSearch = false;
             $("#txtAdvanceSolicitud").val('');
+        });
+        $("#txtAdvanceAutoridad_que_Solicita").keypress(function () {
+            isSolicitud_de_Servicios_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceAutoridad_que_Solicita").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceAutoridad_que_Solicita").change(function () {
+            isSolicitud_de_Servicios_de_ApoyoTextSearch = false;
+            $("#txtAdvanceAutoridad_que_Solicita").val('');
         });
         $("#txtAdvanceEstatus").keypress(function () {
             isSolicitud_de_Servicios_de_ApoyoTextSearch = true;

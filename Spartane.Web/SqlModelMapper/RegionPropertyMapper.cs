@@ -20,6 +20,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Region.Descripcion";
                 case "Abreviacion":
                     return "Region.Abreviacion";
+                case "recepcion_servicios_apoyo":
+                    return "Region.recepcion_servicios_apoyo";
                 case "Vigencia[Abreviacion]":
                 case "VigenciaAbreviacion":
                     return "Vigencia.Abreviacion";
@@ -44,6 +46,10 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
+            if (columnName == "recepcion_servicios_apoyo")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
 
 
             var operatorCondition = GetOperationType(columnName);

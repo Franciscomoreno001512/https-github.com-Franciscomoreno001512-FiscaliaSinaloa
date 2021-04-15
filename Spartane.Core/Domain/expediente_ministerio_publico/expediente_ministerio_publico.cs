@@ -10,6 +10,8 @@ using Spartane.Core.Domain.Unidad;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Region;
 using Spartane.Core.Domain.A_Tiempo;
+using Spartane.Core.Domain.Tipo_de_Urgencia;
+using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
 using Spartane.Core.Domain.estatus_mpi;
 using Spartane.Core.Domain.Lugar_Tipo;
 using Spartane.Core.Domain.Pais;
@@ -44,10 +46,14 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public int? Municipio { get; set; }
         public int? Region { get; set; }
         public string nuat { get; set; }
+        public string Numero_de_Denuncia { get; set; }
         public string nic { get; set; }
         public short? detenido { get; set; }
         public string hora_del_detenido { get; set; }
         public string hora_puesto_a_disposicion { get; set; }
+        public bool? Urgencia { get; set; }
+        public int? Tipo_de_urgencia { get; set; }
+        public int? Pre_Denuncia { get; set; }
         public short? estatus { get; set; }
         public string Titulo_del_Hecho { get; set; }
         public DateTime? Fecha_del_Hecho { get; set; }
@@ -97,6 +103,10 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public virtual Spartane.Core.Domain.Region.Region Region_Region { get; set; }
         [ForeignKey("detenido")]
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo detenido_A_Tiempo { get; set; }
+        [ForeignKey("Tipo_de_urgencia")]
+        public virtual Spartane.Core.Domain.Tipo_de_Urgencia.Tipo_de_Urgencia Tipo_de_urgencia_Tipo_de_Urgencia { get; set; }
+        [ForeignKey("Pre_Denuncia")]
+        public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana { get; set; }
         [ForeignKey("estatus")]
         public virtual Spartane.Core.Domain.estatus_mpi.estatus_mpi estatus_estatus_mpi { get; set; }
         [ForeignKey("Lugar_de_los_Hechos")]
@@ -136,10 +146,14 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public int? Municipio { get; set; }
         public int? Region { get; set; }
         public string nuat { get; set; }
+        public string Numero_de_Denuncia { get; set; }
         public string nic { get; set; }
         public short? detenido { get; set; }
         public string hora_del_detenido { get; set; }
         public string hora_puesto_a_disposicion { get; set; }
+        public bool? Urgencia { get; set; }
+        public int? Tipo_de_urgencia { get; set; }
+        public int? Pre_Denuncia { get; set; }
         public short? estatus { get; set; }
 
 		        [ForeignKey("usuario_que_registra")]
@@ -156,6 +170,10 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public virtual Spartane.Core.Domain.Region.Region Region_Region { get; set; }
         [ForeignKey("detenido")]
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo detenido_A_Tiempo { get; set; }
+        [ForeignKey("Tipo_de_urgencia")]
+        public virtual Spartane.Core.Domain.Tipo_de_Urgencia.Tipo_de_Urgencia Tipo_de_urgencia_Tipo_de_Urgencia { get; set; }
+        [ForeignKey("Pre_Denuncia")]
+        public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Pre_Denuncia_Solicitud_de_Denuncia_Ciudadana { get; set; }
         [ForeignKey("estatus")]
         public virtual Spartane.Core.Domain.estatus_mpi.estatus_mpi estatus_estatus_mpi { get; set; }
 

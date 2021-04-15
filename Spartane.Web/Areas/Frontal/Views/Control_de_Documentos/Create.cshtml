@@ -498,44 +498,44 @@
                                     </div>
                                 </div>
 
-                             
+
 
                             </div>
                             <br />
                             @*<div class="form-actions fluid">
-                                <input type="hidden" value="@Model.Folio" id="ReferenceFolio" />
-                                <input type="hidden" value="@Model.Folio" name="Folio" id="FolioId" />
-                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
-                                @if (!ViewBag.Consult)
-                                {
-                                    <input type="button" value="@Resources.Resources.Guardar" id="Control_de_DocumentosGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" />
-                                    <button onclick="Control_de_DocumentosGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_DocumentosBusinessRule-form">
-                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                    <input type="hidden" value="@Model.Folio" id="ReferenceFolio" />
+                                    <input type="hidden" value="@Model.Folio" name="Folio" id="FolioId" />
+                                    <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                    @if (!ViewBag.Consult)
+                                    {
+                                        <input type="button" value="@Resources.Resources.Guardar" id="Control_de_DocumentosGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" />
+                                        <button onclick="Control_de_DocumentosGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_DocumentosBusinessRule-form">
+                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                                <i class="fa fa-cogs fa-spin"></i>
+                                            </a>
+                                        </button>
+
+                                        <input type="button" value="@Resources.Resources.GuardarNuevo" id="Control_de_DocumentosGuardarYNuevo" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew" />
+                                        <input type="button" value="@Resources.Resources.GuardarCopia" id="Control_de_DocumentosGuardarYCopia" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy" />
+                                        if (permission.Configure)
+                                        {
+                                            <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                        }
+                                    }
+
+                                    <input type="hidden" id="hdnConfigureType" />
+                                    <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleFieldId" />
+                                    <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleFieldName" />
+                                    <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleAttribute" />
+
+                                    <input type="button" value="@Resources.Resources.Cancelar" id="Control_de_DocumentosCancelar" name="Control_de_DocumentosCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                    <button onclick="Control_de_DocumentosGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_DocumentosBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
                                             <i class="fa fa-cogs fa-spin"></i>
                                         </a>
                                     </button>
-
-                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Control_de_DocumentosGuardarYNuevo" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew" />
-                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Control_de_DocumentosGuardarYCopia" onclick="return checkClientValidate('Control_de_DocumentosCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy" />
-                                    if (permission.Configure)
-                                    {
-                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
-                                    }
-                                }
-
-                                <input type="hidden" id="hdnConfigureType" />
-                                <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleFieldId" />
-                                <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleFieldName" />
-                                <input type="hidden" id="hdnControl_de_DocumentosBusinessRuleAttribute" />
-
-                                <input type="button" value="@Resources.Resources.Cancelar" id="Control_de_DocumentosCancelar" name="Control_de_DocumentosCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
-
-                                <button onclick="Control_de_DocumentosGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_DocumentosBusinessRule-form">
-                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
-                                        <i class="fa fa-cogs fa-spin"></i>
-                                    </a>
-                                </button>
-                            </div>*@
+                                </div>*@
                         </div>
                     </div>
                 }
@@ -613,7 +613,7 @@
                     $('#divAttachmentArchivo').css("margin-top", "");
                     $('#divAttachmentArchivo').css("margin-top", "15vh");
 
-                }, 300); 
+                }, 300);
             }
 
         function RemoveAttachmentMainArchivo () {
@@ -736,8 +736,8 @@
                     $('#divAttachmentArchivo').css("margin-top", "");
                     $('#divAttachmentArchivo').css("margin-top", "15vh");
 
-                }, 300); 
-
+                }, 300);
+            AutoClose();
         });
 
         var Detalle_Historial_Control_de_DocumentosinsertRowCurrentIndex = -1;
@@ -1580,18 +1580,34 @@ CKEDITOR.replace('Pie_de_Pagina', {
             $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosCancelar', function () {
                 debugger;
                 localStorage.setItem('controlDocumentoDynamiSeach', "false");
-                
+
             });
             $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosGuardar', function () {
                 debugger;
                 localStorage.setItem('controlDocumentoDynamiSeach',"false");
             });
-			
+
 			 window.addEventListener('beforeunload', (event) => {
                 debugger;
                 localStorage.setItem('controlDocumentoDynamiSeach',"false");
-       
+
             });
+
+            function AutoClose() {
+                debugger;
+                 @if(ViewBag.closeAfterLoaded == "TRUE")
+                    {
+                        <text>
+                $('.loading').css('display', 'block');
+                setTimeout(function () {
+                    $("#Control_de_DocumentosGuardar").click()
+
+
+                }, 7000);
+                        </text>
+                    }
+
+            }
         </script>
     }
     <input type="hidden" id="FieldId" name="FieldId" value="" />
@@ -1600,4 +1616,5 @@ CKEDITOR.replace('Pie_de_Pagina', {
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
     <input type="hidden" id="Control_de_Documentos_cmbLabelSelect" name="Control_de_Documentos_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
-
+    <input type="hidden" id="closeafterload" name="closeafterload" value="@ViewBag.closeAfterLoaded" />
+    <input type="hidden" id="keyinserted" name="keyinserted" value="@ViewBag.keyinserted" />

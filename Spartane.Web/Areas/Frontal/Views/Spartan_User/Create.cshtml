@@ -147,6 +147,13 @@
                                                 @*<span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>*@
                                             </div>
                                         </div>
+                                        <div class="form-group" id="divNumero_de_Empleado">
+                                            <label class="col-sm-2 control-label">Número de Empleado</label>
+                                            <div class="col-sm-8" data-field-id="Numero_de_Empleado" data-attribute="163430" data-field-name="Numero_de_Empleado">
+                                                <input class="form-control" id="Numero_de_Empleado" name="Numero_de_Empleado" type="text" value="">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
                                         <div class="form-group" id="divRole">
                                             <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Role</label>
                                             <div class="col-sm-8" data-field-id="Role" data-attribute="163425" data-field-name="@Resources.Spartan_UserResources.Role">
@@ -184,20 +191,14 @@
                                         <div class="form-group" id="divRegion">
                                             <label class="col-sm-2 control-label">Region</label>
                                             <div class="col-sm-8" data-field-id="Region" data-field-name="Region">
-                                                <select class="form-control" data-val="true" data-val-number="The field Region must be a number." data-val-required="The Region field is required." id="Region" name="Region">
-
-                                             
-                                                </select>
+                                                <select class="form-control" data-val="true" data-val-number="The field Region must be a number." data-val-required="The Region field is required." id="Region" name="Region"></select>
                                             </div>
                                         </div>
 
                                         <div class="form-group" id="divUnidad">
                                             <label class="col-sm-2 control-label">Unidad</label>
                                             <div class="col-sm-8" data-field-id="Unidad" data-field-name="Unidad">
-                                                <select class="form-control" data-val="true" data-val-number="The field Unidad must be a number." data-val-required="The Unidad field is required." id="Unidad" name="Unidad">
-
-                               
-                                                </select>
+                                                <select class="form-control" data-val="true" data-val-number="The field Unidad must be a number." data-val-required="The Unidad field is required." id="Unidad" name="Unidad"></select>
                                             </div>
                                         </div>
 
@@ -400,10 +401,10 @@
             initiateUIControls();
 			$('a').tooltip();
 			EjecutarValidacionesAlComienzo();
-           
+
             var isNew = $('#hdnIsNew').val();
             if (isNew == "True") {
-               
+
             }
             else {
                 var lblId_User = $("#lblId_User").text().trim();
@@ -462,7 +463,7 @@
                         if (result < 0) {
                             showNotification("@Resources.Resources.ErrorSave", "error");
                         } else {
-                           
+
                             if (isNew == "True") {
                                 OperacionesSpartanUser_CargoUnidad(3, result)
                             }
@@ -612,7 +613,7 @@
 
 
             function OperacionesSpartanUser_CargoUnidad(tipoOperacion, idUser) {
-              
+
                 if (tipoOperacion === 1) {
 
                     fillCom(1, idUser);
@@ -630,11 +631,13 @@
                   var datos=  GetUnidadCargo(4, idUser);
                     var U_nidad = datos[0].unidad;
                     var Cargo = datos[0].cargo;
-                    var Region = datos[0].region;;
+                    var Region = datos[0].region;
+                    var numero_de_Empleado = datos[0].numero_de_empleado;
                     $("#Unidad").val(U_nidad);
                     $("#Cargo").val(Cargo);
                     $("#Region").val(Region);
-                   
+                    $("#Numero_de_Empleado").val(numero_de_Empleado);
+
                 }
 
             }
@@ -645,9 +648,9 @@
                 var isNew = $('#hdnIsNew').val();
                 if (isNew != "True") {
                     var datos = GetUnidadCargo(4, $("#lblId_User").text().trim());
-                    
+
                     var Region = datos[0].region;;
-                   
+
                     var datos = GetAllTableSQL("exec sp_listSelAll_unidad 'region.Clave =" + Region + "' , ''", '');
                     var option1 = $('<option />');
                     option1.attr('value', "0").text("--Seleccione--");
@@ -662,14 +665,16 @@
                         $('#Unidad').append(option2);
                     });
                 }
-               
+
             }
 
             function saveUnidadCargo(ope,idUser) {
                 var claveUnidad = $('#Unidad').val();
                 var cargo = $('#Cargo').val();
                 var region = $('#Region').val();
-                var datos = EvaluaQuery("exec usp_operacionesSpartanUser_CargoUnidad " + ope + "," + "null,'" + claveUnidad + "', '" + cargo + "'," + idUser + "," + region);
+                var numero_de_Empleado = $('#Numero_de_Empleado').val();
+                debugger;
+                var datos = EvaluaQuery("exec usp_operacionesSpartanUser_CargoUnidad " + ope + "," + "null,'" + claveUnidad + "', '" + cargo + "'," + idUser + "," + region +", '" + numero_de_Empleado + "'");
 
 
             }
@@ -683,7 +688,7 @@
 
 
             function FillRegiones() {
-              
+
                 var datos = GetAllTableSQL("exec sp_listSelAll_region '',''")
                 var option1 = $('<option />');
                 option1.attr('value', "0").text("--Seleccione--");
@@ -701,7 +706,7 @@
             }
 
             $("body").on("change", "#Region", function () {
-               
+
                 var self = $(this);
                 $('#Unidad').empty();
                 var datos = GetAllTableSQL("exec sp_listSelAll_unidad 'region.Clave =" + self.val() + "' , ''", '');
@@ -721,4 +726,3 @@
 
         </script>
     }
-

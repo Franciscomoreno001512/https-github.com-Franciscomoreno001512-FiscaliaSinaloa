@@ -11,11 +11,11 @@
 @using Spartane.Core.Domain.Delegacion;
 @using Spartane.Core.Domain.Agencia;
 @using Spartane.Core.Domain.Jefes_de_Usuarios_del_Sistema;
-@using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
 @using Spartane.Core.Domain.Genero;
 @using Spartane.Core.Domain.Tipo_de_Atencion;
 @using Spartane.Core.Domain.Tipo_de_Identificacion;
 @using Spartane.Core.Domain.Tipo_de_Urgencia;
+@using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
 @using Spartane.Core.Domain.Motivo_Finalizacion_Turno;
 @using Spartane.Core.Domain.Prioridad_del_Hecho;
 @using Spartane.Core.Domain.Spartan_User;
@@ -244,7 +244,6 @@
                                     <th>@Resources.Modulo_Atencion_InicialResources.Delegacion</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Agencia</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Ministerio_Publico_en_Turno</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.Solicitud_de_Denuncia_Ciudadana</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Nombres_turno</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Apellido_Paterno_turno</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Apellido_Materno_turno</th>
@@ -255,6 +254,7 @@
                                     <th>@Resources.Modulo_Atencion_InicialResources.Numero_de_Identificacion_turno</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Urgencia_turno</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Tipo_de_Urgencia_turno</th>
+                                    <th>@Resources.Modulo_Atencion_InicialResources.Solicitud_de_Denuncia_Ciudadana</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Motivo_Finalizacion_Turno</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Observaciones_turno</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Titulo_del_Hecho</th>
@@ -317,12 +317,12 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -491,7 +491,6 @@
         var Delegacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Agencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Ministerio_Publico_en_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Solicitud_de_Denuncia_Ciudadana =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -502,6 +501,7 @@
         var Numero_de_Identificacion_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Urgencia_turno = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Urgencia_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitud_de_Denuncia_Ciudadana =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_Finalizacion_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -556,7 +556,6 @@
         + "&Delegacion=" + Delegacion
         + "&Agencia=" + Agencia
         + "&Ministerio_Publico_en_Turno=" + Ministerio_Publico_en_Turno
-        + "&Solicitud_de_Denuncia_Ciudadana=" + Solicitud_de_Denuncia_Ciudadana
         + "&Nombres_turno=" + Nombres_turno
         + "&Apellido_Paterno_turno=" + Apellido_Paterno_turno
         + "&Apellido_Materno_turno=" + Apellido_Materno_turno
@@ -567,6 +566,7 @@
         + "&Numero_de_Identificacion_turno=" + Numero_de_Identificacion_turno
         + "&Urgencia_turno=" + Urgencia_turno
         + "&Tipo_de_Urgencia_turno=" + Tipo_de_Urgencia_turno
+        + "&Solicitud_de_Denuncia_Ciudadana=" + Solicitud_de_Denuncia_Ciudadana
         + "&Motivo_Finalizacion_Turno=" + Motivo_Finalizacion_Turno
         + "&Observaciones_turno=" + Observaciones_turno
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
@@ -632,7 +632,6 @@
         var Delegacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Agencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Ministerio_Publico_en_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Solicitud_de_Denuncia_Ciudadana =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombres_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -643,6 +642,7 @@
         var Numero_de_Identificacion_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Urgencia_turno = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Urgencia_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitud_de_Denuncia_Ciudadana =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_Finalizacion_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones_turno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -697,7 +697,6 @@
         + "&Delegacion=" + Delegacion
         + "&Agencia=" + Agencia
         + "&Ministerio_Publico_en_Turno=" + Ministerio_Publico_en_Turno
-        + "&Solicitud_de_Denuncia_Ciudadana=" + Solicitud_de_Denuncia_Ciudadana
         + "&Nombres_turno=" + Nombres_turno
         + "&Apellido_Paterno_turno=" + Apellido_Paterno_turno
         + "&Apellido_Materno_turno=" + Apellido_Materno_turno
@@ -708,6 +707,7 @@
         + "&Numero_de_Identificacion_turno=" + Numero_de_Identificacion_turno
         + "&Urgencia_turno=" + Urgencia_turno
         + "&Tipo_de_Urgencia_turno=" + Tipo_de_Urgencia_turno
+        + "&Solicitud_de_Denuncia_Ciudadana=" + Solicitud_de_Denuncia_Ciudadana
         + "&Motivo_Finalizacion_Turno=" + Motivo_Finalizacion_Turno
         + "&Observaciones_turno=" + Observaciones_turno
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
@@ -1007,7 +1007,6 @@
                 ,{ "data": "DelegacionDescripcion", "orderable": true, "name": "DelegacionDescripcion" }
                 ,{ "data": "AgenciaDescripcion", "orderable": true, "name": "AgenciaDescripcion" }
                 ,{ "data": "Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno", "orderable": true, "name": "Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno"}
-                ,{ "data": "Solicitud_de_Denuncia_CiudadanaFolio", "orderable": true, "name": "Solicitud_de_Denuncia_CiudadanaFolio"}
                 ,{ "data": "Nombres_turno", "orderable": true, "name": "Nombres_turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Paterno_turno", "orderable": true, "name": "Apellido_Paterno_turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Materno_turno", "orderable": true, "name": "Apellido_Materno_turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
@@ -1018,6 +1017,7 @@
                 ,{ "data": "Numero_de_Identificacion_turno", "orderable": true, "name": "Numero_de_Identificacion_turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Urgencia_turno", "orderable": true, "name": "Urgencia_turno","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Tipo_de_Urgencia_turnoDescripcion", "orderable": true, "name": "Tipo_de_Urgencia_turnoDescripcion" }
+                ,{ "data": "Solicitud_de_Denuncia_CiudadanaFolio", "orderable": true, "name": "Solicitud_de_Denuncia_CiudadanaFolio"}
                 ,{ "data": "Motivo_Finalizacion_TurnoDescripcion", "orderable": true, "name": "Motivo_Finalizacion_TurnoDescripcion" }
                 ,{ "data": "Observaciones_turno", "orderable": true, "name": "Observaciones_turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Titulo_del_Hecho", "orderable": true, "name": "Titulo_del_Hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }

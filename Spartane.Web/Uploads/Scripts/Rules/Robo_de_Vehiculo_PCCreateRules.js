@@ -61,7 +61,10 @@ $("#Robo_de_Vehiculo_PCSiguiente").on("click", function () {
         if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
             if (!SendRobo_de_Vehiculo_PCData(function () {
                 EjecutarValidacionesDespuesDeGuardar();
-             
+                if (roleActivo == 108) {
+                    $("#modalauxtxt").html("Su pre-denuncia ha sido registrada, en breve personal de unidad 'AtenciÃ³n Temprana' atenderÃ¡ su solicitud.");
+                    $("#divmodalaux").removeClass('hidden');
+                }
 
             })) {
 
@@ -357,32 +360,19 @@ function EjecutarValidacionesDespuesDeGuardar() {
         EvaluaQuery55(query2);
         debugger;
         if (roleActivo == 110 || roleActivo == 108) {
-			
-			 if (roleActivo == 110 ) {
-					$("#modalauxtxt").html("Para seguimiento de su Pre-denuncia anote y conserve sus credenciales Folio(" + foliodenuncia + ") y Contraseña(" + contrasenia + ").");
-				 }
-			else
-			{
-				   $("#modalauxtxt").html("Para seguimiento de su Pre-denuncia anote y conserve su Folio(" + foliodenuncia + ") ");
-			}
-			
-         
+            $("#modalauxtxt").html("Para seguimiento de su denuncia anÃ³nima anote y conserve sus credenciales Folio(" + foliodenuncia + ") y ContraseÃ±a(" + contrasenia + ").");
             $("#divmodalaux").removeClass('hidden');
             try {
                 var pdf = new jsPDF('p', 'mm');
                 var d = new Date()
                 rest = d.toLocaleString();
                 pdf.addImage(CargaDemoLogo(), 'png', 75, 5, 30, 30);
-                pdf.text('Para seguimiento de su Pre-denuncia anote y conserve', 28, 50);
-                pdf.text('los siguientes datos: ', 28, 60);
-			
+                pdf.text('Para seguimiento de su denuncia anÃ³nima anote y conserve', 28, 50);
+                pdf.text('sus credenciales: ', 28, 60);
                 pdf.text('Folio      : ' + foliodenuncia, 28, 70);
-				
-				 if (roleActivo == 110 ) {
-                pdf.text('Contraseña : ' + contrasenia, 28, 80);
-				 }
+                pdf.text('ContraseÃ±a : ' + contrasenia, 28, 80);
                 pdf.text('Fecha      : ' + rest, 28, 90);
-                pdf.save('PreDenuncia.pdf');
+                pdf.save('DenunciaAnonima.pdf');
 
 
 
@@ -391,13 +381,13 @@ function EjecutarValidacionesDespuesDeGuardar() {
                     var qry01 = "select isnull(email, '') from spartan_user where id_user= " + usr;
                     var resultQry01 = EvaluaQuery(qry01);
                     if (resultQry01 != "") {
-                        SendEmailQuery('Se ha registrado su Pre-denuncia', resultQry01, "<html>"
+                        SendEmailQuery('Se ha registrado su denuncia', resultQry01, "<html>"
                             + " <body>"
-                            + " Folio Pre-Denuncia: " + foliodenuncia + ""
+                            + " Folio Denuncia: " + foliodenuncia + ""
                             + " <br><br>"
-                         //   + " Contraseña: " + contrasenia + ""
+                            + " ContraseÃ±a: " + contrasenia + ""
                             + " <br><br>"
-                            + " Gracias por su Pre-denuncia."
+                            + " Gracias por su denuncia."
                             + " <br><br>"
                            
                           
@@ -427,5 +417,4 @@ function EjecutarValidacionesDespuesDeGuardar() {
 
     //NEWBUSINESSRULE_AFTERSAVING//
 }
-
 

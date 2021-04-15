@@ -311,6 +311,17 @@ function GetAutoCompleteRegistro_de_Cumplimiento_Usuario_de_Registro_Spartan_Use
     }
     return AutoCompleteUsuario_de_RegistroData;
 }
+var AutoCompleteArea_que_envia_cumplimientoData = [];
+function GetAutoCompleteRegistro_de_Cumplimiento_Area_que_envia_cumplimiento_Area_envia_CumplimientoData(data) {
+	AutoCompleteArea_que_envia_cumplimientoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteArea_que_envia_cumplimientoData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteArea_que_envia_cumplimientoData;
+}
 var AutoCompleteEstadoData = [];
 function GetAutoCompleteRegistro_de_Cumplimiento_Estado_EstadoData(data) {
 	AutoCompleteEstadoData = [];
@@ -400,6 +411,9 @@ function ClearControls() {
     $('#Usuario_de_Registro').empty();
     $("#Usuario_de_Registro").append('<option value=""></option>');
     $('#Usuario_de_Registro').val('0').trigger('change');
+    $('#Area_que_envia_cumplimiento').empty();
+    $("#Area_que_envia_cumplimiento").append('<option value=""></option>');
+    $('#Area_que_envia_cumplimiento').val('0').trigger('change');
     $('#Estado').empty();
     $("#Estado").append('<option value=""></option>');
     $('#Estado').val('0').trigger('change');
@@ -554,6 +568,9 @@ $(document).ready(function () {
     $('#Usuario_de_Registro').empty();
     $("#Usuario_de_Registro").append('<option value=""></option>');
     $('#Usuario_de_Registro').val('0').trigger('change');
+    $('#Area_que_envia_cumplimiento').empty();
+    $("#Area_que_envia_cumplimiento").append('<option value=""></option>');
+    $('#Area_que_envia_cumplimiento').val('0').trigger('change');
     $('#Estado').empty();
     $("#Estado").append('<option value=""></option>');
     $('#Estado').val('0').trigger('change');

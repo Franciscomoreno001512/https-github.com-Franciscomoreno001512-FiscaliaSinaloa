@@ -3,6 +3,7 @@
   <resource culture="en-us" name="Area_envia_Cumplimiento" value="Area envia Cumplimiento"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Vigente" value="Vigente"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

@@ -11,8 +11,8 @@ using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
-using Spartane.Core.Domain.Nacionalidad;
 using Spartane.Core.Domain.Ocupacion;
+using Spartane.Core.Domain.Nacionalidad;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Corporacion;
 using Spartane.Core.Domain.Pais;
@@ -137,10 +137,10 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public string Numero_de_Identificacion { get; set; }
         public string CURP { get; set; }
         public string RFC { get; set; }
+        public int? Ocupacion { get; set; }
         public string Calidad_Juridica { get; set; }
         public string Razon_Social { get; set; }
         public int? Nacionalidad { get; set; }
-        public int? Ocupacion { get; set; }
         public int? Municipio_Corporacion { get; set; }
         public int? Corporacion { get; set; }
         public int? Pais_de_Nacimiento { get; set; }
@@ -311,10 +311,10 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Estado_Civil.Estado_Civil Estado_Civil_Estado_Civil { get; set; }
         [ForeignKey("Tipo_de_Identificacion")]
         public virtual Spartane.Core.Domain.Tipo_de_Identificacion.Tipo_de_Identificacion Tipo_de_Identificacion_Tipo_de_Identificacion { get; set; }
-        [ForeignKey("Nacionalidad")]
-        public virtual Spartane.Core.Domain.Nacionalidad.Nacionalidad Nacionalidad_Nacionalidad { get; set; }
         [ForeignKey("Ocupacion")]
         public virtual Spartane.Core.Domain.Ocupacion.Ocupacion Ocupacion_Ocupacion { get; set; }
+        [ForeignKey("Nacionalidad")]
+        public virtual Spartane.Core.Domain.Nacionalidad.Nacionalidad Nacionalidad_Nacionalidad { get; set; }
         [ForeignKey("Municipio_Corporacion")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Corporacion_Municipio { get; set; }
         [ForeignKey("Corporacion")]
@@ -518,10 +518,10 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public string Numero_de_Identificacion { get; set; }
         public string CURP { get; set; }
         public string RFC { get; set; }
+        public int? Ocupacion { get; set; }
         public string Calidad_Juridica { get; set; }
         public string Razon_Social { get; set; }
         public int? Nacionalidad { get; set; }
-        public int? Ocupacion { get; set; }
         public int? Municipio_Corporacion { get; set; }
         public int? Corporacion { get; set; }
         public int? Pais_de_Nacimiento { get; set; }
@@ -588,10 +588,10 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Estado_Civil.Estado_Civil Estado_Civil_Estado_Civil { get; set; }
         [ForeignKey("Tipo_de_Identificacion")]
         public virtual Spartane.Core.Domain.Tipo_de_Identificacion.Tipo_de_Identificacion Tipo_de_Identificacion_Tipo_de_Identificacion { get; set; }
-        [ForeignKey("Nacionalidad")]
-        public virtual Spartane.Core.Domain.Nacionalidad.Nacionalidad Nacionalidad_Nacionalidad { get; set; }
         [ForeignKey("Ocupacion")]
         public virtual Spartane.Core.Domain.Ocupacion.Ocupacion Ocupacion_Ocupacion { get; set; }
+        [ForeignKey("Nacionalidad")]
+        public virtual Spartane.Core.Domain.Nacionalidad.Nacionalidad Nacionalidad_Nacionalidad { get; set; }
         [ForeignKey("Municipio_Corporacion")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Corporacion_Municipio { get; set; }
         [ForeignKey("Corporacion")]

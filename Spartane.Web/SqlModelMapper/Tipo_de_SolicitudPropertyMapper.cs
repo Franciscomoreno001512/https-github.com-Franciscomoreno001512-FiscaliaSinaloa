@@ -18,6 +18,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Tipo_de_Solicitud.Clave";
                 case "Descripcion":
                     return "Tipo_de_Solicitud.Descripcion";
+                case "Abreviacion":
+                    return "Tipo_de_Solicitud.Abreviacion";
 
                 default:
                     return propertyName;

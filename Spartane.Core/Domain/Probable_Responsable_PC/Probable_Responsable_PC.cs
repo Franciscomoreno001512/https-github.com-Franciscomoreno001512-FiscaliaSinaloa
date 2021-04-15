@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
-using Spartane.Core.Domain.Tipo_de_Solicitud;
 using Spartane.Core.Domain.Respuesta;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
@@ -61,10 +60,11 @@ namespace Spartane.Core.Domain.Probable_Responsable_PC
     {
         public int Clave { get; set; }
         public int? Solicitud { get; set; }
-        public int? Tipo_de_Solicitud { get; set; }
         public short? Tiene_informacion_responsable { get; set; }
         public bool? Quien_Resulte_Responsable { get; set; }
         public bool? Persona_moral { get; set; }
+        public bool? Conoce_los_datos_del_representante_legal { get; set; }
+        public string Razon_Social { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
@@ -133,8 +133,6 @@ namespace Spartane.Core.Domain.Probable_Responsable_PC
 
         [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Solicitud_Solicitud_de_Denuncia_Ciudadana { get; set; }
-        [ForeignKey("Tipo_de_Solicitud")]
-        public virtual Spartane.Core.Domain.Tipo_de_Solicitud.Tipo_de_Solicitud Tipo_de_Solicitud_Tipo_de_Solicitud { get; set; }
         [ForeignKey("Tiene_informacion_responsable")]
         public virtual Spartane.Core.Domain.Respuesta.Respuesta Tiene_informacion_responsable_Respuesta { get; set; }
         [ForeignKey("Sexo")]
@@ -226,10 +224,11 @@ namespace Spartane.Core.Domain.Probable_Responsable_PC
     {
                 public int Clave { get; set; }
         public int? Solicitud { get; set; }
-        public int? Tipo_de_Solicitud { get; set; }
         public short? Tiene_informacion_responsable { get; set; }
         public bool? Quien_Resulte_Responsable { get; set; }
         public bool? Persona_moral { get; set; }
+        public bool? Conoce_los_datos_del_representante_legal { get; set; }
+        public string Razon_Social { get; set; }
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
@@ -249,8 +248,6 @@ namespace Spartane.Core.Domain.Probable_Responsable_PC
 
 		        [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana.Solicitud_de_Denuncia_Ciudadana Solicitud_Solicitud_de_Denuncia_Ciudadana { get; set; }
-        [ForeignKey("Tipo_de_Solicitud")]
-        public virtual Spartane.Core.Domain.Tipo_de_Solicitud.Tipo_de_Solicitud Tipo_de_Solicitud_Tipo_de_Solicitud { get; set; }
         [ForeignKey("Tiene_informacion_responsable")]
         public virtual Spartane.Core.Domain.Respuesta.Respuesta Tiene_informacion_responsable_Respuesta { get; set; }
         [ForeignKey("Sexo")]

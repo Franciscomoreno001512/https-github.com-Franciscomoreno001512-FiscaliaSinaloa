@@ -160,6 +160,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = RegionData.Clave 
 	                    ,Descripcion = RegionData.Descripcion
                     ,Abreviacion = RegionData.Abreviacion
+                    ,recepcion_servicios_apoyo = RegionData.recepcion_servicios_apoyo.GetValueOrDefault()
                     ,Vigencia = RegionData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(RegionData.Vigencia), "Vigencia") ??  (string)RegionData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = RegionData.Observaciones
@@ -245,6 +246,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = RegionData.Clave 
 	                    ,Descripcion = RegionData.Descripcion
                     ,Abreviacion = RegionData.Abreviacion
+                    ,recepcion_servicios_apoyo = RegionData.recepcion_servicios_apoyo.GetValueOrDefault()
                     ,Vigencia = RegionData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(RegionData.Vigencia), "Vigencia") ??  (string)RegionData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = RegionData.Observaciones
@@ -403,6 +405,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
 			,Abreviacion = m.Abreviacion
+			,recepcion_servicios_apoyo = m.recepcion_servicios_apoyo
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
 			,Consecutivo_CDI = m.Consecutivo_CDI
@@ -522,6 +525,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
 			,Abreviacion = m.Abreviacion
+			,recepcion_servicios_apoyo = m.recepcion_servicios_apoyo
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
 			,Consecutivo_CDI = m.Consecutivo_CDI
@@ -594,6 +598,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         break;
                 }
             }
+
+            if (filter.recepcion_servicios_apoyo != RadioOptions.NoApply)
+                where += " AND Region.recepcion_servicios_apoyo = " + Convert.ToInt32(filter.recepcion_servicios_apoyo);
 
             if (!string.IsNullOrEmpty(filter.AdvanceVigencia))
             {
@@ -710,6 +717,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         Clave = varRegion.Clave
                         ,Descripcion = varRegion.Descripcion
                         ,Abreviacion = varRegion.Abreviacion
+                        ,recepcion_servicios_apoyo = varRegion.recepcion_servicios_apoyo
                         ,Vigencia = varRegion.Vigencia
                         ,Observaciones = varRegion.Observaciones
                         ,Consecutivo_CDI = varRegion.Consecutivo_CDI
@@ -1055,7 +1063,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = null;
+			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1102,6 +1110,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
 			,Abreviacion = m.Abreviacion
+			,recepcion_servicios_apoyo = m.recepcion_servicios_apoyo
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
 			,Consecutivo_CDI = m.Consecutivo_CDI
@@ -1180,6 +1189,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
 			,Abreviacion = m.Abreviacion
+			,recepcion_servicios_apoyo = m.recepcion_servicios_apoyo
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
 			,Consecutivo_CDI = m.Consecutivo_CDI
@@ -1224,6 +1234,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = varRegion.Clave
                                             ,Descripcion = varRegion.Descripcion
                         ,Abreviacion = varRegion.Abreviacion
+                        ,recepcion_servicios_apoyo = varRegion.recepcion_servicios_apoyo
                         ,Vigencia = varRegion.Vigencia
                         ,Observaciones = varRegion.Observaciones
                         ,Consecutivo_CDI = varRegion.Consecutivo_CDI
@@ -1257,6 +1268,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
 			,Abreviacion = m.Abreviacion
+			,recepcion_servicios_apoyo = m.recepcion_servicios_apoyo
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones

@@ -46,6 +46,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Abreviacion</summary>
+        public static string Abreviacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderTipo_de_Solicitud.GetResource("Abreviacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderTipo_de_Solicitud.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

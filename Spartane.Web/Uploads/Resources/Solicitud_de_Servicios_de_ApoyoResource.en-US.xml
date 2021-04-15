@@ -8,12 +8,18 @@
   <resource culture="en-US" name="Region" value="Región"></resource>
   <resource culture="en-US" name="Origen" value="Origen"></resource>
   <resource culture="en-US" name="Numero_de_Expediente_AT" value="Número de Expediente AT"></resource>
+  <resource culture="en-US" name="Diligencia_AT" value="Diligencia AT"></resource>
   <resource culture="en-US" name="Numero_de_Expediente_MP" value="Número de Expediente MP"></resource>
+  <resource culture="en-US" name="Diligencia_MP" value="Diligencia MP"></resource>
   <resource culture="en-US" name="NUAT" value="NUAT"></resource>
   <resource culture="en-US" name="Numero_de_Denuncia" value="Número de Denuncia"></resource>
   <resource culture="en-US" name="Carpeta_de_Investigacion" value="Carpeta de Investigación"></resource>
   <resource culture="en-US" name="Numero_de_Oficio" value="Número de Oficio"></resource>
   <resource culture="en-US" name="Solicitud" value="Solicitud"></resource>
+  <resource culture="en-US" name="Solicitud_de_Apoyo_Externa" value="Solicitud de Apoyo Externa"></resource>
+  <resource culture="en-US" name="Solicitud_Externa" value="Solicitud Externa"></resource>
+  <resource culture="en-US" name="Autoridad_que_Solicita" value="Autoridad que Solicita"></resource>
+  <resource culture="en-US" name="Narracion_Solicitud" value="Narración Solicitud"></resource>
   <resource culture="en-US" name="Ver_Documento" value="Ver Documento"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
   <resource culture="en-US" name="Estatus" value="Estatus"></resource>
@@ -33,6 +39,7 @@
   <resource culture="en-US" name="Hora_de_Contestacion" value="Hora de Contestación"></resource>
   <resource culture="en-US" name="Usuario_que_contesta" value="Usuario que contesta"></resource>
   <resource culture="en-US" name="Dictamen" value="Dictamen"></resource>
+  <resource culture="en-US" name="numero_contestacion" value="No. Contestación"></resource>
   <resource culture="en-US" name="Enviar_Contestacion" value="Enviar Contestación"></resource>
   <resource culture="en-US" name="Archivo" value="Archivo"></resource>
   <resource culture="en-US" name="Observaciones_Contestacion" value="Observaciones"></resource>

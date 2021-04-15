@@ -155,6 +155,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Tipo_de_SolicitudData.Clave 
 	                    ,Descripcion = Tipo_de_SolicitudData.Descripcion
+                    ,Abreviacion = Tipo_de_SolicitudData.Abreviacion
 
 					};
 				}
@@ -228,6 +229,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Tipo_de_SolicitudData.Clave 
 	                    ,Descripcion = Tipo_de_SolicitudData.Descripcion
+                    ,Abreviacion = Tipo_de_SolicitudData.Abreviacion
 
 					};
 				}
@@ -339,6 +341,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Abreviacion = m.Abreviacion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -454,6 +457,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Abreviacion = m.Abreviacion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -498,6 +502,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                     case Models.Filters.Contains:
                         where += " AND Tipo_de_Solicitud.Descripcion LIKE '%" + filter.Descripcion + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Abreviacion))
+            {
+                switch (filter.AbreviacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Solicitud.Abreviacion LIKE '" + filter.Abreviacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Solicitud.Abreviacion LIKE '%" + filter.Abreviacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Solicitud.Abreviacion = '" + filter.Abreviacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Solicitud.Abreviacion LIKE '%" + filter.Abreviacion + "%'";
                         break;
                 }
             }
@@ -558,6 +584,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varTipo_de_Solicitud.Clave
                         ,Descripcion = varTipo_de_Solicitud.Descripcion
+                        ,Abreviacion = varTipo_de_Solicitud.Abreviacion
 
                     };
 
@@ -946,6 +973,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Abreviacion = m.Abreviacion
 
             }).ToList();
 
@@ -1020,6 +1048,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Abreviacion = m.Abreviacion
 
             }).ToList();
 
@@ -1060,6 +1089,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varTipo_de_Solicitud.Clave
                                             ,Descripcion = varTipo_de_Solicitud.Descripcion
+                        ,Abreviacion = varTipo_de_Solicitud.Abreviacion
                     
                 };
 
@@ -1089,6 +1119,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Abreviacion = m.Abreviacion
 
                     
                 };

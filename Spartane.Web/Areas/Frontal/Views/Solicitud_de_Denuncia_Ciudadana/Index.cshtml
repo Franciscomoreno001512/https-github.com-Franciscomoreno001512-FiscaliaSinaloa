@@ -5,7 +5,14 @@
 @using Spartane.Core.Domain.Tipo_de_Solicitud;
 @using Spartane.Core.Domain.Estatus_de_Solicitud;
 @using Spartane.Core.Domain.PC_CanalizarA;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Tipo_Resolucion_Portal_Ciudadano;
+@using Spartane.Core.Domain.Region;
 @using Spartane.Core.Domain.Unidad;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Contestacion_de_Portal_Ciudadano;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -209,8 +216,26 @@
                                     <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Registra</th>
                                     <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Tipo_de_Solicitud</th>
                                     <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Estatus_de_Solicitud</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Motivo</th>
                                     <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Canalizar_a</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Revision</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Revision</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Revisa</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Tipo_de_Resolucion</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Region</th>
                                     <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Unidad_canaliza</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Contestacion</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_resolucion</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Asignacion</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Asignacion</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Asigna</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Responsable_Asignado</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_responsable</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Fecha_de_Atencion</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Hora_de_Atencion</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Usuario_que_Atiende</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Atencion_Realizada</th>
+                                    <th>@Resources.Solicitud_de_Denuncia_CiudadanaResources.Observaciones_atencion</th>
 
                                 </tr>
                             </thead>
@@ -224,6 +249,24 @@
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -350,8 +393,26 @@
         var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatus_de_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Canalizar_a =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Revisa =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Resolucion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Unidad_canaliza =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Contestacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_resolucion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Asigna =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Responsable_Asignado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Atencion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Atencion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Atiende =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Atencion_Realizada =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -362,8 +423,26 @@
         + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Tipo_de_Solicitud=" + Tipo_de_Solicitud
         + "&Estatus_de_Solicitud=" + Estatus_de_Solicitud
+        + "&Motivo=" + Motivo
         + "&Canalizar_a=" + Canalizar_a
+        + "&Fecha_de_Revision=" + Fecha_de_Revision
+        + "&Hora_de_Revision=" + Hora_de_Revision
+        + "&Usuario_que_Revisa=" + Usuario_que_Revisa
+        + "&Tipo_de_Resolucion=" + Tipo_de_Resolucion
+        + "&Region=" + Region
         + "&Unidad_canaliza=" + Unidad_canaliza
+        + "&Contestacion=" + Contestacion
+        + "&Observaciones_resolucion=" + Observaciones_resolucion
+        + "&Fecha_de_Asignacion=" + Fecha_de_Asignacion
+        + "&Hora_de_Asignacion=" + Hora_de_Asignacion
+        + "&Usuario_que_Asigna=" + Usuario_que_Asigna
+        + "&Responsable_Asignado=" + Responsable_Asignado
+        + "&Observaciones_responsable=" + Observaciones_responsable
+        + "&Fecha_de_Atencion=" + Fecha_de_Atencion
+        + "&Hora_de_Atencion=" + Hora_de_Atencion
+        + "&Usuario_que_Atiende=" + Usuario_que_Atiende
+        + "&Atencion_Realizada=" + Atencion_Realizada
+        + "&Observaciones_atencion=" + Observaciones_atencion
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Solicitud_de_Denuncia_Ciudadana/Export?format=")" + format
@@ -385,8 +464,26 @@
         var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatus_de_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Canalizar_a =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Revisa =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Resolucion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Unidad_canaliza =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Contestacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_resolucion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Asigna =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Responsable_Asignado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Atencion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Atencion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Atiende =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Atencion_Realizada =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -397,8 +494,26 @@
         + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Tipo_de_Solicitud=" + Tipo_de_Solicitud
         + "&Estatus_de_Solicitud=" + Estatus_de_Solicitud
+        + "&Motivo=" + Motivo
         + "&Canalizar_a=" + Canalizar_a
+        + "&Fecha_de_Revision=" + Fecha_de_Revision
+        + "&Hora_de_Revision=" + Hora_de_Revision
+        + "&Usuario_que_Revisa=" + Usuario_que_Revisa
+        + "&Tipo_de_Resolucion=" + Tipo_de_Resolucion
+        + "&Region=" + Region
         + "&Unidad_canaliza=" + Unidad_canaliza
+        + "&Contestacion=" + Contestacion
+        + "&Observaciones_resolucion=" + Observaciones_resolucion
+        + "&Fecha_de_Asignacion=" + Fecha_de_Asignacion
+        + "&Hora_de_Asignacion=" + Hora_de_Asignacion
+        + "&Usuario_que_Asigna=" + Usuario_que_Asigna
+        + "&Responsable_Asignado=" + Responsable_Asignado
+        + "&Observaciones_responsable=" + Observaciones_responsable
+        + "&Fecha_de_Atencion=" + Fecha_de_Atencion
+        + "&Hora_de_Atencion=" + Hora_de_Atencion
+        + "&Usuario_que_Atiende=" + Usuario_que_Atiende
+        + "&Atencion_Realizada=" + Atencion_Realizada
+        + "&Observaciones_atencion=" + Observaciones_atencion
 ;
 
     }
@@ -579,11 +694,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -654,8 +769,26 @@
                 ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName"}
                 ,{ "data": "Tipo_de_SolicitudDescripcion", "orderable": true, "name": "Tipo_de_SolicitudDescripcion" }
                 ,{ "data": "Estatus_de_SolicitudDescripcion", "orderable": true, "name": "Estatus_de_SolicitudDescripcion" }
+                ,{ "data": "Motivo", "orderable": true, "name": "Motivo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Canalizar_aDescripcion", "orderable": true, "name": "Canalizar_aDescripcion" }
+                ,{ "data": "Fecha_de_Revision", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Revision" }
+                ,{ "data": "Hora_de_Revision", "orderable": true, "name": "Hora_de_Revision" }
+                ,{ "data": "Usuario_que_RevisaName", "orderable": true, "name": "Usuario_que_RevisaName"}
+                ,{ "data": "Tipo_de_ResolucionDescripcion", "orderable": true, "name": "Tipo_de_ResolucionDescripcion" }
+                ,{ "data": "RegionDescripcion", "orderable": true, "name": "RegionDescripcion" }
                 ,{ "data": "Unidad_canalizaDescripcion", "orderable": true, "name": "Unidad_canalizaDescripcion" }
+                ,{ "data": "Contestacion", "orderable": true, "name": "Contestacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Observaciones_resolucion", "orderable": true, "name": "Observaciones_resolucion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Asignacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Asignacion" }
+                ,{ "data": "Hora_de_Asignacion", "orderable": true, "name": "Hora_de_Asignacion" }
+                ,{ "data": "Usuario_que_AsignaName", "orderable": true, "name": "Usuario_que_AsignaName"}
+                ,{ "data": "Responsable_AsignadoName", "orderable": true, "name": "Responsable_AsignadoName"}
+                ,{ "data": "Observaciones_responsable", "orderable": true, "name": "Observaciones_responsable", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Atencion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Atencion" }
+                ,{ "data": "Hora_de_Atencion", "orderable": true, "name": "Hora_de_Atencion" }
+                ,{ "data": "Usuario_que_AtiendeName", "orderable": true, "name": "Usuario_que_AtiendeName"}
+                ,{ "data": "Atencion_RealizadaDescripcion", "orderable": true, "name": "Atencion_RealizadaDescripcion" }
+                ,{ "data": "Observaciones_atencion", "orderable": true, "name": "Observaciones_atencion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],
 			"colReorder": true,

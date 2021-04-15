@@ -118,6 +118,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters RFCFilter { set; get; }
         public string RFC { set; get; }
 
+        public Filters OcupacionFilter { set; get; }
+        public string AdvanceOcupacion { set; get; }
+        public int[] AdvanceOcupacionMultiple { set; get; }
+
         public Filters Calidad_JuridicaFilter { set; get; }
         public string Calidad_Juridica { set; get; }
 
@@ -127,10 +131,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters NacionalidadFilter { set; get; }
         public string AdvanceNacionalidad { set; get; }
         public int[] AdvanceNacionalidadMultiple { set; get; }
-
-        public Filters OcupacionFilter { set; get; }
-        public string AdvanceOcupacion { set; get; }
-        public int[] AdvanceOcupacionMultiple { set; get; }
 
         public Filters Municipio_CorporacionFilter { set; get; }
         public string AdvanceMunicipio_Corporacion { set; get; }

@@ -137,6 +137,10 @@
             advanceSearch.RegionAbreviacion = $("#txtAdvanceAbreviacion").val();
             advanceSearch.RegionAbreviacionSearchType = $("#ddlAdvanceAbreviacionFilter").val();
         }
+        if ($("#ddlAdvancerecepcion_servicios_apoyo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Regionrecepcion_servicios_apoyo = $("#ddlAdvancerecepcion_servicios_apoyo").val();
+        }
         advanceSearch.VigenciaSearchType = 0;
         if ($('#ddlAdvanceVigencia').val().length > 0 || $("#txtAdvanceVigencia").val() == "") {
 

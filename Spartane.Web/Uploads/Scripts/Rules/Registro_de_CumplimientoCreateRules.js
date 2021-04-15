@@ -2,6 +2,39 @@ var operation = $('#Operation').val();
 var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
+//Angel Acuña
+
+/*CODIGO ABRIR GRID*/
+function CM_CierraMr() {
+    $('.fa-check').parent().click();
+}
+function IniciaMR() {
+	var grid='Personas_donde_se_ejecuto_mandamiento';
+    $('select[name="' + grid + 'Grid_length"]').val('-1').trigger('change');
+    $("#" + grid + "Grid_length").css("display", "none");
+    $('.fa-pencil').click();
+    $('.fa-check').parent().css("display", "none");
+    $('.fa-times').parent().css("display", "none");
+	$("#" + grid + "Grid_info").css("display", "none");
+	$("#" + grid + "Grid_paginate").css("display", "none");
+	
+	
+	$('input[id^="' + grid + '_"]').each(function () {
+		if ($(this).attr('disabled')=="disabled")
+		{
+			$($(this).parent().find('label')[0]).css("display","none");
+			$(this).css("display","none");
+			$(this).after('<label>' + $(this).val() + '</label>');
+		}
+    });
+	
+	$('i[class="glyphicon glyphicon-plus"]').each(function () {
+		$(this).css("display","none");
+    });	
+	
+}
+
+
 
 // omar martinez
 // INIT-CODIGO-MANUAL Valida que se escoja una persona por lo menos
@@ -28,6 +61,13 @@ const ValidarSeleccionados = function(){
 $(document).ready(function () {
     $("#Registro_de_CumplimientoGuardarYNuevo").hide();
     $("#Registro_de_CumplimientoGuardarYCopia").hide();
+
+    /*CODIGO ABRIR GRID*/	
+    if(operation == 'Update'){	
+        setTimeout(function () {
+        IniciaMR();
+    }, 500);
+    }
     
 //BusinessRuleId:4945, Attribute:273755, Operation:Field, Event:None
 $("form#CreateRegistro_de_Cumplimiento").on('change', '#Estado', function () {
@@ -177,6 +217,10 @@ if(operation == 'New'){
 var index = $('.PersonaIdHeader').index();
  eval($('.PersonaIdHeader').parent().parent().parent()[0].id.replace("Grid", "Table")).find("td:eq("+index+")").hide();
 
+ /*CODIGO ABRIR GRID*/
+setTimeout(function () {
+    IniciaMR();
+}, 500);
 
 }
 //BusinessRuleId:4949, Attribute:0, Operation:Object, Event:SCREENOPENING
@@ -184,9 +228,18 @@ var index = $('.PersonaIdHeader').index();
 //BusinessRuleId:4974, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  AsignarValor($('#' + nameOfTable + 'Hora_de_Registro' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Usuario_de_Registro' + rowIndex),EvaluaQuery(" SELECT name FROM Spartan_User WHERE Id_User = GLOBAL[USERID]", rowIndex, nameOfTable));
-
+
+
 }
 //BusinessRuleId:4974, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:4985, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ var valor = $('#' + nameOfTable + 'Area_que_envia_cumplimiento' + rowIndex).val();   $('#' + nameOfTable + 'Area_que_envia_cumplimiento' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Area_que_envia_cumplimiento' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Area_que_envia_cumplimiento' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Descripcion from Area_envia_Cumplimiento where vigente = 1", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Area_que_envia_cumplimiento' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Descripcion from Area_envia_Cumplimiento where vigente = 1", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Area_que_envia_cumplimiento' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Area_que_envia_cumplimiento' + rowIndex).val(valor).trigger('change');
+
+
+}
+//BusinessRuleId:4985, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
@@ -202,6 +255,15 @@ function EjecutarValidacionesAntesDeGuardar(){
     // END-CODIGO-MANUAL
 
 //NEWBUSINESSRULE_BEFORESAVING//
+
+    /*CODIGO CERRAR GRID*/
+    if (result)
+        CM_CierraMr();
+    else{
+        setTimeout(function () {
+            IniciaMR();
+        }, 500);
+    }
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
@@ -216,7 +278,8 @@ if(operation == 'New'){
 //BusinessRuleId:4973, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
  EvaluaQuery("EXEC usp_ValidaCerrar_MandamientoJudicial GLOBAL[SpartanOperationId]", rowIndex, nameOfTable);
-
+
+
 }
 //BusinessRuleId:4973, Attribute:2, Operation:Object, Event:AFTERSAVING
 

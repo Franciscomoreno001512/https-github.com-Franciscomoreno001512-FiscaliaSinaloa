@@ -27,12 +27,12 @@
     List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion = null;
     if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion != null)
     { varTipo_de_Identificacion_Tipo_de_Identificacion = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion; }
- List<SelectListItem> varNacionalidad_Nacionalidad = null;
-    if (ViewBag.Nacionalidads_Nacionalidad != null)
-    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
     List<SelectListItem> varOcupacion_Ocupacion = null;
     if (ViewBag.Ocupacions_Ocupacion != null)
     { varOcupacion_Ocupacion = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion; }
+ List<SelectListItem> varNacionalidad_Nacionalidad = null;
+    if (ViewBag.Nacionalidads_Nacionalidad != null)
+    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
     List<SelectListItem> varMunicipio_Municipio_Corporacion = null;
     if (ViewBag.Municipios_Municipio_Corporacion != null)
     { varMunicipio_Municipio_Corporacion = (List<SelectListItem>)ViewBag.Municipios_Municipio_Corporacion; }
@@ -556,25 +556,6 @@
                     @Html.TextBoxFor(m => m.RFC, new { @class = "form-control", @type = "text", @id = "txtRFC" })
                 </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Datos_GeneralesResources.Calidad_Juridica</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Calidad_JuridicaFilter, filters, new { @class = "form-control", @id = "ddlCalidad_JuridicaFilter" })
-                    @Html.TextBoxFor(m => m.Calidad_Juridica, new { @class = "form-control", @type = "text", @id = "txtCalidad_Juridica" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Datos_GeneralesResources.Razon_Social</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Razon_SocialFilter, filters, new { @class = "form-control", @id = "ddlRazon_SocialFilter" })
-                    @Html.TextBoxFor(m => m.Razon_Social, new { @class = "form-control", @type = "text", @id = "txtRazon_Social" })
-                </div>
- List<SelectListItem> varNacionalidad_Nacionalidad = null;
-    if (ViewBag.Nacionalidads_Nacionalidad != null)
-    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
-                <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Datos_GeneralesResources.Ocupacion</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -595,6 +576,25 @@
                         });
                     }
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_GeneralesResources.Calidad_Juridica</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Calidad_JuridicaFilter, filters, new { @class = "form-control", @id = "ddlCalidad_JuridicaFilter" })
+                    @Html.TextBoxFor(m => m.Calidad_Juridica, new { @class = "form-control", @type = "text", @id = "txtCalidad_Juridica" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_GeneralesResources.Razon_Social</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Razon_SocialFilter, filters, new { @class = "form-control", @id = "ddlRazon_SocialFilter" })
+                    @Html.TextBoxFor(m => m.Razon_Social, new { @class = "form-control", @type = "text", @id = "txtRazon_Social" })
+                </div>
+ List<SelectListItem> varNacionalidad_Nacionalidad = null;
+    if (ViewBag.Nacionalidads_Nacionalidad != null)
+    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Datos_GeneralesResources.Municipio_Corporacion</h3>
                 </div>
@@ -2787,6 +2787,21 @@
             advanceSearch.Detalle_de_Datos_GeneralesRFC = $("#txtAdvanceRFC").val();
             advanceSearch.Detalle_de_Datos_GeneralesRFCSearchType = $("#ddlAdvanceRFCFilter").val();
         }
+        advanceSearch.OcupacionSearchType = 0;
+        if ($('#ddlAdvanceOcupacion').val().length > 0 || $("#txtAdvanceOcupacion").val() == "") {
+
+
+            if (isDetalle_de_Datos_GeneralesTextSearch) {
+                advanceSearch.OcupacionName = $("#txtAdvanceOcupacion").val();
+                advanceSearch.OcupacionNameSearchType = $("#ddlAdvanceOcupacion").val();
+                advanceSearch.OcupacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.OcupacionToSearch = $("#ddlAdvanceOcupacion").val();
+                advanceSearch.OcupacionSearchType = 2;
+            }
+        }
         if ($("#txtAdvanceCalidad_Juridica").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Datos_GeneralesCalidad_Juridica = $("#txtAdvanceCalidad_Juridica").val();
@@ -2810,21 +2825,6 @@
 
                 advanceSearch.NacionalidadToSearch = $("#ddlAdvanceNacionalidad").val();
                 advanceSearch.NacionalidadSearchType = 2;
-            }
-        }
-        advanceSearch.OcupacionSearchType = 0;
-        if ($('#ddlAdvanceOcupacion').val().length > 0 || $("#txtAdvanceOcupacion").val() == "") {
-
-
-            if (isDetalle_de_Datos_GeneralesTextSearch) {
-                advanceSearch.OcupacionName = $("#txtAdvanceOcupacion").val();
-                advanceSearch.OcupacionNameSearchType = $("#ddlAdvanceOcupacion").val();
-                advanceSearch.OcupacionSearchType = 1;
-            }
-            else {
-
-                advanceSearch.OcupacionToSearch = $("#ddlAdvanceOcupacion").val();
-                advanceSearch.OcupacionSearchType = 2;
             }
         }
         advanceSearch.Municipio_CorporacionSearchType = 0;
@@ -4531,15 +4531,6 @@
             isDetalle_de_Datos_GeneralesTextSearch = false;
             $("#txtAdvanceTipo_de_Identificacion").val('');
         });
-        $("#txtAdvanceNacionalidad").keypress(function () {
-            isDetalle_de_Datos_GeneralesTextSearch = true;
-            $("#ddlAdvanceNacionalidad").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceNacionalidad").change(function () {
-            isDetalle_de_Datos_GeneralesTextSearch = false;
-            $("#txtAdvanceNacionalidad").val('');
-        });
         $("#txtAdvanceOcupacion").keypress(function () {
             isDetalle_de_Datos_GeneralesTextSearch = true;
             $("#ddlAdvanceOcupacion").val('').trigger("chosen:updated");
@@ -4548,6 +4539,15 @@
         $("#ddlAdvanceOcupacion").change(function () {
             isDetalle_de_Datos_GeneralesTextSearch = false;
             $("#txtAdvanceOcupacion").val('');
+        });
+        $("#txtAdvanceNacionalidad").keypress(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = true;
+            $("#ddlAdvanceNacionalidad").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceNacionalidad").change(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = false;
+            $("#txtAdvanceNacionalidad").val('');
         });
         $("#txtAdvanceMunicipio_Corporacion").keypress(function () {
             isDetalle_de_Datos_GeneralesTextSearch = true;

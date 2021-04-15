@@ -3,7 +3,6 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Probable_Responsable_PC;
 using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
-using Spartane.Core.Domain.Tipo_de_Solicitud;
 using Spartane.Core.Domain.Respuesta;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
@@ -55,7 +54,6 @@ using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Probable_Responsable_PC;
 using Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Denuncia_Ciudadana;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Respuesta;
 using Spartane.Web.Areas.WebApiConsumer.Genero;
 using Spartane.Web.Areas.WebApiConsumer.Estado_Civil;
@@ -133,7 +131,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IProbable_Responsable_PCService service = null;
         private IProbable_Responsable_PCApiConsumer _IProbable_Responsable_PCApiConsumer;
         private ISolicitud_de_Denuncia_CiudadanaApiConsumer _ISolicitud_de_Denuncia_CiudadanaApiConsumer;
-        private ITipo_de_SolicitudApiConsumer _ITipo_de_SolicitudApiConsumer;
         private IRespuestaApiConsumer _IRespuestaApiConsumer;
         private IGeneroApiConsumer _IGeneroApiConsumer;
         private IEstado_CivilApiConsumer _IEstado_CivilApiConsumer;
@@ -189,7 +186,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Probable_Responsable_PCController(IProbable_Responsable_PCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IProbable_Responsable_PCApiConsumer Probable_Responsable_PCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer , ITipo_de_SolicitudApiConsumer Tipo_de_SolicitudApiConsumer , IRespuestaApiConsumer RespuestaApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IFroma_OjosApiConsumer Froma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , INariz_BaseApiConsumer Nariz_BaseApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer )
+        public Probable_Responsable_PCController(IProbable_Responsable_PCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IProbable_Responsable_PCApiConsumer Probable_Responsable_PCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitud_de_Denuncia_CiudadanaApiConsumer Solicitud_de_Denuncia_CiudadanaApiConsumer , IRespuestaApiConsumer RespuestaApiConsumer , IGeneroApiConsumer GeneroApiConsumer , IEstado_CivilApiConsumer Estado_CivilApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IForma_CaraApiConsumer Forma_CaraApiConsumer , ICejasApiConsumer CejasApiConsumer , ITamano_de_CejasApiConsumer Tamano_de_CejasApiConsumer , ILargo_de_CabelloApiConsumer Largo_de_CabelloApiConsumer , ICantidad_CabelloApiConsumer Cantidad_CabelloApiConsumer , IImplantacion_CabelloApiConsumer Implantacion_CabelloApiConsumer , IComplexionApiConsumer ComplexionApiConsumer , IColor_PielApiConsumer Color_PielApiConsumer , IFrenteApiConsumer FrenteApiConsumer , IForma_CabelloApiConsumer Forma_CabelloApiConsumer , IColor_de_CabelloApiConsumer Color_de_CabelloApiConsumer , ICalvicieApiConsumer CalvicieApiConsumer , IColor_OjosApiConsumer Color_OjosApiConsumer , IOjosApiConsumer OjosApiConsumer , IFroma_OjosApiConsumer Froma_OjosApiConsumer , IAnteojosApiConsumer AnteojosApiConsumer , IForma_de_NarizApiConsumer Forma_de_NarizApiConsumer , INariz_BaseApiConsumer Nariz_BaseApiConsumer , ILabiosApiConsumer LabiosApiConsumer , IBocaApiConsumer BocaApiConsumer , IGrosor_de_LabiosApiConsumer Grosor_de_LabiosApiConsumer , IMentonApiConsumer MentonApiConsumer , IForma_de_MentonApiConsumer Forma_de_MentonApiConsumer , IBarbaApiConsumer BarbaApiConsumer , IForma_OrejasApiConsumer Forma_OrejasApiConsumer , ITamano_OrejasApiConsumer Tamano_OrejasApiConsumer , ITipo_LobuloApiConsumer Tipo_LobuloApiConsumer , IBigoteApiConsumer BigoteApiConsumer , ISenas_ParticularesApiConsumer Senas_ParticularesApiConsumer , ISituacion_FisicaApiConsumer Situacion_FisicaApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -204,7 +201,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._ISolicitud_de_Denuncia_CiudadanaApiConsumer = Solicitud_de_Denuncia_CiudadanaApiConsumer;
-            this._ITipo_de_SolicitudApiConsumer = Tipo_de_SolicitudApiConsumer;
             this._IRespuestaApiConsumer = RespuestaApiConsumer;
             this._IGeneroApiConsumer = GeneroApiConsumer;
             this._IEstado_CivilApiConsumer = Estado_CivilApiConsumer;
@@ -322,12 +318,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Probable_Responsable_PCData.Clave 
 	                    ,Solicitud = Probable_Responsable_PCData.Solicitud
                     ,SolicitudFolio = CultureHelper.GetTraduction(Convert.ToString(Probable_Responsable_PCData.Solicitud), "Solicitud_de_Denuncia_Ciudadana") ??  (string)Probable_Responsable_PCData.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                    ,Tipo_de_Solicitud = Probable_Responsable_PCData.Tipo_de_Solicitud
-                    ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Probable_Responsable_PCData.Tipo_de_Solicitud), "Tipo_de_Solicitud") ??  (string)Probable_Responsable_PCData.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                     ,Tiene_informacion_responsable = Probable_Responsable_PCData.Tiene_informacion_responsable
                     ,Tiene_informacion_responsableDescripcion = CultureHelper.GetTraduction(Convert.ToString(Probable_Responsable_PCData.Tiene_informacion_responsable), "Respuesta") ??  (string)Probable_Responsable_PCData.Tiene_informacion_responsable_Respuesta.Descripcion
                     ,Quien_Resulte_Responsable = Probable_Responsable_PCData.Quien_Resulte_Responsable.GetValueOrDefault()
                     ,Persona_moral = Probable_Responsable_PCData.Persona_moral.GetValueOrDefault()
+                    ,Conoce_los_datos_del_representante_legal = Probable_Responsable_PCData.Conoce_los_datos_del_representante_legal.GetValueOrDefault()
+                    ,Razon_Social = Probable_Responsable_PCData.Razon_Social
                     ,Nombres = Probable_Responsable_PCData.Nombres
                     ,Apellido_Paterno = Probable_Responsable_PCData.Apellido_Paterno
                     ,Apellido_Materno = Probable_Responsable_PCData.Apellido_Materno
@@ -444,13 +440,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IRespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Respuestas_Tiene_informacion_responsable = _IRespuestaApiConsumer.SelAll(true);
             if (Respuestas_Tiene_informacion_responsable != null && Respuestas_Tiene_informacion_responsable.Resource != null)
@@ -760,12 +749,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Probable_Responsable_PCData.Clave 
 	                    ,Solicitud = Probable_Responsable_PCData.Solicitud
                     ,SolicitudFolio = CultureHelper.GetTraduction(Convert.ToString(Probable_Responsable_PCData.Solicitud), "Solicitud_de_Denuncia_Ciudadana") ??  (string)Probable_Responsable_PCData.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                    ,Tipo_de_Solicitud = Probable_Responsable_PCData.Tipo_de_Solicitud
-                    ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(Convert.ToString(Probable_Responsable_PCData.Tipo_de_Solicitud), "Tipo_de_Solicitud") ??  (string)Probable_Responsable_PCData.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                     ,Tiene_informacion_responsable = Probable_Responsable_PCData.Tiene_informacion_responsable
                     ,Tiene_informacion_responsableDescripcion = CultureHelper.GetTraduction(Convert.ToString(Probable_Responsable_PCData.Tiene_informacion_responsable), "Respuesta") ??  (string)Probable_Responsable_PCData.Tiene_informacion_responsable_Respuesta.Descripcion
                     ,Quien_Resulte_Responsable = Probable_Responsable_PCData.Quien_Resulte_Responsable.GetValueOrDefault()
                     ,Persona_moral = Probable_Responsable_PCData.Persona_moral.GetValueOrDefault()
+                    ,Conoce_los_datos_del_representante_legal = Probable_Responsable_PCData.Conoce_los_datos_del_representante_legal.GetValueOrDefault()
+                    ,Razon_Social = Probable_Responsable_PCData.Razon_Social
                     ,Nombres = Probable_Responsable_PCData.Nombres
                     ,Apellido_Paterno = Probable_Responsable_PCData.Apellido_Paterno
                     ,Apellido_Materno = Probable_Responsable_PCData.Apellido_Materno
@@ -880,13 +869,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IRespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Respuestas_Tiene_informacion_responsable = _IRespuestaApiConsumer.SelAll(true);
             if (Respuestas_Tiene_informacion_responsable != null && Respuestas_Tiene_informacion_responsable.Resource != null)
@@ -1165,27 +1147,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Folio).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud_de_Denuncia_Ciudadana", "Folio")?? m.Folio,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetTipo_de_SolicitudAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_SolicitudApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -2025,13 +1986,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IRespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Respuestas_Tiene_informacion_responsable = _IRespuestaApiConsumer.SelAll(true);
             if (Respuestas_Tiene_informacion_responsable != null && Respuestas_Tiene_informacion_responsable.Resource != null)
@@ -2288,13 +2242,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Solicituds_Tipo_de_Solicitud = _ITipo_de_SolicitudApiConsumer.SelAll(true);
-            if (Tipo_de_Solicituds_Tipo_de_Solicitud != null && Tipo_de_Solicituds_Tipo_de_Solicitud.Resource != null)
-                ViewBag.Tipo_de_Solicituds_Tipo_de_Solicitud = Tipo_de_Solicituds_Tipo_de_Solicitud.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Solicitud", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IRespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Respuestas_Tiene_informacion_responsable = _IRespuestaApiConsumer.SelAll(true);
             if (Respuestas_Tiene_informacion_responsable != null && Respuestas_Tiene_informacion_responsable.Resource != null)
@@ -2579,10 +2526,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                         ,Tiene_informacion_responsableDescripcion = CultureHelper.GetTraduction(m.Tiene_informacion_responsable_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Tiene_informacion_responsable_Respuesta.Descripcion
 			,Quien_Resulte_Responsable = m.Quien_Resulte_Responsable
 			,Persona_moral = m.Persona_moral
+			,Conoce_los_datos_del_representante_legal = m.Conoce_los_datos_del_representante_legal
+			,Razon_Social = m.Razon_Social
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
@@ -2761,10 +2709,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                         ,Tiene_informacion_responsableDescripcion = CultureHelper.GetTraduction(m.Tiene_informacion_responsable_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Tiene_informacion_responsable_Respuesta.Descripcion
 			,Quien_Resulte_Responsable = m.Quien_Resulte_Responsable
 			,Persona_moral = m.Persona_moral
+			,Conoce_los_datos_del_representante_legal = m.Conoce_los_datos_del_representante_legal
+			,Razon_Social = m.Razon_Social
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
@@ -3044,34 +2993,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Probable_Responsable_PC.Solicitud In (" + SolicitudIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Solicitud))
-            {
-                switch (filter.Tipo_de_SolicitudFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Tipo_de_Solicitud.Descripcion LIKE '" + filter.AdvanceTipo_de_Solicitud + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Tipo_de_Solicitud.Descripcion LIKE '%" + filter.AdvanceTipo_de_Solicitud + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Tipo_de_Solicitud.Descripcion = '" + filter.AdvanceTipo_de_Solicitud + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Tipo_de_Solicitud.Descripcion LIKE '%" + filter.AdvanceTipo_de_Solicitud + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceTipo_de_SolicitudMultiple != null && filter.AdvanceTipo_de_SolicitudMultiple.Count() > 0)
-            {
-                var Tipo_de_SolicitudIds = string.Join(",", filter.AdvanceTipo_de_SolicitudMultiple);
-
-                where += " AND Probable_Responsable_PC.Tipo_de_Solicitud In (" + Tipo_de_SolicitudIds + ")";
-            }
-
             if (!string.IsNullOrEmpty(filter.AdvanceTiene_informacion_responsable))
             {
                 switch (filter.Tiene_informacion_responsableFilter)
@@ -3105,6 +3026,31 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             if (filter.Persona_moral != RadioOptions.NoApply)
                 where += " AND Probable_Responsable_PC.Persona_moral = " + Convert.ToInt32(filter.Persona_moral);
+
+            if (filter.Conoce_los_datos_del_representante_legal != RadioOptions.NoApply)
+                where += " AND Probable_Responsable_PC.Conoce_los_datos_del_representante_legal = " + Convert.ToInt32(filter.Conoce_los_datos_del_representante_legal);
+
+            if (!string.IsNullOrEmpty(filter.Razon_Social))
+            {
+                switch (filter.Razon_SocialFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Probable_Responsable_PC.Razon_Social LIKE '" + filter.Razon_Social + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Probable_Responsable_PC.Razon_Social LIKE '%" + filter.Razon_Social + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Probable_Responsable_PC.Razon_Social = '" + filter.Razon_Social + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Probable_Responsable_PC.Razon_Social LIKE '%" + filter.Razon_Social + "%'";
+                        break;
+                }
+            }
 
             if (!string.IsNullOrEmpty(filter.Nombres))
             {
@@ -4739,10 +4685,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varProbable_Responsable_PC.Clave
                         ,Solicitud = varProbable_Responsable_PC.Solicitud
-                        ,Tipo_de_Solicitud = varProbable_Responsable_PC.Tipo_de_Solicitud
                         ,Tiene_informacion_responsable = varProbable_Responsable_PC.Tiene_informacion_responsable
                         ,Quien_Resulte_Responsable = varProbable_Responsable_PC.Quien_Resulte_Responsable
                         ,Persona_moral = varProbable_Responsable_PC.Persona_moral
+                        ,Conoce_los_datos_del_representante_legal = varProbable_Responsable_PC.Conoce_los_datos_del_representante_legal
+                        ,Razon_Social = varProbable_Responsable_PC.Razon_Social
                         ,Nombres = varProbable_Responsable_PC.Nombres
                         ,Apellido_Paterno = varProbable_Responsable_PC.Apellido_Paterno
                         ,Apellido_Materno = varProbable_Responsable_PC.Apellido_Materno
@@ -5196,10 +5143,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                         ,Tiene_informacion_responsableDescripcion = CultureHelper.GetTraduction(m.Tiene_informacion_responsable_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Tiene_informacion_responsable_Respuesta.Descripcion
 			,Quien_Resulte_Responsable = m.Quien_Resulte_Responsable
 			,Persona_moral = m.Persona_moral
+			,Conoce_los_datos_del_representante_legal = m.Conoce_los_datos_del_representante_legal
+			,Razon_Social = m.Razon_Social
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
@@ -5337,10 +5285,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                         ,Tiene_informacion_responsableDescripcion = CultureHelper.GetTraduction(m.Tiene_informacion_responsable_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Tiene_informacion_responsable_Respuesta.Descripcion
 			,Quien_Resulte_Responsable = m.Quien_Resulte_Responsable
 			,Persona_moral = m.Persona_moral
+			,Conoce_los_datos_del_representante_legal = m.Conoce_los_datos_del_representante_legal
+			,Razon_Social = m.Razon_Social
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno
@@ -5460,10 +5409,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varProbable_Responsable_PC.Clave
                                             ,Solicitud = varProbable_Responsable_PC.Solicitud
-                        ,Tipo_de_Solicitud = varProbable_Responsable_PC.Tipo_de_Solicitud
                         ,Tiene_informacion_responsable = varProbable_Responsable_PC.Tiene_informacion_responsable
                         ,Quien_Resulte_Responsable = varProbable_Responsable_PC.Quien_Resulte_Responsable
                         ,Persona_moral = varProbable_Responsable_PC.Persona_moral
+                        ,Conoce_los_datos_del_representante_legal = varProbable_Responsable_PC.Conoce_los_datos_del_representante_legal
+                        ,Razon_Social = varProbable_Responsable_PC.Razon_Social
                         ,Nombres = varProbable_Responsable_PC.Nombres
                         ,Apellido_Paterno = varProbable_Responsable_PC.Apellido_Paterno
                         ,Apellido_Materno = varProbable_Responsable_PC.Apellido_Materno
@@ -5510,12 +5460,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Solicitud = m.Solicitud
                         ,SolicitudFolio = CultureHelper.GetTraduction(m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Clave.ToString(), "Solicitud_de_Denuncia_Ciudadana") ?? (string)m.Solicitud_Solicitud_de_Denuncia_Ciudadana.Folio
-                        ,Tipo_de_Solicitud = m.Tipo_de_Solicitud
-                        ,Tipo_de_SolicitudDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Solicitud_Tipo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Solicitud_Tipo_de_Solicitud.Descripcion
                         ,Tiene_informacion_responsable = m.Tiene_informacion_responsable
                         ,Tiene_informacion_responsableDescripcion = CultureHelper.GetTraduction(m.Tiene_informacion_responsable_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Tiene_informacion_responsable_Respuesta.Descripcion
 			,Quien_Resulte_Responsable = m.Quien_Resulte_Responsable
 			,Persona_moral = m.Persona_moral
+			,Conoce_los_datos_del_representante_legal = m.Conoce_los_datos_del_representante_legal
+			,Razon_Social = m.Razon_Social
 			,Nombres = m.Nombres
 			,Apellido_Paterno = m.Apellido_Paterno
 			,Apellido_Materno = m.Apellido_Materno

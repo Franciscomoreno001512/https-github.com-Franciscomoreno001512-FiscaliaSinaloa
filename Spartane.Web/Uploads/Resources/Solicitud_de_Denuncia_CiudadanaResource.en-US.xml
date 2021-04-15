@@ -9,10 +9,30 @@
   <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
   <resource culture="en-US" name="Tipo_de_Solicitud" value="Tipo de Solicitud"></resource>
   <resource culture="en-US" name="Estatus_de_Solicitud" value="Estatus de Solicitud"></resource>
+  <resource culture="en-US" name="Motivo" value="Motivo"></resource>
   <resource culture="en-US" name="Canalizar_a" value="Canalizar a"></resource>
+  <resource culture="en-US" name="Fecha_de_Revision" value="Fecha de Revisión"></resource>
+  <resource culture="en-US" name="Hora_de_Revision" value="Hora de Revisión"></resource>
+  <resource culture="en-US" name="Usuario_que_Revisa" value="Usuario que Revisa"></resource>
+  <resource culture="en-US" name="Tipo_de_Resolucion" value="Tipo de Resolución"></resource>
+  <resource culture="en-US" name="Region" value="Región"></resource>
   <resource culture="en-US" name="Unidad_canaliza" value="Unidad"></resource>
+  <resource culture="en-US" name="Contestacion" value="Contestación (ESTA CONTESTACIÓN LA VISUALIZARÁ EL CIUDADANO)"></resource>
+  <resource culture="en-US" name="Observaciones_resolucion" value="Observaciones"></resource>
+  <resource culture="en-US" name="Fecha_de_Asignacion" value="Fecha de Asignación"></resource>
+  <resource culture="en-US" name="Hora_de_Asignacion" value="Hora de Asignación"></resource>
+  <resource culture="en-US" name="Usuario_que_Asigna" value="Usuario que Asigna"></resource>
+  <resource culture="en-US" name="Responsable_Asignado" value="Responsable Asignado"></resource>
+  <resource culture="en-US" name="Observaciones_responsable" value="Observaciones"></resource>
+  <resource culture="en-US" name="Fecha_de_Atencion" value="Fecha de Atención"></resource>
+  <resource culture="en-US" name="Hora_de_Atencion" value="Hora de Atención"></resource>
+  <resource culture="en-US" name="Usuario_que_Atiende" value="Usuario que Atiende"></resource>
+  <resource culture="en-US" name="Atencion_Realizada" value="Atención Realizada"></resource>
+  <resource culture="en-US" name="Observaciones_atencion" value="Observaciones (ESTA CONTESTACIÓN LA VISUALIZARÁ EL CIUDADANO)"></resource>
 
 <resource culture="en-US" name="TabDatos_de_la_Solicitud" value="Datos de la Solicitud"></resource>
-<resource culture="en-US" name="TabCanalizar" value="Canalizar"></resource>
+<resource culture="en-US" name="TabResolucion" value="Resolución"></resource>
+<resource culture="en-US" name="TabAsignar_Responsable_de_Atencion" value="Asignar Responsable de Atención"></resource>
+<resource culture="en-US" name="TabAtencion" value="Atención"></resource>
 
 </resources>

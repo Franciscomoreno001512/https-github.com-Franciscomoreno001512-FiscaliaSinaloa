@@ -6,6 +6,7 @@
   <resource culture="es-es" name="Diligencia" value="Diligencia"></resource>
   <resource culture="es-es" name="Origen" value="Origen"></resource>
   <resource culture="es-es" name="Tipo_de_Documento" value="Tipo de Documento"></resource>
+  <resource culture="es-es" name="Area_de_Servicios_de_Apoyo" value="Área de Servicios de Apoyo"></resource>
   <resource culture="es-es" name="SubArea_de_Servicios_de_Apoyo" value="SubArea de Servicios de Apoyo"></resource>
   <resource culture="es-es" name="idFormato" value="idFormato"></resource>
   <resource culture="es-es" name="Requerido" value="Solicitar Requerido/Probable Responsable"></resource>

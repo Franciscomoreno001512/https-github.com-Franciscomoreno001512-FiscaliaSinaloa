@@ -13,6 +13,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         {
             Quien_Resulte_Responsable = RadioOptions.NoApply;
             Persona_moral = RadioOptions.NoApply;
+            Conoce_los_datos_del_representante_legal = RadioOptions.NoApply;
             Fotografia_de_la_identificacion = RadioOptions.NoApply;
             Imagen_Tatuaje = RadioOptions.NoApply;
 
@@ -27,10 +28,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceSolicitud { set; get; }
         public int[] AdvanceSolicitudMultiple { set; get; }
 
-        public Filters Tipo_de_SolicitudFilter { set; get; }
-        public string AdvanceTipo_de_Solicitud { set; get; }
-        public int[] AdvanceTipo_de_SolicitudMultiple { set; get; }
-
         public Filters Tiene_informacion_responsableFilter { set; get; }
         public string AdvanceTiene_informacion_responsable { set; get; }
         public int[] AdvanceTiene_informacion_responsableMultiple { set; get; }
@@ -38,6 +35,11 @@ namespace Spartane.Web.Areas.Frontal.Models
         public RadioOptions Quien_Resulte_Responsable { set; get; }
 
         public RadioOptions Persona_moral { set; get; }
+
+        public RadioOptions Conoce_los_datos_del_representante_legal { set; get; }
+
+        public Filters Razon_SocialFilter { set; get; }
+        public string Razon_Social { set; get; }
 
         public Filters NombresFilter { set; get; }
         public string Nombres { set; get; }
