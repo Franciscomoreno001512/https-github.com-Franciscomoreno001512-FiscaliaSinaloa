@@ -48,7 +48,7 @@ $('.modal').on('hidden.bs.modal', function(e) {
 
 //CONVERTIR A MAYUSCULAS AL BLUR - FELIPE RODRIGUEZ
 $('input[type="text"],textarea').blur(function() {
-    let dimissed_ids = ["Usuario","Correo","Password","Email","Username", "myInput"];
+    let dimissed_ids = ["Usuario","Correo","Password","Email","Username", "myInput","query"];
     let id = this.id;
     if(!dimissed_ids.includes(id))
         this.value = this.value.toUpperCase();
@@ -62,18 +62,12 @@ $('input[type="text"],textarea').css("font-size", "15px");
 var controlDocumentoDynamiSeach = false;
 $(function() {
 
-    $('#Fecha_de_Nacimiento').parent().datepicker({
+$('[id="datetimepicker1"]').datepicker({
         format: "dd-mm-yyyy",
         //endDate: '-1d'
     });
 
-    $('#Fecha_del_Hecho').parent().datepicker({
-        format: "dd-mm-yyyy",
-        //endDate: '-1d'
-    });
-
-
-    $('#Fecha_de_Nacimiento').blur(function() {
+	$('[id="datetimepicker1"]').children('input').blur(function() {
         var regex = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
         if (regex.test($(this).val())) {
             return true;
@@ -83,17 +77,8 @@ $(function() {
         }
     });
 
-    $('#Fecha_del_Hecho').blur(function() {
-        var regex = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
-        if (regex.test($(this).val())) {
-            return true;
-        } else {
-            $(this).val('');
-            return false;
-        }
-    });
-
-    $('#Fecha_de_Nacimiento').inputmask("datetime", {
+	
+	$('[id="datetimepicker1"]').children('input').inputmask("datetime", {
         mask: "1-2-y",
         placeholder: "__-__-____",
         leapday: "-02-29",
@@ -101,17 +86,6 @@ $(function() {
         alias: "dd/mm/yyyy"
     });
 
-    $('#Fecha_del_Hecho').inputmask("datetime", {
-        mask: "1-2-y",
-        placeholder: "__-__-____",
-        leapday: "-02-29",
-        separator: "-",
-        alias: "dd/mm/yyyy"
-    });
-    //fjmore se comenta porque hace que cuando seleciones una fecha se muestre el clockpicker y el datepicker
-    //$('.input-group.date').datepicker({
-    //    format: "dd-mm-yyyy"
-    //});
 
     $('.inputclientrequired').blur(function() {
         if ($(this).val() == '') {

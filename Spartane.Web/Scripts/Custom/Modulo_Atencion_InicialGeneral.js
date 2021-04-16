@@ -869,7 +869,8 @@ $(document).ready(function () {
                     }
 					else {						
 						if (!isMR)
-							window.opener.RefreshCatalog('Modulo_Atencion_Inicial', nameAttribute);
+						window.location = 'http://192.168.1.101/MVCfiscaliasinaloa/Frontal/Home/Index';
+							//window.opener.RefreshCatalog('Modulo_Atencion_Inicial', nameAttribute);
 						else {
 							var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
 							if(!control.hasClass('AutoComplete'))
