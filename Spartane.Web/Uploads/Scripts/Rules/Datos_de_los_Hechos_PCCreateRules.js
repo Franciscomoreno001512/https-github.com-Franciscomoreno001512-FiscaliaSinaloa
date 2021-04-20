@@ -71,6 +71,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Poblacion' + rowIndex),nameOfTa
 
 //BusinessRuleId:4802, Attribute:269232, Operation:Field, Event:None
 
+//BusinessRuleId:4986, Attribute:269413, Operation:Field, Event:None
+$("form#CreateDatos_de_los_Hechos_PC").on('change', '#Fosa_clandestina', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Fosa_clandestina' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { SetRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));} else { SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));}
+});
+
+//BusinessRuleId:4986, Attribute:269413, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 

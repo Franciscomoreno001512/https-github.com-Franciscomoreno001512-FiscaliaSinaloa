@@ -40,20 +40,22 @@ function IniciaMR() {
 // INIT-CODIGO-MANUAL Valida que se escoja una persona por lo menos
 const ValidarSeleccionados = function(){
     let array = [];
-    let td = $("#Personas_donde_se_ejecuto_mandamientoGrid").find('tr').children().not('th');
-    $.each(td, function(index, val){
-        let id = val.id;
-        let length = id.length;
-        let campoTabla = id.slice(0, id.lastIndexOf("_"));
-        let campo = campoTabla.slice(campoTabla.lastIndexOf("_") + 1 , campoTabla.length);
+    //let td = $("#Personas_donde_se_ejecuto_mandamientoGrid").find('tr').children().not('th');
+    // $.each(td, function(index, val){
+    //     let id = val.id;
+    //     let length = id.length;
+    //     let campoTabla = id.slice(0, id.lastIndexOf("_"));
+    //     let campo = campoTabla.slice(campoTabla.lastIndexOf("_") + 1 , campoTabla.length);
 
-        // Obtiene los valores de la columna donde esta el checkbox de seleccionar y los almacena en array
-        if(campo == 'Seleccionar'){
-            array.push(val.textContent);
-        }
-    });
-    // Revisar que por lo menos uno sea true, el texto de la columna
-    const anyTrue = array.some((element) => element === 'true');
+    //     // Obtiene los valores de la columna donde esta el checkbox de seleccionar y los almacena en array
+    //     if(campo == 'Seleccionar'){
+    //         array.push(val.textContent);
+    //     }
+    // });
+    // // Revisar que por lo menos uno sea true, el texto de la columna
+    // const anyTrue = array.some((element) => element === 'true');
+    let seleccionados = $("#Personas_donde_se_ejecuto_mandamientoGrid").find('input:checkbox.Seleccionar');
+    let anyTrue = seleccionados.is(":checked");
     return anyTrue;
 }
 // END-CODIGO-MANUAL

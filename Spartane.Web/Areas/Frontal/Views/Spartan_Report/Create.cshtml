@@ -4,77 +4,40 @@
 @using Spartane.Core.Domain.Permission
 @using Spartane.Core.Domain.Spartane_File
 @using Spartane.Web.Helpers
-@model Spartane.Web.Areas.Frontal.Models.Spartan_FormatModel
+@model Spartane.Web.Areas.Frontal.Models.Spartan_ReportModel
 @{
 
+    /*
     string Registration_Date = "";
     if (Model.Registration_Date == "")
     { Model.Registration_Date = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
-    List<SelectListItem> varSpartan_Format_Type = null;
-    if (ViewBag.Spartan_Format_Types != null)
-    { varSpartan_Format_Type = (List<SelectListItem>)ViewBag.Spartan_Format_Types; }
+*/
+    List<SelectListItem> varSpartan_User_Registration_User = null;
+    if (ViewBag.Spartan_Users_Registration_User != null)
+    { varSpartan_User_Registration_User = (List<SelectListItem>)ViewBag.Spartan_Users_Registration_User; }
+    List<SelectListItem> varSpartan_Object_Object = null;
+    if (ViewBag.Spartan_Objects_Object != null)
+    { varSpartan_Object_Object = (List<SelectListItem>)ViewBag.Spartan_Objects_Object; }
+    List<SelectListItem> varSpartan_Report_Presentation_Type_Presentation_Type = null;
+    if (ViewBag.Spartan_Report_Presentation_Types_Presentation_Type != null)
+    { varSpartan_Report_Presentation_Type_Presentation_Type = (List<SelectListItem>)ViewBag.Spartan_Report_Presentation_Types_Presentation_Type; }
+    List<SelectListItem> varSpartan_Report_Presentation_View_Presentation_View = null;
+    if (ViewBag.Spartan_Report_Presentation_Views_Presentation_View != null)
+    { varSpartan_Report_Presentation_View_Presentation_View = (List<SelectListItem>)ViewBag.Spartan_Report_Presentation_Views_Presentation_View; }
+    List<SelectListItem> varSpartan_Report_Status_Status = null;
+    if (ViewBag.Spartan_Report_Statuss_Status != null)
+    { varSpartan_Report_Status_Status = (List<SelectListItem>)ViewBag.Spartan_Report_Statuss_Status; }
 
-
-    List<SelectListItem> varSpartan_Object = null;
-    if (ViewBag.Spartan_Objects != null)
-    { varSpartan_Object = (List<SelectListItem>)ViewBag.Spartan_Objects; }
-
-    List<SelectListItem> varUsers = null;
-    if (ViewBag.Users != null)
-    { varUsers = (List<SelectListItem>)ViewBag.Users; }
+    Permission permissionSpartan_Report_Fields_Detail = ViewBag.PermissionSpartan_Report_Fields_Detail;
+    Permission permissionSpartan_Report_Filter = ViewBag.PermissionSpartan_Report_Filter;
 
     Permission permission = ViewBag.Permission;
 }
-<div class="modal fade" id="propertybagField" style="background-color:rgba(0, 0, 0, 0.7);">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">
-                    Property Bags
-                    <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
-                </h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <input type="hidden" id="field" value="" />
-                    <div class="row form-group" id="defaultDiv">
-                        <label class="col-sm-2 control-label">@Resources.Spartan_FormatResources.DefaultValueifEmpty</label>
-                        <div class="col-sm-8">
-                            <input class="form-control" id="default" type="text" />
-                        </div>
-                    </div>
-
-                    <div class="row form-group hide" id="QueryDiv">
-                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Query</label>
-                        <div class="col-sm-8">
-                            <textarea class="form-control" id="query" type="text" cols="4" rows="4"> </textarea>
-                        </div>
-                    </div>
-                    <div class="form-group hide" id="formatDiv">
-                        <label class="col-sm-2 control-label">@Resources.Spartan_FormatResources.Format</label>
-                        <div class="col-sm-8">
-                            <input class="form-control" id="format" type="text" />
-                        </div>
-                    </div>
-
-                    <div class="row form-group hide" id="QueryEditorHtml">
-                        <label class="col-sm-2 control-label">Code Html for  table</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" data-type="ckEditor" id="CodeHtml" type="text"> </textarea>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <a class="btn btn-primary" onclick="SavePropertyField()">@Resources.Resources.Save</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<script src="~/Scripts/plugins/jquery-ui/jquery-ui.js"></script>
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div aria-hidden="true" class="modal fade in AdvanceFilter" data-backdrop="static" id="AdvanceFilter-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
 </div>
-
-
-
 <div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -96,14 +59,12 @@
         </div>
     </div>
 </div>
-
 <div class="row wrapper border-bottom white-bg page-heading">
-
     <div class="row">
         <div class="col-lg-10">
             <h2>
-                @Resources.Spartan_FormatResources.Spartan_Format
-                <button onclick="Spartan_FormatGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Spartan_FormatBusinessRule-form">
+                @Resources.Spartan_ReportResources.Spartan_Report
+                <button onclick="Spartan_ReportGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Spartan_ReportBusinessRule-form">
                     <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
                         <i class="fa fa-cogs fa-spin"></i>
                     </a>
@@ -114,7 +75,7 @@
                     <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
                 </li>
                 <li class="">
-                    <label>@Resources.Spartan_FormatResources.Spartan_Format</label>
+                    <label>@Resources.Spartan_ReportResources.Spartan_Report</label>
                 </li>
                 <li class="active">
                     <strong>@Resources.Resources.Create</strong>
@@ -122,16 +83,15 @@
             </ol>
         </div>
         <div class="col-lg-2">
-
             @{
                 if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
                 {
                     <h2>&nbsp;</h2>
-                    <button onclick="Spartan_FormatDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                    <button onclick="Spartan_ReportDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
                         <i class="fa fa-cogs fa-spin"></i>
                     </button>
 
-                    <div aria-hidden="true" class="modal fade in Spartan_FormatPropertyBusinessModal" id="Spartan_FormatPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    <div aria-hidden="true" class="modal fade in Spartan_ReportPropertyBusinessModal" id="Spartan_ReportPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -147,7 +107,7 @@
                                         </div>
                                         <div class="clearfix col-sm-12">&nbsp;</div>
                                         <div class="col-sm-12">
-                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Spartan_FormatBusinessRule-form" onclick="Spartan_FormatGetBusinessRule()">Business Rule</a>
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Spartan_ReportBusinessRule-form" onclick="Spartan_ReportGetBusinessRule()">Business Rule</a>
                                         </div>
                                     </div>
                                 </div>
@@ -157,269 +117,380 @@
 
                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                     </div>
-                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_FormatBusinessRuleModal" id="Spartan_FormatBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_ReportBusinessRuleModal" id="Spartan_ReportBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                     </div>
-                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_FormatAddBusinessRuleModal" id="AddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_ReportAddBusinessRuleModal" id="Spartan_ReportAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                     </div>
+
+                    <div aria-hidden="true" class="modal fade in AddSpartan_Report_Fields_DetailModal" id="AddSpartan_Report_Fields_Detail-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+                    <div aria-hidden="true" class="modal fade in AddSpartan_Report_FilterModal" id="AddSpartan_Report_Filter-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
 
                 }
             }
+            @*<div aria-hidden="true" data-backdrop="static" class="modal fade in AdvanceFilters" id="AdvanceFilters-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>*@
+            <div aria-hidden="true" class="modal fade in FieldPopUp" id="FieldPopUp-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+            </div>
         </div>
     </div>
-
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="ibox float-e-margins">
-            <div class="ibox-content">
-
-                @using (Html.BeginForm("Post", "Spartan_Format", FormMethod.Post, new { id = "CreateSpartan_Format", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
-                {
-                    <input type="hidden" id="hdnObjectId" name="hdnObjectId" value="@ViewBag.ObjectId" />
-                    <span id="popupNotification"></span>
-                    <div class="container-fluid Spartan_FormatCreateForm" id="viewmodeledit">
-                        <div class="tabs-container">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#tabDatos_Generales">@Resources.Spartan_FormatResources.GeneralData</a></li>
-                                <li class=""><a data-toggle="tab" href="#tabFormat_Design"> @Resources.Spartan_FormatResources.FormatDesign</a></li>
-                                <li class=""><a data-toggle="tab" href="#tabFilters"> @Resources.Spartan_FormatResources.Filters</a></li>
-                                <li class=""><a data-toggle="tab" href="#tabFormatosRelacionados"> @Resources.Spartan_FormatResources.RelatedFormats</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div id="tabDatos_Generales" class="tab-pane active">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divFormatId">
-                                            <label class="col-sm-2 control-label">@Resources.Spartan_FormatResources.FormatId</label>
-                                            <div class="col-sm-8" data-field-id="FormatId" data-attribute="157229" data-field-name="@Resources.Spartan_FormatResources.FormatId">
-                                                <label class="form-control" for="FormatId" id="lblFormatId">@Model.FormatId</label>
-                                            </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Spartan_Report", FormMethod.Post, new { id = "CreateSpartan_Report", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Spartan_ReportCreateForm" id="viewmodeledit">
+                    <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                    </div>
+                    <div class="tabs-container">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Spartan_ReportResources.TabDatos_Generales</a></li>
+                            <li class="liTabData" style="display:none;"><a data-toggle="tab" href="#tabData"> @Resources.Spartan_ReportResources.TabData</a></li>
+                            <li class="liTabFilters" style="display:none;"><a data-toggle="tab" href="#tabFilters"> @Resources.Spartan_ReportResources.TabFilters</a></li>
+                            <li class="liTabDesign" style="display:none;"><a data-toggle="tab" href="#tabDesign"> @Resources.Spartan_ReportResources.TabDesign</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                                    <div class="form-group" id="divReportId">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.ReportId</label>
+                                        <div class="col-sm-8" data-field-id="ReportId" data-attribute="182303" data-field-name="@Resources.Spartan_ReportResources.ReportId">
+                                            <label class="form-control" for="ReportId" id="lblReportId">
+                                                @if (Model.ReportId == 0)
+                                                {
+                                                    <text>@Resources.Resources.ClaveDefault</text>
+                                                }
+                                                else
+                                                {
+                                                    <text>@Model.ReportId</text>
+                                                }
+                                            </label>
                                         </div>
-                                        <div class="form-group" id="divRegistration_Date">
-                                            <label class="col-sm-2 control-label">@Resources.Spartan_FormatResources.Registration_Date</label>
-                                            <div class="col-sm-8" data-field-id="Registration_Date" data-attribute="157230" data-field-name="@Resources.Spartan_FormatResources.Registration_Date">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input class="form-control col-md-12" id="Registration_Date" disabled="disabled" readonly="readonly" name="Registration_Date" type="text" value="@Model.Registration_Date">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="form-group" id="divReport_Name">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Report_Name</label>
+                                        <div class="col-sm-8" data-field-id="Report_Name" data-attribute="182304" data-field-name="@Resources.Spartan_ReportResources.Report_Name">
+                                            <input class="form-control" id="Report_Name" name="Report_Name" type="text" value="@Model.Report_Name">
+                                            @*<span class="field-validation-valid" data-valmsg-for="Report_Name" data-valmsg-replace="true"></span>*@
                                         </div>
-                                        <div class="form-group" id="divRegistration_Hour">
-                                            <label class="col-sm-2 control-label">@Resources.Spartan_FormatResources.Registration_Hour</label>
-                                            <div class="col-sm-8" data-field-id="Registration_Hour" data-attribute="157231" data-field-name="@Resources.Spartan_FormatResources.Registration_Hour">
-                                                <div class='input-group date' id='timePicker'>
-                                                    <input class="form-control col-md-12" id="Registration_Hour" readonly="readonly" disabled="disabled" name="Registration_Hour" type="text" data-autoclose="true" value="@Model.Registration_Hour">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-time"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divRegistration_User">
-                                            <label class="col-sm-2 control-label">@Resources.Spartan_FormatResources.Registration_User</label>
-                                            <div class="col-sm-8" data-field-id="Registration_User" data-attribute="157232" data-field-name="@Resources.Spartan_FormatResources.Registration_User">
-                                                @*<span class="field-validation-valid" data-valmsg-for="Registration_User" data-valmsg-replace="true"></span>*@
-                                                <select class="form-control" disabled="disabled" data-val="true" data-val-number="The field Format Type must be a number." data-val-required="The User Registration field is required." id="Registration_User" name="Registration_User">
-                                                    <option value=""></option>
-                                                    @if (varUsers != null)
-                                                    {
-                                                        foreach (var itemUser in varUsers)
-                                                        {
-                                                            if (itemUser.Value == Convert.ToString(Model.Registration_User))
-                                                            {
-                                                                <option value="@itemUser.Value" selected>@itemUser.Text</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@itemUser.Value">@itemUser.Text</option>
-                                                            }
-                                                        }
-                                                    }
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divFormat_Name">
-                                            <label class="col-sm-2 control-label">@Resources.Spartan_FormatResources.Format_Name</label>
-                                            <div class="col-sm-8" data-field-id="Format_Name" data-attribute="157233" data-field-name="@Resources.Spartan_FormatResources.Format_Name">
-                                                <input class="form-control" id="Format_Name" name="Format_Name" type="text" value="@Model.Format_Name">
-                                                @*<span class="field-validation-valid" data-valmsg-for="Format_Name" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divFormat_Type">
-                                            <label class="col-sm-2 control-label">@Resources.Spartan_FormatResources.Format_Type</label>
-                                            <div class="col-sm-8" data-field-id="Format_Type" data-attribute="157238" data-field-name="@Resources.Spartan_FormatResources.Format_Type">
-                                                <select class="form-control" data-val="true" data-val-number="The field Format Type must be a number." data-val-required="The Format Type field is required." id="Format_Type" name="Format_Type">
-                                                    <option value=""></option>
-                                                    @if (varSpartan_Format_Type != null)
-                                                    {
-                                                        foreach (var itemFormat_Type in varSpartan_Format_Type)
-                                                        {
-                                                            if (itemFormat_Type.Value == Convert.ToString(Model.Format_Type))
-                                                            {
-                                                                <option value="@itemFormat_Type.Value" selected>@itemFormat_Type.Text</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@itemFormat_Type.Value">@itemFormat_Type.Text</option>
-                                                            }
-                                                        }
-                                                    }
-                                                </select>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Format_Type" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divSearch">
-                                            <label class="col-sm-2 control-label">@Resources.Spartan_FormatResources.Search</label>
-                                            <div class="col-sm-8" data-field-id="Search" data-attribute="157239" data-field-name="@Resources.Spartan_FormatResources.Search">
-                                                <div class=" input-group">
-                                                    <input class="form-control" id="Search" name="Search" type="text" value="@Model.Search">
-                                                    <div class="input-group-btn">
-                                                        <button type="button" id="filterObject" class="btn btn-default">
-                                                            <span class="glyphicon glyphicon-search"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divObject">
-                                            <label class="col-sm-2 control-label">@Resources.Spartan_FormatResources.Object</label>
-                                            <div class="col-sm-8" data-field-id="Object" data-attribute="157240" data-field-name="@Resources.Spartan_FormatResources.Object">
-                                                <select class="form-control inputNumber chosen-select" data-val="true" id="Object" name="Object" value="@Model.Object">
-                                                    <option value=""></option>
-
-                                                    @if (varSpartan_Object != null)
-                                                    {
-                                                        foreach (var itemFormat_Object in varSpartan_Object)
-                                                        {
-                                                            if (itemFormat_Object.Value == Convert.ToString(Model.Object))
-                                                            {
-                                                                <option value="@itemFormat_Object.Value" selected>@itemFormat_Object.Text</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@itemFormat_Object.Value">@itemFormat_Object.Text</option>
-                                                            }
-                                                        }
-                                                    }
-                                                </select>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Object" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group" id="divFolio">
-                                            <label class="col-sm-2 control-label">Folio</label>
-                                            <div class="col-sm-8" data-field-id="FolioId" data-field-name="Folio">
-                                                <input class="form-control" id="FolioId" name="FolioId" type="text">
+                                    </div>
+                                    <div class="form-group" id="divRegistration_Date">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Registration_Date</label>
+                                        <div class="col-sm-8" data-field-id="Registration_Date" data-attribute="182305" data-field-name="@Resources.Spartan_ReportResources.Registration_Date">
+                                            <div class='input-group date' id='datetimepicker1'>
+                                                <input disabled="disabled" class="form-control col-md-12" id="Registration_Date" name="Registration_Date" type="text" value="@Model.Registration_Date">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="tabFormat_Design" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <div class="jsTree-metadata">
-                                                    <div id="jstree_espartan_metadata">
-                                                    </div>
-                                                </div>
-
-                                                <div class="clear">
-                                                    <p><h4 class="modal-title">Extra data sources </h4> </p>
-                                                    <div class="row">
-                                                        <ul class="nav nav-pills-horizontal">
-                                                            <li><a id="dragSqlField" href="#" draggable="true" title="Campo Valor SQL"><i class="fa fa-database"></i></a></li>
-                                                            <li><a id="dragSqlTable" href="#" draggable="true" title="Table from SQL"><i class="fa fa-table"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <div class="tabs-container">
-                                                    <ul class="nav nav-tabs">
-                                                        <li><a data-toggle="tab" href="#tabHeader"> @Resources.Spartan_FormatResources.Header</a></li>
-                                                        <li class="active"><a data-toggle="tab" href="#tabBody">@Resources.Spartan_FormatResources.Body</a></li>
-                                                        <li><a data-toggle="tab" href="#tabFooter">@Resources.Spartan_FormatResources.Footer</a></li>
-                                                    </ul>
-                                                    <div class="tab-content">
-                                                        <div class="form-group tab-pane" id="tabHeader">
-                                                            <div class="col-sm-12" cols="80" rows="10" data-field-id="Header" data-attribute="157271" data-field-name="@Resources.Spartan_FormatResources.Header">
-                                                                <textarea class="editor" data-type="ckEditor" name="Header" id="Header">@Html.Raw(Model.Header)</textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group tab-pane active" id="tabBody">
-                                                            <div class="col-sm-12" data-field-id="Body" data-attribute="157272" data-field-name="@Resources.Spartan_FormatResources.Body">
-                                                                <textarea class="editor" name="Body" data-type="ckEditor" id="Body">@Html.Raw(Model.Body)</textarea>
-                                                                @*<span class="field-validation-valid" data-valmsg-for="Body" data-valmsg-replace="true"></span>*@
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group tab-pane" id="tabFooter">
-                                                            <div class="col-sm-12" data-field-id="Footer" data-attribute="157273" data-field-name="@Resources.Spartan_FormatResources.Footer">
-                                                                <textarea class="editor" name="Footer" data-type="ckEditor" id="Footer">@Html.Raw(@Model.Footer)</textarea>
-                                                                @*<span class="field-validation-valid" data-valmsg-for="Footer" data-valmsg-replace="true"></span>*@
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
+                                    <div class="form-group" id="divRegistration_Hour">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Registration_Hour</label>
+                                        <div class="col-sm-8" data-field-id="Registration_Hour" data-attribute="182306" data-field-name="@Resources.Spartan_ReportResources.Registration_Hour">
+                                            <div class='input-group date' id='timePicker'>
+                                                <input disabled="disabled" class="form-control col-md-12" id="Registration_Hour" name="Registration_Hour" type="text" data-autoclose="true" value="@Model.Registration_Hour">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-time"></span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="tabFilters" class="tab-pane">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="ibox float-e-margins">
-                                                <div class="ibox-content">
-                                                    <!--control-->
-                                                    <div id="builder"></div>
-                                                    <div class="form-actions fluid">
-                                                        <input type="button" value="Obtener Query" id="btnGetSqlQuery" data-toggle="modal" data-target="#ShowQuery" class="btn btn-w-m btn-primary btn_save btnRound" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="div_Filter">
-                                            <label class="col-sm-2 control-label">@Resources.Resources.Filter</label>
-                                            <div class="col-sm-8" data-field-id="Filter" data-attribute="" data-field-name="@Resources.Resources.Filter">
-                                                <textarea class="form-control" id="Filter" name="Filter" type="text"> @Model.Filter</textarea>
-                                            </div>
+                                    <div class="form-group" id="divRegistration_User">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Registration_User</label>
+                                        <div class="col-sm-8" data-field-id="Registration_User" data-attribute="182307" data-field-name="@Resources.Spartan_ReportResources.Registration_User">
+                                            <select disabled="disabled" class="form-control" data-val="true" data-val-number="The field Registration User must be a number." data-val-required="The Registration User field is required." id="Registration_User" name="Registration_User">
+                                                <option value=""></option>
+                                                @if (varSpartan_User_Registration_User != null)
+                                                {
+                                                    foreach (var itemRegistration_User in varSpartan_User_Registration_User)
+                                                    {
+                                                        if (itemRegistration_User.Value == Convert.ToString(Model.Registration_User))
+                                                        {
+                                                            <option value="@itemRegistration_User.Value" selected>@itemRegistration_User.Text</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@itemRegistration_User.Value">@itemRegistration_User.Text</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                            @*<span class="field-validation-valid" data-valmsg-for="Registration_User" data-valmsg-replace="true"></span>*@
                                         </div>
                                     </div>
-                                </div>
-                                <div id="tabFormatosRelacionados" class="tab-pane">
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <div class="ibox float-e-margins form-group">
-                                                <div class="ibox-content">
-                                                    <p>
-                                                        <label for="formats_related">@Resources.Spartan_FormatResources.SelectRelatedFormats</label>
-                                                    </p>
-                                                    <select name="formats_related" id="formats_related" class="form-control" multiple style="width:100%; height:450px"></select>
-
-                                                </div>
-                                            </div>
+                                    <div class="form-group" id="divObject">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Object</label>
+                                        <div class="col-sm-8" data-field-id="Object" data-attribute="182308" data-field-name="@Resources.Spartan_ReportResources.Object">
+                                            <select class="form-control" data-val="true" data-val-number="The field Object must be a number." data-val-required="The Object field is required." id="Object" name="Object">
+                                                <option value=""></option>
+                                                @if (varSpartan_Object_Object != null)
+                                                {
+                                                    foreach (var itemObject in varSpartan_Object_Object)
+                                                    {
+                                                        if (itemObject.Value == Convert.ToString(Model.Object))
+                                                        {
+                                                            <option value="@itemObject.Value" selected>@itemObject.Text</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@itemObject.Value">@itemObject.Text</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                            @*<span class="field-validation-valid" data-valmsg-for="Object" data-valmsg-replace="true"></span>*@
                                         </div>
-                                        <div class="col-lg-1 m-t-lg">
-                                            <div class="ibox float-e-margins ">
-                                                <p>@Resources.Spartan_FormatResources.Order</p>
-                                                <a href="JavaScript:void(0);" id="btn-up"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a> <br />
-                                                <a href="JavaScript:void(0);" id="btn-down"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
-                                            </div>
+                                    </div>
+                                    <div class="form-group" id="divPresentation_Type">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Presentation_Type</label>
+                                        <div class="col-sm-8" data-field-id="Presentation_Type" data-attribute="182309" data-field-name="@Resources.Spartan_ReportResources.Presentation_Type">
+                                            <select class="form-control" data-val="true" data-val-number="The field Presentation Type must be a number." data-val-required="The Presentation Type field is required." id="Presentation_Type" name="Presentation_Type">
+                                                <option value=""></option>
+                                                @if (varSpartan_Report_Presentation_Type_Presentation_Type != null)
+                                                {
+                                                    foreach (var itemPresentation_Type in varSpartan_Report_Presentation_Type_Presentation_Type)
+                                                    {
+                                                        if (itemPresentation_Type.Value == Convert.ToString(Model.Presentation_Type))
+                                                        {
+                                                            <option value="@itemPresentation_Type.Value" selected>@itemPresentation_Type.Text</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@itemPresentation_Type.Value">@itemPresentation_Type.Text</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                            @*<span class="field-validation-valid" data-valmsg-for="Presentation_Type" data-valmsg-replace="true"></span>*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="divPresentation_View">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Presentation_View</label>
+                                        <div class="col-sm-8" data-field-id="Presentation_View" data-attribute="182310" data-field-name="@Resources.Spartan_ReportResources.Presentation_View">
+                                            <select class="form-control" data-val="true" data-val-number="The field Presentation View must be a number." data-val-required="The Presentation View field is required." id="Presentation_View" name="Presentation_View">
+                                                <option value=""></option>
+                                                @if (varSpartan_Report_Presentation_View_Presentation_View != null)
+                                                {
+                                                    foreach (var itemPresentation_View in varSpartan_Report_Presentation_View_Presentation_View)
+                                                    {
+                                                        if (itemPresentation_View.Value == Convert.ToString(Model.Presentation_View))
+                                                        {
+                                                            <option value="@itemPresentation_View.Value" selected>@itemPresentation_View.Text</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@itemPresentation_View.Value">@itemPresentation_View.Text</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                            @*<span class="field-validation-valid" data-valmsg-for="Presentation_View" data-valmsg-replace="true"></span>*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="divStatus">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Status</label>
+                                        <div class="col-sm-8" data-field-id="Status" data-attribute="182311" data-field-name="@Resources.Spartan_ReportResources.Status">
+                                            <select class="form-control" data-val="true" data-val-number="The field Status must be a number." data-val-required="The Status field is required." id="Status" name="Status">
+                                                <option value=""></option>
+                                                @if (varSpartan_Report_Status_Status != null)
+                                                {
+                                                    foreach (var itemStatus in varSpartan_Report_Status_Status)
+                                                    {
+                                                        if (itemStatus.Value == Convert.ToString(Model.Status))
+                                                        {
+                                                            <option value="@itemStatus.Value" selected>@itemStatus.Text</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@itemStatus.Value">@itemStatus.Text</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                            @*<span class="field-validation-valid" data-valmsg-for="Status" data-valmsg-replace="true"></span>*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="divQuery">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Query</label>
+                                        <div class="col-sm-8" data-field-id="Query" data-attribute="182312" data-field-name="@Resources.Spartan_ReportResources.Query">
+                                            <textarea id="Query" name="Query" class="form-control" rows="4" cols="50" disabled>@Model.Query</textarea>
+                                            <input type="checkbox" id="chkQuery" value="Change Query" /> Change Query
+                                            @*<span class="field-validation-valid" data-valmsg-for="Query" data-valmsg-replace="true"></span>*@
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div id="tabData" class="tab-pane">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="jsTree-metadata">
+                                                <div id="jstree_espartan_metadata">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="tbl-data droppable">
+                                                <span style="    padding-left: 70px;">(Arrastre aquí los campos)</span>
+                                                <table class="table-bordered">
+                                                    <tr class="tbl-data-row1">
+                                                        <td class="tbl-columns"></td>
+                                                        <td class="tbl-columns">
+                                                            Columnas
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="tbl-data-row2">
+                                                        <td class="tbl-rows">
+                                                            Filas
+                                                        </td>
+                                                        <td class="tbl-functions">
+                                                            Funciones
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div style="padding-top:20px;padding-bottom: 20px;">
+                                                <input type="checkbox" id="TotalColumns" name="TotalColumns" /> Total por Columnas
+                                                <br />
+                                                <input type="checkbox" id="TotalRows" name="TotalRows" /> Total por Filas
+                                            </div>
+                                            <div class="row">
+                                                <h3>Resultado</h3>
+                                                <div>
+                                                    <table id="table-result" class="table-bordered"></table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div id="tabFilters" class="tab-pane">
+                                <div class="panel-body">
+                                    <div id="divFilters">
+                                        <div class="ibox-title">
+                                            <h5>@Resources.Spartan_ReportResources.Filters</h5>
+                                            <div class="ibox-tools">
+                                                @*<a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#AdvanceFilters-form" onclick="GetAdvanceFilters()">Filtros Avanzados</a>*@
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="">
+                                                <a onclick="@( !permissionSpartan_Report_Filter.New || ViewBag.Consult ? "" : "Spartan_Report_FilterfnClickAddRow();")" href="javascript:void(0);" title="@( !permissionSpartan_Report_Filter.New || ViewBag.Consult ? "Usted no tiene permisos para realizar ésta acción" : Resources.Resources.AddNewRow)" class="btn @( !permissionSpartan_Report_Filter.New || ViewBag.Consult ? "btn-danger not-permission-btn" : "btn-primary")">
+                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                </a>
+                                                <button onclick="Spartan_ReportGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '182367')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Spartan_ReportBusinessRule-form">
+                                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                                        <i class="fa fa-cogs fa-spin"></i>
+                                                    </a>
+                                                </button>
+                                                <a onclick="@( !permissionSpartan_Report_Filter.New || ViewBag.Consult ? "" : "Spartan_Report_FilterfnOpenAddRowPopUp();")" data-toggle="modal" title="@( !permissionSpartan_Report_Filter.New || ViewBag.Consult ? "Usted no tiene permisos para realizar ésta acción" : Resources.Resources.AddNewRow)" data-target="#AddSpartan_Report_Filter-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn @( !permissionSpartan_Report_Filter.New || ViewBag.Consult ? "btn-danger not-permission-btn" : "btn-primary")">
+                                                    <i class="glyphicon glyphicon-new-window"></i>
+                                                </a>
+                                            </div>
+                                            <br />
+                                            <div style='overflow-x: auto;'>
+                                                <table class="table table-striped table-bordered table-hover childValidateTable" id="Spartan_Report_FilterGrid">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+                                                            <th class="FieldHeader">
+                                                                <span>
+                                                                    <button type="button" data-attribute="182364" data-field-id="Spartan_Report_FilterField" data-field-name="@Resources.Spartan_Report_FilterResources.Field" data-toggle="modal" data-target="#Spartan_ReportPropertyBusinessModal-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Spartan_Report_FilterResources.Field">
+                                                                            <i class="fa fa-cogs fa-spin"></i>
+                                                                        </a>
+                                                                    </button>@Resources.Spartan_Report_FilterResources.Field
+                                                                </span>
+                                                            </th>
+                                                            <th class="QuickFilterHeader">
+                                                                <span>
+                                                                    <button type="button" data-attribute="182365" data-field-id="Spartan_Report_FilterQuickFilter" data-field-name="@Resources.Spartan_Report_FilterResources.QuickFilter" data-toggle="modal" data-target="#Spartan_ReportPropertyBusinessModal-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Spartan_Report_FilterResources.QuickFilter">
+                                                                            <i class="fa fa-cogs fa-spin"></i>
+                                                                        </a>
+                                                                    </button>@Resources.Spartan_Report_FilterResources.QuickFilter
+                                                                </span>
+                                                            </th>
+                                                            @*<th class="AdvanceFilterHeader">
+                                                                    <span>
+                                                                        <button type="button" data-attribute="182366" data-field-id="Spartan_Report_FilterAdvanceFilter" data-field-name="@Resources.Spartan_Report_FilterResources.AdvanceFilter" data-toggle="modal" data-target="#Spartan_ReportPropertyBusinessModal-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Spartan_Report_FilterResources.AdvanceFilter">
+                                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                                            </a>
+                                                                        </button>@Resources.Spartan_Report_FilterResources.AdvanceFilter
+                                                                    </span>
+                                                                </th>*@
+
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divAdvanceFilters">
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="tabDesign" class="tab-pane">
+                                <div class="panel-body">
+                                    <div class="form-group" id="divHeader" style="width: 80%;">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Header</label>
+                                        <div style="width: 83%;" class="col-sm-8" data-field-id="Header" data-attribute="182313" data-field-name="@Resources.Spartan_ReportResources.Header">
+                                            <textarea id="Header" data-type="ckEditor" class="form-control editor" name="Header">@Html.Raw(Model.Header)</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="divFooter" style="width: 80%;">
+                                        <label class="col-sm-2 control-label">@Resources.Spartan_ReportResources.Footer</label>
+                                        <div style="width: 83%;" class="col-sm-8" data-field-id="Footer" data-attribute="182314" data-field-name="@Resources.Spartan_ReportResources.Footer">
+                                            <textarea id="Footer" data-type="ckEditor" class="form-control editor" name="Footer">@Html.Raw(Model.Footer)</textarea>
+                                        </div>
+                                    </div>
+                                    <div id="divTagsHeader" style="position: absolute;width: 20%;border: 1px solid #d1d1d1;margin-top: 20px;right: 10px;top: 0;padding: 20px;">
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="date">Fecha</a>
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="hour">Hora</a>
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="pageNumber">Número Página</a>
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="usuario">Usuario</a>
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="text">Texto</a>
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="image">Imagen</a>
+                                    </div>
+                                    <div id="divTagsFooter" style="position: absolute;width: 20%;border: 1px solid #d1d1d1;margin-top: 410px;right: 10px;top: 0;padding: 20px;">
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="date">Fecha</a>
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="hour">Hora</a>
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="pageNumber">Número Página</a>
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="usuario">Usuario</a>
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="text">Texto</a>
+                                        <a class="tag" draggable="true" style="float:left;clear:both;border: 1px solid;width: 100%;text-align: center;margin: 5px 0px;padding: 5px;" data-logical="image">Imagen</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                         <br />
                         <div class="form-actions fluid">
-                            <input type="hidden" value="@Model.FormatId" id="ReferenceFormatId" />
-                            <input type="hidden" value="@Model.FormatId" name="FormatId" id="FormatIdId" />
+                            <input type="hidden" value="@Model.ReportId" id="ReferenceReportId" />
+                            <input type="hidden" value="@Model.ReportId" name="ReportId" id="ReportIdId" />
                             <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
                             @if (!ViewBag.Consult)
                             {
-                                <input type="button" value="@Resources.Resources.Guardar" id="Spartan_FormatGuardar" class="btn btn-w-m btn-primary" onclick="return checkClientValidate('Spartan_FormatCreateForm');" />
-                                <button onclick="Spartan_FormatGetBusinessRule('', 'Al Guardar', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Spartan_FormatBusinessRule-form">
+                                <input type="button" value="@Resources.Resources.Guardar" id="Spartan_ReportGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Spartan_ReportCreateForm');" />
+                                <button onclick="Spartan_ReportGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Spartan_ReportBusinessRule-form">
                                     <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
                                         <i class="fa fa-cogs fa-spin"></i>
                                     </a>
@@ -428,40 +499,21 @@
                                     <i class="fa fa-cogs fa-spin"></i>
                                 </button>
 
-                                <input type="button" value="@Resources.Resources.GuardarNuevo" id="Spartan_FormatGuardarYNuevo" onclick="return checkClientValidate('Spartan_FormatCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success" />
-                                <input type="button" value="@Resources.Resources.GuardarCopia" id="Spartan_FormatGuardarYCopia" onclick="return checkClientValidate('Spartan_FormatCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success" />
-
-                                <button type="button" id="Spartan_FormatVistaPreviaHtml" class="btn btn-w-m btn-success" onclick="return VistaPreviaHtml();">@Resources.Spartan_FormatResources.Preview Html</button>
-                                <button type="button" id="Spartan_FormatVistaPreviaPdf" class="btn btn-w-m btn-success" onclick="return VistaPreviaPdf();"> @Resources.Spartan_FormatResources.Preview Pdf</button>
-                                <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
                             }
-
                             <input type="hidden" id="hdnConfigureType" />
-                            <input type="hidden" id="hdnSpartan_FormatBusinessRuleFieldId" />
-                            <input type="hidden" id="hdnSpartan_FormatBusinessRuleFieldName" />
-                            <input type="hidden" id="hdnSpartan_FormatBusinessRuleAttribute" />
+                            <input type="hidden" id="hdnSpartan_ReportBusinessRuleFieldId" />
+                            <input type="hidden" id="hdnSpartan_ReportBusinessRuleFieldName" />
+                            <input type="hidden" id="hdnSpartan_ReportBusinessRuleAttribute" />
+                            <input type="button" value="@Resources.Resources.Cancelar" id="Spartan_ReportCancelar" name="Spartan_ReportCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
 
-                            <input type="button" value="@Resources.Resources.Cancelar" id="Spartan_FormatCancelar" name="Spartan_FormatCancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
-
-                            <button onclick="Spartan_FormatGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Spartan_FormatBusinessRule-form">
-                                <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
-                                    <i class="fa fa-cogs fa-spin"></i>
-                                </a>
-                            </button>
                         </div>
                     </div>
-                }
-
-            </div>
+                </div>
+            }
         </div>
     </div>
 </div>
-
-
-
-
 <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
-
 @section Styles {
     <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
     @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
@@ -470,11 +522,23 @@
     @Styles.Render("~/plugins/clockpickerStyles")
     @Styles.Render("~/plugins/awesomeCheckboxStyles")
     @Styles.Render("~/plugins/select2Styles")
-    @Styles.Render("~/Content/plugins/jsTree")
-
-
-
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
     <style>
+        .box_current {
+            background-color: #BBBBFF;
+        }
+
+        #table-result td {
+            padding: 10px;
+        }
+
+        .tbl-data td {
+            width: 150px;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
         .dataTables_filter {
             display: none;
         }
@@ -504,211 +568,469 @@
             width: 100%;
         }
 
-        .h-card {
-            padding: 3px 6px;
-            border: 1px;
-            border: 1px solid;
-            border-color: black;
-            cursor: pointer;
-        }
-
-        .jsTree-metadata {
-            overflow: auto;
-            max-height: 500px;
+        .select2-dropdown {
+            z-index: 9001;
         }
     </style>
 }
-
-<script type="text/javascript" src="~/Uploads/Scripts/Spartan_Format.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-<script type="text/javascript" src="~/Scripts/Custom/Spartan_FormatGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-<script type="text/javascript" src="~/Uploads/Scripts/Rules/Spartan_FormatCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-<script src="~/Scripts/plugins/jsTree/jstree.min.js"></script>
-<script src="~/Scripts/plugins/querybuilder/query-builder.standalone.js"></script>
-<link href="~/Scripts/plugins/querybuilder/query-builder.default.css" rel="stylesheet" />
-<script src="~/Scripts/plugins/querybuilder/interact.js"></script>
-<script src="~/Scripts/plugins/sql-parser/sql-parser.js"></script>
-
+<script type="text/javascript" src="~/Uploads/Scripts/Spartan_Report.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Spartan_ReportGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Spartan_ReportCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
 @section Scripts {
-    @Scripts.Render("~/plugins/jsTree")
 
     <script type="text/javascript">
 
 
+    function HideSections(val)
+    {
+        if (val == '1') {
+            $('.tbl-data-row2').removeClass('ui-droppable');
+            $('.tbl-rows').removeClass('ui-droppable');
+            $('.tbl-rows').removeClass('ui-droppable');
+            $('.tbl-data-row2').css('background-color', '#ea212d');
+            $('.tbl-data-row2').css('color', '#fff');
+        }
+    }
+
 
     $(document).ready(function () {
-
-        $('#Registration_Date').datepicker({
-            todayBtn: "linked",
-            keyboardNavigation: false,
-            forceParse: false,
-            calendarWeeks: true,
-            autoclose: true,
-            format: "@ConfigurationProperty.DateFormatDatePicker"
-            });
-            $('#Registration_Hour').clockpicker();
-
-            initiateUIControls();
-            $('a').tooltip();
-            EjecutarValidacionesAlComienzo();
-
-            PopulateTree($('#Object').val());
-            LoadFormatsRelated($("#lblFormatId").text(), $('#Object').val());
-            initQueryBuilder($('#Object').val(), $('#Filter').val());
-
-            ///Se carga el arbol cuando se pierde el foco del textbox object
-            $('#Object').change(function (e) {
-                PopulateTree($('#Object').val());
-                LoadFormatsRelated($("#lblFormatId").text(), $('#Object').val());
-                initQueryBuilder($('#Object').val(), $('#Filter').val());
-            });
-            $('#filterObject').click(function (e) {
-                filterObjects($('#Search').val());
-            });
-            initCKEDITOR();
+        $('#Presentation_View').change(function () {
+            HideSections($(this).val());
+        });
+        HideSections($('#Presentation_View').val());
+        @if(Model.TotalColumns)
+            {
+                <text>
+        $('#TotalColumns').prop('checked', true);
+        </text>
+            }
+        @if(Model.TotalRows)
+            {
+                <text>
+        $('#TotalRows').prop('checked', true);
+        </text>
+            }
+        $('#tabDatos_Generales').on('click', '#chkQuery', function(){
+            if($(this).prop('checked'))
+            {
+                $('#Query').removeAttr('disabled');
+                $('#divAdvanceFilters').css('display', 'none');
+            }
+            else
+            {
+                $('#Query').attr('disabled', 'disabled');
+                $('#divAdvanceFilters').css('display', 'block');
+            }
         });
 
+        @if(ViewBag.IsNew)
+            {
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+        else
+        {
+                 <text>
+        $('.liTabData').css('display', '');
+        $('.liTabFilters').css('display', '');
+        $('.liTabDesign').css('display', '');
+        </text>
+             }
 
-        $('#btnGetSqlQuery').click(function () {
-            var sqlob = $("#builder").queryBuilder("getSQL", false).sql.replace(".GLOBAL", "GLOBAL");
-            $('#Filter').val(sqlob);
+            $('#Registration_Date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
         });
+        $('#Registration_Hour').clockpicker();
 
-        function initQueryBuilder(object_id, rule) {
-            debugger;
-            if (object_id == null || object_id == "")
-                return;
+        GetSpartan_Report_Fields_Detail_Spartan_Report_FunctionItem();
+        GetSpartan_Report_Fields_Detail_Spartan_Report_FormatItem();
+        GetSpartan_Report_Fields_Detail_Spartan_Report_Order_TypeItem();
+        GetSpartan_Report_Fields_Detail_Spartan_Report_Field_TypeItem();
+        GetSpartan_Report_Fields_Detail_Spartan_MetadataItem();
+        if(Spartan_Report_Fields_DetailTable == null)
+        {
+            getSpartan_Report_Fields_DetailData();
+        }
+        else{
+            showSpartan_Report_Fields_DetailGrid(Spartan_Report_Fields_DetailTable.fnGetData());
+        }
+        GetSpartan_Report_Filter_Spartan_MetadataItem();
 
-            ajaxindicatorstart();
-            $.ajax({
-                url: '@Url.Content("~/Frontal/Spartan_Format/GetSetting?id=")' + object_id,
-                type: 'Get',
-                cache: false,
-                async: true,
-                dataType: "json",
-                success: function (result) {
-                    debugger;
-                    $('#builder').queryBuilder({
-                        operators: [
-                            { type: 'equal', nb_inputs: 1, multiple: false, apply_to: ['number', 'string', 'select', 'datetime'] },
-                            { type: 'not_equal', nb_inputs: 1, multiple: false, apply_to: ['number', 'string', 'select', 'datetime'] },
-                            { type: 'less', nb_inputs: 1, multiple: false, apply_to: ['number', 'datetime'] },
-                            { type: 'greater', nb_inputs: 1, multiple: false, apply_to: ['number', 'datetime'] },
-                            { type: 'greater_or_equal', nb_inputs: 1, multiple: false, apply_to: ['number', 'datetime'] },
-                            { type: 'less_or_equal', nb_inputs: 1, multiple: false, apply_to: ['number', 'datetime'] },
-                        ],
-                        filters: result.filters,
-                        plugins: result.plugins
-                        //rules: rules_widgets
-                    });
+        if(Spartan_Report_FilterTable == null)
+        {
+            getSpartan_Report_FilterData(0);
+            GetSpartan_Report_AdvanceFilter(0);
+        }
+        else{
+            showSpartan_Report_FilterGrid(Spartan_Report_FilterTable.fnGetData());
+        }
 
-                    if (rule != null && rule.trim() != '' && rule != undefined) {
-                        $('#builder').queryBuilder('setRulesFromSQL', htmlDecode(rule));
+        initiateUIControls();
+        $('a').tooltip();
+        EjecutarValidacionesAlComienzo();
+        $('.loading').css('display', 'none');
+        PopulateTree($('#Object').val());
 
-                    }
-                    ajaxindicatorstop();
-                },
-                error: function (result) {
-                    debugger;
-                    showNotification("Error ejecutando query", "error");
-                    ajaxindicatorstop();
+        $('#Object').change(function () {
+            var object_id = $(this).val();
+            getSpartan_Report_FilterData(object_id);
+            GetSpartan_Report_AdvanceFilter(object_id);
+            PopulateTree(object_id);
+            GetAdvanceFilters();
+            $('.control-select2').select2();
+        });
+        $('.control-select2').select2();
+    });
+
+    var FieldsInMemory = [];
+    var Spartan_Report_Fields_DetailinsertRowCurrentIndex = -1;
+    var Spartan_Report_Fields_DetailDataDataTable;
+    function getSpartan_Report_Fields_DetailData() {
+        $.ajax({
+            url: "@Url.Content("~/Frontal/Spartan_Report/GetSpartan_Report_Fields_Detail")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceReportId").val() != "" ? "&RelationId=" + $("#ReferenceReportId").val() : ""),
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                for(var i=0; i< result.data.length; i++)
+                {
+                    var data = {
+                        physicalName: result.data[i].Physical_Name,
+                        functionF: result.data[i].Function,
+                        format: result.data[i].Format,
+                        orderBy: result.data[i].Order_Type,
+                        orderNumber: result.data[i].Order_Number,
+                        fieldPath: result.data[i].PathField,
+                        fieldType: result.data[i].Field_Type,
+                        attributeId: result.data[i].AttributeId,
+                        title: result.data[i].Title,
+                        logicalName: result.data[i].Title,
+                        fieldId: result.data[i].DesignDetailId,
+                        subtotal: result.data[i].Subtotal
+                    };
+                    FieldsInMemory.push(data);
                 }
-            });
-        }
-        function LoadFormatsRelated(formatId, object_id) {
-            if (object_id != 0 && object_id != null) {
-                $.ajax({
-                    url: '@Url.Content("~/Frontal/Spartan_Format/GetSpartan_FormatListRelated?formatId=")' + formatId + "&object_id=" + object_id,
-                    type: 'POST',
-                    cache: false,
-                    async: true,
-                    dataType: "json",
-                    //contentType: "multipart/form-data",
-                    success: function (result) {
-                        debugger;
-                        if (result < 0) {
-
-                        } else {
-                            $.each(result, function (index, element) {
-                                var opt = " <option value='" + element.FormatId.toString() + "'" + (element.Selected == true ? " selected" : "") + ">" + element.FormatName + "</option>";
-                                $('#formats_related').append(opt);
-                            });
-                        }
-                    },
-                    error: function (result) {
-                        debugger;
-                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                    }
-                });
-            }
-
-        }
-
-    $('#btn-up').bind('click', function () {
-        $('#formats_related option:selected').each(function () {
-            var newPos = $('#formats_related option').index(this) - 1;
-            if (newPos > -1) {
-                $('#formats_related option').eq(newPos).before("<option value='" + $(this).val() + "' selected='selected'>" + $(this).text() + "</option>");
-                $(this).remove();
-            }
-        });
-    });
-    $('#btn-down').bind('click', function () {
-        var countOptions = $('#select-to option').size();
-        $('#formats_related option:selected').each(function () {
-            var newPos = $('#formats_related option').index(this) + 1;
-            if (newPos < countOptions) {
-                $('#formats_related option').eq(newPos).after("<option value='" + $(this).val() + "' selected='selected'>" + $(this).text() + "</option>");
-                $(this).remove();
-            }
-        });
-    });
-
-    ///Metodo para llenar el TreeView
-    function PopulateTree(objectId) {
-
-        if (objectId == null || objectId == '')
-            return;
-        $("#jstree_espartan_metadata").jstree('destroy');
-
-        $('#jstree_espartan_metadata').jstree({
-            'core': {
-                'data': {
-                    'cache': false,
-                    'url': '@Url.Content("~/Frontal/Spartan_Format/FillComponentsTree?id=")' + objectId,
-                    'type': 'Get',
-                    "dataType": "json",
-                    "contentType": "application/json;",
-                    'success': function (data, textStatus, jqXHR) {
-                        debugger;
-                        $('#jstree_espartan_metadata').jstree(true).redraw(true);
-                    }
-                },
+                fillFieldsSaved();
             },
-            'plugins': ["themes", "json_data", "state"]
-        }).bind('loaded.jstree', function (e, data) {
-            // invoked after jstree has loaded
-            $("ul.jstree-container-ul").attr("id", "jstree-container-ul");
-            closeOpenAllNodes($("#jstree_espartan_metadata"));
-            addDragStartOnTree();
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            }
         });
+    }
+    function Spartan_Report_Fields_DetailGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+        var columnData = [];
+        var counter = 0;
+        var inputData = "<input type='text' class='fullWidth form-control' />";
+        if ($('.PathField' + 'Header').css('display') != 'none') columnData[counter++] = $($($.parseHTML(inputData)).val(data.PathField)).addClass('PathField').attr('id', nameOfTable + 'PathField' + rowIndex).attr('data-field', 'PathField');
+        if ($('.Physical_Name' + 'Header').css('display') != 'none') columnData[counter++] = $($($.parseHTML(inputData)).val(data.Physical_Name)).addClass('Physical_Name').attr('id', nameOfTable + 'Physical_Name' + rowIndex).attr('data-field', 'Physical_Name');
+        if ($('.Title' + 'Header').css('display') != 'none') columnData[counter++] = $($($.parseHTML(inputData)).val(data.Title)).addClass('Title').attr('id', nameOfTable + 'Title' + rowIndex).attr('data-field', 'Title');
+        if ($('.Function' + 'Header').css('display') != 'none') columnData[counter++] = $($(GetSpartan_Report_Fields_Detail_Spartan_Report_FunctionDropDown()).val(data.Function)).addClass('Function inputNumber').attr('id', nameOfTable + 'Function' + rowIndex).attr('data-field', 'Function');
+        if ($('.Format' + 'Header').css('display') != 'none') columnData[counter++] = $($(GetSpartan_Report_Fields_Detail_Spartan_Report_FormatDropDown()).val(data.Format)).addClass('Format inputNumber').attr('id', nameOfTable + 'Format' + rowIndex).attr('data-field', 'Format');
+        if ($('.Order_Type' + 'Header').css('display') != 'none') columnData[counter++] = $($(GetSpartan_Report_Fields_Detail_Spartan_Report_Order_TypeDropDown()).val(data.Order_Type)).addClass('Order_Type inputNumber').attr('id', nameOfTable + 'Order_Type' + rowIndex).attr('data-field', 'Order_Type');
+        if ($('.Field_Type' + 'Header').css('display') != 'none') columnData[counter++] = $($(GetSpartan_Report_Fields_Detail_Spartan_Report_Field_TypeDropDown()).val(data.Field_Type)).addClass('Field_Type inputNumber').attr('id', nameOfTable + 'Field_Type' + rowIndex).attr('data-field', 'Field_Type');
+        if ($('.Order_Number' + 'Header').css('display') != 'none') columnData[counter++] = $($($.parseHTML(inputData)).val(data.Order_Number)).addClass('Order_Number inputNumber').attr('id', nameOfTable + 'Order_Number' + rowIndex).attr('data-field', 'Order_Number');
+        if ($('.AttributeId' + 'Header').css('display') != 'none') columnData[counter++] = $($(GetSpartan_Report_Fields_Detail_Spartan_MetadataDropDown()).val(data.AttributeId)).addClass('AttributeId inputNumber').attr('id', nameOfTable + 'AttributeId' + rowIndex).attr('data-field', 'AttributeId');
+
+        return columnData;
+    }
+
+
+
+    function GetFileInfo(fileData, fileUploadData) {
+
+        var $div = $("<div>");
+        if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+            $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+            //<i class="fa fa-times-circle" id='removeFileAttachment'>
+            $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                if (confirm("@Resources.Resources.DeleteConfirm")) {
+                    var parent = $(this).parent().parent();
+                    parent.empty();
+                    parent.append("<input type='file'>");
+                }
+            }));
+            return $div;
+
+        } else if (fileUploadData != null) {
+            return $.parseHTML(GetFileUploader());
+        } else {
+            $div.append("<label>" + fileData.FileName + "</label>");
+            $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                if (confirm("@Resources.Resources.DeleteConfirm")) {
+                    var parent = $(this).parent().parent();
+                    parent.empty();
+                    parent.append("<input type='file'>");
+                }
+            }));
+            return $div;
+        }
+    }
+
+    var removedSpartan_Report_Fields_DetailData = [];
+    function Spartan_Report_Fields_DetailDeleteRow(rowIndex, row) {
+        var rowIndexTable = Spartan_Report_Fields_DetailTable.fnGetPosition($(row).parent().parent()[0]);
+        var permission = {
+            Delete: '@permissionSpartan_Report_Fields_Detail.Delete' == 'True'
+        };
+        if (!permission.Delete || isConsultMode)
+            return;
+        if (confirm("@Resources.Resources.DeleteConfirm")) {
+            if (EjecutarValidacionesAlEliminarMRSpartan_Report_Fields_Detail('Spartan_Report_Fields_Detail_', '_' + rowIndex)) {
+                var prevData = Spartan_Report_Fields_DetailTable.fnGetData(rowIndexTable );
+                removedSpartan_Report_Fields_DetailData.push(prevData);
+                Spartan_Report_Fields_DetailTable.fnDeleteRow(rowIndexTable );
+                showSpartan_Report_Fields_DetailGrid(Spartan_Report_Fields_DetailTable.fnGetData());
+            }
+        }
+    }
+
+    function Spartan_Report_Fields_DetailrowCreationGrid(row, data, index) {
+        var permission =  {
+            Edit: '@permissionSpartan_Report_Fields_Detail.Edit' == 'True',
+            Delete: '@permissionSpartan_Report_Fields_Detail.Delete' == 'True'
+        };
+        setSpartan_Report_Fields_DetailValidation();
+        var Spartan_Report_Fields_DetailRowElement = "Spartan_Report_Fields_Detail_" + index.toString();
+        $(row).addClass(Spartan_Report_Fields_DetailRowElement);
+        var nameOfTable='Spartan_Report_Fields_Detail_';
+        var rowIndex = '_' + index;
+        Spartan_Report_Fields_DetailinsertRowCurrentIndex = index;
+
+        row.innerHTML = "";
+
+        if (data.IsInsertRow) {
+
+            if (row.childNodes.length != 0) {
+                for (var i = 0; i < row.childNodes.length; i++) {
+                    row.childNodes[i].remove();
+                }
+            }
+            var controls = GetInsertSpartan_Report_Fields_DetailRowControls(index);
+            var actionColInsert = $('<td>');
+
+            var abc = "if(dynamicFieldValidation('" + Spartan_Report_Fields_DetailRowElement + "')){ Spartan_Report_Fields_DetailInsertRow(" + index + "); }";
+            var insertRowHTML = '<a  onclick="' + abc + '">';
+            $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+            $('<i class="fa fa-times">').appendTo($("<a  onclick='Spartan_Report_Fields_DetailCancelRow(" + index + ")'>").appendTo(actionColInsert));
+            actionColInsert.appendTo(row);
+
+            for (i = 0; i < controls.length; i++) {
+                var idHeader = $(controls[i]).data('field') + 'Header';
+                if($(controls[i]).length > 1)
+                {
+                    idHeader = $($(controls[i])[1]).data('field') + 'Header';
+                }
+                if($('#Spartan_Report_Fields_DetailGrid .' + idHeader ).css('display') != 'none')
+                {
+                    $(controls[i]).appendTo($('<td>').appendTo(row));
+                }
+            }
+            $('#Spartan_Report_Fields_DetailGrid .inputMoney').inputmask("currency", { prefix: "", rightAlign: false });
+            return;
+        }
+
+        var actionCol = $('<td>');
+        var edit = "<a title='Edit' onclick='Spartan_Report_Fields_DetailEditRow(" + index + ", this)'>";
+        if (!permission.Edit || isConsultMode)
+            edit = "<a title='Edit' class='not-permission' data-placement='top' data-toggle='tooltip' href='#' data-original-title='Usted no tiene permisos para realizar esta acción'>";
+        var editPopUp = "<a title='Edit' data-toggle='modal' data-target='#AddSpartan_Report_Fields_Detail-form' onclick='Spartan_Report_Fields_DetailEditRowPopup(" + index + ", this)'>";
+        if (!permission.Edit || isConsultMode)
+            editPopUp = "<a title='Edit' class='not-permission' data-placement='top' data-toggle='tooltip' href='#' data-original-title='Usted no tiene permisos para realizar esta acción'>";
+        var eliminar = "<a title='Delete' onclick='Spartan_Report_Fields_DetailDeleteRow(" + index + ", this)'>";
+        if (!permission.Delete || isConsultMode)
+            eliminar = "<a title='Delete' class='not-permission' data-placement='top' data-toggle='tooltip' href='#' data-original-title='Usted no tiene permisos para realizar esta acción'>";
+        $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+        $('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+        $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+        actionCol.appendTo(row);
+        if ($('.PathField' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'PathField'+rowIndex+'">').text(data.PathField).appendTo(row);
+        if ($('.Physical_Name' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'Physical_Name'+rowIndex+'">').text(data.Physical_Name).appendTo(row);
+        if ($('.Title' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'Title'+rowIndex+'">').text(data.Title).appendTo(row);
+        if ($('.Function' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'Function'+rowIndex+'">').text(GetSpartan_Report_Fields_Detail_Spartan_Report_FunctionName(data.Function)).appendTo(row);
+        if ($('.Format' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'Format'+rowIndex+'">').text(GetSpartan_Report_Fields_Detail_Spartan_Report_FormatName(data.Format)).appendTo(row);
+        if ($('.Order_Type' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'Order_Type'+rowIndex+'">').text(GetSpartan_Report_Fields_Detail_Spartan_Report_Order_TypeName(data.Order_Type)).appendTo(row);
+        if ($('.Field_Type' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'Field_Type'+rowIndex+'">').text(GetSpartan_Report_Fields_Detail_Spartan_Report_Field_TypeName(data.Field_Type)).appendTo(row);
+        if ($('.Order_Number' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'Order_Number'+rowIndex+'">').text(data.Order_Number).appendTo(row);
+        if ($('.AttributeId' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'AttributeId'+rowIndex+'">').text(GetSpartan_Report_Fields_Detail_Spartan_MetadataName(data.AttributeId)).appendTo(row);
 
     }
-    function filterObjects(filter) {
-        $.ajax({
-            url: '@Url.Content("~/Frontal/Spartan_Format/FilterObjects?filter=")' + filter,
-            type: 'Get',
-            async: true,
-            contentType: "multipart/form-data",
-            success: function (result) {
-                if (result < 0) {
-                    showNotification("@Resources.Resources.ErrorSave", "error");
-                } else {
-                    $('#Object').empty();
-                    $('#Object').append('<option  value=""></option>')
-                    jQuery.each(result, function (i, val) {
-                        $('#Object').append('<option  value="' + val.Value + '">' + val.Text + '</option>')
-                    });
+
+    var Spartan_Report_Fields_DetailTable;
+    function showSpartan_Report_Fields_DetailGrid(dataSet) {
+        //removedSpartan_Report_Fields_DetailData = [];
+        Spartan_Report_Fields_DetailTable = $('#Spartan_Report_Fields_DetailGrid').dataTable({
+            dom: '<"html5buttons"B>lTgitp',
+            buttons: [
+            ],
+            "createdRow": Spartan_Report_Fields_DetailrowCreationGrid,
+            "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+            data: dataSet,
+            "columns": [
+                { "data": null, 'visible': true, "orderable": false },
+                { "data": "PathField", "orderable": false },
+                { "data": "Physical_Name", "orderable": false },
+                { "data": "Title", "orderable": false },
+                { "data": "Function", "orderable": false },
+                { "data": "Format", "orderable": false },
+                { "data": "Order_Type", "orderable": false },
+                { "data": "Field_Type", "orderable": false },
+                { "data": "Order_Number", "orderable": false },
+                { "data": "AttributeId", "orderable": false },
+
+            ],
+            "order": [[0, "asc"]],
+            "language": {
+                "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                "zeroRecords": "@Resources.Resources.NothingFound",
+                "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                "infoEmpty": "@Resources.Resources.NoRecords",
+                "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                "sSearch": "@Resources.Resources.Search",
+                "paginate": {
+                    "previous": "@Resources.Resources.Previous",
+                    "next": "@Resources.Resources.Next"
                 }
+            },
+            "bDestroy": true,
+            "fnDrawCallback": function (settings) {
+                setSpartan_Report_Fields_DetailValidation();
+            }
+        }).on('init.dt', function (e, data) {
+            $('a').tooltip();
+        }).on('draw.dt', function () {
+            $('#Spartan_Report_Fields_DetailGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+        });
+    }
+
+    var Spartan_Report_Fields_Detail_Spartan_Report_FunctionItems;
+    function GetSpartan_Report_Fields_Detail_Spartan_Report_FunctionItem() {
+        Spartan_Report_Fields_Detail_Spartan_Report_FunctionItems = null;
+        var ajaxUrl = "@Url.Content("~/Frontal/Spartan_Report/GetSpartan_Report_Fields_Detail_Spartan_Report_FunctionAll")";
+        $.ajax({
+            url: ajaxUrl,
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            global: false,
+            success: function (result) {
+                Spartan_Report_Fields_Detail_Spartan_Report_FunctionItems = result;
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            }
+        });
+    }
+    var Spartan_Report_Fields_Detail_Spartan_Report_FormatItems;
+    function GetSpartan_Report_Fields_Detail_Spartan_Report_FormatItem() {
+        Spartan_Report_Fields_Detail_Spartan_Report_FormatItems = null;
+        var ajaxUrl = "@Url.Content("~/Frontal/Spartan_Report/GetSpartan_Report_Fields_Detail_Spartan_Report_FormatAll")";
+        $.ajax({
+            url: ajaxUrl,
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            global: false,
+            success: function (result) {
+                Spartan_Report_Fields_Detail_Spartan_Report_FormatItems = result;
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            }
+        });
+    }
+    var Spartan_Report_Fields_Detail_Spartan_Report_Order_TypeItems;
+    function GetSpartan_Report_Fields_Detail_Spartan_Report_Order_TypeItem() {
+        Spartan_Report_Fields_Detail_Spartan_Report_Order_TypeItems = null;
+        var ajaxUrl = "@Url.Content("~/Frontal/Spartan_Report/GetSpartan_Report_Fields_Detail_Spartan_Report_Order_TypeAll")";
+        $.ajax({
+            url: ajaxUrl,
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            global: false,
+            success: function (result) {
+                Spartan_Report_Fields_Detail_Spartan_Report_Order_TypeItems = result;
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            }
+        });
+    }
+    var Spartan_Report_Fields_Detail_Spartan_Report_Field_TypeItems;
+    function GetSpartan_Report_Fields_Detail_Spartan_Report_Field_TypeItem() {
+        Spartan_Report_Fields_Detail_Spartan_Report_Field_TypeItems = null;
+        var ajaxUrl = "@Url.Content("~/Frontal/Spartan_Report/GetSpartan_Report_Fields_Detail_Spartan_Report_Field_TypeAll")";
+        $.ajax({
+            url: ajaxUrl,
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            global: false,
+            success: function (result) {
+                Spartan_Report_Fields_Detail_Spartan_Report_Field_TypeItems = result;
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            }
+        });
+    }
+    var Spartan_Report_Fields_Detail_Spartan_MetadataItems;
+    function GetSpartan_Report_Fields_Detail_Spartan_MetadataItem() {
+        Spartan_Report_Fields_Detail_Spartan_MetadataItems = null;
+        var ajaxUrl = "@Url.Content("~/Frontal/Spartan_Report/GetSpartan_Report_Fields_Detail_Spartan_MetadataAll")";
+        $.ajax({
+            url: ajaxUrl,
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            global: false,
+            success: function (result) {
+                Spartan_Report_Fields_Detail_Spartan_MetadataItems = result;
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            }
+        });
+    }
+
+    var Spartan_Report_Fields_DetailData = [];
+    var Spartan_Report_Fields_DetaildeletedItem = [];
+    var Spartan_Report_Fields_DetailDataMain = [];
+    var Spartan_Report_Fields_DetailDataMainPages = [];
+    var Spartan_Report_Fields_DetailnewItemCount = 0;
+    var Spartan_Report_Fields_DetailmaxItemIndex = 0;
+    var Spartan_Report_Fields_DetailDataMainInitialized = false;
+
+    function SendSpartan_Report_Fields_Detail(callBack, ReportIdId) {
+        Spartan_Report_Fields_DetailData = GetSpartan_Report_Fields_DetailFromDataTable();
+
+        if ($("#ReferenceReportId").val() != "0" && ReportIdId ==null)
+            ReportIdId = $("#ReferenceReportId").val();
+        if ($("#ReferenceReportId").val() == '')
+            $("#ReferenceReportId").val('0');
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Spartan_Report/PostSpartan_Report_Fields_Detail?MasterId=")' + ReportIdId + "&referenceId=" + $("#ReferenceReportId").val(),
+            type: 'POST',
+            data: GetSpartan_Report_Fields_Detail(),
+            async: true,
+            success: function (result) {
+
             },
             error: function (result) {
                 showNotification("@Resources.Resources.ErrorContactingServer", "error");
@@ -718,215 +1040,356 @@
             processData: false
         });
 
+        return true;
     }
 
-        function initCKEDITOR() {
+    function GetAddSpartan_Report_Fields_DetailPopup(currentRowIndex, mode, id) {
 
-            var extraAllowedContent = 'img[!src];a[!href];div(!h-card);div(!pointer);div[data-*];span[!div-query];span(!pointer);span(!h-card)[!data-class_name];span[data-*];span[!data-physical_name];span[!data-logical_name];span[!data-fieldpath];span[!data-format];span[!data-default];span[!data-query];span[!contenteditable];span[!role];span[!onclick];strong[onclick], '
-            var filebrowserBrowseUrl = '@Url.Content("~/ckfinder/ckfinder.html")';
-            var filebrowserImageBrowseUrl = '@Url.Content("~/ckfinder/ckfinder.html?type=Images")';
-            var filebrowserUploadUrl = '/ckfinder/connector?command=QuickUpload&type=Files';
-            var filebrowserImageUploadUrl = '/ckfinder/connector?command=QuickUpload&type=Images';
+        $.ajax({
+            url: "@Url.Action("AddSpartan_Report_Fields_Detail", "Spartan_Report_Fields_Detail")",
+            type: "GET",
+            async: false,
+            data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+            success: function (data) {
+                $(".AddSpartan_Report_Fields_DetailModal").html(data);
+            },
+            error: function () {
 
-            CKEDITOR.disableAutoInline = true;
-            CKEDITOR.allowedContent = true;
-            CKEDITOR.replace('Header', {
-                allowedContent: true
-                , extraAllowedContent: extraAllowedContent
-                , filebrowserBrowseUrl: filebrowserBrowseUrl
-                , filebrowserImageBrowseUrl: filebrowserImageBrowseUrl
-                , filebrowserUploadUrl: filebrowserUploadUrl
-                , filebrowserImageUploadUrl: filebrowserImageUploadUrl
-            }).on('paste', function (evt) { pasteCKEDITOR(evt); });
+            }
+        });
 
-            var editorHeader = CKEDITOR.replace('Body', {
-                allowedContent: true
-                , extraAllowedContent: extraAllowedContent
-                , filebrowserBrowseUrl: filebrowserBrowseUrl
-                , filebrowserImageBrowseUrl: filebrowserImageBrowseUrl
-                , filebrowserUploadUrl: filebrowserUploadUrl
-                , filebrowserImageUploadUrl: filebrowserImageUploadUrl
-            }).on('paste', function (evt) { pasteCKEDITOR(evt); });
+        @*$.get('@Url.Action("AddSpartan_Report_Fields_Detail", "Spartan_Report_Fields_Detail")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddSpartan_Report_Fields_DetailModal").html(data);
+            });*@
+    }
 
-
-
-            CKEDITOR.plugins.add('test-plugin', {
-                init: function (editor) {
-
-
-                    editor.on('doubleclick', function (e) {
-                        var elem = e.data.element.$;
-
-
-                        if (elem != null && elem != 'undefined' && elem.getAttribute("class") != null && elem.getAttribute("class").indexOf("h-card") >= 0) {
-
-                            var id = elem.getAttribute("id")
-                            var type = "";
-                            if (elem.getAttribute("class").indexOf("sql") > 0)
-                                type = 'sql';
-                            if (elem.getAttribute("class").indexOf("sqlTable") > 0)
-                                type = 'sqlTable';
-                            showPopup(id, type);
-
-                        }
-                    });
+    function ShowMessagePendingRowSpartan_Report_Fields_Detail()
+    {
+		//Traducción Pendiente
+		showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Report Fields Detail"))', "warning");
+    }
+    var Spartan_Report_FilterinsertRowCurrentIndex = -1;
+    var Spartan_Report_FilterDataDataTable;
+    function getSpartan_Report_FilterData(object_id) {
+        $.ajax({
+            url: "@Url.Content("~/Frontal/Spartan_Report/GetSpartan_Report_Filter")" + "?object_id=" + object_id + "&draw=1&start=1&length=2147483647" + ($("#ReferenceReportId").val() != "" ? "&RelationId=" + $("#ReferenceReportId").val() : ""),
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                Spartan_Report_FilterDataDataTable = result.data;
+                showSpartan_Report_FilterGrid(result.data);
+                var rows = $('#Spartan_Report_FilterGrid tbody tr > td > a:first-child');
+                for (var i = 0; i < rows.length; i++) {
+                    $(rows[i]).click();
                 }
-            });
-
-            CKEDITOR.document.getById('dragSqlField').on('dragstart', function (evt) {
-                var target = evt.data.getTarget();
-                CKEDITOR.plugins.clipboard.initDragDataTransfer(evt);
-                var dataTransfer = evt.data.dataTransfer;
-                var id = "sql" + new Generator().rand;
-                dataTransfer.setData('SQL', id);
-                dataTransfer.setData('text/html', target.getText());
-            });
-
-            CKEDITOR.document.getById('dragSqlTable').on('dragstart', function (evt) {
-                var target = evt.data.getTarget();
-                CKEDITOR.plugins.clipboard.initDragDataTransfer(evt);
-                var dataTransfer = evt.data.dataTransfer;
-                var id = "sqlTable" + new Generator().rand;
-                dataTransfer.setData('SQLTABLE', id);
-                dataTransfer.setData('text/html', target.getText());
-            });
-
-            CKEDITOR.config.plugins += ',test-plugin';
-
-            CKEDITOR.replace('Footer', {
-                allowedContent: true
-                , extraAllowedContent: extraAllowedContent
-                , filebrowserBrowseUrl: filebrowserBrowseUrl
-                , filebrowserImageBrowseUrl: filebrowserImageBrowseUrl
-                , filebrowserUploadUrl: filebrowserUploadUrl
-                , filebrowserImageUploadUrl: filebrowserImageUploadUrl
-            }).on('paste', function (evt) { pasteCKEDITOR(evt); });
-            CKEDITOR.replace('CodeHtml', {
-                allowedContent: true
-               , extraAllowedContent: extraAllowedContent
-               , filebrowserBrowseUrl: filebrowserBrowseUrl
-               , filebrowserImageBrowseUrl: filebrowserImageBrowseUrl
-               , filebrowserUploadUrl: filebrowserUploadUrl
-               , filebrowserImageUploadUrl: filebrowserImageUploadUrl
-            });
-
-
-        }
-
-    function addDragStartOnTree() {
-        CKEDITOR.document.getById('jstree-container-ul').on('dragstart', function (evt) {
-            var target = evt.data.getTarget().getAscendant('li', true);
-            CKEDITOR.plugins.clipboard.initDragDataTransfer(evt);
-            var dataTransfer = evt.data.dataTransfer;
-            var id = target.getAttribute('id');
-            var node = $('#jstree_espartan_metadata').jstree(true).get_node(id);
-            dataTransfer.setData('node', node);
-            dataTransfer.setData('text/html', target.getText());
+                $('#Spartan_Report_FilterGrid thead > tr > th:eq(0)').css('display', 'none');
+                $('#Spartan_Report_FilterGrid tbody tr > td:first-child').css('display', 'none');
+                $('#divFilters .ibox-content > div > a').css('display', 'none');
+                $('#Spartan_Report_FilterGrid tbody tr > td:nth-child(2) > select').attr('disabled', 'disabled');
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            }
         });
     }
 
+    function GetSpartan_Report_AdvanceFilter(object_id)
+    {
+        AdvanceFilters=[];
+        $.ajax({
+            url: "@Url.Content("~/Frontal/Spartan_Report/GetSpartan_Report_AdvanceFilter")" + "?ReportId="+$("#ReferenceReportId").val() + "&object_id=" + object_id,
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                for(var i = 0; i < result.data.length; i++)
+                {
+                    AdvanceFilters.push({
+                        checke: result.data[i].Visible,
+                        attributeId: result.data[i].AttributeId,
+                        physicalName: result.data[i].AttributeIdPhysical_Name,
+                        from: result.data[i].Defect_Value_From,
+                        to: result.data[i].Defect_Value_To,
+                        objectId: result.data[i].ObjectId,
+                        pathField: result.data[i].PathField
+                    });
+                }
+
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            }
+        });
+    }
+
+    function Spartan_Report_FilterGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+        var columnData = [];
+        var counter = 0;
+        var inputData = "<input type='text' class='fullWidth form-control' />";
+        if ($('.Field' + 'Header').css('display') != 'none') columnData[counter++] = $($(GetSpartan_Report_Filter_Spartan_MetadataDropDown()).val(data.Field)).addClass('Field inputNumber').attr('id', nameOfTable + 'Field' + rowIndex).attr('data-field', 'Field');
+        if ($('.QuickFilter' + 'Header').css('display') != 'none') columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.QuickFilter=="true" || data.QuickFilter==true)? 'checked': ''? 'checked': '')).addClass('QuickFilter').attr('id', nameOfTable + 'QuickFilter' + rowIndex).attr('data-field', 'QuickFilter');
+        //if ($('.AdvanceFilter' + 'Header').css('display') != 'none') columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.AdvanceFilter=="true" || data.AdvanceFilter==true)? 'checked': ''? 'checked': '')).addClass('AdvanceFilter').attr('id', nameOfTable + 'AdvanceFilter' + rowIndex).attr('data-field', 'AdvanceFilter');
+
+        return columnData;
+    }
 
 
-    function pasteCKEDITOR(evt) {
-        var node = evt.data.dataTransfer.getData('node');
-        var sql = evt.data.dataTransfer.getData('SQL');
-        var SQLTABLE = evt.data.dataTransfer.getData('SQLTABLE');
-        if (!node && !sql && !SQLTABLE) {
+
+    function GetFileInfo(fileData, fileUploadData) {
+
+        var $div = $("<div>");
+        if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+            $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+            //<i class="fa fa-times-circle" id='removeFileAttachment'>
+            $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                if (confirm("@Resources.Resources.DeleteConfirm")) {
+                    var parent = $(this).parent().parent();
+                    parent.empty();
+                    parent.append("<input type='file'>");
+                }
+            }));
+            return $div;
+
+        } else if (fileUploadData != null) {
+            return $.parseHTML(GetFileUploader());
+        } else {
+            $div.append("<label>" + fileData.FileName + "</label>");
+            $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                if (confirm("@Resources.Resources.DeleteConfirm")) {
+                    var parent = $(this).parent().parent();
+                    parent.empty();
+                    parent.append("<input type='file'>");
+                }
+            }));
+            return $div;
+        }
+    }
+
+    var removedSpartan_Report_FilterData = [];
+    function Spartan_Report_FilterDeleteRow(rowIndex, row) {
+        var rowIndexTable = Spartan_Report_FilterTable.fnGetPosition($(row).parent().parent()[0]);
+        var permission = {
+            Delete: '@permissionSpartan_Report_Filter.Delete' == 'True'
+        };
+        if (!permission.Delete || isConsultMode)
+            return;
+        if (confirm("@Resources.Resources.DeleteConfirm")) {
+            if (EjecutarValidacionesAlEliminarMRSpartan_Report_Filter('Spartan_Report_Filter_', '_' + rowIndex)) {
+                var prevData = Spartan_Report_FilterTable.fnGetData(rowIndexTable );
+                removedSpartan_Report_FilterData.push(prevData);
+                Spartan_Report_FilterTable.fnDeleteRow(rowIndexTable );
+                showSpartan_Report_FilterGrid(Spartan_Report_FilterTable.fnGetData());
+            }
+        }
+    }
+
+    function Spartan_Report_FilterrowCreationGrid(row, data, index) {
+        var permission =  {
+            Edit: '@permissionSpartan_Report_Filter.Edit' == 'True',
+            Delete: '@permissionSpartan_Report_Filter.Delete' == 'True'
+        };
+        setSpartan_Report_FilterValidation();
+        var Spartan_Report_FilterRowElement = "Spartan_Report_Filter_" + index.toString();
+        $(row).addClass(Spartan_Report_FilterRowElement);
+        var nameOfTable='Spartan_Report_Filter_';
+        var rowIndex = '_' + index;
+        Spartan_Report_FilterinsertRowCurrentIndex = index;
+
+        row.innerHTML = "";
+
+        if (data.IsInsertRow) {
+
+            if (row.childNodes.length != 0) {
+                for (var i = 0; i < row.childNodes.length; i++) {
+                    row.childNodes[i].remove();
+                }
+            }
+            var controls = GetInsertSpartan_Report_FilterRowControls(index);
+            var actionColInsert = $('<td>');
+
+            var abc = "if(dynamicFieldValidation('" + Spartan_Report_FilterRowElement + "')){ Spartan_Report_FilterInsertRow(" + index + "); }";
+            var insertRowHTML = '<a  onclick="' + abc + '">';
+            $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+            $('<i class="fa fa-times">').appendTo($("<a  onclick='Spartan_Report_FilterCancelRow(" + index + ")'>").appendTo(actionColInsert));
+            actionColInsert.appendTo(row);
+
+            for (i = 0; i < controls.length; i++) {
+                var idHeader = $(controls[i]).data('field') + 'Header';
+                if($(controls[i]).length > 1)
+                {
+                    idHeader = $($(controls[i])[1]).data('field') + 'Header';
+                }
+                if($('#Spartan_Report_FilterGrid .' + idHeader ).css('display') != 'none')
+                {
+                    $(controls[i]).appendTo($('<td>').appendTo(row));
+                }
+            }
+            $('#Spartan_Report_FilterGrid .inputMoney').inputmask("currency", { prefix: "", rightAlign: false });
             return;
         }
-        if (node) {
-            node.li_attr.fieldPath = node.li_attr.atributteId;
-            if (node.parents.length == 1)
-                node.li_attr.fieldPath = node.li_attr.classId + "." + node.li_attr.fieldPath;
 
-            jQuery.each(node.parents, function (i, val) {
-                parent = $('#jstree_espartan_metadata').jstree(true).get_node(val);
-                if (parent.id != "#")
-                    node.li_attr.fieldPath = parent.li_attr.atributteId + "." + node.li_attr.fieldPath;
-                if (parent.parent == "#")
-                    node.li_attr.fieldPath = parent.li_attr.classId + "." + node.li_attr.fieldPath;
+        var actionCol = $('<td>');
+        var edit = "<a title='Edit' onclick='Spartan_Report_FilterEditRow(" + index + ", this)'>";
+        $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+        actionCol.appendTo(row);
+        if ($('.Field' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'Field'+rowIndex+'">').text(GetSpartan_Report_Filter_Spartan_MetadataName(data.Field)).appendTo(row);
+        if ($('.QuickFilter' + 'Header').css('display') != 'none')
+            $('<td id="'+nameOfTable+'QuickFilter'+rowIndex+'">').text(data.QuickFilter).appendTo(row);
+        //if ($('.AdvanceFilter' + 'Header').css('display') != 'none')
+        //    $('<td id="'+nameOfTable+'AdvanceFilter'+rowIndex+'">').text(data.AdvanceFilter).appendTo(row);
+
+    }
+
+    var Spartan_Report_FilterTable;
+    function showSpartan_Report_FilterGrid(dataSet) {
+        //removedSpartan_Report_FilterData = [];
+        Spartan_Report_FilterTable = $('#Spartan_Report_FilterGrid').dataTable({
+            dom: '<"html5buttons"B>lTgitp',
+            buttons: [
+            ],
+            "createdRow": Spartan_Report_FilterrowCreationGrid,
+            "lengthMenu": [[-1], ["All"]],
+            data: dataSet,
+            "columns": [
+                { "data": null, 'visible': true, "orderable": false },
+                { "data": "Field", "orderable": false },
+                { "data": "QuickFilter", "orderable": false },
+                //{ "data": "AdvanceFilter", "orderable": false },
+
+            ],
+            "order": [[0, "asc"]],
+            "language": {
+                "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                "zeroRecords": "@Resources.Resources.NothingFound",
+                "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                "infoEmpty": "@Resources.Resources.NoRecords",
+                "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                "sSearch": "@Resources.Resources.Search",
+                "paginate": {
+                    "previous": "@Resources.Resources.Previous",
+                    "next": "@Resources.Resources.Next"
+                }
+            },
+            "bDestroy": true,
+            "fnDrawCallback": function (settings) {
+                setSpartan_Report_FilterValidation();
+            }
+        }).on('init.dt', function (e, data) {
+            $('a').tooltip();
+        }).on('draw.dt', function () {
+            $('#Spartan_Report_FilterGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+        });
+    }
+
+    var Spartan_Report_Filter_Spartan_MetadataItems;
+    function GetSpartan_Report_Filter_Spartan_MetadataItem() {
+        Spartan_Report_Filter_Spartan_MetadataItems = null;
+        var ajaxUrl = "@Url.Content("~/Frontal/Spartan_Report/GetSpartan_Report_Filter_Spartan_MetadataAll")";
+        $.ajax({
+            url: ajaxUrl,
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            global: false,
+            success: function (result) {
+                Spartan_Report_Filter_Spartan_MetadataItems = result;
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            }
+        });
+    }
+
+    var Spartan_Report_FilterData = [];
+    var Spartan_Report_FilterdeletedItem = [];
+    var Spartan_Report_FilterDataMain = [];
+    var Spartan_Report_FilterDataMainPages = [];
+    var Spartan_Report_FilternewItemCount = 0;
+    var Spartan_Report_FiltermaxItemIndex = 0;
+    var Spartan_Report_FilterDataMainInitialized = false;
+
+    function SendSpartan_Report_Filter(callBack, ReportIdId) {
+
+        Spartan_Report_FilterData = GetSpartan_Report_FilterFromDataTable();
+
+        if (Spartan_Report_FilterData.length > 0 || $("#ReferenceReportId").val() != ReportIdId) {
+            if ($("#ReferenceReportId").val() != "0" && ReportIdId ==null)
+                ReportIdId = $("#ReferenceReportId").val();
+            if ($("#ReferenceReportId").val() == '')
+                $("#ReferenceReportId").val('0');
+            $.ajax({
+                url: '@Url.Content("~/Frontal/Spartan_Report/PostSpartan_Report_Filter?MasterId=")' + ReportIdId + "&referenceId=" + $("#ReferenceReportId").val(),
+                type: 'POST',
+                data: GetSpartan_Report_Filter(),
+                async: true,
+                success: function (result) {
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                },
+                cache: false,
+                contentType: false,
+                processData: false
             });
-
-			debugger
-            var idGen = new Generator();
-            var id = 'span' + node.id + idGen;
-            evt.data.dataValue =
-                '&nbsp; <span id="' + id + '" class="h-card" style="cursor:pointer;border:1px solid black;" title="doubleclick for edit" role="region" contenteditable="true" data-cke-widget-wrapper="1" data-cke-filter="off" data-class_name="' + node.li_attr.className + '" data-fieldPath="' + node.li_attr.fieldPath + '"  data-physical_name="' + node.li_attr.className + "." + node.li_attr.physicalName + '"  data-logical_name="' + node.li_attr.className + "." + node.li_attr.physicalName + ' ">' +
-                 node.li_attr.objectName + '.' + node.text + '</span>&nbsp;';
+        } else {
+            //showNotification("@Resources.Resources.SaveSuccess", "success");
+            //callBack(ReportIdId);
         }
-        if (sql != "") {
-		var idGen = new Generator();
-            var id = 'sql' + Math.floor((Math.random() * 1000000) + 1);;
-         			
-            evt.data.dataValue =
-               '&nbsp; <span id="' + id + '" class="h-card sql" style="cursor:pointer;border:1px solid black;" title="doubleclick for edit" role="region" contenteditable="true" data-cke-widget-wrapper="1" data-cke-filter="off"  ">Field Sql </span>&nbsp;';
-        }
-        if (SQLTABLE != "") {
-            evt.data.dataValue = ' &nbsp; <div  id="' + SQLTABLE + ' "class="h-card sqlTable" style="cursor:pointer;background-color: #d9edf7;  border: 1px solid #ccc;"  title="Campo multiple SQL (doubleclick for edit)" contenteditable="false" > </div>&nbsp; ';
-
-        }
+        return true;
     }
 
-    function Generator() { };
+    function SendSpartan_Report_AdvanceFilter(ReportIdId) {
 
-    Generator.prototype.rand = Math.floor(Math.random() * 26) + Date.now();
-
-    Generator.prototype.getId = function () {
-        return this.rand++;
-    };
-
-
-    function showPopup(id, type) {
-
-
-        if (type == "sql")
-            $('#QueryDiv').removeClass('hide');
-
-        if (type == "sqlTable") {
-            $('#QueryEditorHtml').removeClass('hide');
-            $('#defaultDiv').addClass('hide');
-            $('#QueryDiv').removeClass('hide');
+        if (AdvanceFilters.length > 0) {
+            $.ajax({
+                url: '@Url.Content("~/Frontal/Spartan_Report/PostSpartan_Report_AdvanceFilter?MasterId=")' + ReportIdId + '&changeQuery=' + $('#chkQuery').prop('checked'),
+                type: 'POST',
+                data: JSON.stringify(AdvanceFilters),
+                //datatype: "json",
+                async: true,
+                success: function (result) {
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                },
+                contentType: "application/json; charset=utf-8"
+            });
+        } else {
+            //showNotification("@Resources.Resources.SaveSuccess", "success");
+            //callBack(ReportIdId);
         }
-
-        $('#propertybagField').modal('show');
-
-        var editor = CKEDITOR.instances['Body'];
-        var data = editor.getData();
-        var element = $(editor.document.getById(id));
-
-        $('#field').val(id);
-        $('#default').val(element.attr('data-default'));
-        $('#format').val(element.attr('data-format'));
-        $('#query').val(element.attr('data-query'));
-        CKEDITOR.instances['CodeHtml'].setData(element.get(0).getHtml());
-
+        return true;
     }
 
-    function SavePropertyField() {
+    function GetAddSpartan_Report_FilterPopup(currentRowIndex, mode, id) {
 
-        $('#propertybagField').modal('hide');
-        var id = $('#field').val();
+        $.ajax({
+            url: "@Url.Action("AddSpartan_Report_Filter", "Spartan_Report_Filter")",
+            type: "GET",
+            async: false,
+            data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+            success: function (data) {
+                $(".AddSpartan_Report_FilterModal").html(data);
+            },
+            error: function () {
 
-        var editor = CKEDITOR.instances['Body'];
-        // var data = editor.getData();
-        var element = $(editor.document.getById(id));
+            }
+        });
 
-        element.attr('data-default', $('#default').val());
-        element.attr('data-format', $('#format').val());
-        element.attr('data-query', $('#query').val().replace("\t", "").replace("\n", ""));
+        @*$.get('@Url.Action("AddSpartan_Report_Filter", "Spartan_Report_Filter")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddSpartan_Report_FilterModal").html(data);
+            });*@
+    }
 
-        if (!element.get(0).is('span')) {
-           // var data = "<!--INI CODE GENERATE SQLTABLE--> <br>" + CKEDITOR.instances['CodeHtml'].getData() + "<br><!--END CODE GENERATE SQLTABLE-->";
-		   var data =  CKEDITOR.instances['CodeHtml'].getData();
-            element.get(0).setHtml(data);
-        }
-
-        $('#default').val('');
-        $('#format').val('');
-        $('#query').val('');
-        CKEDITOR.instances['CodeHtml'].setData('')
-
-
+    function ShowMessagePendingRowSpartan_Report_Filter()
+    {
+		//Traducción Pendiente
+		showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Filters"))', "warning");
     }
 
 
@@ -939,79 +1402,67 @@
             autoclose: true,
             format: "@ConfigurationProperty.DateFormatDatePicker"
         });
-
-        $(".chosen-select").select2();
         //Time Picker
         $('.gridTimePicker').clockpicker();
 
+
+
     }
 
-
-    function VistaPreviaHtml() {
-
-        if (($("#lblFormatId").text() != "") && ($("#FolioId").val() != "")) {
-            SendSpartan_FormatData(function (currentId) {
-                $("#FormatIdId").val(currentId);
-            });
-            var FormatId = $("#lblFormatId").text();
-            var RecordId = $("#FolioId").val();
-
-            var url = "@Url.Content("~/Frontal/Spartan_Format/PreviewHtml?idFormat=")" + FormatId + "&RecordId=" + RecordId;
-            var prevWindow = window.open(url, '_blank');
-        }
-        else {
-            showNotification('Debe indicar el Folio del objeto', "warning");
-        }
-    }
-    function VistaPreviaPdf() {
-        if (($("#lblFormatId").text() != "") && ($("#FolioId").val() != "")) {
-            SendSpartan_FormatData(function (currentId) {
-                $("#FormatIdId").val(currentId);
-            });
-            var FormatId = $("#lblFormatId").text();
-            var RecordId = $("#FolioId").val();
-
-            var url = "@Url.Content("~/Frontal/Spartan_Format/PreviewPDF?idFormat=")" + FormatId + "&RecordId=" + RecordId;
-            var prevWindow = window.open(url, '_blank');
-        }
-        else {
-            showNotification('Debe indicar el Folio del objeto', "warning");
-        }
-    }
     </script>
-
     <script type="text/javascript">
 
-        function SendSpartan_FormatData(callBack) {
+        function SendSpartan_ReportData(callBack) {
 
-            $('.editor').each(function () {
-                $("textarea#" + this.name).val(htmlEncode(CKEDITOR.instances[this.name].getData()));
-            });
+            $('#Header').text(htmlEncode(CKEDITOR.instances["Header"].getData()));
+            $('#Footer').text(htmlEncode(CKEDITOR.instances["Footer"].getData()));
+
             var arr = [];
-            $("form#CreateSpartan_Format").find(':input').each(function (index) {
-                if ($(this).prop('disabled') == true || $(this).prop('disabled') == "disabled") {
+            $("form#CreateSpartan_Report").find(':input').each(function( index ) {
+                if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+                {
                     arr.push($(this).attr('id'));
                     $(this).prop('disabled', false);
                 }
             });
-            var formData = new FormData($("form#CreateSpartan_Format")[0]);
-            $.each(arr, function (key, value) {
-                $('#' + value).prop('disabled', true);
-            });
 
-            if (checkClientValidate('Spartan_FormatCreateForm')) {
+            var formData = new FormData($("form#CreateSpartan_Report")[0]);
+            $.each( arr, function( key, value ) {
+                $('#' +value).prop('disabled', true);
+            });
+            var isNew = $('#hdnIsNew').val();
+            var totalC = 'False';//$('#TotalColumns').prop('checked');
+            if($('#TotalColumns').prop('checked'))
+                totalC = 'True';
+            var totalR = 'False';//$('#TotalColumns').prop('checked');
+            if($('#TotalRows').prop('checked'))
+                totalR = 'True';
+
+            if (checkClientValidate('Spartan_ReportCreateForm')) {
                 $.ajax({
-                    url: '@Url.Content("~/Frontal/Spartan_Format/Post?IsNew="+ViewBag.IsNew+"")',
+                    url: '@Url.Content("~/Frontal/Spartan_Report/Post?IsNew=")' + isNew + '&TotalC=' + totalC + '&TotalR=' + totalR,
                     type: 'POST',
                     data: formData,
                     async: true,
-                    contentType: "multipart/form-data",
                     success: function (result) {
                         if (result < 0) {
                             showNotification("@Resources.Resources.ErrorSave", "error");
                         } else {
+                            var auxAdvanceFilters = [];
+                            for(var i = 0; i < AdvanceFilters.length; i++)
+                            {
+                                if(AdvanceFilters[i].objectId != $('#Object').val())
+                                {
+                                    auxAdvanceFilters.push(AdvanceFilters[i]);
+                                }
+                            }
+                            AdvanceFilters = auxAdvanceFilters;
+                            GetAdvanceFilter();
+                            SendSpartan_Report_Fields_Detail(callBack, result);
+                            SendSpartan_Report_Filter(callBack, result);
+                            SendSpartan_Report_AdvanceFilter(result);
+                            GenerateQueryReport(result);
                             showNotification("@Resources.Resources.SaveSuccess", "success");
-                            SendSpartanFormatRelates(result);
                             callBack(result);
                         }
                     },
@@ -1025,61 +1476,65 @@
             }
             return false;
         };
-        function SendSpartanFormatRelates(masterId) {
 
-
-            $.ajax({
-                url: '@Url.Content("~/Frontal/Spartan_Format/PostSpartan_Format_Relates?MasterId=")' + masterId,
-                type: 'POST',
-                data: GetSpartanFormatRelatedData(),
-                async: true,
-                contentType: "multipart/form-data",
-                success: function (result) {
-                    if (result < 0) {
-                        showNotification("@Resources.Resources.ErrorSave", "error");
-                    } else {
-                        showNotification("@Resources.Resources.SaveSuccess", "success");
+        function GenerateQueryReport(id)
+        {
+            if(!$('#chkQuery').prop('checked'))
+            {
+                $.ajax({
+                    url: url_content + "Frontal/Spartan_Report/GenerateQueryReport?id=" + id,
+                    type: 'GET',
+                    cache: false,
+                    dataType: "json",
+                    async: false,
+                    success: function (result) {
+                        return true;
+                    },
+                    error: function (result) {
+                        showNotification("Error generando query report", "error");
                     }
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                },
-                cache: false,
-                contentType: false,
-                processData: false
-            });
+                });
+            }
         }
-
-
         function GetPropertyBag() {
-            $.get('@Url.Action("Spartan_FormatPropertyBag", "Spartan_Format")', function (data) {
+            $.get('@Url.Action("Spartan_ReportPropertyBag", "Spartan_Report")', function (data) {
                 $(".PropertyModal").html(data);
             });
         }
-        function Spartan_FormatGetBusinessRule(FieldId, FieldName, Attribute) {
-            if (FieldId != null && FieldName != null) {
-                $('#hdnSpartan_FormatBusinessRuleFieldId').val(FieldId);
-                $('#hdnSpartan_FormatBusinessRuleFieldName').val(FieldName);
-                $('#hdnSpartan_FormatBusinessRuleAttribute').val(Attribute);
-            }
-            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnSpartan_FormatBusinessRuleFieldId').val(), FieldName: $('#hdnSpartan_FormatBusinessRuleFieldName').val(), ObjectId: $('#hdnObjectId').val(), Attribute: $('#hdnSpartan_FormatBusinessRuleAttribute').val() }, function (data) {
-                $(".Spartan_FormatBusinessRuleModal").html(data);
+        function GetAdvanceFilters() {
+            var objectId = $('#Object').val();
+            $.get('@Url.Action("GetAdvanceFilters", "Spartan_Report")?objectId='+ objectId, function (data) {
+                $("#divAdvanceFilters").html(data);
+                $('.control-select2').select2();
+                FillAdvanceFilter();
+
             });
         }
-        function GetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
-            if (FieldId != null && FieldName != null) {
-                $('#hdnSpartan_FormatBusinessRuleFieldId').val(FieldId);
-                $('#hdnSpartan_FormatBusinessRuleFieldName').val(FieldName);
-                $('#hdnSpartan_FormatBusinessRuleAttribute').val(Attribute);
+        function Spartan_ReportGetBusinessRule(FieldId, FieldName, Attribute) {
+            if (FieldId != null && FieldName != null)
+            {
+                $('#hdnSpartan_ReportBusinessRuleFieldId').val(FieldId);
+                $('#hdnSpartan_ReportBusinessRuleFieldName').val(FieldName);
+                $('#hdnSpartan_ReportBusinessRuleAttribute').val(Attribute);
             }
-            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnSpartan_FormatBusinessRuleFieldId').val(), FieldName: $('#hdnSpartan_FormatBusinessRuleFieldName').val(), ObjectId: $('#hdnObjectId').val(), Attribute: $('#hdnSpartan_FormatBusinessRuleAttribute').val(), Screen: 'Spartan_Format' }, function (data) {
-                $(".Spartan_FormatAddBusinessRuleModal").html(data);
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnSpartan_ReportBusinessRuleFieldId').val(), FieldName: $('#hdnSpartan_ReportBusinessRuleFieldName').val(), ObjectId: '34548', Attribute: $('#hdnSpartan_ReportBusinessRuleAttribute').val(), Screen: 'Spartan_Report' }, function (data) {
+                $(".Spartan_ReportBusinessRuleModal").html(data);
+            });
+        }
+        function Spartan_ReportGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+            if (FieldId != null && FieldName != null) {
+                $('#hdnSpartan_ReportBusinessRuleFieldId').val(FieldId);
+                $('#hdnSpartan_ReportBusinessRuleFieldName').val(FieldName);
+                $('#hdnSpartan_ReportBusinessRuleAttribute').val(Attribute);
+            }
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnSpartan_ReportBusinessRuleFieldId').val(), FieldName: $('#hdnSpartan_ReportBusinessRuleFieldName').val(), ObjectId: '34548', Attribute: $('#hdnSpartan_ReportBusinessRuleAttribute').val(), Screen: 'Spartan_Report' }, function (data) {
+                $(".Spartan_ReportAddBusinessRuleModal").html(data);
                 $(".datatable").DataTable();
             });
         }
         function RemoveBusinessRule(RuleId) {
-            $.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnSpartan_FormatBusinessRuleFieldId').val(), FieldName: $('#hdnSpartan_FormatBusinessRuleFieldName').val(), ObjectId: $('#hdnObjectId').val(), Attribute: $('#hdnSpartan_FormatBusinessRuleAttribute').val(), Screen: 'Spartan_Format' }, function (data) {
-                $(".Spartan_FormatBusinessRuleModal").html(data);
+            $.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnSpartan_ReportBusinessRuleFieldId').val(), FieldName: $('#hdnSpartan_ReportBusinessRuleFieldName').val(), ObjectId: '34548', Attribute: $('#hdnSpartan_ReportBusinessRuleAttribute').val(), Screen: 'Spartan_Report' }, function (data) {
+                $(".Spartan_ReportBusinessRuleModal").html(data);
             });
         }
 
@@ -1108,12 +1563,13 @@
             }
         }
 
-        function BackToGrid() {
-            location.href = "@Url.Content("~/Frontal/Spartan_Format/")";
+        function Spartan_ReportBackToGrid() {
+            location.href = "@Url.Content("~/Frontal/Spartan_Report/")";
         }
 
-        function ReadScriptSettings(callback) {
-            $.post("@Url.Content("~/Frontal/Spartan_Format/ReadScriptSettings")", function (data) {
+        function ReadScriptSettings(callback)
+        {
+            $.post("@Url.Content("~/Frontal/Spartan_Report/ReadScriptSettings")", function (data) {
                 mainElementObject = JSON.parse(data.MainElement);
                 if (data.ChildElement != null) {
                     childElementObject = JSON.parse(data.ChildElement);
@@ -1123,19 +1579,19 @@
         }
 
         function SaveSettingsWithoutReload() {
-            $.post("@Url.Content("~/Frontal/Spartan_Format/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            $.post("@Url.Content("~/Frontal/Spartan_Report/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
                 //$('#hdnConfigureType').val("0");
             }, "json");
         }
 
         function SaveElementAttributes() {
             if ($('#hdnConfigureType').val() == "1") {
-                $.post("@Url.Content("~/Frontal/Spartan_Format/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                $.post("@Url.Content("~/Frontal/Spartan_Report/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
                     $('#hdnConfigureType').val("0");
                     location.reload(true);
                 }, "json");
             } else {
-                $.post("@Url.Content("~/Frontal/Spartan_Format/ReadScriptSettings")", function (data) {
+                $.post("@Url.Content("~/Frontal/Spartan_Report/ReadScriptSettings")", function (data) {
                     mainElementObject = JSON.parse(data.MainElement);
                     childElementObject = JSON.parse(data.ChildElement);
 
@@ -1152,25 +1608,147 @@
                         $('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
                     }
                     if (childElementObject != null) {
-                        for (var i = 0; i < childElementObject.length; i++) {
-                            $('.' + childElementObject[i].inputId + 'Header').show();
-                            $('.' + childElementObject[i].inputId).parent().show();
-                            $('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
                         }
+
                     }
                     $('#ConfigureSave').text('Save Settings');
                     $('#hdnConfigureType').val("1");
                 });
             }
         }
-        $('#CreateSpartan_Format').on('click', '.btnPopupBusinessRules', function () {
+        $('#CreateSpartan_Report').on('click', '.btnPopupBusinessRules', function () {
             var fieldId = $(this).data('field-id');
             var fieldName = $(this).data('field-name');
             var attribute = $(this).data('attribute');
-            $('#hdnSpartan_FormatBusinessRuleFieldId').val(fieldId);
-            $('#hdnSpartan_FormatBusinessRuleFieldName').val(fieldName);
-            $('#hdnSpartan_FormatBusinessRuleAttribute').val(attribute);
+            $('#hdnSpartan_ReportBusinessRuleFieldId').val(fieldId);
+            $('#hdnSpartan_ReportBusinessRuleFieldName').val(fieldName);
+            $('#hdnSpartan_ReportBusinessRuleAttribute').val(attribute);
+        });
+        //Initialize HTML Editors
+        var extraAllowedContent = 'img[!src];a[!href];span(!h-card)[!data-class_name];span[!data-physical_name];span[!data-logical_name];span[!data-fieldPath];span[!contenteditable];span[!role]'
+        var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+        var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+        var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+        var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+
+        CKEDITOR.disableAutoInline = true;
+        CKEDITOR.allowedContent = true;
+        CKEDITOR.replace('Header', {
+            extraAllowedContent: extraAllowedContent,
+            filebrowserBrowseUrl: filebrowserBrowseUrl
+          , filebrowserImageBrowseUrl: filebrowserImageBrowseUrl
+          , filebrowserUploadUrl: filebrowserUploadUrl
+          , filebrowserImageUploadUrl: filebrowserImageUploadUrl
+          , allowedContent: true
+        }).on('paste', function (evt) { pasteCKEDITOR(evt); });;
+        CKEDITOR.replace('Footer', {
+            extraAllowedContent: extraAllowedContent,
+            filebrowserBrowseUrl: filebrowserBrowseUrl
+                  , filebrowserImageBrowseUrl: filebrowserImageBrowseUrl
+                  , filebrowserUploadUrl: filebrowserUploadUrl
+                  , filebrowserImageUploadUrl: filebrowserImageUploadUrl
+                  , allowedContent: true
+        }).on('paste', function (evt) { pasteCKEDITOR(evt); });;
+        ///Metodo para llenar el TreeView
+
+
+        addDragStartOnTree();
+
+        function PopulateTree(objectId) {
+
+            if (objectId == null || objectId == '')
+                return;
+            $("#jstree_espartan_metadata").jstree('destroy');
+            $('#jstree_espartan_metadata').jstree({
+                'core': {
+                    'data': {
+                        'cache': false,
+                        'url': '@Url.Content("~/Frontal/Spartan_Report/FillComponentsTree?id=")' + objectId + '&reportId=' + @Model.ReportId,
+                        'type': 'Get',
+                        "dataType": "json",
+                        "contentType": "application/json;",
+                        'success': function (data, textStatus, jqXHR) {
+                            $('#jstree_espartan_metadata').jstree(true).redraw(true);
+                            GetAdvanceFilters();
+                        }
+                    },
+                },
+                'plugins': ["themes", "json_data", "state"]
+            }).bind('loaded.jstree', function (e, data) {
+
+                //closeOpenAllNodes($("#jstree_espartan_metadata"));
+                $("#jstree_espartan_metadata").jstree('open_all');
+                galleryDragAndDrop("#tabData", ".tbl-columns", ".tbl-rows", ".tbl-functions", ".jstree-leaf");
+            });
+        }
+        $('#table-result').on('click', '.edit-field', function () {
+            var id = $(this).data('id');
+            var title = $(this).data('title');
+            var path = $(this).data('path');
+            var physical = $(this).data('physical');
+            var attributeId = $(this).data('attributeid');
+            var type = $(this).data('type');
+            $(this).parent().addClass('selectedNode');
+            GetPopUp(id, title, path, physical, attributeId, type);
+        });
+
+        $('#table-result').on('click', '.delete-field', function () {
+            var path = $(this).data('path');
+            var type = $(this).data('type');
+            var toRemove = -1;
+            if (FieldsInMemory.length != 0) {
+                for (var i = 0; i < FieldsInMemory.length; i++) {
+                    if (FieldsInMemory[i].fieldPath == path)
+                    {
+                        toRemove = i;
+                    }
+                }
+            }
+            if (toRemove != -1)
+                FieldsInMemory.splice(toRemove, 1);
+            if(type == 'row') {
+                rowsInMemory--;
+            }
+            if(type == 'column') {
+                columnsInMemory--;
+            }
+            if(type == 'function') {
+                functionsInMemory--;
+            }
+            $(this).parent().remove();
+        });
+
+        function GetPopUp(id, title, path, physical, attributeId,type) {
+            $.get(url_content + "Frontal/Spartan_Report/Field?id=" + id + "&title=" + title + "&physical_name=" + physical + "&path=" + path + "&attributeId=" + attributeId + "&type=" + type, function (data) {
+                $(".FieldPopUp").html(data);
+                $(".FieldPopUp").modal('show');
+            });
+        }
+        var currentObjectIdPopUp;
+        function GetAdvanceFilterPopUp(objectid) {
+            currentObjectIdPopUp = objectid;
+            $.get('@Url.Action("AdvanceFilterPopUp", "Spartan_Report")?objectId=' + objectid, function (data) {
+
+                GetSpartan_Report_AdvanceFilter(objectid);
+                $(".AdvanceFilter").html(data);
+            });
+        }
+
+        $(document).on('click', '.Detalles', function(){
+            var objId = $(this).data('objectid');
+            GetAdvanceFilterPopUp(objId);
         });
     </script>
 }
-

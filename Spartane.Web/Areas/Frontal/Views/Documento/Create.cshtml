@@ -25,6 +25,9 @@
     List<SelectListItem> varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo = null;
     if (ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo != null)
     { varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo = (List<SelectListItem>)ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo; }
+    List<SelectListItem> varTipo_de_Localizacion_Tipo_de_Localizacion = null;
+    if (ViewBag.Tipo_de_Localizacions_Tipo_de_Localizacion != null)
+    { varTipo_de_Localizacion_Tipo_de_Localizacion = (List<SelectListItem>)ViewBag.Tipo_de_Localizacions_Tipo_de_Localizacion; }
 
 
     Permission permission = ViewBag.Permission;
@@ -353,6 +356,34 @@
                                 <div class="col-sm-8" data-field-id="Solicitar_Numero_de_Oficio" data-attribute="266699" data-field-name="@Resources.DocumentoResources.Solicitar_Numero_de_Oficio">
                                     @Html.CheckBoxFor(m => m.Solicitar_Numero_de_Oficio, new { @class = "i-checks Datos_Generales" })
                                 </div>
+                            </div>
+                            <div class="form-group" id="divTipo_de_Localizacion">
+                                <label class="col-sm-2 control-label">@Resources.DocumentoResources.Tipo_de_Localizacion</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Localizacion" data-attribute="274017" data-field-name="@Resources.DocumentoResources.Tipo_de_Localizacion">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Localización must be a number." data-val-required="The Tipo de Localización field is required." id="Tipo_de_Localizacion" name="Tipo_de_Localizacion">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Localizacion_Tipo_de_Localizacion != null){ 
+                                            foreach (var itemTipo_de_Localizacion in varTipo_de_Localizacion_Tipo_de_Localizacion)
+                                            {
+                                                if (itemTipo_de_Localizacion.Value == Convert.ToString(Model.Tipo_de_Localizacion))
+                                                {
+                                                    <option value="@itemTipo_de_Localizacion.Value" selected>@itemTipo_de_Localizacion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Localizacion.Value">@itemTipo_de_Localizacion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Localizacion" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 274017).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Localizacion', 'Tipo_de_Localizacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             </div>
                                 </div>
@@ -798,6 +829,7 @@
                     $('#Requerido_o_Solicitante').prop('checked', result.data.Requerido_o_Solicitante);
                     $('#Solicitar_Archivo_Adjunto').prop('checked', result.data.Solicitar_Archivo_Adjunto);
                     $('#Solicitar_Numero_de_Oficio').prop('checked', result.data.Solicitar_Numero_de_Oficio);
+                    $('#Tipo_de_Localizacion').val(result.data.Tipo_de_Localizacion);
 
                 },
                 error: function (result) {
@@ -821,6 +853,7 @@
                 data.append('Requerido_o_Solicitante', $('#Requerido_o_Solicitante').prop('checked'));
                 data.append('Solicitar_Archivo_Adjunto', $('#Solicitar_Archivo_Adjunto').prop('checked'));
                 data.append('Solicitar_Numero_de_Oficio', $('#Solicitar_Numero_de_Oficio').prop('checked'));
+                data.append('Tipo_de_Localizacion', $('#Tipo_de_Localizacion').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Documento/Post_Datos_Generales")',

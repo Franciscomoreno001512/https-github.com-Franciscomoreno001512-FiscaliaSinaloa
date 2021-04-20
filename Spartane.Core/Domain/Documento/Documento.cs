@@ -8,6 +8,7 @@ using Spartane.Core.Domain.Origen_de_Invitacion;
 using Spartane.Core.Domain.Tipo_de_Documento;
 using Spartane.Core.Domain.Area_de_Servicios_de_Apoyo;
 using Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo;
+using Spartane.Core.Domain.Tipo_de_Localizacion;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -33,6 +34,7 @@ namespace Spartane.Core.Domain.Documento
         public bool? Requerido_o_Solicitante { get; set; }
         public bool? Solicitar_Archivo_Adjunto { get; set; }
         public bool? Solicitar_Numero_de_Oficio { get; set; }
+        public int? Tipo_de_Localizacion { get; set; }
 
         [ForeignKey("Diligencia")]
         public virtual Spartane.Core.Domain.Dilgencia_MASC.Dilgencia_MASC Diligencia_Dilgencia_MASC { get; set; }
@@ -44,6 +46,8 @@ namespace Spartane.Core.Domain.Documento
         public virtual Spartane.Core.Domain.Area_de_Servicios_de_Apoyo.Area_de_Servicios_de_Apoyo Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo { get; set; }
         [ForeignKey("SubArea_de_Servicios_de_Apoyo")]
         public virtual Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo.SubArea_de_Servicios_de_Apoyo SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo { get; set; }
+        [ForeignKey("Tipo_de_Localizacion")]
+        public virtual Spartane.Core.Domain.Tipo_de_Localizacion.Tipo_de_Localizacion Tipo_de_Localizacion_Tipo_de_Localizacion { get; set; }
 
     }
 	
@@ -62,6 +66,7 @@ namespace Spartane.Core.Domain.Documento
         public bool? Requerido_o_Solicitante { get; set; }
         public bool? Solicitar_Archivo_Adjunto { get; set; }
         public bool? Solicitar_Numero_de_Oficio { get; set; }
+        public int? Tipo_de_Localizacion { get; set; }
 
 		        [ForeignKey("Diligencia")]
         public virtual Spartane.Core.Domain.Dilgencia_MASC.Dilgencia_MASC Diligencia_Dilgencia_MASC { get; set; }
@@ -73,6 +78,8 @@ namespace Spartane.Core.Domain.Documento
         public virtual Spartane.Core.Domain.Area_de_Servicios_de_Apoyo.Area_de_Servicios_de_Apoyo Area_de_Servicios_de_Apoyo_Area_de_Servicios_de_Apoyo { get; set; }
         [ForeignKey("SubArea_de_Servicios_de_Apoyo")]
         public virtual Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo.SubArea_de_Servicios_de_Apoyo SubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo { get; set; }
+        [ForeignKey("Tipo_de_Localizacion")]
+        public virtual Spartane.Core.Domain.Tipo_de_Localizacion.Tipo_de_Localizacion Tipo_de_Localizacion_Tipo_de_Localizacion { get; set; }
 
     }
 

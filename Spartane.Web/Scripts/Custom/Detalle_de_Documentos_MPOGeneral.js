@@ -243,6 +243,247 @@ function Detalle_Delitos_de_DocumentosRemoveAddRow(rowIndex) {
 }
 
 //End Declarations for Foreigns fields for Detalle_Delitos_de_Documentos MultiRow
+//Begin Declarations for Foreigns fields for Detalle_de_Indicios_de_Diligencia MultiRow
+var Detalle_de_Indicios_de_DiligenciacountRowsChecked = 0;
+
+
+
+
+
+
+function GetInsertDetalle_de_Indicios_de_DiligenciaRowControls(index) {
+    var columnData = [];
+    var inputData = "<input type='text' class='fullWidth form-control'/>";
+
+    columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_de_Indicios_de_Diligencia_Indicio Indicio').attr('id', 'Detalle_de_Indicios_de_Diligencia_Indicio_' + index).attr('data-field', 'Indicio');
+    columnData[1] = $($.parseHTML(GetGridCheckBox())).addClass('Detalle_de_Indicios_de_Diligencia_Seleccionar Seleccionar').attr('id', 'Detalle_de_Indicios_de_Diligencia_Seleccionar_' + index).attr('data-field', 'Seleccionar');
+    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_de_Indicios_de_Diligencia_IndicioId IndicioId').attr('id', 'Detalle_de_Indicios_de_Diligencia_IndicioId_' + index).attr('data-field', 'IndicioId');
+
+
+    initiateUIControls();
+    return columnData;
+}
+
+function Detalle_de_Indicios_de_DiligenciaInsertRow(rowIndex) {
+if (EjecutarValidacionesAntesDeGuardarMRDetalle_de_Indicios_de_Diligencia("Detalle_de_Indicios_de_Diligencia_", "_" + rowIndex)) {
+    var iPage = Detalle_de_Indicios_de_DiligenciaTable.fnPagingInfo().iPage;
+    var nameOfGrid = 'Detalle_de_Indicios_de_Diligencia';
+    var prevData = Detalle_de_Indicios_de_DiligenciaTable.fnGetData(rowIndex);
+    var data = Detalle_de_Indicios_de_DiligenciaTable.fnGetNodes(rowIndex);
+    var counter = 1;
+    var newData = {
+        Folio: prevData.Folio,
+        IsInsertRow: false
+
+        ,Indicio:  data.childNodes[counter++].childNodes[0].value
+        ,Seleccionar: $(data.childNodes[counter++].childNodes[2]).is(':checked')
+        ,IndicioId: data.childNodes[counter++].childNodes[0].value
+
+    }
+    Detalle_de_Indicios_de_DiligenciaTable.fnUpdate(newData, rowIndex, null, true);
+    Detalle_de_Indicios_de_DiligenciarowCreationGrid(data, newData, rowIndex);
+    Detalle_de_Indicios_de_DiligenciaTable.fnPageChange(iPage);
+    Detalle_de_Indicios_de_DiligenciacountRowsChecked--;	
+    EjecutarValidacionesDespuesDeGuardarMRDetalle_de_Indicios_de_Diligencia("Detalle_de_Indicios_de_Diligencia_", "_" + rowIndex);
+  }
+}
+
+function Detalle_de_Indicios_de_DiligenciaCancelRow(rowIndex) {
+    var prevData = Detalle_de_Indicios_de_DiligenciaTable.fnGetData(rowIndex);
+    var data = Detalle_de_Indicios_de_DiligenciaTable.fnGetNodes(rowIndex);
+
+    if (prevData.IsInsertRow) {
+        Detalle_de_Indicios_de_DiligenciaTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
+            console.log('Row deleted');
+        }, true);
+    } else {
+        Detalle_de_Indicios_de_DiligenciarowCreationGrid(data, prevData, rowIndex);
+    }
+	showDetalle_de_Indicios_de_DiligenciaGrid(Detalle_de_Indicios_de_DiligenciaTable.fnGetData());
+    Detalle_de_Indicios_de_DiligenciacountRowsChecked--;
+	initiateUIControls();
+}
+
+function GetDetalle_de_Indicios_de_DiligenciaFromDataTable() {
+    var Detalle_de_Indicios_de_DiligenciaData = [];
+    var gridData = Detalle_de_Indicios_de_DiligenciaTable.fnGetData();
+    //debugger;
+    for (var i = 0; i < gridData.length; i++) {
+        if (gridData[i].IsInsertRow == null || !gridData[i].IsInsertRow)
+            Detalle_de_Indicios_de_DiligenciaData.push({
+                Folio: gridData[i].Folio
+
+                ,Indicio: gridData[i].Indicio
+                ,Seleccionar: gridData[i].Seleccionar
+                ,IndicioId: gridData[i].IndicioId
+
+                ,Removed: false
+            });
+    }
+
+    for (i = 0; i < removedDetalle_de_Indicios_de_DiligenciaData.length; i++) {
+        if (removedDetalle_de_Indicios_de_DiligenciaData[i] != null && removedDetalle_de_Indicios_de_DiligenciaData[i].Folio > 0)
+            Detalle_de_Indicios_de_DiligenciaData.push({
+                Folio: removedDetalle_de_Indicios_de_DiligenciaData[i].Folio
+
+                ,Indicio: removedDetalle_de_Indicios_de_DiligenciaData[i].Indicio
+                ,Seleccionar: removedDetalle_de_Indicios_de_DiligenciaData[i].Seleccionar
+                ,IndicioId: removedDetalle_de_Indicios_de_DiligenciaData[i].IndicioId
+
+                , Removed: true
+            });
+    }	
+
+    return Detalle_de_Indicios_de_DiligenciaData;
+}
+
+function Detalle_de_Indicios_de_DiligenciaEditRow(rowIndex, currentRow, executeRules) {
+    var rowIndexTable = (currentRow) ? Detalle_de_Indicios_de_DiligenciaTable.fnGetPosition($(currentRow).parent().parent()[0]) : rowIndex;
+    Detalle_de_Indicios_de_DiligenciacountRowsChecked++;
+    var Detalle_de_Indicios_de_DiligenciaRowElement = "Detalle_de_Indicios_de_Diligencia_" + rowIndex.toString();
+    var prevData = Detalle_de_Indicios_de_DiligenciaTable.fnGetData(rowIndexTable );
+    var row = Detalle_de_Indicios_de_DiligenciaTable.fnGetNodes(rowIndexTable);
+    row.innerHTML = "";
+    var nameOfTable = "Detalle_de_Indicios_de_Diligencia_";
+    var rowIndexFormed = "_" + rowIndex;
+    var controls = Detalle_de_Indicios_de_DiligenciaGetUpdateRowControls(prevData, "Detalle_de_Indicios_de_Diligencia_", "_" + rowIndex);
+
+    var abc = "if(dynamicFieldValidation('" + Detalle_de_Indicios_de_DiligenciaRowElement + "')){ Detalle_de_Indicios_de_DiligenciaInsertRow(" + rowIndex + "); }";
+    var updateRowClick = '<a  onclick="' + abc + '">';
+
+    var actionColInsert = $('<td>');
+    $('<i class="fa fa-check">').appendTo($(updateRowClick).appendTo(actionColInsert));
+    $('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_de_Indicios_de_DiligenciaCancelRow(" + rowIndex + ")'>").appendTo(actionColInsert));
+    actionColInsert.appendTo(row);
+
+    for (i = 0; i < controls.length; i++) {
+        var idHeader = $(controls[i]).data('field') + 'Header';
+        if ($(controls[i]).length > 1) {
+            idHeader = $($(controls[i])[1]).data('field') + 'Header';
+        }
+		var classe = ($('#Detalle_de_Indicios_de_DiligenciaGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + ($('#Detalle_de_Indicios_de_DiligenciaGrid .' + idHeader).css('display') == 'none' ? ' hide' : '' );
+		  if ($(controls[i]).next().length > 0) {
+		        var div = $(controls[i]).next();
+		        $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+		    }
+		    else
+                $(controls[i]).appendTo($('<td class="' + classe +  '" id="td'+nameOfTable+idHeader.replace('Header', '')+rowIndexFormed+'">').appendTo(row));                   
+    }
+    
+    setDetalle_de_Indicios_de_DiligenciaValidation();
+    initiateUIControls();
+    $('.Detalle_de_Indicios_de_Diligencia' + rowIndexFormed + ' .inputMoney').inputmask("currency", { prefix: "", rightAlign: false });
+    $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+    if(executeRules == null || (executeRules != null && executeRules == true))
+    {
+         EjecutarValidacionesEditRowMRDetalle_de_Indicios_de_Diligencia(nameOfTable, rowIndexFormed);
+    }
+}
+
+function Detalle_de_Indicios_de_DiligenciafnOpenAddRowPopUp() {
+    var currentRowIndex = Detalle_de_Indicios_de_DiligenciaTable.fnGetData().length;
+    Detalle_de_Indicios_de_DiligenciafnClickAddRow();
+    GetAddDetalle_de_Indicios_de_DiligenciaPopup(currentRowIndex, 0);
+}
+
+function Detalle_de_Indicios_de_DiligenciaEditRowPopup(rowIndex, currentRow) {
+    var rowIndexTable = Detalle_de_Indicios_de_DiligenciaTable.fnGetPosition($(currentRow).parent().parent()[0]);
+    var Detalle_de_Indicios_de_DiligenciaRowElement = "Detalle_de_Indicios_de_Diligencia_" + rowIndex.toString();
+    var prevData = Detalle_de_Indicios_de_DiligenciaTable.fnGetData(rowIndexTable);
+    GetAddDetalle_de_Indicios_de_DiligenciaPopup(rowIndex, 1, prevData.Folio);
+
+    $('#Detalle_de_Indicios_de_DiligenciaIndicio').val(prevData.Indicio);
+    $('#Detalle_de_Indicios_de_DiligenciaSeleccionar').prop('checked', prevData.Seleccionar);
+    $('#Detalle_de_Indicios_de_DiligenciaIndicioId').val(prevData.IndicioId);
+
+    initiateUIControls();
+
+
+
+
+
+}
+
+function Detalle_de_Indicios_de_DiligenciaAddInsertRow() {
+    if (Detalle_de_Indicios_de_DiligenciainsertRowCurrentIndex < 1)
+    {
+        Detalle_de_Indicios_de_DiligenciainsertRowCurrentIndex = 1;
+    }
+    return {
+        Folio: null,
+        IsInsertRow: true
+
+        ,Indicio: ""
+        ,Seleccionar: ""
+        ,IndicioId: ""
+
+    }
+}
+
+function Detalle_de_Indicios_de_DiligenciafnClickAddRow() {
+    Detalle_de_Indicios_de_DiligenciacountRowsChecked++;
+    Detalle_de_Indicios_de_DiligenciaTable.fnAddData(Detalle_de_Indicios_de_DiligenciaAddInsertRow(), true);
+    Detalle_de_Indicios_de_DiligenciaTable.fnPageChange('last');
+    initiateUIControls();
+	 //var tag = $('#Detalle_de_Indicios_de_DiligenciaGrid tbody tr td .form-control').first().get(0).tagName.toLowerCase();
+    //$('#Detalle_de_Indicios_de_DiligenciaGrid tbody tr:nth-of-type(' + (Detalle_de_Indicios_de_DiligenciainsertRowCurrentIndex + 1) + ') ' + tag ).focus();
+    EjecutarValidacionesNewRowMRDetalle_de_Indicios_de_Diligencia("Detalle_de_Indicios_de_Diligencia_", "_" + Detalle_de_Indicios_de_DiligenciainsertRowCurrentIndex);
+}
+
+function Detalle_de_Indicios_de_DiligenciaClearGridData() {
+    Detalle_de_Indicios_de_DiligenciaData = [];
+    Detalle_de_Indicios_de_DiligenciadeletedItem = [];
+    Detalle_de_Indicios_de_DiligenciaDataMain = [];
+    Detalle_de_Indicios_de_DiligenciaDataMainPages = [];
+    Detalle_de_Indicios_de_DiligencianewItemCount = 0;
+    Detalle_de_Indicios_de_DiligenciamaxItemIndex = 0;
+    $("#Detalle_de_Indicios_de_DiligenciaGrid").DataTable().clear();
+    $("#Detalle_de_Indicios_de_DiligenciaGrid").DataTable().destroy();
+}
+
+//Used to Get Documentos AT Information
+function GetDetalle_de_Indicios_de_Diligencia() {
+    var form_data = new FormData();
+    for (var i = 0; i < Detalle_de_Indicios_de_DiligenciaData.length; i++) {
+        form_data.append('[' + i + '].Folio', Detalle_de_Indicios_de_DiligenciaData[i].Folio);
+
+        form_data.append('[' + i + '].Indicio', Detalle_de_Indicios_de_DiligenciaData[i].Indicio);
+        form_data.append('[' + i + '].Seleccionar', Detalle_de_Indicios_de_DiligenciaData[i].Seleccionar);
+        form_data.append('[' + i + '].IndicioId', Detalle_de_Indicios_de_DiligenciaData[i].IndicioId);
+
+        form_data.append('[' + i + '].Removed', Detalle_de_Indicios_de_DiligenciaData[i].Removed);
+    }
+    return form_data;
+}
+function Detalle_de_Indicios_de_DiligenciaInsertRowFromPopup(rowIndex) {
+    //if (EjecutarValidacionesAntesDeGuardarMRDetalle_de_Indicios_de_Diligencia("Detalle_de_Indicios_de_DiligenciaTable", rowIndex)) {
+    var prevData = Detalle_de_Indicios_de_DiligenciaTable.fnGetData(rowIndex);
+    var data = Detalle_de_Indicios_de_DiligenciaTable.fnGetNodes(rowIndex);
+    var newData = {
+        Folio: prevData.Folio,
+        IsInsertRow: false
+
+        ,Indicio: $('#Detalle_de_Indicios_de_DiligenciaIndicio').val()
+        ,Seleccionar: $('#Detalle_de_Indicios_de_DiligenciaSeleccionar').is(':checked')
+        ,IndicioId: $('#Detalle_de_Indicios_de_DiligenciaIndicioId').val()
+
+
+    }
+
+    Detalle_de_Indicios_de_DiligenciaTable.fnUpdate(newData, rowIndex, null, true);
+    Detalle_de_Indicios_de_DiligenciarowCreationGrid(data, newData, rowIndex);
+    $('#AddDetalle_de_Indicios_de_Diligencia-form').modal({ show: false });
+    $('#AddDetalle_de_Indicios_de_Diligencia-form').modal('hide');
+    Detalle_de_Indicios_de_DiligenciaEditRow(rowIndex);
+    Detalle_de_Indicios_de_DiligenciaInsertRow(rowIndex);
+    //}
+}
+function Detalle_de_Indicios_de_DiligenciaRemoveAddRow(rowIndex) {
+    Detalle_de_Indicios_de_DiligenciaTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
+    }, true);
+}
+
+//End Declarations for Foreigns fields for Detalle_de_Indicios_de_Diligencia MultiRow
 
 
 $(function () {
@@ -286,6 +527,48 @@ $(function () {
         for (var i = 0; i < data.length; i++) {
             if (Detalle_Delitos_de_DocumentosDataMain[(pageIndex * pageSize) - pageSize + i] == null)
                 Detalle_Delitos_de_DocumentosDataMain[(pageIndex * pageSize) - pageSize + i] = data[i];
+        }
+    }
+    function Detalle_de_Indicios_de_DiligenciainitializeMainArray(totalCount) {
+        if (Detalle_de_Indicios_de_DiligenciaDataMain.length != totalCount && !Detalle_de_Indicios_de_DiligenciaDataMainInitialized) {
+            Detalle_de_Indicios_de_DiligenciaDataMainInitialized = true;
+            for (var i = 0; i < totalCount; i++) {
+                Detalle_de_Indicios_de_DiligenciaDataMain[i] = null;
+            }
+        }
+    }
+    function Detalle_de_Indicios_de_DiligenciaremoveFromMainArray() {
+        for (var j = 0; j < Detalle_de_Indicios_de_DiligenciadeletedItem.length; j++) {
+            for (var i = 0; i < Detalle_de_Indicios_de_DiligenciaDataMain.length; i++) {
+                if (Detalle_de_Indicios_de_DiligenciaDataMain[i] != null && Detalle_de_Indicios_de_DiligenciaDataMain[i].Id == Detalle_de_Indicios_de_DiligenciadeletedItem[j]) {
+                    hDetalle_de_Indicios_de_DiligenciaDataMain.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    }
+    function Detalle_de_Indicios_de_DiligenciacopyMainHistoryArray() {
+        var data = [];
+        for (var i = 0; i < Detalle_de_Indicios_de_DiligenciaDataMain.length; i++) {
+            data[i] = Detalle_de_Indicios_de_DiligenciaDataMain[i];
+
+        }
+        return data;
+    }
+    function Detalle_de_Indicios_de_DiligenciagetNewResult() {
+        var newData = copyMainDetalle_de_Indicios_de_DiligenciaArray();
+
+        for (var i = 0; i < Detalle_de_Indicios_de_DiligenciaData.length; i++) {
+            if (Detalle_de_Indicios_de_DiligenciaData[i].Removed == null || Detalle_de_Indicios_de_DiligenciaData[i].Removed == false) {
+                newData.splice(0, 0, Detalle_de_Indicios_de_DiligenciaData[i]);
+            }
+        }
+        return newData;
+    }
+    function Detalle_de_Indicios_de_DiligenciapushToMainArray(data, pageIndex, pageSize) {
+        for (var i = 0; i < data.length; i++) {
+            if (Detalle_de_Indicios_de_DiligenciaDataMain[(pageIndex * pageSize) - pageSize + i] == null)
+                Detalle_de_Indicios_de_DiligenciaDataMain[(pageIndex * pageSize) - pageSize + i] = data[i];
         }
     }
 
@@ -359,6 +642,8 @@ function GetAutoCompleteDetalle_Delitos_de_Documentos_Delito_Detalle_de_DelitoDa
     return AutoCompleteDelitoData;
 }
 
+//Grid GetAutocomplete
+
 
 
 function getDropdown(elementKey) {
@@ -412,6 +697,7 @@ function ClearControls() {
     $("#Probable_Responsable").append('<option value=""></option>');
     $('#Probable_Responsable').val('0').trigger('change');
                 Detalle_Delitos_de_DocumentosClearGridData();
+                Detalle_de_Indicios_de_DiligenciaClearGridData();
 
 }
 function ClearAttachmentsDiv() {
@@ -451,6 +737,11 @@ function CheckValidation() {
     if (Detalle_Delitos_de_DocumentoscountRowsChecked > 0)
     {
         ShowMessagePendingRowDetalle_Delitos_de_Documentos();
+        return false;
+    }
+    if (Detalle_de_Indicios_de_DiligenciacountRowsChecked > 0)
+    {
+        ShowMessagePendingRowDetalle_de_Indicios_de_Diligencia();
         return false;
     }
 	
@@ -524,6 +815,7 @@ $(document).ready(function () {
 					ClearAttachmentsDiv();
 					ResetClaveLabel();
 	                getDetalle_Delitos_de_DocumentosData();
+                getDetalle_de_Indicios_de_DiligenciaData();
 
 					if (isPartial)
 					{
@@ -563,10 +855,12 @@ $(document).ready(function () {
     $("#Probable_Responsable").append('<option value=""></option>');
     $('#Probable_Responsable').val('0').trigger('change');
                 Detalle_Delitos_de_DocumentosClearGridData();
+                Detalle_de_Indicios_de_DiligenciaClearGridData();
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
 	                getDetalle_Delitos_de_DocumentosData();
+                getDetalle_de_Indicios_de_DiligenciaData();
 
 					EjecutarValidacionesDespuesDeGuardar();		
 					if (isPartial)

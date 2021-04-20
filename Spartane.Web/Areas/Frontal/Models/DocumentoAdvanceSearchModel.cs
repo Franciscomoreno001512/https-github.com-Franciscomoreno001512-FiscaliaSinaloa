@@ -63,6 +63,10 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public RadioOptions Solicitar_Numero_de_Oficio { set; get; }
 
+        public Filters Tipo_de_LocalizacionFilter { set; get; }
+        public string AdvanceTipo_de_Localizacion { set; get; }
+        public int[] AdvanceTipo_de_LocalizacionMultiple { set; get; }
+
 
     }
 }

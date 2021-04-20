@@ -15,8 +15,36 @@
   <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
   <resource culture="es-es" name="Archivo" value="Archivo"></resource>
   <resource culture="es-es" name="Lista_para_periciales" value="Diligencia lista para enviar a periciales"></resource>
-  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Folio" value="Número de Oficio"></resource>
+  <resource culture="es-es" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+  <resource culture="es-es" name="Indicios_a_enviar" value="Indicios a enviar"></resource>
+  <resource culture="es-es" name="Estatus_Persona" value="Estatus Persona"></resource>
+  <resource culture="es-es" name="Fecha_Localizacion" value="Fecha Localización"></resource>
+  <resource culture="es-es" name="Hora_Localizacion" value="Hora Localización"></resource>
+  <resource culture="es-es" name="Condiciones_de_Localizacion" value="Condiciones de Localización"></resource>
+  <resource culture="es-es" name="Lugar_de_Hallazgo" value="Lugar de Hallazgo"></resource>
+  <resource culture="es-es" name="Posible_Causa_de_la_Desaparacion" value="Posible Causa de la Desaparación"></resource>
+  <resource culture="es-es" name="Pais" value="Pais"></resource>
+  <resource culture="es-es" name="Estado" value="Estado"></resource>
+  <resource culture="es-es" name="Municipio" value="Municipio"></resource>
+  <resource culture="es-es" name="Poblacion" value="Población"></resource>
+  <resource culture="es-es" name="Colonia" value="Colonia"></resource>
+  <resource culture="es-es" name="Calle" value="Calle"></resource>
+  <resource culture="es-es" name="Numero_Interior" value="Número Interior"></resource>
+  <resource culture="es-es" name="Numero_Exterior" value="Número Exterior"></resource>
+  <resource culture="es-es" name="Codigo_Postal" value="Código Postal"></resource>
+  <resource culture="es-es" name="Ente_que_localiza_al_no_localizado" value="Ente que localiza al no localizado"></resource>
+  <resource culture="es-es" name="ente_Paterno" value="Paterno"></resource>
+  <resource culture="es-es" name="ente_Materno" value="Materno"></resource>
+  <resource culture="es-es" name="ente_Nombre" value="Nombre"></resource>
+  <resource culture="es-es" name="Autoridad_que_conoce_el_hecho" value="Autoridad que conoce el hecho"></resource>
+  <resource culture="es-es" name="autoridad_Paterno" value="Paterno"></resource>
+  <resource culture="es-es" name="autoridad_Materno" value="Materno"></resource>
+  <resource culture="es-es" name="autoridad_Nombre" value="Nombre"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabLocalizacion" value="Localización"></resource>
+<resource culture="es-es" name="TabEnte_y_Autoridad" value="Ente y Autoridad"></resource>
 
 </resources>

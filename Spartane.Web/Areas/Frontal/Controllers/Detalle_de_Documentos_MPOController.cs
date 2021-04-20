@@ -12,6 +12,22 @@ using Spartane.Core.Domain.Detalle_Delitos_de_Documentos;
 
 using Spartane.Core.Domain.Detalle_de_Delito;
 
+using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Core.Domain.Detalle_de_Indicios_de_Diligencia;
+
+
+
+
+
+using Spartane.Core.Domain.Estatus_Persona;
+using Spartane.Core.Domain.Condiciones_de_Localizacion;
+using Spartane.Core.Domain.Lugar_del_Hallazgo;
+using Spartane.Core.Domain.Pais;
+using Spartane.Core.Domain.Estado;
+using Spartane.Core.Domain.Municipio;
+using Spartane.Core.Domain.Colonia;
+using Spartane.Core.Domain.Colonia;
+using Spartane.Core.Domain.Ente_que_localiza;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -32,6 +48,20 @@ using Spartane.Web.Areas.WebApiConsumer.Detalle_Delitos_de_Documentos;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Delito;
 
+using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Indicios_de_Diligencia;
+
+
+
+using Spartane.Web.Areas.WebApiConsumer.Estatus_Persona;
+using Spartane.Web.Areas.WebApiConsumer.Condiciones_de_Localizacion;
+using Spartane.Web.Areas.WebApiConsumer.Lugar_del_Hallazgo;
+using Spartane.Web.Areas.WebApiConsumer.Pais;
+using Spartane.Web.Areas.WebApiConsumer.Estado;
+using Spartane.Web.Areas.WebApiConsumer.Municipio;
+using Spartane.Web.Areas.WebApiConsumer.Colonia;
+using Spartane.Web.Areas.WebApiConsumer.Colonia;
+using Spartane.Web.Areas.WebApiConsumer.Ente_que_localiza;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -78,6 +108,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_de_DelitoApiConsumer _IDetalle_de_DelitoApiConsumer;
 
+        private Iexpediente_ministerio_publicoApiConsumer _Iexpediente_ministerio_publicoApiConsumer;
+        private IDetalle_de_Indicios_de_DiligenciaApiConsumer _IDetalle_de_Indicios_de_DiligenciaApiConsumer;
+
+
+
+        private IEstatus_PersonaApiConsumer _IEstatus_PersonaApiConsumer;
+        private ICondiciones_de_LocalizacionApiConsumer _ICondiciones_de_LocalizacionApiConsumer;
+        private ILugar_del_HallazgoApiConsumer _ILugar_del_HallazgoApiConsumer;
+        private IPaisApiConsumer _IPaisApiConsumer;
+        private IEstadoApiConsumer _IEstadoApiConsumer;
+        private IMunicipioApiConsumer _IMunicipioApiConsumer;
+        private IColoniaApiConsumer _IColoniaApiConsumer;
+        private IEnte_que_localizaApiConsumer _IEnte_que_localizaApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -95,7 +138,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Documentos_MPOController(IDetalle_de_Documentos_MPOService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Documentos_MPOApiConsumer Detalle_de_Documentos_MPOApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer , IDocumentoApiConsumer DocumentoApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDetalle_Delitos_de_DocumentosApiConsumer Detalle_Delitos_de_DocumentosApiConsumer , IDetalle_de_DelitoApiConsumer Detalle_de_DelitoApiConsumer  )
+        public Detalle_de_Documentos_MPOController(IDetalle_de_Documentos_MPOService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Documentos_MPOApiConsumer Detalle_de_Documentos_MPOApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer , IDocumentoApiConsumer DocumentoApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDetalle_Delitos_de_DocumentosApiConsumer Detalle_Delitos_de_DocumentosApiConsumer , IDetalle_de_DelitoApiConsumer Detalle_de_DelitoApiConsumer  , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , IDetalle_de_Indicios_de_DiligenciaApiConsumer Detalle_de_Indicios_de_DiligenciaApiConsumer  , IEstatus_PersonaApiConsumer Estatus_PersonaApiConsumer , ICondiciones_de_LocalizacionApiConsumer Condiciones_de_LocalizacionApiConsumer , ILugar_del_HallazgoApiConsumer Lugar_del_HallazgoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IEnte_que_localizaApiConsumer Ente_que_localizaApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -119,6 +162,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             this._IDetalle_de_DelitoApiConsumer = Detalle_de_DelitoApiConsumer;
 
+            this._Iexpediente_ministerio_publicoApiConsumer = expediente_ministerio_publicoApiConsumer;
+            this._IDetalle_de_Indicios_de_DiligenciaApiConsumer = Detalle_de_Indicios_de_DiligenciaApiConsumer;
+
+
+
+            this._IEstatus_PersonaApiConsumer = Estatus_PersonaApiConsumer;
+            this._ICondiciones_de_LocalizacionApiConsumer = Condiciones_de_LocalizacionApiConsumer;
+            this._ILugar_del_HallazgoApiConsumer = Lugar_del_HallazgoApiConsumer;
+            this._IPaisApiConsumer = PaisApiConsumer;
+            this._IEstadoApiConsumer = EstadoApiConsumer;
+            this._IMunicipioApiConsumer = MunicipioApiConsumer;
+            this._IColoniaApiConsumer = ColoniaApiConsumer;
+            this._IColoniaApiConsumer = ColoniaApiConsumer;
+            this._IEnte_que_localizaApiConsumer = Ente_que_localizaApiConsumer;
 
         }
 
@@ -178,6 +235,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             var permissionDetalle_Delitos_de_Documentos = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45390, ModuleId);
             ViewBag.PermissionDetalle_Delitos_de_Documentos = permissionDetalle_Delitos_de_Documentos;
+            var permissionDetalle_de_Indicios_de_Diligencia = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 46343, ModuleId);
+            ViewBag.PermissionDetalle_de_Indicios_de_Diligencia = permissionDetalle_de_Indicios_de_Diligencia;
 
 
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short))&& Id.ToString() != "0"))
@@ -215,6 +274,41 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Archivo = Detalle_de_Documentos_MPOData.Archivo
                     ,Lista_para_periciales = Detalle_de_Documentos_MPOData.Lista_para_periciales.GetValueOrDefault()
                     ,Folio = Detalle_de_Documentos_MPOData.Folio
+                    ,Expediente_MP = Detalle_de_Documentos_MPOData.Expediente_MP
+                    ,Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Expediente_MP), "expediente_ministerio_publico") ??  (string)Detalle_de_Documentos_MPOData.Expediente_MP_expediente_ministerio_publico.nic
+                    ,Descripcion = Detalle_de_Documentos_MPOData.Descripcion
+                    ,Estatus_Persona = Detalle_de_Documentos_MPOData.Estatus_Persona
+                    ,Estatus_PersonaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Estatus_Persona), "Estatus_Persona") ??  (string)Detalle_de_Documentos_MPOData.Estatus_Persona_Estatus_Persona.Descripcion
+                    ,Fecha_Localizacion = (Detalle_de_Documentos_MPOData.Fecha_Localizacion == null ? string.Empty : Convert.ToDateTime(Detalle_de_Documentos_MPOData.Fecha_Localizacion).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_Localizacion = Detalle_de_Documentos_MPOData.Hora_Localizacion
+                    ,Condiciones_de_Localizacion = Detalle_de_Documentos_MPOData.Condiciones_de_Localizacion
+                    ,Condiciones_de_LocalizacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Condiciones_de_Localizacion), "Condiciones_de_Localizacion") ??  (string)Detalle_de_Documentos_MPOData.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Descripcion
+                    ,Lugar_de_Hallazgo = Detalle_de_Documentos_MPOData.Lugar_de_Hallazgo
+                    ,Lugar_de_HallazgoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Lugar_de_Hallazgo), "Lugar_del_Hallazgo") ??  (string)Detalle_de_Documentos_MPOData.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Descripcion
+                    ,Posible_Causa_de_la_Desaparacion = Detalle_de_Documentos_MPOData.Posible_Causa_de_la_Desaparacion
+                    ,Pais = Detalle_de_Documentos_MPOData.Pais
+                    ,PaisNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Pais), "Pais") ??  (string)Detalle_de_Documentos_MPOData.Pais_Pais.Nombre
+                    ,Estado = Detalle_de_Documentos_MPOData.Estado
+                    ,EstadoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Estado), "Estado") ??  (string)Detalle_de_Documentos_MPOData.Estado_Estado.Nombre
+                    ,Municipio = Detalle_de_Documentos_MPOData.Municipio
+                    ,MunicipioNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Municipio), "Municipio") ??  (string)Detalle_de_Documentos_MPOData.Municipio_Municipio.Nombre
+                    ,Poblacion = Detalle_de_Documentos_MPOData.Poblacion
+                    ,PoblacionNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Poblacion), "Colonia") ??  (string)Detalle_de_Documentos_MPOData.Poblacion_Colonia.Nombre
+                    ,Colonia = Detalle_de_Documentos_MPOData.Colonia
+                    ,ColoniaNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Colonia), "Colonia") ??  (string)Detalle_de_Documentos_MPOData.Colonia_Colonia.Nombre
+                    ,Calle = Detalle_de_Documentos_MPOData.Calle
+                    ,Numero_Interior = Detalle_de_Documentos_MPOData.Numero_Interior
+                    ,Numero_Exterior = Detalle_de_Documentos_MPOData.Numero_Exterior
+                    ,Codigo_Postal = Detalle_de_Documentos_MPOData.Codigo_Postal
+                    ,Ente_que_localiza_al_no_localizado = Detalle_de_Documentos_MPOData.Ente_que_localiza_al_no_localizado
+                    ,Ente_que_localiza_al_no_localizadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Ente_que_localiza_al_no_localizado), "Ente_que_localiza") ??  (string)Detalle_de_Documentos_MPOData.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Descripcion
+                    ,ente_Paterno = Detalle_de_Documentos_MPOData.ente_Paterno
+                    ,ente_Materno = Detalle_de_Documentos_MPOData.ente_Materno
+                    ,ente_Nombre = Detalle_de_Documentos_MPOData.ente_Nombre
+                    ,Autoridad_que_conoce_el_hecho = Detalle_de_Documentos_MPOData.Autoridad_que_conoce_el_hecho
+                    ,autoridad_Paterno = Detalle_de_Documentos_MPOData.autoridad_Paterno
+                    ,autoridad_Materno = Detalle_de_Documentos_MPOData.autoridad_Materno
+                    ,autoridad_Nombre = Detalle_de_Documentos_MPOData.autoridad_Nombre
 
 					};
 				}
@@ -233,6 +327,76 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Documentos_Tipo_de_Documento = Tipo_de_Documentos_Tipo_de_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var expediente_ministerio_publicos_Expediente_MP = _Iexpediente_ministerio_publicoApiConsumer.SelAll(true);
+            if (expediente_ministerio_publicos_Expediente_MP != null && expediente_ministerio_publicos_Expediente_MP.Resource != null)
+                ViewBag.expediente_ministerio_publicos_Expediente_MP = expediente_ministerio_publicos_Expediente_MP.Resource.Where(m => m.nic != null).OrderBy(m => m.nic).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic") ?? m.nic.ToString(), Value = Convert.ToString(m.clave)
+                }).ToList();
+            _IEstatus_PersonaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Personas_Estatus_Persona = _IEstatus_PersonaApiConsumer.SelAll(true);
+            if (Estatus_Personas_Estatus_Persona != null && Estatus_Personas_Estatus_Persona.Resource != null)
+                ViewBag.Estatus_Personas_Estatus_Persona = Estatus_Personas_Estatus_Persona.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Persona", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ICondiciones_de_LocalizacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Condiciones_de_Localizacions_Condiciones_de_Localizacion = _ICondiciones_de_LocalizacionApiConsumer.SelAll(true);
+            if (Condiciones_de_Localizacions_Condiciones_de_Localizacion != null && Condiciones_de_Localizacions_Condiciones_de_Localizacion.Resource != null)
+                ViewBag.Condiciones_de_Localizacions_Condiciones_de_Localizacion = Condiciones_de_Localizacions_Condiciones_de_Localizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Condiciones_de_Localizacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ILugar_del_HallazgoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Lugar_del_Hallazgos_Lugar_de_Hallazgo = _ILugar_del_HallazgoApiConsumer.SelAll(true);
+            if (Lugar_del_Hallazgos_Lugar_de_Hallazgo != null && Lugar_del_Hallazgos_Lugar_de_Hallazgo.Resource != null)
+                ViewBag.Lugar_del_Hallazgos_Lugar_de_Hallazgo = Lugar_del_Hallazgos_Lugar_de_Hallazgo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_del_Hallazgo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Paiss_Pais = _IPaisApiConsumer.SelAll(true);
+            if (Paiss_Pais != null && Paiss_Pais.Resource != null)
+                ViewBag.Paiss_Pais = Paiss_Pais.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Pais", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estados_Estado = _IEstadoApiConsumer.SelAll(true);
+            if (Estados_Estado != null && Estados_Estado.Resource != null)
+                ViewBag.Estados_Estado = Estados_Estado.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Municipios_Municipio = _IMunicipioApiConsumer.SelAll(true);
+            if (Municipios_Municipio != null && Municipios_Municipio.Resource != null)
+                ViewBag.Municipios_Municipio = Municipios_Municipio.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Colonias_Poblacion = _IColoniaApiConsumer.SelAll(true);
+            if (Colonias_Poblacion != null && Colonias_Poblacion.Resource != null)
+                ViewBag.Colonias_Poblacion = Colonias_Poblacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Colonias_Colonia = _IColoniaApiConsumer.SelAll(true);
+            if (Colonias_Colonia != null && Colonias_Colonia.Resource != null)
+                ViewBag.Colonias_Colonia = Colonias_Colonia.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEnte_que_localizaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Ente_que_localizas_Ente_que_localiza_al_no_localizado = _IEnte_que_localizaApiConsumer.SelAll(true);
+            if (Ente_que_localizas_Ente_que_localiza_al_no_localizado != null && Ente_que_localizas_Ente_que_localiza_al_no_localizado.Resource != null)
+                ViewBag.Ente_que_localizas_Ente_que_localiza_al_no_localizado = Ente_que_localizas_Ente_que_localiza_al_no_localizado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Ente_que_localiza", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -286,6 +450,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			Detalle_de_Documentos_MPOModel varDetalle_de_Documentos_MPO= new Detalle_de_Documentos_MPOModel();
             var permissionDetalle_Delitos_de_Documentos = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45390, ModuleId);
             ViewBag.PermissionDetalle_Delitos_de_Documentos = permissionDetalle_Delitos_de_Documentos;
+            var permissionDetalle_de_Indicios_de_Diligencia = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 46343, ModuleId);
+            ViewBag.PermissionDetalle_de_Indicios_de_Diligencia = permissionDetalle_de_Indicios_de_Diligencia;
 
 
             if (id.ToString() != "0")
@@ -317,6 +483,41 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Archivo = Detalle_de_Documentos_MPOData.Archivo
                     ,Lista_para_periciales = Detalle_de_Documentos_MPOData.Lista_para_periciales.GetValueOrDefault()
                     ,Folio = Detalle_de_Documentos_MPOData.Folio
+                    ,Expediente_MP = Detalle_de_Documentos_MPOData.Expediente_MP
+                    ,Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Expediente_MP), "expediente_ministerio_publico") ??  (string)Detalle_de_Documentos_MPOData.Expediente_MP_expediente_ministerio_publico.nic
+                    ,Descripcion = Detalle_de_Documentos_MPOData.Descripcion
+                    ,Estatus_Persona = Detalle_de_Documentos_MPOData.Estatus_Persona
+                    ,Estatus_PersonaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Estatus_Persona), "Estatus_Persona") ??  (string)Detalle_de_Documentos_MPOData.Estatus_Persona_Estatus_Persona.Descripcion
+                    ,Fecha_Localizacion = (Detalle_de_Documentos_MPOData.Fecha_Localizacion == null ? string.Empty : Convert.ToDateTime(Detalle_de_Documentos_MPOData.Fecha_Localizacion).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_Localizacion = Detalle_de_Documentos_MPOData.Hora_Localizacion
+                    ,Condiciones_de_Localizacion = Detalle_de_Documentos_MPOData.Condiciones_de_Localizacion
+                    ,Condiciones_de_LocalizacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Condiciones_de_Localizacion), "Condiciones_de_Localizacion") ??  (string)Detalle_de_Documentos_MPOData.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Descripcion
+                    ,Lugar_de_Hallazgo = Detalle_de_Documentos_MPOData.Lugar_de_Hallazgo
+                    ,Lugar_de_HallazgoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Lugar_de_Hallazgo), "Lugar_del_Hallazgo") ??  (string)Detalle_de_Documentos_MPOData.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Descripcion
+                    ,Posible_Causa_de_la_Desaparacion = Detalle_de_Documentos_MPOData.Posible_Causa_de_la_Desaparacion
+                    ,Pais = Detalle_de_Documentos_MPOData.Pais
+                    ,PaisNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Pais), "Pais") ??  (string)Detalle_de_Documentos_MPOData.Pais_Pais.Nombre
+                    ,Estado = Detalle_de_Documentos_MPOData.Estado
+                    ,EstadoNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Estado), "Estado") ??  (string)Detalle_de_Documentos_MPOData.Estado_Estado.Nombre
+                    ,Municipio = Detalle_de_Documentos_MPOData.Municipio
+                    ,MunicipioNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Municipio), "Municipio") ??  (string)Detalle_de_Documentos_MPOData.Municipio_Municipio.Nombre
+                    ,Poblacion = Detalle_de_Documentos_MPOData.Poblacion
+                    ,PoblacionNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Poblacion), "Colonia") ??  (string)Detalle_de_Documentos_MPOData.Poblacion_Colonia.Nombre
+                    ,Colonia = Detalle_de_Documentos_MPOData.Colonia
+                    ,ColoniaNombre = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Colonia), "Colonia") ??  (string)Detalle_de_Documentos_MPOData.Colonia_Colonia.Nombre
+                    ,Calle = Detalle_de_Documentos_MPOData.Calle
+                    ,Numero_Interior = Detalle_de_Documentos_MPOData.Numero_Interior
+                    ,Numero_Exterior = Detalle_de_Documentos_MPOData.Numero_Exterior
+                    ,Codigo_Postal = Detalle_de_Documentos_MPOData.Codigo_Postal
+                    ,Ente_que_localiza_al_no_localizado = Detalle_de_Documentos_MPOData.Ente_que_localiza_al_no_localizado
+                    ,Ente_que_localiza_al_no_localizadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Ente_que_localiza_al_no_localizado), "Ente_que_localiza") ??  (string)Detalle_de_Documentos_MPOData.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Descripcion
+                    ,ente_Paterno = Detalle_de_Documentos_MPOData.ente_Paterno
+                    ,ente_Materno = Detalle_de_Documentos_MPOData.ente_Materno
+                    ,ente_Nombre = Detalle_de_Documentos_MPOData.ente_Nombre
+                    ,Autoridad_que_conoce_el_hecho = Detalle_de_Documentos_MPOData.Autoridad_que_conoce_el_hecho
+                    ,autoridad_Paterno = Detalle_de_Documentos_MPOData.autoridad_Paterno
+                    ,autoridad_Materno = Detalle_de_Documentos_MPOData.autoridad_Materno
+                    ,autoridad_Nombre = Detalle_de_Documentos_MPOData.autoridad_Nombre
 
 					};
 				}
@@ -333,6 +534,76 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Documentos_Tipo_de_Documento = Tipo_de_Documentos_Tipo_de_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var expediente_ministerio_publicos_Expediente_MP = _Iexpediente_ministerio_publicoApiConsumer.SelAll(true);
+            if (expediente_ministerio_publicos_Expediente_MP != null && expediente_ministerio_publicos_Expediente_MP.Resource != null)
+                ViewBag.expediente_ministerio_publicos_Expediente_MP = expediente_ministerio_publicos_Expediente_MP.Resource.Where(m => m.nic != null).OrderBy(m => m.nic).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic") ?? m.nic.ToString(), Value = Convert.ToString(m.clave)
+                }).ToList();
+            _IEstatus_PersonaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Personas_Estatus_Persona = _IEstatus_PersonaApiConsumer.SelAll(true);
+            if (Estatus_Personas_Estatus_Persona != null && Estatus_Personas_Estatus_Persona.Resource != null)
+                ViewBag.Estatus_Personas_Estatus_Persona = Estatus_Personas_Estatus_Persona.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Persona", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ICondiciones_de_LocalizacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Condiciones_de_Localizacions_Condiciones_de_Localizacion = _ICondiciones_de_LocalizacionApiConsumer.SelAll(true);
+            if (Condiciones_de_Localizacions_Condiciones_de_Localizacion != null && Condiciones_de_Localizacions_Condiciones_de_Localizacion.Resource != null)
+                ViewBag.Condiciones_de_Localizacions_Condiciones_de_Localizacion = Condiciones_de_Localizacions_Condiciones_de_Localizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Condiciones_de_Localizacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ILugar_del_HallazgoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Lugar_del_Hallazgos_Lugar_de_Hallazgo = _ILugar_del_HallazgoApiConsumer.SelAll(true);
+            if (Lugar_del_Hallazgos_Lugar_de_Hallazgo != null && Lugar_del_Hallazgos_Lugar_de_Hallazgo.Resource != null)
+                ViewBag.Lugar_del_Hallazgos_Lugar_de_Hallazgo = Lugar_del_Hallazgos_Lugar_de_Hallazgo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_del_Hallazgo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Paiss_Pais = _IPaisApiConsumer.SelAll(true);
+            if (Paiss_Pais != null && Paiss_Pais.Resource != null)
+                ViewBag.Paiss_Pais = Paiss_Pais.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Pais", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estados_Estado = _IEstadoApiConsumer.SelAll(true);
+            if (Estados_Estado != null && Estados_Estado.Resource != null)
+                ViewBag.Estados_Estado = Estados_Estado.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Municipios_Municipio = _IMunicipioApiConsumer.SelAll(true);
+            if (Municipios_Municipio != null && Municipios_Municipio.Resource != null)
+                ViewBag.Municipios_Municipio = Municipios_Municipio.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Colonias_Poblacion = _IColoniaApiConsumer.SelAll(true);
+            if (Colonias_Poblacion != null && Colonias_Poblacion.Resource != null)
+                ViewBag.Colonias_Poblacion = Colonias_Poblacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Colonias_Colonia = _IColoniaApiConsumer.SelAll(true);
+            if (Colonias_Colonia != null && Colonias_Colonia.Resource != null)
+                ViewBag.Colonias_Colonia = Colonias_Colonia.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEnte_que_localizaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Ente_que_localizas_Ente_que_localiza_al_no_localizado = _IEnte_que_localizaApiConsumer.SelAll(true);
+            if (Ente_que_localizas_Ente_que_localiza_al_no_localizado != null && Ente_que_localizas_Ente_que_localiza_al_no_localizado.Resource != null)
+                ViewBag.Ente_que_localizas_Ente_que_localiza_al_no_localizado = Ente_que_localizas_Ente_que_localiza_al_no_localizado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Ente_que_localiza", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -480,6 +751,195 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public ActionResult Getexpediente_ministerio_publicoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _Iexpediente_ministerio_publicoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.nic).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic")?? m.nic,
+                    Value = Convert.ToString(m.clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetEstatus_PersonaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IEstatus_PersonaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IEstatus_PersonaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Persona", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetCondiciones_de_LocalizacionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ICondiciones_de_LocalizacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ICondiciones_de_LocalizacionApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Condiciones_de_Localizacion", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetLugar_del_HallazgoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ILugar_del_HallazgoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ILugar_del_HallazgoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_del_Hallazgo", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetPaisAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IPaisApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Pais", "Nombre")?? m.Nombre,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetEstadoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IEstadoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre")?? m.Nombre,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetMunicipioAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMunicipioApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre")?? m.Nombre,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetColoniaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IColoniaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre")?? m.Nombre,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetEnte_que_localizaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IEnte_que_localizaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IEnte_que_localizaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Ente_que_localiza", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -520,6 +980,76 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var expediente_ministerio_publicos_Expediente_MP = _Iexpediente_ministerio_publicoApiConsumer.SelAll(true);
+            if (expediente_ministerio_publicos_Expediente_MP != null && expediente_ministerio_publicos_Expediente_MP.Resource != null)
+                ViewBag.expediente_ministerio_publicos_Expediente_MP = expediente_ministerio_publicos_Expediente_MP.Resource.Where(m => m.nic != null).OrderBy(m => m.nic).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic") ?? m.nic.ToString(), Value = Convert.ToString(m.clave)
+                }).ToList();
+            _IEstatus_PersonaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Personas_Estatus_Persona = _IEstatus_PersonaApiConsumer.SelAll(true);
+            if (Estatus_Personas_Estatus_Persona != null && Estatus_Personas_Estatus_Persona.Resource != null)
+                ViewBag.Estatus_Personas_Estatus_Persona = Estatus_Personas_Estatus_Persona.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Persona", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ICondiciones_de_LocalizacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Condiciones_de_Localizacions_Condiciones_de_Localizacion = _ICondiciones_de_LocalizacionApiConsumer.SelAll(true);
+            if (Condiciones_de_Localizacions_Condiciones_de_Localizacion != null && Condiciones_de_Localizacions_Condiciones_de_Localizacion.Resource != null)
+                ViewBag.Condiciones_de_Localizacions_Condiciones_de_Localizacion = Condiciones_de_Localizacions_Condiciones_de_Localizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Condiciones_de_Localizacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ILugar_del_HallazgoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Lugar_del_Hallazgos_Lugar_de_Hallazgo = _ILugar_del_HallazgoApiConsumer.SelAll(true);
+            if (Lugar_del_Hallazgos_Lugar_de_Hallazgo != null && Lugar_del_Hallazgos_Lugar_de_Hallazgo.Resource != null)
+                ViewBag.Lugar_del_Hallazgos_Lugar_de_Hallazgo = Lugar_del_Hallazgos_Lugar_de_Hallazgo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_del_Hallazgo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Paiss_Pais = _IPaisApiConsumer.SelAll(true);
+            if (Paiss_Pais != null && Paiss_Pais.Resource != null)
+                ViewBag.Paiss_Pais = Paiss_Pais.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Pais", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estados_Estado = _IEstadoApiConsumer.SelAll(true);
+            if (Estados_Estado != null && Estados_Estado.Resource != null)
+                ViewBag.Estados_Estado = Estados_Estado.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Municipios_Municipio = _IMunicipioApiConsumer.SelAll(true);
+            if (Municipios_Municipio != null && Municipios_Municipio.Resource != null)
+                ViewBag.Municipios_Municipio = Municipios_Municipio.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Colonias_Poblacion = _IColoniaApiConsumer.SelAll(true);
+            if (Colonias_Poblacion != null && Colonias_Poblacion.Resource != null)
+                ViewBag.Colonias_Poblacion = Colonias_Poblacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Colonias_Colonia = _IColoniaApiConsumer.SelAll(true);
+            if (Colonias_Colonia != null && Colonias_Colonia.Resource != null)
+                ViewBag.Colonias_Colonia = Colonias_Colonia.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEnte_que_localizaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Ente_que_localizas_Ente_que_localiza_al_no_localizado = _IEnte_que_localizaApiConsumer.SelAll(true);
+            if (Ente_que_localizas_Ente_que_localiza_al_no_localizado != null && Ente_que_localizas_Ente_que_localiza_al_no_localizado.Resource != null)
+                ViewBag.Ente_que_localizas_Ente_que_localiza_al_no_localizado = Ente_que_localizas_Ente_que_localiza_al_no_localizado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Ente_que_localiza", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return View(model);  
@@ -537,6 +1067,76 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Documentos_Tipo_de_Documento = Tipo_de_Documentos_Tipo_de_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var expediente_ministerio_publicos_Expediente_MP = _Iexpediente_ministerio_publicoApiConsumer.SelAll(true);
+            if (expediente_ministerio_publicos_Expediente_MP != null && expediente_ministerio_publicos_Expediente_MP.Resource != null)
+                ViewBag.expediente_ministerio_publicos_Expediente_MP = expediente_ministerio_publicos_Expediente_MP.Resource.Where(m => m.nic != null).OrderBy(m => m.nic).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic") ?? m.nic.ToString(), Value = Convert.ToString(m.clave)
+                }).ToList();
+            _IEstatus_PersonaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Personas_Estatus_Persona = _IEstatus_PersonaApiConsumer.SelAll(true);
+            if (Estatus_Personas_Estatus_Persona != null && Estatus_Personas_Estatus_Persona.Resource != null)
+                ViewBag.Estatus_Personas_Estatus_Persona = Estatus_Personas_Estatus_Persona.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Persona", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ICondiciones_de_LocalizacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Condiciones_de_Localizacions_Condiciones_de_Localizacion = _ICondiciones_de_LocalizacionApiConsumer.SelAll(true);
+            if (Condiciones_de_Localizacions_Condiciones_de_Localizacion != null && Condiciones_de_Localizacions_Condiciones_de_Localizacion.Resource != null)
+                ViewBag.Condiciones_de_Localizacions_Condiciones_de_Localizacion = Condiciones_de_Localizacions_Condiciones_de_Localizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Condiciones_de_Localizacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ILugar_del_HallazgoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Lugar_del_Hallazgos_Lugar_de_Hallazgo = _ILugar_del_HallazgoApiConsumer.SelAll(true);
+            if (Lugar_del_Hallazgos_Lugar_de_Hallazgo != null && Lugar_del_Hallazgos_Lugar_de_Hallazgo.Resource != null)
+                ViewBag.Lugar_del_Hallazgos_Lugar_de_Hallazgo = Lugar_del_Hallazgos_Lugar_de_Hallazgo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_del_Hallazgo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IPaisApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Paiss_Pais = _IPaisApiConsumer.SelAll(true);
+            if (Paiss_Pais != null && Paiss_Pais.Resource != null)
+                ViewBag.Paiss_Pais = Paiss_Pais.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Pais", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEstadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estados_Estado = _IEstadoApiConsumer.SelAll(true);
+            if (Estados_Estado != null && Estados_Estado.Resource != null)
+                ViewBag.Estados_Estado = Estados_Estado.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estado", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IMunicipioApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Municipios_Municipio = _IMunicipioApiConsumer.SelAll(true);
+            if (Municipios_Municipio != null && Municipios_Municipio.Resource != null)
+                ViewBag.Municipios_Municipio = Municipios_Municipio.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Municipio", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Colonias_Poblacion = _IColoniaApiConsumer.SelAll(true);
+            if (Colonias_Poblacion != null && Colonias_Poblacion.Resource != null)
+                ViewBag.Colonias_Poblacion = Colonias_Poblacion.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Colonias_Colonia = _IColoniaApiConsumer.SelAll(true);
+            if (Colonias_Colonia != null && Colonias_Colonia.Resource != null)
+                ViewBag.Colonias_Colonia = Colonias_Colonia.Resource.Where(m => m.Nombre != null).OrderBy(m => m.Nombre).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Colonia", "Nombre") ?? m.Nombre.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEnte_que_localizaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Ente_que_localizas_Ente_que_localiza_al_no_localizado = _IEnte_que_localizaApiConsumer.SelAll(true);
+            if (Ente_que_localizas_Ente_que_localiza_al_no_localizado != null && Ente_que_localizas_Ente_que_localiza_al_no_localizado.Resource != null)
+                ViewBag.Ente_que_localizas_Ente_que_localiza_al_no_localizado = Ente_que_localizas_Ente_que_localiza_al_no_localizado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Ente_que_localiza", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -589,6 +1189,31 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Archivo = m.Archivo
 			,Lista_para_periciales = m.Lista_para_periciales
 			,Folio = m.Folio
+                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "nic") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+			,Descripcion = m.Descripcion
+                        ,Estatus_PersonaDescripcion = CultureHelper.GetTraduction(m.Estatus_Persona_Estatus_Persona.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Persona_Estatus_Persona.Descripcion
+                        ,Fecha_Localizacion = (m.Fecha_Localizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Localizacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Localizacion = m.Hora_Localizacion
+                        ,Condiciones_de_LocalizacionDescripcion = CultureHelper.GetTraduction(m.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Clave.ToString(), "Descripcion") ?? (string)m.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Descripcion
+                        ,Lugar_de_HallazgoDescripcion = CultureHelper.GetTraduction(m.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Clave.ToString(), "Descripcion") ?? (string)m.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Descripcion
+			,Posible_Causa_de_la_Desaparacion = m.Posible_Causa_de_la_Desaparacion
+                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Nombre") ?? (string)m.Pais_Pais.Nombre
+                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Nombre") ?? (string)m.Estado_Estado.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Municipio.Nombre
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Nombre") ?? (string)m.Poblacion_Colonia.Nombre
+                        ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Nombre") ?? (string)m.Colonia_Colonia.Nombre
+			,Calle = m.Calle
+			,Numero_Interior = m.Numero_Interior
+			,Numero_Exterior = m.Numero_Exterior
+			,Codigo_Postal = m.Codigo_Postal
+                        ,Ente_que_localiza_al_no_localizadoDescripcion = CultureHelper.GetTraduction(m.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Clave.ToString(), "Descripcion") ?? (string)m.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Descripcion
+			,ente_Paterno = m.ente_Paterno
+			,ente_Materno = m.ente_Materno
+			,ente_Nombre = m.ente_Nombre
+			,Autoridad_que_conoce_el_hecho = m.Autoridad_que_conoce_el_hecho
+			,autoridad_Paterno = m.autoridad_Paterno
+			,autoridad_Materno = m.autoridad_Materno
+			,autoridad_Nombre = m.autoridad_Nombre
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -716,6 +1341,31 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Archivo = m.Archivo
 			,Lista_para_periciales = m.Lista_para_periciales
 			,Folio = m.Folio
+                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "nic") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+			,Descripcion = m.Descripcion
+                        ,Estatus_PersonaDescripcion = CultureHelper.GetTraduction(m.Estatus_Persona_Estatus_Persona.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Persona_Estatus_Persona.Descripcion
+                        ,Fecha_Localizacion = (m.Fecha_Localizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Localizacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Localizacion = m.Hora_Localizacion
+                        ,Condiciones_de_LocalizacionDescripcion = CultureHelper.GetTraduction(m.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Clave.ToString(), "Descripcion") ?? (string)m.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Descripcion
+                        ,Lugar_de_HallazgoDescripcion = CultureHelper.GetTraduction(m.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Clave.ToString(), "Descripcion") ?? (string)m.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Descripcion
+			,Posible_Causa_de_la_Desaparacion = m.Posible_Causa_de_la_Desaparacion
+                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Nombre") ?? (string)m.Pais_Pais.Nombre
+                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Nombre") ?? (string)m.Estado_Estado.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Municipio.Nombre
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Nombre") ?? (string)m.Poblacion_Colonia.Nombre
+                        ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Nombre") ?? (string)m.Colonia_Colonia.Nombre
+			,Calle = m.Calle
+			,Numero_Interior = m.Numero_Interior
+			,Numero_Exterior = m.Numero_Exterior
+			,Codigo_Postal = m.Codigo_Postal
+                        ,Ente_que_localiza_al_no_localizadoDescripcion = CultureHelper.GetTraduction(m.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Clave.ToString(), "Descripcion") ?? (string)m.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Descripcion
+			,ente_Paterno = m.ente_Paterno
+			,ente_Materno = m.ente_Materno
+			,ente_Nombre = m.ente_Nombre
+			,Autoridad_que_conoce_el_hecho = m.Autoridad_que_conoce_el_hecho
+			,autoridad_Paterno = m.autoridad_Paterno
+			,autoridad_Materno = m.autoridad_Materno
+			,autoridad_Nombre = m.autoridad_Nombre
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -888,6 +1538,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+
+//Grid GetAutoComplete
 
 
 
@@ -1153,6 +1805,579 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceExpediente_MP))
+            {
+                switch (filter.Expediente_MPFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND expediente_ministerio_publico.nic LIKE '" + filter.AdvanceExpediente_MP + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND expediente_ministerio_publico.nic LIKE '%" + filter.AdvanceExpediente_MP + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND expediente_ministerio_publico.nic = '" + filter.AdvanceExpediente_MP + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND expediente_ministerio_publico.nic LIKE '%" + filter.AdvanceExpediente_MP + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceExpediente_MPMultiple != null && filter.AdvanceExpediente_MPMultiple.Count() > 0)
+            {
+                var Expediente_MPIds = string.Join(",", filter.AdvanceExpediente_MPMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Expediente_MP In (" + Expediente_MPIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Descripcion))
+            {
+                switch (filter.DescripcionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.Descripcion LIKE '" + filter.Descripcion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.Descripcion LIKE '%" + filter.Descripcion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.Descripcion = '" + filter.Descripcion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.Descripcion LIKE '%" + filter.Descripcion + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceEstatus_Persona))
+            {
+                switch (filter.Estatus_PersonaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Estatus_Persona.Descripcion LIKE '" + filter.AdvanceEstatus_Persona + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Estatus_Persona.Descripcion LIKE '%" + filter.AdvanceEstatus_Persona + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Estatus_Persona.Descripcion = '" + filter.AdvanceEstatus_Persona + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Estatus_Persona.Descripcion LIKE '%" + filter.AdvanceEstatus_Persona + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceEstatus_PersonaMultiple != null && filter.AdvanceEstatus_PersonaMultiple.Count() > 0)
+            {
+                var Estatus_PersonaIds = string.Join(",", filter.AdvanceEstatus_PersonaMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Estatus_Persona In (" + Estatus_PersonaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromFecha_Localizacion) || !string.IsNullOrEmpty(filter.ToFecha_Localizacion))
+            {
+                var Fecha_LocalizacionFrom = DateTime.ParseExact(filter.FromFecha_Localizacion, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_LocalizacionTo = DateTime.ParseExact(filter.ToFecha_Localizacion, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_Localizacion))
+                    where += " AND Detalle_de_Documentos_MPO.Fecha_Localizacion >= '" + Fecha_LocalizacionFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_Localizacion))
+                    where += " AND Detalle_de_Documentos_MPO.Fecha_Localizacion <= '" + Fecha_LocalizacionTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_Localizacion) || !string.IsNullOrEmpty(filter.ToHora_Localizacion))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_Localizacion))
+                    where += " AND Convert(TIME,Detalle_de_Documentos_MPO.Hora_Localizacion) >='" + filter.FromHora_Localizacion + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_Localizacion))
+                    where += " AND Convert(TIME,Detalle_de_Documentos_MPO.Hora_Localizacion) <='" + filter.ToHora_Localizacion + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceCondiciones_de_Localizacion))
+            {
+                switch (filter.Condiciones_de_LocalizacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Condiciones_de_Localizacion.Descripcion LIKE '" + filter.AdvanceCondiciones_de_Localizacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Condiciones_de_Localizacion.Descripcion LIKE '%" + filter.AdvanceCondiciones_de_Localizacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Condiciones_de_Localizacion.Descripcion = '" + filter.AdvanceCondiciones_de_Localizacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Condiciones_de_Localizacion.Descripcion LIKE '%" + filter.AdvanceCondiciones_de_Localizacion + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceCondiciones_de_LocalizacionMultiple != null && filter.AdvanceCondiciones_de_LocalizacionMultiple.Count() > 0)
+            {
+                var Condiciones_de_LocalizacionIds = string.Join(",", filter.AdvanceCondiciones_de_LocalizacionMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Condiciones_de_Localizacion In (" + Condiciones_de_LocalizacionIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceLugar_de_Hallazgo))
+            {
+                switch (filter.Lugar_de_HallazgoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Lugar_del_Hallazgo.Descripcion LIKE '" + filter.AdvanceLugar_de_Hallazgo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Lugar_del_Hallazgo.Descripcion LIKE '%" + filter.AdvanceLugar_de_Hallazgo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Lugar_del_Hallazgo.Descripcion = '" + filter.AdvanceLugar_de_Hallazgo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Lugar_del_Hallazgo.Descripcion LIKE '%" + filter.AdvanceLugar_de_Hallazgo + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceLugar_de_HallazgoMultiple != null && filter.AdvanceLugar_de_HallazgoMultiple.Count() > 0)
+            {
+                var Lugar_de_HallazgoIds = string.Join(",", filter.AdvanceLugar_de_HallazgoMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Lugar_de_Hallazgo In (" + Lugar_de_HallazgoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Posible_Causa_de_la_Desaparacion))
+            {
+                switch (filter.Posible_Causa_de_la_DesaparacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.Posible_Causa_de_la_Desaparacion LIKE '" + filter.Posible_Causa_de_la_Desaparacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.Posible_Causa_de_la_Desaparacion LIKE '%" + filter.Posible_Causa_de_la_Desaparacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.Posible_Causa_de_la_Desaparacion = '" + filter.Posible_Causa_de_la_Desaparacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.Posible_Causa_de_la_Desaparacion LIKE '%" + filter.Posible_Causa_de_la_Desaparacion + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvancePais))
+            {
+                switch (filter.PaisFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Pais.Nombre LIKE '" + filter.AdvancePais + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Pais.Nombre LIKE '%" + filter.AdvancePais + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Pais.Nombre = '" + filter.AdvancePais + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Pais.Nombre LIKE '%" + filter.AdvancePais + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvancePaisMultiple != null && filter.AdvancePaisMultiple.Count() > 0)
+            {
+                var PaisIds = string.Join(",", filter.AdvancePaisMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Pais In (" + PaisIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceEstado))
+            {
+                switch (filter.EstadoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Estado.Nombre LIKE '" + filter.AdvanceEstado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEstado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Estado.Nombre = '" + filter.AdvanceEstado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Estado.Nombre LIKE '%" + filter.AdvanceEstado + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceEstadoMultiple != null && filter.AdvanceEstadoMultiple.Count() > 0)
+            {
+                var EstadoIds = string.Join(",", filter.AdvanceEstadoMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Estado In (" + EstadoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceMunicipio))
+            {
+                switch (filter.MunicipioFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Municipio.Nombre LIKE '" + filter.AdvanceMunicipio + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Municipio.Nombre LIKE '%" + filter.AdvanceMunicipio + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Municipio.Nombre = '" + filter.AdvanceMunicipio + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Municipio.Nombre LIKE '%" + filter.AdvanceMunicipio + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceMunicipioMultiple != null && filter.AdvanceMunicipioMultiple.Count() > 0)
+            {
+                var MunicipioIds = string.Join(",", filter.AdvanceMunicipioMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Municipio In (" + MunicipioIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvancePoblacion))
+            {
+                switch (filter.PoblacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Colonia.Nombre LIKE '" + filter.AdvancePoblacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvancePoblacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Colonia.Nombre = '" + filter.AdvancePoblacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvancePoblacion + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvancePoblacionMultiple != null && filter.AdvancePoblacionMultiple.Count() > 0)
+            {
+                var PoblacionIds = string.Join(",", filter.AdvancePoblacionMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Poblacion In (" + PoblacionIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceColonia))
+            {
+                switch (filter.ColoniaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Colonia.Nombre LIKE '" + filter.AdvanceColonia + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvanceColonia + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Colonia.Nombre = '" + filter.AdvanceColonia + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Colonia.Nombre LIKE '%" + filter.AdvanceColonia + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceColoniaMultiple != null && filter.AdvanceColoniaMultiple.Count() > 0)
+            {
+                var ColoniaIds = string.Join(",", filter.AdvanceColoniaMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Colonia In (" + ColoniaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Calle))
+            {
+                switch (filter.CalleFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.Calle LIKE '" + filter.Calle + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.Calle LIKE '%" + filter.Calle + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.Calle = '" + filter.Calle + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.Calle LIKE '%" + filter.Calle + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Numero_Interior))
+            {
+                switch (filter.Numero_InteriorFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.Numero_Interior LIKE '" + filter.Numero_Interior + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.Numero_Interior LIKE '%" + filter.Numero_Interior + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.Numero_Interior = '" + filter.Numero_Interior + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.Numero_Interior LIKE '%" + filter.Numero_Interior + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Numero_Exterior))
+            {
+                switch (filter.Numero_ExteriorFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.Numero_Exterior LIKE '" + filter.Numero_Exterior + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.Numero_Exterior LIKE '%" + filter.Numero_Exterior + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.Numero_Exterior = '" + filter.Numero_Exterior + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.Numero_Exterior LIKE '%" + filter.Numero_Exterior + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromCodigo_Postal) || !string.IsNullOrEmpty(filter.ToCodigo_Postal))
+            {
+                if (!string.IsNullOrEmpty(filter.FromCodigo_Postal))
+                    where += " AND Detalle_de_Documentos_MPO.Codigo_Postal >= " + filter.FromCodigo_Postal;
+                if (!string.IsNullOrEmpty(filter.ToCodigo_Postal))
+                    where += " AND Detalle_de_Documentos_MPO.Codigo_Postal <= " + filter.ToCodigo_Postal;
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceEnte_que_localiza_al_no_localizado))
+            {
+                switch (filter.Ente_que_localiza_al_no_localizadoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Ente_que_localiza.Descripcion LIKE '" + filter.AdvanceEnte_que_localiza_al_no_localizado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Ente_que_localiza.Descripcion LIKE '%" + filter.AdvanceEnte_que_localiza_al_no_localizado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Ente_que_localiza.Descripcion = '" + filter.AdvanceEnte_que_localiza_al_no_localizado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Ente_que_localiza.Descripcion LIKE '%" + filter.AdvanceEnte_que_localiza_al_no_localizado + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceEnte_que_localiza_al_no_localizadoMultiple != null && filter.AdvanceEnte_que_localiza_al_no_localizadoMultiple.Count() > 0)
+            {
+                var Ente_que_localiza_al_no_localizadoIds = string.Join(",", filter.AdvanceEnte_que_localiza_al_no_localizadoMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Ente_que_localiza_al_no_localizado In (" + Ente_que_localiza_al_no_localizadoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.ente_Paterno))
+            {
+                switch (filter.ente_PaternoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Paterno LIKE '" + filter.ente_Paterno + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Paterno LIKE '%" + filter.ente_Paterno + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Paterno = '" + filter.ente_Paterno + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Paterno LIKE '%" + filter.ente_Paterno + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.ente_Materno))
+            {
+                switch (filter.ente_MaternoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Materno LIKE '" + filter.ente_Materno + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Materno LIKE '%" + filter.ente_Materno + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Materno = '" + filter.ente_Materno + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Materno LIKE '%" + filter.ente_Materno + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.ente_Nombre))
+            {
+                switch (filter.ente_NombreFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Nombre LIKE '" + filter.ente_Nombre + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Nombre LIKE '%" + filter.ente_Nombre + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Nombre = '" + filter.ente_Nombre + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.ente_Nombre LIKE '%" + filter.ente_Nombre + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Autoridad_que_conoce_el_hecho))
+            {
+                switch (filter.Autoridad_que_conoce_el_hechoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.Autoridad_que_conoce_el_hecho LIKE '" + filter.Autoridad_que_conoce_el_hecho + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.Autoridad_que_conoce_el_hecho LIKE '%" + filter.Autoridad_que_conoce_el_hecho + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.Autoridad_que_conoce_el_hecho = '" + filter.Autoridad_que_conoce_el_hecho + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.Autoridad_que_conoce_el_hecho LIKE '%" + filter.Autoridad_que_conoce_el_hecho + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.autoridad_Paterno))
+            {
+                switch (filter.autoridad_PaternoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Paterno LIKE '" + filter.autoridad_Paterno + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Paterno LIKE '%" + filter.autoridad_Paterno + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Paterno = '" + filter.autoridad_Paterno + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Paterno LIKE '%" + filter.autoridad_Paterno + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.autoridad_Materno))
+            {
+                switch (filter.autoridad_MaternoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Materno LIKE '" + filter.autoridad_Materno + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Materno LIKE '%" + filter.autoridad_Materno + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Materno = '" + filter.autoridad_Materno + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Materno LIKE '%" + filter.autoridad_Materno + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.autoridad_Nombre))
+            {
+                switch (filter.autoridad_NombreFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Nombre LIKE '" + filter.autoridad_Nombre + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Nombre LIKE '%" + filter.autoridad_Nombre + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Nombre = '" + filter.autoridad_Nombre + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Documentos_MPO.autoridad_Nombre LIKE '%" + filter.autoridad_Nombre + "%'";
+                        break;
+                }
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -1239,6 +2464,83 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
             return resultData;
         }
+        public ActionResult GetDetalle_de_Indicios_de_Diligencia(int draw, int start, int length, string RelationId = "0")
+        {
+            if (RelationId == "0")
+            {
+                return Json(new { recordsTotal = 0, recordsFiltered = 0, data = new List<Detalle_de_Indicios_de_DiligenciaGridModel>() }, JsonRequestBehavior.AllowGet);
+            }
+
+            if (!_tokenManager.GenerateToken())
+                return null;
+            _IDetalle_de_Indicios_de_DiligenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+            NameValueCollection filter = Request.QueryString;
+
+            var pageSize = length;
+            var pageIndex = start + 1;
+            string where = "Detalle_de_Indicios_de_Diligencia.Diligencia=" + RelationId;
+            if("int" == "string")
+            {
+	           where = "Detalle_de_Indicios_de_Diligencia.Diligencia='" + RelationId + "'";
+            }
+            var result = _IDetalle_de_Indicios_de_DiligenciaApiConsumer.ListaSelAll(start, pageSize, where,"").Resource;
+            if (result.Detalle_de_Indicios_de_Diligencias == null)
+                result.Detalle_de_Indicios_de_Diligencias = new List<Detalle_de_Indicios_de_Diligencia>();
+
+            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+            var jsonResult = Json(new
+            {
+                data = result.Detalle_de_Indicios_de_Diligencias.Select(m => new Detalle_de_Indicios_de_DiligenciaGridModel
+                {
+                    Folio = m.Folio
+
+			,Indicio = m.Indicio
+			,Seleccionar = m.Seleccionar
+			,IndicioId = m.IndicioId
+
+                }).ToList(),
+                recordsTotal = result.RowCount,
+                recordsFiltered = result.RowCount,
+            }, JsonRequestBehavior.AllowGet);
+
+            jsonResult.MaxJsonLength = int.MaxValue;
+
+            return jsonResult;
+        }
+        public List<Detalle_de_Indicios_de_DiligenciaGridModel> GetDetalle_de_Indicios_de_DiligenciaData(string Id, int start, int length, out int RowCount)
+        {
+            RowCount = 0;
+            var pageSize = length;
+            var pageIndex = start + 1;
+            List<Detalle_de_Indicios_de_DiligenciaGridModel> resultData = new List<Detalle_de_Indicios_de_DiligenciaGridModel>();
+            string where = "Detalle_de_Indicios_de_Diligencia.Diligencia=" + Id;
+            if("int" == "string")
+            {
+                where = "Detalle_de_Indicios_de_Diligencia.Diligencia='" + Id + "'";
+            }
+            if (!_tokenManager.GenerateToken())
+                return null;
+            _IDetalle_de_Indicios_de_DiligenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var result = _IDetalle_de_Indicios_de_DiligenciaApiConsumer.ListaSelAll(start, pageSize, where, "").Resource;
+            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+            if (result.Detalle_de_Indicios_de_Diligencias != null)
+            {
+                resultData = result.Detalle_de_Indicios_de_Diligencias.Select(m => new Detalle_de_Indicios_de_DiligenciaGridModel
+                    {
+                        Folio = m.Folio
+
+			,Indicio = m.Indicio
+			,Seleccionar = m.Seleccionar
+			,IndicioId = m.IndicioId
+
+
+                    }).ToList();
+                RowCount = result.RowCount;
+            }
+            return resultData;
+        }
 
 
         [HttpDelete]
@@ -1272,6 +2574,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                                               && _IDetalle_Delitos_de_DocumentosApiConsumer.Delete(Detalle_Delitos_de_DocumentosItem.Clave, null,null).Resource;
 
                         if (!resultDetalle_Delitos_de_Documentos)
+                            return Json(false, JsonRequestBehavior.AllowGet);
+                    }
+                    _IDetalle_de_Indicios_de_DiligenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                    where = "Detalle_de_Indicios_de_Diligencia.Diligencia=" + id;
+                    if("int" == "string")
+                    {
+	                where = "Detalle_de_Indicios_de_Diligencia.Diligencia='" + id + "'";
+                    }
+                    var Detalle_de_Indicios_de_DiligenciaInfo =
+                        _IDetalle_de_Indicios_de_DiligenciaApiConsumer.ListaSelAll(1, int.MaxValue, where,"").Resource;
+
+                    if (Detalle_de_Indicios_de_DiligenciaInfo.Detalle_de_Indicios_de_Diligencias.Count > 0)
+                    {
+                        var resultDetalle_de_Indicios_de_Diligencia = true;
+                        //Removing associated job history with attachment
+                        foreach (var Detalle_de_Indicios_de_DiligenciaItem in Detalle_de_Indicios_de_DiligenciaInfo.Detalle_de_Indicios_de_Diligencias)
+                            resultDetalle_de_Indicios_de_Diligencia = resultDetalle_de_Indicios_de_Diligencia
+                                              && _IDetalle_de_Indicios_de_DiligenciaApiConsumer.Delete(Detalle_de_Indicios_de_DiligenciaItem.Folio, null,null).Resource;
+
+                        if (!resultDetalle_de_Indicios_de_Diligencia)
                             return Json(false, JsonRequestBehavior.AllowGet);
                     }
 
@@ -1333,6 +2655,31 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Archivo = varDetalle_de_Documentos_MPO.Archivo
                         ,Lista_para_periciales = varDetalle_de_Documentos_MPO.Lista_para_periciales
                         ,Folio = varDetalle_de_Documentos_MPO.Folio
+                        ,Expediente_MP = varDetalle_de_Documentos_MPO.Expediente_MP
+                        ,Descripcion = varDetalle_de_Documentos_MPO.Descripcion
+                        ,Estatus_Persona = varDetalle_de_Documentos_MPO.Estatus_Persona
+                        ,Fecha_Localizacion = (!String.IsNullOrEmpty(varDetalle_de_Documentos_MPO.Fecha_Localizacion)) ? DateTime.ParseExact(varDetalle_de_Documentos_MPO.Fecha_Localizacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_Localizacion = varDetalle_de_Documentos_MPO.Hora_Localizacion
+                        ,Condiciones_de_Localizacion = varDetalle_de_Documentos_MPO.Condiciones_de_Localizacion
+                        ,Lugar_de_Hallazgo = varDetalle_de_Documentos_MPO.Lugar_de_Hallazgo
+                        ,Posible_Causa_de_la_Desaparacion = varDetalle_de_Documentos_MPO.Posible_Causa_de_la_Desaparacion
+                        ,Pais = varDetalle_de_Documentos_MPO.Pais
+                        ,Estado = varDetalle_de_Documentos_MPO.Estado
+                        ,Municipio = varDetalle_de_Documentos_MPO.Municipio
+                        ,Poblacion = varDetalle_de_Documentos_MPO.Poblacion
+                        ,Colonia = varDetalle_de_Documentos_MPO.Colonia
+                        ,Calle = varDetalle_de_Documentos_MPO.Calle
+                        ,Numero_Interior = varDetalle_de_Documentos_MPO.Numero_Interior
+                        ,Numero_Exterior = varDetalle_de_Documentos_MPO.Numero_Exterior
+                        ,Codigo_Postal = varDetalle_de_Documentos_MPO.Codigo_Postal
+                        ,Ente_que_localiza_al_no_localizado = varDetalle_de_Documentos_MPO.Ente_que_localiza_al_no_localizado
+                        ,ente_Paterno = varDetalle_de_Documentos_MPO.ente_Paterno
+                        ,ente_Materno = varDetalle_de_Documentos_MPO.ente_Materno
+                        ,ente_Nombre = varDetalle_de_Documentos_MPO.ente_Nombre
+                        ,Autoridad_que_conoce_el_hecho = varDetalle_de_Documentos_MPO.Autoridad_que_conoce_el_hecho
+                        ,autoridad_Paterno = varDetalle_de_Documentos_MPO.autoridad_Paterno
+                        ,autoridad_Materno = varDetalle_de_Documentos_MPO.autoridad_Materno
+                        ,autoridad_Nombre = varDetalle_de_Documentos_MPO.autoridad_Nombre
 
                     };
 
@@ -1479,6 +2826,123 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [NonAction]
+        public bool CopyDetalle_de_Indicios_de_Diligencia(int MasterId, int referenceId, List<Detalle_de_Indicios_de_DiligenciaGridModelPost> Detalle_de_Indicios_de_DiligenciaItems)
+        {
+            try
+            {
+                if (referenceId <= 0)
+                    return true;
+
+                if (!_tokenManager.GenerateToken())
+                    return false;
+
+                _IDetalle_de_Indicios_de_DiligenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+                var Detalle_de_Indicios_de_DiligenciaData = _IDetalle_de_Indicios_de_DiligenciaApiConsumer.ListaSelAll(1, int.MaxValue, "Detalle_de_Indicios_de_Diligencia.Diligencia=" + referenceId,"").Resource;
+                if (Detalle_de_Indicios_de_DiligenciaData == null || Detalle_de_Indicios_de_DiligenciaData.Detalle_de_Indicios_de_Diligencias.Count == 0)
+                    return true;
+
+                var result = true;
+
+                Detalle_de_Indicios_de_DiligenciaGridModelPost modelDataToChange = null;
+                //var insertId = 0;
+                foreach (var varDetalle_de_Indicios_de_Diligencia in Detalle_de_Indicios_de_DiligenciaData.Detalle_de_Indicios_de_Diligencias)
+                {
+                    if (!result)
+                        return result;
+
+                    //Initialization
+                    //insertId = 0;
+                    modelDataToChange = null;
+                    Detalle_de_Indicios_de_Diligencia Detalle_de_Indicios_de_Diligencia1 = varDetalle_de_Indicios_de_Diligencia;
+
+                    if (Detalle_de_Indicios_de_DiligenciaItems != null && Detalle_de_Indicios_de_DiligenciaItems.Any(m => m.Folio == Detalle_de_Indicios_de_Diligencia1.Folio))
+                    {
+                        modelDataToChange = Detalle_de_Indicios_de_DiligenciaItems.FirstOrDefault(m => m.Folio == Detalle_de_Indicios_de_Diligencia1.Folio);
+                    }
+                    //Chaning Id Value
+                    varDetalle_de_Indicios_de_Diligencia.Diligencia = MasterId;
+                    var insertId = _IDetalle_de_Indicios_de_DiligenciaApiConsumer.Insert(varDetalle_de_Indicios_de_Diligencia,null,null).Resource;
+                    if (insertId > 0 && modelDataToChange != null)
+                        modelDataToChange.Folio = insertId;
+
+                    result = insertId > 0;
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PostDetalle_de_Indicios_de_Diligencia(List<Detalle_de_Indicios_de_DiligenciaGridModelPost> Detalle_de_Indicios_de_DiligenciaItems, int MasterId, string referenceId)
+        {
+            try
+            {
+                bool result = true;
+
+                //if (referenceId > 0 && MasterId != referenceId)
+                //    if (!CopyDetalle_de_Indicios_de_Diligencia(MasterId, referenceId, Detalle_de_Indicios_de_DiligenciaItems))
+                //        return Json(false, JsonRequestBehavior.AllowGet);
+
+                if (Detalle_de_Indicios_de_DiligenciaItems != null && Detalle_de_Indicios_de_DiligenciaItems.Count > 0)
+                {
+                    //Generating token
+                    if (!_tokenManager.GenerateToken())
+                        return Json(null, JsonRequestBehavior.AllowGet);
+
+                    _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                    _IDetalle_de_Indicios_de_DiligenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+                    foreach (var Detalle_de_Indicios_de_DiligenciaItem in Detalle_de_Indicios_de_DiligenciaItems)
+                    {
+
+
+
+
+
+                        //Removal Request
+                        if (Detalle_de_Indicios_de_DiligenciaItem.Removed)
+                        {
+                            result = result && _IDetalle_de_Indicios_de_DiligenciaApiConsumer.Delete(Detalle_de_Indicios_de_DiligenciaItem.Folio, null,null).Resource;
+                            continue;
+                        }
+						if (referenceId.ToString() != MasterId.ToString())
+							Detalle_de_Indicios_de_DiligenciaItem.Folio = 0;
+
+                        var Detalle_de_Indicios_de_DiligenciaData = new Detalle_de_Indicios_de_Diligencia
+                        {
+                            Diligencia = MasterId
+                            ,Folio = Detalle_de_Indicios_de_DiligenciaItem.Folio
+                            ,Indicio = Detalle_de_Indicios_de_DiligenciaItem.Indicio
+                            ,Seleccionar = Detalle_de_Indicios_de_DiligenciaItem.Seleccionar
+                            ,IndicioId = Detalle_de_Indicios_de_DiligenciaItem.IndicioId
+
+                        };
+
+                        var resultId = Detalle_de_Indicios_de_DiligenciaItem.Folio > 0
+                           ? _IDetalle_de_Indicios_de_DiligenciaApiConsumer.Update(Detalle_de_Indicios_de_DiligenciaData,null,null).Resource
+                           : _IDetalle_de_Indicios_de_DiligenciaApiConsumer.Insert(Detalle_de_Indicios_de_DiligenciaData,null,null).Resource;
+
+                        result = result && resultId != -1;
+                    }
+                }
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+
 
 
 
@@ -1692,6 +3156,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return PartialView("../Detalle_Delitos_de_Documentos/AddDetalle_Delitos_de_Documentos");
         }
 
+        [HttpGet]
+        public ActionResult AddDetalle_de_Indicios_de_Diligencia(int rowIndex = 0, int functionMode = 0)
+        {
+            ViewBag.currentRowIndex = rowIndex;
+            ViewBag.functionMode = functionMode;
+            return PartialView("../Detalle_de_Indicios_de_Diligencia/AddDetalle_de_Indicios_de_Diligencia");
+        }
+
 
 
         #endregion "Controller Methods"
@@ -1871,6 +3343,31 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Archivo = m.Archivo
 			,Lista_para_periciales = m.Lista_para_periciales
 			,Folio = m.Folio
+                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "nic") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+			,Descripcion = m.Descripcion
+                        ,Estatus_PersonaDescripcion = CultureHelper.GetTraduction(m.Estatus_Persona_Estatus_Persona.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Persona_Estatus_Persona.Descripcion
+                        ,Fecha_Localizacion = (m.Fecha_Localizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Localizacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Localizacion = m.Hora_Localizacion
+                        ,Condiciones_de_LocalizacionDescripcion = CultureHelper.GetTraduction(m.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Clave.ToString(), "Descripcion") ?? (string)m.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Descripcion
+                        ,Lugar_de_HallazgoDescripcion = CultureHelper.GetTraduction(m.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Clave.ToString(), "Descripcion") ?? (string)m.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Descripcion
+			,Posible_Causa_de_la_Desaparacion = m.Posible_Causa_de_la_Desaparacion
+                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Nombre") ?? (string)m.Pais_Pais.Nombre
+                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Nombre") ?? (string)m.Estado_Estado.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Municipio.Nombre
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Nombre") ?? (string)m.Poblacion_Colonia.Nombre
+                        ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Nombre") ?? (string)m.Colonia_Colonia.Nombre
+			,Calle = m.Calle
+			,Numero_Interior = m.Numero_Interior
+			,Numero_Exterior = m.Numero_Exterior
+			,Codigo_Postal = m.Codigo_Postal
+                        ,Ente_que_localiza_al_no_localizadoDescripcion = CultureHelper.GetTraduction(m.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Clave.ToString(), "Descripcion") ?? (string)m.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Descripcion
+			,ente_Paterno = m.ente_Paterno
+			,ente_Materno = m.ente_Materno
+			,ente_Nombre = m.ente_Nombre
+			,Autoridad_que_conoce_el_hecho = m.Autoridad_que_conoce_el_hecho
+			,autoridad_Paterno = m.autoridad_Paterno
+			,autoridad_Materno = m.autoridad_Materno
+			,autoridad_Nombre = m.autoridad_Nombre
 
             }).ToList();
 
@@ -1957,6 +3454,31 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Archivo = m.Archivo
 			,Lista_para_periciales = m.Lista_para_periciales
 			,Folio = m.Folio
+                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "nic") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+			,Descripcion = m.Descripcion
+                        ,Estatus_PersonaDescripcion = CultureHelper.GetTraduction(m.Estatus_Persona_Estatus_Persona.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Persona_Estatus_Persona.Descripcion
+                        ,Fecha_Localizacion = (m.Fecha_Localizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Localizacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Localizacion = m.Hora_Localizacion
+                        ,Condiciones_de_LocalizacionDescripcion = CultureHelper.GetTraduction(m.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Clave.ToString(), "Descripcion") ?? (string)m.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Descripcion
+                        ,Lugar_de_HallazgoDescripcion = CultureHelper.GetTraduction(m.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Clave.ToString(), "Descripcion") ?? (string)m.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Descripcion
+			,Posible_Causa_de_la_Desaparacion = m.Posible_Causa_de_la_Desaparacion
+                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Nombre") ?? (string)m.Pais_Pais.Nombre
+                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Nombre") ?? (string)m.Estado_Estado.Nombre
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Municipio.Nombre
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Nombre") ?? (string)m.Poblacion_Colonia.Nombre
+                        ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Nombre") ?? (string)m.Colonia_Colonia.Nombre
+			,Calle = m.Calle
+			,Numero_Interior = m.Numero_Interior
+			,Numero_Exterior = m.Numero_Exterior
+			,Codigo_Postal = m.Codigo_Postal
+                        ,Ente_que_localiza_al_no_localizadoDescripcion = CultureHelper.GetTraduction(m.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Clave.ToString(), "Descripcion") ?? (string)m.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Descripcion
+			,ente_Paterno = m.ente_Paterno
+			,ente_Materno = m.ente_Materno
+			,ente_Nombre = m.ente_Nombre
+			,Autoridad_que_conoce_el_hecho = m.Autoridad_que_conoce_el_hecho
+			,autoridad_Paterno = m.autoridad_Paterno
+			,autoridad_Materno = m.autoridad_Materno
+			,autoridad_Nombre = m.autoridad_Nombre
 
             }).ToList();
 
@@ -2026,6 +3548,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Archivo = varDetalle_de_Documentos_MPO.Archivo
                         ,Lista_para_periciales = varDetalle_de_Documentos_MPO.Lista_para_periciales
                         ,Folio = varDetalle_de_Documentos_MPO.Folio
+                        ,Expediente_MP = varDetalle_de_Documentos_MPO.Expediente_MP
+                        ,Descripcion = varDetalle_de_Documentos_MPO.Descripcion
                     
                 };
 
@@ -2052,6 +3576,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
 				                int RowCount_Detalle_Delitos_de_Documentos;
                 var Detalle_Delitos_de_DocumentosData = GetDetalle_Delitos_de_DocumentosData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Delitos_de_Documentos);
+                int RowCount_Detalle_de_Indicios_de_Diligencia;
+                var Detalle_de_Indicios_de_DiligenciaData = GetDetalle_de_Indicios_de_DiligenciaData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Indicios_de_Diligencia);
 
                 var result = new Detalle_de_Documentos_MPO_Datos_GeneralesModel
                 {
@@ -2075,6 +3601,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Archivo = m.Archivo
 			,Lista_para_periciales = m.Lista_para_periciales
 			,Folio = m.Folio
+                        ,Expediente_MP = m.Expediente_MP
+                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "nic") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+			,Descripcion = m.Descripcion
 
                     
                 };
@@ -2082,6 +3611,182 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     data = result
                     ,Delito = Detalle_Delitos_de_DocumentosData
+                    ,Indicios_a_enviar = Detalle_de_Indicios_de_DiligenciaData
+
+                };
+                return Json(resultData, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);            
+        }
+
+		[HttpPost]
+        public ActionResult Post_Localizacion(Detalle_de_Documentos_MPO_LocalizacionModel varDetalle_de_Documentos_MPO)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Documentos_MPOApiConsumer.SetAuthHeader(_tokenManager.Token);
+				
+                var result = "";
+                var Detalle_de_Documentos_MPO_LocalizacionInfo = new Detalle_de_Documentos_MPO_Localizacion
+                {
+                    Clave = varDetalle_de_Documentos_MPO.Clave
+                                            ,Estatus_Persona = varDetalle_de_Documentos_MPO.Estatus_Persona
+                        ,Fecha_Localizacion = (!String.IsNullOrEmpty(varDetalle_de_Documentos_MPO.Fecha_Localizacion)) ? DateTime.ParseExact(varDetalle_de_Documentos_MPO.Fecha_Localizacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_Localizacion = varDetalle_de_Documentos_MPO.Hora_Localizacion
+                        ,Condiciones_de_Localizacion = varDetalle_de_Documentos_MPO.Condiciones_de_Localizacion
+                        ,Lugar_de_Hallazgo = varDetalle_de_Documentos_MPO.Lugar_de_Hallazgo
+                        ,Posible_Causa_de_la_Desaparacion = varDetalle_de_Documentos_MPO.Posible_Causa_de_la_Desaparacion
+                        ,Pais = varDetalle_de_Documentos_MPO.Pais
+                        ,Estado = varDetalle_de_Documentos_MPO.Estado
+                        ,Municipio = varDetalle_de_Documentos_MPO.Municipio
+                        ,Poblacion = varDetalle_de_Documentos_MPO.Poblacion
+                        ,Colonia = varDetalle_de_Documentos_MPO.Colonia
+                        ,Calle = varDetalle_de_Documentos_MPO.Calle
+                        ,Numero_Interior = varDetalle_de_Documentos_MPO.Numero_Interior
+                        ,Numero_Exterior = varDetalle_de_Documentos_MPO.Numero_Exterior
+                        ,Codigo_Postal = varDetalle_de_Documentos_MPO.Codigo_Postal
+                    
+                };
+
+                result = _IDetalle_de_Documentos_MPOApiConsumer.Update_Localizacion(Detalle_de_Documentos_MPO_LocalizacionInfo).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+		
+		[HttpGet]
+        public JsonResult Get_Localizacion(string Id)
+        {     
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
+            {                
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Documentos_MPOApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var m = _IDetalle_de_Documentos_MPOApiConsumer.Get_Localizacion(Id).Resource;
+                if (m == null)
+                    return Json(null, JsonRequestBehavior.AllowGet);
+				                int RowCount_Detalle_Delitos_de_Documentos;
+                var Detalle_Delitos_de_DocumentosData = GetDetalle_Delitos_de_DocumentosData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Delitos_de_Documentos);
+                int RowCount_Detalle_de_Indicios_de_Diligencia;
+                var Detalle_de_Indicios_de_DiligenciaData = GetDetalle_de_Indicios_de_DiligenciaData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Indicios_de_Diligencia);
+
+                var result = new Detalle_de_Documentos_MPO_LocalizacionModel
+                {
+                    Clave = m.Clave
+                        ,Estatus_Persona = m.Estatus_Persona
+                        ,Estatus_PersonaDescripcion = CultureHelper.GetTraduction(m.Estatus_Persona_Estatus_Persona.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Persona_Estatus_Persona.Descripcion
+                        ,Fecha_Localizacion = (m.Fecha_Localizacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Localizacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Localizacion = m.Hora_Localizacion
+                        ,Condiciones_de_Localizacion = m.Condiciones_de_Localizacion
+                        ,Condiciones_de_LocalizacionDescripcion = CultureHelper.GetTraduction(m.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Clave.ToString(), "Descripcion") ?? (string)m.Condiciones_de_Localizacion_Condiciones_de_Localizacion.Descripcion
+                        ,Lugar_de_Hallazgo = m.Lugar_de_Hallazgo
+                        ,Lugar_de_HallazgoDescripcion = CultureHelper.GetTraduction(m.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Clave.ToString(), "Descripcion") ?? (string)m.Lugar_de_Hallazgo_Lugar_del_Hallazgo.Descripcion
+			,Posible_Causa_de_la_Desaparacion = m.Posible_Causa_de_la_Desaparacion
+                        ,Pais = m.Pais
+                        ,PaisNombre = CultureHelper.GetTraduction(m.Pais_Pais.Clave.ToString(), "Nombre") ?? (string)m.Pais_Pais.Nombre
+                        ,Estado = m.Estado
+                        ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Nombre") ?? (string)m.Estado_Estado.Nombre
+                        ,Municipio = m.Municipio
+                        ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ?? (string)m.Municipio_Municipio.Nombre
+                        ,Poblacion = m.Poblacion
+                        ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Nombre") ?? (string)m.Poblacion_Colonia.Nombre
+                        ,Colonia = m.Colonia
+                        ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Nombre") ?? (string)m.Colonia_Colonia.Nombre
+			,Calle = m.Calle
+			,Numero_Interior = m.Numero_Interior
+			,Numero_Exterior = m.Numero_Exterior
+			,Codigo_Postal = m.Codigo_Postal
+
+                    
+                };
+				var resultData = new
+                {
+                    data = result
+                    ,Delito = Detalle_Delitos_de_DocumentosData
+                    ,Indicios_a_enviar = Detalle_de_Indicios_de_DiligenciaData
+
+                };
+                return Json(resultData, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);            
+        }
+
+		[HttpPost]
+        public ActionResult Post_Ente_y_Autoridad(Detalle_de_Documentos_MPO_Ente_y_AutoridadModel varDetalle_de_Documentos_MPO)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Documentos_MPOApiConsumer.SetAuthHeader(_tokenManager.Token);
+				
+                var result = "";
+                var Detalle_de_Documentos_MPO_Ente_y_AutoridadInfo = new Detalle_de_Documentos_MPO_Ente_y_Autoridad
+                {
+                    Clave = varDetalle_de_Documentos_MPO.Clave
+                                            ,Ente_que_localiza_al_no_localizado = varDetalle_de_Documentos_MPO.Ente_que_localiza_al_no_localizado
+                        ,ente_Paterno = varDetalle_de_Documentos_MPO.ente_Paterno
+                        ,ente_Materno = varDetalle_de_Documentos_MPO.ente_Materno
+                        ,ente_Nombre = varDetalle_de_Documentos_MPO.ente_Nombre
+                        ,Autoridad_que_conoce_el_hecho = varDetalle_de_Documentos_MPO.Autoridad_que_conoce_el_hecho
+                        ,autoridad_Paterno = varDetalle_de_Documentos_MPO.autoridad_Paterno
+                        ,autoridad_Materno = varDetalle_de_Documentos_MPO.autoridad_Materno
+                        ,autoridad_Nombre = varDetalle_de_Documentos_MPO.autoridad_Nombre
+                    
+                };
+
+                result = _IDetalle_de_Documentos_MPOApiConsumer.Update_Ente_y_Autoridad(Detalle_de_Documentos_MPO_Ente_y_AutoridadInfo).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+		
+		[HttpGet]
+        public JsonResult Get_Ente_y_Autoridad(string Id)
+        {     
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
+            {                
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Documentos_MPOApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var m = _IDetalle_de_Documentos_MPOApiConsumer.Get_Ente_y_Autoridad(Id).Resource;
+                if (m == null)
+                    return Json(null, JsonRequestBehavior.AllowGet);
+				                int RowCount_Detalle_Delitos_de_Documentos;
+                var Detalle_Delitos_de_DocumentosData = GetDetalle_Delitos_de_DocumentosData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Delitos_de_Documentos);
+                int RowCount_Detalle_de_Indicios_de_Diligencia;
+                var Detalle_de_Indicios_de_DiligenciaData = GetDetalle_de_Indicios_de_DiligenciaData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Indicios_de_Diligencia);
+
+                var result = new Detalle_de_Documentos_MPO_Ente_y_AutoridadModel
+                {
+                    Clave = m.Clave
+                        ,Ente_que_localiza_al_no_localizado = m.Ente_que_localiza_al_no_localizado
+                        ,Ente_que_localiza_al_no_localizadoDescripcion = CultureHelper.GetTraduction(m.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Clave.ToString(), "Descripcion") ?? (string)m.Ente_que_localiza_al_no_localizado_Ente_que_localiza.Descripcion
+			,ente_Paterno = m.ente_Paterno
+			,ente_Materno = m.ente_Materno
+			,ente_Nombre = m.ente_Nombre
+			,Autoridad_que_conoce_el_hecho = m.Autoridad_que_conoce_el_hecho
+			,autoridad_Paterno = m.autoridad_Paterno
+			,autoridad_Materno = m.autoridad_Materno
+			,autoridad_Nombre = m.autoridad_Nombre
+
+                    
+                };
+				var resultData = new
+                {
+                    data = result
+                    ,Delito = Detalle_Delitos_de_DocumentosData
+                    ,Indicios_a_enviar = Detalle_de_Indicios_de_DiligenciaData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);

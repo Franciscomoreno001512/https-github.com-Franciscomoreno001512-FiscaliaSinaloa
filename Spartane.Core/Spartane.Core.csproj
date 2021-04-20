@@ -1660,6 +1660,18 @@
 <Compile Include="Domain\Contestacion_de_Portal_Ciudadano\Contestacion_de_Portal_CiudadanoPagingModel.cs" />
 <Compile Include="Domain\Tipo_Resolucion_Portal_Ciudadano\Tipo_Resolucion_Portal_Ciudadano.cs" />
 <Compile Include="Domain\Tipo_Resolucion_Portal_Ciudadano\Tipo_Resolucion_Portal_CiudadanoPagingModel.cs" />
+<Compile Include="Domain\Condiciones_de_Localizacion\Condiciones_de_Localizacion.cs" />
+<Compile Include="Domain\Condiciones_de_Localizacion\Condiciones_de_LocalizacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Indicios_de_Diligencia\Detalle_de_Indicios_de_DiligenciaPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Indicios_de_Diligencia\Detalle_de_Indicios_de_Diligencia.cs" />
+<Compile Include="Domain\Ente_que_localiza\Ente_que_localiza.cs" />
+<Compile Include="Domain\Ente_que_localiza\Ente_que_localizaPagingModel.cs" />
+<Compile Include="Domain\Estatus_Persona\Estatus_Persona.cs" />
+<Compile Include="Domain\Estatus_Persona\Estatus_PersonaPagingModel.cs" />
+<Compile Include="Domain\Lugar_del_Hallazgo\Lugar_del_Hallazgo.cs" />
+<Compile Include="Domain\Lugar_del_Hallazgo\Lugar_del_HallazgoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Localizacion\Tipo_de_Localizacion.cs" />
+<Compile Include="Domain\Tipo_de_Localizacion\Tipo_de_LocalizacionPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1680,6 +1692,18 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -156,6 +156,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Tipo_de_Localizacion</summary>
+        public static string Tipo_de_Localizacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDocumento.GetResource("Tipo_de_Localizacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDocumento.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

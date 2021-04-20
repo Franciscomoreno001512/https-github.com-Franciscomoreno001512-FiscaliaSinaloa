@@ -221,6 +221,66 @@ public ApiResponse<int> Update_Datos_Generales(Detalle_de_Documentos_MPO_Datos_G
             }
         }
 
+public ApiResponse<int> Update_Localizacion(Detalle_de_Documentos_MPO_Localizacion entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Localizacion",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Detalle_de_Documentos_MPO_Localizacion> Get_Localizacion(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Localizacion>(baseApi, ApiControllerUrl + "/Get_Localizacion?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Localizacion>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Localizacion>(false, null);
+            }
+        }
+
+public ApiResponse<int> Update_Ente_y_Autoridad(Detalle_de_Documentos_MPO_Ente_y_Autoridad entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Ente_y_Autoridad",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Detalle_de_Documentos_MPO_Ente_y_Autoridad> Get_Ente_y_Autoridad(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Ente_y_Autoridad>(baseApi, ApiControllerUrl + "/Get_Ente_y_Autoridad?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Ente_y_Autoridad>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Ente_y_Autoridad>(false, null);
+            }
+        }
+
 
     }
 }

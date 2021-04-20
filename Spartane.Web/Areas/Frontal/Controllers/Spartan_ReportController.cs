@@ -1564,7 +1564,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISpartan_MetadataApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISpartan_MetadataApiConsumer.SelAll(false).Resource;
-                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+
+                var jsonResult = Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
             }
             catch (ServiceException ex)
             {
@@ -1750,7 +1753,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISpartan_MetadataApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISpartan_MetadataApiConsumer.SelAll(false).Resource;
-                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+
+                var jsonResult = Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+
+
+                return jsonResult;
             }
             catch (ServiceException ex)
             {

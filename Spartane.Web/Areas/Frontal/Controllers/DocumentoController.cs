@@ -7,6 +7,7 @@ using Spartane.Core.Domain.Origen_de_Invitacion;
 using Spartane.Core.Domain.Tipo_de_Documento;
 using Spartane.Core.Domain.Area_de_Servicios_de_Apoyo;
 using Spartane.Core.Domain.SubArea_de_Servicios_de_Apoyo;
+using Spartane.Core.Domain.Tipo_de_Localizacion;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -22,6 +23,7 @@ using Spartane.Web.Areas.WebApiConsumer.Origen_de_Invitacion;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Documento;
 using Spartane.Web.Areas.WebApiConsumer.Area_de_Servicios_de_Apoyo;
 using Spartane.Web.Areas.WebApiConsumer.SubArea_de_Servicios_de_Apoyo;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Localizacion;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -63,6 +65,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ITipo_de_DocumentoApiConsumer _ITipo_de_DocumentoApiConsumer;
         private IArea_de_Servicios_de_ApoyoApiConsumer _IArea_de_Servicios_de_ApoyoApiConsumer;
         private ISubArea_de_Servicios_de_ApoyoApiConsumer _ISubArea_de_Servicios_de_ApoyoApiConsumer;
+        private ITipo_de_LocalizacionApiConsumer _ITipo_de_LocalizacionApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -80,7 +83,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public DocumentoController(IDocumentoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDocumentoApiConsumer DocumentoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IDilgencia_MASCApiConsumer Dilgencia_MASCApiConsumer , IOrigen_de_InvitacionApiConsumer Origen_de_InvitacionApiConsumer , ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer , IArea_de_Servicios_de_ApoyoApiConsumer Area_de_Servicios_de_ApoyoApiConsumer , ISubArea_de_Servicios_de_ApoyoApiConsumer SubArea_de_Servicios_de_ApoyoApiConsumer )
+        public DocumentoController(IDocumentoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDocumentoApiConsumer DocumentoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IDilgencia_MASCApiConsumer Dilgencia_MASCApiConsumer , IOrigen_de_InvitacionApiConsumer Origen_de_InvitacionApiConsumer , ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer , IArea_de_Servicios_de_ApoyoApiConsumer Area_de_Servicios_de_ApoyoApiConsumer , ISubArea_de_Servicios_de_ApoyoApiConsumer SubArea_de_Servicios_de_ApoyoApiConsumer , ITipo_de_LocalizacionApiConsumer Tipo_de_LocalizacionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -99,6 +102,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ITipo_de_DocumentoApiConsumer = Tipo_de_DocumentoApiConsumer;
             this._IArea_de_Servicios_de_ApoyoApiConsumer = Area_de_Servicios_de_ApoyoApiConsumer;
             this._ISubArea_de_Servicios_de_ApoyoApiConsumer = SubArea_de_Servicios_de_ApoyoApiConsumer;
+            this._ITipo_de_LocalizacionApiConsumer = Tipo_de_LocalizacionApiConsumer;
 
         }
 
@@ -191,6 +195,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Requerido_o_Solicitante = DocumentoData.Requerido_o_Solicitante.GetValueOrDefault()
                     ,Solicitar_Archivo_Adjunto = DocumentoData.Solicitar_Archivo_Adjunto.GetValueOrDefault()
                     ,Solicitar_Numero_de_Oficio = DocumentoData.Solicitar_Numero_de_Oficio.GetValueOrDefault()
+                    ,Tipo_de_Localizacion = DocumentoData.Tipo_de_Localizacion
+                    ,Tipo_de_LocalizacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(DocumentoData.Tipo_de_Localizacion), "Tipo_de_Localizacion") ??  (string)DocumentoData.Tipo_de_Localizacion_Tipo_de_Localizacion.Descripcion
 
 					};
 				}
@@ -235,6 +241,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo = SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "SubArea_de_Servicios_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_LocalizacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Localizacions_Tipo_de_Localizacion = _ITipo_de_LocalizacionApiConsumer.SelAll(true);
+            if (Tipo_de_Localizacions_Tipo_de_Localizacion != null && Tipo_de_Localizacions_Tipo_de_Localizacion.Resource != null)
+                ViewBag.Tipo_de_Localizacions_Tipo_de_Localizacion = Tipo_de_Localizacions_Tipo_de_Localizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Localizacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -315,6 +328,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Requerido_o_Solicitante = DocumentoData.Requerido_o_Solicitante.GetValueOrDefault()
                     ,Solicitar_Archivo_Adjunto = DocumentoData.Solicitar_Archivo_Adjunto.GetValueOrDefault()
                     ,Solicitar_Numero_de_Oficio = DocumentoData.Solicitar_Numero_de_Oficio.GetValueOrDefault()
+                    ,Tipo_de_Localizacion = DocumentoData.Tipo_de_Localizacion
+                    ,Tipo_de_LocalizacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(DocumentoData.Tipo_de_Localizacion), "Tipo_de_Localizacion") ??  (string)DocumentoData.Tipo_de_Localizacion_Tipo_de_Localizacion.Descripcion
 
 					};
 				}
@@ -357,6 +372,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo = SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "SubArea_de_Servicios_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_LocalizacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Localizacions_Tipo_de_Localizacion = _ITipo_de_LocalizacionApiConsumer.SelAll(true);
+            if (Tipo_de_Localizacions_Tipo_de_Localizacion != null && Tipo_de_Localizacions_Tipo_de_Localizacion.Resource != null)
+                ViewBag.Tipo_de_Localizacions_Tipo_de_Localizacion = Tipo_de_Localizacions_Tipo_de_Localizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Localizacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -483,6 +505,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public ActionResult GetTipo_de_LocalizacionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_LocalizacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_LocalizacionApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Localizacion", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -551,6 +594,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "SubArea_de_Servicios_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _ITipo_de_LocalizacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Localizacions_Tipo_de_Localizacion = _ITipo_de_LocalizacionApiConsumer.SelAll(true);
+            if (Tipo_de_Localizacions_Tipo_de_Localizacion != null && Tipo_de_Localizacions_Tipo_de_Localizacion.Resource != null)
+                ViewBag.Tipo_de_Localizacions_Tipo_de_Localizacion = Tipo_de_Localizacions_Tipo_de_Localizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Localizacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return View(model);  
@@ -596,6 +646,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo = SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "SubArea_de_Servicios_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_LocalizacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Localizacions_Tipo_de_Localizacion = _ITipo_de_LocalizacionApiConsumer.SelAll(true);
+            if (Tipo_de_Localizacions_Tipo_de_Localizacion != null && Tipo_de_Localizacions_Tipo_de_Localizacion.Resource != null)
+                ViewBag.Tipo_de_Localizacions_Tipo_de_Localizacion = Tipo_de_Localizacions_Tipo_de_Localizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Localizacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -647,6 +704,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Requerido_o_Solicitante = m.Requerido_o_Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
 			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
+                        ,Tipo_de_LocalizacionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Localizacion_Tipo_de_Localizacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Localizacion_Tipo_de_Localizacion.Descripcion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -773,6 +831,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Requerido_o_Solicitante = m.Requerido_o_Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
 			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
+                        ,Tipo_de_LocalizacionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Localizacion_Tipo_de_Localizacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Localizacion_Tipo_de_Localizacion.Descripcion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -984,6 +1043,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (filter.Solicitar_Numero_de_Oficio != RadioOptions.NoApply)
                 where += " AND Documento.Solicitar_Numero_de_Oficio = " + Convert.ToInt32(filter.Solicitar_Numero_de_Oficio);
 
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Localizacion))
+            {
+                switch (filter.Tipo_de_LocalizacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Localizacion.Descripcion LIKE '" + filter.AdvanceTipo_de_Localizacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Localizacion.Descripcion LIKE '%" + filter.AdvanceTipo_de_Localizacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Localizacion.Descripcion = '" + filter.AdvanceTipo_de_Localizacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Localizacion.Descripcion LIKE '%" + filter.AdvanceTipo_de_Localizacion + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipo_de_LocalizacionMultiple != null && filter.AdvanceTipo_de_LocalizacionMultiple.Count() > 0)
+            {
+                var Tipo_de_LocalizacionIds = string.Join(",", filter.AdvanceTipo_de_LocalizacionMultiple);
+
+                where += " AND Documento.Tipo_de_Localizacion In (" + Tipo_de_LocalizacionIds + ")";
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -1051,6 +1138,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Requerido_o_Solicitante = varDocumento.Requerido_o_Solicitante
                         ,Solicitar_Archivo_Adjunto = varDocumento.Solicitar_Archivo_Adjunto
                         ,Solicitar_Numero_de_Oficio = varDocumento.Solicitar_Numero_de_Oficio
+                        ,Tipo_de_Localizacion = varDocumento.Tipo_de_Localizacion
 
                     };
 
@@ -1450,6 +1538,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Requerido_o_Solicitante = m.Requerido_o_Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
 			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
+                        ,Tipo_de_LocalizacionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Localizacion_Tipo_de_Localizacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Localizacion_Tipo_de_Localizacion.Descripcion
 
             }).ToList();
 
@@ -1535,6 +1624,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Requerido_o_Solicitante = m.Requerido_o_Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
 			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
+                        ,Tipo_de_LocalizacionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Localizacion_Tipo_de_Localizacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Localizacion_Tipo_de_Localizacion.Descripcion
 
             }).ToList();
 
@@ -1586,6 +1676,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Requerido_o_Solicitante = varDocumento.Requerido_o_Solicitante
                         ,Solicitar_Archivo_Adjunto = varDocumento.Solicitar_Archivo_Adjunto
                         ,Solicitar_Numero_de_Oficio = varDocumento.Solicitar_Numero_de_Oficio
+                        ,Tipo_de_Localizacion = varDocumento.Tipo_de_Localizacion
                     
                 };
 
@@ -1631,6 +1722,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Requerido_o_Solicitante = m.Requerido_o_Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
 			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
+                        ,Tipo_de_Localizacion = m.Tipo_de_Localizacion
+                        ,Tipo_de_LocalizacionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Localizacion_Tipo_de_Localizacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Localizacion_Tipo_de_Localizacion.Descripcion
 
                     
                 };

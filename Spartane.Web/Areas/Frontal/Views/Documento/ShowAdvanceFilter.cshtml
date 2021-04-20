@@ -18,6 +18,9 @@
     List<SelectListItem> varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo = null;
     if (ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo != null)
     { varSubArea_de_Servicios_de_Apoyo_SubArea_de_Servicios_de_Apoyo = (List<SelectListItem>)ViewBag.SubArea_de_Servicios_de_Apoyos_SubArea_de_Servicios_de_Apoyo; }
+    List<SelectListItem> varTipo_de_Localizacion_Tipo_de_Localizacion = null;
+    if (ViewBag.Tipo_de_Localizacions_Tipo_de_Localizacion != null)
+    { varTipo_de_Localizacion_Tipo_de_Localizacion = (List<SelectListItem>)ViewBag.Tipo_de_Localizacions_Tipo_de_Localizacion; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -190,6 +193,27 @@
                     @Html.TextBoxFor(m => m.ToidFormato, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToidFormato", @data_min = "txtAdvanceFromidFormato" })
                     @Html.ValidationMessageFor(m => m.ToidFormato)
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DocumentoResources.Tipo_de_Localizacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_LocalizacionFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_LocalizacionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Localizacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Localizacion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Localizacion_Tipo_de_Localizacion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_LocalizacionMultiple, varTipo_de_Localizacion_Tipo_de_Localizacion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Localizacion"
+                        });
+                    }
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Documento/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -312,6 +336,21 @@
             hasParameter = true;
             advanceSearch.DocumentoSolicitar_Numero_de_Oficio = $("#ddlAdvanceSolicitar_Numero_de_Oficio").val();
         }
+        advanceSearch.Tipo_de_LocalizacionSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Localizacion').val().length > 0 || $("#txtAdvanceTipo_de_Localizacion").val() == "") {
+
+
+            if (isDocumentoTextSearch) {
+                advanceSearch.Tipo_de_LocalizacionName = $("#txtAdvanceTipo_de_Localizacion").val();
+                advanceSearch.Tipo_de_LocalizacionNameSearchType = $("#ddlAdvanceTipo_de_Localizacion").val();
+                advanceSearch.Tipo_de_LocalizacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_LocalizacionToSearch = $("#ddlAdvanceTipo_de_Localizacion").val();
+                advanceSearch.Tipo_de_LocalizacionSearchType = 2;
+            }
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblDocumento').DataTable().draw();
@@ -374,6 +413,15 @@
         $("#ddlAdvanceSubArea_de_Servicios_de_Apoyo").change(function () {
             isDocumentoTextSearch = false;
             $("#txtAdvanceSubArea_de_Servicios_de_Apoyo").val('');
+        });
+        $("#txtAdvanceTipo_de_Localizacion").keypress(function () {
+            isDocumentoTextSearch = true;
+            $("#ddlAdvanceTipo_de_Localizacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Localizacion").change(function () {
+            isDocumentoTextSearch = false;
+            $("#txtAdvanceTipo_de_Localizacion").val('');
         });
 
     });

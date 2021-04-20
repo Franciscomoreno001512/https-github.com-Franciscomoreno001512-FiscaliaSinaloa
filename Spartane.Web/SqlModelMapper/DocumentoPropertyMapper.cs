@@ -45,6 +45,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Documento.Solicitar_Archivo_Adjunto";
                 case "Solicitar_Numero_de_Oficio":
                     return "Documento.Solicitar_Numero_de_Oficio";
+                case "Tipo_de_Localizacion[Descripcion]":
+                case "Tipo_de_LocalizacionDescripcion":
+                    return "Tipo_de_Localizacion.Descripcion";
 
                 default:
                     return propertyName;

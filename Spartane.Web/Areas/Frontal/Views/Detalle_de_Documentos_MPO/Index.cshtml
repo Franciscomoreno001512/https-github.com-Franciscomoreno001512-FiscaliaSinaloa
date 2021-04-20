@@ -7,6 +7,16 @@
 @using Spartane.Core.Domain.Documento;
 @using Spartane.Core.Domain.Detalle_de_Datos_Generales;
 @using Spartane.Core.Domain.Detalle_de_Imputado;
+@using Spartane.Core.Domain.expediente_ministerio_publico;
+@using Spartane.Core.Domain.Estatus_Persona;
+@using Spartane.Core.Domain.Condiciones_de_Localizacion;
+@using Spartane.Core.Domain.Lugar_del_Hallazgo;
+@using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Ente_que_localiza;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -215,6 +225,31 @@
                                     <th>@Resources.Detalle_de_Documentos_MPOResources.Archivo</th>
                                     <th>@Resources.Detalle_de_Documentos_MPOResources.Lista_para_periciales</th>
                                     <th>@Resources.Detalle_de_Documentos_MPOResources.Folio</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Expediente_MP</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Descripcion</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Estatus_Persona</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Fecha_Localizacion</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Hora_Localizacion</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Condiciones_de_Localizacion</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Lugar_de_Hallazgo</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Posible_Causa_de_la_Desaparacion</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Pais</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Estado</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Municipio</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Poblacion</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Colonia</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Calle</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Numero_Interior</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Numero_Exterior</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Codigo_Postal</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Ente_que_localiza_al_no_localizado</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.ente_Paterno</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.ente_Materno</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.ente_Nombre</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Autoridad_que_conoce_el_hecho</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.autoridad_Paterno</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.autoridad_Materno</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.autoridad_Nombre</th>
 
                                 </tr>
                             </thead>
@@ -233,6 +268,31 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
@@ -362,6 +422,31 @@
         var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Lista_para_periciales = $($('table td .filterData.form-control:input')[counter++]).val();
         var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus_Persona =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Localizacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Localizacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Condiciones_de_Localizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lugar_de_Hallazgo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Posible_Causa_de_la_Desaparacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ente_que_localiza_al_no_localizado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ente_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ente_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ente_Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Autoridad_que_conoce_el_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var autoridad_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var autoridad_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var autoridad_Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -377,6 +462,31 @@
         + "&Archivo=" + Archivo
         + "&Lista_para_periciales=" + Lista_para_periciales
         + "&Folio=" + Folio
+        + "&Expediente_MP=" + Expediente_MP
+        + "&Descripcion=" + Descripcion
+        + "&Estatus_Persona=" + Estatus_Persona
+        + "&Fecha_Localizacion=" + Fecha_Localizacion
+        + "&Hora_Localizacion=" + Hora_Localizacion
+        + "&Condiciones_de_Localizacion=" + Condiciones_de_Localizacion
+        + "&Lugar_de_Hallazgo=" + Lugar_de_Hallazgo
+        + "&Posible_Causa_de_la_Desaparacion=" + Posible_Causa_de_la_Desaparacion
+        + "&Pais=" + Pais
+        + "&Estado=" + Estado
+        + "&Municipio=" + Municipio
+        + "&Poblacion=" + Poblacion
+        + "&Colonia=" + Colonia
+        + "&Calle=" + Calle
+        + "&Numero_Interior=" + Numero_Interior
+        + "&Numero_Exterior=" + Numero_Exterior
+        + "&Codigo_Postal=" + Codigo_Postal
+        + "&Ente_que_localiza_al_no_localizado=" + Ente_que_localiza_al_no_localizado
+        + "&ente_Paterno=" + ente_Paterno
+        + "&ente_Materno=" + ente_Materno
+        + "&ente_Nombre=" + ente_Nombre
+        + "&Autoridad_que_conoce_el_hecho=" + Autoridad_que_conoce_el_hecho
+        + "&autoridad_Paterno=" + autoridad_Paterno
+        + "&autoridad_Materno=" + autoridad_Materno
+        + "&autoridad_Nombre=" + autoridad_Nombre
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/Export?format=")" + format
@@ -403,6 +513,31 @@
         var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Lista_para_periciales = $($('table td .filterData.form-control:input')[counter++]).val();
         var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus_Persona =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Localizacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Localizacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Condiciones_de_Localizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lugar_de_Hallazgo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Posible_Causa_de_la_Desaparacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ente_que_localiza_al_no_localizado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ente_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ente_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ente_Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Autoridad_que_conoce_el_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var autoridad_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var autoridad_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var autoridad_Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -418,6 +553,31 @@
         + "&Archivo=" + Archivo
         + "&Lista_para_periciales=" + Lista_para_periciales
         + "&Folio=" + Folio
+        + "&Expediente_MP=" + Expediente_MP
+        + "&Descripcion=" + Descripcion
+        + "&Estatus_Persona=" + Estatus_Persona
+        + "&Fecha_Localizacion=" + Fecha_Localizacion
+        + "&Hora_Localizacion=" + Hora_Localizacion
+        + "&Condiciones_de_Localizacion=" + Condiciones_de_Localizacion
+        + "&Lugar_de_Hallazgo=" + Lugar_de_Hallazgo
+        + "&Posible_Causa_de_la_Desaparacion=" + Posible_Causa_de_la_Desaparacion
+        + "&Pais=" + Pais
+        + "&Estado=" + Estado
+        + "&Municipio=" + Municipio
+        + "&Poblacion=" + Poblacion
+        + "&Colonia=" + Colonia
+        + "&Calle=" + Calle
+        + "&Numero_Interior=" + Numero_Interior
+        + "&Numero_Exterior=" + Numero_Exterior
+        + "&Codigo_Postal=" + Codigo_Postal
+        + "&Ente_que_localiza_al_no_localizado=" + Ente_que_localiza_al_no_localizado
+        + "&ente_Paterno=" + ente_Paterno
+        + "&ente_Materno=" + ente_Materno
+        + "&ente_Nombre=" + ente_Nombre
+        + "&Autoridad_que_conoce_el_hecho=" + Autoridad_que_conoce_el_hecho
+        + "&autoridad_Paterno=" + autoridad_Paterno
+        + "&autoridad_Materno=" + autoridad_Materno
+        + "&autoridad_Nombre=" + autoridad_Nombre
 ;
 
     }
@@ -598,11 +758,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -678,6 +838,31 @@
                 ,{ "data": "Archivo","className": "dt-right", "orderable": true, "name": "Archivo" }
                 ,{ "data": "Lista_para_periciales", "orderable": true, "name": "Lista_para_periciales","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Folio", "orderable": true, "name": "Folio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Expediente_MPnic", "orderable": true, "name": "Expediente_MPnic" }
+                ,{ "data": "Descripcion", "orderable": true, "name": "Descripcion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Estatus_PersonaDescripcion", "orderable": true, "name": "Estatus_PersonaDescripcion" }
+                ,{ "data": "Fecha_Localizacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Localizacion" }
+                ,{ "data": "Hora_Localizacion", "orderable": true, "name": "Hora_Localizacion" }
+                ,{ "data": "Condiciones_de_LocalizacionDescripcion", "orderable": true, "name": "Condiciones_de_LocalizacionDescripcion" }
+                ,{ "data": "Lugar_de_HallazgoDescripcion", "orderable": true, "name": "Lugar_de_HallazgoDescripcion" }
+                ,{ "data": "Posible_Causa_de_la_Desaparacion", "orderable": true, "name": "Posible_Causa_de_la_Desaparacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre" }
+                ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre" }
+                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre" }
+                ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre" }
+                ,{ "data": "ColoniaNombre", "orderable": true, "name": "ColoniaNombre" }
+                ,{ "data": "Calle", "orderable": true, "name": "Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Interior", "orderable": true, "name": "Numero_Interior", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Exterior", "orderable": true, "name": "Numero_Exterior", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Codigo_Postal","className": "dt-right", "orderable": true, "name": "Codigo_Postal" }
+                ,{ "data": "Ente_que_localiza_al_no_localizadoDescripcion", "orderable": true, "name": "Ente_que_localiza_al_no_localizadoDescripcion" }
+                ,{ "data": "ente_Paterno", "orderable": true, "name": "ente_Paterno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "ente_Materno", "orderable": true, "name": "ente_Materno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "ente_Nombre", "orderable": true, "name": "ente_Nombre", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Autoridad_que_conoce_el_hecho", "orderable": true, "name": "Autoridad_que_conoce_el_hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "autoridad_Paterno", "orderable": true, "name": "autoridad_Paterno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "autoridad_Materno", "orderable": true, "name": "autoridad_Materno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "autoridad_Nombre", "orderable": true, "name": "autoridad_Nombre", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],
 			"colReorder": true,

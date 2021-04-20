@@ -2039,6 +2039,24 @@ using Spartane.Web.Areas.WebApiConsumer.Contestacion_de_Portal_Ciudadano;
 using Spartane.Services.Tipo_Resolucion_Portal_Ciudadano;
 using Spartane.Core.Domain.Tipo_Resolucion_Portal_Ciudadano;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_Resolucion_Portal_Ciudadano;
+using Spartane.Services.Condiciones_de_Localizacion;
+using Spartane.Core.Domain.Condiciones_de_Localizacion;
+using Spartane.Web.Areas.WebApiConsumer.Condiciones_de_Localizacion;
+using Spartane.Services.Detalle_de_Indicios_de_Diligencia;
+using Spartane.Core.Domain.Detalle_de_Indicios_de_Diligencia;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Indicios_de_Diligencia;
+using Spartane.Services.Ente_que_localiza;
+using Spartane.Core.Domain.Ente_que_localiza;
+using Spartane.Web.Areas.WebApiConsumer.Ente_que_localiza;
+using Spartane.Services.Estatus_Persona;
+using Spartane.Core.Domain.Estatus_Persona;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_Persona;
+using Spartane.Services.Lugar_del_Hallazgo;
+using Spartane.Core.Domain.Lugar_del_Hallazgo;
+using Spartane.Web.Areas.WebApiConsumer.Lugar_del_Hallazgo;
+using Spartane.Services.Tipo_de_Localizacion;
+using Spartane.Core.Domain.Tipo_de_Localizacion;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Localizacion;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3521,6 +3539,18 @@ builder.RegisterType<Contestacion_de_Portal_CiudadanoService>().As<IContestacion
 builder.RegisterType<Contestacion_de_Portal_CiudadanoApiConsumer>().As<IContestacion_de_Portal_CiudadanoApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Tipo_Resolucion_Portal_CiudadanoService>().As<ITipo_Resolucion_Portal_CiudadanoService>().InstancePerLifetimeScope();
 builder.RegisterType<Tipo_Resolucion_Portal_CiudadanoApiConsumer>().As<ITipo_Resolucion_Portal_CiudadanoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Condiciones_de_LocalizacionService>().As<ICondiciones_de_LocalizacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Condiciones_de_LocalizacionApiConsumer>().As<ICondiciones_de_LocalizacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Indicios_de_DiligenciaService>().As<IDetalle_de_Indicios_de_DiligenciaService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Indicios_de_DiligenciaApiConsumer>().As<IDetalle_de_Indicios_de_DiligenciaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Ente_que_localizaService>().As<IEnte_que_localizaService>().InstancePerLifetimeScope();
+builder.RegisterType<Ente_que_localizaApiConsumer>().As<IEnte_que_localizaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_PersonaService>().As<IEstatus_PersonaService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_PersonaApiConsumer>().As<IEstatus_PersonaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Lugar_del_HallazgoService>().As<ILugar_del_HallazgoService>().InstancePerLifetimeScope();
+builder.RegisterType<Lugar_del_HallazgoApiConsumer>().As<ILugar_del_HallazgoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_LocalizacionService>().As<ITipo_de_LocalizacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_LocalizacionApiConsumer>().As<ITipo_de_LocalizacionApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3701,6 +3731,26 @@ builder.RegisterType<Tipo_Resolucion_Portal_CiudadanoApiConsumer>().As<ITipo_Res
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

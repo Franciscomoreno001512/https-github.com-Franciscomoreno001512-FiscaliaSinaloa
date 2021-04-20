@@ -14,6 +14,7 @@
   <resource culture="en-US" name="Requerido_o_Solicitante" value="Requerido o Solicitante"></resource>
   <resource culture="en-US" name="Solicitar_Archivo_Adjunto" value="Solicitar Archivo Adjunto"></resource>
   <resource culture="en-US" name="Solicitar_Numero_de_Oficio" value="Solicitar Número de Oficio"></resource>
+  <resource culture="en-US" name="Tipo_de_Localizacion" value="Tipo de Localización"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

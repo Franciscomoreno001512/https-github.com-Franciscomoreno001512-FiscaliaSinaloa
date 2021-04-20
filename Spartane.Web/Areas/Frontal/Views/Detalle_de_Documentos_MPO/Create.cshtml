@@ -12,6 +12,9 @@
     string Fecha = "";
     if (Model.Fecha == "")
     { Model.Fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_Localizacion = "";
+    if (Model.Fecha_Localizacion == "")
+    { Model.Fecha_Localizacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
 */
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
@@ -32,8 +35,39 @@
  List<SelectListItem> varDetalle_de_Imputado_Probable_Responsable = null;
     if (ViewBag.Detalle_de_Imputados_Probable_Responsable != null)
     { varDetalle_de_Imputado_Probable_Responsable = (List<SelectListItem>)ViewBag.Detalle_de_Imputados_Probable_Responsable; }
+    List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+    List<SelectListItem> varEstatus_Persona_Estatus_Persona = null;
+    if (ViewBag.Estatus_Personas_Estatus_Persona != null)
+    { varEstatus_Persona_Estatus_Persona = (List<SelectListItem>)ViewBag.Estatus_Personas_Estatus_Persona; }
+    List<SelectListItem> varCondiciones_de_Localizacion_Condiciones_de_Localizacion = null;
+    if (ViewBag.Condiciones_de_Localizacions_Condiciones_de_Localizacion != null)
+    { varCondiciones_de_Localizacion_Condiciones_de_Localizacion = (List<SelectListItem>)ViewBag.Condiciones_de_Localizacions_Condiciones_de_Localizacion; }
+    List<SelectListItem> varLugar_del_Hallazgo_Lugar_de_Hallazgo = null;
+    if (ViewBag.Lugar_del_Hallazgos_Lugar_de_Hallazgo != null)
+    { varLugar_del_Hallazgo_Lugar_de_Hallazgo = (List<SelectListItem>)ViewBag.Lugar_del_Hallazgos_Lugar_de_Hallazgo; }
+    List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+    List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+    List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+    List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
+    List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+    List<SelectListItem> varEnte_que_localiza_Ente_que_localiza_al_no_localizado = null;
+    if (ViewBag.Ente_que_localizas_Ente_que_localiza_al_no_localizado != null)
+    { varEnte_que_localiza_Ente_que_localiza_al_no_localizado = (List<SelectListItem>)ViewBag.Ente_que_localizas_Ente_que_localiza_al_no_localizado; }
 
     Permission permissionDetalle_Delitos_de_Documentos = ViewBag.PermissionDetalle_Delitos_de_Documentos;
+    Permission permissionDetalle_de_Indicios_de_Diligencia = ViewBag.PermissionDetalle_de_Indicios_de_Diligencia;
 
     Permission permission = ViewBag.Permission;
 	
@@ -142,6 +176,9 @@
                     <div aria-hidden="true" class="modal fade in AddDetalle_Delitos_de_DocumentosModal" id="AddDetalle_Delitos_de_Documentos-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                     </div>
 
+                    <div aria-hidden="true" class="modal fade in AddDetalle_de_Indicios_de_DiligenciaModal" id="AddDetalle_de_Indicios_de_Diligencia-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
 
         </div>
     </div>
@@ -161,6 +198,8 @@
 			<div class="tabs-container">
                         	<ul class="nav nav-tabs">
 <li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Detalle_de_Documentos_MPOResources.TabDatos_Generales</a></li>
+<li class=""><a data-toggle="tab" href="#tabLocalizacion"> @Resources.Detalle_de_Documentos_MPOResources.TabLocalizacion</a></li>
+<li class=""><a data-toggle="tab" href="#tabEnte_y_Autoridad"> @Resources.Detalle_de_Documentos_MPOResources.TabEnte_y_Autoridad</a></li>
 
                         	</ul>
 	                	<div class="tab-content">
@@ -382,27 +421,6 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Archivo" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-									<div class="form-group" id="divArchivo">
-										<div class="col-md-12">
-											<div class="col-md-6">
-												<div class="col-md-3">
-
-													<button id="Archivo_VerDocto" class="btn btn-w-m btn-primary btn_save hidden" onclick="VerDocto()"><img src="/MVCfiscaliasinaloa/Images/seguimiento.png" width="16" height="16" /> Ver Docto</button>
-
-												</div>
-												<div class="col-md-3">
-
-													<button id="Archivo_EditarDocto" class="btn btn-w-m btn-primary btn_save" onclick="EditarDocto()"><img src="/MVCfiscaliasinaloa/Images/seguimiento.png" width="16" height="16" /> Editar Docto</button>
-
-												</div>
-											</div>
-											<div class="col-md-6">
-
-											</div>
-
-										</div>
-
-									</div>
                             <div class="form-group" id="divLista_para_periciales">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Lista_para_periciales</label>
                                 <div class="col-sm-8" data-field-id="Lista_para_periciales" data-attribute="269733" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Lista_para_periciales">
@@ -414,6 +432,473 @@
                                 <div class="col-sm-8" data-field-id="Folio" data-attribute="272230" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Folio">
                                     <input class="form-control Datos_Generales" id="Folio" name="Folio" type="text" value="@Model.Folio">
                                     @*<span class="field-validation-valid" data-valmsg-for="Folio" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divExpediente_MP">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Expediente_MP</label>
+                                <div class="col-sm-8" data-field-id="Expediente_MP" data-attribute="273978" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Expediente_MP">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Expediente MP must be a number." data-val-required="The Expediente MP field is required." id="Expediente_MP" name="Expediente_MP">
+                                        <option value=""></option>
+                                        @if (varexpediente_ministerio_publico_Expediente_MP != null){ 
+                                            foreach (var itemExpediente_MP in varexpediente_ministerio_publico_Expediente_MP)
+                                            {
+                                                if (itemExpediente_MP.Value == Convert.ToString(Model.Expediente_MP))
+                                                {
+                                                    <option value="@itemExpediente_MP.Value" selected>@itemExpediente_MP.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemExpediente_MP.Value">@itemExpediente_MP.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Expediente_MP" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273978).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Expediente_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divDescripcion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Descripcion</label>
+                                <div class="col-sm-8" data-field-id="Descripcion" data-attribute="273979" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Descripcion">
+                                    <textarea id="Descripcion" name="Descripcion" class="form-control Datos_Generales" rows="4" cols="50">@Model.Descripcion</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div id="divIndicios_a_enviar">
+                            <div class="ibox-title">
+                                <h5>@Resources.Detalle_de_Documentos_MPOResources.Indicios_a_enviar</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_de_Indicios_de_Diligencia.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_de_Indicios_de_DiligenciafnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_de_Indicios_de_DiligenciaAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Detalle_de_Documentos_MPOGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '273985')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_de_Indicios_de_Diligencia.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_de_Indicios_de_DiligenciafnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_de_Indicios_de_Diligencia-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_de_Indicios_de_DiligenciaGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="IndicioHeader"><span>
+<button type="button" data-attribute="273982" data-field-id="Detalle_de_Indicios_de_DiligenciaIndicio" data-field-name="@Resources.Detalle_de_Indicios_de_DiligenciaResources.Indicio" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Indicios_de_DiligenciaResources.Indicio">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Indicios_de_DiligenciaResources.Indicio</span></th>
+                                                <th class="SeleccionarHeader"><span>
+<button type="button" data-attribute="273983" data-field-id="Detalle_de_Indicios_de_DiligenciaSeleccionar" data-field-name="@Resources.Detalle_de_Indicios_de_DiligenciaResources.Seleccionar" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Indicios_de_DiligenciaResources.Seleccionar">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Indicios_de_DiligenciaResources.Seleccionar</span></th>
+                                                <th class="IndicioIdHeader"><span>
+<button type="button" data-attribute="273984" data-field-id="Detalle_de_Indicios_de_DiligenciaIndicioId" data-field-name="@Resources.Detalle_de_Indicios_de_DiligenciaResources.IndicioId" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Indicios_de_DiligenciaResources.IndicioId">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>
+@Resources.Detalle_de_Indicios_de_DiligenciaResources.IndicioId</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabLocalizacion" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divEstatus_Persona">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Estatus_Persona</label>
+                                <div class="col-sm-8" data-field-id="Estatus_Persona" data-attribute="273994" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Estatus_Persona">
+                                    <select class="form-control Localizacion" data-val="true" data-val-number="The field Estatus Persona must be a number." data-val-required="The Estatus Persona field is required." id="Estatus_Persona" name="Estatus_Persona">
+                                        <option value=""></option>
+                                        @if (varEstatus_Persona_Estatus_Persona != null){ 
+                                            foreach (var itemEstatus_Persona in varEstatus_Persona_Estatus_Persona)
+                                            {
+                                                if (itemEstatus_Persona.Value == Convert.ToString(Model.Estatus_Persona))
+                                                {
+                                                    <option value="@itemEstatus_Persona.Value" selected>@itemEstatus_Persona.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemEstatus_Persona.Value">@itemEstatus_Persona.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Estatus_Persona" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273994).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Estatus_Persona', 'Estatus_Persona');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha_Localizacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Fecha_Localizacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Localizacion" data-attribute="273995" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Fecha_Localizacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Localizacion" id="Fecha_Localizacion"  name="Fecha_Localizacion" type="text" value="@Model.Fecha_Localizacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Localizacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Hora_Localizacion</label>
+                                <div class="col-sm-8" data-field-id="Hora_Localizacion" data-attribute="273996" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Hora_Localizacion">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Localizacion" id="Hora_Localizacion"  name="Hora_Localizacion" type="text" data-autoclose="true" value="@Model.Hora_Localizacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCondiciones_de_Localizacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Condiciones_de_Localizacion</label>
+                                <div class="col-sm-8" data-field-id="Condiciones_de_Localizacion" data-attribute="273997" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Condiciones_de_Localizacion">
+                                    <select class="form-control Localizacion" data-val="true" data-val-number="The field Condiciones de Localización must be a number." data-val-required="The Condiciones de Localización field is required." id="Condiciones_de_Localizacion" name="Condiciones_de_Localizacion">
+                                        <option value=""></option>
+                                        @if (varCondiciones_de_Localizacion_Condiciones_de_Localizacion != null){ 
+                                            foreach (var itemCondiciones_de_Localizacion in varCondiciones_de_Localizacion_Condiciones_de_Localizacion)
+                                            {
+                                                if (itemCondiciones_de_Localizacion.Value == Convert.ToString(Model.Condiciones_de_Localizacion))
+                                                {
+                                                    <option value="@itemCondiciones_de_Localizacion.Value" selected>@itemCondiciones_de_Localizacion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemCondiciones_de_Localizacion.Value">@itemCondiciones_de_Localizacion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Condiciones_de_Localizacion" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273997).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Condiciones_de_Localizacion', 'Condiciones_de_Localizacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divLugar_de_Hallazgo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Lugar_de_Hallazgo</label>
+                                <div class="col-sm-8" data-field-id="Lugar_de_Hallazgo" data-attribute="273998" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Lugar_de_Hallazgo">
+                                    <select class="form-control Localizacion" data-val="true" data-val-number="The field Lugar de Hallazgo must be a number." data-val-required="The Lugar de Hallazgo field is required." id="Lugar_de_Hallazgo" name="Lugar_de_Hallazgo">
+                                        <option value=""></option>
+                                        @if (varLugar_del_Hallazgo_Lugar_de_Hallazgo != null){ 
+                                            foreach (var itemLugar_de_Hallazgo in varLugar_del_Hallazgo_Lugar_de_Hallazgo)
+                                            {
+                                                if (itemLugar_de_Hallazgo.Value == Convert.ToString(Model.Lugar_de_Hallazgo))
+                                                {
+                                                    <option value="@itemLugar_de_Hallazgo.Value" selected>@itemLugar_de_Hallazgo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemLugar_de_Hallazgo.Value">@itemLugar_de_Hallazgo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Lugar_de_Hallazgo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 273998).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Lugar_del_Hallazgo', 'Lugar_de_Hallazgo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divPosible_Causa_de_la_Desaparacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Posible_Causa_de_la_Desaparacion</label>
+                                <div class="col-sm-8" data-field-id="Posible_Causa_de_la_Desaparacion" data-attribute="273999" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Posible_Causa_de_la_Desaparacion">
+                                    <textarea id="Posible_Causa_de_la_Desaparacion" name="Posible_Causa_de_la_Desaparacion" class="form-control Localizacion" rows="4" cols="50">@Model.Posible_Causa_de_la_Desaparacion</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Posible_Causa_de_la_Desaparacion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPais">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Pais</label>
+                                <div class="col-sm-8" data-field-id="Pais" data-attribute="274000" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Pais">
+                                    <select class="form-control Localizacion" data-val="true" data-val-number="The field Pais must be a number." data-val-required="The Pais field is required." id="Pais" name="Pais">
+                                        <option value=""></option>
+                                        @if (varPais_Pais != null){ 
+                                            foreach (var itemPais in varPais_Pais)
+                                            {
+                                                if (itemPais.Value == Convert.ToString(Model.Pais))
+                                                {
+                                                    <option value="@itemPais.Value" selected>@itemPais.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemPais.Value">@itemPais.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Pais" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 274000).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Pais', 'Pais');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divEstado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Estado</label>
+                                <div class="col-sm-8" data-field-id="Estado" data-attribute="274001" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Estado">
+                                    <select class="form-control Localizacion" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Estado" name="Estado">
+                                        <option value=""></option>
+                                        @if (varEstado_Estado != null){ 
+                                            foreach (var itemEstado in varEstado_Estado)
+                                            {
+                                                if (itemEstado.Value == Convert.ToString(Model.Estado))
+                                                {
+                                                    <option value="@itemEstado.Value" selected>@itemEstado.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemEstado.Value">@itemEstado.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Estado" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 274001).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Estado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divMunicipio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Municipio</label>
+                                <div class="col-sm-8" data-field-id="Municipio" data-attribute="274002" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Municipio">
+                                    <select class="form-control Localizacion" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Municipio" name="Municipio">
+                                        <option value=""></option>
+                                        @if (varMunicipio_Municipio != null){ 
+                                            foreach (var itemMunicipio in varMunicipio_Municipio)
+                                            {
+                                                if (itemMunicipio.Value == Convert.ToString(Model.Municipio))
+                                                {
+                                                    <option value="@itemMunicipio.Value" selected>@itemMunicipio.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemMunicipio.Value">@itemMunicipio.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Municipio" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 274002).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divPoblacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Poblacion</label>
+                                <div class="col-sm-8" data-field-id="Poblacion" data-attribute="274003" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Poblacion">
+                                    <select class="form-control Localizacion" data-val="true" data-val-number="The field Población must be a number." data-val-required="The Población field is required." id="Poblacion" name="Poblacion">
+                                        <option value=""></option>
+                                        @if (varColonia_Poblacion != null){ 
+                                            foreach (var itemPoblacion in varColonia_Poblacion)
+                                            {
+                                                if (itemPoblacion.Value == Convert.ToString(Model.Poblacion))
+                                                {
+                                                    <option value="@itemPoblacion.Value" selected>@itemPoblacion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemPoblacion.Value">@itemPoblacion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Poblacion" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 274003).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Poblacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divColonia">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Colonia</label>
+                                <div class="col-sm-8" data-field-id="Colonia" data-attribute="274004" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Colonia">
+                                    <select class="form-control Localizacion" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Colonia" name="Colonia">
+                                        <option value=""></option>
+                                        @if (varColonia_Colonia != null){ 
+                                            foreach (var itemColonia in varColonia_Colonia)
+                                            {
+                                                if (itemColonia.Value == Convert.ToString(Model.Colonia))
+                                                {
+                                                    <option value="@itemColonia.Value" selected>@itemColonia.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemColonia.Value">@itemColonia.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Colonia" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 274004).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Colonia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divCalle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Calle</label>
+                                <div class="col-sm-8" data-field-id="Calle" data-attribute="274005" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Calle">
+                                    <input class="form-control Localizacion" id="Calle" name="Calle" type="text" value="@Model.Calle">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Calle" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_Interior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Numero_Interior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="274006" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Numero_Interior">
+                                    <input class="form-control Localizacion" id="Numero_Interior" name="Numero_Interior" type="text" value="@Model.Numero_Interior">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Interior" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_Exterior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Numero_Exterior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="274007" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Numero_Exterior">
+                                    <input class="form-control Localizacion" id="Numero_Exterior" name="Numero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Exterior" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCodigo_Postal">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Codigo_Postal</label>
+                                <div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="274008" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Codigo_Postal">
+                                    <input class="form-control inputNumber Localizacion" id="Codigo_Postal" name="Codigo_Postal" type="text" value="@Model.Codigo_Postal">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Postal" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabEnte_y_Autoridad" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divEnte_que_localiza_al_no_localizado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Ente_que_localiza_al_no_localizado</label>
+                                <div class="col-sm-8" data-field-id="Ente_que_localiza_al_no_localizado" data-attribute="274009" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Ente_que_localiza_al_no_localizado">
+                                    <select class="form-control Ente_y_Autoridad" data-val="true" data-val-number="The field Ente que localiza al no localizado must be a number." data-val-required="The Ente que localiza al no localizado field is required." id="Ente_que_localiza_al_no_localizado" name="Ente_que_localiza_al_no_localizado">
+                                        <option value=""></option>
+                                        @if (varEnte_que_localiza_Ente_que_localiza_al_no_localizado != null){ 
+                                            foreach (var itemEnte_que_localiza_al_no_localizado in varEnte_que_localiza_Ente_que_localiza_al_no_localizado)
+                                            {
+                                                if (itemEnte_que_localiza_al_no_localizado.Value == Convert.ToString(Model.Ente_que_localiza_al_no_localizado))
+                                                {
+                                                    <option value="@itemEnte_que_localiza_al_no_localizado.Value" selected>@itemEnte_que_localiza_al_no_localizado.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemEnte_que_localiza_al_no_localizado.Value">@itemEnte_que_localiza_al_no_localizado.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Ente_que_localiza_al_no_localizado" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 274009).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Ente_que_localiza', 'Ente_que_localiza_al_no_localizado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divente_Paterno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.ente_Paterno</label>
+                                <div class="col-sm-8" data-field-id="ente_Paterno" data-attribute="274010" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.ente_Paterno">
+                                    <input class="form-control Ente_y_Autoridad" id="ente_Paterno" name="ente_Paterno" type="text" value="@Model.ente_Paterno">
+                                    @*<span class="field-validation-valid" data-valmsg-for="ente_Paterno" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divente_Materno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.ente_Materno</label>
+                                <div class="col-sm-8" data-field-id="ente_Materno" data-attribute="274011" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.ente_Materno">
+                                    <input class="form-control Ente_y_Autoridad" id="ente_Materno" name="ente_Materno" type="text" value="@Model.ente_Materno">
+                                    @*<span class="field-validation-valid" data-valmsg-for="ente_Materno" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divente_Nombre">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.ente_Nombre</label>
+                                <div class="col-sm-8" data-field-id="ente_Nombre" data-attribute="274012" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.ente_Nombre">
+                                    <input class="form-control Ente_y_Autoridad" id="ente_Nombre" name="ente_Nombre" type="text" value="@Model.ente_Nombre">
+                                    @*<span class="field-validation-valid" data-valmsg-for="ente_Nombre" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divAutoridad_que_conoce_el_hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Autoridad_que_conoce_el_hecho</label>
+                                <div class="col-sm-8" data-field-id="Autoridad_que_conoce_el_hecho" data-attribute="274013" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Autoridad_que_conoce_el_hecho">
+                                    <input class="form-control Ente_y_Autoridad" id="Autoridad_que_conoce_el_hecho" name="Autoridad_que_conoce_el_hecho" type="text" value="@Model.Autoridad_que_conoce_el_hecho">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Autoridad_que_conoce_el_hecho" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divautoridad_Paterno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.autoridad_Paterno</label>
+                                <div class="col-sm-8" data-field-id="autoridad_Paterno" data-attribute="274014" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.autoridad_Paterno">
+                                    <input class="form-control Ente_y_Autoridad" id="autoridad_Paterno" name="autoridad_Paterno" type="text" value="@Model.autoridad_Paterno">
+                                    @*<span class="field-validation-valid" data-valmsg-for="autoridad_Paterno" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divautoridad_Materno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.autoridad_Materno</label>
+                                <div class="col-sm-8" data-field-id="autoridad_Materno" data-attribute="274015" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.autoridad_Materno">
+                                    <input class="form-control Ente_y_Autoridad" id="autoridad_Materno" name="autoridad_Materno" type="text" value="@Model.autoridad_Materno">
+                                    @*<span class="field-validation-valid" data-valmsg-for="autoridad_Materno" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divautoridad_Nombre">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.autoridad_Nombre</label>
+                                <div class="col-sm-8" data-field-id="autoridad_Nombre" data-attribute="274016" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.autoridad_Nombre">
+                                    <input class="form-control Ente_y_Autoridad" id="autoridad_Nombre" name="autoridad_Nombre" type="text" value="@Model.autoridad_Nombre">
+                                    @*<span class="field-validation-valid" data-valmsg-for="autoridad_Nombre" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             </div>
@@ -551,6 +1036,10 @@
 		var nameAttribute = '@ViewBag.nameAttribute';
 		var Tab_Datos_Generales = true;
 
+		var Tab_Localizacion = true;
+
+		var Tab_Ente_y_Autoridad = true;
+
 
         $(document).ready(function () {
             $('#ObjectId').val('45109');
@@ -558,6 +1047,12 @@
 
            
               showDetalle_Delitos_de_DocumentosGrid(null);
+              
+
+
+
+           
+              showDetalle_de_Indicios_de_DiligenciaGrid(null);
 
 		   
                         $('#Fecha').datepicker({
@@ -569,6 +1064,15 @@
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
             $('#Hora').clockpicker();
+            $('#Fecha_Localizacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_Localizacion').clockpicker();
 
 
             initiateUIControls();
@@ -761,20 +1265,16 @@
 				if (Tab_Datos_Generales)
 					Fill_Datos_Generales();
 
+				if (Tab_Localizacion)
+					Fill_Localizacion();
+
+				if (Tab_Ente_y_Autoridad)
+					Fill_Ente_y_Autoridad();
+
 
                 </text>
             }
             EjecutarValidacionesAlComienzo(); 
-			debugger;
-			
-			var valorArchivo = $("#Archivo").val();
-			
-			
-			if (valorArchivo != "" && valorArchivo != "0") {
-				
-				$("#Archivo_VerDocto").removeClass("hidden");
-				
-			}
 			
         });
 
@@ -1060,6 +1560,282 @@
             //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Delito"))')
 	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Delito"))', "warning");
         }
+        var Detalle_de_Indicios_de_DiligenciainsertRowCurrentIndex = -1;
+        var Detalle_de_Indicios_de_DiligenciaDataDataTable;
+        function getDetalle_de_Indicios_de_DiligenciaData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_de_Indicios_de_Diligencia")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_de_Indicios_de_DiligenciaDataDataTable = result.data;
+                    showDetalle_de_Indicios_de_DiligenciaGrid(result.data);
+                    $('#Detalle_de_Indicios_de_DiligenciaGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_de_Indicios_de_DiligenciaGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_de_Indicios_de_DiligenciaGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Indicio)).addClass('Indicio').attr('id', nameOfTable + 'Indicio' + rowIndex).attr('data-field', 'Indicio');
+              columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.Seleccionar=="true" || data.Seleccionar==true)? 'checked': ''? 'checked': '')).addClass('Seleccionar').attr('id', nameOfTable + 'Seleccionar' + rowIndex).attr('data-field', 'Seleccionar');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.IndicioId)).addClass('IndicioId inputNumber').attr('id', nameOfTable + 'IndicioId' + rowIndex).attr('data-field', 'IndicioId');
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_de_Indicios_de_DiligenciaData = [];
+        function Detalle_de_Indicios_de_DiligenciaDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_de_Indicios_de_DiligenciaTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_de_Indicios_de_Diligencia.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_de_Indicios_de_Diligencia('Detalle_de_Indicios_de_Diligencia_', '_' + rowIndex)) {
+                var prevData = Detalle_de_Indicios_de_DiligenciaTable.fnGetData(rowIndexTable );
+                removedDetalle_de_Indicios_de_DiligenciaData.push(prevData);
+                Detalle_de_Indicios_de_DiligenciaTable.fnDeleteRow(rowIndexTable );
+				showDetalle_de_Indicios_de_DiligenciaGrid(Detalle_de_Indicios_de_DiligenciaTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_de_Indicios_de_DiligenciarowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_de_Indicios_de_Diligencia.Edit' == 'True',
+                 Delete: '@permissionDetalle_de_Indicios_de_Diligencia.Delete' == 'True'
+            };
+            setDetalle_de_Indicios_de_DiligenciaValidation();
+            var Detalle_de_Indicios_de_DiligenciaRowElement = "Detalle_de_Indicios_de_Diligencia_" + index.toString();
+            $(row).addClass(Detalle_de_Indicios_de_DiligenciaRowElement);
+            var nameOfTable='Detalle_de_Indicios_de_Diligencia_';
+            var rowIndex = '_' + index;
+            Detalle_de_Indicios_de_DiligenciainsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_de_Indicios_de_DiligenciaRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_de_Indicios_de_DiligenciaRowElement + "')){ Detalle_de_Indicios_de_DiligenciaInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_de_Indicios_de_DiligenciaCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_de_Indicios_de_DiligenciaGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_de_Indicios_de_DiligenciaGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_de_Indicios_de_DiligenciaGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_de_Indicios_de_DiligenciaGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_de_Indicios_de_DiligenciaEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_de_Indicios_de_Diligencia-form' onclick='Detalle_de_Indicios_de_DiligenciaEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_de_Indicios_de_DiligenciaDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Indicio' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Indicio'+rowIndex+'">').text(data.Indicio).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Indicio'+rowIndex+'">').text(data.Indicio).appendTo(row);
+            if ($('.Seleccionar' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Seleccionar'+rowIndex+'">').text(data.Seleccionar).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Seleccionar'+rowIndex+'">').text(data.Seleccionar).appendTo(row);
+            if ($('.IndicioId' + 'Header').css('display') != 'none')
+                $('<td class="dt-right"  id="'+nameOfTable+'IndicioId'+rowIndex+'">').text(data.IndicioId).appendTo(row);
+            else 
+                 $('<td class="dt-right" style="display:none;"  id="'+nameOfTable+'IndicioId'+rowIndex+'">').text(data.IndicioId).appendTo(row);
+
+        }
+
+        var Detalle_de_Indicios_de_DiligenciaTable;
+        function showDetalle_de_Indicios_de_DiligenciaGrid(dataSet) {
+            //removedDetalle_de_Indicios_de_DiligenciaData = [];
+            Detalle_de_Indicios_de_DiligenciaTable = $('#Detalle_de_Indicios_de_DiligenciaGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_de_Indicios_de_DiligenciarowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Indicio", "orderable": false },
+                    { "data": "Seleccionar", "orderable": false },
+                    { "data": "IndicioId", "className": "dt-right", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_de_Indicios_de_DiligenciaValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_de_Indicios_de_DiligenciaGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+
+
+
+
+        var Detalle_de_Indicios_de_DiligenciaData = [];
+        var Detalle_de_Indicios_de_DiligenciadeletedItem = [];
+        var Detalle_de_Indicios_de_DiligenciaDataMain = [];
+        var Detalle_de_Indicios_de_DiligenciaDataMainPages = [];
+        var Detalle_de_Indicios_de_DiligencianewItemCount = 0;
+        var Detalle_de_Indicios_de_DiligenciamaxItemIndex = 0;
+        var Detalle_de_Indicios_de_DiligenciaDataMainInitialized = false;
+
+        function SendDetalle_de_Indicios_de_Diligencia(callBack, ClaveId) {
+            Detalle_de_Indicios_de_DiligenciaData = GetDetalle_de_Indicios_de_DiligenciaFromDataTable();
+
+            if (Detalle_de_Indicios_de_DiligenciaData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/PostDetalle_de_Indicios_de_Diligencia?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_de_Indicios_de_Diligencia(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_de_Indicios_de_DiligenciaPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_de_Indicios_de_Diligencia", "Detalle_de_Indicios_de_Diligencia")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_de_Indicios_de_DiligenciaModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_de_Indicios_de_Diligencia", "Detalle_de_Indicios_de_Diligencia")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_de_Indicios_de_DiligenciaModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_de_Indicios_de_Diligencia()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Indicios a enviar"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Indicios a enviar"))', "warning");
+        }
 
 
         function initiateUIControls() {
@@ -1109,6 +1885,11 @@
             $('.select2-search__field').val(' ');
             $('.select2-search__field').keyup();
         });
+
+
+
+
+
 
 
         }
@@ -1180,6 +1961,14 @@
 				return false;
 			}						
 
+			if (Tab_Localizacion && !checkClientValidate('Detalle_de_Documentos_MPOCreateForm', 'Localizacion')) {
+				return false;
+			}						
+
+			if (Tab_Ente_y_Autoridad && !checkClientValidate('Detalle_de_Documentos_MPOCreateForm', 'Ente_y_Autoridad')) {
+				return false;
+			}						
+
 
 			
 			if (isNew == "True")
@@ -1190,6 +1979,12 @@
 			
 			if (Tab_Datos_Generales)
 				Save_Datos_Generales(id);
+
+			if (Tab_Localizacion)
+				Save_Localizacion(id);
+
+			if (Tab_Ente_y_Autoridad)
+				Save_Ente_y_Autoridad(id);
 
 
 			showNotification("@Resources.Resources.SaveSuccess", "success");
@@ -1413,6 +2208,12 @@
                     $('#Archivo').val(result.data.Archivo);
                     $('#Lista_para_periciales').prop('checked', result.data.Lista_para_periciales);
                     $('#Folio').val(result.data.Folio);
+                    $('#Expediente_MP').val(result.data.Expediente_MP);
+                    $('#Descripcion').val(result.data.Descripcion);
+                    Detalle_de_Indicios_de_DiligenciaDataDataTable = result.Indicios_a_enviar;
+                    showDetalle_de_Indicios_de_DiligenciaGrid(result.Indicios_a_enviar);
+                    $('#Detalle_de_Indicios_de_DiligenciaGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_de_Indicios_de_DiligenciaGrid .gridDatePicker').attr("readonly", "");
 
                 },
                 error: function (result) {
@@ -1439,6 +2240,8 @@
                 data.append('Archivo', $('#Archivo').val());
                 data.append('Lista_para_periciales', $('#Lista_para_periciales').prop('checked'));
                 data.append('Folio', $('#Folio').val());
+                data.append('Expediente_MP', $('#Expediente_MP').val());
+                data.append('Descripcion', $('#Descripcion').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/Post_Datos_Generales")',
@@ -1454,6 +2257,7 @@
 					} else {
 						newId = result;
                     					    SendDetalle_Delitos_de_Documentos(null, newId);
+					    SendDetalle_de_Indicios_de_Diligencia(null, newId);
 
 					}
 				},
@@ -1464,101 +2268,140 @@
 			});
 		}
 
-	function GetIdFormatoFromDocumento()
-    {
-        debugger;
-        var formatoID = EvaluaQuery(" usp_getIdFormatoFromDocumento  " + $('#Documento').val() + "");
-        return formatoID;
-    }
-
-     function VerDocto() {
-        debugger;
-            var PathFile = "";
-            var BaseUrl = "";
-            var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + $("#Archivo").val(), "", "");// document.getElementById("Archivo").innerHTML;
-
-
+		function Fill_Localizacion()
+        {
             $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/Get_Localizacion")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
                 async: false,
-                url: '@Url.Content("~/Frontal/General/GetArchivoFisico")',
-                data: { "Archivo": id },
-                type: 'POST',
                 success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Estatus_Persona').val(result.data.Estatus_Persona);
+                    $('#Fecha_Localizacion').val(result.data.Fecha_Localizacion);
+                    $('#Hora_Localizacion').val(result.data.Hora_Localizacion);
+                    $('#Condiciones_de_Localizacion').val(result.data.Condiciones_de_Localizacion);
+                    $('#Lugar_de_Hallazgo').val(result.data.Lugar_de_Hallazgo);
+                    $('#Posible_Causa_de_la_Desaparacion').val(result.data.Posible_Causa_de_la_Desaparacion);
+                    $('#Pais').val(result.data.Pais);
+                    $('#Estado').val(result.data.Estado);
+                    $('#Municipio').val(result.data.Municipio);
+                    $('#Poblacion').val(result.data.Poblacion);
+                    $('#Colonia').val(result.data.Colonia);
+                    $('#Calle').val(result.data.Calle);
+                    $('#Numero_Interior').val(result.data.Numero_Interior);
+                    $('#Numero_Exterior').val(result.data.Numero_Exterior);
+                    $('#Codigo_Postal').val(result.data.Codigo_Postal);
 
-                    BaseUrl = result;
-
-                    window.open(BaseUrl);
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
                 }
-        });
+            });
         }
+		
+		function Save_Localizacion(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Estatus_Persona', $('#Estatus_Persona').val());
+                data.append('Fecha_Localizacion', $('#Fecha_Localizacion').val());
+                data.append('Hora_Localizacion', $('#Hora_Localizacion').val());
+                data.append('Condiciones_de_Localizacion', $('#Condiciones_de_Localizacion').val());
+                data.append('Lugar_de_Hallazgo', $('#Lugar_de_Hallazgo').val());
+                data.append('Posible_Causa_de_la_Desaparacion', $('#Posible_Causa_de_la_Desaparacion').val());
+                data.append('Pais', $('#Pais').val());
+                data.append('Estado', $('#Estado').val());
+                data.append('Municipio', $('#Municipio').val());
+                data.append('Poblacion', $('#Poblacion').val());
+                data.append('Colonia', $('#Colonia').val());
+                data.append('Calle', $('#Calle').val());
+                data.append('Numero_Interior', $('#Numero_Interior').val());
+                data.append('Numero_Exterior', $('#Numero_Exterior').val());
+                data.append('Codigo_Postal', $('#Codigo_Postal').val());
 
-        function EditarDocto() {
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/Post_Localizacion")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Localizacion");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Localizacion");
+				},
+				cache: false
+			});
+		}
 
-            debugger;
+		function Fill_Ente_y_Autoridad()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/Get_Ente_y_Autoridad")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Ente_que_localiza_al_no_localizado').val(result.data.Ente_que_localiza_al_no_localizado);
+                    $('#ente_Paterno').val(result.data.ente_Paterno);
+                    $('#ente_Materno').val(result.data.ente_Materno);
+                    $('#ente_Nombre').val(result.data.ente_Nombre);
+                    $('#Autoridad_que_conoce_el_hecho').val(result.data.Autoridad_que_conoce_el_hecho);
+                    $('#autoridad_Paterno').val(result.data.autoridad_Paterno);
+                    $('#autoridad_Materno').val(result.data.autoridad_Materno);
+                    $('#autoridad_Nombre').val(result.data.autoridad_Nombre);
 
-
-            var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
-            controlDocumentoDynamiSeach = false; 
-            if (_controlDocumentoDynamiSeach == "true" ) {
-                controlDocumentoDynamiSeach = true; 
-                
-            }
-
-            if ( controlDocumentoDynamiSeach == true ) {
-                alert('Existe una ventana abierta');
-            }
-            else {
-                permitirCerrar = false;
-                controlDocumentoDynamiSeach = true; 
-                localStorage.setItem('controlDocumentoDynamiSeach',"true");
-                var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
-                var folioControlDocumentos = $("#Archivo").val();
-                $('.loading').css('display', 'none');
-                var formaid = GetIdFormatoFromDocumento();
-                if (isedit) {
-                    OpenPrintFormats(folioControlDocumentos, @Spartane.Web.SessionHelper.Role, "", true, "45018", formaid);
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
                 }
-                else {
-                    GuardarRegistro(formaid);
-
-                }
-            }
-
+            });
         }
+		
+		function Save_Ente_y_Autoridad(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Ente_que_localiza_al_no_localizado', $('#Ente_que_localiza_al_no_localizado').val());
+                data.append('ente_Paterno', $('#ente_Paterno').val());
+                data.append('ente_Materno', $('#ente_Materno').val());
+                data.append('ente_Nombre', $('#ente_Nombre').val());
+                data.append('Autoridad_que_conoce_el_hecho', $('#Autoridad_que_conoce_el_hecho').val());
+                data.append('autoridad_Paterno', $('#autoridad_Paterno').val());
+                data.append('autoridad_Materno', $('#autoridad_Materno').val());
+                data.append('autoridad_Nombre', $('#autoridad_Nombre').val());
 
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/Post_Ente_y_Autoridad")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Ente_y_Autoridad");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Ente_y_Autoridad");
+				},
+				cache: false
+			});
+		}
 
-    function GuardarRegistro(formaid) {
-
-            debugger;
-            $("#Archivo").val("0");
-            if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
-                debugger
-                if (!SendDetalle_de_Documentos_MPOData(function (idvalor) {
-                 debugger
-                    EjecutarValidacionesDespuesDeGuardar();
-                    $('.loading').css('display', 'none');
-                    $('#hdnIsNew').val("False");
-                    //aqui
-                    $("#ReferenceClave").text(idvalor);
-                    $("#ReferenceClave").val(idvalor);
-
-
-                    OpenPrintFormats(idvalor, @Spartane.Web.SessionHelper.Role, "", false, "45018", formaid);
-
-
-
-
-
-                }, false)) {
-					localStorage.setItem("controlDocumentoDynamiSeach", "False");
-
-                }
-            }
-
-
-
-
-        }
 
     </script>
 }

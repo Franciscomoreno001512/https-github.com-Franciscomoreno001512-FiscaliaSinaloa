@@ -1551,6 +1551,18 @@
 <Compile Include="Contestacion_de_Portal_Ciudadano\Contestacion_de_Portal_CiudadanoService.cs" />
 <Compile Include="Tipo_Resolucion_Portal_Ciudadano\ITipo_Resolucion_Portal_CiudadanoService.cs" />
 <Compile Include="Tipo_Resolucion_Portal_Ciudadano\Tipo_Resolucion_Portal_CiudadanoService.cs" />
+<Compile Include="Condiciones_de_Localizacion\ICondiciones_de_LocalizacionService.cs" />
+<Compile Include="Condiciones_de_Localizacion\Condiciones_de_LocalizacionService.cs" />
+<Compile Include="Detalle_de_Indicios_de_Diligencia\IDetalle_de_Indicios_de_DiligenciaService.cs" />
+<Compile Include="Detalle_de_Indicios_de_Diligencia\Detalle_de_Indicios_de_DiligenciaService.cs" />
+<Compile Include="Ente_que_localiza\IEnte_que_localizaService.cs" />
+<Compile Include="Ente_que_localiza\Ente_que_localizaService.cs" />
+<Compile Include="Estatus_Persona\IEstatus_PersonaService.cs" />
+<Compile Include="Estatus_Persona\Estatus_PersonaService.cs" />
+<Compile Include="Lugar_del_Hallazgo\ILugar_del_HallazgoService.cs" />
+<Compile Include="Lugar_del_Hallazgo\Lugar_del_HallazgoService.cs" />
+<Compile Include="Tipo_de_Localizacion\ITipo_de_LocalizacionService.cs" />
+<Compile Include="Tipo_de_Localizacion\Tipo_de_LocalizacionService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1650,6 +1662,18 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

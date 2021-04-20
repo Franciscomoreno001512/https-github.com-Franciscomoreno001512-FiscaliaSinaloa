@@ -5,7 +5,12 @@ var saltarValidacion = false;
 $(document).ready(function () {
     $("#Consulta_de_Mandamientos_JudicialesGuardarYNuevo, #Consulta_de_Mandamientos_JudicialesGuardarYCopia, #Consulta_de_Mandamientos_JudicialesCancelar").remove();
 
-
+    $("#Buscar_por_Datos").on('click',function(){
+        fillMRFromQuery('Detalle_de_Resultados', "exec uspConsultaMandamientosJudiciales ' FLD[MandamientoJudicialId] ',' FLD[Nombre] ',' FLD[Apellido_Paterno] ',' FLD[Apellido_Materno] ',' FLD[Alias] ',' FLD[Pais] ',' FLD[Estado] ',' FLD[Municipio] ' ,' FLD[Juzgado] ',' FLD[Oficio_Solicitud_Juzgado] ',' FLD[Carpeta_de_Investigacion] ',' FLD[Causa_Penal] '");
+    });
+    $("#Buscar_por_Huellas").on('click',function(){
+        fillMRFromQuery('Detalle_de_Resultados', "exec uspConsultaMandamientosJudiciales ' FLD[MandamientoJudicialId] ',' FLD[Nombre] ',' FLD[Apellido_Paterno] ',' FLD[Apellido_Materno] ',' FLD[Alias] ',' FLD[Pais] ',' FLD[Estado] ',' FLD[Municipio] ' ,' FLD[Juzgado] ',' FLD[Oficio_Solicitud_Juzgado] ',' FLD[Carpeta_de_Investigacion] ',' FLD[Causa_Penal] '");
+    });
 
 
 //BusinessRuleId:4963, Attribute:273778, Operation:Field, Event:None

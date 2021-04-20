@@ -29,6 +29,12 @@ namespace Spartane.Web.Areas.WebApiConsumer.Detalle_de_Documentos_MPO
 		ApiResponse<int> Update_Datos_Generales(Spartane.Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Datos_Generales entity);
 		ApiResponse<Spartane.Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Datos_Generales> Get_Datos_Generales(string Key);
 
+		ApiResponse<int> Update_Localizacion(Spartane.Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Localizacion entity);
+		ApiResponse<Spartane.Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Localizacion> Get_Localizacion(string Key);
+
+		ApiResponse<int> Update_Ente_y_Autoridad(Spartane.Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Ente_y_Autoridad entity);
+		ApiResponse<Spartane.Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO_Ente_y_Autoridad> Get_Ente_y_Autoridad(string Key);
+
 
     }
 }

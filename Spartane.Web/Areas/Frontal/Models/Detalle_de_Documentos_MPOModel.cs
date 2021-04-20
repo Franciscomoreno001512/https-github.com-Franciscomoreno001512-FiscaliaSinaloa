@@ -34,6 +34,42 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Archivo { get; set; }
         public bool Lista_para_periciales { get; set; }
         public string Folio { get; set; }
+        public int? Expediente_MP { get; set; }
+        public string Expediente_MPnic { get; set; }
+        public string Descripcion { get; set; }
+        public int? Estatus_Persona { get; set; }
+        public string Estatus_PersonaDescripcion { get; set; }
+        public string Fecha_Localizacion { get; set; }
+        public string Hora_Localizacion { get; set; }
+        public int? Condiciones_de_Localizacion { get; set; }
+        public string Condiciones_de_LocalizacionDescripcion { get; set; }
+        public int? Lugar_de_Hallazgo { get; set; }
+        public string Lugar_de_HallazgoDescripcion { get; set; }
+        public string Posible_Causa_de_la_Desaparacion { get; set; }
+        public int? Pais { get; set; }
+        public string PaisNombre { get; set; }
+        public int? Estado { get; set; }
+        public string EstadoNombre { get; set; }
+        public int? Municipio { get; set; }
+        public string MunicipioNombre { get; set; }
+        public int? Poblacion { get; set; }
+        public string PoblacionNombre { get; set; }
+        public int? Colonia { get; set; }
+        public string ColoniaNombre { get; set; }
+        public string Calle { get; set; }
+        public string Numero_Interior { get; set; }
+        public string Numero_Exterior { get; set; }
+        [Range(0, 9999999999)]
+        public int? Codigo_Postal { get; set; }
+        public int? Ente_que_localiza_al_no_localizado { get; set; }
+        public string Ente_que_localiza_al_no_localizadoDescripcion { get; set; }
+        public string ente_Paterno { get; set; }
+        public string ente_Materno { get; set; }
+        public string ente_Nombre { get; set; }
+        public string Autoridad_que_conoce_el_hecho { get; set; }
+        public string autoridad_Paterno { get; set; }
+        public string autoridad_Materno { get; set; }
+        public string autoridad_Nombre { get; set; }
 
     }
 	
@@ -63,6 +99,56 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Archivo { get; set; }
         public bool? Lista_para_periciales { get; set; }
         public string Folio { get; set; }
+        public int? Expediente_MP { get; set; }
+        public string Expediente_MPnic { get; set; }
+        public string Descripcion { get; set; }
+
+    }
+
+	public class Detalle_de_Documentos_MPO_LocalizacionModel
+    {
+        [Required]
+        public int Clave { get; set; }
+        public int? Estatus_Persona { get; set; }
+        public string Estatus_PersonaDescripcion { get; set; }
+        public string Fecha_Localizacion { get; set; }
+        public string Hora_Localizacion { get; set; }
+        public int? Condiciones_de_Localizacion { get; set; }
+        public string Condiciones_de_LocalizacionDescripcion { get; set; }
+        public int? Lugar_de_Hallazgo { get; set; }
+        public string Lugar_de_HallazgoDescripcion { get; set; }
+        public string Posible_Causa_de_la_Desaparacion { get; set; }
+        public int? Pais { get; set; }
+        public string PaisNombre { get; set; }
+        public int? Estado { get; set; }
+        public string EstadoNombre { get; set; }
+        public int? Municipio { get; set; }
+        public string MunicipioNombre { get; set; }
+        public int? Poblacion { get; set; }
+        public string PoblacionNombre { get; set; }
+        public int? Colonia { get; set; }
+        public string ColoniaNombre { get; set; }
+        public string Calle { get; set; }
+        public string Numero_Interior { get; set; }
+        public string Numero_Exterior { get; set; }
+        [Range(0, 9999999999)]
+        public int? Codigo_Postal { get; set; }
+
+    }
+
+	public class Detalle_de_Documentos_MPO_Ente_y_AutoridadModel
+    {
+        [Required]
+        public int Clave { get; set; }
+        public int? Ente_que_localiza_al_no_localizado { get; set; }
+        public string Ente_que_localiza_al_no_localizadoDescripcion { get; set; }
+        public string ente_Paterno { get; set; }
+        public string ente_Materno { get; set; }
+        public string ente_Nombre { get; set; }
+        public string Autoridad_que_conoce_el_hecho { get; set; }
+        public string autoridad_Paterno { get; set; }
+        public string autoridad_Materno { get; set; }
+        public string autoridad_Nombre { get; set; }
 
     }
 

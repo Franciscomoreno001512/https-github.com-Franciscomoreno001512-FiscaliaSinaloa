@@ -599,3 +599,31 @@ if(operation == 'Update'){
 //NEWBUSINESSRULE_EDITROWMR_Detalle_Delitos_de_Documentos// 
  return result; 
 } 
+
+function EjecutarValidacionesAntesDeGuardarMRDetalle_de_Indicios_de_Diligencia(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_BEFORESAVINGMR_Detalle_de_Indicios_de_Diligencia// 
+ return result; 
+} 
+
+function EjecutarValidacionesDespuesDeGuardarMRDetalle_de_Indicios_de_Diligencia(nameOfTable, rowIndex){ 
+//NEWBUSINESSRULE_AFTERSAVINGMR_Detalle_de_Indicios_de_Diligencia// 
+} 
+
+function EjecutarValidacionesAlEliminarMRDetalle_de_Indicios_de_Diligencia(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_DELETEMR_Detalle_de_Indicios_de_Diligencia// 
+ return result; 
+} 
+
+function EjecutarValidacionesNewRowMRDetalle_de_Indicios_de_Diligencia(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_NEWROWMR_Detalle_de_Indicios_de_Diligencia// 
+  return result; 
+} 
+
+function EjecutarValidacionesEditRowMRDetalle_de_Indicios_de_Diligencia(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_EDITROWMR_Detalle_de_Indicios_de_Diligencia// 
+ return result; 
+} 

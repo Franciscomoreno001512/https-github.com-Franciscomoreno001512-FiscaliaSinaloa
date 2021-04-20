@@ -16210,6 +16210,123 @@
 <Content Include="Uploads\Scripts\Rules\Tipo_Resolucion_Portal_CiudadanoCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Tipo_Resolucion_Portal_CiudadanoIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Tipo_Resolucion_Portal_Ciudadano\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Condiciones_de_Localizacion\Condiciones_de_LocalizacionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Condiciones_de_Localizacion\ICondiciones_de_LocalizacionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Condiciones_de_LocalizacionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Condiciones_de_LocalizacionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Condiciones_de_LocalizacionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Condiciones_de_LocalizacionController.cs" />
+<Content Include="Areas\Frontal\Views\Condiciones_de_Localizacion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Condiciones_de_Localizacion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Condiciones_de_Localizacion.cs" />
+<Content Include="Uploads\Resources\Condiciones_de_LocalizacionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Condiciones_de_LocalizacionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Condiciones_de_LocalizacionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Condiciones_de_Localizacion.js" />
+<Content Include="Scripts\Custom\Condiciones_de_LocalizacionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Condiciones_de_Localizacion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Condiciones_de_LocalizacionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Condiciones_de_LocalizacionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Condiciones_de_LocalizacionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Condiciones_de_LocalizacionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Condiciones_de_Localizacion\_Print.cshtml" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_de_Indicios_de_DiligenciaController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_de_Indicios_de_DiligenciaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_de_Indicios_de_DiligenciaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_de_Indicios_de_DiligenciaMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_de_Indicios_de_Diligencia\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_de_Indicios_de_Diligencia\AddDetalle_de_Indicios_de_Diligencia.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_de_Indicios_de_Diligencia\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_de_Indicios_de_Diligencia\Detalle_de_Indicios_de_DiligenciaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_de_Indicios_de_Diligencia\IDetalle_de_Indicios_de_DiligenciaApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_de_Indicios_de_Diligencia.cs" />
+<Content Include="Scripts\Custom\Detalle_de_Indicios_de_DiligenciaGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_de_Indicios_de_DiligenciaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_de_Indicios_de_DiligenciaResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_de_Indicios_de_DiligenciaResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_de_Indicios_de_Diligencia.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_de_Indicios_de_DiligenciaIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_de_Indicios_de_DiligenciaCreateRules.js" />
+<Compile Include="Areas\WebApiConsumer\Ente_que_localiza\Ente_que_localizaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Ente_que_localiza\IEnte_que_localizaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Ente_que_localizaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Ente_que_localizaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Ente_que_localizaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Ente_que_localizaController.cs" />
+<Content Include="Areas\Frontal\Views\Ente_que_localiza\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Ente_que_localiza\Create.cshtml" />
+<Compile Include="Resource\GetResource\Ente_que_localiza.cs" />
+<Content Include="Uploads\Resources\Ente_que_localizaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Ente_que_localizaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Ente_que_localizaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Ente_que_localiza.js" />
+<Content Include="Scripts\Custom\Ente_que_localizaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Ente_que_localiza\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Ente_que_localizaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Ente_que_localizaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Ente_que_localizaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Ente_que_localizaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Ente_que_localiza\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Estatus_Persona\Estatus_PersonaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Estatus_Persona\IEstatus_PersonaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_PersonaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_PersonaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_PersonaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Estatus_PersonaController.cs" />
+<Content Include="Areas\Frontal\Views\Estatus_Persona\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Estatus_Persona\Create.cshtml" />
+<Compile Include="Resource\GetResource\Estatus_Persona.cs" />
+<Content Include="Uploads\Resources\Estatus_PersonaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Estatus_PersonaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Estatus_PersonaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Estatus_Persona.js" />
+<Content Include="Scripts\Custom\Estatus_PersonaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Estatus_Persona\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Estatus_PersonaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_PersonaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Estatus_PersonaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Estatus_PersonaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Estatus_Persona\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Lugar_del_Hallazgo\Lugar_del_HallazgoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Lugar_del_Hallazgo\ILugar_del_HallazgoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Lugar_del_HallazgoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Lugar_del_HallazgoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Lugar_del_HallazgoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Lugar_del_HallazgoController.cs" />
+<Content Include="Areas\Frontal\Views\Lugar_del_Hallazgo\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Lugar_del_Hallazgo\Create.cshtml" />
+<Compile Include="Resource\GetResource\Lugar_del_Hallazgo.cs" />
+<Content Include="Uploads\Resources\Lugar_del_HallazgoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Lugar_del_HallazgoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Lugar_del_HallazgoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Lugar_del_Hallazgo.js" />
+<Content Include="Scripts\Custom\Lugar_del_HallazgoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Lugar_del_Hallazgo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Lugar_del_HallazgoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Lugar_del_HallazgoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Lugar_del_HallazgoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Lugar_del_HallazgoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Lugar_del_Hallazgo\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Localizacion\Tipo_de_LocalizacionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Localizacion\ITipo_de_LocalizacionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_LocalizacionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_LocalizacionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_LocalizacionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_LocalizacionController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Localizacion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Localizacion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Localizacion.cs" />
+<Content Include="Uploads\Resources\Tipo_de_LocalizacionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_LocalizacionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_LocalizacionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Localizacion.js" />
+<Content Include="Scripts\Custom\Tipo_de_LocalizacionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Localizacion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_LocalizacionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_LocalizacionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_LocalizacionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_LocalizacionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Localizacion\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -17217,6 +17334,123 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

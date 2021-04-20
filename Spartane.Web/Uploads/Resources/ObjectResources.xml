@@ -1372,8 +1372,40 @@
 <Object Id="46256" culture="es-es" value="Contestación de Portal Ciudadano" />
 <Object Id="46255" culture="en-us" value="Tipo Resolución Portal Ciudadano" />
 <Object Id="46255" culture="es-es" value="Tipo Resolución Portal Ciudadano" />
+<Object Id="46345" culture="en-us" value="Condiciones de Localización" />
+<Object Id="46345" culture="es-es" value="Condiciones de Localización" />
+<Object Id="46343" culture="en-us" value="Detalle de Indicios de Diligencia" />
+<Object Id="46343" culture="es-es" value="Detalle de Indicios de Diligencia" />
+<Object Id="46347" culture="en-us" value="Ente que localiza" />
+<Object Id="46347" culture="es-es" value="Ente que localiza" />
+<Object Id="46344" culture="en-us" value="Estatus Persona" />
+<Object Id="46344" culture="es-es" value="Estatus Persona" />
+<Object Id="46346" culture="en-us" value="Lugar del Hallazgo" />
+<Object Id="46346" culture="es-es" value="Lugar del Hallazgo" />
+<Object Id="46342" culture="en-us" value="Tipo de Localización" />
+<Object Id="46342" culture="es-es" value="Tipo de Localización" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

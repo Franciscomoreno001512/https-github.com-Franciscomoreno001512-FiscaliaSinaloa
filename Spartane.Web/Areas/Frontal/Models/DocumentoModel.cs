@@ -30,6 +30,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool Requerido_o_Solicitante { get; set; }
         public bool Solicitar_Archivo_Adjunto { get; set; }
         public bool Solicitar_Numero_de_Oficio { get; set; }
+        public int? Tipo_de_Localizacion { get; set; }
+        public string Tipo_de_LocalizacionDescripcion { get; set; }
 
     }
 	
@@ -55,6 +57,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Requerido_o_Solicitante { get; set; }
         public bool? Solicitar_Archivo_Adjunto { get; set; }
         public bool? Solicitar_Numero_de_Oficio { get; set; }
+        public int? Tipo_de_Localizacion { get; set; }
+        public string Tipo_de_LocalizacionDescripcion { get; set; }
 
     }
 

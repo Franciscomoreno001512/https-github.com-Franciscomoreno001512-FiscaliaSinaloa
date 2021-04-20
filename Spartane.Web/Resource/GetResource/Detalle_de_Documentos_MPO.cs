@@ -176,8 +176,270 @@ namespace Resources
             }
         }
 
+        /// <summary>Expediente_MP</summary>
+        public static string Expediente_MP
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Expediente_MP", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Descripcion</summary>
+        public static string Descripcion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Descripcion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Indicios_a_enviar</summary>
+        public static string Indicios_a_enviar
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Indicios_a_enviar", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Estatus_Persona</summary>
+        public static string Estatus_Persona
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Estatus_Persona", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_Localizacion</summary>
+        public static string Fecha_Localizacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Fecha_Localizacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_Localizacion</summary>
+        public static string Hora_Localizacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Hora_Localizacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Condiciones_de_Localizacion</summary>
+        public static string Condiciones_de_Localizacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Condiciones_de_Localizacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Lugar_de_Hallazgo</summary>
+        public static string Lugar_de_Hallazgo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Lugar_de_Hallazgo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Posible_Causa_de_la_Desaparacion</summary>
+        public static string Posible_Causa_de_la_Desaparacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Posible_Causa_de_la_Desaparacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Pais</summary>
+        public static string Pais
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Pais", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Estado</summary>
+        public static string Estado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Estado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Municipio</summary>
+        public static string Municipio
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Municipio", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Poblacion</summary>
+        public static string Poblacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Poblacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Colonia</summary>
+        public static string Colonia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Colonia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Calle</summary>
+        public static string Calle
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Calle", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Numero_Interior</summary>
+        public static string Numero_Interior
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Numero_Interior", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Numero_Exterior</summary>
+        public static string Numero_Exterior
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Numero_Exterior", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Codigo_Postal</summary>
+        public static string Codigo_Postal
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Codigo_Postal", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Ente_que_localiza_al_no_localizado</summary>
+        public static string Ente_que_localiza_al_no_localizado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Ente_que_localiza_al_no_localizado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>ente_Paterno</summary>
+        public static string ente_Paterno
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("ente_Paterno", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>ente_Materno</summary>
+        public static string ente_Materno
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("ente_Materno", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>ente_Nombre</summary>
+        public static string ente_Nombre
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("ente_Nombre", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Autoridad_que_conoce_el_hecho</summary>
+        public static string Autoridad_que_conoce_el_hecho
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Autoridad_que_conoce_el_hecho", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>autoridad_Paterno</summary>
+        public static string autoridad_Paterno
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("autoridad_Paterno", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>autoridad_Materno</summary>
+        public static string autoridad_Materno
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("autoridad_Materno", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>autoridad_Nombre</summary>
+        public static string autoridad_Nombre
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("autoridad_Nombre", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Documentos_MPO.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Localización</summary>	public static string TabLocalizacion 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Documentos_MPO.GetResource("TabLocalizacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Ente y Autoridad</summary>	public static string TabEnte_y_Autoridad 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Documentos_MPO.GetResource("TabEnte_y_Autoridad", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
     }
 }

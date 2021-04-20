@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Indicios_de_Diligencia" value="Detalle de Indicios de Diligencia"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Indicio" value="Indicio"></resource>
+  <resource culture="en-US" name="Seleccionar" value="Seleccionar"></resource>
+  <resource culture="en-US" name="IndicioId" value="IndicioId"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

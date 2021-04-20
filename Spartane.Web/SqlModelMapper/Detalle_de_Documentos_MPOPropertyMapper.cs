@@ -46,6 +46,66 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_Documentos_MPO.Lista_para_periciales";
                 case "Folio":
                     return "Detalle_de_Documentos_MPO.Folio";
+                case "Expediente_MP[nic]":
+                case "Expediente_MPnic":
+                    return "expediente_ministerio_publico.nic";
+                case "Descripcion":
+                    return "Detalle_de_Documentos_MPO.Descripcion";
+                case "Estatus_Persona[Descripcion]":
+                case "Estatus_PersonaDescripcion":
+                    return "Estatus_Persona.Descripcion";
+                case "Fecha_Localizacion":
+                    return "Detalle_de_Documentos_MPO.Fecha_Localizacion";
+                case "Hora_Localizacion":
+                    return "Detalle_de_Documentos_MPO.Hora_Localizacion";
+                case "Condiciones_de_Localizacion[Descripcion]":
+                case "Condiciones_de_LocalizacionDescripcion":
+                    return "Condiciones_de_Localizacion.Descripcion";
+                case "Lugar_de_Hallazgo[Descripcion]":
+                case "Lugar_de_HallazgoDescripcion":
+                    return "Lugar_del_Hallazgo.Descripcion";
+                case "Posible_Causa_de_la_Desaparacion":
+                    return "Detalle_de_Documentos_MPO.Posible_Causa_de_la_Desaparacion";
+                case "Pais[Nombre]":
+                case "PaisNombre":
+                    return "Pais.Nombre";
+                case "Estado[Nombre]":
+                case "EstadoNombre":
+                    return "Estado.Nombre";
+                case "Municipio[Nombre]":
+                case "MunicipioNombre":
+                    return "Municipio.Nombre";
+                case "Poblacion[Nombre]":
+                case "PoblacionNombre":
+                    return "Colonia.Nombre";
+                case "Colonia[Nombre]":
+                case "ColoniaNombre":
+                    return "Colonia.Nombre";
+                case "Calle":
+                    return "Detalle_de_Documentos_MPO.Calle";
+                case "Numero_Interior":
+                    return "Detalle_de_Documentos_MPO.Numero_Interior";
+                case "Numero_Exterior":
+                    return "Detalle_de_Documentos_MPO.Numero_Exterior";
+                case "Codigo_Postal":
+                    return "Detalle_de_Documentos_MPO.Codigo_Postal";
+                case "Ente_que_localiza_al_no_localizado[Descripcion]":
+                case "Ente_que_localiza_al_no_localizadoDescripcion":
+                    return "Ente_que_localiza.Descripcion";
+                case "ente_Paterno":
+                    return "Detalle_de_Documentos_MPO.ente_Paterno";
+                case "ente_Materno":
+                    return "Detalle_de_Documentos_MPO.ente_Materno";
+                case "ente_Nombre":
+                    return "Detalle_de_Documentos_MPO.ente_Nombre";
+                case "Autoridad_que_conoce_el_hecho":
+                    return "Detalle_de_Documentos_MPO.Autoridad_que_conoce_el_hecho";
+                case "autoridad_Paterno":
+                    return "Detalle_de_Documentos_MPO.autoridad_Paterno";
+                case "autoridad_Materno":
+                    return "Detalle_de_Documentos_MPO.autoridad_Materno";
+                case "autoridad_Nombre":
+                    return "Detalle_de_Documentos_MPO.autoridad_Nombre";
 
                 default:
                     return propertyName;
@@ -77,6 +137,17 @@ namespace Spartane.Web.SqlModelMapper
             if (columnName == "Lista_para_periciales")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Fecha_Localizacion")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
 
 

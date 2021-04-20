@@ -152,7 +152,36 @@ $(document).ready(function() {
 
     //BusinessRuleId:4664, Attribute:273361, Operation:Field, Event:None
 
-    //NEWBUSINESSRULE_NONE//
+    
+
+//BusinessRuleId:4988, Attribute:273359, Operation:Field, Event:None
+$("form#CreateQuejas_de_MP").on('change', '#Fecha_de_los_Hechos', function () {
+	nameOfTable='';
+	rowIndex='';
+if( EvaluaQuery("SELECT DATEDIFF(DAY,CONVERT(DATE,CONVERT(VARCHAR(10),GETDATE(),103),103), CONVERT(DATE,CONVERT(VARCHAR(10),'FLD[Fecha_de_los_Hechos]',103),103))",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText(' La fecha seleccionada no puede ser mayor al dia de hoy.', rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_de_los_Hechos' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));} else {}
+});
+
+//BusinessRuleId:4988, Attribute:273359, Operation:Field, Event:None
+
+//BusinessRuleId:4989, Attribute:269621, Operation:Field, Event:None
+$("form#CreateQuejas_de_MP").on('change', '#Fecha_Nacimiento_Identificacion', function () {
+	nameOfTable='';
+	rowIndex='';
+if( EvaluaQuery("SELECT DATEDIFF(DAY,CONVERT(DATE,CONVERT(VARCHAR(10),GETDATE(),103),103), CONVERT(DATE,CONVERT(VARCHAR(10),'FLD[Fecha_Nacimiento_Identificacion]',103),103))",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText(' La fecha no puede ser mayor al dia de hoy.', rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_Nacimiento_Identificacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));} else {}
+});
+
+//BusinessRuleId:4989, Attribute:269621, Operation:Field, Event:None
+
+//BusinessRuleId:4990, Attribute:269621, Operation:Field, Event:None
+$("form#CreateQuejas_de_MP").on('change', '#Fecha_Nacimiento_Identificacion', function () {
+	nameOfTable='';
+	rowIndex='';
+ AsignarValor($('#' + nameOfTable + 'Edad_Identificacion' + rowIndex),EvaluaQuery(" DECLARE @date date, @tmpdate date, @years int SELECT @date = convert(date,(convert(varchar(10),'FLD[Fecha_Nacimiento_Identificacion]', 103)),103) SELECT @tmpdate = @date SELECT @years = DATEDIFF(yy, @tmpdate, GETDATE()) - CASE WHEN (MONTH(@date) > MONTH(GETDATE())) OR (MONTH(@date) = MONTH(GETDATE()) AND DAY(@date) > DAY(GETDATE())) THEN 1 ELSE 0 END SELECT @tmpdate = DATEADD(yy, @years, @tmpdate) SELECT @years", rowIndex, nameOfTable));
+});
+
+//BusinessRuleId:4990, Attribute:269621, Operation:Field, Event:None
+
+//NEWBUSINESSRULE_NONE//
 });
 
 function EjecutarValidacionesAlComienzo() {
